@@ -777,7 +777,7 @@ export const engineeringMindsetSkills: EngineeringMindsetSkill[] = [
     category: "02 — Full-Stack Web",
     title: "Next.js, React & TypeScript",
     narrative:
-      "Saya menikmati bagian ketika sebuah interface tidak lagi berdiri sendiri. Input dari pengguna, logic, API, sampai database mulai membentuk satu alur yang saling terhubung. Dari situ saya suka mencari cara agar setiap bagian tetap sederhana untuk dipahami, tetapi tidak menyulitkan ketika fitur baru mulai ditambahkan.",
+      "Saya memilih strategi rendering sesuai karakter halaman: SSG untuk konten stabil, ISR untuk data yang perlu diperbarui berkala, dan SSR untuk halaman dinamis yang membutuhkan SEO serta data terbaru. Interaksi browser tetap ditangani seperlunya agar performa dan beban server tetap terjaga.",
     technologies: [
       "Next.js",
       "React",
@@ -785,6 +785,10 @@ export const engineeringMindsetSkills: EngineeringMindsetSkill[] = [
       "App Router",
       "RSC",
       "Server Actions",
+      "SSR",
+      "SSG",
+      "ISR",
+      "SEO",
     ],
     iconName: "Layout",
   },
