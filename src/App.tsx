@@ -1,29 +1,29 @@
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
-import { PageId, ProjectItem } from './types';
-import { initialProjects } from './data/portfolioData';
-import { Navbar } from './components/Navbar';
-import { HeroSection } from './components/HeroSection';
-import { PortfolioSection } from './components/PortfolioSection';
-import { AboutSection } from './components/AboutSection';
-import { ContactSection } from './components/ContactSection';
-import { MarkdownViewerModal } from './components/MarkdownViewerModal';
-import { MarkdownEditorModal } from './components/MarkdownEditorModal';
-import { CVModal } from './components/CVModal';
-import { Footer } from './components/Footer';
+import { AnimatePresence, motion } from "motion/react";
+import { useEffect, useState } from "react";
+import { AboutSection } from "./components/AboutSection";
+import { ContactSection } from "./components/ContactSection";
+import { CVModal } from "./components/CVModal";
+import { Footer } from "./components/Footer";
+import { HeroSection } from "./components/HeroSection";
+import { MarkdownEditorModal } from "./components/MarkdownEditorModal";
+import { MarkdownViewerModal } from "./components/MarkdownViewerModal";
+import { Navbar } from "./components/Navbar";
+import { PortfolioSection } from "./components/PortfolioSection";
+import { initialProjects } from "./data/portfolioData";
+import { PageId, ProjectItem } from "./types";
 
 export default function App() {
   // Navigation State
-  const [activePage, setActivePage] = useState<PageId>('home');
+  const [activePage, setActivePage] = useState<PageId>("home");
 
   // Dark Mode State (Light mode is the default for optimal readability for all ages)
   const [isDark, setIsDark] = useState<boolean>(() => {
-    if (typeof window !== 'undefined') {
-      const savedTheme = localStorage.getItem('portfolio_theme');
-      if (savedTheme === 'dark') {
+    if (typeof window !== "undefined") {
+      const savedTheme = localStorage.getItem("portfolio_theme");
+      if (savedTheme === "dark") {
         return true;
       }
-      if (savedTheme === 'light') {
+      if (savedTheme === "light") {
         return false;
       }
       // Light Mode default
@@ -35,7 +35,7 @@ export default function App() {
   // Projects State (with persistence)
   const [projects, setProjects] = useState<ProjectItem[]>(() => {
     try {
-      const saved = localStorage.getItem('portfolio_projects_list');
+      const saved = localStorage.getItem("portfolio_projects_list");
       if (saved) {
         const parsed = JSON.parse(saved);
         if (Array.isArray(parsed) && parsed.length > 0) {
@@ -49,7 +49,8 @@ export default function App() {
   });
 
   // Modal States
-  const [selectedProjectForMarkdown, setSelectedProjectForMarkdown] = useState<ProjectItem | null>(null);
+  const [selectedProjectForMarkdown, setSelectedProjectForMarkdown] =
+    useState<ProjectItem | null>(null);
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
   const [isCVModalOpen, setIsCVModalOpen] = useState(false);
 
@@ -57,11 +58,11 @@ export default function App() {
   useEffect(() => {
     const root = document.documentElement;
     if (isDark) {
-      root.classList.add('dark');
-      localStorage.setItem('portfolio_theme', 'dark');
+      root.classList.add("dark");
+      localStorage.setItem("portfolio_theme", "dark");
     } else {
-      root.classList.remove('dark');
-      localStorage.setItem('portfolio_theme', 'light');
+      root.classList.remove("dark");
+      localStorage.setItem("portfolio_theme", "light");
     }
   }, [isDark]);
 
@@ -70,19 +71,19 @@ export default function App() {
     const updated = [newProject, ...projects];
     setProjects(updated);
     try {
-      localStorage.setItem('portfolio_projects_list', JSON.stringify(updated));
+      localStorage.setItem("portfolio_projects_list", JSON.stringify(updated));
     } catch (err) {
       console.error(err);
     }
   };
 
-  const featuredProjects = projects.filter((p) => p.featured).length > 0 
-    ? projects.filter((p) => p.featured) 
-    : projects.slice(0, 3);
+  const featuredProjects =
+    projects.filter((p) => p.featured).length > 0
+      ? projects.filter((p) => p.featured)
+      : projects.slice(0, 3);
 
   return (
-    <div className="min-h-screen flex flex-col bg-slate-50 dark:bg-[#050505] text-slate-900 dark:text-slate-100 transition-colors duration-200">
-      
+    <div className="min-h-screen flex flex-col bg-slate-100 dark:bg-[#050505] text-slate-900 dark:text-slate-100 transition-colors duration-200">
       {/* Top Navigation */}
       <Navbar
         activePage={activePage}
@@ -93,7 +94,7 @@ export default function App() {
       />
 
       {/* Main Page Content Container with Smooth Page Transitions */}
-      <main className="flex-1 max-w-screen-2xl w-full mx-auto px-4 sm:px-6 lg:px-8 overflow-hidden">
+      <main className="flex-1 max-w-[1800px] w-full mx-auto px-4 sm:px-6 lg:px-12 pb-24 md:pb-0 overflow-hidden">
         <AnimatePresence mode="wait" initial={false}>
           <motion.div
             key={activePage}
@@ -104,17 +105,19 @@ export default function App() {
             className="w-full"
           >
             {/* 1. Beranda (Home) */}
-            {activePage === 'home' && (
+            {activePage === "home" && (
               <HeroSection
                 setActivePage={setActivePage}
                 featuredProjects={featuredProjects}
-                onOpenProjectMarkdown={(proj) => setSelectedProjectForMarkdown(proj)}
+                onOpenProjectMarkdown={(proj) =>
+                  setSelectedProjectForMarkdown(proj)
+                }
                 onOpenCV={() => setIsCVModalOpen(true)}
               />
             )}
 
             {/* 2. Portofolio (Portfolio & Markdown Case Studies) */}
-            {activePage === 'portfolio' && (
+            {activePage === "portfolio" && (
               <PortfolioSection
                 projects={projects}
                 onOpenMarkdown={(proj) => setSelectedProjectForMarkdown(proj)}
@@ -123,16 +126,12 @@ export default function App() {
             )}
 
             {/* 3. Tentang Saya (About Me) */}
-            {activePage === 'about' && (
-              <AboutSection
-                onOpenCV={() => setIsCVModalOpen(true)}
-              />
+            {activePage === "about" && (
+              <AboutSection onOpenCV={() => setIsCVModalOpen(true)} />
             )}
 
             {/* 4. Kontak (Contact Form & Details) */}
-            {activePage === 'contact' && (
-              <ContactSection />
-            )}
+            {activePage === "contact" && <ContactSection />}
           </motion.div>
         </AnimatePresence>
       </main>
@@ -157,11 +156,7 @@ export default function App() {
       />
 
       {/* Printable / Preview CV Modal */}
-      <CVModal
-        isOpen={isCVModalOpen}
-        onClose={() => setIsCVModalOpen(false)}
-      />
-
+      <CVModal isOpen={isCVModalOpen} onClose={() => setIsCVModalOpen(false)} />
     </div>
   );
 }

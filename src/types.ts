@@ -1,4 +1,4 @@
-export type PageId = 'home' | 'portfolio' | 'about' | 'contact';
+export type PageId = "home" | "portfolio" | "about" | "contact";
 
 export type ProjectCategory = string;
 
@@ -25,13 +25,9 @@ export interface SkillCategory {
   title: string;
   iconName: string;
   description: string;
-  skills: {
-    name: string;
-    level: number; // 0 - 100
-    experience: string;
-    icon?: string;
-    isPrimary?: boolean;
-  }[];
+  coreStack: string[];
+  alsoUsed: string[];
+  alsoUsedLabel?: string;
 }
 
 export interface ExperienceItem {
@@ -40,7 +36,7 @@ export interface ExperienceItem {
   company: string;
   location: string;
   period: string;
-  type: 'Full-time' | 'Freelance' | 'Contract' | 'Remote';
+  type: "Full-time" | "Freelance" | "Contract" | "Remote";
   description: string;
   achievements: string[];
   techStack: string[];
@@ -83,7 +79,12 @@ export interface ContactMessage {
   name: string;
   email: string;
   subject: string;
-  category: 'Web Development' | 'Konsultasi' | 'Proyek Next.js' | 'Kerja Sama' | 'Lainnya';
+  category:
+    | "Web Development"
+    | "Konsultasi"
+    | "Proyek Next.js"
+    | "Kerja Sama"
+    | "Lainnya";
   message: string;
   createdAt: string;
 }
@@ -94,7 +95,15 @@ export interface EngineeringMindsetSkill {
   title: string;
   narrative: string;
   technologies: string[];
-  iconName: 'Layers' | 'Layout' | 'Server' | 'Database' | 'Terminal' | 'Binary' | 'Cpu' | 'Workflow';
+  iconName:
+    | "Layers"
+    | "Layout"
+    | "Server"
+    | "Database"
+    | "Terminal"
+    | "Binary"
+    | "Cpu"
+    | "Workflow";
 }
 
 export interface UserProfile {

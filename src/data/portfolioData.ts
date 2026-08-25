@@ -17,7 +17,7 @@ export const userProfile: UserProfile = {
     "Saya Ikhwan Ramadhan, lahir di Padang pada 18 November 2003 dan merupakan lulusan S1 Teknik Informatika Universitas Putra Indonesia “YPTK” Padang.",
   fullBio: [
     "Saya Ikhwan Ramadhan, lulusan S1 Teknik Informatika Universitas Putra Indonesia “YPTK” Padang. Saya memfokuskan perjalanan karier saya di bidang Full-Stack Web Development dengan penguasaan mendalam pada ekosistem Next.js, React, TypeScript, Node.js/NestJS, dan basis data PostgreSQL.",
-    "Sejak mengenal dunia komputer dan rekayasa perangkat lunak, rasa ingin tahu saya selalu mendorong untuk membedah bagaimana sebuah sistem bekerja dari lapisan terdalam—mulai dari struktur data dan algoritma (DSA), komunikasi REST API yang efisien, perancangan skema relasional SQL, hingga deployment berbasis Docker di lingkungan server Linux (Debian).",
+    "Sejak mengenal dunia komputer dan rekayasa perangkat lunak, rasa ingin tahu saya selalu mendorong untuk membedah bagaimana sebuah sistem bekerja dari lapisan terdalam mulai dari struktur data dan algoritma (DSA), komunikasi REST API yang efisien, perancangan skema relasional SQL, hingga deployment berbasis Docker di lingkungan server Linux (Debian).",
     "Kuliah memberikan fondasi akademis yang kuat, namun sebagian besar keahlian praktis saya kembangkan secara konsisten melalui eksplorasi mandiri, pembangunan proyek nyata berskala monorepo, e-commerce, sistem informasi sekolah, serta riset pemodelan data Time Series Forecasting menggunakan Python.",
     "Saya sangat menikmati proses memecahkan masalah kompleks, mengoptimalkan query basis data, menyusun arsitektur kode yang bersih dan terstruktur (clean code & type-safety), serta siap berkontribusi penuh sebagai Full-Stack Developer di lingkungan kerja yang dinamis.",
   ],
@@ -88,8 +88,6 @@ export const initialProjects: ProjectItem[] = [
       "shadcn/ui",
     ],
     image: "/projects/smpn24.png",
-    fallbackImage:
-      "https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&fit=crop&w=1200&q=80",
     featured: true,
     publishedDate: "2025-12-01",
     period: "2025 (Proyek Produksi)",
@@ -160,8 +158,6 @@ Website profil dan sistem informasi sekolah resmi untuk **SMP Negeri 24 Padang**
       "CMS",
     ],
     image: "/projects/ingstore.png",
-    fallbackImage:
-      "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1200&q=80",
     featured: true,
     publishedDate: "2025-07-23",
     period: "2025",
@@ -224,8 +220,6 @@ featured: true
       "Docker",
     ],
     image: "/projects/siklon.png",
-    fallbackImage:
-      "https://images.unsplash.com/photo-1527482797697-8795b05a13fe?auto=format&fit=crop&w=1200&q=80",
     featured: true,
     publishedDate: "2026-08-10",
     period: "2026 (Riset Skripsi S1)",
@@ -299,8 +293,6 @@ Prediksi pergerakan jalur siklon tropis merupakan tantangan krusial dalam mitiga
       "Swagger",
     ],
     image: "/projects/monorepo.jpg",
-    fallbackImage:
-      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80",
     featured: true,
     publishedDate: "2025-11-30",
     period: "2025",
@@ -363,9 +355,7 @@ Aplikasi manajemen operasional bisnis (CRM & ERP) berskala besar yang dibangun d
       "CRUD",
       "Docker",
     ],
-    image: "/projects/inventory.jpg",
-    fallbackImage:
-      "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1200&q=80",
+    image: "/projects/inventory.png",
     featured: false,
     publishedDate: "2025-07-15",
     period: "2025",
@@ -423,9 +413,7 @@ Aplikasi manajemen persediaan barang dan inventaris gudang yang efisien. Membant
       "Tailwind CSS",
       "Node.js",
     ],
-    image: "/projects/dockrank.jpg",
-    fallbackImage:
-      "https://images.unsplash.com/photo-1507842229451-7f01dd7991a8?auto=format&fit=crop&w=1200&q=80",
+    image: "/projects/dockrank.png",
     featured: false,
     publishedDate: "2025-07-07",
     period: "2025",
@@ -482,14 +470,12 @@ featured: false
       "PostgreSQL",
       "CMS",
     ],
-    image: "/projects/adminblog.jpg",
-    fallbackImage:
-      "https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=1200&q=80",
+    image: "/projects/adminblog.png",
     featured: false,
     publishedDate: "2026-04-13",
     period: "2026",
     role: "Full-Stack Developer",
-    demoUrl: "https://admin-blog-nextjs.vercel.app",
+    demoUrl: "https://blogsing.vercel.app",
     githubUrl: "https://github.com/IngsR/AdminBlog_nextjs",
     metrics: [
       { label: "Framework", value: "Next.js App Router" },
@@ -509,7 +495,7 @@ tags:
   - PostgreSQL
   - CMS
 github: "https://github.com/IngsR/AdminBlog_nextjs"
-demo: "https://admin-blog-nextjs.vercel.app"
+demo: "https://blogsing.vercel.app"
 featured: false
 ---
 
@@ -527,8 +513,6 @@ Platform Content Management System (CMS) modern berbasis Next.js untuk penulisan
     category: "Mobile Development",
     tags: ["React Native", "JavaScript", "Expo", "Axios", "REST API", "Mobile"],
     image: "/projects/reactnative.jpg",
-    fallbackImage:
-      "https://images.unsplash.com/photo-1556742049-0a67e5572293?auto=format&fit=crop&w=1200&q=80",
     featured: false,
     publishedDate: "2025-06-06",
     period: "2025",
@@ -573,141 +557,33 @@ Aplikasi e-commerce cross-platform mobile yang dibangun menggunakan **React Nati
 
 export const skillCategories: SkillCategory[] = [
   {
-    title: "Full-Stack & Web Engineering",
+    title: "FULL-STACK WEB",
     iconName: "Layout",
-    description:
-      "Arsitektur web modern performa tinggi, Server-Side Rendering, dan Type-Safe Frontend.",
-    skills: [
-      {
-        name: "Next.js (App Router, Server Actions)",
-        level: 94,
-        experience: "Produksi & Riset",
-        isPrimary: true,
-      },
-      {
-        name: "TypeScript & JavaScript (ES6+)",
-        level: 92,
-        experience: "Fondasi Inti",
-        isPrimary: true,
-      },
-      {
-        name: "React (Hooks, State Management, UI)",
-        level: 92,
-        experience: "Frontend Framework",
-        isPrimary: true,
-      },
-      {
-        name: "Tailwind CSS & shadcn/ui",
-        level: 95,
-        experience: "Design System & UI",
-        isPrimary: true,
-      },
-      {
-        name: "NestJS & Express (REST API)",
-        level: 86,
-        experience: "Modular Backend",
-        isPrimary: true,
-      },
-    ],
+    description: "Fondasi utama untuk membangun aplikasi web full-stack.",
+    coreStack: ["Next.js", "React", "TypeScript", "Node.js"],
+    alsoUsed: ["NestJS", "Express", "Axios", "Zod"],
   },
   {
-    title: "Database, SQL & System Architecture",
+    title: "DATABASE & BACKEND",
     iconName: "Server",
-    description:
-      "Perancangan skema relasional, optimasi kueri SQL, dan integritas data enterprise.",
-    skills: [
-      {
-        name: "PostgreSQL & SQL Engineering",
-        level: 90,
-        experience: "Basis Data Utama",
-        isPrimary: true,
-      },
-      {
-        name: "Drizzle ORM & Prisma",
-        level: 90,
-        experience: "Schema & Type-Safe Query",
-        isPrimary: true,
-      },
-      {
-        name: "TypeORM & Turborepo",
-        level: 84,
-        experience: "Monorepo Architecture",
-      },
-      {
-        name: "Auth.js (NextAuth) & JWT",
-        level: 88,
-        experience: "Keamanan & RBAC",
-        isPrimary: true,
-      },
-      {
-        name: "REST API & OpenAPI / Swagger",
-        level: 92,
-        experience: "Desain Kontrak API",
-        isPrimary: true,
-      },
-    ],
+    description: "Data layer dan kontrak API untuk aplikasi yang terhubung.",
+    coreStack: ["PostgreSQL", "SQL", "Drizzle ORM"],
+    alsoUsed: ["Prisma", "TypeORM", "REST API", "OpenAPI / Swagger"],
   },
   {
-    title: "Algoritma, Linux OS & DevOps Tooling",
+    title: "INFRASTRUCTURE & DEPLOYMENT",
     iconName: "Terminal",
-    description:
-      "Struktur Data & Algoritma (DSA), administrasi Linux Debian, dan deployment Docker.",
-    skills: [
-      {
-        name: "Struktur Data & Algoritma (DSA)",
-        level: 88,
-        experience: "Analisis Kompleksitas Big-O",
-        isPrimary: true,
-      },
-      {
-        name: "OS Linux (Debian / Ubuntu Server)",
-        level: 88,
-        experience: "CLI & Environment Config",
-        isPrimary: true,
-      },
-      {
-        name: "Docker & Containerization",
-        level: 84,
-        experience: "Multi-stage Build & Compose",
-        isPrimary: true,
-      },
-      {
-        name: "Git & GitHub Workflow",
-        level: 92,
-        experience: "Team Lead & Collaboration",
-        isPrimary: true,
-      },
-    ],
+    description: "Tooling untuk version control, server, dan deployment.",
+    coreStack: ["Git", "GitHub", "Docker", "Linux"],
+    alsoUsedLabel: "DEPLOYMENT",
+    alsoUsed: ["Vercel", "Cloudflare", "Supabase"],
   },
   {
-    title: "Data Science & Time Series Forecasting",
+    title: "DATA & RESEARCH",
     iconName: "Cpu",
-    description:
-      "Pengolahan dataset saintifik tabular, temu balik informasi, dan pemodelan peramalan waktu.",
-    skills: [
-      {
-        name: "Python (NumPy, Pandas, Scikit-learn)",
-        level: 86,
-        experience: "Data Processing & EDA",
-        isPrimary: true,
-      },
-      {
-        name: "Time Series Forecasting (LSTM)",
-        level: 84,
-        experience: "Deep Learning Sekuensial",
-        isPrimary: true,
-      },
-      {
-        name: "TF-IDF & Information Retrieval",
-        level: 88,
-        experience: "Sistem Temu Balik",
-      },
-      {
-        name: "Streamlit & Visualisasi Data",
-        level: 84,
-        experience: "Data Dashboard",
-      },
-    ],
+    description: "Eksplorasi data dan riset pemodelan berbasis Python.",
+    coreStack: ["Python", "Pandas", "NumPy", "LSTM"],
+    alsoUsed: ["Scikit-learn", "TensorFlow", "Keras", "Streamlit", "Folium"],
   },
 ];
 
@@ -771,6 +647,14 @@ export const educationData: EducationItem[] = [
     details:
       "Mendalami Rekayasa Perangkat Lunak, Struktur Data & Algoritma (DSA), Perancangan Basis Data Relasional, Arsitektur Sistem Web Terdistribusi, Jaringan Saraf Tiruan (Deep Learning/LSTM Time Series), dan Sistem Temu Balik Informasi.",
   },
+  {
+    id: "edu-2",
+    degree: "Sekolah Menengah Atas (SMA) - Jurusan IPA",
+    institution: "SMA 14 Padang",
+    period: "Lulusan SMA",
+    details:
+      "Menyelesaikan pendidikan dengan peminatan Ilmu Pengetahuan Alam (IPA). Nilai rata-rata ijazah 88,31, dengan penguatan pada Matematika, Biologi, Fisika, Kimia, serta dasar analisis dan penalaran ilmiah.",
+  },
 ];
 
 export const certificationsData: CertificationItem[] = [
@@ -784,7 +668,6 @@ export const certificationsData: CertificationItem[] = [
     category: "Artificial Intelligence",
     credentialUrl: "https://e.huawei.com/en/talent/#/",
     image: "/certificates/Artificial Intelligence Fundamentals.png",
-    fallbackImage: "/certificates/Artificial Intelligence Fundamentals.png",
     skills: [
       "Artificial Intelligence",
       "Machine Learning Basics",
@@ -806,8 +689,6 @@ export const certificationsData: CertificationItem[] = [
     credentialUrl: "https://e.huawei.com/en/talent/#/",
     image:
       "/certificates/Artificial Intelligence_ Principles and Applications.png",
-    fallbackImage:
-      "/certificates/Artificial Intelligence_ Principles and Applications.png",
     skills: [
       "AI Principles",
       "Deep Learning Architecture",
@@ -828,7 +709,6 @@ export const certificationsData: CertificationItem[] = [
     category: "Network & Infrastructure Engineering",
     credentialUrl: "https://e.huawei.com/en/talent/#/",
     image: "/certificates/HCIP-Datacom Core Technology V1.0 Course.png",
-    fallbackImage: "/certificates/HCIP-Datacom Core Technology V1.0 Course.png",
     skills: [
       "Datacom Routing & Switching",
       "Advanced IP Networking",
@@ -850,7 +730,6 @@ export const certificationsData: CertificationItem[] = [
     credentialUrl:
       "https://www.hackerrank.com/certificates/iframe/18c088033553",
     image: "/certificates/Problem Solving (Basic).png",
-    fallbackImage: "/certificates/Problem Solving (Basic).png",
     skills: [
       "Problem Solving",
       "Data Structures",
@@ -872,7 +751,6 @@ export const certificationsData: CertificationItem[] = [
     credentialUrl:
       "https://www.hackerrank.com/certificates/iframe/f839f365795c",
     image: "/certificates/Problem Solving (Intermediate).png",
-    fallbackImage: "/certificates/Problem Solving (Intermediate).png",
     skills: [
       "Advanced Problem Solving",
       "Complex Data Structures",

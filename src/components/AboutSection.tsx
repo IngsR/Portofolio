@@ -1,41 +1,38 @@
-import React, { useState } from 'react';
-import { 
-  userProfile, 
-  skillCategories, 
-  experienceData, 
-  educationData, 
-  certificationsData 
-} from '../data/portfolioData';
-import { CertificationItem } from '../types';
-import { DetailModal } from './DetailModal';
-import { 
-  Briefcase, 
-  GraduationCap, 
-  Award, 
-  FileText, 
-  Code2,
-  Terminal,
-  Server,
-  Layout,
-  Cpu,
+import {
   ArrowUpRight,
-  MapPin,
+  Award,
+  Briefcase,
+  Code2,
+  Cpu,
+  FileText,
+  GraduationCap,
+  Layout,
   Mail,
   MessageCircle,
-  CheckCircle2,
-  ExternalLink,
-  ShieldCheck
-} from 'lucide-react';
+  Server,
+  Terminal,
+} from "lucide-react";
+import React, { useState } from "react";
+import {
+  certificationsData,
+  educationData,
+  experienceData,
+  skillCategories,
+  userProfile,
+} from "../data/portfolioData";
+import { CertificationItem } from "../types";
+import { DetailModal } from "./DetailModal";
 
 interface AboutSectionProps {
   onOpenCV: () => void;
 }
 
-export const AboutSection: React.FC<AboutSectionProps> = ({
-  onOpenCV,
-}) => {
-  const [activeTab, setActiveTab] = useState<'experience' | 'skills' | 'education'>('experience');
-  const [selectedCertForModal, setSelectedCertForModal] = useState<CertificationItem | null>(null);
+export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenCV }) => {
+  const [activeTab, setActiveTab] = useState<
+    "experience" | "skills" | "education"
+  >("experience");
+  const [selectedCertForModal, setSelectedCertForModal] =
+    useState<CertificationItem | null>(null);
   const [isCertModalOpen, setIsCertModalOpen] = useState(false);
 
   const handleOpenCertModal = (cert: CertificationItem) => {
@@ -45,13 +42,17 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
 
   const getCategoryIcon = (iconName: string) => {
     switch (iconName) {
-      case 'Layout':
+      case "Layout":
         return <Layout className="w-4 h-4 text-blue-600 dark:text-blue-400" />;
-      case 'Server':
-        return <Server className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />;
-      case 'Terminal':
-        return <Terminal className="w-4 h-4 text-purple-600 dark:text-purple-400" />;
-      case 'Cpu':
+      case "Server":
+        return (
+          <Server className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
+        );
+      case "Terminal":
+        return (
+          <Terminal className="w-4 h-4 text-purple-600 dark:text-purple-400" />
+        );
+      case "Cpu":
         return <Cpu className="w-4 h-4 text-rose-600 dark:text-rose-400" />;
       default:
         return <Code2 className="w-4 h-4 text-slate-800 dark:text-slate-200" />;
@@ -60,27 +61,28 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
 
   return (
     <div className="space-y-12 py-6 sm:py-8">
-      
       {/* Header Profile Story */}
       <section className="bg-white dark:bg-[#0c0c0d] border border-slate-200/80 dark:border-white/10 rounded-3xl p-6 sm:p-10 lg:p-12 space-y-8 shadow-sm">
-        
         {/* Top Profile Header */}
         <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 pb-8 border-b border-slate-200 dark:border-white/10">
-          
           <div className="flex items-center gap-5">
             {/* Avatar container */}
             <div className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-2xl overflow-hidden bg-slate-900 border border-slate-200 dark:border-white/10 shrink-0">
               <img
-                src={userProfile.avatarUrl}
-                alt={userProfile.name}
+                src="/logo.jpg"
+                alt="Logo Ikhwan Ramadhan"
                 onError={(e) => {
                   const target = e.target as HTMLImageElement;
-                  target.style.display = 'none';
+                  target.style.display = "none";
                   const parent = target.parentElement;
-                  if (parent && !parent.querySelector('.about-avatar-fallback')) {
-                    const fallback = document.createElement('div');
-                    fallback.className = 'about-avatar-fallback w-full h-full flex items-center justify-center bg-slate-950 text-white font-black text-2xl tracking-tighter';
-                    fallback.textContent = 'IR';
+                  if (
+                    parent &&
+                    !parent.querySelector(".about-avatar-fallback")
+                  ) {
+                    const fallback = document.createElement("div");
+                    fallback.className =
+                      "about-avatar-fallback w-full h-full flex items-center justify-center bg-slate-950 text-white font-black text-2xl tracking-tighter";
+                    fallback.textContent = "IR";
                     parent.appendChild(fallback);
                   }
                 }}
@@ -131,7 +133,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
         </div>
 
         {/* Bio Narrative Paragraphs */}
-        <div className="space-y-4 text-sm sm:text-base lg:text-lg text-slate-700 dark:text-slate-300 leading-relaxed max-w-5xl font-normal">
+        <div className="space-y-4 text-sm sm:text-base lg:text-xl text-slate-700 dark:text-slate-300 leading-relaxed max-w-7xl font-normal">
           {userProfile.fullBio.map((paragraph, index) => (
             <p key={index}>{paragraph}</p>
           ))}
@@ -140,32 +142,43 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
         {/* Summary Metric Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
           <div className="p-5 rounded-2xl bg-slate-50 dark:bg-white/[0.02] border border-slate-200/60 dark:border-white/5 space-y-1.5">
-            <span className="text-xs font-semibold text-slate-500 dark:text-slate-400">Kesiapan Kerja</span>
+            <span className="text-xs font-semibold text-slate-500 dark:text-slate-400">
+              Kesiapan Kerja
+            </span>
             <h4 className="font-bold text-sm text-slate-950 dark:text-white">
               On-Site / WFO & Remote
             </h4>
             <p className="text-xs text-slate-600 dark:text-slate-400 font-normal">
-              Siap bekerja on-site / WFO di seluruh Indonesia, serta sistem kerja Hybrid / Remote.
+              Siap bekerja on-site / WFO di seluruh Indonesia, serta sistem
+              kerja Hybrid / Remote.
             </p>
           </div>
 
           <div className="p-5 rounded-2xl bg-slate-50 dark:bg-white/[0.02] border border-slate-200/60 dark:border-white/5 space-y-1.5">
-            <span className="text-xs font-semibold text-slate-500 dark:text-slate-400">Pendidikan Terakhir</span>
+            <span className="text-xs font-semibold text-slate-500 dark:text-slate-400">
+              Pendidikan Terakhir
+            </span>
             <h4 className="font-bold text-sm text-slate-950 dark:text-white">
               S1 Teknik Informatika
             </h4>
             <p className="text-xs text-slate-600 dark:text-slate-400 font-normal">
-              Lulusan Universitas Putra Indonesia &ldquo;YPTK&rdquo; Padang dengan fokus Rekayasa Perangkat Lunak & Time Series Forecasting.
+              Lulusan Universitas Putra Indonesia &ldquo;YPTK&rdquo; Padang
+              dengan pendalaman Rekayasa Perangkat Lunak, DSA, basis data
+              relasional, arsitektur sistem web, Deep Learning/LSTM Time Series,
+              dan Sistem Temu Balik Informasi.
             </p>
           </div>
 
           <div className="p-5 rounded-2xl bg-slate-50 dark:bg-white/[0.02] border border-slate-200/60 dark:border-white/5 space-y-1.5">
-            <span className="text-xs font-semibold text-slate-500 dark:text-slate-400">Fokus Keahlian</span>
+            <span className="text-xs font-semibold text-slate-500 dark:text-slate-400">
+              Fokus Keahlian
+            </span>
             <h4 className="font-bold text-sm text-slate-950 dark:text-white">
               Full-Stack & Systems
             </h4>
             <p className="text-xs text-slate-600 dark:text-slate-400 font-normal">
-              Next.js, TypeScript, PostgreSQL, Drizzle ORM, REST API, Docker, Linux Debian, dan Python Data Science.
+              Next.js, TypeScript, PostgreSQL, Drizzle ORM, REST API, Docker,
+              Linux Debian, dan Python Data Science.
             </p>
           </div>
         </div>
@@ -175,11 +188,11 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
       <div className="space-y-6">
         <div className="flex items-center gap-2 border-b border-slate-200 dark:border-white/10 pb-3 overflow-x-auto">
           <button
-            onClick={() => setActiveTab('experience')}
+            onClick={() => setActiveTab("experience")}
             className={`flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs uppercase tracking-wider transition-all whitespace-nowrap ${
-              activeTab === 'experience'
-                ? 'bg-slate-950 text-white dark:bg-white dark:text-slate-950 font-bold shadow-sm'
-                : 'text-slate-600 dark:text-slate-400 hover:text-slate-950 dark:hover:text-white'
+              activeTab === "experience"
+                ? "bg-slate-950 text-white dark:bg-white dark:text-slate-950 font-bold shadow-sm"
+                : "text-slate-600 dark:text-slate-400 hover:text-slate-950 dark:hover:text-white"
             }`}
           >
             <Briefcase className="w-4 h-4" />
@@ -187,11 +200,11 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
           </button>
 
           <button
-            onClick={() => setActiveTab('skills')}
+            onClick={() => setActiveTab("skills")}
             className={`flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs uppercase tracking-wider transition-all whitespace-nowrap ${
-              activeTab === 'skills'
-                ? 'bg-slate-950 text-white dark:bg-white dark:text-slate-950 font-bold shadow-sm'
-                : 'text-slate-600 dark:text-slate-400 hover:text-slate-950 dark:hover:text-white'
+              activeTab === "skills"
+                ? "bg-slate-950 text-white dark:bg-white dark:text-slate-950 font-bold shadow-sm"
+                : "text-slate-600 dark:text-slate-400 hover:text-slate-950 dark:hover:text-white"
             }`}
           >
             <Cpu className="w-4 h-4" />
@@ -199,11 +212,11 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
           </button>
 
           <button
-            onClick={() => setActiveTab('education')}
+            onClick={() => setActiveTab("education")}
             className={`flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs uppercase tracking-wider transition-all whitespace-nowrap ${
-              activeTab === 'education'
-                ? 'bg-slate-950 text-white dark:bg-white dark:text-slate-950 font-bold shadow-sm'
-                : 'text-slate-600 dark:text-slate-400 hover:text-slate-950 dark:hover:text-white'
+              activeTab === "education"
+                ? "bg-slate-950 text-white dark:bg-white dark:text-slate-950 font-bold shadow-sm"
+                : "text-slate-600 dark:text-slate-400 hover:text-slate-950 dark:hover:text-white"
             }`}
           >
             <GraduationCap className="w-4 h-4" />
@@ -212,7 +225,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
         </div>
 
         {/* Tab 1: Experience */}
-        {activeTab === 'experience' && (
+        {activeTab === "experience" && (
           <div className="space-y-6">
             <div className="relative pl-6 sm:pl-8 space-y-6 before:absolute before:left-2 sm:before:left-3 before:top-2 before:bottom-2 before:w-px before:bg-slate-200 dark:before:bg-white/10">
               {experienceData.map((exp) => (
@@ -251,7 +264,9 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
                       <ul className="space-y-1.5 text-xs text-slate-700 dark:text-slate-300 font-normal">
                         {exp.achievements.map((ach, i) => (
                           <li key={i} className="flex items-start gap-2">
-                            <span className="text-emerald-500 font-bold">✓</span>
+                            <span className="text-emerald-500 font-bold">
+                              ✓
+                            </span>
                             <span>{ach}</span>
                           </li>
                         ))}
@@ -276,63 +291,80 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
         )}
 
         {/* Tab 2: Skills */}
-        {activeTab === 'skills' && (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {skillCategories.map((cat, idx) => (
-              <div
-                key={idx}
-                className="p-6 sm:p-8 rounded-3xl bg-white dark:bg-[#0c0c0d] border border-slate-200/80 dark:border-white/10 space-y-5 shadow-sm"
-              >
-                <div className="flex items-center gap-3 border-b border-slate-100 dark:border-white/10 pb-4">
-                  <div className="p-2.5 rounded-2xl bg-slate-100 dark:bg-white/5 border border-slate-200/60 dark:border-white/5">
-                    {getCategoryIcon(cat.iconName)}
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-base text-slate-950 dark:text-white">
-                      {cat.title}
-                    </h3>
-                    <p className="text-xs text-slate-500 dark:text-slate-400">
-                      {cat.description}
-                    </p>
-                  </div>
-                </div>
+        {activeTab === "skills" && (
+          <div className="space-y-6">
+            <div className="space-y-1">
+              <h2 className="text-2xl sm:text-3xl font-black tracking-tight text-slate-950 dark:text-white">
+                Teknologi yang Saya Gunakan
+              </h2>
+              <p className="text-sm text-slate-600 dark:text-slate-400">
+                Stack yang paling sering saya gunakan, beserta tools yang muncul
+                sesuai kebutuhan project.
+              </p>
+            </div>
 
-                <div className="space-y-3.5 pt-1">
-                  {cat.skills.map((skill) => (
-                    <div key={skill.name} className="space-y-1.5">
-                      <div className="flex items-center justify-between text-xs">
-                        <span className="font-medium text-slate-900 dark:text-white flex items-center gap-1.5">
-                          {skill.name}
-                          {skill.isPrimary && (
-                            <span className="text-[9px] px-1.5 py-0.5 rounded bg-slate-950 text-white dark:bg-white dark:text-slate-950 font-bold">
-                              Utama
-                            </span>
-                          )}
-                        </span>
-                        <span className="text-slate-400 dark:text-slate-500 text-[11px]">
-                          {skill.experience}
-                        </span>
-                      </div>
-                      
-                      {/* Skill progress bar */}
-                      <div className="w-full h-1.5 rounded-full bg-slate-100 dark:bg-white/10 overflow-hidden">
-                        <div
-                          className="h-full bg-slate-950 dark:bg-white transition-all duration-500"
-                          style={{ width: `${skill.level}%` }}
-                        />
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+              {skillCategories.map((cat) => (
+                <div
+                  key={cat.title}
+                  className="p-5 sm:p-6 rounded-3xl bg-white dark:bg-[#0c0c0d] border border-slate-200/80 dark:border-white/10 space-y-5 shadow-sm"
+                >
+                  <div className="flex items-start gap-3 border-b border-slate-100 dark:border-white/10 pb-4">
+                    <div className="p-2.5 rounded-2xl bg-slate-100 dark:bg-white/5 border border-slate-200/60 dark:border-white/5 shrink-0">
+                      {getCategoryIcon(cat.iconName)}
+                    </div>
+                    <div>
+                      <h3 className="font-bold text-sm tracking-wide text-slate-950 dark:text-white">
+                        {cat.title}
+                      </h3>
+                      <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
+                        {cat.description}
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="space-y-4">
+                    <div className="space-y-2">
+                      <h4 className="text-[10px] font-bold tracking-[0.16em] text-emerald-700 dark:text-emerald-400">
+                        CORE STACK
+                      </h4>
+                      <div className="flex flex-wrap gap-2">
+                        {cat.coreStack.map((technology) => (
+                          <span
+                            key={technology}
+                            className="px-2.5 py-1 text-xs font-semibold rounded-lg border border-emerald-600/30 bg-emerald-500/10 text-emerald-800 dark:text-emerald-300"
+                          >
+                            {technology}
+                          </span>
+                        ))}
                       </div>
                     </div>
-                  ))}
+
+                    <div className="space-y-2">
+                      <h4 className="text-[10px] font-bold tracking-[0.16em] text-slate-500 dark:text-slate-400">
+                        {cat.alsoUsedLabel || "ALSO USED"}
+                      </h4>
+                      <div className="flex flex-wrap gap-2">
+                        {cat.alsoUsed.map((technology) => (
+                          <span
+                            key={technology}
+                            className="px-2.5 py-1 text-xs font-medium rounded-lg border border-slate-300 dark:border-white/10 bg-slate-50 dark:bg-white/[0.03] text-slate-700 dark:text-slate-300"
+                          >
+                            {technology}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         )}
 
         {/* Tab 3: Education & Certifications */}
-        {activeTab === 'education' && (
+        {activeTab === "education" && (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            
             {/* Education */}
             <div className="space-y-4">
               <div className="flex items-center gap-2 text-slate-950 dark:text-white font-bold text-lg pb-2 border-b border-slate-200 dark:border-white/10">
@@ -385,7 +417,10 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
                           alt={cert.title}
                           onError={(e) => {
                             const target = e.target as HTMLImageElement;
-                            if (cert.fallbackImage && target.src !== cert.fallbackImage) {
+                            if (
+                              cert.fallbackImage &&
+                              target.src !== cert.fallbackImage
+                            ) {
                               target.src = cert.fallbackImage;
                             }
                           }}
@@ -398,7 +433,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
                       <div className="space-y-1">
                         <div className="flex items-center gap-2">
                           <span className="text-[10px] font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400">
-                            {cert.category || 'Kredensial'}
+                            {cert.category || "Kredensial"}
                           </span>
                           {cert.badgeCode && (
                             <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-slate-100 dark:bg-white/10 text-slate-700 dark:text-slate-300 font-bold">
@@ -432,10 +467,8 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
                 ))}
               </div>
             </div>
-
           </div>
         )}
-
       </div>
 
       {/* Pop up modal for certificate detail */}
@@ -444,7 +477,6 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
         onClose={() => setIsCertModalOpen(false)}
         certificate={selectedCertForModal}
       />
-
     </div>
   );
 };

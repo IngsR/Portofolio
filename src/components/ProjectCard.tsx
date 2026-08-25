@@ -1,13 +1,6 @@
-import React from 'react';
-import { ProjectItem } from '../types';
-import { 
-  FileText, 
-  Github, 
-  ArrowUpRight,
-  ExternalLink,
-  Layers,
-  Calendar
-} from 'lucide-react';
+import { ArrowUpRight, Calendar, FileText, Github } from "lucide-react";
+import React from "react";
+import { ProjectItem } from "../types";
 
 interface ProjectCardProps {
   project: ProjectItem;
@@ -15,13 +8,13 @@ interface ProjectCardProps {
   onOpenMarkdown?: (project: ProjectItem) => void;
 }
 
-export const ProjectCard: React.FC<ProjectCardProps> = ({ 
-  project, 
+export const ProjectCard: React.FC<ProjectCardProps> = ({
+  project,
   onOpenDetail,
-  onOpenMarkdown 
+  onOpenMarkdown,
 }) => {
   return (
-    <div 
+    <div
       className="group flex flex-col bg-white dark:bg-[#0f0f11] border border-slate-200/80 dark:border-white/10 rounded-2xl sm:rounded-3xl overflow-hidden hover:border-slate-400 dark:hover:border-white/30 hover:shadow-lg transition-all duration-200 shadow-sm cursor-pointer"
       onClick={() => onOpenDetail(project)}
     >
@@ -40,7 +33,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
           referrerPolicy="no-referrer"
           loading="lazy"
         />
-        
+
         {/* Clean Category Badge */}
         <div className="absolute top-3 left-3 flex items-center gap-1.5 pointer-events-none">
           <span className="px-2.5 py-1 text-[11px] font-semibold rounded-lg bg-slate-950/85 text-white dark:bg-white/90 dark:text-slate-950 backdrop-blur-md shadow-xs">
@@ -59,7 +52,6 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
 
       {/* Content Body */}
       <div className="p-5 sm:p-6 flex-1 flex flex-col justify-between space-y-4">
-        
         <div className="space-y-2.5">
           <div className="flex items-center justify-between text-xs text-slate-500 dark:text-slate-400">
             <span className="font-medium flex items-center gap-1">
@@ -67,7 +59,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
               {project.period || project.publishedDate}
             </span>
             <span className="text-[11px] font-medium text-slate-600 dark:text-slate-300">
-              {project.role || 'Full-Stack'}
+              {project.role || "Full-Stack"}
             </span>
           </div>
 
@@ -98,23 +90,26 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
 
         {/* Tech Stack Tags */}
         <div className="flex flex-wrap gap-1.5 pt-1">
-          {project.tags.slice(0, 4).map((tag) => (
-            <span
-              key={tag}
-              className="px-2 py-0.5 text-[10px] rounded-md text-slate-700 dark:text-slate-300 bg-slate-100 dark:bg-white/5 border border-slate-200/60 dark:border-white/5 font-medium"
-            >
-              {tag}
-            </span>
-          ))}
-          {project.tags.length > 4 && (
+          {project.tags
+            .filter((tag) => tag.trim())
+            .slice(0, 4)
+            .map((tag) => (
+              <span
+                key={tag}
+                className="px-2 py-0.5 text-[10px] rounded-md text-slate-700 dark:text-slate-300 bg-slate-100 dark:bg-white/5 border border-slate-200/60 dark:border-white/5 font-medium"
+              >
+                {tag}
+              </span>
+            ))}
+          {project.tags.filter((tag) => tag.trim()).length > 4 && (
             <span className="px-1.5 py-0.5 text-[10px] text-slate-400 font-medium">
-              +{project.tags.length - 4}
+              +{project.tags.filter((tag) => tag.trim()).length - 4}
             </span>
           )}
         </div>
 
         {/* Action Buttons Row */}
-        <div 
+        <div
           className="pt-4 border-t border-slate-100 dark:border-white/10 flex items-center justify-between gap-2"
           onClick={(e) => e.stopPropagation()} // Prevent card double triggering
         >
@@ -153,7 +148,6 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
             )}
           </div>
         </div>
-
       </div>
     </div>
   );
