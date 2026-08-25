@@ -1,101 +1,110 @@
 # Portofolio Ikhwan Ramadhan
 
-Website portfolio personal untuk menampilkan pengalaman, project, technology stack, pendidikan, sertifikasi, dan kanal kontak Ikhwan Ramadhan sebagai Full-Stack Developer.
+Portfolio personal untuk memperkenalkan Ikhwan Ramadhan sebagai Full-Stack Developer melalui project, pengalaman, technology stack, pendidikan, sertifikasi, dan kanal komunikasi profesional.
 
-Project ini dibuat sebagai aplikasi React yang ringan dan responsif. Navigasi halaman berlangsung tanpa reload, sedangkan detail project dapat dibaca melalui markdown viewer. Tersedia juga editor sederhana untuk menambahkan project baru secara lokal melalui browser.
+Aplikasi ini dibangun sebagai React single-page application yang responsif, ringan, dan berorientasi pada presentasi project. Pengunjung dapat menjelajahi portfolio tanpa reload halaman, membaca case study berbasis Markdown, memfilter project berdasarkan beberapa teknologi, serta menghubungi pemilik portfolio secara langsung.
 
-## Fitur Utama
+## Overview
 
-- Halaman Beranda dengan profil, project unggulan, dan call-to-action.
-- Halaman Portofolio dengan pencarian, filter kategori dan keyword multi-pilih, pengurutan, detail project, serta case study Markdown.
-- Halaman Tentang dengan pengalaman, technology overview berbasis `Core Stack` dan `Also Used`, pendidikan, serta sertifikasi.
-- Halaman Kontak dengan form pesan, WhatsApp, email, FAQ, dan tautan profesional berikon.
-- Modal CV yang menggunakan file `public/cv.pdf`.
-- Tema terang sebagai default dan tema gelap dengan preferensi yang disimpan di browser.
-- Penyimpanan project tambahan dan pesan kontak menggunakan `localStorage`.
-- Layout responsive untuk desktop, tablet, dan mobile.
+- **Beranda**: profil singkat, project unggulan, dan akses cepat ke CV atau kontak.
+- **Portofolio**: katalog project dengan pencarian, filter multi-pilih, pengurutan, detail, dan case study Markdown.
+- **Tentang**: pengalaman kerja, technology overview berbasis `Core Stack` dan `Also Used`, pendidikan, serta sertifikasi.
+- **Kontak**: WhatsApp, email, tautan profesional, form pesan, dan FAQ.
+- **Content persistence**: project tambahan dan pesan form disimpan pada `localStorage` browser.
+- **Responsive UI**: layout desktop, tablet, dan mobile dengan tema terang sebagai default serta dukungan tema gelap.
 
-## Teknologi
+## Technology Stack
 
-- React 19 dan TypeScript
+- React 19
+- TypeScript
 - Vite
 - Tailwind CSS 4
-- Motion untuk transisi halaman dan interaksi
-- Lucide React untuk ikon
-- React Markdown dan Remark GFM untuk case study
-- Canvas Confetti untuk feedback pengiriman form
+- Motion
+- Lucide React
+- React Markdown dan Remark GFM
+- Canvas Confetti
 
-## Struktur Project
+## Architecture
 
 ```text
 .
 ├── public/
-│   ├── certificates/       # Gambar sertifikasi
+│   ├── certificates/       # Aset gambar sertifikasi
 │   ├── projects/           # Screenshot project
-│   ├── cv.pdf              # CV dalam modal
+│   ├── cv.pdf              # Dokumen CV
 │   ├── logo.ico            # Favicon
-│   └── logo.jpg            # Logo header dan About
+│   ├── logo.jpg            # Logo header dan About
+│   └── profile.jpg         # Foto profil Beranda
 ├── src/
-│   ├── components/         # Halaman, kartu, modal, dan navigasi
-│   ├── data/               # Data portfolio dan konten project
-│   ├── App.tsx             # Root layout dan navigasi halaman
-│   ├── index.css           # Tailwind dan style global
-│   ├── main.tsx            # Entry point React
-│   └── types.ts            # Kontrak data TypeScript
-├── index.html
+│   ├── components/         # UI halaman, kartu, modal, dan navigasi
+│   ├── data/               # Data portfolio dan konten case study
+│   ├── App.tsx             # Root layout dan state aplikasi
+│   ├── index.css           # Style global dan Tailwind
+│   ├── main.tsx            # React entry point
+│   └── types.ts            # Type definitions
+├── index.html              # HTML entry point dan metadata SEO
 ├── package.json
 └── vite.config.ts
 ```
 
-## Persyaratan
+## Requirements
 
-- Node.js 18 atau lebih baru
+- Node.js 18 atau versi lebih baru
 - npm
 
-## Menjalankan Secara Lokal
+## Local Development
 
 ```bash
 npm install
 npm run dev
 ```
 
-Buka URL yang ditampilkan Vite, biasanya `http://localhost:3000`.
+Development server berjalan pada `http://localhost:3000`.
 
-## Script yang Tersedia
+## Available Scripts
 
 ```bash
-npm run dev       # Development server
-npm run lint      # Pemeriksaan tipe TypeScript
-npm run build     # Production build
-npm run preview   # Preview production build
+npm run dev       # Menjalankan development server
+npm run lint      # Memeriksa tipe TypeScript
+npm run build     # Membuat production build
+npm run preview   # Menjalankan preview production build
 npm run clean     # Membersihkan output build tertentu
 ```
 
-## Deploy ke Vercel
+## Production Deployment
 
-Project ini adalah Vite React SPA. Gunakan pengaturan berikut di Vercel:
+Project ini menggunakan Vite React SPA dan dapat dideploy langsung ke Vercel dengan konfigurasi berikut:
 
 ```text
 Framework Preset: Vite
+Install Command: npm install
 Build Command: npm run build
 Output Directory: dist
-Install Command: npm install
 ```
 
-Vercel juga dapat mendeteksi konfigurasi Vite secara otomatis saat repository di-import. Semua aset di `public/` tersedia dari root URL, contohnya `/logo.jpg` dan `/projects/smpn24.png`.
+Saat repository di-import, Vercel umumnya mendeteksi konfigurasi Vite secara otomatis. Hasil build berupa aset statis yang dapat disajikan melalui CDN Vercel. Aset pada folder `public/` tersedia dari root URL, misalnya `/logo.jpg` atau `/projects/smpn24.png`.
 
-## Catatan Rendering
+## Portfolio Content
 
-Karena menggunakan Vite React SPA, halaman dirender di browser setelah JavaScript dimuat. `vite build` menghasilkan aset statis yang cocok untuk CDN Vercel, tetapi project ini belum menggunakan SSR atau ISR Next.js.
+Data portfolio dikelola secara terpusat pada `src/data/portfolioData.ts`. Project baru harus memiliki:
 
-Jika membutuhkan SSR, SSG, atau ISR secara runtime, project harus dimigrasikan ke Next.js App Router. Pada project Next.js, gunakan SSG untuk konten stabil, ISR untuk konten yang diperbarui berkala, dan SSR untuk halaman dinamis yang memerlukan data terbaru serta metadata SEO per request.
+- `id` dan `slug` yang unik;
+- judul, deskripsi singkat, dan kategori;
+- `tags` untuk pencarian dan filter;
+- file `image` pada `public/projects/`;
+- `markdownContent` untuk case study.
 
-## Mengubah Data Portfolio
+Asset personal dapat diperbarui melalui file berikut:
 
-Data utama berada di `src/data/portfolioData.ts`. Saat menambah project, lengkapi minimal `id` dan `slug` unik, informasi judul dan deskripsi, `category`, `tags`, gambar di `public/projects/`, serta `markdownContent` untuk case study.
+- `public/profile.jpg`: foto wajah pada Beranda;
+- `public/logo.jpg`: logo pada header dan halaman About;
+- `public/logo.ico`: favicon;
+- `public/cv.pdf`: dokumen CV.
 
-Untuk mengganti foto wajah pada Beranda, gunakan `public/profile.jpg`. Logo header menggunakan `public/logo.jpg`, sedangkan favicon menggunakan `public/logo.ico`.
+## Rendering Model
 
-## Lisensi
+Aplikasi menggunakan client-side rendering melalui Vite React. `vite build` menghasilkan bundle statis yang sesuai untuk hosting CDN. SSR dan ISR Next.js tidak digunakan pada repository ini karena keduanya memerlukan runtime Next.js App Router.
 
-Konten portfolio, data pribadi, gambar project, sertifikat, dan CV adalah milik pemilik portfolio. Jangan menggunakan atau mendistribusikan ulang aset tersebut tanpa izin.
+## License
+
+Konten portfolio, data pribadi, gambar project, sertifikat, logo, dan CV merupakan aset pemilik portfolio. Penggunaan atau redistribusi aset memerlukan izin pemilik.
