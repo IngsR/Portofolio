@@ -1,7 +1,11 @@
 {
-  "name": "Portofolio Ikhwan Ramadhan",
-  "description": "Website portofolio profesional Software Engineer Ikhwan Ramadhan dengan galeri proyek, sistem Markdown CMS terstruktur, profil bio, dan kontak WhatsApp & Email langsung.",
-  "requestFramePermissions": [],
-  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+  "name": "Ikhwan Ramadhan — Full-Stack Developer",
+  "description": "Full-Stack Developer yang berfokus pada pembuatan aplikasi web modern dan scalable. Lihat portofolio saya dan hubungi saya untuk kolaborasi.",
+  "openGraph": {
+    "title": "Ikhwan Ramadhan — Full-Stack Developer",
+    "description": "Jelajahi proyek unggulan saya dan temukan bagaimana saya dapat membantu membangun produk digital Anda.",
+    "type": "website",
+    "url": "https://ikhwann.my.id",
+    "siteName": "Ikhwan Ramadhan"
+  }
 }
-
