@@ -1,0 +1,12 @@
+---
+import App from "../App";
+import SiteLayout from "../layouts/SiteLayout.astro";
+
+export const prerender = false;
+---
+<SiteLayout
+  title="Portfolio Projects | Ikhwan Ramadhan"
+  description="Kumpulan project full-stack, machine learning, mobile development, dan software engineering Ikhwan Ramadhan."
+>
+  <App client:load initialPage="portfolio" />
+</SiteLayout>

@@ -12,11 +12,11 @@ export const userProfile: UserProfile = {
   name: "Ikhwan Ramadhan",
   title: "Full-Stack Developer",
   tagline:
-    'Lulusan S1 Teknik Informatika UPI "YPTK" Padang dengan fokus mendalam pada Full-Stack Web Development (Next.js, React, TypeScript, PostgreSQL), REST API, Docker, Linux Debian, DSA, dan Time Series Forecasting.',
+    'Lulusan S1 Teknik Informatika UPI "YPTK" Padang dengan fokus pada pengembangan aplikasi web full-stack berbasis React dan TypeScript, rekayasa API serta database, infrastruktur, DSA, dan Time Series Forecasting.',
   shortBio:
-    "Saya Ikhwan Ramadhan, lahir di Padang pada 18 November 2003 dan merupakan lulusan S1 Teknik Informatika Universitas Putra Indonesia “YPTK” Padang.",
+    "Saya Ikhwan Ramadhan, lahir di Padang pada 18 November 2003 dan merupakan lulusan S1 Teknik Informatika Universitas Putra Indonesia “YPTK” Padang. Saya banyak mengeksplorasi Full-Stack Development, dari merancang aplikasi, membangun sistemnya, sampai membuatnya siap digunakan di production.",
   fullBio: [
-    "Saya Ikhwan Ramadhan, lulusan S1 Teknik Informatika Universitas Putra Indonesia “YPTK” Padang. Saya memfokuskan perjalanan karier saya di bidang Full-Stack Web Development dengan penguasaan mendalam pada ekosistem Next.js, React, TypeScript, Node.js/NestJS, dan basis data PostgreSQL.",
+    "Saya Ikhwan Ramadhan, lulusan S1 Teknik Informatika Universitas Putra Indonesia “YPTK” Padang. Saya memfokuskan perjalanan karier saya pada pengembangan aplikasi web full-stack dengan fondasi React, TypeScript, JavaScript, Node.js, API, dan basis data PostgreSQL. Next.js merupakan salah satu framework yang saya gunakan untuk mempercepat pengembangan produk, bukan batasan dari kemampuan saya.",
     "Sejak mengenal dunia komputer dan rekayasa perangkat lunak, rasa ingin tahu saya selalu mendorong untuk membedah bagaimana sebuah sistem bekerja dari lapisan terdalam mulai dari struktur data dan algoritma (DSA), komunikasi REST API yang efisien, perancangan skema relasional SQL, hingga deployment berbasis Docker di lingkungan server Linux (Debian).",
     "Kuliah memberikan fondasi akademis yang kuat, namun sebagian besar keahlian praktis saya kembangkan secara konsisten melalui eksplorasi mandiri, pembangunan proyek nyata berskala monorepo, e-commerce, sistem informasi sekolah, serta riset pemodelan data Time Series Forecasting menggunakan Python.",
     "Saya sangat menikmati proses memecahkan masalah kompleks, mengoptimalkan query basis data, menyusun arsitektur kode yang bersih dan terstruktur (clean code & type-safety), serta siap berkontribusi penuh sebagai Full-Stack Developer di lingkungan kerja yang dinamis.",
@@ -28,7 +28,7 @@ export const userProfile: UserProfile = {
   phone: "+6282386473410",
   whatsappUrl:
     "https://wa.me/6282386473410?text=Halo%20Ikhwan%2C%20saya%20melihat%20portofolio%20Anda%20dan%20tertarik%20untuk%20berdiskusi%20terkait%20peluang%20kerja%20Full-Stack%20Developer%20%2F%20proyek.",
-  avatarUrl: "/profile.jpg",
+  avatarUrl: "/profile.png",
   statusText:
     "Siap Bekerja On-Site (WFO) di Seluruh Indonesia / Relokasi & Remote",
   isAvailableForHire: true,
@@ -292,7 +292,7 @@ Prediksi pergerakan jalur siklon tropis merupakan tantangan krusial dalam mitiga
       "JWT",
       "Swagger",
     ],
-    image: "/projects/monorepo.jpg",
+    image: "/projects/monorepo.svg",
     featured: true,
     publishedDate: "2025-11-30",
     period: "2025",
@@ -512,7 +512,7 @@ Platform Content Management System (CMS) modern berbasis Next.js untuk penulisan
       "Aplikasi belanja daring cross-platform Android & iOS dengan navigasi katalog produk, detail barang, sistem ulasan, dan integrasi REST API menggunakan Axios.",
     category: "Mobile Development",
     tags: ["React Native", "JavaScript", "Expo", "Axios", "REST API", "Mobile"],
-    image: "/projects/reactnative.jpg",
+    image: "/projects/reactnative.svg",
     featured: false,
     publishedDate: "2025-06-06",
     period: "2025",
@@ -560,8 +560,8 @@ export const skillCategories: SkillCategory[] = [
     title: "FULL-STACK WEB",
     iconName: "Layout",
     description: "Fondasi utama untuk membangun aplikasi web full-stack.",
-    coreStack: ["Next.js", "React", "TypeScript", "Node.js"],
-    alsoUsed: ["NestJS", "Express", "Axios", "Zod"],
+    coreStack: ["React", "TypeScript", "JavaScript", "Node.js"],
+    alsoUsed: ["Next.js", "NestJS", "Express", "Axios", "Zod"],
   },
   {
     title: "DATABASE & BACKEND",
@@ -614,7 +614,7 @@ export const experienceData: ExperienceItem[] = [
   },
   {
     id: "exp-2",
-    role: "Full-Stack Software Engineer (Independent & Open Source)",
+    role: "Full-Stack Developer (Open Source)",
     company: "IngsR Portfolio & Engineering Repositories",
     location: "Indonesia / Remote",
     period: "2023 - Sekarang",
@@ -775,20 +775,21 @@ export const engineeringMindsetSkills: EngineeringMindsetSkill[] = [
   {
     id: "fullstack-web",
     category: "02 — Full-Stack Web",
-    title: "Next.js, React & TypeScript",
+    title: "React, TypeScript & Web Platform",
     narrative:
-      "Saya memilih strategi rendering sesuai karakter halaman: SSG untuk konten stabil, ISR untuk data yang perlu diperbarui berkala, dan SSR untuk halaman dinamis yang membutuhkan SEO serta data terbaru. Interaksi browser tetap ditangani seperlunya agar performa dan beban server tetap terjaga.",
+      "Saya memilih pendekatan teknis sesuai kebutuhan pengguna dan karakter produk. Perhatian saya tidak berhenti pada fitur yang berjalan, tetapi juga pada pengalaman yang cepat, mudah dipahami, aksesibel, dan tetap nyaman digunakan ketika kebutuhan aplikasi berkembang.",
     technologies: [
-      "Next.js",
       "React",
       "TypeScript",
+      "JavaScript",
+      "Next.js",
       "App Router",
       "RSC",
       "Server Actions",
-      "SSR",
-      "SSG",
-      "ISR",
-      "SEO",
+      "Web Performance",
+      "Accessibility",
+      "User Experience",
+      "Web Standards",
     ],
     iconName: "Layout",
   },
@@ -861,6 +862,6 @@ export const contactFaq = [
   {
     question: "Teknologi dan keahlian utama apa yang menjadi fokus Anda?",
     answer:
-      "Fokus utama saya adalah Full-Stack Development menggunakan Next.js (App Router, Server Actions), React, TypeScript, basis data PostgreSQL, Drizzle/Prisma ORM, REST API (NestJS/Express), Docker, Linux Debian, serta Python untuk Time Series Forecasting & analisis data.",
+      "Fokus utama saya adalah Full-Stack Development dengan React, TypeScript, JavaScript, Node.js, basis data PostgreSQL, Drizzle/Prisma ORM, serta REST API menggunakan NestJS atau Express. Saya juga menggunakan Next.js sebagai salah satu framework, Docker dan Linux Debian untuk deployment, serta Python untuk Time Series Forecasting dan analisis data.",
   },
 ];

@@ -13,6 +13,7 @@ import {
   Terminal,
 } from "lucide-react";
 import React, { useState } from "react";
+
 import {
   certificationsData,
   educationData,
@@ -20,6 +21,7 @@ import {
   skillCategories,
   userProfile,
 } from "../data/portfolioData";
+
 import { CertificationItem } from "../types";
 import { DetailModal } from "./DetailModal";
 
@@ -31,8 +33,10 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenCV }) => {
   const [activeTab, setActiveTab] = useState<
     "experience" | "skills" | "education"
   >("experience");
+
   const [selectedCertForModal, setSelectedCertForModal] =
     useState<CertificationItem | null>(null);
+
   const [isCertModalOpen, setIsCertModalOpen] = useState(false);
 
   const handleOpenCertModal = (cert: CertificationItem) => {
@@ -43,125 +47,133 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenCV }) => {
   const getCategoryIcon = (iconName: string) => {
     switch (iconName) {
       case "Layout":
-        return <Layout className="w-4 h-4 text-blue-600 dark:text-blue-400" />;
+        return <Layout className="h-4 w-4 text-blue-600 dark:text-blue-400" />;
+
       case "Server":
         return (
-          <Server className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
+          <Server className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
         );
+
       case "Terminal":
         return (
-          <Terminal className="w-4 h-4 text-purple-600 dark:text-purple-400" />
+          <Terminal className="h-4 w-4 text-purple-600 dark:text-purple-400" />
         );
+
       case "Cpu":
-        return <Cpu className="w-4 h-4 text-rose-600 dark:text-rose-400" />;
+        return <Cpu className="h-4 w-4 text-rose-600 dark:text-rose-400" />;
+
       default:
-        return <Code2 className="w-4 h-4 text-slate-800 dark:text-slate-200" />;
+        return <Code2 className="h-4 w-4 text-slate-800 dark:text-slate-200" />;
     }
   };
 
   return (
-    <div className="space-y-12 py-6 sm:py-8">
-      {/* Header Profile Story */}
-      <section className="bg-white dark:bg-[#0c0c0d] border border-slate-200/80 dark:border-white/10 rounded-3xl p-6 sm:p-10 lg:p-12 space-y-8 shadow-sm">
-        {/* Top Profile Header */}
-        <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 pb-8 border-b border-slate-200 dark:border-white/10">
-          <div className="flex items-center gap-5">
-            {/* Avatar container */}
-            <div className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-2xl overflow-hidden bg-slate-900 border border-slate-200 dark:border-white/10 shrink-0">
+    <div className="space-y-10 py-4 sm:space-y-12 sm:py-6">
+      {/* =====================================================
+          HEADER PROFILE
+      ====================================================== */}
+      <section className="space-y-7 rounded-3xl border border-slate-200/80 bg-white p-5 shadow-sm dark:border-white/10 dark:bg-[#0c0c0d] sm:space-y-8 sm:p-8 lg:p-10">
+        {/* Profile Header */}
+        <div className="flex flex-col items-start justify-between gap-6 border-b border-slate-200 pb-7 dark:border-white/10 lg:flex-row lg:items-center lg:pb-8">
+          {/* Identity */}
+          <div className="flex items-center gap-4 sm:gap-5">
+            <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-2xl border border-slate-200 bg-slate-900 dark:border-white/10 sm:h-20 sm:w-20 lg:h-24 lg:w-24">
               <img
                 src="/logo.jpg"
                 alt="Logo Ikhwan Ramadhan"
-                onError={(e) => {
-                  const target = e.target as HTMLImageElement;
-                  target.style.display = "none";
-                  const parent = target.parentElement;
-                  if (
-                    parent &&
-                    !parent.querySelector(".about-avatar-fallback")
-                  ) {
-                    const fallback = document.createElement("div");
-                    fallback.className =
-                      "about-avatar-fallback w-full h-full flex items-center justify-center bg-slate-950 text-white font-black text-2xl tracking-tighter";
-                    fallback.textContent = "IR";
-                    parent.appendChild(fallback);
-                  }
-                }}
-                className="w-full h-full object-cover"
+                width={96}
+                height={96}
+                loading="lazy"
+                decoding="async"
+                className="h-full w-full object-cover"
               />
             </div>
 
             <div className="space-y-1">
-              <span className="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+              <span className="text-[10px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 sm:text-xs">
                 Profil Profesional & Latar Belakang
               </span>
-              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight text-slate-950 dark:text-white">
+
+              <h1 className="text-2xl font-black tracking-tight text-slate-950 dark:text-white sm:text-3xl lg:text-4xl">
                 {userProfile.name}
               </h1>
-              <p className="text-xs sm:text-sm font-semibold text-slate-600 dark:text-slate-400">
+
+              <p className="text-xs font-semibold text-slate-600 dark:text-slate-400 sm:text-sm">
                 {userProfile.title}
               </p>
             </div>
           </div>
 
-          <div className="flex flex-wrap items-center gap-3">
+          {/* Action Buttons */}
+          <div className="flex w-full flex-wrap items-center gap-2.5 lg:w-auto">
+            {/* CV */}
             <button
+              type="button"
               onClick={onOpenCV}
-              className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-slate-950 text-white dark:bg-white dark:text-slate-950 text-xs font-bold uppercase tracking-wider hover:bg-slate-800 dark:hover:bg-slate-100 transition-all shadow-sm"
+              className="inline-flex items-center justify-center gap-2 rounded-full bg-slate-950 px-4 py-2.5 text-xs font-bold text-white shadow-sm transition-all hover:bg-slate-800 dark:bg-white dark:text-slate-950 dark:hover:bg-slate-100 sm:px-5"
             >
-              <FileText className="w-4 h-4" />
+              <FileText className="h-4 w-4" />
               <span>Lihat CV Lengkap</span>
             </button>
 
+            {/* WhatsApp */}
             <a
               href={userProfile.whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 px-5 py-2.5 rounded-xl border border-emerald-600/30 bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 text-xs font-bold tracking-wider hover:bg-emerald-500/20 transition-all"
+              className="inline-flex items-center justify-center gap-2 rounded-full border border-emerald-500/40 bg-emerald-500/10 px-4 py-2.5 text-xs font-bold text-emerald-700 transition-all hover:bg-emerald-500/20 dark:border-emerald-400/30 dark:bg-emerald-400/10 dark:text-emerald-300 dark:hover:bg-emerald-400/20 sm:px-5"
             >
-              <MessageCircle className="w-4 h-4" />
+              <MessageCircle className="h-4 w-4" />
               <span>WhatsApp</span>
             </a>
 
+            {/* Email */}
             <a
               href={`mailto:${userProfile.email}`}
-              className="flex items-center gap-2 px-4 py-2.5 rounded-xl border border-slate-300 dark:border-white/15 text-slate-800 dark:text-slate-200 text-xs font-semibold hover:bg-slate-100 dark:hover:bg-white/5 transition-all"
+              className="inline-flex items-center justify-center gap-2 rounded-full border border-slate-300 bg-white px-4 py-2.5 text-xs font-semibold text-slate-800 transition-all hover:bg-slate-100 dark:border-white/15 dark:bg-white/[0.04] dark:text-slate-200 dark:hover:bg-white/[0.08]"
             >
-              <Mail className="w-4 h-4" />
+              <Mail className="h-4 w-4" />
               <span>Email</span>
             </a>
           </div>
         </div>
 
-        {/* Bio Narrative Paragraphs */}
-        <div className="space-y-4 text-sm sm:text-base lg:text-xl text-slate-700 dark:text-slate-300 leading-relaxed max-w-7xl font-normal">
+        {/* Bio */}
+        <div className="max-w-7xl space-y-4 text-sm leading-relaxed text-slate-700 dark:text-slate-300 sm:text-base lg:text-lg">
           {userProfile.fullBio.map((paragraph, index) => (
             <p key={index}>{paragraph}</p>
           ))}
         </div>
 
-        {/* Summary Metric Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
-          <div className="p-5 rounded-2xl bg-slate-50 dark:bg-white/[0.02] border border-slate-200/60 dark:border-white/5 space-y-1.5">
+        {/* Summary */}
+        <div className="grid grid-cols-1 gap-3 pt-1 sm:grid-cols-3 sm:gap-4">
+          {/* Kesiapan */}
+          <div className="space-y-1.5 rounded-2xl border border-slate-200/70 bg-slate-50 p-4 dark:border-white/5 dark:bg-white/[0.02] sm:p-5">
             <span className="text-xs font-semibold text-slate-500 dark:text-slate-400">
               Kesiapan Kerja
             </span>
-            <h4 className="font-bold text-sm text-slate-950 dark:text-white">
+
+            <h4 className="text-sm font-bold text-slate-950 dark:text-white">
               On-Site / WFO & Remote
             </h4>
-            <p className="text-xs text-slate-600 dark:text-slate-400 font-normal">
+
+            <p className="text-xs leading-relaxed text-slate-600 dark:text-slate-400">
               Siap bekerja on-site / WFO di seluruh Indonesia, serta sistem
               kerja Hybrid / Remote.
             </p>
           </div>
 
-          <div className="p-5 rounded-2xl bg-slate-50 dark:bg-white/[0.02] border border-slate-200/60 dark:border-white/5 space-y-1.5">
+          {/* Pendidikan */}
+          <div className="space-y-1.5 rounded-2xl border border-slate-200/70 bg-slate-50 p-4 dark:border-white/5 dark:bg-white/[0.02] sm:p-5">
             <span className="text-xs font-semibold text-slate-500 dark:text-slate-400">
               Pendidikan Terakhir
             </span>
-            <h4 className="font-bold text-sm text-slate-950 dark:text-white">
+
+            <h4 className="text-sm font-bold text-slate-950 dark:text-white">
               S1 Teknik Informatika
             </h4>
-            <p className="text-xs text-slate-600 dark:text-slate-400 font-normal">
+
+            <p className="text-xs leading-relaxed text-slate-600 dark:text-slate-400">
               Lulusan Universitas Putra Indonesia &ldquo;YPTK&rdquo; Padang
               dengan pendalaman Rekayasa Perangkat Lunak, DSA, basis data
               relasional, arsitektur sistem web, Deep Learning/LSTM Time Series,
@@ -169,309 +181,530 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenCV }) => {
             </p>
           </div>
 
-          <div className="p-5 rounded-2xl bg-slate-50 dark:bg-white/[0.02] border border-slate-200/60 dark:border-white/5 space-y-1.5">
+          {/* Fokus */}
+          <div className="space-y-1.5 rounded-2xl border border-slate-200/70 bg-slate-50 p-4 dark:border-white/5 dark:bg-white/[0.02] sm:p-5">
             <span className="text-xs font-semibold text-slate-500 dark:text-slate-400">
               Fokus Keahlian
             </span>
-            <h4 className="font-bold text-sm text-slate-950 dark:text-white">
+
+            <h4 className="text-sm font-bold text-slate-950 dark:text-white">
               Full-Stack & Systems
             </h4>
-            <p className="text-xs text-slate-600 dark:text-slate-400 font-normal">
-              Next.js, TypeScript, PostgreSQL, Drizzle ORM, REST API, Docker,
-              Linux Debian, dan Python Data Science.
+
+            <p className="text-xs leading-relaxed text-slate-600 dark:text-slate-400">
+              React, TypeScript, JavaScript, PostgreSQL, REST API, Docker, Linux
+              Debian, dan Python Data Science; termasuk Next.js sebagai salah
+              satu framework yang digunakan.
             </p>
           </div>
         </div>
       </section>
 
-      {/* Tabs Navigation for Experience / Skills / Education */}
-      <div className="space-y-6">
-        <div className="flex items-center gap-2 border-b border-slate-200 dark:border-white/10 pb-3 overflow-x-auto">
+      {/* =====================================================
+          TAB NAVIGATION
+      ====================================================== */}
+      <section className="w-full">
+        <div
+          className="
+            mx-auto
+            grid
+            w-full
+            max-w-5xl
+            grid-cols-3
+            items-center
+            gap-1.5
+            rounded-full
+            border
+            border-slate-300/80
+            bg-slate-100/90
+            p-1.5
+            shadow-sm
+            backdrop-blur-sm
+            dark:border-white/15
+            dark:bg-white/[0.06]
+            sm:gap-2.5
+            sm:p-2
+          "
+        >
+          {/* =================================================
+              EXPERIENCE
+          ================================================== */}
           <button
+            type="button"
             onClick={() => setActiveTab("experience")}
-            className={`flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs uppercase tracking-wider transition-all whitespace-nowrap ${
-              activeTab === "experience"
-                ? "bg-slate-950 text-white dark:bg-white dark:text-slate-950 font-bold shadow-sm"
-                : "text-slate-600 dark:text-slate-400 hover:text-slate-950 dark:hover:text-white"
-            }`}
+            aria-pressed={activeTab === "experience"}
+            className={`
+              group
+              flex
+              w-full
+              min-w-0
+              items-center
+              justify-center
+              gap-2
+              rounded-full
+              border
+              px-2.5
+              py-2.5
+              text-xs
+              font-bold
+              leading-none
+              transition-all
+              duration-200
+              active:scale-[0.98]
+              sm:gap-2.5
+              sm:px-5
+              sm:py-3.5
+              sm:text-sm
+              ${
+                activeTab === "experience"
+                  ? "border-slate-950 bg-slate-950 text-white shadow-md dark:border-white dark:bg-white dark:text-slate-950"
+                  : "border-transparent bg-transparent text-slate-700 hover:border-slate-300/60 hover:bg-white/80 hover:text-slate-950 dark:text-slate-300 dark:hover:border-white/20 dark:hover:bg-white/[0.10] dark:hover:text-white"
+              }
+            `}
           >
-            <Briefcase className="w-4 h-4" />
-            <span>Pengalaman Kerja & Proyek</span>
+            <Briefcase
+              strokeWidth={2.2}
+              className={`
+                h-5
+                w-5
+                shrink-0
+                transition-transform
+                duration-200
+                group-hover:scale-110
+                sm:h-5.5
+                sm:w-5.5
+                lg:h-6
+                lg:w-6
+                ${
+                  activeTab === "experience"
+                    ? "text-white dark:text-slate-950"
+                    : "text-slate-600 dark:text-slate-400 group-hover:text-slate-950 dark:group-hover:text-white"
+                }
+              `}
+            />
+
+            {/* Mobile */}
+            <span className="truncate font-bold sm:hidden">Pengalaman</span>
+
+            {/* Desktop */}
+            <span className="hidden truncate font-bold sm:inline">
+              Pengalaman Kerja & Proyek
+            </span>
           </button>
 
+          {/* =================================================
+              SKILLS
+          ================================================== */}
           <button
+            type="button"
             onClick={() => setActiveTab("skills")}
-            className={`flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs uppercase tracking-wider transition-all whitespace-nowrap ${
-              activeTab === "skills"
-                ? "bg-slate-950 text-white dark:bg-white dark:text-slate-950 font-bold shadow-sm"
-                : "text-slate-600 dark:text-slate-400 hover:text-slate-950 dark:hover:text-white"
-            }`}
+            aria-pressed={activeTab === "skills"}
+            className={`
+              group
+              flex
+              w-full
+              min-w-0
+              items-center
+              justify-center
+              gap-2
+              rounded-full
+              border
+              px-2.5
+              py-2.5
+              text-xs
+              font-bold
+              leading-none
+              transition-all
+              duration-200
+              active:scale-[0.98]
+              sm:gap-2.5
+              sm:px-5
+              sm:py-3.5
+              sm:text-sm
+              ${
+                activeTab === "skills"
+                  ? "border-slate-950 bg-slate-950 text-white shadow-md dark:border-white dark:bg-white dark:text-slate-950"
+                  : "border-transparent bg-transparent text-slate-700 hover:border-slate-300/60 hover:bg-white/80 hover:text-slate-950 dark:text-slate-300 dark:hover:border-white/20 dark:hover:bg-white/[0.10] dark:hover:text-white"
+              }
+            `}
           >
-            <Cpu className="w-4 h-4" />
-            <span>Keahlian Teknis & Tools</span>
+            <Cpu
+              strokeWidth={2.2}
+              className={`
+                h-5
+                w-5
+                shrink-0
+                transition-transform
+                duration-200
+                group-hover:scale-110
+                sm:h-5.5
+                sm:w-5.5
+                lg:h-6
+                lg:w-6
+                ${
+                  activeTab === "skills"
+                    ? "text-white dark:text-slate-950"
+                    : "text-slate-600 dark:text-slate-400 group-hover:text-slate-950 dark:group-hover:text-white"
+                }
+              `}
+            />
+
+            {/* Mobile */}
+            <span className="truncate font-bold sm:hidden">Keahlian</span>
+
+            {/* Desktop */}
+            <span className="hidden truncate font-bold sm:inline">
+              Keahlian Teknis & Tools
+            </span>
           </button>
 
+          {/* =================================================
+              EDUCATION
+          ================================================== */}
           <button
+            type="button"
             onClick={() => setActiveTab("education")}
-            className={`flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs uppercase tracking-wider transition-all whitespace-nowrap ${
-              activeTab === "education"
-                ? "bg-slate-950 text-white dark:bg-white dark:text-slate-950 font-bold shadow-sm"
-                : "text-slate-600 dark:text-slate-400 hover:text-slate-950 dark:hover:text-white"
-            }`}
+            aria-pressed={activeTab === "education"}
+            className={`
+              group
+              flex
+              w-full
+              min-w-0
+              items-center
+              justify-center
+              gap-2
+              rounded-full
+              border
+              px-2.5
+              py-2.5
+              text-xs
+              font-bold
+              leading-none
+              transition-all
+              duration-200
+              active:scale-[0.98]
+              sm:gap-2.5
+              sm:px-5
+              sm:py-3.5
+              sm:text-sm
+              ${
+                activeTab === "education"
+                  ? "border-slate-950 bg-slate-950 text-white shadow-md dark:border-white dark:bg-white dark:text-slate-950"
+                  : "border-transparent bg-transparent text-slate-700 hover:border-slate-300/60 hover:bg-white/80 hover:text-slate-950 dark:text-slate-300 dark:hover:border-white/20 dark:hover:bg-white/[0.10] dark:hover:text-white"
+              }
+            `}
           >
-            <GraduationCap className="w-4 h-4" />
-            <span>Pendidikan & Sertifikasi</span>
+            <GraduationCap
+              strokeWidth={2.2}
+              className={`
+                h-5
+                w-5
+                shrink-0
+                transition-transform
+                duration-200
+                group-hover:scale-110
+                sm:h-5.5
+                sm:w-5.5
+                lg:h-6
+                lg:w-6
+                ${
+                  activeTab === "education"
+                    ? "text-white dark:text-slate-950"
+                    : "text-slate-600 dark:text-slate-400 group-hover:text-slate-950 dark:group-hover:text-white"
+                }
+              `}
+            />
+
+            {/* Mobile */}
+            <span className="truncate font-bold sm:hidden">Pendidikan</span>
+
+            {/* Desktop */}
+            <span className="hidden truncate font-bold sm:inline">
+              Pendidikan & Sertifikasi
+            </span>
           </button>
         </div>
+      </section>
 
-        {/* Tab 1: Experience */}
-        {activeTab === "experience" && (
-          <div className="space-y-6">
-            <div className="relative pl-6 sm:pl-8 space-y-6 before:absolute before:left-2 sm:before:left-3 before:top-2 before:bottom-2 before:w-px before:bg-slate-200 dark:before:bg-white/10">
-              {experienceData.map((exp) => (
-                <div key={exp.id} className="relative space-y-3">
-                  {/* Timeline Dot */}
-                  <div className="absolute -left-6 sm:-left-8 top-1.5 w-3 h-3 rounded-full bg-slate-950 dark:bg-white border-2 border-white dark:border-slate-900" />
+      {/* =====================================================
+          EXPERIENCE
+      ====================================================== */}
+      {activeTab === "experience" && (
+        <div className="space-y-6">
+          <div className="relative space-y-6 pl-6 before:absolute before:bottom-2 before:left-2 before:top-2 before:w-px before:bg-slate-200 dark:before:bg-white/10 sm:pl-8 sm:before:left-3">
+            {experienceData.map((exp) => (
+              <div key={exp.id} className="relative space-y-3">
+                <div className="absolute -left-6 top-1.5 h-3 w-3 rounded-full border-2 border-white bg-slate-950 dark:border-slate-900 dark:bg-white sm:-left-8" />
 
-                  <div className="p-6 sm:p-8 rounded-3xl bg-white dark:bg-[#0c0c0d] border border-slate-200/80 dark:border-white/10 space-y-4 shadow-sm">
-                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-100 dark:border-white/10 pb-4">
-                      <div>
-                        <h3 className="font-bold text-lg text-slate-950 dark:text-white">
-                          {exp.role}
-                        </h3>
-                        <p className="text-xs text-slate-600 dark:text-slate-400 font-medium">
-                          {exp.company} • {exp.location}
-                        </p>
-                      </div>
-                      <div className="flex items-center gap-2 self-start sm:self-auto text-xs">
-                        <span className="px-3 py-1 rounded-lg bg-slate-100 dark:bg-white/10 text-slate-800 dark:text-slate-200 font-medium">
-                          {exp.period}
-                        </span>
-                        <span className="px-3 py-1 rounded-lg border border-slate-200 dark:border-white/10 text-slate-900 dark:text-white font-semibold">
-                          {exp.type}
-                        </span>
-                      </div>
+                <div className="space-y-4 rounded-3xl border border-slate-200/80 bg-white p-5 shadow-sm dark:border-white/10 dark:bg-[#0c0c0d] sm:p-8">
+                  <div className="flex flex-col justify-between gap-3 border-b border-slate-100 pb-4 dark:border-white/10 sm:flex-row sm:items-center">
+                    <div>
+                      <h3 className="text-lg font-bold text-slate-950 dark:text-white">
+                        {exp.role}
+                      </h3>
+
+                      <p className="text-xs font-medium text-slate-600 dark:text-slate-400">
+                        {exp.company} • {exp.location}
+                      </p>
                     </div>
 
-                    <p className="text-xs sm:text-sm lg:text-base text-slate-700 dark:text-slate-300 leading-relaxed font-normal">
-                      {exp.description}
+                    <div className="flex items-center gap-2 self-start text-xs">
+                      <span className="rounded-full bg-slate-100 px-3 py-1 font-medium text-slate-800 dark:bg-white/10 dark:text-slate-200">
+                        {exp.period}
+                      </span>
+
+                      <span className="rounded-full border border-slate-200 px-3 py-1 font-semibold text-slate-900 dark:border-white/10 dark:text-white">
+                        {exp.type}
+                      </span>
+                    </div>
+                  </div>
+
+                  <p className="text-xs leading-relaxed text-slate-700 dark:text-slate-300 sm:text-sm lg:text-base">
+                    {exp.description}
+                  </p>
+
+                  <div className="space-y-2 pt-1">
+                    <h4 className="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+                      Pencapaian Utama
+                    </h4>
+
+                    <ul className="space-y-1.5 text-xs text-slate-700 dark:text-slate-300">
+                      {exp.achievements.map((achievement, index) => (
+                        <li key={index} className="flex items-start gap-2">
+                          <span className="font-bold text-emerald-500">✓</span>
+
+                          <span>{achievement}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <div className="flex flex-wrap gap-1.5 pt-2">
+                    {exp.techStack.map((tech) => (
+                      <span
+                        key={tech}
+                        className="rounded-full border border-slate-200/60 bg-slate-100 px-2.5 py-1 text-[10px] font-medium text-slate-700 dark:border-white/5 dark:bg-white/5 dark:text-slate-300"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* =====================================================
+          SKILLS
+      ====================================================== */}
+      {activeTab === "skills" && (
+        <div className="space-y-6">
+          <div className="space-y-1">
+            <h2 className="text-2xl font-black tracking-tight text-slate-950 dark:text-white sm:text-3xl">
+              Teknologi yang Saya Gunakan
+            </h2>
+
+            <p className="text-sm text-slate-600 dark:text-slate-400">
+              Stack yang paling sering saya gunakan, beserta tools yang
+              digunakan sesuai kebutuhan project.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
+            {skillCategories.map((category) => (
+              <div
+                key={category.title}
+                className="space-y-5 rounded-3xl border border-slate-200/80 bg-white p-5 shadow-sm dark:border-white/10 dark:bg-[#0c0c0d] sm:p-6"
+              >
+                <div className="flex items-start gap-3 border-b border-slate-100 pb-4 dark:border-white/10">
+                  <div className="shrink-0 rounded-2xl border border-slate-200/60 bg-slate-100 p-2.5 dark:border-white/5 dark:bg-white/5">
+                    {getCategoryIcon(category.iconName)}
+                  </div>
+
+                  <div>
+                    <h3 className="text-sm font-bold tracking-wide text-slate-950 dark:text-white">
+                      {category.title}
+                    </h3>
+
+                    <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">
+                      {category.description}
                     </p>
+                  </div>
+                </div>
 
-                    <div className="space-y-2 pt-1">
-                      <h4 className="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
-                        Pencapaian Utama:
-                      </h4>
-                      <ul className="space-y-1.5 text-xs text-slate-700 dark:text-slate-300 font-normal">
-                        {exp.achievements.map((ach, i) => (
-                          <li key={i} className="flex items-start gap-2">
-                            <span className="text-emerald-500 font-bold">
-                              ✓
-                            </span>
-                            <span>{ach}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
+                <div className="space-y-4">
+                  <div className="space-y-2">
+                    <h4 className="text-[10px] font-bold tracking-[0.16em] text-emerald-700 dark:text-emerald-400">
+                      CORE STACK
+                    </h4>
 
-                    <div className="flex flex-wrap gap-1.5 pt-2">
-                      {exp.techStack.map((tech) => (
+                    <div className="flex flex-wrap gap-2">
+                      {category.coreStack.map((technology) => (
                         <span
-                          key={tech}
-                          className="px-2.5 py-0.5 text-[10px] rounded-md text-slate-700 dark:text-slate-300 bg-slate-100 dark:bg-white/5 border border-slate-200/60 dark:border-white/5 font-medium"
+                          key={technology}
+                          className="rounded-full border border-emerald-600/30 bg-emerald-500/10 px-2.5 py-1 text-xs font-semibold text-emerald-800 dark:text-emerald-300"
                         >
-                          {tech}
+                          {technology}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="space-y-2">
+                    <h4 className="text-[10px] font-bold tracking-[0.16em] text-slate-500 dark:text-slate-400">
+                      {category.alsoUsedLabel || "ALSO USED"}
+                    </h4>
+
+                    <div className="flex flex-wrap gap-2">
+                      {category.alsoUsed.map((technology) => (
+                        <span
+                          key={technology}
+                          className="rounded-full border border-slate-300 bg-slate-50 px-2.5 py-1 text-xs font-medium text-slate-700 dark:border-white/10 dark:bg-white/[0.03] dark:text-slate-300"
+                        >
+                          {technology}
                         </span>
                       ))}
                     </div>
                   </div>
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
-        )}
+        </div>
+      )}
 
-        {/* Tab 2: Skills */}
-        {activeTab === "skills" && (
-          <div className="space-y-6">
-            <div className="space-y-1">
-              <h2 className="text-2xl sm:text-3xl font-black tracking-tight text-slate-950 dark:text-white">
-                Teknologi yang Saya Gunakan
-              </h2>
-              <p className="text-sm text-slate-600 dark:text-slate-400">
-                Stack yang paling sering saya gunakan, beserta tools yang muncul
-                sesuai kebutuhan project.
-              </p>
+      {/* =====================================================
+          EDUCATION & CERTIFICATIONS
+      ====================================================== */}
+      {activeTab === "education" && (
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+          {/* Education */}
+          <div className="space-y-4">
+            <div className="flex items-center gap-2 border-b border-slate-200 pb-2 text-lg font-bold text-slate-950 dark:border-white/10 dark:text-white">
+              <GraduationCap className="h-5 w-5" />
+
+              <h2>Riwayat Pendidikan</h2>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-              {skillCategories.map((cat) => (
+            {educationData.map((education) => (
+              <div
+                key={education.id}
+                className="space-y-2.5 rounded-3xl border border-slate-200/80 bg-white p-5 shadow-sm dark:border-white/10 dark:bg-[#0c0c0d] sm:p-6"
+              >
+                <div className="flex items-center justify-between gap-2">
+                  <h3 className="text-base font-bold text-slate-950 dark:text-white">
+                    {education.degree}
+                  </h3>
+
+                  <span className="rounded-full bg-slate-100 px-2.5 py-1 text-xs font-semibold text-slate-800 dark:bg-white/10 dark:text-slate-200">
+                    {education.period}
+                  </span>
+                </div>
+
+                <p className="text-xs font-semibold text-slate-700 dark:text-slate-300">
+                  {education.institution}
+                </p>
+
+                <p className="pt-1 text-xs leading-relaxed text-slate-600 dark:text-slate-400">
+                  {education.details}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          {/* Certifications */}
+          <div className="space-y-4">
+            <div className="flex items-center gap-2 border-b border-slate-200 pb-2 text-lg font-bold text-slate-950 dark:border-white/10 dark:text-white">
+              <Award className="h-5 w-5" />
+
+              <h2>Sertifikasi & Kredensial</h2>
+            </div>
+
+            <div className="space-y-3">
+              {certificationsData.map((cert) => (
                 <div
-                  key={cat.title}
-                  className="p-5 sm:p-6 rounded-3xl bg-white dark:bg-[#0c0c0d] border border-slate-200/80 dark:border-white/10 space-y-5 shadow-sm"
+                  key={cert.id}
+                  onClick={() => handleOpenCertModal(cert)}
+                  className="group flex cursor-pointer flex-col justify-between gap-4 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm transition-all hover:border-slate-400 dark:border-white/10 dark:bg-[#0c0c0d] dark:hover:border-white/30 sm:flex-row sm:items-center sm:rounded-3xl sm:p-5"
                 >
-                  <div className="flex items-start gap-3 border-b border-slate-100 dark:border-white/10 pb-4">
-                    <div className="p-2.5 rounded-2xl bg-slate-100 dark:bg-white/5 border border-slate-200/60 dark:border-white/5 shrink-0">
-                      {getCategoryIcon(cat.iconName)}
+                  {/* Certificate Info */}
+                  <div className="flex items-start gap-3.5 sm:items-center">
+                    <div className="relative h-12 w-16 shrink-0 overflow-hidden rounded-xl border border-slate-200 bg-slate-900 dark:border-white/10 sm:h-14 sm:w-20">
+                      <img
+                        src={cert.image}
+                        alt={cert.title}
+                        width={80}
+                        height={56}
+                        loading="lazy"
+                        decoding="async"
+                        onError={(event) => {
+                          const target = event.currentTarget;
+
+                          if (
+                            cert.fallbackImage &&
+                            target.src !== cert.fallbackImage
+                          ) {
+                            target.src = cert.fallbackImage;
+                          }
+                        }}
+                        className="h-full w-full object-cover transition-transform group-hover:scale-105"
+                        referrerPolicy="no-referrer"
+                      />
+
+                      <div className="absolute inset-0 bg-black/20" />
                     </div>
-                    <div>
-                      <h3 className="font-bold text-sm tracking-wide text-slate-950 dark:text-white">
-                        {cat.title}
+
+                    <div className="space-y-1">
+                      <div className="flex flex-wrap items-center gap-2">
+                        <span className="text-[10px] font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400">
+                          {cert.category || "Kredensial"}
+                        </span>
+
+                        {cert.badgeCode && (
+                          <span className="rounded-full bg-slate-100 px-1.5 py-0.5 font-mono text-[10px] font-bold text-slate-700 dark:bg-white/10 dark:text-slate-300">
+                            {cert.badgeCode}
+                          </span>
+                        )}
+                      </div>
+
+                      <h3 className="text-sm font-bold text-slate-950 transition-colors group-hover:text-blue-600 dark:text-white dark:group-hover:text-blue-400 sm:text-base">
+                        {cert.title}
                       </h3>
-                      <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
-                        {cat.description}
+
+                      <p className="text-xs font-medium text-slate-600 dark:text-slate-400">
+                        {cert.issuer} • {cert.period || cert.issueDate}
                       </p>
                     </div>
                   </div>
 
-                  <div className="space-y-4">
-                    <div className="space-y-2">
-                      <h4 className="text-[10px] font-bold tracking-[0.16em] text-emerald-700 dark:text-emerald-400">
-                        CORE STACK
-                      </h4>
-                      <div className="flex flex-wrap gap-2">
-                        {cat.coreStack.map((technology) => (
-                          <span
-                            key={technology}
-                            className="px-2.5 py-1 text-xs font-semibold rounded-lg border border-emerald-600/30 bg-emerald-500/10 text-emerald-800 dark:text-emerald-300"
-                          >
-                            {technology}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
+                  {/* Screenshot Button */}
+                  <div className="flex shrink-0 items-center self-end sm:self-center">
+                    <button
+                      type="button"
+                      onClick={(event) => {
+                        event.stopPropagation();
+                        handleOpenCertModal(cert);
+                      }}
+                      className="inline-flex items-center gap-1.5 rounded-full border border-slate-200 bg-white px-3.5 py-2 text-xs font-semibold text-slate-900 transition-all hover:border-slate-300 hover:bg-slate-100 dark:border-white/10 dark:bg-white/[0.03] dark:text-white dark:hover:border-white/20 dark:hover:bg-white/10"
+                      title="Lihat Screenshot & Detail"
+                    >
+                      <span>Lihat Screenshot</span>
 
-                    <div className="space-y-2">
-                      <h4 className="text-[10px] font-bold tracking-[0.16em] text-slate-500 dark:text-slate-400">
-                        {cat.alsoUsedLabel || "ALSO USED"}
-                      </h4>
-                      <div className="flex flex-wrap gap-2">
-                        {cat.alsoUsed.map((technology) => (
-                          <span
-                            key={technology}
-                            className="px-2.5 py-1 text-xs font-medium rounded-lg border border-slate-300 dark:border-white/10 bg-slate-50 dark:bg-white/[0.03] text-slate-700 dark:text-slate-300"
-                          >
-                            {technology}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
+                      <ArrowUpRight className="h-3.5 w-3.5" />
+                    </button>
                   </div>
                 </div>
               ))}
             </div>
           </div>
-        )}
+        </div>
+      )}
 
-        {/* Tab 3: Education & Certifications */}
-        {activeTab === "education" && (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {/* Education */}
-            <div className="space-y-4">
-              <div className="flex items-center gap-2 text-slate-950 dark:text-white font-bold text-lg pb-2 border-b border-slate-200 dark:border-white/10">
-                <GraduationCap className="w-5 h-5" />
-                <h2>Riwayat Pendidikan</h2>
-              </div>
-
-              {educationData.map((edu) => (
-                <div
-                  key={edu.id}
-                  className="p-6 rounded-3xl bg-white dark:bg-[#0c0c0d] border border-slate-200/80 dark:border-white/10 space-y-2.5 shadow-sm"
-                >
-                  <div className="flex items-center justify-between gap-2">
-                    <h3 className="font-bold text-base text-slate-950 dark:text-white">
-                      {edu.degree}
-                    </h3>
-                    <span className="px-2.5 py-0.5 rounded-md text-xs bg-slate-100 dark:bg-white/10 text-slate-800 dark:text-slate-200 font-semibold">
-                      {edu.period}
-                    </span>
-                  </div>
-                  <p className="text-xs font-semibold text-slate-700 dark:text-slate-300">
-                    {edu.institution}
-                  </p>
-                  <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed font-normal pt-1">
-                    {edu.details}
-                  </p>
-                </div>
-              ))}
-            </div>
-
-            {/* Certifications */}
-            <div className="space-y-4">
-              <div className="flex items-center gap-2 text-slate-950 dark:text-white font-bold text-lg pb-2 border-b border-slate-200 dark:border-white/10">
-                <Award className="w-5 h-5" />
-                <h2>Sertifikasi & Kredensial</h2>
-              </div>
-
-              <div className="space-y-3">
-                {certificationsData.map((cert) => (
-                  <div
-                    key={cert.id}
-                    onClick={() => handleOpenCertModal(cert)}
-                    className="p-4 sm:p-5 rounded-2xl sm:rounded-3xl bg-white dark:bg-[#0c0c0d] border border-slate-200 dark:border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-sm hover:border-slate-400 dark:hover:border-white/30 cursor-pointer transition-all group"
-                  >
-                    <div className="flex items-start sm:items-center gap-3.5">
-                      {/* Certificate Screenshot Thumbnail */}
-                      <div className="relative w-16 h-12 sm:w-20 sm:h-14 rounded-xl overflow-hidden bg-slate-900 border border-slate-200 dark:border-white/10 shrink-0">
-                        <img
-                          src={cert.image}
-                          alt={cert.title}
-                          onError={(e) => {
-                            const target = e.target as HTMLImageElement;
-                            if (
-                              cert.fallbackImage &&
-                              target.src !== cert.fallbackImage
-                            ) {
-                              target.src = cert.fallbackImage;
-                            }
-                          }}
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform"
-                          referrerPolicy="no-referrer"
-                        />
-                        <div className="absolute inset-0 bg-black/20" />
-                      </div>
-
-                      <div className="space-y-1">
-                        <div className="flex items-center gap-2">
-                          <span className="text-[10px] font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400">
-                            {cert.category || "Kredensial"}
-                          </span>
-                          {cert.badgeCode && (
-                            <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-slate-100 dark:bg-white/10 text-slate-700 dark:text-slate-300 font-bold">
-                              {cert.badgeCode}
-                            </span>
-                          )}
-                        </div>
-                        <h3 className="font-bold text-sm sm:text-base text-slate-950 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-                          {cert.title}
-                        </h3>
-                        <p className="text-xs text-slate-600 dark:text-slate-400 font-medium">
-                          {cert.issuer} • {cert.period || cert.issueDate}
-                        </p>
-                      </div>
-                    </div>
-
-                    <div className="flex items-center gap-2 shrink-0 self-end sm:self-center">
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          handleOpenCertModal(cert);
-                        }}
-                        className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-slate-200 dark:border-white/10 hover:bg-slate-100 dark:hover:bg-white/10 text-slate-900 dark:text-white text-xs font-semibold transition-all"
-                        title="Lihat Screenshot & Detail"
-                      >
-                        <span>Lihat Screenshot</span>
-                        <ArrowUpRight className="w-3.5 h-3.5" />
-                      </button>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        )}
-      </div>
-
-      {/* Pop up modal for certificate detail */}
+      {/* =====================================================
+          CERTIFICATE MODAL
+      ====================================================== */}
       <DetailModal
         isOpen={isCertModalOpen}
         onClose={() => setIsCertModalOpen(false)}

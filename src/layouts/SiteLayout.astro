@@ -1,0 +1,165 @@
+---
+import "../index.css";
+import Analytics from "@vercel/analytics/astro";
+import SpeedInsights from "@vercel/speed-insights/astro";
+
+interface Props {
+  title?: string;
+  description?: string;
+  canonicalPath?: string;
+}
+
+const {
+  title = "Profile Ikhwan Ramadhan",
+  description = "Portofolio resmi Ikhwan Ramadhan, Full-Stack Developer yang membangun aplikasi web modern dengan React, TypeScript, API, PostgreSQL, dan Docker.",
+  canonicalPath = Astro.url.pathname,
+} = Astro.props;
+const siteUrl = Astro.site?.toString().replace(/\/$/, "") ?? "https://ikhwann.my.id";
+const canonicalUrl = new URL(canonicalPath, Astro.site ?? Astro.url).toString();
+const ogImageUrl = `${siteUrl}/logo.jpg`;
+
+// ── JSON-LD: Person Schema ──
+const personSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Ikhwan Ramadhan",
+  jobTitle: "Full-Stack Developer",
+  url: `${siteUrl}/`,
+  image: `${siteUrl}/profile.png`,
+  email: "mailto:ikhwn.rdn@gmail.com",
+  address: {
+    "@type": "PostalAddress",
+    addressCountry: "ID",
+  },
+  sameAs: [
+    "https://github.com/IngsR",
+    "https://www.linkedin.com/in/ikhwn-rdn",
+  ],
+  knowsAbout: [
+    "React",
+    "TypeScript",
+    "JavaScript",
+    "Full-Stack Web Development",
+    "REST API",
+    "PostgreSQL",
+    "Docker",
+    "Python",
+  ],
+};
+
+// ── JSON-LD: WebSite Schema ──
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "Profile Ikhwan Ramadhan",
+  url: `${siteUrl}/`,
+  description,
+  publisher: { "@type": "Person", name: "Ikhwan Ramadhan" },
+  inLanguage: "id-ID",
+};
+
+// ── JSON-LD: WebPage Schema (per-page) ──
+const webPageSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  name: title,
+  description,
+  url: canonicalUrl,
+  isPartOf: { "@type": "WebSite", name: "Profile Ikhwan Ramadhan", url: `${siteUrl}/` },
+  inLanguage: "id-ID",
+  author: { "@type": "Person", name: "Ikhwan Ramadhan" },
+  dateModified: new Date().toISOString(),
+};
+
+// ── JSON-LD: BreadcrumbList Schema ──
+const pathSegments = canonicalPath.replace(/^\/|\/$/g, "").split("/").filter(Boolean);
+const breadcrumbItems = [
+  {
+    "@type": "ListItem",
+    position: 1,
+    name: "Beranda",
+    item: `${siteUrl}/`,
+  },
+  ...pathSegments.map((segment, index) => ({
+    "@type": "ListItem",
+    position: index + 2,
+    name: segment.charAt(0).toUpperCase() + segment.slice(1),
+    item: `${siteUrl}/${pathSegments.slice(0, index + 1).join("/")}/`,
+  })),
+];
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: breadcrumbItems,
+};
+---
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Primary Meta Tags -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="author" content="Ikhwan Ramadhan" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="theme-color" content="#050505" />
+    <link rel="canonical" href={canonicalUrl} />
+    <link rel="icon" href="/logo.ico" />
+
+    <!-- Language Alternate -->
+    <link rel="alternate" hreflang="id" href={canonicalUrl} />
+    <link rel="alternate" hreflang="x-default" href={canonicalUrl} />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Logo Ikhwan Ramadhan - Full-Stack Developer" />
+    <meta property="og:locale" content="id_ID" />
+    <meta property="og:site_name" content="Ikhwan Ramadhan" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
+    <meta name="twitter:image:alt" content="Logo Ikhwan Ramadhan - Full-Stack Developer" />
+
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(webPageSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+
+    <!-- Search Engine Verification -->
+    <meta name="google-site-verification" content="6TM9P7buGWO2wS0SqofqquuWDfvadyhMq56ivQnUQRE" />
+    <meta name="msvalidate.01" content="92D58529971734088AE431B5DA99146C" />
+
+    <!-- Google Fonts (non-blocking async load to eliminate render-blocking) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+    <noscript>
+      <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    </noscript>
+  </head>
+  <body>
+    <slot />
+    <Analytics />
+    <SpeedInsights />
+  </body>
+</html>

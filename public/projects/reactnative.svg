@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" role="img"
+  aria-labelledby="title desc">
+  <title id="title">React Native ecommerce mobile app</title>
+  <desc id="desc">Mobile shopping app visual with product catalog and order summary.</desc>
+  <rect width="1200" height="675" fill="#f1f5f9" />
+  <circle cx="1030" cy="110" r="170" fill="#dbeafe" />
+  <circle cx="170" cy="590" r="220" fill="#d1fae5" />
+  <text x="88" y="105" fill="#0f172a" font-family="Arial, sans-serif" font-size="34"
+    font-weight="700">Shop anywhere</text>
+  <text x="90" y="140" fill="#475569" font-family="Arial, sans-serif" font-size="17">A
+    cross-platform mobile storefront</text>
+  <rect x="390" y="42" width="420" height="590" rx="48" fill="#0f172a" />
+  <rect x="410" y="66" width="380" height="542" rx="32" fill="#ffffff" />
+  <rect x="555" y="78" width="90" height="11" rx="5" fill="#cbd5e1" />
+  <text x="440" y="135" fill="#0f172a" font-family="Arial, sans-serif" font-size="20"
+    font-weight="700">Discover</text>
+  <circle cx="744" cy="128" r="19" fill="#d1fae5" />
+  <rect x="440" y="160" width="320" height="48" rx="14" fill="#f1f5f9" />
+  <circle cx="465" cy="184" r="9" fill="none" stroke="#64748b" stroke-width="3" />
+  <path d="M472 191l8 8" stroke="#64748b" stroke-width="3" />
+  <text x="492" y="190" fill="#94a3b8" font-family="Arial, sans-serif" font-size="14">Search
+    products</text>
+  <rect x="440" y="230" width="150" height="145" rx="18" fill="#dbeafe" />
+  <rect x="610" y="230" width="150" height="145" rx="18" fill="#fef3c7" />
+  <circle cx="515" cy="295" r="48" fill="#60a5fa" opacity=".8" />
+  <circle cx="685" cy="295" r="48" fill="#f59e0b" opacity=".75" />
+  <text x="440" y="402" fill="#334155" font-family="Arial, sans-serif" font-size="14"
+    font-weight="700">Featured products</text>
+  <rect x="440" y="425" width="320" height="62" rx="14" fill="#f8fafc" stroke="#e2e8f0" />
+  <rect x="455" y="438" width="38" height="36" rx="10" fill="#a7f3d0" />
+  <text x="510" y="452" fill="#0f172a" font-family="Arial, sans-serif" font-size="14"
+    font-weight="700">Daily essentials</text>
+  <text x="510" y="473" fill="#10b981" font-family="Arial, sans-serif" font-size="13">4.8 rating</text>
+  <rect x="440" y="505" width="320" height="48" rx="14" fill="#10b981" />
+  <text x="555" y="535" fill="#ffffff" font-family="Arial, sans-serif" font-size="15"
+    font-weight="700">View catalog</text>
+</svg>

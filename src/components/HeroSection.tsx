@@ -105,11 +105,11 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             <p className="text-slate-600 dark:text-slate-400 text-base sm:text-lg lg:text-2xl leading-relaxed font-normal max-w-6xl">
               Lulusan S1 Teknik Informatika Universitas Putra Indonesia
               &ldquo;YPTK&rdquo; Padang yang berdedikasi membangun aplikasi web
-              modern berskala penuh dengan{" "}
+              modern berskala penuh dengan fondasi{" "}
               <span className="font-semibold text-slate-900 dark:text-white">
-                Next.js, React, TypeScript
+                React, TypeScript, dan JavaScript
               </span>
-              , perancangan basis data{" "}
+              , lalu memperkuatnya dengan perancangan basis data{" "}
               <span className="font-semibold text-slate-900 dark:text-white">
                 PostgreSQL & REST API
               </span>
@@ -216,8 +216,13 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                 <img
                   src={userProfile.avatarUrl}
                   alt={userProfile.name}
+                  width={400}
+                  height={400}
+                  loading="eager"
+                  decoding="async"
+                  fetchPriority="high"
                   onError={(e) => {
-                    const target = e.target as HTMLImageElement;
+                    const target = e.currentTarget;
                     target.style.display = "none";
                     const parent = target.parentElement;
                     if (parent && !parent.querySelector(".avatar-fallback")) {
@@ -295,7 +300,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
           </h2>
           <p className="text-xs sm:text-sm lg:text-base text-slate-600 dark:text-slate-400 max-w-6xl leading-relaxed font-normal">
             Saya tidak terlalu menikmati software yang hanya selesai dibuat.
-            Saya lebih tertarik pada proses di baliknya—mencari masalah, mencoba
+            Saya lebih tertarik pada proses di baliknya mencari masalah, mencoba
             pendekatan, menemukan bagian yang kurang tepat, lalu membuatnya
             lebih masuk akal.
           </p>
@@ -400,8 +405,12 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                   <img
                     src={project.image}
                     alt={project.title}
+                    width={640}
+                    height={280}
+                    loading="lazy"
+                    decoding="async"
                     onError={(e) => {
-                      const target = e.target as HTMLImageElement;
+                      const target = e.currentTarget;
                       if (
                         project.fallbackImage &&
                         target.src !== project.fallbackImage

@@ -15,9 +15,10 @@ import {
   Phone,
   Send,
 } from "lucide-react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { contactFaq, userProfile } from "../data/portfolioData";
 import { ContactMessage } from "../types";
+import { isContactCategory, isContactMessage } from "../utils/guards";
 
 export const ContactSection: React.FC = () => {
   const [name, setName] = useState("");
@@ -31,14 +32,23 @@ export const ContactSection: React.FC = () => {
   const [submitted, setSubmitted] = useState(false);
   const [emailCopied, setEmailCopied] = useState(false);
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
-  const [savedMessages, setSavedMessages] = useState<ContactMessage[]>(() => {
+  const [savedMessages, setSavedMessages] = useState<ContactMessage[]>([]);
+
+  useEffect(() => {
     try {
       const stored = localStorage.getItem("portfolio_contact_messages");
-      return stored ? JSON.parse(stored) : [];
+      if (!stored) {
+        return;
+      }
+
+      const parsed: unknown = JSON.parse(stored);
+      if (Array.isArray(parsed)) {
+        setSavedMessages(parsed.filter(isContactMessage));
+      }
     } catch {
-      return [];
+      setSavedMessages([]);
     }
-  });
+  }, []);
 
   const getSocialIcon = (iconName: string) => {
     switch (iconName) {
@@ -55,10 +65,14 @@ export const ContactSection: React.FC = () => {
     }
   };
 
-  const handleCopyEmail = () => {
-    navigator.clipboard.writeText(userProfile.email);
-    setEmailCopied(true);
-    setTimeout(() => setEmailCopied(false), 2000);
+  const handleCopyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText(userProfile.email);
+      setEmailCopied(true);
+      setTimeout(() => setEmailCopied(false), 2000);
+    } catch {
+      setEmailCopied(false);
+    }
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -84,16 +98,18 @@ export const ContactSection: React.FC = () => {
         }),
       };
 
-      const updated = [newMsg, ...savedMessages];
-      setSavedMessages(updated);
-      try {
-        localStorage.setItem(
-          "portfolio_contact_messages",
-          JSON.stringify(updated),
-        );
-      } catch (err) {
-        console.error(err);
-      }
+      setSavedMessages((currentMessages) => {
+        const updated = [newMsg, ...currentMessages];
+        try {
+          localStorage.setItem(
+            "portfolio_contact_messages",
+            JSON.stringify(updated),
+          );
+        } catch (err) {
+          console.error(err);
+        }
+        return updated;
+      });
 
       setIsSubmitting(false);
       setSubmitted(true);
@@ -127,9 +143,9 @@ export const ContactSection: React.FC = () => {
         <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-slate-950 dark:text-white font-display">
           Mari Berkolaborasi
         </h1>
-        <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400 max-w-2xl font-light">
-          Saya terbuka untuk peluang kerja penuh waktu (WFO / On-Site & Siap
-          Relokasi), kolaborasi proyek web development, maupun diskusi teknis.
+        <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400 max-w-none font-light">
+          Terbuka untuk peluang full-time, WFO, relokasi, kolaborasi, dan
+          project web development.
         </p>
       </div>
 
@@ -353,16 +369,19 @@ export const ContactSection: React.FC = () => {
                   </label>
                   <select
                     value={category}
-                    onChange={(e) =>
-                      setCategory(e.target.value as ContactMessage["category"])
-                    }
+                    onChange={(e) => {
+                      const value = e.target.value;
+                      if (isContactCategory(value)) {
+                        setCategory(value);
+                      }
+                    }}
                     className="w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-[#0f0f10] border border-black/10 dark:border-white/10 text-slate-950 dark:text-white text-xs focus:outline-none focus:border-black dark:focus:border-white transition-all"
                   >
                     <option value="Kerja Sama">
                       Tawaran Kerja / Rekrutmen WFO
                     </option>
                     <option value="Web Development">
-                      Proyek Full-Stack Web / Next.js
+                      Proyek Full-Stack Web
                     </option>
                     <option value="Konsultasi">
                       Konsultasi Machine Learning / Data

@@ -1,22 +1,18 @@
-import React, { useEffect } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
-import { ProjectItem, CertificationItem } from '../types';
-import { 
-  X, 
-  ExternalLink, 
-  Github, 
-  Calendar, 
-  Award, 
-  Layers, 
-  User, 
+import {
+  Award,
   BookOpen,
+  Calendar,
   CheckCircle2,
   Code2,
-  Database,
-  Terminal,
-  Cpu,
-  Share2
-} from 'lucide-react';
+  ExternalLink,
+  Github,
+  Layers,
+  User,
+  X,
+} from "lucide-react";
+import { AnimatePresence, motion } from "motion/react";
+import React, { useEffect } from "react";
+import { CertificationItem, ProjectItem } from "../types";
 
 interface DetailModalProps {
   isOpen: boolean;
@@ -36,17 +32,17 @@ export const DetailModal: React.FC<DetailModalProps> = ({
   // Close on Escape key press
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
+      if (e.key === "Escape") {
         onClose();
       }
     };
     if (isOpen) {
-      window.addEventListener('keydown', handleKeyDown);
-      document.body.style.overflow = 'hidden';
+      window.addEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = "hidden";
     }
     return () => {
-      window.removeEventListener('keydown', handleKeyDown);
-      document.body.style.overflow = 'unset';
+      window.removeEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = "unset";
     };
   }, [isOpen, onClose]);
 
@@ -54,18 +50,19 @@ export const DetailModal: React.FC<DetailModalProps> = ({
 
   const isProject = !!project;
   const itemTitle = isProject ? project.title : certificate?.title;
-  const itemCategory = isProject ? project.category : certificate?.category || 'Sertifikasi';
-  const itemPeriod = isProject 
-    ? (project.period || project.publishedDate) 
-    : (certificate?.period || certificate?.issueDate);
-  const itemRoleOrIssuer = isProject 
-    ? (project.role || 'Full-Stack Developer') 
+  const itemCategory = isProject
+    ? project.category
+    : certificate?.category || "Sertifikasi";
+  const itemPeriod = isProject
+    ? project.period || project.publishedDate
+    : certificate?.period || certificate?.issueDate;
+  const itemRoleOrIssuer = isProject
+    ? project.role || "Full-Stack Developer"
     : certificate?.issuer;
 
   return (
     <AnimatePresence>
       <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
-        
         {/* Backdrop overlay */}
         <motion.div
           initial={{ opacity: 0 }}
@@ -87,13 +84,21 @@ export const DetailModal: React.FC<DetailModalProps> = ({
           <div className="flex items-center justify-between p-4 sm:p-6 border-b border-slate-100 dark:border-white/10 bg-slate-50/50 dark:bg-white/[0.02]">
             <div className="flex items-center gap-2.5">
               <span className="p-2 rounded-xl bg-slate-900 text-white dark:bg-white dark:text-slate-950">
-                {isProject ? <Layers className="w-4 h-4" /> : <Award className="w-4 h-4" />}
+                {isProject ? (
+                  <Layers className="w-4 h-4" />
+                ) : (
+                  <Award className="w-4 h-4" />
+                )}
               </span>
               <div>
                 <span className="text-[11px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
-                  {isProject ? 'Detail Proyek Rekayasa' : 'Kredensial & Sertifikasi'}
+                  {isProject
+                    ? "Detail Proyek Rekayasa"
+                    : "Kredensial & Sertifikasi"}
                 </span>
-                <span className="mx-2 text-slate-300 dark:text-slate-700">•</span>
+                <span className="mx-2 text-slate-300 dark:text-slate-700">
+                  •
+                </span>
                 <span className="text-xs font-semibold text-slate-800 dark:text-slate-200">
                   {itemCategory}
                 </span>
@@ -111,7 +116,6 @@ export const DetailModal: React.FC<DetailModalProps> = ({
 
           {/* Scrollable Modal Content */}
           <div className="p-4 sm:p-6 sm:px-8 space-y-6 overflow-y-auto flex-1">
-            
             {/* Title & Metadata */}
             <div className="space-y-3">
               <h2 className="text-xl sm:text-2xl font-black tracking-tight text-slate-950 dark:text-white leading-tight">
@@ -142,8 +146,11 @@ export const DetailModal: React.FC<DetailModalProps> = ({
                   src={project.image}
                   alt={project.title}
                   onError={(e) => {
-                    const target = e.target as HTMLImageElement;
-                    if (project.fallbackImage && target.src !== project.fallbackImage) {
+                    const target = e.currentTarget;
+                    if (
+                      project.fallbackImage &&
+                      target.src !== project.fallbackImage
+                    ) {
                       target.src = project.fallbackImage;
                     }
                   }}
@@ -191,8 +198,11 @@ export const DetailModal: React.FC<DetailModalProps> = ({
                     src={certificate.image}
                     alt={`Screenshot ${certificate.title}`}
                     onError={(e) => {
-                      const target = e.target as HTMLImageElement;
-                      if (certificate.fallbackImage && target.src !== certificate.fallbackImage) {
+                      const target = e.currentTarget;
+                      if (
+                        certificate.fallbackImage &&
+                        target.src !== certificate.fallbackImage
+                      ) {
                         target.src = certificate.fallbackImage;
                       }
                     }}
@@ -202,7 +212,7 @@ export const DetailModal: React.FC<DetailModalProps> = ({
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-60 pointer-events-none" />
                   <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-white text-xs">
                     <span className="bg-black/70 backdrop-blur-md px-3 py-1 rounded-lg font-mono font-bold text-xs">
-                      {certificate.badgeCode || 'VERIFIED CREDENTIAL'}
+                      {certificate.badgeCode || "VERIFIED CREDENTIAL"}
                     </span>
                     <span className="bg-emerald-600/90 backdrop-blur-md px-2.5 py-1 rounded-lg text-xs font-semibold flex items-center gap-1">
                       <CheckCircle2 className="w-3.5 h-3.5" />
@@ -217,8 +227,8 @@ export const DetailModal: React.FC<DetailModalProps> = ({
             {isProject && project?.metrics && project.metrics.length > 0 && (
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5 pt-1">
                 {project.metrics.map((metric, i) => (
-                  <div 
-                    key={i} 
+                  <div
+                    key={i}
                     className="p-3 rounded-xl bg-slate-50 dark:bg-white/[0.03] border border-slate-200/80 dark:border-white/5 space-y-0.5"
                   >
                     <span className="text-[10px] uppercase tracking-wider font-semibold text-slate-500 dark:text-slate-400 block">
@@ -239,7 +249,9 @@ export const DetailModal: React.FC<DetailModalProps> = ({
                 <span>Deskripsi & Ringkasan Solusi</span>
               </h4>
               <p className="text-sm text-slate-700 dark:text-slate-300 leading-relaxed font-normal">
-                {isProject ? project.shortDescription : certificate?.description}
+                {isProject
+                  ? project.shortDescription
+                  : certificate?.description}
               </p>
             </div>
 
@@ -247,25 +259,29 @@ export const DetailModal: React.FC<DetailModalProps> = ({
             <div className="space-y-2.5 pt-2">
               <h4 className="text-xs font-bold uppercase tracking-wider text-slate-900 dark:text-white flex items-center gap-1.5">
                 <Code2 className="w-3.5 h-3.5 text-slate-700 dark:text-slate-300" />
-                <span>{isProject ? 'Teknologi & Tools yang Digunakan' : 'Kompetensi & Keahlian yang Tervalidasi'}</span>
+                <span>
+                  {isProject
+                    ? "Teknologi & Tools yang Digunakan"
+                    : "Kompetensi & Keahlian yang Tervalidasi"}
+                </span>
               </h4>
               <div className="flex flex-wrap gap-2">
-                {(isProject ? project.tags : certificate?.skills || []).map((tag) => (
-                  <span
-                    key={tag}
-                    className="px-2.5 py-1 text-xs font-medium rounded-lg bg-slate-100 dark:bg-white/10 text-slate-800 dark:text-slate-200 border border-slate-200/60 dark:border-white/5"
-                  >
-                    {tag}
-                  </span>
-                ))}
+                {(isProject ? project.tags : certificate?.skills || []).map(
+                  (tag) => (
+                    <span
+                      key={tag}
+                      className="px-2.5 py-1 text-xs font-medium rounded-lg bg-slate-100 dark:bg-white/10 text-slate-800 dark:text-slate-200 border border-slate-200/60 dark:border-white/5"
+                    >
+                      {tag}
+                    </span>
+                  ),
+                )}
               </div>
             </div>
-
           </div>
 
           {/* Modal Footer Actions */}
           <div className="p-4 sm:p-6 border-t border-slate-100 dark:border-white/10 bg-slate-50/70 dark:bg-white/[0.02] flex flex-wrap items-center justify-between gap-3">
-            
             <div className="flex items-center gap-2">
               {isProject && project && onOpenMarkdown && (
                 <button
@@ -318,9 +334,7 @@ export const DetailModal: React.FC<DetailModalProps> = ({
                 </a>
               )}
             </div>
-
           </div>
-
         </motion.div>
       </div>
     </AnimatePresence>
