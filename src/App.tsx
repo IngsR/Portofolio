@@ -11,42 +11,22 @@ import { Navbar } from "./components/Navbar";
 import { PortfolioSection } from "./components/PortfolioSection";
 import { initialProjects } from "./data/portfolioData";
 import { PageId, ProjectItem } from "./types";
+import { isProjectItem } from "./utils/guards";
 
-export default function App() {
+export default function App({
+  initialPage = "home",
+}: {
+  initialPage?: PageId;
+}) {
   // Navigation State
-  const [activePage, setActivePage] = useState<PageId>("home");
+  const [activePage, setActivePage] = useState<PageId>(initialPage);
 
   // Dark Mode State (Light mode is the default for optimal readability for all ages)
-  const [isDark, setIsDark] = useState<boolean>(() => {
-    if (typeof window !== "undefined") {
-      const savedTheme = localStorage.getItem("portfolio_theme");
-      if (savedTheme === "dark") {
-        return true;
-      }
-      if (savedTheme === "light") {
-        return false;
-      }
-      // Light Mode default
-      return false;
-    }
-    return false;
-  });
+  const [isDark, setIsDark] = useState(false);
+  const [isThemeInitialized, setIsThemeInitialized] = useState(false);
 
   // Projects State (with persistence)
-  const [projects, setProjects] = useState<ProjectItem[]>(() => {
-    try {
-      const saved = localStorage.getItem("portfolio_projects_list");
-      if (saved) {
-        const parsed = JSON.parse(saved);
-        if (Array.isArray(parsed) && parsed.length > 0) {
-          return parsed;
-        }
-      }
-    } catch {
-      // Fallback
-    }
-    return initialProjects;
-  });
+  const [projects, setProjects] = useState<ProjectItem[]>(initialProjects);
 
   // Modal States
   const [selectedProjectForMarkdown, setSelectedProjectForMarkdown] =
@@ -54,8 +34,34 @@ export default function App() {
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
   const [isCVModalOpen, setIsCVModalOpen] = useState(false);
 
+  // Restore browser-only preferences after the server-rendered HTML hydrates.
+  useEffect(() => {
+    const savedTheme = localStorage.getItem("portfolio_theme");
+    setIsDark(savedTheme === "dark");
+    setIsThemeInitialized(true);
+
+    try {
+      const savedProjects = localStorage.getItem("portfolio_projects_list");
+      if (savedProjects) {
+        const parsed = JSON.parse(savedProjects);
+        if (Array.isArray(parsed)) {
+          const validProjects = parsed.filter(isProjectItem);
+          if (validProjects.length > 0) {
+            setProjects(validProjects);
+          }
+        }
+      }
+    } catch {
+      // Keep the build-time project data when persisted data is invalid.
+    }
+  }, []);
+
   // Sync dark class on document element
   useEffect(() => {
+    if (!isThemeInitialized) {
+      return;
+    }
+
     const root = document.documentElement;
     if (isDark) {
       root.classList.add("dark");
@@ -64,7 +70,7 @@ export default function App() {
       root.classList.remove("dark");
       localStorage.setItem("portfolio_theme", "light");
     }
-  }, [isDark]);
+  }, [isDark, isThemeInitialized]);
 
   // Handle saving new project created via markdown editor
   const handleSaveProject = (newProject: ProjectItem) => {

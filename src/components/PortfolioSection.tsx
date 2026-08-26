@@ -20,16 +20,25 @@ const FILTER_KEYWORDS = [
   "TypeScript",
   "React",
   "PostgreSQL",
-  "REST API",
-  "Docker",
-  "Python",
-  "NestJS",
-  "Prisma",
-  "Drizzle ORM",
-  "React Native",
-  "LSTM",
-  "TF-IDF",
-];
+] as const;
+
+const FILTER_CATEGORIES = [
+  "Semua",
+  "Full Stack",
+  "Web Development",
+  "Machine Learning",
+  "Software Engineering",
+  "AI & Information Retrieval",
+  "Lainnya",
+] as const;
+
+const isListedCategory = (category: string) =>
+  FILTER_CATEGORIES.some(
+    (filterCategory) =>
+      filterCategory !== "Semua" &&
+      filterCategory !== "Lainnya" &&
+      filterCategory === category,
+  );
 
 export const PortfolioSection: React.FC<PortfolioSectionProps> = ({
   projects,
@@ -42,6 +51,7 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({
     "Semua",
   ]);
   const [selectedKeywords, setSelectedKeywords] = useState<string[]>([]);
+  const [showAllKeywords, setShowAllKeywords] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [sortBy, setSortBy] = useState<SortOption>("relevance");
   const searchInputRef = useRef<HTMLInputElement>(null);
@@ -54,30 +64,36 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({
   const [isDetailModalOpen, setIsDetailModalOpen] = useState(false);
 
   // Categories based on active filter
-  const allCategories = useMemo(() => {
-    const projectCats = projects.map((p) => p.category).filter(Boolean);
-    const certCats = certificationsData
-      .map((c) => c.category || "Sertifikasi")
-      .filter(Boolean);
+  const allCategories = FILTER_CATEGORIES;
 
-    if (filterType === "projects") {
-      return ["Semua", ...Array.from(new Set(projectCats))];
-    }
-    if (filterType === "certificates") {
-      return ["Semua", ...Array.from(new Set(certCats))];
-    }
-    return ["Semua", ...Array.from(new Set([...projectCats, ...certCats]))];
-  }, [projects, filterType]);
-
-  const availableKeywords = useMemo(() => {
+  const keywordGroups = useMemo(() => {
     const projectTags = projects
       .flatMap((project) => project.tags || [])
       .map((tag) => tag.trim())
       .filter(Boolean);
     const availableTags = new Set(projectTags);
 
-    return FILTER_KEYWORDS.filter((keyword) => availableTags.has(keyword));
+    const knownKeywords = FILTER_KEYWORDS.filter((keyword) =>
+      availableTags.has(keyword),
+    );
+    const otherKeywords = Array.from(
+      new Set(
+        projectTags.filter(
+          (tag) =>
+            !FILTER_KEYWORDS.some(
+              (knownKeyword) =>
+                knownKeyword.toLowerCase() === tag.toLowerCase(),
+            ),
+        ),
+      ),
+    );
+
+    return { knownKeywords, otherKeywords };
   }, [projects]);
+
+  const visibleKeywords = showAllKeywords
+    ? [...keywordGroups.knownKeywords, ...keywordGroups.otherKeywords]
+    : keywordGroups.knownKeywords;
 
   // Filtered and Sorted Projects
   const filteredProjects = useMemo(() => {
@@ -90,7 +106,11 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({
       // Category filter
       const matchCategory =
         selectedCategories.includes("Semua") ||
-        selectedCategories.includes(project.category);
+        selectedCategories.some((selectedCategory) =>
+          selectedCategory === "Lainnya"
+            ? !isListedCategory(project.category)
+            : selectedCategory === project.category,
+        );
       if (!matchCategory) return false;
 
       const projectTags = new Set(
@@ -159,9 +179,14 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({
     const tokens = q.split(/\s+/).filter(Boolean);
 
     const matches = certificationsData.filter((cert) => {
+      const certificateCategory = cert.category || "Sertifikasi";
       const matchCategory =
         selectedCategories.includes("Semua") ||
-        selectedCategories.includes(cert.category || "Sertifikasi");
+        selectedCategories.some((selectedCategory) =>
+          selectedCategory === "Lainnya"
+            ? !isListedCategory(certificateCategory)
+            : selectedCategory === certificateCategory,
+        );
       if (!matchCategory) return false;
 
       if (tokens.length === 0) return true;
@@ -210,6 +235,7 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({
     setFilterType("all");
     setSelectedCategories(["Semua"]);
     setSelectedKeywords([]);
+    setShowAllKeywords(false);
     setSearchQuery("");
     setSortBy("relevance");
     searchInputRef.current?.focus();
@@ -223,15 +249,15 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-slate-950 dark:text-white">
             Portofolio
           </h1>
-          <p className="text-sm sm:text-base lg:text-lg text-slate-600 dark:text-slate-400 max-w-5xl font-light">
-            Koleksi lengkap project full-stack web, perancangan basis data, REST
-            API, dan sertifikasi kredensial teknis.
+          <p className="text-sm sm:text-base lg:text-lg text-slate-600 dark:text-slate-400 max-w-none font-light">
+            Project yang saya bangun untuk mengubah ide menjadi software yang
+            benar-benar berjalan.
           </p>
         </div>
       </div>
 
       {/* Main Filter Buttons (Semua, Project, Sertifikasi & Lisensi) */}
-      <div className="flex flex-wrap items-center justify-center gap-2.5 border-b border-slate-300/70 dark:border-white/10 pb-4">
+      <div className="grid grid-cols-3 items-center gap-2.5 border-b border-slate-300/70 dark:border-white/10 pb-4">
         {/* Tombol Tampilkan Semua */}
         <button
           id="filter-all-btn"
@@ -247,7 +273,9 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({
           }`}
         >
           <Grid className="w-3.5 h-3.5" />
-          <span>Semua ({projects.length + certificationsData.length})</span>
+          <span className="truncate">
+            Semua ({projects.length + certificationsData.length})
+          </span>
         </button>
 
         {/* Tombol Project */}
@@ -265,7 +293,7 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({
           }`}
         >
           <Layers className="w-3.5 h-3.5" />
-          <span>Project ({projects.length})</span>
+          <span className="truncate">Project ({projects.length})</span>
         </button>
 
         {/* Tombol Sertifikasi & Lisensi */}
@@ -283,7 +311,12 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({
           }`}
         >
           <Award className="w-3.5 h-3.5" />
-          <span>Sertifikasi & Lisensi ({certificationsData.length})</span>
+          <span className="truncate sm:hidden">
+            Sertifikat ({certificationsData.length})
+          </span>
+          <span className="hidden truncate sm:inline">
+            Sertifikasi & Lisensi ({certificationsData.length})
+          </span>
         </button>
       </div>
 
@@ -323,24 +356,35 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({
         </div>
 
         {/* Quick Keyword Suggestion Tags */}
-        <div className="flex flex-wrap items-center gap-1.5 text-xs">
+        <div className="flex flex-wrap items-center gap-1.5 text-xs pb-1">
           <span className="text-xs text-slate-400 mr-1">Kata kunci:</span>
-          {availableKeywords.map((kw) => {
-            const isActive = selectedKeywords.includes(kw);
-            return (
+          <div className="flex flex-wrap items-center gap-1.5">
+            {visibleKeywords.map((kw) => {
+              const isActive = selectedKeywords.includes(kw);
+              return (
+                <button
+                  key={kw}
+                  onClick={() => handleKeywordClick(kw)}
+                  className={`inline-flex px-2.5 py-1 text-xs rounded-lg transition-all border ${
+                    isActive
+                      ? "bg-emerald-700 text-white dark:bg-emerald-400 dark:text-slate-950 border-transparent font-semibold"
+                      : "bg-slate-100 dark:bg-[#0f0f11] border-slate-300 dark:border-white/10 text-slate-700 dark:text-slate-400 hover:text-slate-950 dark:hover:text-white"
+                  }`}
+                >
+                  #{kw}
+                </button>
+              );
+            })}
+            {keywordGroups.otherKeywords.length > 0 && (
               <button
-                key={kw}
-                onClick={() => handleKeywordClick(kw)}
-                className={`px-2.5 py-1 text-xs rounded-lg transition-all border ${
-                  isActive
-                    ? "bg-emerald-700 text-white dark:bg-emerald-400 dark:text-slate-950 border-transparent font-semibold"
-                    : "bg-slate-100 dark:bg-[#0f0f11] border-slate-300 dark:border-white/10 text-slate-700 dark:text-slate-400 hover:text-slate-950 dark:hover:text-white"
-                }`}
+                type="button"
+                onClick={() => setShowAllKeywords((visible) => !visible)}
+                className="inline-flex px-2.5 py-1 text-xs rounded-lg border border-dashed border-slate-300 dark:border-white/15 text-slate-500 dark:text-slate-400 hover:text-slate-950 dark:hover:text-white transition-all"
               >
-                #{kw}
+                {showAllKeywords ? "Sembunyikan" : "Lainnya"}
               </button>
-            );
-          })}
+            )}
+          </div>
         </div>
 
         {/* Category Pills & Sort Dropdown */}
@@ -387,7 +431,16 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({
             </span>
             <select
               value={sortBy}
-              onChange={(e) => setSortBy(e.target.value as SortOption)}
+              onChange={(e) => {
+                const value = e.target.value;
+                if (
+                  value === "relevance" ||
+                  value === "date" ||
+                  value === "title"
+                ) {
+                  setSortBy(value);
+                }
+              }}
               className="px-3 py-1.5 rounded-xl bg-white dark:bg-[#0f0f11] border border-slate-200 dark:border-white/10 text-slate-900 dark:text-white text-xs focus:outline-none focus:border-slate-500 cursor-pointer"
             >
               <option value="relevance">Relevansi</option>

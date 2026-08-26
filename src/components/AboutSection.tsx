@@ -72,7 +72,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenCV }) => {
                 src="/logo.jpg"
                 alt="Logo Ikhwan Ramadhan"
                 onError={(e) => {
-                  const target = e.target as HTMLImageElement;
+                  const target = e.currentTarget;
                   target.style.display = "none";
                   const parent = target.parentElement;
                   if (
@@ -177,8 +177,9 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenCV }) => {
               Full-Stack & Systems
             </h4>
             <p className="text-xs text-slate-600 dark:text-slate-400 font-normal">
-              Next.js, TypeScript, PostgreSQL, Drizzle ORM, REST API, Docker,
-              Linux Debian, dan Python Data Science.
+              React, TypeScript, JavaScript, PostgreSQL, REST API, Docker, Linux
+              Debian, dan Python Data Science; termasuk Next.js sebagai salah
+              satu framework yang digunakan.
             </p>
           </div>
         </div>
@@ -416,7 +417,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenCV }) => {
                           src={cert.image}
                           alt={cert.title}
                           onError={(e) => {
-                            const target = e.target as HTMLImageElement;
+                            const target = e.currentTarget;
                             if (
                               cert.fallbackImage &&
                               target.src !== cert.fallbackImage

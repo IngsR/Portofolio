@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" role="img"
+  aria-labelledby="title desc">
+  <title id="title">Fullstack CRM ERP dashboard</title>
+  <desc id="desc">Dashboard visual for a modular CRM and ERP platform.</desc>
+  <rect width="1200" height="675" fill="#0f172a" />
+  <rect x="34" y="34" width="1132" height="607" rx="24" fill="#111827" stroke="#334155"
+    stroke-width="2" />
+  <rect x="34" y="34" width="220" height="607" rx="24" fill="#172033" />
+  <circle cx="82" cy="82" r="18" fill="#34d399" />
+  <rect x="116" y="70" width="102" height="20" rx="10" fill="#e2e8f0" opacity=".9" />
+  <rect x="70" y="142" width="145" height="13" rx="6" fill="#64748b" />
+  <rect x="70" y="188" width="145" height="42" rx="12" fill="#10b981" />
+  <rect x="70" y="252" width="145" height="13" rx="6" fill="#475569" />
+  <rect x="70" y="292" width="145" height="13" rx="6" fill="#475569" />
+  <rect x="70" y="332" width="145" height="13" rx="6" fill="#475569" />
+  <text x="292" y="112" fill="#f8fafc" font-family="Arial, sans-serif" font-size="32"
+    font-weight="700">Operations overview</text>
+  <text x="292" y="145" fill="#94a3b8" font-family="Arial, sans-serif" font-size="16">CRM / ERP
+    workspace</text>
+  <rect x="292" y="185" width="190" height="112" rx="16" fill="#1e293b" stroke="#334155" />
+  <rect x="508" y="185" width="190" height="112" rx="16" fill="#1e293b" stroke="#334155" />
+  <rect x="724" y="185" width="190" height="112" rx="16" fill="#1e293b" stroke="#334155" />
+  <text x="318" y="220" fill="#94a3b8" font-family="Arial, sans-serif" font-size="14">Active
+    customers</text>
+  <text x="318" y="267" fill="#f8fafc" font-family="Arial, sans-serif" font-size="34"
+    font-weight="700">1,284</text>
+  <text x="534" y="220" fill="#94a3b8" font-family="Arial, sans-serif" font-size="14">Open orders</text>
+  <text x="534" y="267" fill="#34d399" font-family="Arial, sans-serif" font-size="34"
+    font-weight="700">326</text>
+  <text x="750" y="220" fill="#94a3b8" font-family="Arial, sans-serif" font-size="14">Monthly
+    revenue</text>
+  <text x="750" y="267" fill="#f8fafc" font-family="Arial, sans-serif" font-size="34"
+    font-weight="700">84.6k</text>
+  <rect x="292" y="332" width="622" height="246" rx="16" fill="#172033" stroke="#334155" />
+  <text x="320" y="372" fill="#e2e8f0" font-family="Arial, sans-serif" font-size="18"
+    font-weight="700">Performance</text>
+  <path d="M330 520 C390 470 430 492 480 425 S565 455 620 390 S710 435 760 365 S835 400 885 350"
+    fill="none" stroke="#34d399" stroke-width="5" />
+  <path
+    d="M330 520 C390 470 430 492 480 425 S565 455 620 390 S710 435 760 365 S835 400 885 350 V540 H330 Z"
+    fill="#10b981" opacity=".12" />
+  <g stroke="#334155" stroke-width="1">
+    <path d="M330 420H885" />
+    <path d="M330 470H885" />
+    <path d="M330 520H885" />
+  </g>
+</svg>

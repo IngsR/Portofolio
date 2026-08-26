@@ -105,11 +105,11 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             <p className="text-slate-600 dark:text-slate-400 text-base sm:text-lg lg:text-2xl leading-relaxed font-normal max-w-6xl">
               Lulusan S1 Teknik Informatika Universitas Putra Indonesia
               &ldquo;YPTK&rdquo; Padang yang berdedikasi membangun aplikasi web
-              modern berskala penuh dengan{" "}
+              modern berskala penuh dengan fondasi{" "}
               <span className="font-semibold text-slate-900 dark:text-white">
-                Next.js, React, TypeScript
+                React, TypeScript, dan JavaScript
               </span>
-              , perancangan basis data{" "}
+              , lalu memperkuatnya dengan perancangan basis data{" "}
               <span className="font-semibold text-slate-900 dark:text-white">
                 PostgreSQL & REST API
               </span>
@@ -217,7 +217,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                   src={userProfile.avatarUrl}
                   alt={userProfile.name}
                   onError={(e) => {
-                    const target = e.target as HTMLImageElement;
+                    const target = e.currentTarget;
                     target.style.display = "none";
                     const parent = target.parentElement;
                     if (parent && !parent.querySelector(".avatar-fallback")) {
@@ -401,7 +401,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                     src={project.image}
                     alt={project.title}
                     onError={(e) => {
-                      const target = e.target as HTMLImageElement;
+                      const target = e.currentTarget;
                       if (
                         project.fallbackImage &&
                         target.src !== project.fallbackImage

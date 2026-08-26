@@ -24,7 +24,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
           src={project.image}
           alt={project.title}
           onError={(e) => {
-            const target = e.target as HTMLImageElement;
+            const target = e.currentTarget;
             if (project.fallbackImage && target.src !== project.fallbackImage) {
               target.src = project.fallbackImage;
             }

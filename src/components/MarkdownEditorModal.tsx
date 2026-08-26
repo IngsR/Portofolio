@@ -1,15 +1,8 @@
-import React, { useState } from 'react';
-import ReactMarkdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
-import { ProjectItem, ProjectCategory } from '../types';
-import { 
-  X, 
-  Plus, 
-  FileEdit, 
-  Eye, 
-  Code, 
-  Download
-} from 'lucide-react';
+import { Code, Download, Eye, Plus, X } from "lucide-react";
+import React, { useState } from "react";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+import { ProjectCategory, ProjectItem } from "../types";
 
 interface MarkdownEditorModalProps {
   isOpen: boolean;
@@ -20,21 +13,13 @@ interface MarkdownEditorModalProps {
 const TEMPLATE_MARKDOWN = `# Project Title
 
 ## Overview
-A high-performance modern web architecture built with React, Next.js App Router, and UnoCSS.
+Tuliskan ringkasan masalah, tujuan, dan hasil utama project ini.
 
 ---
 
-## Technical Specifications
-- **Client Runtime**: React 19, TypeScript
-- **CSS Engine**: UnoCSS / Atomic Tailwind
-- **Data Layer**: Edge Cache + Markdown Frontmatter
-
----
-
-## Architecture Flow
-\`\`\`text
-[ Edge Network ] ───▶ [ Next.js Server Components ] ───▶ [ Static Client SPA ]
-\`\`\`
+## Fitur Utama
+- Jelaskan kemampuan penting yang tersedia.
+- Jelaskan manfaatnya bagi pengguna.
 
 ## Code Sample
 \`\`\`typescript
@@ -49,59 +34,65 @@ export const MarkdownEditorModal: React.FC<MarkdownEditorModalProps> = ({
   onClose,
   onSaveProject,
 }) => {
-  const [title, setTitle] = useState('');
-  const [category, setCategory] = useState<ProjectCategory>('Frontend / Next.js');
-  const [shortDesc, setShortDesc] = useState('');
-  const [tags, setTags] = useState('React, Next.js, TypeScript, UnoCSS');
-  const [demoUrl, setDemoUrl] = useState('');
-  const [githubUrl, setGithubUrl] = useState('');
-  const [image, setImage] = useState('https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80');
+  const [title, setTitle] = useState("");
+  const [category, setCategory] = useState<ProjectCategory>("Frontend / React");
+  const [shortDesc, setShortDesc] = useState("");
+  const [tags, setTags] = useState("React, TypeScript, JavaScript, CSS");
+  const [demoUrl, setDemoUrl] = useState("");
+  const [githubUrl, setGithubUrl] = useState("");
+  const [image, setImage] = useState(
+    "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80",
+  );
   const [markdownContent, setMarkdownContent] = useState(TEMPLATE_MARKDOWN);
-  const [activeView, setActiveView] = useState<'split' | 'edit' | 'preview'>('split');
-  const [errorMsg, setErrorMsg] = useState('');
+  const [activeView, setActiveView] = useState<"split" | "edit" | "preview">(
+    "split",
+  );
+  const [errorMsg, setErrorMsg] = useState("");
 
   if (!isOpen) return null;
 
   const handleSave = (e: React.FormEvent) => {
     e.preventDefault();
     if (!title.trim()) {
-      setErrorMsg('Harap masukkan judul proyek.');
+      setErrorMsg("Harap masukkan judul proyek.");
       return;
     }
     if (!shortDesc.trim()) {
-      setErrorMsg('Harap masukkan ringkasan singkat proyek.');
+      setErrorMsg("Harap masukkan ringkasan singkat proyek.");
       return;
     }
     if (!markdownContent.trim()) {
-      setErrorMsg('Isi Markdown tidak boleh kosong.');
+      setErrorMsg("Isi Markdown tidak boleh kosong.");
       return;
     }
 
     const slug = title
       .toLowerCase()
-      .replace(/[^a-z0-9]+/g, '-')
-      .replace(/(^-|-$)/g, '');
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/(^-|-$)/g, "");
 
     const newProject: ProjectItem = {
       id: `proj-${Date.now()}`,
       slug: slug || `project-${Date.now()}`,
       title: title.trim(),
       shortDescription: shortDesc.trim(),
-      category: category === 'Semua' ? 'Frontend / Next.js' : category,
+      category: category === "Semua" ? "Frontend / React" : category,
       tags: tags
-        .split(',')
+        .split(",")
         .map((t) => t.trim())
         .filter((t) => t.length > 0),
-      image: image.trim() || 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80',
+      image:
+        image.trim() ||
+        "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80",
       featured: false,
-      publishedDate: 'Just Now',
-      demoUrl: demoUrl.trim() || undefined,
-      githubUrl: githubUrl.trim() || undefined,
+      publishedDate: "Just Now",
+      ...(demoUrl.trim() ? { demoUrl: demoUrl.trim() } : {}),
+      ...(githubUrl.trim() ? { githubUrl: githubUrl.trim() } : {}),
       metrics: [
-        { label: 'Status', value: 'Live' },
-        { label: 'Docs', value: 'Markdown' }
+        { label: "Status", value: "Live" },
+        { label: "Docs", value: "Markdown" },
       ],
-      markdownContent: markdownContent.trim()
+      markdownContent: markdownContent.trim(),
     };
 
     onSaveProject(newProject);
@@ -109,10 +100,10 @@ export const MarkdownEditorModal: React.FC<MarkdownEditorModalProps> = ({
   };
 
   const handleDownloadDraft = () => {
-    const element = document.createElement('a');
-    const file = new Blob([markdownContent], { type: 'text/markdown' });
+    const element = document.createElement("a");
+    const file = new Blob([markdownContent], { type: "text/markdown" });
     element.href = URL.createObjectURL(file);
-    element.download = `${title.toLowerCase().replace(/\s+/g, '-') || 'new-project'}.md`;
+    element.download = `${title.toLowerCase().replace(/\s+/g, "-") || "new-project"}.md`;
     document.body.appendChild(element);
     element.click();
     document.body.removeChild(element);
@@ -120,11 +111,10 @@ export const MarkdownEditorModal: React.FC<MarkdownEditorModalProps> = ({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-black/80 backdrop-blur-xs animate-in fade-in duration-150 font-sans">
-      <div 
+      <div
         className="relative w-full max-w-5xl h-[94vh] flex flex-col bg-white dark:bg-[#0a0a0a] border border-black/10 dark:border-white/10 shadow-2xl overflow-hidden"
         onClick={(e) => e.stopPropagation()}
       >
-        
         {/* Header */}
         <div className="p-4 border-b border-black/10 dark:border-white/10 bg-black/[0.02] dark:bg-white/[0.02] flex items-center justify-between gap-4">
           <div>
@@ -141,22 +131,22 @@ export const MarkdownEditorModal: React.FC<MarkdownEditorModalProps> = ({
             <div className="hidden sm:flex items-center border border-black/10 dark:border-white/10 p-0.5 text-xs font-mono">
               <button
                 type="button"
-                onClick={() => setActiveView('edit')}
-                className={`px-3 py-1 uppercase tracking-wider ${activeView === 'edit' ? 'bg-black text-white dark:bg-white dark:text-black font-bold' : 'text-slate-600 dark:text-white/60'}`}
+                onClick={() => setActiveView("edit")}
+                className={`px-3 py-1 uppercase tracking-wider ${activeView === "edit" ? "bg-black text-white dark:bg-white dark:text-black font-bold" : "text-slate-600 dark:text-white/60"}`}
               >
                 EDIT ONLY
               </button>
               <button
                 type="button"
-                onClick={() => setActiveView('split')}
-                className={`px-3 py-1 uppercase tracking-wider ${activeView === 'split' ? 'bg-black text-white dark:bg-white dark:text-black font-bold' : 'text-slate-600 dark:text-white/60'}`}
+                onClick={() => setActiveView("split")}
+                className={`px-3 py-1 uppercase tracking-wider ${activeView === "split" ? "bg-black text-white dark:bg-white dark:text-black font-bold" : "text-slate-600 dark:text-white/60"}`}
               >
                 SPLIT
               </button>
               <button
                 type="button"
-                onClick={() => setActiveView('preview')}
-                className={`px-3 py-1 uppercase tracking-wider ${activeView === 'preview' ? 'bg-black text-white dark:bg-white dark:text-black font-bold' : 'text-slate-600 dark:text-white/60'}`}
+                onClick={() => setActiveView("preview")}
+                className={`px-3 py-1 uppercase tracking-wider ${activeView === "preview" ? "bg-black text-white dark:bg-white dark:text-black font-bold" : "text-slate-600 dark:text-white/60"}`}
               >
                 PREVIEW ONLY
               </button>
@@ -172,8 +162,10 @@ export const MarkdownEditorModal: React.FC<MarkdownEditorModalProps> = ({
         </div>
 
         {/* Form Body */}
-        <form onSubmit={handleSave} className="flex-1 flex flex-col overflow-hidden">
-          
+        <form
+          onSubmit={handleSave}
+          className="flex-1 flex flex-col overflow-hidden"
+        >
           {/* Metadata Inputs */}
           <div className="p-4 bg-black/[0.01] dark:bg-white/[0.01] border-b border-black/10 dark:border-white/10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 text-xs font-mono">
             <div className="sm:col-span-2 space-y-1">
@@ -196,11 +188,11 @@ export const MarkdownEditorModal: React.FC<MarkdownEditorModalProps> = ({
               </label>
               <select
                 value={category}
-                onChange={(e) => setCategory(e.target.value as ProjectCategory)}
+                onChange={(e) => setCategory(e.target.value)}
                 className="w-full px-3 py-2 bg-white dark:bg-[#0f0f10] border border-black/10 dark:border-white/10 text-slate-950 dark:text-white uppercase text-xs focus:border-black dark:focus:border-white outline-none"
               >
                 <option value="Web App">Web App</option>
-                <option value="Frontend / Next.js">Frontend / Next.js</option>
+                <option value="Frontend / React">Frontend / React</option>
                 <option value="Full Stack">Full Stack</option>
                 <option value="Mobile & UI/UX">Mobile & UI/UX</option>
                 <option value="Open Source">Open Source</option>
@@ -213,7 +205,7 @@ export const MarkdownEditorModal: React.FC<MarkdownEditorModalProps> = ({
               </label>
               <input
                 type="text"
-                placeholder="REACT, NEXT.JS, UNOCSS"
+                placeholder="REACT, TYPESCRIPT, JAVASCRIPT"
                 value={tags}
                 onChange={(e) => setTags(e.target.value)}
                 className="w-full px-3 py-2 bg-white dark:bg-[#0f0f10] border border-black/10 dark:border-white/10 text-slate-950 dark:text-white uppercase text-xs focus:border-black dark:focus:border-white outline-none"
@@ -269,9 +261,8 @@ export const MarkdownEditorModal: React.FC<MarkdownEditorModalProps> = ({
 
           {/* Editor & Live Preview Area */}
           <div className="flex-1 grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-black/10 dark:divide-white/10 overflow-hidden">
-            
             {/* Editor Pane */}
-            {(activeView === 'split' || activeView === 'edit') && (
+            {(activeView === "split" || activeView === "edit") && (
               <div className="flex flex-col h-full overflow-hidden bg-[#0a0a0a] text-white">
                 <div className="px-4 py-2 bg-black border-b border-white/10 text-[10px] font-mono flex items-center justify-between text-white/50 uppercase tracking-widest">
                   <span className="flex items-center gap-1.5">
@@ -291,7 +282,7 @@ export const MarkdownEditorModal: React.FC<MarkdownEditorModalProps> = ({
                   value={markdownContent}
                   onChange={(e) => {
                     setMarkdownContent(e.target.value);
-                    if (errorMsg) setErrorMsg('');
+                    if (errorMsg) setErrorMsg("");
                   }}
                   className="flex-1 w-full p-4 bg-[#0a0a0a] text-slate-100 font-mono text-xs sm:text-sm resize-none focus:outline-none leading-relaxed selection:bg-white selection:text-black"
                   placeholder="Type markdown content..."
@@ -301,7 +292,7 @@ export const MarkdownEditorModal: React.FC<MarkdownEditorModalProps> = ({
             )}
 
             {/* Preview Pane */}
-            {(activeView === 'split' || activeView === 'preview') && (
+            {(activeView === "split" || activeView === "preview") && (
               <div className="flex flex-col h-full overflow-hidden bg-white dark:bg-[#0a0a0a]">
                 <div className="px-4 py-2 bg-black/[0.02] dark:bg-white/[0.02] border-b border-black/10 dark:border-white/10 text-[10px] font-mono uppercase tracking-widest flex items-center justify-between text-slate-500 dark:text-white/50">
                   <span className="flex items-center gap-1.5">
@@ -319,7 +310,6 @@ export const MarkdownEditorModal: React.FC<MarkdownEditorModalProps> = ({
                 </div>
               </div>
             )}
-
           </div>
 
           {/* Footer Controls */}
@@ -340,9 +330,7 @@ export const MarkdownEditorModal: React.FC<MarkdownEditorModalProps> = ({
               <span>COMMIT TO REPOSITORY</span>
             </button>
           </div>
-
         </form>
-
       </div>
     </div>
   );
