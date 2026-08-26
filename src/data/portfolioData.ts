@@ -14,7 +14,7 @@ export const userProfile: UserProfile = {
   tagline:
     'Lulusan S1 Teknik Informatika UPI "YPTK" Padang dengan fokus pada pengembangan aplikasi web full-stack berbasis React dan TypeScript, rekayasa API serta database, infrastruktur, DSA, dan Time Series Forecasting.',
   shortBio:
-    "Saya Ikhwan Ramadhan, lahir di Padang pada 18 November 2003 dan merupakan lulusan S1 Teknik Informatika Universitas Putra Indonesia “YPTK” Padang.",
+    "Saya Ikhwan Ramadhan, lahir di Padang pada 18 November 2003 dan merupakan lulusan S1 Teknik Informatika Universitas Putra Indonesia “YPTK” Padang. Saya banyak mengeksplorasi Full-Stack Development, dari merancang aplikasi, membangun sistemnya, sampai membuatnya siap digunakan di production.",
   fullBio: [
     "Saya Ikhwan Ramadhan, lulusan S1 Teknik Informatika Universitas Putra Indonesia “YPTK” Padang. Saya memfokuskan perjalanan karier saya pada pengembangan aplikasi web full-stack dengan fondasi React, TypeScript, JavaScript, Node.js, API, dan basis data PostgreSQL. Next.js merupakan salah satu framework yang saya gunakan untuk mempercepat pengembangan produk, bukan batasan dari kemampuan saya.",
     "Sejak mengenal dunia komputer dan rekayasa perangkat lunak, rasa ingin tahu saya selalu mendorong untuk membedah bagaimana sebuah sistem bekerja dari lapisan terdalam mulai dari struktur data dan algoritma (DSA), komunikasi REST API yang efisien, perancangan skema relasional SQL, hingga deployment berbasis Docker di lingkungan server Linux (Debian).",
@@ -614,7 +614,7 @@ export const experienceData: ExperienceItem[] = [
   },
   {
     id: "exp-2",
-    role: "Full-Stack Software Engineer (Independent & Open Source)",
+    role: "Full-Stack Developer (Open Source)",
     company: "IngsR Portfolio & Engineering Repositories",
     location: "Indonesia / Remote",
     period: "2023 - Sekarang",

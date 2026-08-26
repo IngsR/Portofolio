@@ -85,7 +85,7 @@ export const CVModal: React.FC<CVModalProps> = ({ isOpen, onClose }) => {
               <h1 className="text-3xl sm:text-4xl font-black tracking-tight text-slate-950">
                 {userProfile.name}
               </h1>
-              <p className="text-sm font-bold text-blue-600">
+              <p className="text-sm font-bold text-black">
                 {userProfile.title}
               </p>
             </div>
@@ -117,7 +117,7 @@ export const CVModal: React.FC<CVModalProps> = ({ isOpen, onClose }) => {
           {/* Experience Section */}
           <div className="space-y-4">
             <h2 className="text-xs font-bold text-slate-900 uppercase tracking-wider border-b border-slate-200 pb-1.5">
-              PENGALAMAN REKAYASA & PROYEK
+              PENGALAMAN KERJA
             </h2>
 
             <div className="space-y-4">

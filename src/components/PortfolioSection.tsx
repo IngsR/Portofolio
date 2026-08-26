@@ -545,7 +545,7 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({
                     </h2>
                   </div>
                   <span className="text-xs text-slate-500 dark:text-slate-400">
-                    Validasi Kompetensi Teknis Resmi
+                    Hal yang Saya Pelajari dan Dapatkan
                   </span>
                 </div>
               )}
