@@ -1,0 +1,12 @@
+---
+import App from "../App";
+import SiteLayout from "../layouts/SiteLayout.astro";
+
+export const prerender = true;
+---
+<SiteLayout
+  title="Kontak Ikhwan Ramadhan | Full-Stack Developer"
+  description="Hubungi Ikhwan Ramadhan untuk peluang kerja, kolaborasi, dan project pengembangan aplikasi web."
+>
+  <App client:load initialPage="contact" />
+</SiteLayout>

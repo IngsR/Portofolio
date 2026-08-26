@@ -9,10 +9,45 @@ interface Props {
 
 const {
   title = "Profile Ikhwan Ramadhan",
-  description = "Portofolio resmi Ikhwan Ramadhan, Full-Stack Developer yang membangun aplikasi web modern dengan Next.js, React, TypeScript, PostgreSQL, dan Docker.",
+  description = "Portofolio resmi Ikhwan Ramadhan, Full-Stack Developer yang membangun aplikasi web modern dengan React, TypeScript, API, PostgreSQL, dan Docker.",
   canonicalPath = Astro.url.pathname,
 } = Astro.props;
 const canonicalUrl = new URL(canonicalPath, Astro.site ?? Astro.url).toString();
+const personSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Ikhwan Ramadhan",
+  jobTitle: "Full-Stack Developer",
+  url: "https://ikhwann.my.id/",
+  image: "https://ikhwann.my.id/profile.png",
+  email: "mailto:ikhwn.rdn@gmail.com",
+  address: {
+    "@type": "PostalAddress",
+    addressCountry: "ID",
+  },
+  sameAs: [
+    "https://github.com/IngsR",
+    "https://www.linkedin.com/in/ikhwn-rdn",
+  ],
+  knowsAbout: [
+    "React",
+    "TypeScript",
+    "JavaScript",
+    "Full-Stack Web Development",
+    "REST API",
+    "PostgreSQL",
+    "Docker",
+    "Python",
+  ],
+};
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "Profile Ikhwan Ramadhan",
+  url: "https://ikhwann.my.id/",
+  description,
+  publisher: { "@type": "Person", name: "Ikhwan Ramadhan" },
+};
 ---
 <!doctype html>
 <html lang="id">
@@ -28,6 +63,12 @@ const canonicalUrl = new URL(canonicalPath, Astro.site ?? Astro.url).toString();
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content="/logo.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content="https://ikhwann.my.id/logo.jpg" />
+    <script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
     <meta name="google-site-verification" content="6TM9P7buGWO2wS0SqofqquuWDfvadyhMq56ivQnUQRE" />
     <meta name="msvalidate.01" content="92D58529971734088AE431B5DA99146C" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />

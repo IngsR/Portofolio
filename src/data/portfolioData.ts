@@ -28,7 +28,7 @@ export const userProfile: UserProfile = {
   phone: "+6282386473410",
   whatsappUrl:
     "https://wa.me/6282386473410?text=Halo%20Ikhwan%2C%20saya%20melihat%20portofolio%20Anda%20dan%20tertarik%20untuk%20berdiskusi%20terkait%20peluang%20kerja%20Full-Stack%20Developer%20%2F%20proyek.",
-  avatarUrl: "/profile.jpg",
+  avatarUrl: "/profile.png",
   statusText:
     "Siap Bekerja On-Site (WFO) di Seluruh Indonesia / Relokasi & Remote",
   isAvailableForHire: true,
