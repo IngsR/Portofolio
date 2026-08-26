@@ -300,7 +300,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
           </h2>
           <p className="text-xs sm:text-sm lg:text-base text-slate-600 dark:text-slate-400 max-w-6xl leading-relaxed font-normal">
             Saya tidak terlalu menikmati software yang hanya selesai dibuat.
-            Saya lebih tertarik pada proses di baliknya—mencari masalah, mencoba
+            Saya lebih tertarik pada proses di baliknya mencari masalah, mencoba
             pendekatan, menemukan bagian yang kurang tepat, lalu membuatnya
             lebih masuk akal.
           </p>

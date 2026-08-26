@@ -1,5 +1,6 @@
 import { ArrowUp, ExternalLink, FileText } from "lucide-react";
 import React from "react";
+
 import { userProfile } from "../data/portfolioData";
 import { PageId } from "../types";
 
@@ -10,163 +11,157 @@ interface FooterProps {
 
 export const Footer: React.FC<FooterProps> = ({ setActivePage, onOpenCV }) => {
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
   };
 
+  const navigationItems: [PageId, string][] = [
+    ["home", "Beranda"],
+    ["portfolio", "Full-Stack Dev & Portofolio"],
+    ["about", "Tentang Saya"],
+    ["contact", "Kontak & Pesan"],
+  ];
+
   return (
-    <footer className="border-t border-slate-200 dark:border-white/10 bg-white dark:bg-[#0c0c0d] transition-colors duration-200 mt-20">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-10">
-        {/* Main Footer Row */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
-          {/* Brand & Bio (6 cols) */}
-          <div className="md:col-span-6 space-y-4">
+    <footer className="mt-12 border-t border-slate-200 bg-white text-slate-800 transition-colors duration-200 sm:mt-14 dark:border-white/10 dark:bg-[#0c0c0d] dark:text-slate-200">
+      <div className="mx-auto w-full max-w-[1400px] px-5 py-7 sm:px-8 sm:py-9 lg:px-12 lg:py-10 xl:px-16">
+        {/* Main Footer */}
+        <div className="grid grid-cols-1 gap-7 sm:grid-cols-2 sm:gap-8 lg:grid-cols-12 lg:gap-x-12 lg:gap-y-8 xl:gap-x-16">
+          {/* Brand */}
+          <div className="space-y-3.5 sm:col-span-2 lg:col-span-5">
             <div className="flex items-center gap-3">
               <img
                 src="/logo.jpg"
                 alt="Logo Ikhwan Ramadhan"
-                width={32}
-                height={32}
+                width={44}
+                height={44}
                 loading="lazy"
                 decoding="async"
-                className="w-8 h-8 rounded-xl object-cover shadow-sm"
+                className="h-10 w-10 shrink-0 rounded-xl object-cover shadow-sm sm:h-11 sm:w-11"
               />
-              <div>
-                <div className="font-bold text-base text-slate-950 dark:text-white">
+
+              <div className="min-w-0">
+                <h3 className="truncate text-[15px] font-bold leading-tight text-slate-950 dark:text-white sm:text-base">
                   {userProfile.name}
-                </div>
-                <div className="text-xs text-slate-500 font-medium">
+                </h3>
+
+                <p className="mt-0.5 text-xs font-medium text-slate-600 dark:text-slate-400">
                   Full-Stack Developer
-                </div>
+                </p>
               </div>
             </div>
 
-            <p className="text-slate-600 dark:text-slate-400 text-xs sm:text-sm leading-relaxed max-w-md font-normal">
+            <p className="max-w-[620px] text-[13px] leading-5.5 text-slate-700 dark:text-slate-300 sm:text-sm sm:leading-6">
               {userProfile.tagline}
             </p>
 
-            <div className="flex flex-wrap gap-4 pt-1 text-xs text-slate-600 dark:text-slate-400">
-              {userProfile.socials.map((s) => (
+            {/* Social */}
+            <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5">
+              {userProfile.socials.map((social) => (
                 <a
-                  key={s.name}
-                  href={s.url}
+                  key={social.name}
+                  href={social.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-slate-950 dark:hover:text-white flex items-center gap-1 font-medium transition-colors"
+                  className="inline-flex items-center gap-1 text-[13px] font-medium text-slate-700 transition-colors hover:text-slate-950 dark:text-slate-300 dark:hover:text-white"
                 >
-                  <span>{s.name}</span>
-                  <ExternalLink className="w-3 h-3 opacity-60" />
+                  <span>{social.name}</span>
+                  <ExternalLink className="h-3 w-3 shrink-0 opacity-70" />
                 </a>
               ))}
             </div>
           </div>
 
-          {/* Nav Links (3 cols) */}
-          <div className="md:col-span-3 space-y-3">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-slate-900 dark:text-white">
+          {/* Navigation */}
+          <div className="space-y-3 sm:col-span-1 lg:col-span-3">
+            <h4 className="text-xs font-bold uppercase tracking-[0.12em] text-slate-950 dark:text-white">
               Menu Navigasi
             </h4>
-            <ul className="space-y-2 text-xs text-slate-600 dark:text-slate-400">
-              <li>
+
+            {/* Navigation Pills */}
+            <div className="grid grid-cols-2 gap-2 sm:grid-cols-1 lg:grid-cols-1">
+              {navigationItems.map(([page, label]) => (
                 <button
+                  key={page}
+                  type="button"
                   onClick={() => {
-                    setActivePage("home");
+                    setActivePage(page);
                     scrollToTop();
                   }}
-                  className="hover:text-slate-950 dark:hover:text-white transition-colors"
+                  className="group flex min-h-[36px] items-center justify-center rounded-full border border-slate-200 bg-slate-50 px-3 py-2 text-center text-[12px] font-medium leading-tight text-slate-700 transition-all duration-200 hover:border-slate-300 hover:bg-slate-100 hover:text-slate-950 active:scale-[0.98] dark:border-white/10 dark:bg-white/[0.035] dark:text-slate-300 dark:hover:border-white/20 dark:hover:bg-white/[0.08] dark:hover:text-white lg:justify-start lg:px-3.5"
                 >
-                  Beranda
+                  {label}
                 </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => {
-                    setActivePage("portfolio");
-                    scrollToTop();
-                  }}
-                  className="hover:text-slate-950 dark:hover:text-white transition-colors"
-                >
-                  Full-Stack Dev & Portofolio
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => {
-                    setActivePage("about");
-                    scrollToTop();
-                  }}
-                  className="hover:text-slate-950 dark:hover:text-white transition-colors"
-                >
-                  Tentang Saya
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => {
-                    setActivePage("contact");
-                    scrollToTop();
-                  }}
-                  className="hover:text-slate-950 dark:hover:text-white transition-colors"
-                >
-                  Kontak & Pesan
-                </button>
-              </li>
-            </ul>
+              ))}
+            </div>
           </div>
 
-          {/* Quick Contact & CV (3 cols) */}
-          <div className="md:col-span-3 space-y-3">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-slate-900 dark:text-white">
+          {/* Contact */}
+          <div className="space-y-3 sm:col-span-1 lg:col-span-4">
+            <h4 className="text-xs font-bold uppercase tracking-[0.12em] text-slate-950 dark:text-white">
               Kontak Cepat
             </h4>
-            <div className="space-y-2 text-xs text-slate-600 dark:text-slate-400">
-              <div>
-                <span className="block text-slate-400 text-[11px]">Email:</span>
+
+            <div className="space-y-2.5">
+              {/* Email */}
+              <div className="space-y-0.5">
+                <p className="text-[11px] font-medium text-slate-500 dark:text-slate-500">
+                  Email
+                </p>
+
                 <a
                   href={`mailto:${userProfile.email}`}
-                  className="font-medium text-slate-900 dark:text-white hover:underline"
+                  className="block break-all text-[13px] font-semibold text-slate-900 transition-colors hover:text-slate-600 hover:underline dark:text-white dark:hover:text-slate-300"
                 >
                   {userProfile.email}
                 </a>
               </div>
-              <div>
-                <span className="block text-slate-400 text-[11px]">
-                  WhatsApp:
-                </span>
+
+              {/* WhatsApp */}
+              <div className="space-y-0.5">
+                <p className="text-[11px] font-medium text-slate-500 dark:text-slate-500">
+                  WhatsApp
+                </p>
+
                 <a
                   href={userProfile.whatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="font-medium text-emerald-600 dark:text-emerald-400 hover:underline"
+                  className="inline-flex text-[13px] font-semibold text-emerald-700 transition-colors hover:underline dark:text-emerald-400"
                 >
                   {userProfile.phone}
                 </a>
               </div>
-              <div className="pt-2">
-                <button
-                  onClick={onOpenCV}
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-slate-300 dark:border-white/10 hover:bg-slate-100 dark:hover:bg-white/10 text-xs font-semibold text-slate-900 dark:text-white transition-all"
-                >
-                  <FileText className="w-3.5 h-3.5" />
-                  <span>Curriculum Vitae</span>
-                </button>
-              </div>
+
+              {/* CV */}
+              <button
+                type="button"
+                onClick={onOpenCV}
+                className="mt-1 inline-flex min-h-[36px] w-fit items-center justify-center gap-2 rounded-full border border-slate-300 bg-white px-4 py-2 text-[12px] font-semibold text-slate-900 shadow-sm transition-all duration-200 hover:border-slate-400 hover:bg-slate-50 active:scale-[0.98] dark:border-white/15 dark:bg-white/[0.03] dark:text-white dark:hover:bg-white/[0.08]"
+              >
+                <FileText className="h-3.5 w-3.5 shrink-0" />
+                <span>Curriculum Vitae</span>
+              </button>
             </div>
           </div>
         </div>
 
-        {/* Bottom Bar */}
-        <div className="pt-8 border-t border-slate-100 dark:border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
-          <div>
+        {/* Bottom Footer */}
+        <div className="mt-7 flex flex-col gap-3 border-t border-slate-200 pt-4 dark:border-white/10 sm:mt-8 sm:flex-row sm:items-center sm:justify-between sm:gap-6">
+          <p className="text-[11px] leading-5 text-slate-600 dark:text-slate-400 sm:text-[12px]">
             © {new Date().getFullYear()} {userProfile.name}. All rights
             reserved.
-          </div>
+          </p>
 
           <button
+            type="button"
             onClick={scrollToTop}
-            className="flex items-center gap-1.5 text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white transition-colors"
+            className="inline-flex w-fit items-center gap-1.5 text-[12px] font-medium text-slate-700 transition-colors hover:text-slate-950 dark:text-slate-300 dark:hover:text-white"
           >
             <span>Kembali ke atas</span>
-            <ArrowUp className="w-3.5 h-3.5" />
+            <ArrowUp className="h-3.5 w-3.5 shrink-0" />
           </button>
         </div>
       </div>
