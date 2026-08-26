@@ -29,6 +29,10 @@ export const CertificateCard: React.FC<CertificateCardProps> = ({
           <img
             src={certificate.image}
             alt={`Sertifikat ${certificate.title}`}
+            width={640}
+            height={440}
+            loading="lazy"
+            decoding="async"
             onError={(e) => {
               const target = e.currentTarget;
               if (

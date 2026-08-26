@@ -68,6 +68,10 @@ export const Navbar: React.FC<NavbarProps> = ({
             <img
               src="/logo.jpg"
               alt="Logo Ikhwan Ramadhan"
+              width={36}
+              height={36}
+              loading="eager"
+              decoding="async"
               className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl sm:rounded-2xl object-cover shadow-sm group-hover:scale-105 transition-transform"
             />
             <div>

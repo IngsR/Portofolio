@@ -23,6 +23,10 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
         <img
           src={project.image}
           alt={project.title}
+          width={640}
+          height={400}
+          loading="lazy"
+          decoding="async"
           onError={(e) => {
             const target = e.currentTarget;
             if (project.fallbackImage && target.src !== project.fallbackImage) {
@@ -31,7 +35,6 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
           }}
           className="w-full h-full object-contain object-center rounded-xl bg-white dark:bg-black/20"
           referrerPolicy="no-referrer"
-          loading="lazy"
         />
 
         {/* Clean Category Badge */}

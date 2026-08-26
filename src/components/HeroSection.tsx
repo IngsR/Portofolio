@@ -216,6 +216,11 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                 <img
                   src={userProfile.avatarUrl}
                   alt={userProfile.name}
+                  width={400}
+                  height={400}
+                  loading="eager"
+                  decoding="async"
+                  fetchPriority="high"
                   onError={(e) => {
                     const target = e.currentTarget;
                     target.style.display = "none";
@@ -400,6 +405,10 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                   <img
                     src={project.image}
                     alt={project.title}
+                    width={640}
+                    height={280}
+                    loading="lazy"
+                    decoding="async"
                     onError={(e) => {
                       const target = e.currentTarget;
                       if (

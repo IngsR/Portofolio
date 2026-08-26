@@ -24,6 +24,10 @@ export const Footer: React.FC<FooterProps> = ({ setActivePage, onOpenCV }) => {
               <img
                 src="/logo.jpg"
                 alt="Logo Ikhwan Ramadhan"
+                width={32}
+                height={32}
+                loading="lazy"
+                decoding="async"
                 className="w-8 h-8 rounded-xl object-cover shadow-sm"
               />
               <div>

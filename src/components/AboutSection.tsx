@@ -71,6 +71,10 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenCV }) => {
               <img
                 src="/logo.jpg"
                 alt="Logo Ikhwan Ramadhan"
+                width={96}
+                height={96}
+                loading="lazy"
+                decoding="async"
                 onError={(e) => {
                   const target = e.currentTarget;
                   target.style.display = "none";
@@ -416,6 +420,10 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenCV }) => {
                         <img
                           src={cert.image}
                           alt={cert.title}
+                          width={80}
+                          height={56}
+                          loading="lazy"
+                          decoding="async"
                           onError={(e) => {
                             const target = e.currentTarget;
                             if (
