@@ -1,5 +1,7 @@
 import {
   ArrowRight,
+  ArrowUpRight,
+  Award,
   Binary,
   CheckCircle2,
   Code2,
@@ -10,14 +12,24 @@ import {
   Github,
   GraduationCap,
   Layers,
+  Linkedin,
+  Mail,
   MapPin,
   MessageCircle,
+  Phone,
   Server,
+  Sparkles,
   Terminal,
 } from "lucide-react";
 import React, { useState } from "react";
-import { engineeringMindsetSkills, userProfile } from "../data/portfolioData";
-import { PageId, ProjectItem } from "../types";
+import {
+  certificationsData,
+  educationData,
+  skillCategories,
+  userProfile,
+} from "../data/portfolioData";
+import { CertificationItem, PageId, ProjectItem } from "../types";
+import { CertificateCard } from "./CertificateCard";
 import { DetailModal } from "./DetailModal";
 
 interface HeroSectionProps {
@@ -35,50 +47,51 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
 }) => {
   const [selectedProjectForDetail, setSelectedProjectForDetail] =
     useState<ProjectItem | null>(null);
+  const [selectedCertForDetail, setSelectedCertForDetail] =
+    useState<CertificationItem | null>(null);
   const [isDetailOpen, setIsDetailOpen] = useState(false);
 
-  const handleOpenDetail = (project: ProjectItem) => {
+  const handleOpenProjectDetail = (project: ProjectItem) => {
     setSelectedProjectForDetail(project);
+    setSelectedCertForDetail(null);
     setIsDetailOpen(true);
   };
 
-  const getSkillIcon = (iconName: string) => {
+  const handleOpenCertDetail = (cert: CertificationItem) => {
+    setSelectedCertForDetail(cert);
+    setSelectedProjectForDetail(null);
+    setIsDetailOpen(true);
+  };
+
+  const getSkillCategoryIcon = (iconName: string) => {
     switch (iconName) {
-      case "Layers":
-        return <Layers className="w-4 h-4 text-blue-600 dark:text-blue-400" />;
       case "Layout":
-        return <Code2 className="w-4 h-4 text-sky-600 dark:text-sky-400" />;
+        return <Code2 className="w-5 h-5 text-sky-600 dark:text-sky-400" />;
       case "Server":
-        return (
-          <Server className="w-4 h-4 text-indigo-600 dark:text-indigo-400" />
-        );
-      case "Database":
-        return (
-          <Database className="w-4 h-4 text-amber-600 dark:text-amber-400" />
-        );
+        return <Server className="w-5 h-5 text-indigo-600 dark:text-indigo-400" />;
       case "Terminal":
-        return (
-          <Terminal className="w-4 h-4 text-purple-600 dark:text-purple-400" />
-        );
-      case "Binary":
-        return (
-          <Binary className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
-        );
+        return <Terminal className="w-5 h-5 text-purple-600 dark:text-purple-400" />;
       case "Cpu":
-        return <Cpu className="w-4 h-4 text-rose-600 dark:text-rose-400" />;
+        return <Cpu className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />;
       default:
-        return (
-          <Layers className="w-4 h-4 text-slate-800 dark:text-slate-200" />
-        );
+        return <Layers className="w-5 h-5 text-blue-600 dark:text-blue-400" />;
     }
   };
 
+  // 3 Sertifikat saja
+  const homeCertificates = certificationsData.slice(0, 3);
+
+  // Pendidikan Sarjana S1 saja
+  const sarjanaEducation = educationData.filter(
+    (edu) => edu.id === "edu-1" || edu.degree.toLowerCase().includes("sarjana")
+  );
+
   return (
     <div className="space-y-16 py-6 sm:py-8">
-      {/* Top Hero Section Card */}
+      {/* 1. HERO PERKENALAN LENGKAP + CARD FOTO PROFILE DENGAN KONTAKT LENGKAP */}
       <section className="rounded-3xl border border-slate-200/80 dark:border-white/10 bg-white dark:bg-[#0c0c0d] p-6 sm:p-10 lg:p-12 shadow-sm transition-all">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
-          {/* Left Column: Information & Bio */}
+          {/* Left Column: Brief Introduction for 60s HR Scan */}
           <div className="lg:col-span-7 space-y-6">
             {/* Availability Pill */}
             <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full border border-emerald-500/30 bg-emerald-50/80 dark:bg-emerald-950/30 text-emerald-800 dark:text-emerald-300 text-xs font-semibold">
@@ -97,23 +110,21 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                 {userProfile.name}
               </h1>
               <p className="text-xl sm:text-2xl font-bold text-slate-700 dark:text-slate-300">
-                {userProfile.title}
+                {userProfile.title} | S1 Teknik Informatika
               </p>
             </div>
 
             {/* Bio Narrative */}
-            <p className="text-slate-600 dark:text-slate-400 text-base sm:text-lg lg:text-2xl leading-relaxed font-normal max-w-6xl">
-              Lulusan S1 Teknik Informatika Universitas Putra Indonesia
-              &ldquo;YPTK&rdquo; Padang yang berdedikasi membangun aplikasi web
-              modern berskala penuh dengan fondasi{" "}
+            <p className="text-slate-600 dark:text-slate-400 text-base sm:text-lg leading-relaxed font-normal max-w-4xl">
+              Lulusan S1 Teknik Informatika Universitas Putra Indonesia &ldquo;YPTK&rdquo; Padang yang berdedikasi membangun aplikasi web modern berskala penuh dengan fondasi{" "}
               <span className="font-semibold text-slate-900 dark:text-white">
                 React, TypeScript, dan JavaScript
               </span>
-              , lalu memperkuatnya dengan perancangan basis data{" "}
+              , perancangan basis data{" "}
               <span className="font-semibold text-slate-900 dark:text-white">
                 PostgreSQL & REST API
               </span>
-              , pengelolaan lingkungan server{" "}
+              , lingkungan server{" "}
               <span className="font-semibold text-slate-900 dark:text-white">
                 Linux Debian & Docker
               </span>
@@ -124,8 +135,8 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
               .
             </p>
 
-            {/* Quick Specs / Availability Details */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1 text-xs text-slate-700 dark:text-slate-300">
+            {/* Quick Highlights Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs text-slate-700 dark:text-slate-300">
               <div className="flex items-start gap-2.5 p-3.5 rounded-2xl bg-slate-50 dark:bg-white/[0.03] border border-slate-200/60 dark:border-white/5">
                 <MapPin className="w-4 h-4 text-slate-500 dark:text-slate-400 mt-0.5 shrink-0" />
                 <div>
@@ -133,7 +144,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                     Kesiapan Kerja:
                   </span>
                   <span className="text-slate-600 dark:text-slate-400">
-                    On-Site / WFO di Seluruh Indonesia & Remote
+                    On-Site (WFO) Seluruh Indonesia & Remote
                   </span>
                 </div>
               </div>
@@ -142,7 +153,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                 <GraduationCap className="w-4 h-4 text-slate-500 dark:text-slate-400 mt-0.5 shrink-0" />
                 <div>
                   <span className="font-bold block text-slate-900 dark:text-white">
-                    Latar Belakang Pendidikan:
+                    Pendidikan Akademis:
                   </span>
                   <span className="text-slate-600 dark:text-slate-400">
                     S1 Teknik Informatika — UPI &ldquo;YPTK&rdquo;
@@ -185,30 +196,9 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                 <span>Curriculum Vitae</span>
               </button>
             </div>
-
-            {/* Social Links Row */}
-            <div className="flex items-center gap-4 pt-3 border-t border-slate-200 dark:border-white/10 text-xs text-slate-600 dark:text-slate-400">
-              <span className="text-slate-400 dark:text-slate-500 font-medium">
-                Tautan Profil:
-              </span>
-              <div className="flex items-center gap-3 font-medium">
-                {userProfile.socials.map((social) => (
-                  <a
-                    key={social.name}
-                    href={social.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="hover:text-slate-950 dark:hover:text-white transition-colors flex items-center gap-1.5"
-                  >
-                    <span>{social.name}</span>
-                    <ExternalLink className="w-3 h-3 opacity-60" />
-                  </a>
-                ))}
-              </div>
-            </div>
           </div>
 
-          {/* Right Column: Profile Photo Card */}
+          {/* Right Column: Profile Photo Card with COMPLETE CONTACTS (LinkedIn, Email, GitHub, WhatsApp) */}
           <div className="lg:col-span-5 flex justify-center">
             <div className="w-full max-w-sm rounded-3xl border border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-white/[0.02] p-5 sm:p-6 space-y-5 shadow-sm">
               {/* Photo Container */}
@@ -232,7 +222,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                       fallback.innerHTML = `
                         <div class="w-20 h-20 rounded-full bg-white/10 border border-white/20 flex items-center justify-center text-3xl font-black tracking-tight mb-3">IR</div>
                         <p class="font-bold text-sm tracking-wide">Ikhwan Ramadhan</p>
-                        <p class="text-xs text-slate-400 mt-1">Logo profil tidak dapat dimuat.</p>
+                        <p class="text-xs text-slate-400 mt-1">Full-Stack Developer</p>
                       `;
                       parent.appendChild(fallback);
                     }
@@ -240,48 +230,104 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                   className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
                 />
 
-                <div className="absolute bottom-2 left-2 right-2 bg-slate-950/80 backdrop-blur-md rounded-xl p-2.5 text-white text-[11px] flex items-center justify-between">
+                <div className="absolute bottom-2 left-2 right-2 bg-slate-950/85 backdrop-blur-md rounded-xl p-2.5 text-white text-[11px] flex items-center justify-between">
                   <div className="flex items-center gap-1.5 truncate">
-                    <span className="w-2 h-2 rounded-full bg-emerald-400 shrink-0"></span>
+                    <span className="w-2 h-2 rounded-full bg-emerald-400 shrink-0 animate-pulse"></span>
                     <span className="font-semibold truncate">
-                      Ikhwan Ramadhan
+                      {userProfile.name}
                     </span>
                   </div>
                   <span className="text-slate-300 text-[10px] shrink-0 font-medium">
-                    Full-Stack Dev
+                    S1 Teknik Informatika
                   </span>
                 </div>
               </div>
 
-              {/* Direct Quick Info Under Photo */}
-              <div className="space-y-2.5 text-xs text-slate-600 dark:text-slate-400">
-                <div className="flex justify-between py-1 border-b border-slate-200/60 dark:border-white/5">
-                  <span className="text-slate-400 font-medium">Email:</span>
+              {/* Explicit Contact Badges inside Profile Photo Card */}
+              <div className="space-y-3 pt-1">
+                <div className="flex items-center justify-between">
+                  <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400">
+                    Tautan Kontak Profil HR:
+                  </span>
+                  <span className="text-[10px] font-semibold text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/40 px-2 py-0.5 rounded-full">
+                    Resmi & Aktif
+                  </span>
+                </div>
+
+                <div className="grid grid-cols-1 gap-2 text-xs">
+                  {/* LinkedIn */}
+                  <a
+                    href="https://www.linkedin.com/in/ikhwn-rdn"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-between p-2.5 rounded-xl bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 hover:border-blue-500/50 hover:bg-blue-50/50 dark:hover:bg-blue-950/30 text-slate-800 dark:text-slate-200 transition-all group/link"
+                  >
+                    <div className="flex items-center gap-2.5 truncate">
+                      <div className="p-1.5 rounded-lg bg-blue-600 text-white">
+                        <Linkedin className="w-3.5 h-3.5" />
+                      </div>
+                      <span className="font-semibold truncate">LinkedIn</span>
+                    </div>
+                    <span className="text-[11px] text-slate-500 dark:text-slate-400 flex items-center gap-1 group-hover/link:text-blue-600 dark:group-hover/link:text-blue-400">
+                      in/ikhwn-rdn
+                      <ExternalLink className="w-3 h-3" />
+                    </span>
+                  </a>
+
+                  {/* Email */}
                   <a
                     href={`mailto:${userProfile.email}`}
-                    className="font-semibold text-slate-900 dark:text-white hover:underline truncate max-w-[200px]"
+                    className="flex items-center justify-between p-2.5 rounded-xl bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 hover:border-rose-500/50 hover:bg-rose-50/50 dark:hover:bg-rose-950/30 text-slate-800 dark:text-slate-200 transition-all group/link"
                   >
-                    {userProfile.email}
+                    <div className="flex items-center gap-2.5 truncate">
+                      <div className="p-1.5 rounded-lg bg-rose-600 text-white">
+                        <Mail className="w-3.5 h-3.5" />
+                      </div>
+                      <span className="font-semibold truncate">Email</span>
+                    </div>
+                    <span className="text-[11px] text-slate-500 dark:text-slate-400 flex items-center gap-1 group-hover/link:text-rose-600 dark:group-hover/link:text-rose-400 truncate max-w-[150px]">
+                      {userProfile.email}
+                      <ExternalLink className="w-3 h-3 shrink-0" />
+                    </span>
                   </a>
-                </div>
-                <div className="flex justify-between py-1 border-b border-slate-200/60 dark:border-white/5">
-                  <span className="text-slate-400 font-medium">WhatsApp:</span>
+
+                  {/* GitHub */}
+                  <a
+                    href="https://github.com/IngsR"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-between p-2.5 rounded-xl bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 hover:border-slate-500/50 hover:bg-slate-100 dark:hover:bg-white/10 text-slate-800 dark:text-slate-200 transition-all group/link"
+                  >
+                    <div className="flex items-center gap-2.5 truncate">
+                      <div className="p-1.5 rounded-lg bg-slate-900 text-white">
+                        <Github className="w-3.5 h-3.5" />
+                      </div>
+                      <span className="font-semibold truncate">GitHub</span>
+                    </div>
+                    <span className="text-[11px] text-slate-500 dark:text-slate-400 flex items-center gap-1 group-hover/link:text-slate-950 dark:group-hover/link:text-white">
+                      github.com/IngsR
+                      <ExternalLink className="w-3 h-3" />
+                    </span>
+                  </a>
+
+                  {/* WhatsApp */}
                   <a
                     href={userProfile.whatsappUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="font-semibold text-emerald-600 dark:text-emerald-400 hover:underline"
+                    className="flex items-center justify-between p-2.5 rounded-xl bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 hover:border-emerald-500/50 hover:bg-emerald-50/50 dark:hover:bg-emerald-950/30 text-slate-800 dark:text-slate-200 transition-all group/link"
                   >
-                    {userProfile.phone}
+                    <div className="flex items-center gap-2.5 truncate">
+                      <div className="p-1.5 rounded-lg bg-emerald-600 text-white">
+                        <MessageCircle className="w-3.5 h-3.5" />
+                      </div>
+                      <span className="font-semibold truncate">No. WA</span>
+                    </div>
+                    <span className="text-[11px] text-emerald-600 dark:text-emerald-400 font-semibold flex items-center gap-1">
+                      {userProfile.phone}
+                      <ExternalLink className="w-3 h-3" />
+                    </span>
                   </a>
-                </div>
-                <div className="flex justify-between py-1">
-                  <span className="text-slate-400 font-medium">
-                    Pendidikan:
-                  </span>
-                  <span className="font-semibold text-slate-900 dark:text-slate-200">
-                    S1 Teknik Informatika
-                  </span>
                 </div>
               </div>
             </div>
@@ -289,83 +335,15 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
         </div>
       </section>
 
-      {/* REFACTORED SECTION: Keahlian Rekayasa Perangkat Lunak */}
-      <section className="space-y-6">
-        <div className="space-y-2 border-b border-slate-200 dark:border-white/10 pb-5">
-          <span className="text-xs font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400">
-            Prinsip Kerja & Fondasi Rekayasa
-          </span>
-          <h2 className="text-2xl sm:text-3xl font-black tracking-tight text-slate-950 dark:text-white">
-            Keahlian Rekayasa Perangkat Lunak
-          </h2>
-          <p className="text-xs sm:text-sm lg:text-base text-slate-600 dark:text-slate-400 max-w-6xl leading-relaxed font-normal">
-            Saya tidak terlalu menikmati software yang hanya selesai dibuat.
-            Saya lebih tertarik pada proses di baliknya mencari masalah, mencoba
-            pendekatan, menemukan bagian yang kurang tepat, lalu membuatnya
-            lebih masuk akal.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {engineeringMindsetSkills.map((skill) => (
-            <div
-              key={skill.id}
-              className="group p-5 sm:p-6 rounded-2xl sm:rounded-3xl border border-slate-200 dark:border-white/10 bg-white dark:bg-[#0c0c0d] hover:border-slate-400 dark:hover:border-white/30 hover:shadow-lg transition-all duration-200 flex flex-col justify-between space-y-4"
-            >
-              <div className="space-y-2.5">
-                {/* 1. Category kecil */}
-                <div className="flex items-center justify-between gap-2">
-                  <span className="text-[11px] font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400">
-                    {skill.category}
-                  </span>
-                  <div className="p-1.5 rounded-lg bg-slate-100 dark:bg-white/5 border border-slate-200/60 dark:border-white/5 text-slate-700 dark:text-slate-300">
-                    {getSkillIcon(skill.iconName)}
-                  </div>
-                </div>
-
-                {/* 2. Judul kemampuan */}
-                <h3 className="font-bold text-base text-slate-950 dark:text-white leading-snug group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-                  {skill.title}
-                </h3>
-
-                {/* 3. Narasi 1–2 kalimat */}
-                <p className="text-xs sm:text-[13px] text-slate-600 dark:text-slate-300 leading-relaxed font-normal">
-                  {skill.narrative}
-                </p>
-              </div>
-
-              {/* 4. Teknologi utama sebagai tag kecil & 5. Indikator Proyek Nyata */}
-              <div className="space-y-3 pt-3 border-t border-slate-100 dark:border-white/5">
-                <div className="flex flex-wrap gap-1.5">
-                  {skill.technologies.map((tech) => (
-                    <span
-                      key={tech}
-                      className="text-[10px] sm:text-[11px] font-medium px-2 py-0.5 rounded-md bg-slate-100 dark:bg-white/5 text-slate-700 dark:text-slate-300 border border-slate-200/60 dark:border-white/5"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-
-                <div className="flex items-center gap-1.5 text-[11px] font-semibold text-slate-700 dark:text-slate-300">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 shrink-0" />
-                  <span>Diimplementasikan pada Proyek Nyata</span>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Featured Projects Showcase */}
+      {/* 2. 3 PROYEK NYATA DENGAN DESKRIPSI MASALAH & SOLUSI BAHASA NATURAL */}
       <section className="space-y-6">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-slate-200 dark:border-white/10 pb-4">
           <div>
-            <span className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
-              Karya Rekayasa Pilihan
+            <span className="text-xs font-bold text-blue-600 dark:text-blue-400 uppercase tracking-wider">
+              01 / PROYEK NYATA (PORTFOLIO HIGHLIGHTS)
             </span>
             <h2 className="text-2xl sm:text-3xl font-black tracking-tight text-slate-950 dark:text-white mt-1">
-              Proyek Unggulan Full-Stack & Sistem
+              3 Proyek Nyata Pilihan & Solusi Masalah
             </h2>
           </div>
 
@@ -385,22 +363,24 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
           {featuredProjects.slice(0, 3).map((project) => (
             <div
               key={project.id}
-              onClick={() => handleOpenDetail(project)}
+              onClick={() => handleOpenProjectDetail(project)}
               className="group rounded-3xl border border-slate-200/80 dark:border-white/10 bg-white dark:bg-[#0c0c0d] p-5 sm:p-6 flex flex-col justify-between hover:border-slate-400 dark:hover:border-white/30 hover:shadow-lg transition-all shadow-sm cursor-pointer"
             >
-              <div className="space-y-3.5">
+              <div className="space-y-4">
+                {/* Category & Live Indicator */}
                 <div className="flex items-center justify-between">
                   <span className="text-[11px] font-bold text-slate-700 dark:text-slate-300">
                     {project.category}
                   </span>
                   {project.demoUrl && (
                     <span className="inline-flex items-center gap-1 text-[10px] text-emerald-600 dark:text-emerald-400 font-semibold bg-emerald-50 dark:bg-emerald-950/40 px-2 py-0.5 rounded-md">
-                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
                       Live Demo
                     </span>
                   )}
                 </div>
 
+                {/* Screenshot Image */}
                 <div className="relative h-44 w-full rounded-2xl overflow-hidden bg-slate-900 border border-slate-200/80 dark:border-white/10">
                   <img
                     src={project.image}
@@ -423,14 +403,35 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                   />
                 </div>
 
-                <h3 className="font-bold text-base sm:text-lg text-slate-950 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                {/* Title */}
+                <h3 className="font-bold text-base sm:text-lg text-slate-950 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors leading-snug">
                   {project.title}
                 </h3>
 
-                <p className="text-xs text-slate-600 dark:text-slate-400 line-clamp-2 leading-relaxed">
-                  {project.shortDescription}
-                </p>
+                {/* Natural Language Problem & Solution Box */}
+                <div className="space-y-2.5 text-xs text-slate-600 dark:text-slate-300 bg-slate-50 dark:bg-white/[0.03] p-3.5 rounded-2xl border border-slate-200/60 dark:border-white/5">
+                  <div>
+                    <span className="font-bold text-amber-600 dark:text-amber-400 flex items-center gap-1 mb-0.5">
+                      🎯 Masalah yang Dipecahkan:
+                    </span>
+                    <p className="text-[12px] leading-relaxed text-slate-700 dark:text-slate-300">
+                      {project.problem || project.shortDescription}
+                    </p>
+                  </div>
 
+                  {project.solution && (
+                    <div className="pt-2 border-t border-slate-200/60 dark:border-white/5">
+                      <span className="font-bold text-emerald-600 dark:text-emerald-400 flex items-center gap-1 mb-0.5">
+                        💡 Solusi Teknis:
+                      </span>
+                      <p className="text-[12px] leading-relaxed text-slate-700 dark:text-slate-300">
+                        {project.solution}
+                      </p>
+                    </div>
+                  )}
+                </div>
+
+                {/* Tech Tags */}
                 <div className="flex flex-wrap gap-1.5 pt-1">
                   {project.tags.slice(0, 4).map((tag) => (
                     <span
@@ -443,12 +444,13 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                 </div>
               </div>
 
+              {/* Action Buttons Footer */}
               <div
                 className="pt-4 mt-4 border-t border-slate-100 dark:border-white/10 flex items-center justify-between"
                 onClick={(e) => e.stopPropagation()}
               >
                 <button
-                  onClick={() => handleOpenDetail(project)}
+                  onClick={() => handleOpenProjectDetail(project)}
                   className="flex items-center gap-1 text-xs text-slate-950 dark:text-white font-bold hover:underline"
                 >
                   <FileText className="w-3.5 h-3.5" />
@@ -472,9 +474,10 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                       href={project.demoUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="p-1.5 rounded-xl bg-slate-950 text-white dark:bg-white dark:text-slate-950 text-xs font-bold hover:bg-slate-800 dark:hover:bg-slate-100 transition-colors"
+                      className="p-1.5 rounded-xl bg-slate-950 text-white dark:bg-white dark:text-slate-950 text-xs font-bold hover:bg-slate-800 dark:hover:bg-slate-100 transition-colors flex items-center gap-1"
                       title="Buka Live Demo"
                     >
+                      <span>Demo</span>
                       <ExternalLink className="w-3.5 h-3.5" />
                     </a>
                   )}
@@ -485,11 +488,267 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
         </div>
       </section>
 
-      {/* Pop up Detail Modal */}
+      {/* 3. TENTANG SAYA (LEBIH SINGKAT DARI HALAMAN TENTANG SAYA) */}
+      <section className="rounded-3xl border border-slate-200/80 dark:border-white/10 bg-white dark:bg-[#0c0c0d] p-6 sm:p-10 shadow-sm space-y-6">
+        <div className="space-y-2 border-b border-slate-200 dark:border-white/10 pb-4">
+          <span className="text-xs font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400">
+            02 / PROFIL SINGKAT
+          </span>
+          <h2 className="text-2xl sm:text-3xl font-black tracking-tight text-slate-950 dark:text-white">
+            Tentang Saya
+          </h2>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          <div className="lg:col-span-8 space-y-4 text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed">
+            <p>
+              Saya <strong className="text-slate-950 dark:text-white font-bold">Ikhwan Ramadhan</strong>, lulusan S1 Teknik Informatika Universitas Putra Indonesia &ldquo;YPTK&rdquo; Padang. Memfokuskan keahlian profesional pada perancangan dan pengembangan aplikasi web full-stack berbasis <strong className="text-slate-950 dark:text-white font-bold">React, TypeScript, JavaScript, Node.js, dan PostgreSQL</strong>.
+            </p>
+            <p>
+              Prinsip utama saya dalam rekayasa perangkat lunak adalah membangun sistem yang tidak hanya berjalan, tetapi juga memiliki arsitektur modular yang rapi (clean code), type-safe, cepat diakses, serta mudah dirawat. Saya siap berkontribusi secara profesional baik dalam skema <strong className="text-slate-950 dark:text-white font-bold">On-Site (WFO) di seluruh Indonesia</strong> maupun <strong className="text-slate-950 dark:text-white font-bold">Hybrid / Remote</strong>.
+            </p>
+          </div>
+
+          <div className="lg:col-span-4 grid grid-cols-2 gap-3 text-xs">
+            <div className="p-3.5 rounded-2xl bg-slate-50 dark:bg-white/[0.03] border border-slate-200/60 dark:border-white/5 space-y-1">
+              <span className="font-bold text-slate-950 dark:text-white block">Full-Stack Web</span>
+              <span className="text-slate-500 dark:text-slate-400">React, TS, Next.js</span>
+            </div>
+            <div className="p-3.5 rounded-2xl bg-slate-50 dark:bg-white/[0.03] border border-slate-200/60 dark:border-white/5 space-y-1">
+              <span className="font-bold text-slate-950 dark:text-white block">Backend & DB</span>
+              <span className="text-slate-500 dark:text-slate-400">Node.js, PostgreSQL</span>
+            </div>
+            <div className="p-3.5 rounded-2xl bg-slate-50 dark:bg-white/[0.03] border border-slate-200/60 dark:border-white/5 space-y-1">
+              <span className="font-bold text-slate-950 dark:text-white block">Infrastruktur</span>
+              <span className="text-slate-500 dark:text-slate-400">Docker, Linux, Git</span>
+            </div>
+            <div className="p-3.5 rounded-2xl bg-slate-50 dark:bg-white/[0.03] border border-slate-200/60 dark:border-white/5 space-y-1">
+              <span className="font-bold text-slate-950 dark:text-white block">Problem Solving</span>
+              <span className="text-slate-500 dark:text-slate-400">DSA & Time Series</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 4. SERTIFIKAT (3 SAJA) */}
+      <section className="space-y-6">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-slate-200 dark:border-white/10 pb-4">
+          <div>
+            <span className="text-xs font-bold text-blue-600 dark:text-blue-400 uppercase tracking-wider">
+              03 / KREDENSIAL TERVERIFIKASI
+            </span>
+            <h2 className="text-2xl sm:text-3xl font-black tracking-tight text-slate-950 dark:text-white mt-1">
+              Sertifikasi Utama (3 Sertifikat Resmi)
+            </h2>
+          </div>
+
+          <button
+            onClick={() => {
+              setActivePage("about");
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            }}
+            className="text-xs font-bold uppercase tracking-wider text-slate-900 dark:text-white hover:opacity-80 flex items-center gap-1.5"
+          >
+            <span>Lihat Semua Sertifikat ({certificationsData.length})</span>
+            <ArrowRight className="w-4 h-4" />
+          </button>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {homeCertificates.map((cert) => (
+            <CertificateCard
+              key={cert.id}
+              certificate={cert}
+              onOpenDetail={handleOpenCertDetail}
+            />
+          ))}
+        </div>
+      </section>
+
+      {/* 5. PENDIDIKAN (SARJANA S1 SAJA) */}
+      <section className="rounded-3xl border border-slate-200/80 dark:border-white/10 bg-white dark:bg-[#0c0c0d] p-6 sm:p-10 shadow-sm space-y-6">
+        <div className="space-y-2 border-b border-slate-200 dark:border-white/10 pb-4">
+          <span className="text-xs font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400">
+            04 / PENDIDIKAN AKADEMIS
+          </span>
+          <h2 className="text-2xl sm:text-3xl font-black tracking-tight text-slate-950 dark:text-white">
+            Pendidikan Perguruan Tinggi (S1)
+          </h2>
+        </div>
+
+        <div className="space-y-4">
+          {sarjanaEducation.map((edu) => (
+            <div
+              key={edu.id}
+              className="p-6 rounded-2xl bg-slate-50 dark:bg-white/[0.02] border border-slate-200/80 dark:border-white/10 space-y-3"
+            >
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                <div className="flex items-center gap-2.5">
+                  <div className="p-2 rounded-xl bg-blue-600/10 text-blue-600 dark:text-blue-400">
+                    <GraduationCap className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-base sm:text-lg text-slate-950 dark:text-white">
+                      {edu.degree}
+                    </h3>
+                    <p className="text-xs sm:text-sm font-semibold text-slate-700 dark:text-slate-300">
+                      {edu.institution}
+                    </p>
+                  </div>
+                </div>
+
+                <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-blue-50 text-blue-700 dark:bg-blue-950/40 dark:text-blue-300 w-fit">
+                  {edu.period}
+                </span>
+              </div>
+
+              <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed font-normal">
+                {edu.details}
+              </p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* 6. SKILL (KEAHLIAN & STACK TEKNIS) - DIPOSISIKAN SETELAH PENDIDIKAN */}
+      <section className="space-y-6">
+        <div className="space-y-2 border-b border-slate-200 dark:border-white/10 pb-4">
+          <span className="text-xs font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400">
+            05 / KEAHLIAN & TEKNOLOGI
+          </span>
+          <h2 className="text-2xl sm:text-3xl font-black tracking-tight text-slate-950 dark:text-white">
+            Keahlian & Technical Stack
+          </h2>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+          {skillCategories.map((cat) => (
+            <div
+              key={cat.title}
+              className="p-5 rounded-3xl border border-slate-200 dark:border-white/10 bg-white dark:bg-[#0c0c0d] space-y-4 hover:border-slate-400 dark:hover:border-white/30 transition-all shadow-sm"
+            >
+              <div className="flex items-center justify-between">
+                <span className="text-[11px] font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400">
+                  {cat.title}
+                </span>
+                <div className="p-2 rounded-xl bg-slate-100 dark:bg-white/5">
+                  {getSkillCategoryIcon(cat.iconName)}
+                </div>
+              </div>
+
+              <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                {cat.description}
+              </p>
+
+              <div className="space-y-2 pt-2 border-t border-slate-100 dark:border-white/5">
+                <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">
+                  Core Stack:
+                </span>
+                <div className="flex flex-wrap gap-1.5">
+                  {cat.coreStack.map((tech) => (
+                    <span
+                      key={tech}
+                      className="px-2 py-0.5 text-[11px] font-semibold rounded-md bg-slate-100 dark:bg-white/5 text-slate-800 dark:text-slate-200 border border-slate-200/60 dark:border-white/5"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* 7. CONTACT / TAUTAN KONTAK & AKSI CEPAT (CV, LINKEDIN, GITHUB, EMAIL, NO WA) */}
+      <section className="rounded-3xl border border-slate-800 bg-slate-950 p-6 sm:p-10 text-white space-y-6 shadow-xl">
+        <div className="space-y-2 border-b border-white/10 pb-4">
+          <span className="text-xs font-bold uppercase tracking-wider text-emerald-400">
+            06 / KONTAK & AKSI CEPAT HR
+          </span>
+          <h2 className="text-2xl sm:text-3xl font-black tracking-tight text-white">
+            Mari Berdiskusi & Bekerja Sama
+          </h2>
+          <p className="text-xs sm:text-sm text-slate-300 max-w-3xl leading-relaxed">
+            Terbuka untuk posisi <strong className="text-white">Full-Stack Developer</strong> baik On-Site (WFO) di seluruh Indonesia maupun Remote / Hybrid. Silakan akses CV atau hubungi via kanal resmi berikut:
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 pt-2">
+          {/* CV Button */}
+          <button
+            onClick={onOpenCV}
+            className="flex items-center justify-between p-4 rounded-2xl bg-white text-slate-950 hover:bg-slate-100 transition-all font-bold text-xs shadow-sm"
+          >
+            <div className="flex items-center gap-2.5">
+              <FileText className="w-4 h-4 text-slate-950" />
+              <span>Curriculum Vitae</span>
+            </div>
+            <ArrowUpRight className="w-4 h-4" />
+          </button>
+
+          {/* LinkedIn Link */}
+          <a
+            href="https://www.linkedin.com/in/ikhwn-rdn"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center justify-between p-4 rounded-2xl bg-blue-600 text-white hover:bg-blue-500 transition-all font-bold text-xs shadow-sm"
+          >
+            <div className="flex items-center gap-2.5 truncate">
+              <Linkedin className="w-4 h-4 shrink-0" />
+              <span className="truncate">LinkedIn</span>
+            </div>
+            <ArrowUpRight className="w-4 h-4 shrink-0" />
+          </a>
+
+          {/* GitHub Link */}
+          <a
+            href="https://github.com/IngsR"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center justify-between p-4 rounded-2xl bg-slate-800 text-white hover:bg-slate-700 transition-all font-bold text-xs border border-white/10 shadow-sm"
+          >
+            <div className="flex items-center gap-2.5 truncate">
+              <Github className="w-4 h-4 shrink-0" />
+              <span className="truncate">GitHub</span>
+            </div>
+            <ArrowUpRight className="w-4 h-4 shrink-0" />
+          </a>
+
+          {/* Email Link */}
+          <a
+            href={`mailto:${userProfile.email}`}
+            className="flex items-center justify-between p-4 rounded-2xl bg-rose-600 text-white hover:bg-rose-500 transition-all font-bold text-xs shadow-sm"
+          >
+            <div className="flex items-center gap-2.5 truncate">
+              <Mail className="w-4 h-4 shrink-0" />
+              <span className="truncate">Email</span>
+            </div>
+            <ArrowUpRight className="w-4 h-4 shrink-0" />
+          </a>
+
+          {/* WhatsApp Link */}
+          <a
+            href={userProfile.whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center justify-between p-4 rounded-2xl bg-emerald-600 text-white hover:bg-emerald-500 transition-all font-bold text-xs shadow-sm"
+          >
+            <div className="flex items-center gap-2.5 truncate">
+              <MessageCircle className="w-4 h-4 shrink-0" />
+              <span className="truncate">No. WA</span>
+            </div>
+            <ArrowUpRight className="w-4 h-4 shrink-0" />
+          </a>
+        </div>
+      </section>
+
+      {/* Pop up Detail Modal (Project / Certificate) */}
       <DetailModal
         isOpen={isDetailOpen}
         onClose={() => setIsDetailOpen(false)}
         project={selectedProjectForDetail}
+        certificate={selectedCertForDetail}
         onOpenMarkdown={onOpenProjectMarkdown}
       />
     </div>

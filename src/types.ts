@@ -17,6 +17,8 @@ export interface ProjectItem {
   role?: string;
   demoUrl?: string;
   githubUrl?: string;
+  problem?: string;
+  solution?: string;
   metrics?: { label: string; value: string }[];
   markdownContent: string;
 }

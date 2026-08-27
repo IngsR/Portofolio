@@ -94,6 +94,10 @@ export const initialProjects: ProjectItem[] = [
     role: "Team Lead & Full-Stack Developer",
     demoUrl: "https://smpn24padang.sch.id",
     githubUrl: "https://github.com/Informatics-2025/Website-SMPN24padang",
+    problem:
+      "Sekolah membutuhkan portal publik resmi dan sistem pengumuman/berkas terpadu yang dapat diperbarui secara mandiri oleh staf sekolah tanpa bergantung pada bantuan teknis eksternal.",
+    solution:
+      "Membangun website full-stack berbasis Next.js App Router dan PostgreSQL dengan Auth.js RBAC admin dashboard, mempermudah manajemen berita, pengumuman, dan dokumen akademik secara cepat, aman, dan responsif.",
     metrics: [
       { label: "Role", value: "Team Lead & Fullstack" },
       { label: "Database", value: "PostgreSQL + Drizzle" },
@@ -164,6 +168,10 @@ Website profil dan sistem informasi sekolah resmi untuk **SMP Negeri 24 Padang**
     role: "Full-Stack Developer",
     demoUrl: "https://ing-store.vercel.app",
     githubUrl: "https://github.com/IngsR/web_store",
+    problem:
+      "Calon pembeli kendaraan sering mengalami kesulitan mencari katalog unit yang transparan, spesifikasi detail, serta estimasi pembiayaan dalam satu platform yang responsif.",
+    solution:
+      "Mengembangkan aplikasi e-commerce otomotif full-stack dengan Next.js, Prisma, dan PostgreSQL yang dilengkapi kalkulator simulasi kredit, pencarian cepat, serta CMS admin untuk pengelolaan stok dan promo.",
     metrics: [
       { label: "Architecture", value: "Full-Stack Next.js" },
       { label: "ORM", value: "Prisma" },
@@ -226,6 +234,10 @@ featured: true
     role: "ML & Research Engineer",
     demoUrl: "https://siklon.streamlit.app",
     githubUrl: "https://github.com/IngsR/PrediksiSIklon-LSTM",
+    problem:
+      "Ketidakpastian jalur lintasan siklon tropis menimbulkan risiko tinggi bagi keselamatan penerbangan, navigasi maritim, dan mitigasi bencana pesisir.",
+    solution:
+      "Membangun model machine learning Long Short-Term Memory (LSTM) dengan Python & TensorFlow menggunakan dataset historis IBTrACS, dipadukan visualisasi peta interaktif Folium & Streamlit untuk estimasi lintasan yang presisi.",
     metrics: [
       { label: "Forecasting Model", value: "LSTM Neural Network" },
       { label: "Dataset", value: "IBTrACS Cyclone Data" },

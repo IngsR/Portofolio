@@ -1,6 +1,7 @@
 import {
   BriefcaseBusiness,
   FileText,
+  Github,
   House,
   Mail,
   Moon,
@@ -260,6 +261,43 @@ export const Navbar: React.FC<NavbarProps> = ({
               sm:pl-3
             "
           >
+            {/* GitHub Account Link */}
+            <a
+              href={
+                userProfile.socials.find((s) => s.name === "GitHub")?.url ||
+                "https://github.com/IngsR"
+              }
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Profil GitHub"
+              title="Lihat Profil GitHub"
+              className="
+                flex
+                shrink-0
+                items-center
+                justify-center
+                gap-1
+                rounded-full
+                border
+                border-white/20
+                p-2
+                text-slate-300
+                transition-all
+                hover:border-white/40
+                hover:bg-white/10
+                hover:text-white
+                dark:border-slate-950/15
+                dark:text-slate-700
+                dark:hover:bg-slate-950/10
+                dark:hover:text-slate-950
+              "
+            >
+              <Github className="h-[17px] w-[17px]" />
+              <span className="hidden pl-0.5 lg:inline text-xs font-semibold">
+                GitHub
+              </span>
+            </a>
+
             {/* WhatsApp */}
             <a
               href={userProfile.whatsappUrl}
