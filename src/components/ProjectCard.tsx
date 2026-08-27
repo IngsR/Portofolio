@@ -99,13 +99,13 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
             .map((tag) => (
               <span
                 key={tag}
-                className="px-2 py-0.5 text-[10px] rounded-md text-slate-700 dark:text-slate-300 bg-slate-100 dark:bg-white/5 border border-slate-200/60 dark:border-white/5 font-medium"
+                className="px-2.5 py-1 text-[10px] rounded-full text-slate-700 dark:text-slate-300 bg-slate-100 dark:bg-white/5 border border-slate-200/60 dark:border-white/5 font-medium"
               >
                 {tag}
               </span>
             ))}
           {project.tags.filter((tag) => tag.trim()).length > 4 && (
-            <span className="px-1.5 py-0.5 text-[10px] text-slate-400 font-medium">
+            <span className="px-2 py-0.5 text-[10px] text-slate-400 font-medium rounded-full bg-slate-100 dark:bg-white/5">
               +{project.tags.filter((tag) => tag.trim()).length - 4}
             </span>
           )}
@@ -118,7 +118,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
         >
           <button
             onClick={() => onOpenDetail(project)}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-slate-200 dark:border-white/10 text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-white/10 text-xs font-semibold transition-all"
+            className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border border-slate-200 dark:border-white/10 text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-white/10 text-xs font-semibold transition-all"
           >
             <FileText className="w-3.5 h-3.5" />
             <span>Detail Lengkap</span>
@@ -130,7 +130,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
                 href={project.githubUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 rounded-xl text-slate-600 dark:text-slate-400 hover:text-slate-950 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/10 transition-all"
+                className="p-2 rounded-full text-slate-600 dark:text-slate-400 hover:text-slate-950 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/10 transition-all"
                 title="Repositori GitHub"
               >
                 <Github className="w-4 h-4" />
@@ -142,7 +142,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
                 href={project.demoUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-1 px-3 py-1.5 rounded-xl bg-slate-950 text-white dark:bg-white dark:text-slate-950 text-xs font-bold hover:bg-slate-800 dark:hover:bg-slate-100 transition-all shadow-sm"
+                className="flex items-center gap-1 px-3.5 py-1.5 rounded-full bg-slate-950 text-white dark:bg-white dark:text-slate-950 text-xs font-bold hover:bg-slate-800 dark:hover:bg-slate-100 transition-all shadow-sm"
                 title="Buka Live Demo"
               >
                 <span>Demo</span>

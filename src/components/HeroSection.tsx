@@ -78,8 +78,12 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
     }
   };
 
-  // 3 Sertifikat saja
-  const homeCertificates = certificationsData.slice(0, 3);
+  // 3 Sertifikat pilihan di Home (Problem Solving Intermediate HackerRank, AI Principles Huawei, HCIP Datacom Huawei)
+  const homeCertificates: CertificationItem[] = [
+    certificationsData.find((c) => c.id === "cert-5") || certificationsData[4],
+    certificationsData.find((c) => c.id === "cert-2") || certificationsData[1],
+    certificationsData.find((c) => c.id === "cert-3") || certificationsData[2],
+  ].filter(Boolean) as CertificationItem[];
 
   // Pendidikan Sarjana S1 saja
   const sarjanaEducation = educationData.filter(
@@ -88,13 +92,13 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
 
   return (
     <div className="space-y-16 py-6 sm:py-8">
-      {/* 1. HERO PERKENALAN LENGKAP + CARD FOTO PROFILE DENGAN KONTAKT LENGKAP */}
+      {/* 1. HERO PERKENALAN LENGKAP + CARD FOTO PROFILE DENGAN KONTAK LENGKAP */}
       <section className="rounded-3xl border border-slate-200/80 dark:border-white/10 bg-white dark:bg-[#0c0c0d] p-6 sm:p-10 lg:p-12 shadow-sm transition-all">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
           {/* Left Column: Brief Introduction for 60s HR Scan */}
           <div className="lg:col-span-7 space-y-6">
             {/* Availability Pill */}
-            <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full border border-emerald-500/30 bg-emerald-50/80 dark:bg-emerald-950/30 text-emerald-800 dark:text-emerald-300 text-xs font-semibold">
+            <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border border-emerald-500/30 bg-emerald-50/80 dark:bg-emerald-950/30 text-emerald-800 dark:text-emerald-300 text-xs font-semibold">
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
@@ -137,7 +141,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
 
             {/* Quick Highlights Grid */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs text-slate-700 dark:text-slate-300">
-              <div className="flex items-start gap-2.5 p-3.5 rounded-2xl bg-slate-50 dark:bg-white/[0.03] border border-slate-200/60 dark:border-white/5">
+              <div className="flex items-start gap-2.5 p-4 rounded-2xl bg-slate-50 dark:bg-white/[0.03] border border-slate-200/60 dark:border-white/5">
                 <MapPin className="w-4 h-4 text-slate-500 dark:text-slate-400 mt-0.5 shrink-0" />
                 <div>
                   <span className="font-bold block text-slate-900 dark:text-white">
@@ -149,7 +153,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                 </div>
               </div>
 
-              <div className="flex items-start gap-2.5 p-3.5 rounded-2xl bg-slate-50 dark:bg-white/[0.03] border border-slate-200/60 dark:border-white/5">
+              <div className="flex items-start gap-2.5 p-4 rounded-2xl bg-slate-50 dark:bg-white/[0.03] border border-slate-200/60 dark:border-white/5">
                 <GraduationCap className="w-4 h-4 text-slate-500 dark:text-slate-400 mt-0.5 shrink-0" />
                 <div>
                   <span className="font-bold block text-slate-900 dark:text-white">
@@ -162,7 +166,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
               </div>
             </div>
 
-            {/* Action Buttons */}
+            {/* Action Buttons with Kapsul (rounded-full) Style */}
             <div className="flex flex-wrap items-center gap-3 pt-2">
               <button
                 id="hero-view-portfolio-btn"
@@ -170,7 +174,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                   setActivePage("portfolio");
                   window.scrollTo({ top: 0, behavior: "smooth" });
                 }}
-                className="px-6 py-3 rounded-2xl text-xs font-bold uppercase tracking-wider bg-slate-950 text-white dark:bg-white dark:text-slate-950 hover:bg-slate-800 dark:hover:bg-slate-100 transition-all flex items-center gap-2 shadow-sm"
+                className="px-6 py-3 rounded-full text-xs font-bold uppercase tracking-wider bg-slate-950 text-white dark:bg-white dark:text-slate-950 hover:bg-slate-800 dark:hover:bg-slate-100 transition-all flex items-center gap-2 shadow-sm"
               >
                 <span>Lihat Portofolio</span>
                 <ArrowRight className="w-4 h-4" />
@@ -181,7 +185,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                 href={userProfile.whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-5 py-3 rounded-2xl border border-emerald-600/30 bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-700 dark:text-emerald-300 text-xs font-bold tracking-wider transition-all flex items-center gap-2"
+                className="px-5 py-3 rounded-full border border-emerald-600/30 bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-700 dark:text-emerald-300 text-xs font-bold tracking-wider transition-all flex items-center gap-2"
               >
                 <MessageCircle className="w-4 h-4" />
                 <span>Hubungi via WhatsApp</span>
@@ -190,7 +194,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
               <button
                 id="hero-cv-btn"
                 onClick={onOpenCV}
-                className="px-5 py-3 rounded-2xl border border-slate-300 dark:border-white/15 text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-white/5 text-xs font-semibold tracking-wider transition-all flex items-center gap-2"
+                className="px-5 py-3 rounded-full border border-slate-300 dark:border-white/15 text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-white/5 text-xs font-semibold tracking-wider transition-all flex items-center gap-2"
               >
                 <FileText className="w-4 h-4" />
                 <span>Curriculum Vitae</span>
@@ -230,7 +234,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                   className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
                 />
 
-                <div className="absolute bottom-2 left-2 right-2 bg-slate-950/85 backdrop-blur-md rounded-xl p-2.5 text-white text-[11px] flex items-center justify-between">
+                <div className="absolute bottom-2 left-2 right-2 bg-slate-950/85 backdrop-blur-md rounded-full px-3 py-2 text-white text-[11px] flex items-center justify-between">
                   <div className="flex items-center gap-1.5 truncate">
                     <span className="w-2 h-2 rounded-full bg-emerald-400 shrink-0 animate-pulse"></span>
                     <span className="font-semibold truncate">
@@ -243,13 +247,13 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                 </div>
               </div>
 
-              {/* Explicit Contact Badges inside Profile Photo Card */}
+              {/* Explicit Contact Badges inside Profile Photo Card with Capsule (rounded-full) Style */}
               <div className="space-y-3 pt-1">
-                <div className="flex items-center justify-between">
+                <div className="flex items-center justify-between px-1">
                   <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400">
                     Tautan Kontak Profil HR:
                   </span>
-                  <span className="text-[10px] font-semibold text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/40 px-2 py-0.5 rounded-full">
+                  <span className="text-[10px] font-semibold text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/40 px-2.5 py-0.5 rounded-full">
                     Resmi & Aktif
                   </span>
                 </div>
@@ -260,10 +264,10 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                     href="https://www.linkedin.com/in/ikhwn-rdn"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-between p-2.5 rounded-xl bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 hover:border-blue-500/50 hover:bg-blue-50/50 dark:hover:bg-blue-950/30 text-slate-800 dark:text-slate-200 transition-all group/link"
+                    className="flex items-center justify-between px-3.5 py-2.5 rounded-full bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 hover:border-blue-500/50 hover:bg-blue-50/50 dark:hover:bg-blue-950/30 text-slate-800 dark:text-slate-200 transition-all group/link shadow-xs"
                   >
                     <div className="flex items-center gap-2.5 truncate">
-                      <div className="p-1.5 rounded-lg bg-blue-600 text-white">
+                      <div className="p-1.5 rounded-full bg-blue-600 text-white flex items-center justify-center">
                         <Linkedin className="w-3.5 h-3.5" />
                       </div>
                       <span className="font-semibold truncate">LinkedIn</span>
@@ -277,10 +281,10 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                   {/* Email */}
                   <a
                     href={`mailto:${userProfile.email}`}
-                    className="flex items-center justify-between p-2.5 rounded-xl bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 hover:border-rose-500/50 hover:bg-rose-50/50 dark:hover:bg-rose-950/30 text-slate-800 dark:text-slate-200 transition-all group/link"
+                    className="flex items-center justify-between px-3.5 py-2.5 rounded-full bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 hover:border-rose-500/50 hover:bg-rose-50/50 dark:hover:bg-rose-950/30 text-slate-800 dark:text-slate-200 transition-all group/link shadow-xs"
                   >
                     <div className="flex items-center gap-2.5 truncate">
-                      <div className="p-1.5 rounded-lg bg-rose-600 text-white">
+                      <div className="p-1.5 rounded-full bg-rose-600 text-white flex items-center justify-center">
                         <Mail className="w-3.5 h-3.5" />
                       </div>
                       <span className="font-semibold truncate">Email</span>
@@ -296,10 +300,10 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                     href="https://github.com/IngsR"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-between p-2.5 rounded-xl bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 hover:border-slate-500/50 hover:bg-slate-100 dark:hover:bg-white/10 text-slate-800 dark:text-slate-200 transition-all group/link"
+                    className="flex items-center justify-between px-3.5 py-2.5 rounded-full bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 hover:border-slate-500/50 hover:bg-slate-100 dark:hover:bg-white/10 text-slate-800 dark:text-slate-200 transition-all group/link shadow-xs"
                   >
                     <div className="flex items-center gap-2.5 truncate">
-                      <div className="p-1.5 rounded-lg bg-slate-900 text-white">
+                      <div className="p-1.5 rounded-full bg-slate-900 text-white flex items-center justify-center">
                         <Github className="w-3.5 h-3.5" />
                       </div>
                       <span className="font-semibold truncate">GitHub</span>
@@ -315,10 +319,10 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                     href={userProfile.whatsappUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-between p-2.5 rounded-xl bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 hover:border-emerald-500/50 hover:bg-emerald-50/50 dark:hover:bg-emerald-950/30 text-slate-800 dark:text-slate-200 transition-all group/link"
+                    className="flex items-center justify-between px-3.5 py-2.5 rounded-full bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 hover:border-emerald-500/50 hover:bg-emerald-50/50 dark:hover:bg-emerald-950/30 text-slate-800 dark:text-slate-200 transition-all group/link shadow-xs"
                   >
                     <div className="flex items-center gap-2.5 truncate">
-                      <div className="p-1.5 rounded-lg bg-emerald-600 text-white">
+                      <div className="p-1.5 rounded-full bg-emerald-600 text-white flex items-center justify-center">
                         <MessageCircle className="w-3.5 h-3.5" />
                       </div>
                       <span className="font-semibold truncate">No. WA</span>
@@ -352,7 +356,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
               setActivePage("portfolio");
               window.scrollTo({ top: 0, behavior: "smooth" });
             }}
-            className="text-xs font-bold uppercase tracking-wider text-slate-900 dark:text-white hover:opacity-80 flex items-center gap-1.5"
+            className="text-xs font-bold uppercase tracking-wider text-slate-900 dark:text-white hover:opacity-80 flex items-center gap-1.5 px-4 py-2 rounded-full border border-slate-200 dark:border-white/10"
           >
             <span>Lihat Semua Proyek ({featuredProjects.length})</span>
             <ArrowRight className="w-4 h-4" />
@@ -369,11 +373,11 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
               <div className="space-y-4">
                 {/* Category & Live Indicator */}
                 <div className="flex items-center justify-between">
-                  <span className="text-[11px] font-bold text-slate-700 dark:text-slate-300">
+                  <span className="text-[11px] font-bold text-slate-700 dark:text-slate-300 px-3 py-1 rounded-full bg-slate-100 dark:bg-white/5 border border-slate-200/60 dark:border-white/5">
                     {project.category}
                   </span>
                   {project.demoUrl && (
-                    <span className="inline-flex items-center gap-1 text-[10px] text-emerald-600 dark:text-emerald-400 font-semibold bg-emerald-50 dark:bg-emerald-950/40 px-2 py-0.5 rounded-md">
+                    <span className="inline-flex items-center gap-1 text-[10px] text-emerald-600 dark:text-emerald-400 font-semibold bg-emerald-50 dark:bg-emerald-950/40 px-2.5 py-1 rounded-full">
                       <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
                       Live Demo
                     </span>
@@ -431,12 +435,12 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                   )}
                 </div>
 
-                {/* Tech Tags */}
+                {/* Tech Tags (Capsule Style) */}
                 <div className="flex flex-wrap gap-1.5 pt-1">
                   {project.tags.slice(0, 4).map((tag) => (
                     <span
                       key={tag}
-                      className="px-2 py-0.5 text-[10px] font-medium rounded-md bg-slate-100 dark:bg-white/5 text-slate-700 dark:text-slate-300"
+                      className="px-2.5 py-1 text-[10px] font-medium rounded-full bg-slate-100 dark:bg-white/5 text-slate-700 dark:text-slate-300 border border-slate-200/60 dark:border-white/5"
                     >
                       {tag}
                     </span>
@@ -444,14 +448,14 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                 </div>
               </div>
 
-              {/* Action Buttons Footer */}
+              {/* Action Buttons Footer with Capsule Buttons */}
               <div
-                className="pt-4 mt-4 border-t border-slate-100 dark:border-white/10 flex items-center justify-between"
+                className="pt-4 mt-4 border-t border-slate-100 dark:border-white/10 flex items-center justify-between gap-2"
                 onClick={(e) => e.stopPropagation()}
               >
                 <button
                   onClick={() => handleOpenProjectDetail(project)}
-                  className="flex items-center gap-1 text-xs text-slate-950 dark:text-white font-bold hover:underline"
+                  className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border border-slate-200 dark:border-white/10 text-slate-900 dark:text-white font-bold hover:bg-slate-100 dark:hover:bg-white/10 text-xs transition-all"
                 >
                   <FileText className="w-3.5 h-3.5" />
                   <span>Detail Lengkap</span>
@@ -463,7 +467,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                       href={project.githubUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="p-1.5 rounded-xl border border-slate-200 dark:border-white/10 text-slate-700 dark:text-slate-300 hover:text-black dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/5 transition-colors"
+                      className="p-2 rounded-full border border-slate-200 dark:border-white/10 text-slate-700 dark:text-slate-300 hover:text-black dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/5 transition-colors"
                       title="Lihat Repositori GitHub"
                     >
                       <Github className="w-3.5 h-3.5" />
@@ -474,7 +478,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                       href={project.demoUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="p-1.5 rounded-xl bg-slate-950 text-white dark:bg-white dark:text-slate-950 text-xs font-bold hover:bg-slate-800 dark:hover:bg-slate-100 transition-colors flex items-center gap-1"
+                      className="px-3.5 py-1.5 rounded-full bg-slate-950 text-white dark:bg-white dark:text-slate-950 text-xs font-bold hover:bg-slate-800 dark:hover:bg-slate-100 transition-colors flex items-center gap-1 shadow-sm"
                       title="Buka Live Demo"
                     >
                       <span>Demo</span>
@@ -510,19 +514,19 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
           </div>
 
           <div className="lg:col-span-4 grid grid-cols-2 gap-3 text-xs">
-            <div className="p-3.5 rounded-2xl bg-slate-50 dark:bg-white/[0.03] border border-slate-200/60 dark:border-white/5 space-y-1">
+            <div className="p-4 rounded-2xl bg-slate-50 dark:bg-white/[0.03] border border-slate-200/60 dark:border-white/5 space-y-1">
               <span className="font-bold text-slate-950 dark:text-white block">Full-Stack Web</span>
               <span className="text-slate-500 dark:text-slate-400">React, TS, Next.js</span>
             </div>
-            <div className="p-3.5 rounded-2xl bg-slate-50 dark:bg-white/[0.03] border border-slate-200/60 dark:border-white/5 space-y-1">
+            <div className="p-4 rounded-2xl bg-slate-50 dark:bg-white/[0.03] border border-slate-200/60 dark:border-white/5 space-y-1">
               <span className="font-bold text-slate-950 dark:text-white block">Backend & DB</span>
               <span className="text-slate-500 dark:text-slate-400">Node.js, PostgreSQL</span>
             </div>
-            <div className="p-3.5 rounded-2xl bg-slate-50 dark:bg-white/[0.03] border border-slate-200/60 dark:border-white/5 space-y-1">
+            <div className="p-4 rounded-2xl bg-slate-50 dark:bg-white/[0.03] border border-slate-200/60 dark:border-white/5 space-y-1">
               <span className="font-bold text-slate-950 dark:text-white block">Infrastruktur</span>
               <span className="text-slate-500 dark:text-slate-400">Docker, Linux, Git</span>
             </div>
-            <div className="p-3.5 rounded-2xl bg-slate-50 dark:bg-white/[0.03] border border-slate-200/60 dark:border-white/5 space-y-1">
+            <div className="p-4 rounded-2xl bg-slate-50 dark:bg-white/[0.03] border border-slate-200/60 dark:border-white/5 space-y-1">
               <span className="font-bold text-slate-950 dark:text-white block">Problem Solving</span>
               <span className="text-slate-500 dark:text-slate-400">DSA & Time Series</span>
             </div>
@@ -530,7 +534,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
         </div>
       </section>
 
-      {/* 4. SERTIFIKAT (3 SAJA) */}
+      {/* 4. SERTIFIKAT (3 SAJA - DENGAN PROBLEM SOLVING INTERMEDIATE HACKERRANK) */}
       <section className="space-y-6">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-slate-200 dark:border-white/10 pb-4">
           <div>
@@ -538,7 +542,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
               03 / KREDENSIAL TERVERIFIKASI
             </span>
             <h2 className="text-2xl sm:text-3xl font-black tracking-tight text-slate-950 dark:text-white mt-1">
-              Sertifikasi Utama (3 Sertifikat Resmi)
+              Sertifikasi Utama (3 Sertifikat Pilihan)
             </h2>
           </div>
 
@@ -547,7 +551,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
               setActivePage("about");
               window.scrollTo({ top: 0, behavior: "smooth" });
             }}
-            className="text-xs font-bold uppercase tracking-wider text-slate-900 dark:text-white hover:opacity-80 flex items-center gap-1.5"
+            className="text-xs font-bold uppercase tracking-wider text-slate-900 dark:text-white hover:opacity-80 flex items-center gap-1.5 px-4 py-2 rounded-full border border-slate-200 dark:border-white/10"
           >
             <span>Lihat Semua Sertifikat ({certificationsData.length})</span>
             <ArrowRight className="w-4 h-4" />
@@ -584,7 +588,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             >
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                 <div className="flex items-center gap-2.5">
-                  <div className="p-2 rounded-xl bg-blue-600/10 text-blue-600 dark:text-blue-400">
+                  <div className="p-2.5 rounded-full bg-blue-600/10 text-blue-600 dark:text-blue-400 flex items-center justify-center">
                     <GraduationCap className="w-5 h-5" />
                   </div>
                   <div>
@@ -597,7 +601,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                   </div>
                 </div>
 
-                <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-blue-50 text-blue-700 dark:bg-blue-950/40 dark:text-blue-300 w-fit">
+                <span className="inline-flex items-center px-3.5 py-1 rounded-full text-xs font-bold bg-blue-50 text-blue-700 dark:bg-blue-950/40 dark:text-blue-300 w-fit">
                   {edu.period}
                 </span>
               </div>
@@ -631,7 +635,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                 <span className="text-[11px] font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400">
                   {cat.title}
                 </span>
-                <div className="p-2 rounded-xl bg-slate-100 dark:bg-white/5">
+                <div className="p-2 rounded-full bg-slate-100 dark:bg-white/5">
                   {getSkillCategoryIcon(cat.iconName)}
                 </div>
               </div>
@@ -648,7 +652,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                   {cat.coreStack.map((tech) => (
                     <span
                       key={tech}
-                      className="px-2 py-0.5 text-[11px] font-semibold rounded-md bg-slate-100 dark:bg-white/5 text-slate-800 dark:text-slate-200 border border-slate-200/60 dark:border-white/5"
+                      className="px-2.5 py-1 text-[11px] font-semibold rounded-full bg-slate-100 dark:bg-white/5 text-slate-800 dark:text-slate-200 border border-slate-200/60 dark:border-white/5"
                     >
                       {tech}
                     </span>
@@ -660,7 +664,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
         </div>
       </section>
 
-      {/* 7. CONTACT / TAUTAN KONTAK & AKSI CEPAT (CV, LINKEDIN, GITHUB, EMAIL, NO WA) */}
+      {/* 7. CONTACT / TAUTAN KONTAK & AKSI CEPAT (CV, LINKEDIN, GITHUB, EMAIL, NO WA) DENGAN GAYA KAPSUL */}
       <section className="rounded-3xl border border-slate-800 bg-slate-950 p-6 sm:p-10 text-white space-y-6 shadow-xl">
         <div className="space-y-2 border-b border-white/10 pb-4">
           <span className="text-xs font-bold uppercase tracking-wider text-emerald-400">
@@ -678,13 +682,13 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
           {/* CV Button */}
           <button
             onClick={onOpenCV}
-            className="flex items-center justify-between p-4 rounded-2xl bg-white text-slate-950 hover:bg-slate-100 transition-all font-bold text-xs shadow-sm"
+            className="flex items-center justify-between px-5 py-3.5 rounded-full bg-white text-slate-950 hover:bg-slate-100 transition-all font-bold text-xs shadow-sm group"
           >
             <div className="flex items-center gap-2.5">
               <FileText className="w-4 h-4 text-slate-950" />
               <span>Curriculum Vitae</span>
             </div>
-            <ArrowUpRight className="w-4 h-4" />
+            <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
           </button>
 
           {/* LinkedIn Link */}
@@ -692,13 +696,13 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             href="https://www.linkedin.com/in/ikhwn-rdn"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-between p-4 rounded-2xl bg-blue-600 text-white hover:bg-blue-500 transition-all font-bold text-xs shadow-sm"
+            className="flex items-center justify-between px-5 py-3.5 rounded-full bg-blue-600 text-white hover:bg-blue-500 transition-all font-bold text-xs shadow-sm group"
           >
             <div className="flex items-center gap-2.5 truncate">
               <Linkedin className="w-4 h-4 shrink-0" />
               <span className="truncate">LinkedIn</span>
             </div>
-            <ArrowUpRight className="w-4 h-4 shrink-0" />
+            <ArrowUpRight className="w-4 h-4 shrink-0 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
           </a>
 
           {/* GitHub Link */}
@@ -706,25 +710,25 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             href="https://github.com/IngsR"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-between p-4 rounded-2xl bg-slate-800 text-white hover:bg-slate-700 transition-all font-bold text-xs border border-white/10 shadow-sm"
+            className="flex items-center justify-between px-5 py-3.5 rounded-full bg-slate-800 text-white hover:bg-slate-700 transition-all font-bold text-xs border border-white/10 shadow-sm group"
           >
             <div className="flex items-center gap-2.5 truncate">
               <Github className="w-4 h-4 shrink-0" />
               <span className="truncate">GitHub</span>
             </div>
-            <ArrowUpRight className="w-4 h-4 shrink-0" />
+            <ArrowUpRight className="w-4 h-4 shrink-0 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
           </a>
 
           {/* Email Link */}
           <a
             href={`mailto:${userProfile.email}`}
-            className="flex items-center justify-between p-4 rounded-2xl bg-rose-600 text-white hover:bg-rose-500 transition-all font-bold text-xs shadow-sm"
+            className="flex items-center justify-between px-5 py-3.5 rounded-full bg-rose-600 text-white hover:bg-rose-500 transition-all font-bold text-xs shadow-sm group"
           >
             <div className="flex items-center gap-2.5 truncate">
               <Mail className="w-4 h-4 shrink-0" />
               <span className="truncate">Email</span>
             </div>
-            <ArrowUpRight className="w-4 h-4 shrink-0" />
+            <ArrowUpRight className="w-4 h-4 shrink-0 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
           </a>
 
           {/* WhatsApp Link */}
@@ -732,13 +736,13 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             href={userProfile.whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-between p-4 rounded-2xl bg-emerald-600 text-white hover:bg-emerald-500 transition-all font-bold text-xs shadow-sm"
+            className="flex items-center justify-between px-5 py-3.5 rounded-full bg-emerald-600 text-white hover:bg-emerald-500 transition-all font-bold text-xs shadow-sm group"
           >
             <div className="flex items-center gap-2.5 truncate">
               <MessageCircle className="w-4 h-4 shrink-0" />
               <span className="truncate">No. WA</span>
             </div>
-            <ArrowUpRight className="w-4 h-4 shrink-0" />
+            <ArrowUpRight className="w-4 h-4 shrink-0 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
           </a>
         </div>
       </section>
