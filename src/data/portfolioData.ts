@@ -602,10 +602,10 @@ export const skillCategories: SkillCategory[] = [
 export const experienceData: ExperienceItem[] = [
   {
     id: "exp-1",
-    role: "Team Lead & Full-Stack Developer",
+    role: "Ketua Tim Magang & Full-Stack Developer",
     company: "Proyek Sistem Informasi SMP Negeri 24 Padang",
     location: "Padang, Indonesia",
-    period: "2025",
+    period: "Agu - Sept 2025",
     type: "Contract",
     description:
       "Memimpin perancangan dan implementasi website resmi dan sistem informasi akademik terpadu sekolah.",
