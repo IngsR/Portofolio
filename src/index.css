@@ -158,3 +158,107 @@
   font-weight: 600;
 }
 
+/* Print Optimization for Single-Page CV */
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 12mm 18mm;
+  }
+
+  *, *::before, *::after {
+    box-shadow: none !important;
+    text-shadow: none !important;
+    background-color: transparent !important;
+  }
+
+  html, body {
+    background: #ffffff !important;
+    background-color: #ffffff !important;
+    color: #020617 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    font-size: 11pt !important;
+    line-height: 1.4 !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Completely remove all navigation, main content, footers, and modals from layout flow */
+  header, nav, main, footer, [role="navigation"], .no-print, [aria-hidden="true"], .print\:hidden {
+    display: none !important;
+  }
+
+  /* Reset outer wrappers */
+  body > div, #root, #root > div, .min-h-screen {
+    min-height: 0 !important;
+    height: auto !important;
+    display: block !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    background: transparent !important;
+    background-color: transparent !important;
+  }
+
+  .cv-modal-backdrop {
+    position: static !important;
+    display: block !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    background: transparent !important;
+    background-color: transparent !important;
+    overflow: visible !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+
+  .cv-modal-container {
+    position: static !important;
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    max-height: none !important;
+    height: auto !important;
+    min-height: 0 !important;
+    background: transparent !important;
+    background-color: transparent !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    overflow: visible !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  #cv-printable-document {
+    position: static !important;
+    display: block !important;
+    width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: transparent !important;
+    background-color: transparent !important;
+    color: #020617 !important;
+    overflow: visible !important;
+  }
+
+  #cv-printable-document * {
+    color: #020617 !important;
+    background-color: transparent !important;
+  }
+
+  #cv-printable-document a {
+    text-decoration: none !important;
+    color: #020617 !important;
+  }
+
+  .cv-section {
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+}
+

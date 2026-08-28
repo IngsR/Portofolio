@@ -91,16 +91,18 @@ export default function App({
   return (
     <div className="min-h-screen flex flex-col bg-slate-100 dark:bg-[#050505] text-slate-900 dark:text-slate-100 transition-colors duration-200">
       {/* Top Navigation */}
-      <Navbar
-        activePage={activePage}
-        setActivePage={setActivePage}
-        isDark={isDark}
-        setIsDark={setIsDark}
-        onOpenCV={() => setIsCVModalOpen(true)}
-      />
+      <div className="print:hidden">
+        <Navbar
+          activePage={activePage}
+          setActivePage={setActivePage}
+          isDark={isDark}
+          setIsDark={setIsDark}
+          onOpenCV={() => setIsCVModalOpen(true)}
+        />
+      </div>
 
       {/* Main Page Content Container with Smooth Page Transitions */}
-      <main className="flex-1 max-w-[1800px] w-full mx-auto px-4 sm:px-6 lg:px-12 pb-24 md:pb-0 overflow-hidden">
+      <main className="flex-1 max-w-[1800px] w-full mx-auto px-4 sm:px-6 lg:px-12 pb-24 md:pb-0 overflow-hidden print:hidden">
         <AnimatePresence mode="wait" initial={false}>
           <motion.div
             key={activePage}
@@ -143,10 +145,12 @@ export default function App({
       </main>
 
       {/* Footer */}
-      <Footer
-        setActivePage={setActivePage}
-        onOpenCV={() => setIsCVModalOpen(true)}
-      />
+      <div className="print:hidden">
+        <Footer
+          setActivePage={setActivePage}
+          onOpenCV={() => setIsCVModalOpen(true)}
+        />
+      </div>
 
       {/* Markdown Case Study Viewer Modal */}
       <MarkdownViewerModal

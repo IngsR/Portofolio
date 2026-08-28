@@ -14,7 +14,7 @@ export const userProfile: UserProfile = {
   tagline:
     'Lulusan S1 Teknik Informatika UPI "YPTK" Padang dengan fokus pada pengembangan aplikasi web full-stack berbasis React dan TypeScript, rekayasa API serta database, infrastruktur, DSA, dan Time Series Forecasting.',
   shortBio:
-    "Saya Ikhwan Ramadhan, lahir di Padang pada 18 November 2003 dan merupakan lulusan S1 Teknik Informatika Universitas Putra Indonesia “YPTK” Padang. Saya banyak mengeksplorasi Full-Stack Development, dari merancang aplikasi, membangun sistemnya, sampai membuatnya siap digunakan di production.",
+    "Full-Stack Developer, lulusan S1 Teknik Informatika Universitas Putra Indonesia \u201cYPTK\u201d Padang, dengan pengalaman membangun aplikasi web menggunakan React, TypeScript, Next.js, NestJS, dan PostgreSQL. Pernah mengembangkan sistem informasi sekolah yang digunakan secara nyata serta membangun berbagai proyek personal untuk memperdalam kemampuan software engineering.",
   fullBio: [
     "Saya Ikhwan Ramadhan, lulusan S1 Teknik Informatika Universitas Putra Indonesia “YPTK” Padang. Saya memfokuskan perjalanan karier saya pada pengembangan aplikasi web full-stack dengan fondasi React, TypeScript, JavaScript, Node.js, API, dan basis data PostgreSQL. Next.js merupakan salah satu framework yang saya gunakan untuk mempercepat pengembangan produk, bukan batasan dari kemampuan saya.",
     "Sejak mengenal dunia komputer dan rekayasa perangkat lunak, rasa ingin tahu saya selalu mendorong untuk membedah bagaimana sebuah sistem bekerja dari lapisan terdalam mulai dari struktur data dan algoritma (DSA), komunikasi REST API yang efisien, perancangan skema relasional SQL, hingga deployment berbasis Docker di lingkungan server Linux (Debian).",
@@ -602,7 +602,7 @@ export const skillCategories: SkillCategory[] = [
 export const experienceData: ExperienceItem[] = [
   {
     id: "exp-1",
-    role: "Team Lead & Fullstack Developer",
+    role: "Team Lead & Full-Stack Developer",
     company: "Proyek Sistem Informasi SMP Negeri 24 Padang",
     location: "Padang, Indonesia",
     period: "2025",
@@ -622,6 +622,7 @@ export const experienceData: ExperienceItem[] = [
       "Auth.js",
       "Tailwind CSS",
       "shadcn/ui",
+      "Zod",
     ],
   },
   {
@@ -653,19 +654,10 @@ export const experienceData: ExperienceItem[] = [
 export const educationData: EducationItem[] = [
   {
     id: "edu-1",
-    degree: "Sarjana Komputer (S1) - Teknik Informatika",
+    degree: "S1 Teknik Informatika",
     institution: "Universitas Putra Indonesia “YPTK” Padang",
-    period: "Lulusan S1",
-    details:
-      "Mendalami Rekayasa Perangkat Lunak, Struktur Data & Algoritma (DSA), Perancangan Basis Data Relasional, Arsitektur Sistem Web Terdistribusi, Jaringan Saraf Tiruan (Deep Learning/LSTM Time Series), dan Sistem Temu Balik Informasi.",
-  },
-  {
-    id: "edu-2",
-    degree: "Sekolah Menengah Atas (SMA) - Jurusan IPA",
-    institution: "SMA 14 Padang",
-    period: "Lulusan SMA",
-    details:
-      "Menyelesaikan pendidikan dengan peminatan Ilmu Pengetahuan Alam (IPA). Nilai rata-rata ijazah 88,31, dengan penguatan pada Matematika, Biologi, Fisika, Kimia, serta dasar analisis dan penalaran ilmiah.",
+    period: "Teknik Informatika • Sep 2022 – Okt 2026",
+    details: "",
   },
 ];
 
@@ -674,8 +666,8 @@ export const certificationsData: CertificationItem[] = [
     id: "cert-1",
     title: "Artificial Intelligence Fundamentals",
     issuer: "Huawei ICT Academy",
-    issueDate: "2024",
-    period: "Terverifikasi Resmi",
+    issueDate: "2026",
+    period: "",
     badgeCode: "HUAWEI-AI-FUNDAMENTALS",
     category: "Artificial Intelligence",
     credentialUrl: "https://e.huawei.com/en/talent/#/",
@@ -694,8 +686,8 @@ export const certificationsData: CertificationItem[] = [
     id: "cert-2",
     title: "Artificial Intelligence: Principles and Applications",
     issuer: "Huawei ICT Academy",
-    issueDate: "2024",
-    period: "Terverifikasi Resmi",
+    issueDate: "2026",
+    period: "",
     badgeCode: "HUAWEI-AI-PRINCIPLES-APP",
     category: "Artificial Intelligence & Deep Learning",
     credentialUrl: "https://e.huawei.com/en/talent/#/",
@@ -715,8 +707,8 @@ export const certificationsData: CertificationItem[] = [
     id: "cert-3",
     title: "HCIP-Datacom Core Technology V1.0 Course",
     issuer: "Huawei ICT Academy",
-    issueDate: "2024",
-    period: "Terverifikasi Resmi",
+    issueDate: "2026",
+    period: "",
     badgeCode: "HUAWEI-HCIP-DATACOM-V1.0",
     category: "Network & Infrastructure Engineering",
     credentialUrl: "https://e.huawei.com/en/talent/#/",
@@ -735,8 +727,8 @@ export const certificationsData: CertificationItem[] = [
     id: "cert-4",
     title: "Problem Solving (Basic)",
     issuer: "HackerRank",
-    issueDate: "2024",
-    period: "Terverifikasi Resmi",
+    issueDate: "Mei 2025",
+    period: "",
     badgeCode: "HACKERRANK-PS-BASIC",
     category: "Problem Solving & DSA",
     credentialUrl:
@@ -756,8 +748,8 @@ export const certificationsData: CertificationItem[] = [
     id: "cert-5",
     title: "Problem Solving (Intermediate)",
     issuer: "HackerRank",
-    issueDate: "2024",
-    period: "Terverifikasi Resmi",
+    issueDate: "Jun 2025",
+    period: "",
     badgeCode: "HACKERRANK-PS-INTERMEDIATE",
     category: "Problem Solving & DSA",
     credentialUrl:
