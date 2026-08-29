@@ -115,7 +115,7 @@ export const cvData: Record<CVLanguage, CVContent> = {
       },
       {
         id: "exp-2",
-        role: "Full-Stack Developer (Open Source & Independent Projects)",
+        role: "Full-Stack Developer (Open Source Project)",
         company: "IngsR Portfolio & Engineering Repositories",
         location: "Indonesia / Remote",
         period: "2023 - Sekarang",
@@ -253,7 +253,7 @@ export const cvData: Record<CVLanguage, CVContent> = {
       },
       {
         id: "exp-2",
-        role: "Full-Stack Developer (Open Source & Independent Projects)",
+        role: "Full-Stack Developer (Open Source Projects)",
         company: "IngsR Portfolio & Engineering Repositories",
         location: "Indonesia / Remote",
         period: "2023 - Present",
