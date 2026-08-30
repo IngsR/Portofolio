@@ -9,6 +9,7 @@ import {
   Linkedin,
   Loader2,
   Mail,
+  MapPin,
   Phone,
   Printer,
   X,
@@ -265,6 +266,10 @@ export const CVModal: React.FC<CVModalProps> = ({ isOpen, onClose }) => {
                 <Globe className="w-4 h-4 text-slate-950" />
                 <span>{currentCV.header.website}</span>
               </a>
+              <span className="flex items-center gap-1.5 text-slate-950 font-medium">
+                <MapPin className="w-4 h-4 text-slate-950 shrink-0" />
+                <span>{currentCV.header.location}</span>
+              </span>
               <span className="text-slate-950 font-medium">
                 {currentCV.header.birthInfo}
               </span>

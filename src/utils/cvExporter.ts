@@ -107,6 +107,7 @@ export async function exportCVToDocx(
               new TextRun({ text: `${cv.header.github}  |  ` }),
               new TextRun({ text: `${cv.header.linkedin}  |  ` }),
               new TextRun({ text: `${cv.header.website}  |  ` }),
+              new TextRun({ text: `${cv.header.location}  |  ` }),
               new TextRun({ text: cv.header.birthInfo }),
             ],
           }),
@@ -400,7 +401,7 @@ export async function exportCVToPdf(
   doc.setFont("helvetica", "normal");
   doc.setFontSize(8.5);
   doc.setTextColor(15, 23, 42);
-  const contactText = `${cv.header.email}   |   ${cv.header.phone}   |   ${cv.header.github}   |   ${cv.header.linkedin}   |   ${cv.header.website}   |   ${cv.header.birthInfo}`;
+  const contactText = `${cv.header.email}   |   ${cv.header.phone}   |   ${cv.header.github}   |   ${cv.header.linkedin}   |   ${cv.header.website}   |   ${cv.header.location}   |   ${cv.header.birthInfo}`;
   const contactLines = doc.splitTextToSize(contactText, contentWidth);
   doc.text(contactLines, leftMargin, y);
   y += contactLines.length * 4 + 2;

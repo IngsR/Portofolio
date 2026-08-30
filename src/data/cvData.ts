@@ -69,11 +69,11 @@ export const cvData: Record<CVLanguage, CVContent> = {
       github: "github.com/IngsR",
       linkedin: "linkedin.com/in/ikhwn-rdn",
       website: "ikhwann.my.id",
-      location: "Indonesia",
+      location: "Padang, Sumatera Barat (Siap Onsite / Relokasi)",
       birthInfo: "Padang, 18 November 2003",
     },
     summary:
-      "Full-Stack Developer, lulusan S1 Teknik Informatika Universitas Putra Indonesia “YPTK” Padang, dengan pengalaman membangun aplikasi web menggunakan React, TypeScript, Next.js, NestJS, dan PostgreSQL. Pernah mengembangkan sistem informasi sekolah yang digunakan secara nyata serta membangun berbagai proyek personal berskala monorepo dan e-commerce untuk memperdalam kemampuan software engineering.",
+      "Fresh Graduate S1 Teknik Informatika dari Universitas Putra Indonesia “YPTK” Padang. Berdomisili di Padang, Sumatera Barat, dan sangat siap bekerja secara onsite maupun relokasi ke berbagai kota saat diterima. Memiliki pengalaman membangun aplikasi web modern menggunakan React, TypeScript, Next.js, NestJS, dan PostgreSQL. Pernah memimpin tim pengembang dalam membangun sistem informasi sekolah yang digunakan secara nyata, serta aktif bereksplorasi dalam proyek mandiri berskala monorepo, e-commerce, dan implementasi kecerdasan buatan.",
     labels: {
       modalTitle: "Curriculum Vitae — Ikhwan Ramadhan",
       modalSubtitle: "Pratinjau Dokumen & Siap Unduh (PDF / DOCX)",
@@ -178,11 +178,13 @@ export const cvData: Record<CVLanguage, CVContent> = {
     skills: [
       {
         category: "Frontend",
-        items: "React, TypeScript, JavaScript, Next.js, Tailwind CSS, shadcn/ui, Zod",
+        items:
+          "React, TypeScript, JavaScript, Next.js, Tailwind CSS, shadcn/ui, Zod",
       },
       {
         category: "Backend",
-        items: "Node.js, NestJS, Express, REST API, OpenAPI/Swagger, Auth.js, JWT",
+        items:
+          "Node.js, NestJS, Express, REST API, OpenAPI/Swagger, Auth.js, JWT",
       },
       {
         category: "Database",
@@ -194,7 +196,8 @@ export const cvData: Record<CVLanguage, CVContent> = {
       },
       {
         category: "Data & ML",
-        items: "Python, NumPy, Pandas, Scikit-learn, TensorFlow, LSTM, Streamlit, Folium",
+        items:
+          "Python, NumPy, Pandas, Scikit-learn, TensorFlow, LSTM, Streamlit, Folium",
       },
     ],
   },
@@ -207,11 +210,11 @@ export const cvData: Record<CVLanguage, CVContent> = {
       github: "github.com/IngsR",
       linkedin: "linkedin.com/in/ikhwn-rdn",
       website: "ikhwann.my.id",
-      location: "Indonesia",
+      location: "Padang, West Sumatra (Ready for Onsite / Relocation)",
       birthInfo: "Padang, November 18, 2003",
     },
     summary:
-      "Full-Stack Developer with a Bachelor's Degree in Informatics from Universitas Putra Indonesia “YPTK” Padang. Experienced in building responsive, scalable web applications using React, TypeScript, Next.js, NestJS, and PostgreSQL. Successfully built production-grade school management systems, enterprise monorepo architectures, and applied machine learning models for Time Series Forecasting.",
+      "Informatics Fresh Graduate from Universitas Putra Indonesia “YPTK” Padang, specializing as a Full-Stack Developer. Located in Padang, West Sumatra, and highly motivated & fully prepared for on-site work and relocation across various cities. Experienced in building responsive and scalable web applications using React, TypeScript, Next.js, NestJS, and PostgreSQL. Proven leadership as an internship team lead delivering real-world school management systems, coupled with independent research in enterprise monorepo architectures, e-commerce, and machine learning forecasting models.",
     labels: {
       modalTitle: "Curriculum Vitae — Ikhwan Ramadhan",
       modalSubtitle: "Document Preview & Ready to Download (PDF / DOCX)",
@@ -316,11 +319,13 @@ export const cvData: Record<CVLanguage, CVContent> = {
     skills: [
       {
         category: "Frontend",
-        items: "React, TypeScript, JavaScript, Next.js, Tailwind CSS, shadcn/ui, Zod",
+        items:
+          "React, TypeScript, JavaScript, Next.js, Tailwind CSS, shadcn/ui, Zod",
       },
       {
         category: "Backend",
-        items: "Node.js, NestJS, Express, REST API, OpenAPI/Swagger, Auth.js, JWT",
+        items:
+          "Node.js, NestJS, Express, REST API, OpenAPI/Swagger, Auth.js, JWT",
       },
       {
         category: "Database",
@@ -332,7 +337,8 @@ export const cvData: Record<CVLanguage, CVContent> = {
       },
       {
         category: "Data & ML",
-        items: "Python, NumPy, Pandas, Scikit-learn, TensorFlow, LSTM, Streamlit, Folium",
+        items:
+          "Python, NumPy, Pandas, Scikit-learn, TensorFlow, LSTM, Streamlit, Folium",
       },
     ],
   },
