@@ -1,5 +1,4 @@
 import {
-  ArrowUpRight,
   Award,
   Briefcase,
   Code2,
@@ -20,6 +19,7 @@ import {
   ExperienceItem,
   SkillCategory,
 } from "../../types";
+import { Certificate } from "../portfolio/Certificate";
 import { Detail } from "../modal/Detail";
 
 const {
@@ -588,7 +588,7 @@ export const About: React.FC<AboutSectionProps> = ({ onOpenCV }) => {
           EDUCATION & CERTIFICATIONS
       ====================================================== */}
       {activeTab === "education" && (
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+        <div className="space-y-8">
           {/* Education */}
           <div className="space-y-4">
             <div className="flex items-center gap-2 border-b border-slate-200 pb-2 text-lg font-bold text-slate-950 dark:border-white/10 dark:text-white">
@@ -627,84 +627,16 @@ export const About: React.FC<AboutSectionProps> = ({ onOpenCV }) => {
           <div className="space-y-4">
             <div className="flex items-center gap-2 border-b border-slate-200 pb-2 text-lg font-bold text-slate-950 dark:border-white/10 dark:text-white">
               <Award className="h-5 w-5" />
-
-              <h2>Sertifikasi & Kredensial</h2>
+              <h2>Sertifikasi &amp; Kredensial</h2>
             </div>
 
-            <div className="space-y-3">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {certificationsData.map((cert) => (
-                <div
+                <Certificate
                   key={cert.id}
-                  onClick={() => handleOpenCertModal(cert)}
-                  className="group flex cursor-pointer flex-col justify-between gap-4 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm transition-all hover:border-slate-400 dark:border-white/10 dark:bg-[#0c0c0d] dark:hover:border-white/30 sm:flex-row sm:items-center sm:rounded-3xl sm:p-5"
-                >
-                  {/* Certificate Info */}
-                  <div className="flex items-start gap-3.5 sm:items-center">
-                    <div className="relative h-12 w-16 shrink-0 overflow-hidden rounded-xl border border-slate-200 bg-slate-900 dark:border-white/10 sm:h-14 sm:w-20">
-                      <img
-                        src={cert.image}
-                        alt={cert.title}
-                        width={80}
-                        height={56}
-                        loading="lazy"
-                        decoding="async"
-                        onError={(event) => {
-                          const target = event.currentTarget;
-
-                          if (
-                            cert.fallbackImage &&
-                            target.src !== cert.fallbackImage
-                          ) {
-                            target.src = cert.fallbackImage;
-                          }
-                        }}
-                        className="h-full w-full object-cover transition-transform group-hover:scale-105"
-                        referrerPolicy="no-referrer"
-                      />
-
-                      <div className="absolute inset-0 bg-black/20" />
-                    </div>
-
-                    <div className="space-y-1">
-                      <div className="flex flex-wrap items-center gap-2">
-                        <span className="text-[10px] font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400">
-                          {cert.category || "Kredensial"}
-                        </span>
-
-                        {cert.badgeCode && (
-                          <span className="rounded-full bg-slate-100 px-1.5 py-0.5 font-mono text-[10px] font-bold text-slate-700 dark:bg-white/10 dark:text-slate-300">
-                            {cert.badgeCode}
-                          </span>
-                        )}
-                      </div>
-
-                      <h3 className="text-sm font-bold text-slate-950 transition-colors group-hover:text-blue-600 dark:text-white dark:group-hover:text-blue-400 sm:text-base">
-                        {cert.title}
-                      </h3>
-
-                      <p className="text-xs font-medium text-slate-600 dark:text-slate-400">
-                        {cert.issuer} • {cert.period || cert.issueDate}
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Screenshot Button */}
-                  <div className="flex shrink-0 items-center self-end sm:self-center">
-                    <button
-                      type="button"
-                      onClick={(event) => {
-                        event.stopPropagation();
-                        handleOpenCertModal(cert);
-                      }}
-                      className="inline-flex items-center gap-1.5 rounded-full border border-slate-200 bg-white px-3.5 py-2 text-xs font-semibold text-slate-900 transition-all hover:border-slate-300 hover:bg-slate-100 dark:border-white/10 dark:bg-white/[0.03] dark:text-white dark:hover:border-white/20 dark:hover:bg-white/10"
-                      title="Lihat Screenshot & Detail"
-                    >
-                      <span>Lihat Screenshot</span>
-
-                      <ArrowUpRight className="h-3.5 w-3.5" />
-                    </button>
-                  </div>
-                </div>
+                  certificate={cert}
+                  onOpenDetail={handleOpenCertModal}
+                />
               ))}
             </div>
           </div>

@@ -2,13 +2,13 @@
   "userProfile": {
     "name": "Ikhwan Ramadhan",
     "title": "Frontend Engineer",
-    "tagline": "Lulusan S1 Teknik Informatika UPI \"YPTK\" Padang, dengan spesialisasi pada Frontend Engineering. Menguasai React.js dan TypeScript dengan fokus utama pada Next.js dan Angular, serta memahami strategi rendering (SSR, SSG, CDN), Technical SEO, Open Graph, dan Reactive Programming (RxJS & Signals).",
-    "shortBio": "Lulusan S1 Teknik Informatika UPI “YPTK” Padang, dengan fokus pada Frontend Engineering. Menguasai React.js dan TypeScript dengan dua framework utama Next.js dan Angular, serta memahami strategi rendering (SSR, SSG, CDN), Technical SEO, Open Graph, dan Reactive Programming (RxJS & Signals).",
+    "tagline": "Lulusan S1 Teknik Informatika UPI \"YPTK\" Padang, dengan fokus pada Frontend Engineering. Dua framework utama saya adalah Next.js dan Angular, didukung kemampuan Technical SEO, rendering SSR/SSG, dan Reactive Programming (RxJS & Signals).",
+    "shortBio": "Lulusan S1 Teknik Informatika UPI \"YPTK\" Padang, dengan fokus pada Frontend Engineering. Dua framework utama saya adalah Next.js dan Angular, didukung kemampuan Technical SEO, rendering SSR/SSG, dan Reactive Programming (RxJS & Signals).",
     "fullBio": [
-      "Saya Ikhwan Ramadhan, lulusan S1 Teknik Informatika Universitas Putra Indonesia “YPTK” Padang, dengan fokus keahlian pada Frontend Engineering.",
-      "Spesialisasi utama saya berakar pada ekosistem React.js & TypeScript dengan 2 framework utama: Next.js (App Router, Server Components, SSR/SSG/ISR, Dynamic Metadata & Technical SEO) dan Angular (Enterprise Component Architecture, Reactive Programming dengan RxJS & Signals, Type-Safe Service Injection). Untuk kebutuhan aplikasi berskala spesifik dan ultra-ringan, saya juga memanfaatkan arsitektur Astro dan Vite.",
-      "Saya memandang rekayasa frontend bukan sekadar estetika tampilan, melainkan ketepatan arsitektur rendering, efisiensi bundle, pemanfaatan CDN caching, keterbacaan bot pencari (Open Graph & Structured Data), hingga pengalaman interaksi reaktif yang mulus bagi pengguna akhir.",
-      "Saya siap berkontribusi secara profesional untuk merancang antarmuka web mutakhir, memecahkan tantangan performa Core Web Vitals, dan membangun produk digital yang bernilai tinggi bagi bisnis."
+      "Saya Ikhwan Ramadhan, lulusan S1 Teknik Informatika Universitas Putra Indonesia \"YPTK\" Padang, dengan fokus keahlian pada Frontend Engineering.",
+      "Dua framework utama yang saya kuasai adalah Next.js (App Router, SSR/SSG/ISR, Technical SEO, Dynamic Open Graph) dan Angular (Standalone Component Architecture, Reactive Programming dengan RxJS & Signals). Untuk proyek antarmuka yang lebih ringan dan spesifik, saya menggunakan Astro dan Vite sesuai kebutuhan.",
+      "Bagi saya, Frontend Engineering bukan hanya soal membangun tampilan yang bagus. Ini tentang menerjemahkan kebutuhan nyata menjadi antarmuka yang responsif, cepat, mudah ditemukan di mesin pencari, dan benar-benar nyaman digunakan. Mulai dari memilih strategi rendering yang tepat, mengoptimalkan performa Core Web Vitals, sampai memastikan setiap interaksi terasa alami bagi pengguna akhir.",
+      "Saya siap berkontribusi secara profesional, baik On-Site (WFO) di seluruh Indonesia maupun Remote / Hybrid."
     ],
     "location": "Indonesia",
     "workPreference": "On-Site / WFO di Seluruh Indonesia (Siap Relokasi) & Hybrid / Remote",
@@ -476,16 +476,16 @@
   "experience": [
     {
       "id": "exp-1",
-      "role": "Lead Frontend Engineer",
-      "company": "Proyek Sistem Informasi SMP Negeri 24 Padang",
+      "role": "Fullstack Web Developer (Magang)",
+      "company": "SMP Negeri 24 Padang",
       "location": "Padang, Indonesia",
-      "period": "Agu - Sept 2025",
-      "type": "Contract",
-      "description": "Memimpin perancangan dan implementasi arsitektur frontend portal resmi dan sistem informasi sekolah berkinerja tinggi berbasis Next.js App Router dan Technical SEO.",
+      "period": "Agustus - September 2025",
+      "type": "Magang",
+      "description": "Membangun website resmi SMP Negeri 24 Padang dari awal selama magang 2 bulan. Bertanggung jawab penuh atas arsitektur frontend, optimasi SEO, dan deployment ke produksi.",
       "achievements": [
-        "Merancang dan memimpin arsitektur antarmuka portal resmi sekolah menggunakan Next.js App Router, TypeScript, dan Tailwind CSS.",
-        "Mengimplementasikan Technical SEO menyeluruh (Dynamic Metadata API, Open Graph Image Generator, automated sitemap/robots, semantic HTML5) serta strategi SSR/SSG caching sehingga portal cepat terindeks mesin pencari.",
-        "Membangun admin dashboard modular berbasis shadcn/ui dengan form validation Zod yang type-safe untuk kemudahan staf sekolah."
+        "Merancang dan mengimplementasikan portal resmi sekolah menggunakan Next.js App Router, TypeScript, dan Tailwind CSS, berkoordinasi langsung dengan pihak sekolah.",
+        "Menerapkan Technical SEO menyeluruh: Dynamic Metadata API, Open Graph Image Generator, sitemap otomatis, robots.txt, dan semantic HTML5 sehingga skor SEO Lighthouse mencapai 100/100.",
+        "Mengoptimalkan strategi rendering SSR/SSG hingga skor performa Lighthouse 99/100 dengan FCP 0,5 detik, kemudian berhasil deploy ke produksi di smpn24padang.sch.id dalam 2 bulan."
       ],
       "techStack": [
         "Next.js (App Router)",
@@ -497,31 +497,6 @@
         "Dynamic Open Graph",
         "SSR / SSG",
         "Zod"
-      ]
-    },
-    {
-      "id": "exp-2",
-      "role": "Frontend Engineer (Open Source & Enterprise Projects)",
-      "company": "IngsR Engineering Repositories",
-      "location": "Indonesia / Remote",
-      "period": "2023 - Sekarang",
-      "type": "Freelance",
-      "description": "Merancang dan mengembangkan berbagai antarmuka web modern dengan fokus pada Next.js, Angular, Reactive Programming (RxJS & Signals), migrasi Astro Island Architecture, dan sistem monorepo.",
-      "achievements": [
-        "Mengembangkan Angular Property (Real Estate Platform) memanfaatkan Angular, TypeScript, dan Reactive Programming (RxJS Streams & Angular Signals).",
-        "Memigrasikan antarmuka visualisasi prediksi siklon tropis ke Astro (Island Architecture) dengan domain live prediksi.ikhwann.my.id untuk performa Zero-JS default di Edge CDN.",
-        "Membangun sistem desain antarmuka enterprise pada Fullstack CRM/ERP Monorepo dengan Turborepo, Next.js 15, dan React 19."
-      ],
-      "techStack": [
-        "Next.js",
-        "Angular",
-        "React.js",
-        "TypeScript",
-        "RxJS",
-        "Signals",
-        "Astro",
-        "Tailwind CSS",
-        "Turborepo"
       ]
     }
   ],

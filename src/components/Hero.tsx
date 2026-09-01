@@ -343,12 +343,57 @@ export const Hero: React.FC<HeroSectionProps> = ({
         </div>
       </section>
 
-      {/* 2. 3 PROYEK UNGGULAN DENGAN DESKRIPSI TEKNIS FRONTEND (PROBLEM & SOLUTION) */}
+      {/* 2. PENDIDIKAN (SARJANA S1) */}
+      <section className="rounded-3xl border border-slate-200/80 dark:border-white/10 bg-white dark:bg-[#0c0c0d] p-6 sm:p-10 shadow-sm space-y-6">
+        <div className="space-y-2 border-b border-slate-200 dark:border-white/10 pb-4">
+          <span className="text-xs font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400">
+            01 / PENDIDIKAN AKADEMIS
+          </span>
+          <h2 className="text-2xl sm:text-3xl font-black tracking-tight text-slate-950 dark:text-white">
+            Pendidikan Perguruan Tinggi (S1)
+          </h2>
+        </div>
+
+        <div className="space-y-4">
+          {sarjanaEducation.map((edu) => (
+            <div
+              key={edu.id}
+              className="p-6 rounded-2xl bg-slate-50 dark:bg-white/[0.02] border border-slate-200/80 dark:border-white/10 space-y-3"
+            >
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                <div className="flex items-center gap-2.5">
+                  <div className="p-2.5 rounded-full bg-blue-600/10 text-blue-600 dark:text-blue-400 flex items-center justify-center">
+                    <GraduationCap className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-base sm:text-lg text-slate-950 dark:text-white">
+                      {edu.degree}
+                    </h3>
+                    <p className="text-xs sm:text-sm font-semibold text-slate-700 dark:text-slate-300">
+                      {edu.institution}
+                    </p>
+                  </div>
+                </div>
+
+                <span className="inline-flex items-center px-3.5 py-1 rounded-full text-xs font-bold bg-blue-50 text-blue-700 dark:bg-blue-950/40 dark:text-blue-300 w-fit">
+                  {edu.period}
+                </span>
+              </div>
+
+              <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed font-normal">
+                {edu.details}
+              </p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* 3. 3 PROYEK UNGGULAN DENGAN DESKRIPSI TEKNIS FRONTEND (PROBLEM & SOLUTION) */}
       <section className="space-y-6">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-slate-200 dark:border-white/10 pb-4">
           <div>
             <span className="text-xs font-bold text-blue-600 dark:text-blue-400 uppercase tracking-wider">
-              01 / PROYEK PILIHAN
+              02 / PROYEK PILIHAN
             </span>
             <h2 className="text-2xl sm:text-3xl font-black tracking-tight text-slate-950 dark:text-white mt-1">
               3 Proyek Pilihan & Solusi Teknis
@@ -496,11 +541,11 @@ export const Hero: React.FC<HeroSectionProps> = ({
         </div>
       </section>
 
-      {/* 3. TENTANG SAYA (RINGKASAN FRONTEND POSITIONING) */}
+      {/* 4. TENTANG SAYA (RINGKASAN FRONTEND POSITIONING) */}
       <section className="rounded-3xl border border-slate-200/80 dark:border-white/10 bg-white dark:bg-[#0c0c0d] p-6 sm:p-10 shadow-sm space-y-6">
         <div className="space-y-2 border-b border-slate-200 dark:border-white/10 pb-4">
           <span className="text-xs font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400">
-            02 / PROFIL SINGKAT
+            03 / PROFIL SINGKAT
           </span>
           <h2 className="text-2xl sm:text-3xl font-black tracking-tight text-slate-950 dark:text-white">
             Tentang Saya
@@ -513,7 +558,7 @@ export const Hero: React.FC<HeroSectionProps> = ({
               Saya <strong className="text-slate-950 dark:text-white font-bold">Ikhwan Ramadhan</strong>, lulusan S1 Teknik Informatika Universitas Putra Indonesia &ldquo;YPTK&rdquo; Padang, dengan fokus keahlian pada <strong className="text-slate-950 dark:text-white font-bold">Frontend Engineering</strong>.
             </p>
             <p>
-              Keahlian utama saya bertumpu pada <strong className="text-slate-950 dark:text-white font-bold">React.js dan TypeScript</strong> dengan dua framework utama: <strong className="text-slate-950 dark:text-white font-bold">Next.js</strong> (App Router, SSR/SSG/ISR, Dynamic Open Graph &amp; Technical SEO) dan <strong className="text-slate-950 dark:text-white font-bold">Angular</strong> (Component Architecture, Reactive Programming dengan RxJS &amp; Signals). Saya juga memanfaatkan <strong className="text-slate-950 dark:text-white font-bold">Astro &amp; Vite</strong> untuk proyek antarmuka ringan. Siap berkontribusi profesional secara <strong className="text-slate-950 dark:text-white font-bold">On-Site (WFO) di seluruh Indonesia</strong> maupun <strong className="text-slate-950 dark:text-white font-bold">Remote / Hybrid</strong>.
+              Dua framework utama yang saya kuasai adalah <strong className="text-slate-950 dark:text-white font-bold">Next.js</strong> (App Router, SSR/SSG/ISR, Technical SEO, Dynamic Open Graph) dan <strong className="text-slate-950 dark:text-white font-bold">Angular</strong> (Standalone Component Architecture, Reactive Programming dengan RxJS &amp; Signals). Untuk proyek antarmuka yang lebih ringan dan spesifik, saya menggunakan <strong className="text-slate-950 dark:text-white font-bold">Astro dan Vite</strong> sesuai kebutuhan. Siap berkontribusi profesional secara <strong className="text-slate-950 dark:text-white font-bold">On-Site (WFO) di seluruh Indonesia</strong> maupun <strong className="text-slate-950 dark:text-white font-bold">Remote / Hybrid</strong>.
             </p>
           </div>
 
@@ -538,12 +583,12 @@ export const Hero: React.FC<HeroSectionProps> = ({
         </div>
       </section>
 
-      {/* 4. SERTIFIKAT (3 SERTIFIKAT PILIHAN) */}
+      {/* 5. SERTIFIKAT (3 SERTIFIKAT PILIHAN) */}
       <section className="space-y-6">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-slate-200 dark:border-white/10 pb-4">
           <div>
             <span className="text-xs font-bold text-blue-600 dark:text-blue-400 uppercase tracking-wider">
-              03 / KREDENSIAL TERVERIFIKASI
+              04 / KREDENSIAL TERVERIFIKASI
             </span>
             <h2 className="text-2xl sm:text-3xl font-black tracking-tight text-slate-950 dark:text-white mt-1">
               Sertifikasi Utama (3 Sertifikat Pilihan)
@@ -562,58 +607,13 @@ export const Hero: React.FC<HeroSectionProps> = ({
           </button>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {homeCertificates.map((cert) => (
             <Certificate
               key={cert.id}
               certificate={cert}
               onOpenDetail={handleOpenCertDetail}
             />
-          ))}
-        </div>
-      </section>
-
-      {/* 5. PENDIDIKAN (SARJANA S1) */}
-      <section className="rounded-3xl border border-slate-200/80 dark:border-white/10 bg-white dark:bg-[#0c0c0d] p-6 sm:p-10 shadow-sm space-y-6">
-        <div className="space-y-2 border-b border-slate-200 dark:border-white/10 pb-4">
-          <span className="text-xs font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400">
-            04 / PENDIDIKAN AKADEMIS
-          </span>
-          <h2 className="text-2xl sm:text-3xl font-black tracking-tight text-slate-950 dark:text-white">
-            Pendidikan Perguruan Tinggi (S1)
-          </h2>
-        </div>
-
-        <div className="space-y-4">
-          {sarjanaEducation.map((edu) => (
-            <div
-              key={edu.id}
-              className="p-6 rounded-2xl bg-slate-50 dark:bg-white/[0.02] border border-slate-200/80 dark:border-white/10 space-y-3"
-            >
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-                <div className="flex items-center gap-2.5">
-                  <div className="p-2.5 rounded-full bg-blue-600/10 text-blue-600 dark:text-blue-400 flex items-center justify-center">
-                    <GraduationCap className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-base sm:text-lg text-slate-950 dark:text-white">
-                      {edu.degree}
-                    </h3>
-                    <p className="text-xs sm:text-sm font-semibold text-slate-700 dark:text-slate-300">
-                      {edu.institution}
-                    </p>
-                  </div>
-                </div>
-
-                <span className="inline-flex items-center px-3.5 py-1 rounded-full text-xs font-bold bg-blue-50 text-blue-700 dark:bg-blue-950/40 dark:text-blue-300 w-fit">
-                  {edu.period}
-                </span>
-              </div>
-
-              <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed font-normal">
-                {edu.details}
-              </p>
-            </div>
           ))}
         </div>
       </section>

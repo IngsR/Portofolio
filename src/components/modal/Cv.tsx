@@ -351,7 +351,30 @@ export const Cv: React.FC<CVModalProps> = ({ isOpen, onClose }) => {
             </div>
           </div>
 
-          {/* ── 2. PORTOFOLIO PROYEK UNGGULAN (FEATURED PORTFOLIO PROJECTS) ── */}
+          {/* ── 2. PENDIDIKAN (EDUCATION) ── */}
+          <div className="space-y-1.5 print:space-y-1 cv-section">
+            <h2 className="text-sm print:text-xs font-extrabold text-slate-950 uppercase tracking-wider border-b-2 border-slate-900 pb-0.5">
+              {currentCV.labels.education}
+            </h2>
+            {currentCV.education.map((edu) => (
+              <div key={edu.id} className="space-y-0 text-sm print:text-[11px]">
+                <div className="flex items-baseline justify-between">
+                  <strong
+                    style={{ fontWeight: 800 }}
+                    className="block text-sm print:text-xs font-extrabold text-slate-950"
+                  >
+                    {edu.degree}
+                  </strong>
+                  <span className="text-slate-950 text-xs print:text-[10.5px]">{edu.period}</span>
+                </div>
+                <div className="text-slate-950 font-medium text-xs print:text-[10.5px]">
+                  {edu.institution}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* ── 3. PORTOFOLIO PROYEK UNGGULAN (FEATURED PORTFOLIO PROJECTS) ── */}
           <div className="space-y-2.5 print:space-y-1.5 cv-section">
             <h2 className="text-sm print:text-xs font-extrabold text-slate-950 uppercase tracking-wider border-b-2 border-slate-900 pb-0.5">
               {currentCV.labels.projects}
@@ -414,30 +437,7 @@ export const Cv: React.FC<CVModalProps> = ({ isOpen, onClose }) => {
             </div>
           </div>
 
-          {/* ── 3. EDUCATION ── */}
-          <div className="space-y-1.5 print:space-y-1 cv-section">
-            <h2 className="text-sm print:text-xs font-extrabold text-slate-950 uppercase tracking-wider border-b-2 border-slate-900 pb-0.5">
-              {currentCV.labels.education}
-            </h2>
-            {currentCV.education.map((edu) => (
-              <div key={edu.id} className="space-y-0 text-sm print:text-[11px]">
-                <div className="flex items-baseline justify-between">
-                  <strong
-                    style={{ fontWeight: 800 }}
-                    className="block text-sm print:text-xs font-extrabold text-slate-950"
-                  >
-                    {edu.degree}
-                  </strong>
-                  <span className="text-slate-950 text-xs print:text-[10.5px]">{edu.period}</span>
-                </div>
-                <div className="text-slate-950 font-medium text-xs print:text-[10.5px]">
-                  {edu.institution}
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* ── 4. CERTIFICATIONS & CREDENTIALS ── */}
+          {/* ── 4. SERTIFIKASI & KREDENSIAL ── */}
           <div className="space-y-1.5 print:space-y-1 cv-section">
             <h2 className="text-sm print:text-xs font-extrabold text-slate-950 uppercase tracking-wider border-b-2 border-slate-900 pb-0.5">
               {currentCV.labels.certifications}

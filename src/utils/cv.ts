@@ -222,7 +222,57 @@ export async function exportCVToDocx(
             }),
           ]),
 
-          // ── 2. SECTION: FEATURED PORTFOLIO PROJECTS ──
+          // ── 2. SECTION: EDUCATION ──
+          new Paragraph({
+            heading: HeadingLevel.HEADING_2,
+            border: borderBottom,
+            spacing: { before: 180, after: 120 },
+            children: [
+              new TextRun({
+                text: cv.labels.education,
+                bold: true,
+                size: 22,
+                color: "020617",
+              }),
+            ],
+          }),
+
+          ...cv.education.flatMap((edu) => [
+            new Paragraph({
+              spacing: { before: 60, after: 40 },
+              children: [
+                new TextRun({
+                  text: edu.degree,
+                  bold: true,
+                  size: 21,
+                  color: "0f172a",
+                }),
+              ],
+            }),
+            new Paragraph({
+              spacing: { after: 40 },
+              children: [
+                new TextRun({
+                  text: edu.institution,
+                  size: 19,
+                  color: "334155",
+                }),
+              ],
+            }),
+            new Paragraph({
+              spacing: { after: 140 },
+              children: [
+                new TextRun({
+                  text: edu.period,
+                  size: 18,
+                  italics: true,
+                  color: "64748b",
+                }),
+              ],
+            }),
+          ]),
+
+          // ── 3. SECTION: FEATURED PORTFOLIO PROJECTS ──
           new Paragraph({
             heading: HeadingLevel.HEADING_2,
             border: borderBottom,
@@ -303,56 +353,6 @@ export async function exportCVToDocx(
                   text: proj.techStack.join(", "),
                   size: 19,
                   color: "334155",
-                }),
-              ],
-            }),
-          ]),
-
-          // ── 3. SECTION: EDUCATION ──
-          new Paragraph({
-            heading: HeadingLevel.HEADING_2,
-            border: borderBottom,
-            spacing: { before: 180, after: 120 },
-            children: [
-              new TextRun({
-                text: cv.labels.education,
-                bold: true,
-                size: 22,
-                color: "020617",
-              }),
-            ],
-          }),
-
-          ...cv.education.flatMap((edu) => [
-            new Paragraph({
-              spacing: { before: 60, after: 40 },
-              children: [
-                new TextRun({
-                  text: edu.degree,
-                  bold: true,
-                  size: 21,
-                  color: "0f172a",
-                }),
-              ],
-            }),
-            new Paragraph({
-              spacing: { after: 40 },
-              children: [
-                new TextRun({
-                  text: edu.institution,
-                  size: 19,
-                  color: "334155",
-                }),
-              ],
-            }),
-            new Paragraph({
-              spacing: { after: 140 },
-              children: [
-                new TextRun({
-                  text: edu.period,
-                  size: 18,
-                  italics: true,
-                  color: "64748b",
                 }),
               ],
             }),
@@ -608,7 +608,30 @@ export async function exportCVToPdf(
     y += stackLines.length * 3.3 + 2;
   }
 
-  // ── 2. SECTION: FEATURED PORTFOLIO PROJECTS ──
+  // ── 2. SECTION: EDUCATION ──
+  renderSectionHeading(cv.labels.education);
+
+  for (const edu of cv.education) {
+    checkPage(8);
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(8.8);
+    doc.setTextColor(15, 23, 42);
+    doc.text(edu.degree, leftMargin, y);
+
+    doc.setFont("helvetica", "italic");
+    doc.setFontSize(7.5);
+    doc.setTextColor(100, 116, 139);
+    doc.text(edu.period, rightMargin, y, { align: "right" });
+    y += 3.5;
+
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(7.8);
+    doc.setTextColor(51, 65, 85);
+    doc.text(edu.institution, leftMargin, y);
+    y += 3.5;
+  }
+
+  // ── 3. SECTION: FEATURED PORTFOLIO PROJECTS ──
   renderSectionHeading(cv.labels.projects);
 
   for (const proj of cv.projects) {
@@ -670,29 +693,6 @@ export async function exportCVToPdf(
     );
     doc.text(stackLines, leftMargin + prefixWidth, y);
     y += stackLines.length * 3.3 + 2;
-  }
-
-  // ── 3. SECTION: EDUCATION ──
-  renderSectionHeading(cv.labels.education);
-
-  for (const edu of cv.education) {
-    checkPage(8);
-    doc.setFont("helvetica", "bold");
-    doc.setFontSize(8.8);
-    doc.setTextColor(15, 23, 42);
-    doc.text(edu.degree, leftMargin, y);
-
-    doc.setFont("helvetica", "italic");
-    doc.setFontSize(7.5);
-    doc.setTextColor(100, 116, 139);
-    doc.text(edu.period, rightMargin, y, { align: "right" });
-    y += 3.5;
-
-    doc.setFont("helvetica", "normal");
-    doc.setFontSize(7.8);
-    doc.setTextColor(51, 65, 85);
-    doc.text(edu.institution, leftMargin, y);
-    y += 3.5;
   }
 
   // ── 4. SECTION: CERTIFICATIONS ──
