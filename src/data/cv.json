@@ -1,0 +1,308 @@
+{
+  "id": {
+    "header": {
+      "name": "Ikhwan Ramadhan",
+      "title": "Frontend Engineer",
+      "email": "ikhwn.rdn@gmail.com",
+      "phone": "+6282386473410",
+      "github": "github.com/IngsR",
+      "linkedin": "linkedin.com/in/ikhwn-rdn",
+      "website": "ikhwann.my.id",
+      "location": "Padang, Sumatera Barat (Siap On-Site / Relokasi)",
+      "birthInfo": "Padang, 18 November 2003"
+    },
+    "summary": "Lulusan S1 Teknik Informatika UPI “YPTK” Padang dengan spesialisasi Frontend Engineering. Menguasai React.js dan TypeScript dengan fokus framework utama pada Next.js dan Angular. Berpengalaman menerapkan strategi rendering hybrid (SSR, SSG, ISR), Technical SEO & Open Graph, reaktivitas modern (Angular Signals & RxJS), serta arsitektur antarmuka web berkinerja tinggi dan teruji di lingkungan produksi.",
+    "labels": {
+      "modalTitle": "Curriculum Vitae - Ikhwan Ramadhan",
+      "modalSubtitle": "Pratinjau Dokumen & Siap Unduh (PDF / DOCX)",
+      "printButton": "Cetak",
+      "downloadPdf": "Unduh PDF",
+      "downloadDocx": "Unduh Word (.docx)",
+      "downloading": "Memproses...",
+      "internship": "PENGALAMAN MAGANG",
+      "projects": "PORTOFOLIO",
+      "education": "PENDIDIKAN",
+      "certifications": "SERTIFIKASI & KREDENSIAL",
+      "technicalSkills": "KETERAMPILAN TEKNIS (FOKUS FRONTEND)",
+      "techStackLabel": "Tech Stack",
+      "liveDemoLabel": "Live Web",
+      "langId": "Indonesia",
+      "langEn": "English"
+    },
+    "internship": [
+      {
+        "id": "intern-1",
+        "role": "Fullstack Web Developer (Magang)",
+        "company": "SMP Negeri 24 Padang",
+        "link": "smpn24padang.sch.id",
+        "location": "Padang, Indonesia",
+        "period": "Agustus - September 2025",
+        "type": "Magang Institusi",
+        "achievements": [
+          "Memimpin pengembangan website resmi SMP Negeri 24 Padang selama masa magang dari fase analisis kebutuhan, perancangan arsitektur antarmuka, hingga rilis produksi.",
+          "Menerapkan strategi rendering Next.js (SSR, SSG, ISR) dan optimasi SEO teknis (Dynamic Metadata, Open Graph, structured data JSON-LD) untuk kecepatan indeks dan performa maksimal.",
+          "Meraih hasil audit Google Lighthouse: Skor Performa 99/100, SEO 100/100, Best Practices 100/100, dengan First Contentful Paint (FCP) 0,5 detik.",
+          "Berkoordinasi langsung dengan pihak pimpinan sekolah dan sukses mendeploy sistem ke server produksi tepat waktu dalam 2 bulan."
+        ],
+        "techStack": [
+          "Next.js (App Router)",
+          "React",
+          "TypeScript",
+          "SSR / SSG / ISR",
+          "Technical SEO",
+          "Open Graph",
+          "Tailwind CSS",
+          "shadcn/ui",
+          "Zod"
+        ]
+      }
+    ],
+    "projects": [
+      {
+        "id": "proj-1",
+        "title": "Website Penjualan Rumah (HouseING Property)",
+        "role": "Frontend Engineer",
+        "link": "angular.ikhwann.my.id",
+        "period": "2026",
+        "description": "Mengembangkan platform pencarian dan simulasi properti modern berbasis Angular Standalone Components dan TypeScript strict. Memanfaatkan keunggulan Angular Signals (signal, computed, effect) untuk manajemen reaktivitas state berkecepatan tinggi tanpa overhead Zone.js berlebih, sinkronisasi kalkulator simulasi KPR formula anuitas perbankan secara real-time, penjelajahan denah arsitektur 2D interaktif (multi-floor switcher dan visual orientasi kompas) pada 60 FPS, serta pengurutan data properti instan.",
+        "techStack": [
+          "Angular",
+          "TypeScript",
+          "Angular Signals",
+          "RxJS",
+          "Tailwind CSS v4",
+          "Standalone Components",
+          "Clean Domain Architecture"
+        ]
+      },
+      {
+        "id": "proj-2",
+        "title": "Website Prediksi Siklon Tropis (LSTM Forecasting)",
+        "role": "Frontend & Research Engineer",
+        "link": "prediksi.ikhwann.my.id",
+        "period": "2026",
+        "description": "Aplikasi web prediksi lintasan siklon tropis berbasis riset skripsi dengan model Deep Learning LSTM. Mengevaluasi 12 skenario eksperimen terkontrol pada 2 Data Perairan Samudra Hindia dengan 4 variasi timesteps, membuktikan window 8-16 menghasilkan akurasi terbaik dengan rata-rata error Haversine 14,2 km dan R² 0,999. Model LSTM dikonversi ke ONNX Runtime untuk inferensi serverless langsung di browser, dipadukan dengan frontend Astro Island Architecture untuk performa Zero-JS default di Edge CDN dan visualisasi peta interaktif untuk mitigasi risiko bencana di pesisir Sumatera Barat.",
+        "techStack": [
+          "Astro",
+          "TypeScript",
+          "ONNX Runtime",
+          "LSTM Time Series",
+          "Island Architecture",
+          "Geospatial UI",
+          "Edge CDN",
+          "Tailwind CSS"
+        ]
+      }
+    ],
+    "education": [
+      {
+        "id": "edu-1",
+        "degree": "S1 Teknik Informatika",
+        "institution": "Universitas Putra Indonesia “YPTK” Padang",
+        "period": "Teknik Informatika • Sep 2022 - Okt 2026"
+      }
+    ],
+    "certificationsByIssuer": {
+      "Huawei ICT Academy": [
+        {
+          "id": "cert-1",
+          "title": "Artificial Intelligence Fundamentals",
+          "issueDate": "2026"
+        },
+        {
+          "id": "cert-2",
+          "title": "Artificial Intelligence: Principles and Applications",
+          "issueDate": "2026"
+        },
+        {
+          "id": "cert-3",
+          "title": "HCIP-Datacom Core Technology V1.0 Course",
+          "issueDate": "2026"
+        }
+      ],
+      "HackerRank": [
+        {
+          "id": "cert-5",
+          "title": "Problem Solving (Intermediate)",
+          "issueDate": "Jun 2025"
+        },
+        {
+          "id": "cert-4",
+          "title": "Problem Solving (Basic)",
+          "issueDate": "Mei 2025"
+        }
+      ]
+    },
+    "skills": [
+      {
+        "category": "Core Frameworks & Language",
+        "items": "Next.js (App Router), Angular, React.js, TypeScript, JavaScript (ES6+), HTML5 Semantic"
+      },
+      {
+        "category": "Rendering, SEO & Web Performance",
+        "items": "Server-Side Rendering (SSR), Static Site Generation (SSG), ISR, Edge CDN Caching, Technical SEO, Dynamic Open Graph, Structured Data (JSON-LD), Core Web Vitals"
+      },
+      {
+        "category": "Reactive State & Data Handling",
+        "items": "Angular Signals (signal/computed/effect), RxJS Observables, React State & Context, TanStack Query, Zod Schema Validation"
+      },
+      {
+        "category": "Modern Styling & Build Tooling",
+        "items": "Tailwind CSS, shadcn/ui, Astro (Islands Architecture), Vite, Turborepo, Git, Vercel, Docker"
+      }
+    ]
+  },
+  "en": {
+    "header": {
+      "name": "Ikhwan Ramadhan",
+      "title": "Frontend Engineer",
+      "email": "ikhwn.rdn@gmail.com",
+      "phone": "+6282386473410",
+      "github": "github.com/IngsR",
+      "linkedin": "linkedin.com/in/ikhwn-rdn",
+      "website": "ikhwann.my.id",
+      "location": "Padang, West Sumatra (Ready for On-Site / Relocation)",
+      "birthInfo": "Padang, November 18, 2003"
+    },
+    "summary": "Informatics Engineering Graduate from UPI “YPTK” Padang specializing in Frontend Engineering. Proficient in React.js and TypeScript with primary focus on Next.js and Angular frameworks. Experienced in implementing hybrid rendering strategies (SSR, SSG, ISR), Technical SEO & Open Graph, modern reactivity (Angular Signals & RxJS), and delivering high-performance, production-ready web interfaces.",
+    "labels": {
+      "modalTitle": "Curriculum Vitae - Ikhwan Ramadhan",
+      "modalSubtitle": "Document Preview & Ready to Download (PDF / DOCX)",
+      "printButton": "Print",
+      "downloadPdf": "Download PDF",
+      "downloadDocx": "Download Word (.docx)",
+      "downloading": "Processing...",
+      "internship": "INTERNSHIP EXPERIENCE",
+      "projects": "PORTFOLIO",
+      "education": "EDUCATION",
+      "certifications": "CERTIFICATIONS & CREDENTIALS",
+      "technicalSkills": "TECHNICAL SKILLS (FRONTEND FOCUS)",
+      "techStackLabel": "Tech Stack",
+      "liveDemoLabel": "Live Web",
+      "langId": "Indonesian",
+      "langEn": "English"
+    },
+    "internship": [
+      {
+        "id": "intern-1",
+        "role": "Fullstack Web Developer (Intern)",
+        "company": "SMP Negeri 24 Padang",
+        "link": "smpn24padang.sch.id",
+        "location": "Padang, Indonesia",
+        "period": "August - September 2025",
+        "type": "Institutional Internship",
+        "achievements": [
+          "Led the web development of SMP Negeri 24 Padang official portal during the internship program from requirements gathering and frontend architecture to production release.",
+          "Implemented Next.js hybrid rendering strategies (SSR, SSG, ISR) and technical SEO optimization (Dynamic Metadata, Open Graph, JSON-LD structured data) for maximum speed and search visibility.",
+          "Achieved Google Lighthouse audit scores: Performance 99/100, SEO 100/100, Best Practices 100/100, with a 0.5s First Contentful Paint (FCP).",
+          "Collaborated directly with school leadership and successfully deployed the system to production on schedule within 2 months."
+        ],
+        "techStack": [
+          "Next.js (App Router)",
+          "React",
+          "TypeScript",
+          "SSR / SSG / ISR",
+          "Technical SEO",
+          "Open Graph",
+          "Tailwind CSS",
+          "shadcn/ui",
+          "Zod"
+        ]
+      }
+    ],
+    "projects": [
+      {
+        "id": "proj-1",
+        "title": "HouseING Property Portal (Angular Real Estate Platform)",
+        "role": "Frontend Engineer",
+        "link": "angular.ikhwann.my.id",
+        "period": "2026",
+        "description": "Engineered a modern property search and mortgage simulation platform using Angular Standalone Components and strict TypeScript. Leveraged Angular Signals (signal, computed, effect) for granular reactive state management, enabling real-time banking annuity mortgage calculation, dynamic multi-attribute property filtering, interactive 2D architectural blueprint floorplan exploration (with multi-floor switcher and compass orientation) at 60 FPS, and clean domain-driven module structuring.",
+        "techStack": [
+          "Angular",
+          "TypeScript",
+          "Angular Signals",
+          "RxJS",
+          "Tailwind CSS v4",
+          "Standalone Components",
+          "Clean Domain Architecture"
+        ]
+      },
+      {
+        "id": "proj-2",
+        "title": "Tropical Cyclone LSTM Forecasting Platform",
+        "role": "Frontend & Research Engineer",
+        "link": "prediksi.ikhwann.my.id",
+        "period": "2026",
+        "description": "Tropical cyclone trajectory prediction web application based on undergraduate research using Deep Learning LSTM. Evaluated 12 controlled experimental scenarios across 3 basins with 4 timestep variations, proving that window 8-16 achieves the highest accuracy with an average Haversine error of 14.2 km and R² of 0.999. The LSTM model is converted to ONNX Runtime for serverless in-browser inference, combined with an Astro Island Architecture frontend for Zero-JS default delivery on Edge CDN and interactive map visualizations for coastal disaster risk mitigation.",
+        "techStack": [
+          "Astro",
+          "TypeScript",
+          "ONNX Runtime",
+          "LSTM Time Series",
+          "Island Architecture",
+          "Geospatial UI",
+          "Edge CDN",
+          "Tailwind CSS"
+        ]
+      }
+    ],
+    "education": [
+      {
+        "id": "edu-1",
+        "degree": "Bachelor of Informatics (B.S. in Computer Science)",
+        "institution": "Universitas Putra Indonesia “YPTK” Padang",
+        "period": "Informatics Engineering • Sep 2022 - Oct 2026"
+      }
+    ],
+    "certificationsByIssuer": {
+      "Huawei ICT Academy": [
+        {
+          "id": "cert-1",
+          "title": "Artificial Intelligence Fundamentals",
+          "issueDate": "2026"
+        },
+        {
+          "id": "cert-2",
+          "title": "Artificial Intelligence: Principles and Applications",
+          "issueDate": "2026"
+        },
+        {
+          "id": "cert-3",
+          "title": "HCIP-Datacom Core Technology V1.0 Course",
+          "issueDate": "2026"
+        }
+      ],
+      "HackerRank": [
+        {
+          "id": "cert-5",
+          "title": "Problem Solving (Intermediate)",
+          "issueDate": "Jun 2025"
+        },
+        {
+          "id": "cert-4",
+          "title": "Problem Solving (Basic)",
+          "issueDate": "May 2025"
+        }
+      ]
+    },
+    "skills": [
+      {
+        "category": "Core Frameworks & Language",
+        "items": "Next.js (App Router), Angular, React.js, TypeScript, JavaScript (ES6+), HTML5 Semantic"
+      },
+      {
+        "category": "Rendering, SEO & Web Performance",
+        "items": "Server-Side Rendering (SSR), Static Site Generation (SSG), ISR, Edge CDN Caching, Technical SEO, Dynamic Open Graph, Structured Data (JSON-LD), Core Web Vitals"
+      },
+      {
+        "category": "Reactive State & Data Handling",
+        "items": "Angular Signals (signal/computed/effect), RxJS Observables, React State & Context, TanStack Query, Zod Schema Validation"
+      },
+      {
+        "category": "Modern Styling & Build Tooling",
+        "items": "Tailwind CSS, shadcn/ui, Astro (Islands Architecture), Vite, Turborepo, Git, Vercel, Docker"
+      }
+    ]
+  }
+}

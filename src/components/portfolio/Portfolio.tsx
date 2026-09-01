@@ -1,10 +1,14 @@
 import { ArrowUpDown, Award, Grid, Layers, Search, X } from "lucide-react";
 import React, { useMemo, useRef, useState } from "react";
-import { certificationsData } from "../data/portfolioData";
-import { CertificationItem, ProjectItem } from "../types";
-import { CertificateCard } from "./CertificateCard";
-import { DetailModal } from "./DetailModal";
-import { ProjectCard } from "./ProjectCard";
+import portfolioData from "../../data/portfolio.json";
+import { CertificationItem, ProjectItem } from "../../types";
+import { Detail } from "../modal/Detail";
+import { Certificate } from "./Certificate";
+import { Project } from "./Project";
+
+const { certifications: certificationsData } = portfolioData as {
+  certifications: CertificationItem[];
+};
 
 interface PortfolioSectionProps {
   projects: ProjectItem[];
@@ -45,7 +49,7 @@ const isListedCategory = (category: string) =>
       filterCategory === category,
   );
 
-export const PortfolioSection: React.FC<PortfolioSectionProps> = ({
+export const Portfolio: React.FC<PortfolioSectionProps> = ({
   projects,
   onOpenMarkdown,
   onOpenCreateModal,
@@ -527,7 +531,7 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({
 
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {filteredProjects.map((project) => (
-                  <ProjectCard
+                  <Project
                     key={project.id}
                     project={project}
                     onOpenDetail={handleOpenProjectDetail}
@@ -557,7 +561,7 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {filteredCerts.map((cert) => (
-                  <CertificateCard
+                  <Certificate
                     key={cert.id}
                     certificate={cert}
                     onOpenDetail={handleOpenCertDetail}
@@ -570,7 +574,7 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({
       )}
 
       {/* Item Detail Pop-up Modal */}
-      <DetailModal
+      <Detail
         isOpen={isDetailModalOpen}
         onClose={() => setIsDetailModalOpen(false)}
         project={selectedProjectForDetail}

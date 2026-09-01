@@ -9,9 +9,10 @@ import {
   UserRound,
 } from "lucide-react";
 import React from "react";
+import portfolioData from "../../data/portfolio.json";
+import { PageId } from "../../types";
 
-import { userProfile } from "../data/portfolioData";
-import { PageId } from "../types";
+const { userProfile } = portfolioData;
 
 interface NavbarProps {
   activePage: PageId;

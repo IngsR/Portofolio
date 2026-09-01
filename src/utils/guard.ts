@@ -28,7 +28,6 @@ export const isProjectItem = (value: unknown): value is ProjectItem => {
     typeof value.title === "string" &&
     typeof value.shortDescription === "string" &&
     typeof value.category === "string" &&
-    isContactCategory(value.category) &&
     isStringArray(value.tags) &&
     typeof value.image === "string" &&
     typeof value.publishedDate === "string" &&

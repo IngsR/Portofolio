@@ -8,7 +8,7 @@ import {
   TextRun,
 } from "docx";
 import { jsPDF } from "jspdf";
-import { CVContent, CVLanguage } from "../data/cvData";
+import { CVContent, CVLanguage } from "../types";
 
 /**
  * Downloads a Blob as a file with the given filename
@@ -122,14 +122,14 @@ export async function exportCVToDocx(
             ],
           }),
 
-          // ── SECTION: WORK EXPERIENCE ──
+          // ── 1. SECTION: INTERNSHIP EXPERIENCE ──
           new Paragraph({
             heading: HeadingLevel.HEADING_2,
             border: borderBottom,
             spacing: { before: 180, after: 120 },
             children: [
               new TextRun({
-                text: cv.labels.experience,
+                text: cv.labels.internship,
                 bold: true,
                 size: 22,
                 color: "020617",
@@ -137,7 +137,7 @@ export async function exportCVToDocx(
             ],
           }),
 
-          ...cv.experience.flatMap((exp) => [
+          ...cv.internship.flatMap((exp) => [
             // Role & Period
             new Paragraph({
               spacing: { before: 100, after: 40 },
@@ -149,7 +149,7 @@ export async function exportCVToDocx(
                   color: "0f172a",
                 }),
                 new TextRun({
-                  text: `  —  ${exp.period}`,
+                  text: ` (${exp.period})`,
                   italics: true,
                   size: 19,
                   color: "475569",
@@ -158,7 +158,7 @@ export async function exportCVToDocx(
             }),
             // Company & Location
             new Paragraph({
-              spacing: { after: 60 },
+              spacing: { after: 40 },
               children: [
                 new TextRun({
                   text: `${exp.company} • ${exp.location} (${exp.type})`,
@@ -168,6 +168,26 @@ export async function exportCVToDocx(
                 }),
               ],
             }),
+            // Live Demo Link if present
+            ...(exp.link
+              ? [
+                  new Paragraph({
+                    spacing: { after: 40 },
+                    children: [
+                      new TextRun({
+                        text: `${cv.labels.liveDemoLabel}: `,
+                        bold: true,
+                        size: 19,
+                      }),
+                      new TextRun({
+                        text: exp.link,
+                        size: 19,
+                        color: "1d4ed8",
+                      }),
+                    ],
+                  }),
+                ]
+              : []),
             // Achievements as numbered list
             ...exp.achievements.map(
               (ach, i) =>
@@ -202,7 +222,93 @@ export async function exportCVToDocx(
             }),
           ]),
 
-          // ── SECTION: EDUCATION ──
+          // ── 2. SECTION: FEATURED PORTFOLIO PROJECTS ──
+          new Paragraph({
+            heading: HeadingLevel.HEADING_2,
+            border: borderBottom,
+            spacing: { before: 180, after: 120 },
+            children: [
+              new TextRun({
+                text: cv.labels.projects,
+                bold: true,
+                size: 22,
+                color: "020617",
+              }),
+            ],
+          }),
+
+          ...cv.projects.flatMap((proj) => [
+            // Title & Period
+            new Paragraph({
+              spacing: { before: 100, after: 40 },
+              children: [
+                new TextRun({
+                  text: `${proj.title} (${proj.role})`,
+                  bold: true,
+                  size: 21,
+                  color: "0f172a",
+                }),
+                ...(proj.period
+                  ? [
+                      new TextRun({
+                        text: ` (${proj.period})`,
+                        italics: true,
+                        size: 19,
+                        color: "475569",
+                      }),
+                    ]
+                  : []),
+              ],
+            }),
+            // Live Demo Link
+            ...(proj.link
+              ? [
+                  new Paragraph({
+                    spacing: { after: 40 },
+                    children: [
+                      new TextRun({
+                        text: `${cv.labels.liveDemoLabel}: `,
+                        bold: true,
+                        size: 19,
+                      }),
+                      new TextRun({
+                        text: proj.link,
+                        size: 19,
+                        color: "1d4ed8",
+                      }),
+                    ],
+                  }),
+                ]
+              : []),
+            // Description
+            new Paragraph({
+              spacing: { after: 60 },
+              children: [
+                new TextRun({
+                  text: proj.description,
+                  size: 19,
+                }),
+              ],
+            }),
+            // Tech stack line
+            new Paragraph({
+              spacing: { before: 40, after: 140 },
+              children: [
+                new TextRun({
+                  text: `${cv.labels.techStackLabel}: `,
+                  bold: true,
+                  size: 19,
+                }),
+                new TextRun({
+                  text: proj.techStack.join(", "),
+                  size: 19,
+                  color: "334155",
+                }),
+              ],
+            }),
+          ]),
+
+          // ── 3. SECTION: EDUCATION ──
           new Paragraph({
             heading: HeadingLevel.HEADING_2,
             border: borderBottom,
@@ -252,7 +358,7 @@ export async function exportCVToDocx(
             }),
           ]),
 
-          // ── SECTION: CERTIFICATIONS ──
+          // ── 4. SECTION: CERTIFICATIONS ──
           new Paragraph({
             heading: HeadingLevel.HEADING_2,
             border: borderBottom,
@@ -299,7 +405,7 @@ export async function exportCVToDocx(
             ]
           ),
 
-          // ── SECTION: TECHNICAL SKILLS ──
+          // ── 5. SECTION: TECHNICAL SKILLS ──
           new Paragraph({
             heading: HeadingLevel.HEADING_2,
             border: borderBottom,
@@ -357,7 +463,6 @@ export async function exportCVToPdf(
     format: "a4",
   });
 
-  const pageWidth = 210;
   const leftMargin = 12;
   const rightMargin = 198;
   const contentWidth = rightMargin - leftMargin; // 186mm
@@ -426,10 +531,10 @@ export async function exportCVToPdf(
   doc.line(leftMargin, y, rightMargin, y);
   y += 2.5;
 
-  // ── SECTION: WORK EXPERIENCE ──
-  renderSectionHeading(cv.labels.experience);
+  // ── 1. SECTION: INTERNSHIP EXPERIENCE ──
+  renderSectionHeading(cv.labels.internship);
 
-  for (const exp of cv.experience) {
+  for (const exp of cv.internship) {
     checkPage(12);
 
     // Role & Period
@@ -450,6 +555,22 @@ export async function exportCVToPdf(
     doc.setTextColor(51, 65, 85);
     doc.text(`${exp.company} • ${exp.location} (${exp.type})`, leftMargin, y);
     y += 3.4;
+
+    // Live link if present
+    if (exp.link) {
+      doc.setFont("helvetica", "bold");
+      doc.setFontSize(7.8);
+      doc.setTextColor(15, 23, 42);
+      const linkPrefix = `${cv.labels.liveDemoLabel}: `;
+      doc.text(linkPrefix, leftMargin, y);
+      const linkPrefixWidth = doc.getTextWidth(linkPrefix);
+
+      doc.setFont("helvetica", "normal");
+      doc.setFontSize(7.8);
+      doc.setTextColor(29, 78, 216);
+      doc.text(exp.link, leftMargin + linkPrefixWidth, y);
+      y += 3.4;
+    }
 
     // Achievements (Numbered List)
     exp.achievements.forEach((ach, i) => {
@@ -487,7 +608,71 @@ export async function exportCVToPdf(
     y += stackLines.length * 3.3 + 2;
   }
 
-  // ── SECTION: EDUCATION ──
+  // ── 2. SECTION: FEATURED PORTFOLIO PROJECTS ──
+  renderSectionHeading(cv.labels.projects);
+
+  for (const proj of cv.projects) {
+    checkPage(12);
+
+    // Title, Role & Period
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(8.8);
+    doc.setTextColor(15, 23, 42);
+    doc.text(`${proj.title} (${proj.role})`, leftMargin, y);
+
+    if (proj.period) {
+      doc.setFont("helvetica", "bold");
+      doc.setFontSize(7.8);
+      doc.setTextColor(71, 85, 105);
+      doc.text(proj.period, rightMargin, y, { align: "right" });
+    }
+    y += 3.5;
+
+    // Link
+    if (proj.link) {
+      doc.setFont("helvetica", "bold");
+      doc.setFontSize(7.8);
+      doc.setTextColor(15, 23, 42);
+      const linkPrefix = `${cv.labels.liveDemoLabel}: `;
+      doc.text(linkPrefix, leftMargin, y);
+      const linkPrefixWidth = doc.getTextWidth(linkPrefix);
+
+      doc.setFont("helvetica", "normal");
+      doc.setFontSize(7.8);
+      doc.setTextColor(29, 78, 216);
+      doc.text(proj.link, leftMargin + linkPrefixWidth, y);
+      y += 3.4;
+    }
+
+    // Description
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(7.8);
+    doc.setTextColor(15, 23, 42);
+    const descLines = doc.splitTextToSize(proj.description, contentWidth);
+    doc.text(descLines, leftMargin, y);
+    y += descLines.length * 3.3 + 0.8;
+
+    // Tech Stack
+    checkPage(5);
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(7.8);
+    doc.setTextColor(15, 23, 42);
+    const techPrefix = `${cv.labels.techStackLabel}: `;
+    doc.text(techPrefix, leftMargin, y);
+    const prefixWidth = doc.getTextWidth(techPrefix);
+
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(7.8);
+    doc.setTextColor(51, 65, 85);
+    const stackLines = doc.splitTextToSize(
+      proj.techStack.join(", "),
+      contentWidth - prefixWidth
+    );
+    doc.text(stackLines, leftMargin + prefixWidth, y);
+    y += stackLines.length * 3.3 + 2;
+  }
+
+  // ── 3. SECTION: EDUCATION ──
   renderSectionHeading(cv.labels.education);
 
   for (const edu of cv.education) {
@@ -510,7 +695,7 @@ export async function exportCVToPdf(
     y += 3.5;
   }
 
-  // ── SECTION: CERTIFICATIONS ──
+  // ── 4. SECTION: CERTIFICATIONS ──
   renderSectionHeading(cv.labels.certifications);
 
   for (const [issuer, certs] of Object.entries(cv.certificationsByIssuer)) {
@@ -537,7 +722,7 @@ export async function exportCVToPdf(
     y += 0.8;
   }
 
-  // ── SECTION: TECHNICAL SKILLS ──
+  // ── 5. SECTION: TECHNICAL SKILLS ──
   renderSectionHeading(cv.labels.technicalSkills);
 
   for (const skill of cv.skills) {

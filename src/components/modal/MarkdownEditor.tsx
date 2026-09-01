@@ -2,7 +2,7 @@ import { Code, Download, Eye, Plus, X } from "lucide-react";
 import React, { useState } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import { ProjectCategory, ProjectItem } from "../types";
+import { ProjectCategory, ProjectItem } from "../../types";
 
 interface MarkdownEditorModalProps {
   isOpen: boolean;
@@ -29,7 +29,7 @@ export function getProjectData(slug: string) {
 \`\`\`
 `;
 
-export const MarkdownEditorModal: React.FC<MarkdownEditorModalProps> = ({
+export const MarkdownEditor: React.FC<MarkdownEditorModalProps> = ({
   isOpen,
   onClose,
   onSaveProject,

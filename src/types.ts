@@ -38,8 +38,8 @@ export interface ExperienceItem {
   company: string;
   location: string;
   period: string;
-  type: "Full-time" | "Freelance" | "Contract" | "Remote";
-  description: string;
+  type: "Full-time" | "Freelance" | "Contract" | "Remote" | string;
+  description?: string;
   achievements: string[];
   techStack: string[];
 }
@@ -50,7 +50,7 @@ export interface EducationItem {
   institution: string;
   period: string;
   gpa?: string;
-  details: string;
+  details?: string;
 }
 
 export interface CertificationItem {
@@ -105,7 +105,8 @@ export interface EngineeringMindsetSkill {
     | "Terminal"
     | "Binary"
     | "Cpu"
-    | "Workflow";
+    | "Workflow"
+    | string;
 }
 
 export interface UserProfile {
@@ -129,4 +130,97 @@ export interface UserProfile {
     codeCommits: string;
   };
   socials: SocialLink[];
+}
+
+export interface FaqItem {
+  question: string;
+  answer: string;
+}
+
+export type CVLanguage = "id" | "en";
+
+export interface CVExperienceItem {
+  id: string;
+  role: string;
+  company: string;
+  link?: string;
+  location: string;
+  period: string;
+  type: string;
+  achievements: string[];
+  techStack: string[];
+}
+
+export interface CVProjectItem {
+  id: string;
+  title: string;
+  role: string;
+  link?: string;
+  period?: string;
+  description: string;
+  techStack: string[];
+}
+
+export interface CVContent {
+  header: {
+    name: string;
+    title: string;
+    email: string;
+    phone: string;
+    github: string;
+    linkedin: string;
+    website: string;
+    location: string;
+    birthInfo: string;
+  };
+  summary: string;
+  labels: {
+    modalTitle: string;
+    modalSubtitle: string;
+    printButton: string;
+    downloadPdf: string;
+    downloadDocx: string;
+    downloading: string;
+    internship: string;
+    projects: string;
+    education: string;
+    certifications: string;
+    technicalSkills: string;
+    techStackLabel: string;
+    liveDemoLabel: string;
+    langId: string;
+    langEn: string;
+  };
+  internship: CVExperienceItem[];
+  projects: CVProjectItem[];
+  education: {
+    id: string;
+    degree: string;
+    institution: string;
+    period: string;
+    details?: string;
+  }[];
+  certificationsByIssuer: Record<
+    string,
+    {
+      id: string;
+      title: string;
+      issueDate: string;
+    }[]
+  >;
+  skills: {
+    category: string;
+    items: string;
+  }[];
+}
+
+export interface PortfolioData {
+  userProfile: UserProfile;
+  projects: ProjectItem[];
+  skillCategories: SkillCategory[];
+  experience: ExperienceItem[];
+  education: EducationItem[];
+  certifications: CertificationItem[];
+  engineeringMindsetSkills: EngineeringMindsetSkill[];
+  contactFaq: FaqItem[];
 }

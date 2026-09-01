@@ -13,20 +13,32 @@ import {
   MapPin,
   MessageCircle,
   Server,
-  Sparkles,
   Terminal,
 } from "lucide-react";
 import React, { useState } from "react";
+import portfolioData from "../data/portfolio.json";
 import {
-  certificationsData,
-  educationData,
-  skillCategories,
+  CertificationItem,
+  EducationItem,
+  PageId,
+  ProjectItem,
+  SkillCategory,
+} from "../types";
+import { formatDomainName, formatShortDomain } from "../utils/format";
+import { Detail } from "./modal/Detail";
+import { Certificate } from "./portfolio/Certificate";
+
+const {
   userProfile,
-} from "../data/portfolioData";
-import { CertificationItem, PageId, ProjectItem } from "../types";
-import { formatDomainName, formatShortDomain } from "../utils/formatters";
-import { CertificateCard } from "./CertificateCard";
-import { DetailModal } from "./DetailModal";
+  education: educationData,
+  certifications: certificationsData,
+  skillCategories,
+} = portfolioData as {
+  userProfile: typeof portfolioData.userProfile;
+  education: EducationItem[];
+  certifications: CertificationItem[];
+  skillCategories: SkillCategory[];
+};
 
 interface HeroSectionProps {
   setActivePage: (page: PageId) => void;
@@ -35,7 +47,7 @@ interface HeroSectionProps {
   onOpenCV: () => void;
 }
 
-export const HeroSection: React.FC<HeroSectionProps> = ({
+export const Hero: React.FC<HeroSectionProps> = ({
   setActivePage,
   featuredProjects,
   onOpenProjectMarkdown,
@@ -76,9 +88,9 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
 
   // 3 Sertifikat pilihan di Home (Problem Solving Intermediate HackerRank, AI Principles Huawei, HCIP Datacom Huawei)
   const homeCertificates: CertificationItem[] = [
-    certificationsData.find((c) => c.id === "cert-5") || certificationsData[4],
-    certificationsData.find((c) => c.id === "cert-2") || certificationsData[1],
-    certificationsData.find((c) => c.id === "cert-3") || certificationsData[2],
+    certificationsData.find((c) => c.id === "cert-5") || certificationsData[4]!,
+    certificationsData.find((c) => c.id === "cert-2") || certificationsData[1]!,
+    certificationsData.find((c) => c.id === "cert-3") || certificationsData[2]!,
   ].filter(Boolean) as CertificationItem[];
 
   // Pendidikan Sarjana S1
@@ -552,7 +564,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {homeCertificates.map((cert) => (
-            <CertificateCard
+            <Certificate
               key={cert.id}
               certificate={cert}
               onOpenDetail={handleOpenCertDetail}
@@ -740,7 +752,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
       </section>
 
       {/* Pop up Detail Modal (Project / Certificate) */}
-      <DetailModal
+      <Detail
         isOpen={isDetailOpen}
         onClose={() => setIsDetailOpen(false)}
         project={selectedProjectForDetail}

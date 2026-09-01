@@ -1,6 +1,7 @@
 import {
   Check,
   Download,
+  ExternalLink,
   FileDown,
   FileText,
   Github,
@@ -15,15 +16,18 @@ import {
   X,
 } from "lucide-react";
 import React, { useEffect, useState } from "react";
-import { CVLanguage, cvData } from "../data/cvData";
-import { exportCVToDocx, exportCVToPdf } from "../utils/cvExporter";
+import cvDataJson from "../../data/cv.json";
+import { CVContent, CVLanguage } from "../../types";
+import { exportCVToDocx, exportCVToPdf } from "../../utils/cv";
+
+const cvData = cvDataJson as Record<CVLanguage, CVContent>;
 
 interface CVModalProps {
   isOpen: boolean;
   onClose: () => void;
 }
 
-export const CVModal: React.FC<CVModalProps> = ({ isOpen, onClose }) => {
+export const Cv: React.FC<CVModalProps> = ({ isOpen, onClose }) => {
   const [lang, setLang] = useState<CVLanguage>("id");
   const [isExportingPdf, setIsExportingPdf] = useState(false);
   const [isExportingDocx, setIsExportingDocx] = useState(false);
@@ -47,9 +51,7 @@ export const CVModal: React.FC<CVModalProps> = ({ isOpen, onClose }) => {
     }
   }, [successToast]);
 
-  if (!isOpen) return null;
-
-  const currentCV = cvData[lang];
+  const currentCV: CVContent = cvData[lang] || cvData.id;
 
   const handlePrint = () => {
     window.print();
@@ -86,6 +88,8 @@ export const CVModal: React.FC<CVModalProps> = ({ isOpen, onClose }) => {
       setIsExportingPdf(false);
     }
   };
+
+  if (!isOpen) return null;
 
   return (
     <div className="cv-modal-backdrop fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-6 bg-slate-950/80 backdrop-blur-md animate-in fade-in duration-150 print:static print:p-0 print:m-0 print:bg-transparent dark:print:bg-transparent print:backdrop-blur-none">
@@ -281,14 +285,14 @@ export const CVModal: React.FC<CVModalProps> = ({ isOpen, onClose }) => {
             {currentCV.summary}
           </p>
 
-          {/* ── EXPERIENCE ── */}
+          {/* ── 1. PENGALAMAN MAGANG (INTERNSHIP EXPERIENCE) ── */}
           <div className="space-y-2.5 print:space-y-1.5 cv-section">
             <h2 className="text-sm print:text-xs font-extrabold text-slate-950 uppercase tracking-wider border-b-2 border-slate-900 pb-0.5">
-              {currentCV.labels.experience}
+              {currentCV.labels.internship}
             </h2>
 
             <div className="space-y-3 print:space-y-2">
-              {currentCV.experience.map((exp) => (
+              {currentCV.internship.map((exp) => (
                 <div key={exp.id} className="space-y-0.5 text-sm print:text-[11px]">
                   <div className="flex items-baseline justify-between">
                     <strong
@@ -304,6 +308,22 @@ export const CVModal: React.FC<CVModalProps> = ({ isOpen, onClose }) => {
                   <div className="text-slate-950 font-medium text-xs print:text-[10.5px]">
                     {exp.company} &bull; {exp.location} ({exp.type})
                   </div>
+                  {exp.link && (
+                    <div className="text-xs print:text-[10px] font-medium text-slate-800 flex items-center gap-1">
+                      <strong className="font-bold text-slate-950">
+                        {currentCV.labels.liveDemoLabel}:
+                      </strong>
+                      <a
+                        href={`https://${exp.link}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-blue-700 hover:underline font-mono inline-flex items-center gap-0.5"
+                      >
+                        <span>{exp.link}</span>
+                        <ExternalLink className="w-3 h-3 print:hidden" />
+                      </a>
+                    </div>
+                  )}
                   <ol className="space-y-0.5 text-slate-950 pt-0.5 text-xs print:text-[10.5px]">
                     {exp.achievements.map((ach, i) => (
                       <li
@@ -331,7 +351,70 @@ export const CVModal: React.FC<CVModalProps> = ({ isOpen, onClose }) => {
             </div>
           </div>
 
-          {/* ── EDUCATION ── */}
+          {/* ── 2. PORTOFOLIO PROYEK UNGGULAN (FEATURED PORTFOLIO PROJECTS) ── */}
+          <div className="space-y-2.5 print:space-y-1.5 cv-section">
+            <h2 className="text-sm print:text-xs font-extrabold text-slate-950 uppercase tracking-wider border-b-2 border-slate-900 pb-0.5">
+              {currentCV.labels.projects}
+            </h2>
+
+            <div className="space-y-3 print:space-y-2">
+              {currentCV.projects.map((proj) => (
+                <div key={proj.id} className="space-y-1 text-sm print:text-[11px]">
+                  <div className="flex items-baseline justify-between gap-2">
+                    <div className="flex items-center gap-2 flex-wrap">
+                      <strong
+                        style={{ fontWeight: 800 }}
+                        className="text-base print:text-xs font-extrabold text-slate-950"
+                      >
+                        {proj.title}
+                      </strong>
+                      <span className="text-xs font-semibold text-slate-700">
+                        ({proj.role})
+                      </span>
+                    </div>
+                    {proj.period && (
+                      <span className="text-slate-950 font-semibold shrink-0 text-sm print:text-[10.5px]">
+                        {proj.period}
+                      </span>
+                    )}
+                  </div>
+
+                  {proj.link && (
+                    <div className="text-xs print:text-[10px] font-medium text-slate-800 flex items-center gap-1">
+                      <strong className="font-bold text-slate-950">
+                        {currentCV.labels.liveDemoLabel}:
+                      </strong>
+                      <a
+                        href={`https://${proj.link}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-blue-700 hover:underline font-mono inline-flex items-center gap-0.5"
+                      >
+                        <span>{proj.link}</span>
+                        <ExternalLink className="w-3 h-3 print:hidden" />
+                      </a>
+                    </div>
+                  )}
+
+                  <p className="text-xs print:text-[10.5px] text-slate-950 leading-relaxed font-normal">
+                    {proj.description}
+                  </p>
+
+                  <div className="flex flex-wrap gap-1 pt-0.5 text-xs print:text-[10px] text-slate-950">
+                    <strong
+                      style={{ fontWeight: 800 }}
+                      className="text-slate-950 font-extrabold"
+                    >
+                      {currentCV.labels.techStackLabel}:
+                    </strong>{" "}
+                    <span>{proj.techStack.join(", ")}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* ── 3. EDUCATION ── */}
           <div className="space-y-1.5 print:space-y-1 cv-section">
             <h2 className="text-sm print:text-xs font-extrabold text-slate-950 uppercase tracking-wider border-b-2 border-slate-900 pb-0.5">
               {currentCV.labels.education}
@@ -354,7 +437,7 @@ export const CVModal: React.FC<CVModalProps> = ({ isOpen, onClose }) => {
             ))}
           </div>
 
-          {/* ── CERTIFICATIONS & CREDENTIALS ── */}
+          {/* ── 4. CERTIFICATIONS & CREDENTIALS ── */}
           <div className="space-y-1.5 print:space-y-1 cv-section">
             <h2 className="text-sm print:text-xs font-extrabold text-slate-950 uppercase tracking-wider border-b-2 border-slate-900 pb-0.5">
               {currentCV.labels.certifications}
@@ -385,7 +468,7 @@ export const CVModal: React.FC<CVModalProps> = ({ isOpen, onClose }) => {
             </div>
           </div>
 
-          {/* ── TECHNICAL SKILLS ── */}
+          {/* ── 5. TECHNICAL SKILLS (FRONTEND FOCUS) ── */}
           <div className="space-y-1.5 print:space-y-1 text-sm print:text-[10.5px] cv-section">
             <h2 className="text-sm print:text-xs font-extrabold text-slate-950 uppercase tracking-wider border-b-2 border-slate-900 pb-0.5">
               {currentCV.labels.technicalSkills}

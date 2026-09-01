@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
-import { ProjectItem } from '../types';
+import { ProjectItem } from '../../types';
 import { 
   X, 
   Copy, 
@@ -19,7 +19,7 @@ interface MarkdownViewerModalProps {
   onClose: () => void;
 }
 
-export const MarkdownViewerModal: React.FC<MarkdownViewerModalProps> = ({
+export const MarkdownViewer: React.FC<MarkdownViewerModalProps> = ({
   project,
   onClose,
 }) => {

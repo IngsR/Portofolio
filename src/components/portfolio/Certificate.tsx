@@ -7,14 +7,14 @@ import {
   ShieldCheck,
 } from "lucide-react";
 import React from "react";
-import { CertificationItem } from "../types";
+import { CertificationItem } from "../../types";
 
 interface CertificateCardProps {
   certificate: CertificationItem;
   onOpenDetail: (cert: CertificationItem) => void;
 }
 
-export const CertificateCard: React.FC<CertificateCardProps> = ({
+export const Certificate: React.FC<CertificateCardProps> = ({
   certificate,
   onOpenDetail,
 }) => {

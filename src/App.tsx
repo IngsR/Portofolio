@@ -1,17 +1,19 @@
 import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useState } from "react";
-import { AboutSection } from "./components/AboutSection";
-import { ContactSection } from "./components/ContactSection";
-import { CVModal } from "./components/CVModal";
-import { Footer } from "./components/Footer";
-import { HeroSection } from "./components/HeroSection";
-import { MarkdownEditorModal } from "./components/MarkdownEditorModal";
-import { MarkdownViewerModal } from "./components/MarkdownViewerModal";
-import { Navbar } from "./components/Navbar";
-import { PortfolioSection } from "./components/PortfolioSection";
-import { initialProjects } from "./data/portfolioData";
+import { About } from "./components/about/About";
+import { Contact } from "./components/contact/Contact";
+import { Hero } from "./components/Hero";
+import { Footer } from "./components/layout/Footer";
+import { Navbar } from "./components/layout/Navbar";
+import { Cv } from "./components/modal/Cv";
+import { MarkdownEditor } from "./components/modal/MarkdownEditor";
+import { MarkdownViewer } from "./components/modal/MarkdownViewer";
+import { Portfolio } from "./components/portfolio/Portfolio";
+import portfolioDataJson from "./data/portfolio.json";
 import { PageId, ProjectItem } from "./types";
-import { isProjectItem } from "./utils/guards";
+import { isProjectItem } from "./utils/guard";
+
+const initialProjects = portfolioDataJson.projects as ProjectItem[];
 
 export default function App({
   initialPage = "home",
@@ -114,7 +116,7 @@ export default function App({
           >
             {/* 1. Beranda (Home) */}
             {activePage === "home" && (
-              <HeroSection
+              <Hero
                 setActivePage={setActivePage}
                 featuredProjects={featuredProjects}
                 onOpenProjectMarkdown={(proj) =>
@@ -126,7 +128,7 @@ export default function App({
 
             {/* 2. Portofolio (Portfolio & Markdown Case Studies) */}
             {activePage === "portfolio" && (
-              <PortfolioSection
+              <Portfolio
                 projects={projects}
                 onOpenMarkdown={(proj) => setSelectedProjectForMarkdown(proj)}
                 onOpenCreateModal={() => setIsCreateModalOpen(true)}
@@ -135,11 +137,11 @@ export default function App({
 
             {/* 3. Tentang Saya (About Me) */}
             {activePage === "about" && (
-              <AboutSection onOpenCV={() => setIsCVModalOpen(true)} />
+              <About onOpenCV={() => setIsCVModalOpen(true)} />
             )}
 
             {/* 4. Kontak (Contact Form & Details) */}
-            {activePage === "contact" && <ContactSection />}
+            {activePage === "contact" && <Contact />}
           </motion.div>
         </AnimatePresence>
       </main>
@@ -153,20 +155,20 @@ export default function App({
       </div>
 
       {/* Markdown Case Study Viewer Modal */}
-      <MarkdownViewerModal
+      <MarkdownViewer
         project={selectedProjectForMarkdown}
         onClose={() => setSelectedProjectForMarkdown(null)}
       />
 
       {/* Markdown Editor & Project Authoring Modal */}
-      <MarkdownEditorModal
+      <MarkdownEditor
         isOpen={isCreateModalOpen}
         onClose={() => setIsCreateModalOpen(false)}
         onSaveProject={handleSaveProject}
       />
 
       {/* Printable / Preview CV Modal */}
-      <CVModal isOpen={isCVModalOpen} onClose={() => setIsCVModalOpen(false)} />
+      <Cv isOpen={isCVModalOpen} onClose={() => setIsCVModalOpen(false)} />
     </div>
   );
 }

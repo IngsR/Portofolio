@@ -16,11 +16,13 @@ import {
   Send,
 } from "lucide-react";
 import React, { useEffect, useState } from "react";
-import { contactFaq, userProfile } from "../data/portfolioData";
-import { ContactMessage } from "../types";
-import { isContactCategory, isContactMessage } from "../utils/guards";
+import portfolioData from "../../data/portfolio.json";
+import { ContactMessage } from "../../types";
+import { isContactCategory, isContactMessage } from "../../utils/guard";
 
-export const ContactSection: React.FC = () => {
+const { userProfile, contactFaq } = portfolioData;
+
+export const Contact: React.FC = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [subject, setSubject] = useState("");

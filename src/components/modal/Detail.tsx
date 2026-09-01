@@ -12,8 +12,8 @@ import {
 } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import React, { useEffect } from "react";
-import { CertificationItem, ProjectItem } from "../types";
-import { formatDomainName } from "../utils/formatters";
+import { CertificationItem, ProjectItem } from "../../types";
+import { formatDomainName } from "../../utils/format";
 
 interface DetailModalProps {
   isOpen: boolean;
@@ -23,7 +23,7 @@ interface DetailModalProps {
   onOpenMarkdown?: (project: ProjectItem) => void;
 }
 
-export const DetailModal: React.FC<DetailModalProps> = ({
+export const Detail: React.FC<DetailModalProps> = ({
   isOpen,
   onClose,
   project,

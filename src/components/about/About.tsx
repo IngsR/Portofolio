@@ -13,23 +13,34 @@ import {
   Terminal,
 } from "lucide-react";
 import React, { useState } from "react";
-
+import portfolioData from "../../data/portfolio.json";
 import {
-  certificationsData,
-  educationData,
-  experienceData,
-  skillCategories,
-  userProfile,
-} from "../data/portfolioData";
+  CertificationItem,
+  EducationItem,
+  ExperienceItem,
+  SkillCategory,
+} from "../../types";
+import { Detail } from "../modal/Detail";
 
-import { CertificationItem } from "../types";
-import { DetailModal } from "./DetailModal";
+const {
+  userProfile,
+  experience: experienceData,
+  education: educationData,
+  certifications: certificationsData,
+  skillCategories,
+} = portfolioData as {
+  userProfile: typeof portfolioData.userProfile;
+  experience: ExperienceItem[];
+  education: EducationItem[];
+  certifications: CertificationItem[];
+  skillCategories: SkillCategory[];
+};
 
 interface AboutSectionProps {
   onOpenCV: () => void;
 }
 
-export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenCV }) => {
+export const About: React.FC<AboutSectionProps> = ({ onOpenCV }) => {
   const [activeTab, setActiveTab] = useState<
     "experience" | "skills" | "education"
   >("experience");
@@ -703,7 +714,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenCV }) => {
       {/* =====================================================
           CERTIFICATE MODAL
       ====================================================== */}
-      <DetailModal
+      <Detail
         isOpen={isCertModalOpen}
         onClose={() => setIsCertModalOpen(false)}
         certificate={selectedCertForModal}

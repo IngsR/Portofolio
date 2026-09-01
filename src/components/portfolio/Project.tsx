@@ -1,7 +1,7 @@
 import { ArrowUpRight, Calendar, FileText, Github } from "lucide-react";
 import React from "react";
-import { ProjectItem } from "../types";
-import { formatDomainName, formatShortDomain } from "../utils/formatters";
+import { ProjectItem } from "../../types";
+import { formatDomainName, formatShortDomain } from "../../utils/format";
 
 interface ProjectCardProps {
   project: ProjectItem;
@@ -9,7 +9,7 @@ interface ProjectCardProps {
   onOpenMarkdown?: (project: ProjectItem) => void;
 }
 
-export const ProjectCard: React.FC<ProjectCardProps> = ({
+export const Project: React.FC<ProjectCardProps> = ({
   project,
   onOpenDetail,
   onOpenMarkdown,
