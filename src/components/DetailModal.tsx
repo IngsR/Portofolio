@@ -13,6 +13,7 @@ import {
 import { AnimatePresence, motion } from "motion/react";
 import React, { useEffect } from "react";
 import { CertificationItem, ProjectItem } from "../types";
+import { formatDomainName } from "../utils/formatters";
 
 interface DetailModalProps {
   isOpen: boolean;
@@ -339,10 +340,11 @@ export const DetailModal: React.FC<DetailModalProps> = ({
                   href={project.demoUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-5 py-2.5 rounded-xl bg-slate-950 text-white dark:bg-white dark:text-slate-950 hover:bg-slate-800 dark:hover:bg-slate-100 text-xs font-bold flex items-center gap-1.5 transition-all shadow-sm"
+                  className="px-4 sm:px-5 py-2.5 rounded-xl bg-slate-950 text-white dark:bg-white dark:text-slate-950 hover:bg-slate-800 dark:hover:bg-slate-100 text-xs font-bold flex items-center gap-1.5 transition-all shadow-sm max-w-[220px] sm:max-w-none"
+                  title={`Buka ${formatDomainName(project.demoUrl)}`}
                 >
-                  <span>Buka Demo Online</span>
-                  <ExternalLink className="w-4 h-4" />
+                  <span className="truncate font-mono">{formatDomainName(project.demoUrl)}</span>
+                  <ExternalLink className="w-4 h-4 shrink-0" />
                 </a>
               )}
 

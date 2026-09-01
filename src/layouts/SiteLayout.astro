@@ -112,9 +112,23 @@ const breadcrumbSchema = {
     <meta name="description" content={description} />
     <meta name="author" content="Ikhwan Ramadhan" />
     <meta name="generator" content={Astro.generator} />
-    <meta name="theme-color" content="#050505" />
+    <meta name="theme-color" content="#ffffff" />
     <link rel="canonical" href={canonicalUrl} />
     <link rel="icon" href="/logo.ico" />
+
+    <!-- Theme Initializer (Default: Light Mode) -->
+    <script is:inline>
+      try {
+        const theme = localStorage.getItem("portfolio_theme");
+        if (theme === "dark") {
+          document.documentElement.classList.add("dark");
+        } else {
+          document.documentElement.classList.remove("dark");
+        }
+      } catch (e) {
+        document.documentElement.classList.remove("dark");
+      }
+    </script>
 
     <!-- Language Alternate -->
     <link rel="alternate" hreflang="id" href={canonicalUrl} />

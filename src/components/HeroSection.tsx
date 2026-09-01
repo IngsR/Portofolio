@@ -24,6 +24,7 @@ import {
   userProfile,
 } from "../data/portfolioData";
 import { CertificationItem, PageId, ProjectItem } from "../types";
+import { formatDomainName, formatShortDomain } from "../utils/formatters";
 import { CertificateCard } from "./CertificateCard";
 import { DetailModal } from "./DetailModal";
 
@@ -362,15 +363,15 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
               className="group rounded-3xl border border-slate-200/80 dark:border-white/10 bg-white dark:bg-[#0c0c0d] p-5 sm:p-6 flex flex-col justify-between hover:border-slate-400 dark:hover:border-white/30 hover:shadow-lg transition-all shadow-sm cursor-pointer"
             >
               <div className="space-y-4">
-                {/* Category & Live Indicator */}
-                <div className="flex items-center justify-between">
+                {/* Category & Live Domain Indicator */}
+                <div className="flex items-center justify-between gap-2">
                   <span className="text-[11px] font-bold text-slate-700 dark:text-slate-300 px-3 py-1 rounded-full bg-slate-100 dark:bg-white/5 border border-slate-200/60 dark:border-white/5">
                     {project.category}
                   </span>
                   {project.demoUrl && (
-                    <span className="inline-flex items-center gap-1 text-[10px] text-emerald-600 dark:text-emerald-400 font-semibold bg-emerald-50 dark:bg-emerald-950/40 px-2.5 py-1 rounded-full">
-                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
-                      Live Demo
+                    <span className="inline-flex items-center gap-1.5 text-[10px] text-emerald-700 dark:text-emerald-300 font-mono font-medium bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-500/20 px-2.5 py-1 rounded-full max-w-[55%] truncate">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse shrink-0"></span>
+                      <span className="truncate">{formatDomainName(project.demoUrl)}</span>
                     </span>
                   )}
                 </div>
@@ -469,11 +470,11 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                       href={project.demoUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="px-3.5 py-1.5 rounded-full bg-slate-950 text-white dark:bg-white dark:text-slate-950 text-xs font-bold hover:bg-slate-800 dark:hover:bg-slate-100 transition-colors flex items-center gap-1 shadow-sm"
-                      title="Buka Live Demo"
+                      className="px-3 py-1.5 rounded-full bg-slate-950 text-white dark:bg-white dark:text-slate-950 text-xs font-semibold hover:bg-slate-800 dark:hover:bg-slate-100 transition-colors flex items-center gap-1 shadow-sm max-w-[170px] truncate"
+                      title={`Buka ${formatDomainName(project.demoUrl)}`}
                     >
-                      <span>Demo</span>
-                      <ExternalLink className="w-3.5 h-3.5" />
+                      <span className="truncate text-[11px] font-mono">{formatShortDomain(project.demoUrl)}</span>
+                      <ExternalLink className="w-3.5 h-3.5 shrink-0" />
                     </a>
                   )}
                 </div>

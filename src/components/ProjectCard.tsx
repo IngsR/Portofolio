@@ -1,6 +1,7 @@
 import { ArrowUpRight, Calendar, FileText, Github } from "lucide-react";
 import React from "react";
 import { ProjectItem } from "../types";
+import { formatDomainName, formatShortDomain } from "../utils/formatters";
 
 interface ProjectCardProps {
   project: ProjectItem;
@@ -13,6 +14,9 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
   onOpenDetail,
   onOpenMarkdown,
 }) => {
+  const domain = formatDomainName(project.demoUrl);
+  const shortDomain = formatShortDomain(project.demoUrl);
+
   return (
     <div
       className="group flex flex-col bg-white dark:bg-[#0f0f11] border border-slate-200/80 dark:border-white/10 rounded-2xl sm:rounded-3xl overflow-hidden hover:border-slate-400 dark:hover:border-white/30 hover:shadow-lg transition-all duration-200 shadow-sm cursor-pointer"
@@ -44,11 +48,11 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
           </span>
         </div>
 
-        {/* Live Indicator if demo available */}
-        {project.demoUrl && (
-          <div className="absolute top-3 right-3 flex items-center gap-1.5 px-2.5 py-1 text-[11px] font-medium rounded-lg bg-emerald-600/90 text-white backdrop-blur-md shadow-xs pointer-events-none">
-            <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
-            <span>Online</span>
+        {/* Live Domain Indicator if available */}
+        {domain && (
+          <div className="absolute top-3 right-3 flex items-center gap-1.5 px-2.5 py-1 text-[10px] font-mono font-medium rounded-lg bg-emerald-700/90 text-white backdrop-blur-md shadow-xs pointer-events-none max-w-[65%] truncate">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-300 animate-pulse shrink-0" />
+            <span className="truncate">{domain}</span>
           </div>
         )}
       </div>
@@ -142,11 +146,11 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
                 href={project.demoUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-1 px-3.5 py-1.5 rounded-full bg-slate-950 text-white dark:bg-white dark:text-slate-950 text-xs font-bold hover:bg-slate-800 dark:hover:bg-slate-100 transition-all shadow-sm"
-                title="Buka Live Demo"
+                className="flex items-center gap-1 px-3.5 py-1.5 rounded-full bg-slate-950 text-white dark:bg-white dark:text-slate-950 text-xs font-semibold hover:bg-slate-800 dark:hover:bg-slate-100 transition-all shadow-sm max-w-[170px] truncate"
+                title={`Buka ${domain}`}
               >
-                <span>Demo</span>
-                <ArrowUpRight className="w-3.5 h-3.5" />
+                <span className="truncate text-[11px] font-mono">{shortDomain}</span>
+                <ArrowUpRight className="w-3.5 h-3.5 shrink-0" />
               </a>
             )}
           </div>

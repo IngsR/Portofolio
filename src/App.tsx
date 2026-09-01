@@ -102,7 +102,7 @@ export default function App({
       </div>
 
       {/* Main Page Content Container with Smooth Page Transitions */}
-      <main className="flex-1 max-w-[1800px] w-full mx-auto px-4 sm:px-6 lg:px-12 pb-24 md:pb-0 overflow-hidden print:hidden">
+      <main className="flex-1 max-w-7xl 2xl:max-w-[1500px] w-full mx-auto px-4 sm:px-6 lg:px-10 pb-28 md:pb-12 overflow-hidden print:hidden">
         <AnimatePresence mode="wait" initial={false}>
           <motion.div
             key={activePage}
