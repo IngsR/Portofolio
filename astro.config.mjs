@@ -28,6 +28,9 @@ export default defineConfig({
       expiration: 60 * 60,
       bypassToken: process.env.ISR_BYPASS_TOKEN,
     },
+    webAnalytics: {
+      enabled: true,
+    },
   }),
   vite: {
     customLogger,
