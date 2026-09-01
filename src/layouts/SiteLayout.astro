@@ -10,8 +10,8 @@ interface Props {
 }
 
 const {
-  title = "Profile Ikhwan Ramadhan",
-  description = "Portofolio resmi Ikhwan Ramadhan, Full-Stack Developer yang membangun aplikasi web modern dengan React, TypeScript, API, PostgreSQL, dan Docker.",
+  title = "Ikhwan Ramadhan | Frontend Engineer (Next.js & Angular)",
+  description = "Portofolio resmi Ikhwan Ramadhan, Frontend Engineer spesialis Next.js, Angular, React.js, dan TypeScript dengan pemahaman mendalam Technical SEO, SSR/SSG/CDN, dan Reactive Programming.",
   canonicalPath = Astro.url.pathname,
 } = Astro.props;
 const siteUrl = Astro.site?.toString().replace(/\/$/, "") ?? "https://ikhwann.my.id";
@@ -23,7 +23,7 @@ const personSchema = {
   "@context": "https://schema.org",
   "@type": "Person",
   name: "Ikhwan Ramadhan",
-  jobTitle: "Full-Stack Developer",
+  jobTitle: "Frontend Engineer",
   url: `${siteUrl}/`,
   image: `${siteUrl}/profile.png`,
   email: "mailto:ikhwn.rdn@gmail.com",
@@ -36,14 +36,21 @@ const personSchema = {
     "https://www.linkedin.com/in/ikhwn-rdn",
   ],
   knowsAbout: [
-    "React",
+    "Frontend Engineering",
+    "Next.js",
+    "Angular",
+    "React.js",
     "TypeScript",
     "JavaScript",
-    "Full-Stack Web Development",
-    "REST API",
-    "PostgreSQL",
-    "Docker",
-    "Python",
+    "Technical SEO",
+    "Server-Side Rendering (SSR)",
+    "Static Site Generation (SSG)",
+    "Open Graph Optimization",
+    "Reactive Programming (RxJS & Signals)",
+    "Tailwind CSS",
+    "shadcn/ui",
+    "Astro",
+    "Vite",
   ],
 };
 
@@ -121,7 +128,7 @@ const breadcrumbSchema = {
     <meta property="og:image" content={ogImageUrl} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Logo Ikhwan Ramadhan - Full-Stack Developer" />
+    <meta property="og:image:alt" content="Logo Ikhwan Ramadhan - Frontend Engineer" />
     <meta property="og:locale" content="id_ID" />
     <meta property="og:site_name" content="Ikhwan Ramadhan" />
 
@@ -130,7 +137,7 @@ const breadcrumbSchema = {
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImageUrl} />
-    <meta name="twitter:image:alt" content="Logo Ikhwan Ramadhan - Full-Stack Developer" />
+    <meta name="twitter:image:alt" content="Logo Ikhwan Ramadhan - Frontend Engineer" />
 
     <!-- Structured Data (JSON-LD) -->
     <script type="application/ld+json" set:html={JSON.stringify(personSchema)} />

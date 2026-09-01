@@ -210,33 +210,33 @@ export const CVModal: React.FC<CVModalProps> = ({ isOpen, onClose }) => {
         {/* Printable CV Document Content */}
         <div
           id="cv-printable-document"
-          className="flex-1 overflow-y-auto p-6 sm:p-10 bg-white text-slate-950 space-y-4 sm:space-y-5 font-sans print:p-0 print:space-y-4 print:overflow-visible selection:bg-slate-200"
+          className="flex-1 overflow-y-auto p-6 sm:p-10 bg-white text-slate-950 space-y-4 sm:space-y-5 font-sans print:p-0 print:space-y-2.5 print:overflow-visible selection:bg-slate-200"
         >
           {/* ── Header: Name + Title + Contacts ── */}
-          <div className="border-b border-slate-300 pb-3 space-y-2 cv-section">
+          <div className="border-b border-slate-300 pb-3 print:pb-2 space-y-1.5 print:space-y-0.5 cv-section">
             <div>
-              <h1 className="text-3xl sm:text-4xl font-black tracking-tight text-slate-950">
+              <h1 className="text-3xl sm:text-4xl print:text-2xl font-black tracking-tight text-slate-950">
                 {currentCV.header.name}
               </h1>
-              <p className="text-base sm:text-lg font-bold text-slate-800 mt-0.5">
+              <p className="text-base sm:text-lg print:text-xs font-bold text-slate-800 mt-0.5">
                 {currentCV.header.title}
               </p>
             </div>
 
             {/* Contact Info */}
-            <div className="flex flex-wrap items-center gap-y-1.5 gap-x-5 text-sm text-slate-950 font-medium">
+            <div className="flex flex-wrap items-center gap-y-1.5 gap-x-5 print:gap-y-0.5 print:gap-x-3 text-sm print:text-[11px] text-slate-950 font-medium">
               <a
                 href={`mailto:${currentCV.header.email}`}
                 className="flex items-center gap-1.5 hover:underline"
               >
-                <Mail className="w-4 h-4 text-slate-950" />
+                <Mail className="w-4 h-4 print:w-3 print:h-3 text-slate-950" />
                 <span>{currentCV.header.email}</span>
               </a>
               <a
                 href={`tel:${currentCV.header.phone}`}
                 className="flex items-center gap-1.5 hover:underline"
               >
-                <Phone className="w-4 h-4 text-slate-950" />
+                <Phone className="w-4 h-4 print:w-3 print:h-3 text-slate-950" />
                 <span>{currentCV.header.phone}</span>
               </a>
               <a
@@ -245,7 +245,7 @@ export const CVModal: React.FC<CVModalProps> = ({ isOpen, onClose }) => {
                 rel="noopener noreferrer"
                 className="flex items-center gap-1.5 hover:underline"
               >
-                <Github className="w-4 h-4 text-slate-950" />
+                <Github className="w-4 h-4 print:w-3 print:h-3 text-slate-950" />
                 <span>{currentCV.header.github}</span>
               </a>
               <a
@@ -254,7 +254,7 @@ export const CVModal: React.FC<CVModalProps> = ({ isOpen, onClose }) => {
                 rel="noopener noreferrer"
                 className="flex items-center gap-1.5 hover:underline"
               >
-                <Linkedin className="w-4 h-4 text-slate-950" />
+                <Linkedin className="w-4 h-4 print:w-3 print:h-3 text-slate-950" />
                 <span>{currentCV.header.linkedin}</span>
               </a>
               <a
@@ -263,11 +263,11 @@ export const CVModal: React.FC<CVModalProps> = ({ isOpen, onClose }) => {
                 rel="noopener noreferrer"
                 className="flex items-center gap-1.5 hover:underline"
               >
-                <Globe className="w-4 h-4 text-slate-950" />
+                <Globe className="w-4 h-4 print:w-3 print:h-3 text-slate-950" />
                 <span>{currentCV.header.website}</span>
               </a>
               <span className="flex items-center gap-1.5 text-slate-950 font-medium">
-                <MapPin className="w-4 h-4 text-slate-950 shrink-0" />
+                <MapPin className="w-4 h-4 print:w-3 print:h-3 text-slate-950 shrink-0" />
                 <span>{currentCV.header.location}</span>
               </span>
               <span className="text-slate-950 font-medium">
@@ -277,38 +277,38 @@ export const CVModal: React.FC<CVModalProps> = ({ isOpen, onClose }) => {
           </div>
 
           {/* ── Profile summary ── */}
-          <p className="text-sm text-slate-950 leading-relaxed border-b border-slate-300 pb-3.5 cv-section">
+          <p className="text-sm print:text-[11.5px] print:leading-snug text-slate-950 leading-relaxed border-b border-slate-300 pb-3 print:pb-2 cv-section">
             {currentCV.summary}
           </p>
 
           {/* ── EXPERIENCE ── */}
-          <div className="space-y-3 cv-section">
-            <h2 className="text-sm font-extrabold text-slate-950 uppercase tracking-wider border-b-2 border-slate-900 pb-1">
+          <div className="space-y-2.5 print:space-y-1.5 cv-section">
+            <h2 className="text-sm print:text-xs font-extrabold text-slate-950 uppercase tracking-wider border-b-2 border-slate-900 pb-0.5">
               {currentCV.labels.experience}
             </h2>
 
-            <div className="space-y-3.5">
+            <div className="space-y-3 print:space-y-2">
               {currentCV.experience.map((exp) => (
-                <div key={exp.id} className="space-y-1 text-sm">
+                <div key={exp.id} className="space-y-0.5 text-sm print:text-[11px]">
                   <div className="flex items-baseline justify-between">
                     <strong
                       style={{ fontWeight: 800 }}
-                      className="text-base font-extrabold text-slate-950"
+                      className="text-base print:text-xs font-extrabold text-slate-950"
                     >
                       {exp.role}
                     </strong>
-                    <span className="text-slate-950 font-semibold shrink-0 ml-2 text-sm">
+                    <span className="text-slate-950 font-semibold shrink-0 ml-2 text-sm print:text-[10.5px]">
                       {exp.period}
                     </span>
                   </div>
-                  <div className="text-slate-950 font-medium text-sm">
+                  <div className="text-slate-950 font-medium text-xs print:text-[10.5px]">
                     {exp.company} &bull; {exp.location} ({exp.type})
                   </div>
-                  <ol className="space-y-1 text-slate-950 pt-0.5 text-sm">
+                  <ol className="space-y-0.5 text-slate-950 pt-0.5 text-xs print:text-[10.5px]">
                     {exp.achievements.map((ach, i) => (
                       <li
                         key={i}
-                        className="flex items-start gap-2 leading-relaxed"
+                        className="flex items-start gap-1.5 leading-snug"
                       >
                         <span className="text-slate-950 font-bold shrink-0">
                           {i + 1}.
@@ -317,7 +317,7 @@ export const CVModal: React.FC<CVModalProps> = ({ isOpen, onClose }) => {
                       </li>
                     ))}
                   </ol>
-                  <div className="flex flex-wrap gap-1 pt-0.5 text-sm text-slate-950">
+                  <div className="flex flex-wrap gap-1 pt-0.5 text-xs print:text-[10px] text-slate-950">
                     <strong
                       style={{ fontWeight: 800 }}
                       className="text-slate-950 font-extrabold"
@@ -332,42 +332,44 @@ export const CVModal: React.FC<CVModalProps> = ({ isOpen, onClose }) => {
           </div>
 
           {/* ── EDUCATION ── */}
-          <div className="space-y-2 cv-section">
-            <h2 className="text-sm font-extrabold text-slate-950 uppercase tracking-wider border-b-2 border-slate-900 pb-1">
+          <div className="space-y-1.5 print:space-y-1 cv-section">
+            <h2 className="text-sm print:text-xs font-extrabold text-slate-950 uppercase tracking-wider border-b-2 border-slate-900 pb-0.5">
               {currentCV.labels.education}
             </h2>
             {currentCV.education.map((edu) => (
-              <div key={edu.id} className="space-y-0.5 text-sm">
-                <strong
-                  style={{ fontWeight: 800 }}
-                  className="block text-base font-extrabold text-slate-950"
-                >
-                  {edu.degree}
-                </strong>
-                <div className="text-slate-950 font-medium">
+              <div key={edu.id} className="space-y-0 text-sm print:text-[11px]">
+                <div className="flex items-baseline justify-between">
+                  <strong
+                    style={{ fontWeight: 800 }}
+                    className="block text-sm print:text-xs font-extrabold text-slate-950"
+                  >
+                    {edu.degree}
+                  </strong>
+                  <span className="text-slate-950 text-xs print:text-[10.5px]">{edu.period}</span>
+                </div>
+                <div className="text-slate-950 font-medium text-xs print:text-[10.5px]">
                   {edu.institution}
                 </div>
-                <div className="text-slate-950">{edu.period}</div>
               </div>
             ))}
           </div>
 
           {/* ── CERTIFICATIONS & CREDENTIALS ── */}
-          <div className="space-y-2.5 cv-section">
-            <h2 className="text-sm font-extrabold text-slate-950 uppercase tracking-wider border-b-2 border-slate-900 pb-1">
+          <div className="space-y-1.5 print:space-y-1 cv-section">
+            <h2 className="text-sm print:text-xs font-extrabold text-slate-950 uppercase tracking-wider border-b-2 border-slate-900 pb-0.5">
               {currentCV.labels.certifications}
             </h2>
-            <div className="space-y-2.5 text-sm">
+            <div className="grid grid-cols-1 print:grid-cols-2 gap-2 print:gap-x-4 print:gap-y-1 text-sm print:text-[10.5px]">
               {Object.entries(currentCV.certificationsByIssuer).map(
                 ([issuer, certs]) => (
-                  <div key={issuer} className="space-y-1">
-                    <div className="text-xs font-bold text-slate-800 uppercase tracking-wider">
+                  <div key={issuer} className="space-y-0.5">
+                    <div className="text-xs print:text-[10.5px] font-bold text-slate-800 uppercase tracking-wider">
                       {issuer}
                     </div>
                     {certs.map((cert) => (
                       <div
                         key={cert.id}
-                        className="flex items-baseline justify-between gap-2 pl-1.5 font-normal text-slate-950 text-sm"
+                        className="flex items-baseline justify-between gap-2 pl-1.5 font-normal text-slate-950 text-xs print:text-[10px]"
                       >
                         <span className="font-normal text-slate-950">
                           {cert.title}
@@ -384,11 +386,11 @@ export const CVModal: React.FC<CVModalProps> = ({ isOpen, onClose }) => {
           </div>
 
           {/* ── TECHNICAL SKILLS ── */}
-          <div className="space-y-2 text-sm cv-section">
-            <h2 className="text-sm font-extrabold text-slate-950 uppercase tracking-wider border-b-2 border-slate-900 pb-1">
+          <div className="space-y-1.5 print:space-y-1 text-sm print:text-[10.5px] cv-section">
+            <h2 className="text-sm print:text-xs font-extrabold text-slate-950 uppercase tracking-wider border-b-2 border-slate-900 pb-0.5">
               {currentCV.labels.technicalSkills}
             </h2>
-            <div className="space-y-1 text-slate-950 leading-relaxed text-sm">
+            <div className="space-y-0.5 text-slate-950 leading-tight text-xs print:text-[10.5px]">
               {currentCV.skills.map((s, idx) => (
                 <div key={idx}>
                   <strong className="font-bold text-slate-950">

@@ -63,7 +63,7 @@ export const cvData: Record<CVLanguage, CVContent> = {
   id: {
     header: {
       name: "Ikhwan Ramadhan",
-      title: "Full-Stack Developer",
+      title: "Frontend Engineer",
       email: "ikhwn.rdn@gmail.com",
       phone: "+6282386473410",
       github: "github.com/IngsR",
@@ -73,7 +73,7 @@ export const cvData: Record<CVLanguage, CVContent> = {
       birthInfo: "Padang, 18 November 2003",
     },
     summary:
-      "Fresh Graduate S1 Teknik Informatika dari Universitas Putra Indonesia “YPTK” Padang. Berdomisili di Padang, Sumatera Barat, dan sangat siap bekerja secara onsite maupun relokasi ke berbagai kota saat diterima. Memiliki pengalaman membangun aplikasi web modern menggunakan React, TypeScript, Next.js, NestJS, dan PostgreSQL. Pernah memimpin tim pengembang dalam membangun sistem informasi sekolah yang digunakan secara nyata, serta aktif bereksplorasi dalam proyek mandiri berskala monorepo, e-commerce, dan implementasi kecerdasan buatan.",
+      "Lulusan S1 Teknik Informatika UPI “YPTK” Padang, dengan spesialisasi pada Frontend Engineering. Menguasai React.js dan TypeScript dengan fokus utama pada Next.js dan Angular, didukung pemahaman strategi rendering (SSR, SSG, CDN), Technical SEO, Open Graph, serta Reactive Programming (RxJS & Signals).",
     labels: {
       modalTitle: "Curriculum Vitae — Ikhwan Ramadhan",
       modalSubtitle: "Pratinjau Dokumen & Siap Unduh (PDF / DOCX)",
@@ -92,22 +92,23 @@ export const cvData: Record<CVLanguage, CVContent> = {
     experience: [
       {
         id: "exp-1",
-        role: "Ketua Tim Magang & Full-Stack Developer",
+        role: "Lead Frontend Engineer",
         company: "Proyek Sistem Informasi SMP Negeri 24 Padang",
         location: "Padang, Indonesia",
         period: "Agu - Sept 2025",
         type: "Kontrak",
         achievements: [
-          "Memimpin tim pengembang dalam merancang dan mengimplementasikan arsitektur web full-stack berbasis Next.js App Router, Drizzle ORM, dan database PostgreSQL.",
-          "Mengimplementasikan sistem otentikasi aman Auth.js serta Role-Based Access Control (RBAC) untuk panel administrasi guru dan staf.",
-          "Menyediakan portal publik profil sekolah, sistem berita, pengumuman dinamis, serta layanan akademik terpadu yang responsif diakses publik.",
+          "Merancang dan memimpin arsitektur antarmuka portal resmi sekolah berbasis Next.js App Router, TypeScript, dan Tailwind CSS.",
+          "Mengimplementasikan Technical SEO menyeluruh (Dynamic Metadata, Open Graph, Sitemap & Robots.txt) serta strategi hybrid SSR/SSG caching untuk performa render maksimal dan indeks Google instan.",
+          "Membangun dashboard admin modular berbasis shadcn/ui dengan form validation Zod yang type-safe.",
         ],
         techStack: [
-          "Next.js",
+          "Next.js (App Router)",
+          "React",
           "TypeScript",
-          "Drizzle ORM",
-          "PostgreSQL",
-          "Auth.js",
+          "Technical SEO",
+          "Dynamic Open Graph",
+          "SSR / SSG",
           "Tailwind CSS",
           "shadcn/ui",
           "Zod",
@@ -115,24 +116,26 @@ export const cvData: Record<CVLanguage, CVContent> = {
       },
       {
         id: "exp-2",
-        role: "Full-Stack Developer (Open Source Project)",
-        company: "IngsR Portfolio & Engineering Repositories",
+        role: "Frontend Engineer (Open Source & Enterprise Projects)",
+        company: "IngsR Engineering Repositories",
         location: "Indonesia / Remote",
         period: "2023 - Sekarang",
         type: "Freelance",
         achievements: [
-          "Merancang dan membangun Fullstack CRM/ERP Monorepo skala enterprise memanfaatkan Turborepo, Next.js 15, NestJS modular, dan TypeORM.",
-          "Mengembangkan platform Ing Store (E-Commerce Otomotif) full-stack dengan Next.js, Prisma, PostgreSQL, dilengkapi katalog interaktif dan simulasi kredit.",
-          "Melakukan riset dan implementasi model LSTM Time Series Forecasting untuk prediksi lintasan siklon tropis menggunakan dataset historis IBTrACS dan visualisasi peta Folium.",
+          "Membangun Angular Property (HouseING Property) berbasis Angular Standalone Components, TypeScript, dan Reactive Programming (Angular Signals & RxJS).",
+          "Memigrasikan platform visualisasi prediksi siklon tropis ke Astro (Island Architecture) pada domain live prediksi.ikhwann.my.id untuk performa Zero-JS default di Edge CDN.",
+          "Mengembangkan arsitektur UI enterprise monorepo menggunakan Turborepo, Next.js 15, dan React 19 dengan shared component packages.",
         ],
         techStack: [
-          "Next.js",
-          "NestJS",
+          "Next.js 15",
+          "Angular",
+          "React.js",
           "TypeScript",
-          "PostgreSQL",
-          "Docker",
-          "Linux (Debian)",
-          "Python",
+          "RxJS",
+          "Signals",
+          "Astro",
+          "Tailwind CSS",
+          "Turborepo",
         ],
       },
     ],
@@ -177,34 +180,31 @@ export const cvData: Record<CVLanguage, CVContent> = {
     },
     skills: [
       {
-        category: "Frontend",
+        category: "Core Frameworks & Language",
         items:
-          "React, TypeScript, JavaScript, Next.js, Tailwind CSS, shadcn/ui, Zod",
+          "Next.js (App Router), Angular, React.js, TypeScript, JavaScript (ES6+), HTML5 Semantic",
       },
       {
-        category: "Backend",
+        category: "Rendering & SEO Architecture",
         items:
-          "Node.js, NestJS, Express, REST API, OpenAPI/Swagger, Auth.js, JWT",
+          "Server-Side Rendering (SSR), Static Site Generation (SSG), ISR, Edge CDN Caching, Technical SEO, Dynamic Open Graph, Core Web Vitals",
       },
       {
-        category: "Database",
-        items: "PostgreSQL, SQL, Drizzle ORM, Prisma, TypeORM",
-      },
-      {
-        category: "DevOps & Tools",
-        items: "Docker, Linux (Debian), Git, GitHub, Vercel",
-      },
-      {
-        category: "Data & ML",
+        category: "Reactive & State Management",
         items:
-          "Python, NumPy, Pandas, Scikit-learn, TensorFlow, LSTM, Streamlit, Folium",
+          "RxJS Observables, Angular Signals, React Context & State, TanStack Query, Zod Schema Validation",
+      },
+      {
+        category: "Styling & Build Tooling",
+        items:
+          "Tailwind CSS, shadcn/ui, Astro (Islands Architecture), Vite, Turborepo, Git, Vercel, Docker",
       },
     ],
   },
   en: {
     header: {
       name: "Ikhwan Ramadhan",
-      title: "Full-Stack Developer",
+      title: "Frontend Engineer",
       email: "ikhwn.rdn@gmail.com",
       phone: "+6282386473410",
       github: "github.com/IngsR",
@@ -214,7 +214,7 @@ export const cvData: Record<CVLanguage, CVContent> = {
       birthInfo: "Padang, November 18, 2003",
     },
     summary:
-      "Informatics Fresh Graduate from Universitas Putra Indonesia “YPTK” Padang, specializing as a Full-Stack Developer. Located in Padang, West Sumatra, and highly motivated & fully prepared for on-site work and relocation across various cities. Experienced in building responsive and scalable web applications using React, TypeScript, Next.js, NestJS, and PostgreSQL. Proven leadership as an internship team lead delivering real-world school management systems, coupled with independent research in enterprise monorepo architectures, e-commerce, and machine learning forecasting models.",
+      "Informatics Engineering Graduate from UPI \"YPTK\" Padang specializing in Frontend Engineering. Proficient in React.js and TypeScript with primary focus on Next.js and Angular, supported by strong knowledge of rendering strategies (SSR, SSG, CDN), Technical SEO, Open Graph, and Reactive Programming (RxJS & Signals).",
     labels: {
       modalTitle: "Curriculum Vitae — Ikhwan Ramadhan",
       modalSubtitle: "Document Preview & Ready to Download (PDF / DOCX)",
@@ -233,22 +233,23 @@ export const cvData: Record<CVLanguage, CVContent> = {
     experience: [
       {
         id: "exp-1",
-        role: "Internship Team Lead & Full-Stack Developer",
+        role: "Lead Frontend Engineer",
         company: "SMP Negeri 24 Padang Information System Project",
         location: "Padang, Indonesia",
         period: "Aug - Sept 2025",
         type: "Contract",
         achievements: [
-          "Led the development team in designing and implementing a full-stack school portal using Next.js App Router, Drizzle ORM, and PostgreSQL.",
-          "Implemented secure authentication and Role-Based Access Control (RBAC) using Auth.js for teacher and administrator workflows.",
-          "Delivered public institutional profile, dynamic announcements, media management, and academic service download features with responsive UI.",
+          "Architected and delivered the official school web portal using Next.js App Router, TypeScript, and Tailwind CSS.",
+          "Implemented comprehensive Technical SEO (Dynamic Metadata, Open Graph, Sitemap & Robots) and hybrid SSR/SSG caching for instant load times and peak search indexing.",
+          "Built a modular admin dashboard using shadcn/ui with type-safe Zod form validations.",
         ],
         techStack: [
-          "Next.js",
+          "Next.js (App Router)",
+          "React",
           "TypeScript",
-          "Drizzle ORM",
-          "PostgreSQL",
-          "Auth.js",
+          "Technical SEO",
+          "Dynamic Open Graph",
+          "SSR / SSG",
           "Tailwind CSS",
           "shadcn/ui",
           "Zod",
@@ -256,24 +257,26 @@ export const cvData: Record<CVLanguage, CVContent> = {
       },
       {
         id: "exp-2",
-        role: "Full-Stack Developer (Open Source Projects)",
-        company: "IngsR Portfolio & Engineering Repositories",
+        role: "Frontend Engineer (Open Source & Enterprise Projects)",
+        company: "IngsR Engineering Repositories",
         location: "Indonesia / Remote",
         period: "2023 - Present",
         type: "Freelance",
         achievements: [
-          "Architected and built an enterprise-grade Fullstack CRM/ERP Monorepo leveraging Turborepo, Next.js 15, NestJS, and TypeORM.",
-          "Engineered Ing Store, an automotive e-commerce web platform with Next.js, Prisma, and PostgreSQL featuring vehicle catalog and loan calculator.",
-          "Researched and implemented an LSTM Time Series Forecasting model for tropical cyclone track prediction utilizing historical IBTrACS dataset and Folium maps.",
+          "Developed Angular Property (HouseING Property) utilizing Angular Standalone Components, TypeScript, and Reactive Programming (Angular Signals & RxJS).",
+          "Migrated tropical cyclone prediction platform to Astro (Island Architecture) at live domain prediksi.ikhwann.my.id for Zero-JS default delivery over Edge CDN.",
+          "Engineered enterprise UI monorepo architecture leveraging Turborepo, Next.js 15, and React 19 with shared component libraries.",
         ],
         techStack: [
-          "Next.js",
-          "NestJS",
+          "Next.js 15",
+          "Angular",
+          "React.js",
           "TypeScript",
-          "PostgreSQL",
-          "Docker",
-          "Linux (Debian)",
-          "Python",
+          "RxJS",
+          "Signals",
+          "Astro",
+          "Tailwind CSS",
+          "Turborepo",
         ],
       },
     ],
@@ -318,27 +321,24 @@ export const cvData: Record<CVLanguage, CVContent> = {
     },
     skills: [
       {
-        category: "Frontend",
+        category: "Core Frameworks & Language",
         items:
-          "React, TypeScript, JavaScript, Next.js, Tailwind CSS, shadcn/ui, Zod",
+          "Next.js (App Router), Angular, React.js, TypeScript, JavaScript (ES6+), HTML5 Semantic",
       },
       {
-        category: "Backend",
+        category: "Rendering & SEO Architecture",
         items:
-          "Node.js, NestJS, Express, REST API, OpenAPI/Swagger, Auth.js, JWT",
+          "Server-Side Rendering (SSR), Static Site Generation (SSG), ISR, Edge CDN Caching, Technical SEO, Dynamic Open Graph, Core Web Vitals",
       },
       {
-        category: "Database",
-        items: "PostgreSQL, SQL, Drizzle ORM, Prisma, TypeORM",
-      },
-      {
-        category: "DevOps & Tools",
-        items: "Docker, Linux (Debian), Git, GitHub, Vercel",
-      },
-      {
-        category: "Data & ML",
+        category: "Reactive & State Management",
         items:
-          "Python, NumPy, Pandas, Scikit-learn, TensorFlow, LSTM, Streamlit, Folium",
+          "RxJS Observables, Angular Signals, React Context & State, TanStack Query, Zod Schema Validation",
+      },
+      {
+        category: "Styling & Build Tooling",
+        items:
+          "Tailwind CSS, shadcn/ui, Astro (Islands Architecture), Vite, Turborepo, Git, Vercel, Docker",
       },
     ],
   },

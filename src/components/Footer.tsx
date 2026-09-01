@@ -19,7 +19,7 @@ export const Footer: React.FC<FooterProps> = ({ setActivePage, onOpenCV }) => {
 
   const navigationItems: [PageId, string][] = [
     ["home", "Beranda"],
-    ["portfolio", "Full-Stack Dev & Portofolio"],
+    ["portfolio", "Portofolio Proyek"],
     ["about", "Tentang Saya"],
     ["contact", "Kontak & Pesan"],
   ];
@@ -48,7 +48,7 @@ export const Footer: React.FC<FooterProps> = ({ setActivePage, onOpenCV }) => {
                 </h3>
 
                 <p className="mt-0.5 text-xs font-medium text-slate-600 dark:text-slate-400">
-                  Full-Stack Developer
+                  {userProfile.title}
                 </p>
               </div>
             </div>

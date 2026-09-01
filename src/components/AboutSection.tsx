@@ -188,13 +188,11 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenCV }) => {
             </span>
 
             <h4 className="text-sm font-bold text-slate-950 dark:text-white">
-              Full-Stack & Systems
+              Frontend Engineering
             </h4>
 
             <p className="text-xs leading-relaxed text-slate-600 dark:text-slate-400">
-              React, TypeScript, JavaScript, PostgreSQL, REST API, Docker, Linux
-              Debian, dan Python Data Science; termasuk Next.js sebagai salah
-              satu framework yang digunakan.
+              Next.js, Angular, React.js, TypeScript, Technical SEO, Rendering SSR/SSG/CDN, Reactive Programming (RxJS/Signals), Tailwind CSS, dan shadcn/ui.
             </p>
           </div>
         </div>

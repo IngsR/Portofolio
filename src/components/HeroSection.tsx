@@ -1,12 +1,8 @@
 import {
   ArrowRight,
   ArrowUpRight,
-  Award,
-  Binary,
-  CheckCircle2,
   Code2,
   Cpu,
-  Database,
   ExternalLink,
   FileText,
   Github,
@@ -16,7 +12,6 @@ import {
   Mail,
   MapPin,
   MessageCircle,
-  Phone,
   Server,
   Sparkles,
   Terminal,
@@ -85,14 +80,14 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
     certificationsData.find((c) => c.id === "cert-3") || certificationsData[2],
   ].filter(Boolean) as CertificationItem[];
 
-  // Pendidikan Sarjana S1 saja
+  // Pendidikan Sarjana S1
   const sarjanaEducation = educationData.filter(
     (edu) => edu.id === "edu-1" || edu.degree.toLowerCase().includes("sarjana")
   );
 
   return (
     <div className="space-y-16 py-6 sm:py-8">
-      {/* 1. HERO PERKENALAN LENGKAP + CARD FOTO PROFILE DENGAN KONTAK LENGKAP */}
+      {/* 1. HERO PERKENALAN FRONTEND ENGINEER + CARD FOTO PROFILE & KONTAK */}
       <section className="rounded-3xl border border-slate-200/80 dark:border-white/10 bg-white dark:bg-[#0c0c0d] p-6 sm:p-10 lg:p-12 shadow-sm transition-all">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
           {/* Left Column: Brief Introduction for 60s HR Scan */}
@@ -104,7 +99,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
               </span>
               <span>
-                Siap On-Site / WFO di Seluruh Indonesia & Hybrid / Remote
+                Siap On-Site (WFO) Seluruh Indonesia / Relokasi & Remote
               </span>
             </div>
 
@@ -114,29 +109,25 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                 {userProfile.name}
               </h1>
               <p className="text-xl sm:text-2xl font-bold text-slate-700 dark:text-slate-300">
-                {userProfile.title} | S1 Teknik Informatika
+                {userProfile.title} | Next.js & Angular
               </p>
             </div>
 
             {/* Bio Narrative */}
             <p className="text-slate-600 dark:text-slate-400 text-base sm:text-lg leading-relaxed font-normal max-w-4xl">
-              Lulusan S1 Teknik Informatika Universitas Putra Indonesia &ldquo;YPTK&rdquo; Padang yang berdedikasi membangun aplikasi web modern berskala penuh dengan fondasi{" "}
+              Lulusan S1 Teknik Informatika UPI &ldquo;YPTK&rdquo; Padang, dengan spesialisasi pada{" "}
               <span className="font-semibold text-slate-900 dark:text-white">
-                React, TypeScript, dan JavaScript
+                Frontend Engineering
               </span>
-              , perancangan basis data{" "}
+              . Menguasai{" "}
               <span className="font-semibold text-slate-900 dark:text-white">
-                PostgreSQL & REST API
-              </span>
-              , lingkungan server{" "}
+                React.js dan TypeScript
+              </span>{" "}
+              dengan dua framework utama{" "}
               <span className="font-semibold text-slate-900 dark:text-white">
-                Linux Debian & Docker
+                Next.js dan Angular
               </span>
-              , serta pemodelan{" "}
-              <span className="font-semibold text-slate-900 dark:text-white">
-                Time Series Forecasting
-              </span>
-              .
+              , serta memahami strategi rendering (SSR, SSG, CDN), Technical SEO, Open Graph, dan Reactive Programming (RxJS &amp; Signals).
             </p>
 
             {/* Quick Highlights Grid */}
@@ -166,7 +157,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
               </div>
             </div>
 
-            {/* Action Buttons with Kapsul (rounded-full) Style */}
+            {/* Action Buttons with Capsule (rounded-full) Style */}
             <div className="flex flex-wrap items-center gap-3 pt-2">
               <button
                 id="hero-view-portfolio-btn"
@@ -202,7 +193,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             </div>
           </div>
 
-          {/* Right Column: Profile Photo Card with COMPLETE CONTACTS (LinkedIn, Email, GitHub, WhatsApp) */}
+          {/* Right Column: Profile Photo Card with COMPLETE CONTACTS */}
           <div className="lg:col-span-5 flex justify-center">
             <div className="w-full max-w-sm rounded-3xl border border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-white/[0.02] p-5 sm:p-6 space-y-5 shadow-sm">
               {/* Photo Container */}
@@ -226,7 +217,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                       fallback.innerHTML = `
                         <div class="w-20 h-20 rounded-full bg-white/10 border border-white/20 flex items-center justify-center text-3xl font-black tracking-tight mb-3">IR</div>
                         <p class="font-bold text-sm tracking-wide">Ikhwan Ramadhan</p>
-                        <p class="text-xs text-slate-400 mt-1">Full-Stack Developer</p>
+                        <p class="text-xs text-slate-400 mt-1">Frontend Engineer</p>
                       `;
                       parent.appendChild(fallback);
                     }
@@ -242,12 +233,12 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                     </span>
                   </div>
                   <span className="text-slate-300 text-[10px] shrink-0 font-medium">
-                    S1 Teknik Informatika
+                    Frontend Engineer
                   </span>
                 </div>
               </div>
 
-              {/* Explicit Contact Badges inside Profile Photo Card with Capsule (rounded-full) Style */}
+              {/* Explicit Contact Badges inside Profile Photo Card */}
               <div className="space-y-3 pt-1">
                 <div className="flex items-center justify-between px-1">
                   <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400">
@@ -339,15 +330,15 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
         </div>
       </section>
 
-      {/* 2. 3 PROYEK NYATA DENGAN DESKRIPSI MASALAH & SOLUSI BAHASA NATURAL */}
+      {/* 2. 3 PROYEK UNGGULAN DENGAN DESKRIPSI TEKNIS FRONTEND (PROBLEM & SOLUTION) */}
       <section className="space-y-6">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-slate-200 dark:border-white/10 pb-4">
           <div>
             <span className="text-xs font-bold text-blue-600 dark:text-blue-400 uppercase tracking-wider">
-              01 / PROYEK NYATA (PORTFOLIO HIGHLIGHTS)
+              01 / PROYEK PILIHAN
             </span>
             <h2 className="text-2xl sm:text-3xl font-black tracking-tight text-slate-950 dark:text-white mt-1">
-              3 Proyek Nyata Pilihan & Solusi Masalah
+              3 Proyek Pilihan & Solusi Teknis
             </h2>
           </div>
 
@@ -412,11 +403,11 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                   {project.title}
                 </h3>
 
-                {/* Natural Language Problem & Solution Box */}
+                {/* Frontend Problem & Solution Box */}
                 <div className="space-y-2.5 text-xs text-slate-600 dark:text-slate-300 bg-slate-50 dark:bg-white/[0.03] p-3.5 rounded-2xl border border-slate-200/60 dark:border-white/5">
                   <div>
                     <span className="font-bold text-amber-600 dark:text-amber-400 flex items-center gap-1 mb-0.5">
-                      🎯 Masalah yang Dipecahkan:
+                      🎯 Masalah:
                     </span>
                     <p className="text-[12px] leading-relaxed text-slate-700 dark:text-slate-300">
                       {project.problem || project.shortDescription}
@@ -458,7 +449,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                   className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border border-slate-200 dark:border-white/10 text-slate-900 dark:text-white font-bold hover:bg-slate-100 dark:hover:bg-white/10 text-xs transition-all"
                 >
                   <FileText className="w-3.5 h-3.5" />
-                  <span>Detail Lengkap</span>
+                  <span>Detail Teknis</span>
                 </button>
 
                 <div className="flex items-center gap-2">
@@ -492,7 +483,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
         </div>
       </section>
 
-      {/* 3. TENTANG SAYA (LEBIH SINGKAT DARI HALAMAN TENTANG SAYA) */}
+      {/* 3. TENTANG SAYA (RINGKASAN FRONTEND POSITIONING) */}
       <section className="rounded-3xl border border-slate-200/80 dark:border-white/10 bg-white dark:bg-[#0c0c0d] p-6 sm:p-10 shadow-sm space-y-6">
         <div className="space-y-2 border-b border-slate-200 dark:border-white/10 pb-4">
           <span className="text-xs font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400">
@@ -506,35 +497,35 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           <div className="lg:col-span-8 space-y-4 text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed">
             <p>
-              Saya <strong className="text-slate-950 dark:text-white font-bold">Ikhwan Ramadhan</strong>, lulusan S1 Teknik Informatika Universitas Putra Indonesia &ldquo;YPTK&rdquo; Padang. Memfokuskan keahlian profesional pada perancangan dan pengembangan aplikasi web full-stack berbasis <strong className="text-slate-950 dark:text-white font-bold">React, TypeScript, JavaScript, Node.js, dan PostgreSQL</strong>.
+              Saya <strong className="text-slate-950 dark:text-white font-bold">Ikhwan Ramadhan</strong>, lulusan S1 Teknik Informatika Universitas Putra Indonesia &ldquo;YPTK&rdquo; Padang, dengan fokus keahlian pada <strong className="text-slate-950 dark:text-white font-bold">Frontend Engineering</strong>.
             </p>
             <p>
-              Prinsip utama saya dalam rekayasa perangkat lunak adalah membangun sistem yang tidak hanya berjalan, tetapi juga memiliki arsitektur modular yang rapi (clean code), type-safe, cepat diakses, serta mudah dirawat. Saya siap berkontribusi secara profesional baik dalam skema <strong className="text-slate-950 dark:text-white font-bold">On-Site (WFO) di seluruh Indonesia</strong> maupun <strong className="text-slate-950 dark:text-white font-bold">Hybrid / Remote</strong>.
+              Keahlian utama saya bertumpu pada <strong className="text-slate-950 dark:text-white font-bold">React.js dan TypeScript</strong> dengan dua framework utama: <strong className="text-slate-950 dark:text-white font-bold">Next.js</strong> (App Router, SSR/SSG/ISR, Dynamic Open Graph &amp; Technical SEO) dan <strong className="text-slate-950 dark:text-white font-bold">Angular</strong> (Component Architecture, Reactive Programming dengan RxJS &amp; Signals). Saya juga memanfaatkan <strong className="text-slate-950 dark:text-white font-bold">Astro &amp; Vite</strong> untuk proyek antarmuka ringan. Siap berkontribusi profesional secara <strong className="text-slate-950 dark:text-white font-bold">On-Site (WFO) di seluruh Indonesia</strong> maupun <strong className="text-slate-950 dark:text-white font-bold">Remote / Hybrid</strong>.
             </p>
           </div>
 
           <div className="lg:col-span-4 grid grid-cols-2 gap-3 text-xs">
-            <div className="p-4 rounded-2xl bg-slate-50 dark:bg-white/[0.03] border border-slate-200/60 dark:border-white/5 space-y-1">
-              <span className="font-bold text-slate-950 dark:text-white block">Full-Stack Web</span>
-              <span className="text-slate-500 dark:text-slate-400">React, TS, Next.js</span>
+            <div className="p-4 rounded-2xl bg-blue-50 dark:bg-blue-500/5 border border-blue-200/70 dark:border-blue-500/15 space-y-1">
+              <span className="font-bold text-blue-700 dark:text-blue-400 block">Next.js & React</span>
+              <span className="text-blue-600/80 dark:text-blue-300/70">SSR, SSG, App Router</span>
             </div>
             <div className="p-4 rounded-2xl bg-slate-50 dark:bg-white/[0.03] border border-slate-200/60 dark:border-white/5 space-y-1">
-              <span className="font-bold text-slate-950 dark:text-white block">Backend & DB</span>
-              <span className="text-slate-500 dark:text-slate-400">Node.js, PostgreSQL</span>
+              <span className="font-bold text-slate-950 dark:text-white block">Angular & RxJS</span>
+              <span className="text-slate-500 dark:text-slate-400">Signals, Reactive State</span>
             </div>
             <div className="p-4 rounded-2xl bg-slate-50 dark:bg-white/[0.03] border border-slate-200/60 dark:border-white/5 space-y-1">
-              <span className="font-bold text-slate-950 dark:text-white block">Infrastruktur</span>
-              <span className="text-slate-500 dark:text-slate-400">Docker, Linux, Git</span>
+              <span className="font-bold text-slate-950 dark:text-white block">Technical SEO</span>
+              <span className="text-slate-500 dark:text-slate-400">Open Graph, Schema</span>
             </div>
             <div className="p-4 rounded-2xl bg-slate-50 dark:bg-white/[0.03] border border-slate-200/60 dark:border-white/5 space-y-1">
-              <span className="font-bold text-slate-950 dark:text-white block">Problem Solving</span>
-              <span className="text-slate-500 dark:text-slate-400">DSA & Time Series</span>
+              <span className="font-bold text-slate-950 dark:text-white block">Tooling & Styling</span>
+              <span className="text-slate-500 dark:text-slate-400">Tailwind, Astro, Vite</span>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 4. SERTIFIKAT (3 SAJA - DENGAN PROBLEM SOLVING INTERMEDIATE HACKERRANK) */}
+      {/* 4. SERTIFIKAT (3 SERTIFIKAT PILIHAN) */}
       <section className="space-y-6">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-slate-200 dark:border-white/10 pb-4">
           <div>
@@ -569,7 +560,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
         </div>
       </section>
 
-      {/* 5. PENDIDIKAN (SARJANA S1 SAJA) */}
+      {/* 5. PENDIDIKAN (SARJANA S1) */}
       <section className="rounded-3xl border border-slate-200/80 dark:border-white/10 bg-white dark:bg-[#0c0c0d] p-6 sm:p-10 shadow-sm space-y-6">
         <div className="space-y-2 border-b border-slate-200 dark:border-white/10 pb-4">
           <span className="text-xs font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400">
@@ -614,14 +605,14 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
         </div>
       </section>
 
-      {/* 6. SKILL (KEAHLIAN & STACK TEKNIS) - DIPOSISIKAN SETELAH PENDIDIKAN */}
+      {/* 6. SKILL (KEAHLIAN & STACK TEKNIS FRONTEND) */}
       <section className="space-y-6">
         <div className="space-y-2 border-b border-slate-200 dark:border-white/10 pb-4">
           <span className="text-xs font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400">
             05 / KEAHLIAN & TEKNOLOGI
           </span>
           <h2 className="text-2xl sm:text-3xl font-black tracking-tight text-slate-950 dark:text-white">
-            Keahlian & Technical Stack
+            Keahlian & Technical Stack Frontend
           </h2>
         </div>
 
@@ -664,7 +655,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
         </div>
       </section>
 
-      {/* 7. CONTACT / TAUTAN KONTAK & AKSI CEPAT (CV, LINKEDIN, GITHUB, EMAIL, NO WA) DENGAN GAYA KAPSUL */}
+      {/* 7. CONTACT / TAUTAN KONTAK & AKSI CEPAT */}
       <section className="rounded-3xl border border-slate-800 bg-slate-950 p-6 sm:p-10 text-white space-y-6 shadow-xl">
         <div className="space-y-2 border-b border-white/10 pb-4">
           <span className="text-xs font-bold uppercase tracking-wider text-emerald-400">
@@ -674,7 +665,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             Mari Berdiskusi & Bekerja Sama
           </h2>
           <p className="text-xs sm:text-sm text-slate-300 max-w-3xl leading-relaxed">
-            Terbuka untuk posisi <strong className="text-white">Full-Stack Developer</strong> baik On-Site (WFO) di seluruh Indonesia maupun Remote / Hybrid. Silakan akses CV atau hubungi via kanal resmi berikut:
+            Terbuka untuk posisi <strong className="text-white">Frontend Engineer</strong> baik On-Site (WFO) di seluruh Indonesia maupun Remote / Hybrid. Silakan akses CV atau hubungi via kanal resmi berikut:
           </p>
         </div>
 

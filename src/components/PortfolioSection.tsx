@@ -17,18 +17,23 @@ type SortOption = "relevance" | "date" | "title";
 
 const FILTER_KEYWORDS = [
   "Next.js",
+  "Angular",
   "TypeScript",
   "React",
-  "PostgreSQL",
+  "Technical SEO",
+  "RxJS",
+  "Astro",
 ] as const;
 
 const FILTER_CATEGORIES = [
   "Semua",
-  "Full Stack",
-  "Web Development",
-  "Machine Learning",
-  "Software Engineering",
-  "AI & Information Retrieval",
+  "Next.js & Performance",
+  "Angular & Reactive Architecture",
+  "Astro & Geospatial UI",
+  "React & Next.js UI",
+  "Design System & Monorepo",
+  "Dashboard & Data Grid",
+  "Mobile Frontend",
   "Lainnya",
 ] as const;
 
@@ -250,8 +255,8 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({
             Portofolio
           </h1>
           <p className="text-sm sm:text-base lg:text-lg text-slate-600 dark:text-slate-400 max-w-none font-light">
-            Project yang saya bangun untuk mengubah ide menjadi software yang
-            benar-benar berjalan.
+            Rekayasa antarmuka web modern, arsitektur Next.js & Angular, Technical SEO &
+            sistem produksi yang saya rancang dan bangun.
           </p>
         </div>
       </div>
@@ -515,7 +520,7 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({
                     </h2>
                   </div>
                   <span className="text-xs text-slate-500 dark:text-slate-400">
-                    Aplikasi & Sistem Produksi
+                    Frontend Engineering & UI Architecture
                   </span>
                 </div>
               )}
@@ -545,7 +550,7 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({
                     </h2>
                   </div>
                   <span className="text-xs text-slate-500 dark:text-slate-400">
-                    Hal yang Saya Pelajari dan Dapatkan
+                    Validasi Kompetensi Teknis
                   </span>
                 </div>
               )}

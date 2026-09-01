@@ -358,207 +358,206 @@ export async function exportCVToPdf(
   });
 
   const pageWidth = 210;
-  const leftMargin = 14;
-  const rightMargin = 196;
-  const contentWidth = rightMargin - leftMargin; // 182mm
-  let y = 14;
+  const leftMargin = 12;
+  const rightMargin = 198;
+  const contentWidth = rightMargin - leftMargin; // 186mm
+  let y = 10;
 
   const checkPage = (heightNeeded: number) => {
-    if (y + heightNeeded > 282) {
+    if (y + heightNeeded > 284) {
       doc.addPage();
-      y = 14;
+      y = 10;
     }
   };
 
   const renderSectionHeading = (title: string) => {
-    checkPage(12);
-    y += 2;
+    checkPage(8);
+    y += 1;
     doc.setFont("helvetica", "bold");
-    doc.setFontSize(9.5);
+    doc.setFontSize(8.8);
     doc.setTextColor(15, 23, 42);
     doc.text(title.toUpperCase(), leftMargin, y);
-    y += 1.8;
+    y += 1.4;
     doc.setDrawColor(15, 23, 42);
-    doc.setLineWidth(0.6);
+    doc.setLineWidth(0.5);
     doc.line(leftMargin, y, rightMargin, y);
-    y += 4.5;
+    y += 3.2;
   };
 
   // ── HEADER: Name & Title ──
   doc.setFont("helvetica", "bold");
-  doc.setFontSize(22);
+  doc.setFontSize(18);
   doc.setTextColor(15, 23, 42);
   doc.text(cv.header.name, leftMargin, y);
-  y += 7;
+  y += 5.5;
 
   doc.setFont("helvetica", "bold");
-  doc.setFontSize(11);
+  doc.setFontSize(9.5);
   doc.setTextColor(30, 41, 59);
   doc.text(cv.header.title, leftMargin, y);
-  y += 5.5;
+  y += 4.2;
 
   // ── Contact Information Line ──
   doc.setFont("helvetica", "normal");
-  doc.setFontSize(8.5);
+  doc.setFontSize(7.8);
   doc.setTextColor(15, 23, 42);
   const contactText = `${cv.header.email}   |   ${cv.header.phone}   |   ${cv.header.github}   |   ${cv.header.linkedin}   |   ${cv.header.website}   |   ${cv.header.location}   |   ${cv.header.birthInfo}`;
   const contactLines = doc.splitTextToSize(contactText, contentWidth);
   doc.text(contactLines, leftMargin, y);
-  y += contactLines.length * 4 + 2;
+  y += contactLines.length * 3.4 + 1.2;
 
   // Divider
   doc.setDrawColor(203, 213, 225);
-  doc.setLineWidth(0.3);
+  doc.setLineWidth(0.25);
   doc.line(leftMargin, y, rightMargin, y);
-  y += 4.5;
+  y += 3;
 
   // ── Bio / Summary ──
   doc.setFont("helvetica", "normal");
-  doc.setFontSize(8.8);
+  doc.setFontSize(8);
   doc.setTextColor(15, 23, 42);
   const summaryLines = doc.splitTextToSize(cv.summary, contentWidth);
   doc.text(summaryLines, leftMargin, y);
-  y += summaryLines.length * 4.2 + 2;
+  y += summaryLines.length * 3.5 + 1.5;
 
   // Divider
   doc.setDrawColor(203, 213, 225);
-  doc.setLineWidth(0.3);
+  doc.setLineWidth(0.25);
   doc.line(leftMargin, y, rightMargin, y);
-  y += 3.5;
+  y += 2.5;
 
   // ── SECTION: WORK EXPERIENCE ──
   renderSectionHeading(cv.labels.experience);
 
   for (const exp of cv.experience) {
-    checkPage(16);
+    checkPage(12);
 
     // Role & Period
     doc.setFont("helvetica", "bold");
-    doc.setFontSize(9.5);
+    doc.setFontSize(8.8);
     doc.setTextColor(15, 23, 42);
     doc.text(exp.role, leftMargin, y);
 
     doc.setFont("helvetica", "bold");
-    doc.setFontSize(8.5);
+    doc.setFontSize(7.8);
     doc.setTextColor(71, 85, 105);
     doc.text(exp.period, rightMargin, y, { align: "right" });
-    y += 4.2;
+    y += 3.5;
 
     // Company & Location & Type
     doc.setFont("helvetica", "normal");
-    doc.setFontSize(8.5);
+    doc.setFontSize(7.8);
     doc.setTextColor(51, 65, 85);
     doc.text(`${exp.company} • ${exp.location} (${exp.type})`, leftMargin, y);
-    y += 4.2;
+    y += 3.4;
 
     // Achievements (Numbered List)
     exp.achievements.forEach((ach, i) => {
-      checkPage(8);
+      checkPage(6);
       doc.setFont("helvetica", "bold");
-      doc.setFontSize(8.5);
+      doc.setFontSize(7.8);
       doc.setTextColor(15, 23, 42);
       doc.text(`${i + 1}.`, leftMargin + 1, y);
 
       doc.setFont("helvetica", "normal");
-      doc.setFontSize(8.5);
+      doc.setFontSize(7.8);
       doc.setTextColor(15, 23, 42);
-      const achLines = doc.splitTextToSize(ach, contentWidth - 8);
-      doc.text(achLines, leftMargin + 6, y);
-      y += achLines.length * 3.8 + 1.2;
+      const achLines = doc.splitTextToSize(ach, contentWidth - 7);
+      doc.text(achLines, leftMargin + 5.5, y);
+      y += achLines.length * 3.3 + 0.8;
     });
 
     // Tech Stack
-    checkPage(6);
+    checkPage(5);
     doc.setFont("helvetica", "bold");
-    doc.setFontSize(8.5);
+    doc.setFontSize(7.8);
     doc.setTextColor(15, 23, 42);
     const techPrefix = `${cv.labels.techStackLabel}: `;
     doc.text(techPrefix, leftMargin, y);
     const prefixWidth = doc.getTextWidth(techPrefix);
 
     doc.setFont("helvetica", "normal");
-    doc.setFontSize(8.5);
+    doc.setFontSize(7.8);
     doc.setTextColor(51, 65, 85);
     const stackLines = doc.splitTextToSize(
       exp.techStack.join(", "),
       contentWidth - prefixWidth
     );
     doc.text(stackLines, leftMargin + prefixWidth, y);
-    y += stackLines.length * 3.8 + 3.5;
+    y += stackLines.length * 3.3 + 2;
   }
 
   // ── SECTION: EDUCATION ──
   renderSectionHeading(cv.labels.education);
 
   for (const edu of cv.education) {
-    checkPage(12);
+    checkPage(8);
     doc.setFont("helvetica", "bold");
-    doc.setFontSize(9.5);
+    doc.setFontSize(8.8);
     doc.setTextColor(15, 23, 42);
     doc.text(edu.degree, leftMargin, y);
-    y += 4.2;
-
-    doc.setFont("helvetica", "normal");
-    doc.setFontSize(8.5);
-    doc.setTextColor(51, 65, 85);
-    doc.text(edu.institution, leftMargin, y);
-    y += 4;
 
     doc.setFont("helvetica", "italic");
-    doc.setFontSize(8);
+    doc.setFontSize(7.5);
     doc.setTextColor(100, 116, 139);
-    doc.text(edu.period, leftMargin, y);
-    y += 5;
+    doc.text(edu.period, rightMargin, y, { align: "right" });
+    y += 3.5;
+
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(7.8);
+    doc.setTextColor(51, 65, 85);
+    doc.text(edu.institution, leftMargin, y);
+    y += 3.5;
   }
 
   // ── SECTION: CERTIFICATIONS ──
   renderSectionHeading(cv.labels.certifications);
 
   for (const [issuer, certs] of Object.entries(cv.certificationsByIssuer)) {
-    checkPage(10);
+    checkPage(8);
     doc.setFont("helvetica", "bold");
-    doc.setFontSize(8);
+    doc.setFontSize(7.5);
     doc.setTextColor(71, 85, 105);
     doc.text(issuer.toUpperCase(), leftMargin, y);
-    y += 3.8;
+    y += 3;
 
     for (const cert of certs) {
-      checkPage(6);
+      checkPage(5);
       doc.setFont("helvetica", "normal");
-      doc.setFontSize(8.5);
+      doc.setFontSize(7.8);
       doc.setTextColor(15, 23, 42);
       doc.text(cert.title, leftMargin + 2, y);
 
       doc.setFont("helvetica", "normal");
-      doc.setFontSize(8);
+      doc.setFontSize(7.5);
       doc.setTextColor(100, 116, 139);
       doc.text(cert.issueDate, rightMargin, y, { align: "right" });
-      y += 4;
+      y += 3.2;
     }
-    y += 1.5;
+    y += 0.8;
   }
 
   // ── SECTION: TECHNICAL SKILLS ──
   renderSectionHeading(cv.labels.technicalSkills);
 
   for (const skill of cv.skills) {
-    checkPage(6);
+    checkPage(5);
     doc.setFont("helvetica", "bold");
-    doc.setFontSize(8.5);
+    doc.setFontSize(7.8);
     doc.setTextColor(15, 23, 42);
     const catPrefix = `${skill.category}: `;
     doc.text(catPrefix, leftMargin, y);
     const catWidth = doc.getTextWidth(catPrefix);
 
     doc.setFont("helvetica", "normal");
-    doc.setFontSize(8.5);
+    doc.setFontSize(7.8);
     doc.setTextColor(51, 65, 85);
     const skillLines = doc.splitTextToSize(
       skill.items,
       contentWidth - catWidth
     );
     doc.text(skillLines, leftMargin + catWidth, y);
-    y += skillLines.length * 3.8 + 1.5;
+    y += skillLines.length * 3.3 + 1;
   }
 
   const langSuffix = lang.toUpperCase();

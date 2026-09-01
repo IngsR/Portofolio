@@ -142,7 +142,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               </div>
 
               <p className="text-[10px] font-medium text-slate-300 dark:text-slate-700">
-                Full-Stack Developer
+                {userProfile.title}
               </p>
             </div>
           </button>

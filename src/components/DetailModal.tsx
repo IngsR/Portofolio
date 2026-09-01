@@ -57,7 +57,7 @@ export const DetailModal: React.FC<DetailModalProps> = ({
     ? project.period || project.publishedDate
     : certificate?.period || certificate?.issueDate;
   const itemRoleOrIssuer = isProject
-    ? project.role || "Full-Stack Developer"
+    ? project.role || "Frontend Engineer"
     : certificate?.issuer;
 
   return (
@@ -243,16 +243,40 @@ export const DetailModal: React.FC<DetailModalProps> = ({
             )}
 
             {/* Description Narrative */}
-            <div className="space-y-2">
+            <div className="space-y-3">
               <h4 className="text-xs font-bold uppercase tracking-wider text-slate-900 dark:text-white flex items-center gap-1.5">
                 <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
-                <span>Deskripsi & Ringkasan Solusi</span>
+                <span>{isProject ? "Apa yang Saya Bangun & Selesaikan" : "Deskripsi & Ringkasan"}</span>
               </h4>
-              <p className="text-sm text-slate-700 dark:text-slate-300 leading-relaxed font-normal">
-                {isProject
-                  ? project.shortDescription
-                  : certificate?.description}
-              </p>
+
+              {isProject && project ? (
+                <div className="space-y-3">
+                  {/* Problem Statement */}
+                  {project.problem && (
+                    <div className="p-3.5 rounded-xl bg-amber-50 dark:bg-amber-500/5 border border-amber-200/70 dark:border-amber-500/15">
+                      <span className="text-[10px] font-bold uppercase tracking-wider text-amber-700 dark:text-amber-400 block mb-1">Masalah yang Diselesaikan</span>
+                      <p className="text-sm text-amber-900 dark:text-amber-200/90 leading-relaxed">{project.problem}</p>
+                    </div>
+                  )}
+
+                  {/* Solution */}
+                  {project.solution && (
+                    <div className="p-3.5 rounded-xl bg-emerald-50 dark:bg-emerald-500/5 border border-emerald-200/70 dark:border-emerald-500/15">
+                      <span className="text-[10px] font-bold uppercase tracking-wider text-emerald-700 dark:text-emerald-400 block mb-1">Solusi Teknis yang Dibangun</span>
+                      <p className="text-sm text-emerald-900 dark:text-emerald-200/90 leading-relaxed">{project.solution}</p>
+                    </div>
+                  )}
+
+                  {/* Short Summary fallback */}
+                  {!project.problem && !project.solution && (
+                    <p className="text-sm text-slate-700 dark:text-slate-300 leading-relaxed">{project.shortDescription}</p>
+                  )}
+                </div>
+              ) : (
+                <p className="text-sm text-slate-700 dark:text-slate-300 leading-relaxed font-normal">
+                  {certificate?.description}
+                </p>
+              )}
             </div>
 
             {/* Tech Stack / Verified Skills Tags */}

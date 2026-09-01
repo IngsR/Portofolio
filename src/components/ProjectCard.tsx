@@ -62,7 +62,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
               {project.period || project.publishedDate}
             </span>
             <span className="text-[11px] font-medium text-slate-600 dark:text-slate-300">
-              {project.role || "Full-Stack"}
+              {project.role || "Frontend Engineer"}
             </span>
           </div>
 
