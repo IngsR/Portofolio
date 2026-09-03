@@ -19,12 +19,13 @@ Aplikasi menggunakan Astro sebagai shell SSR/SSG dan React sebagai interactive i
 .
 ├── public/                # Foto, logo, CV, sertifikat, dan screenshot project
 ├── src/
-│   ├── components/        # UI React dan modal interaktif
+│   ├── components/        # UI React dan modal interaktif (kebab-case)
 │   ├── data/              # Data portfolio dan case study
-│   ├── layouts/           # Document shell dan metadata SEO
+│   ├── layouts/           # Document shell dan metadata SEO (site.astro)
 │   ├── pages/             # Route Astro SSG, SSR, dan ISR
-│   ├── App.tsx            # Root layout dan state React
-│   ├── index.css          # Style global dan Tailwind
+│   ├── styles/            # Style global (global.css)
+│   ├── utils/             # Helper format, CV, dan validation
+│   ├── app.tsx            # Root layout dan client state React
 │   └── types.ts           # Type definitions
 ├── astro.config.mjs
 ├── package.json

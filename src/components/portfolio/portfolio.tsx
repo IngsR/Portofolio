@@ -2,9 +2,9 @@ import { ArrowUpDown, Award, Grid, Layers, Search, X } from "lucide-react";
 import React, { useMemo, useRef, useState } from "react";
 import portfolioData from "../../data/portfolio.json";
 import { CertificationItem, ProjectItem } from "../../types";
-import { Detail } from "../modal/Detail";
-import { Certificate } from "./Certificate";
-import { Project } from "./Project";
+import { Detail } from "../modal/detail";
+import { Certificate } from "./certificate";
+import { Project } from "./project";
 
 const { certifications: certificationsData } = portfolioData as {
   certifications: CertificationItem[];

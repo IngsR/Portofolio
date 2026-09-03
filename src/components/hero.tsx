@@ -25,8 +25,8 @@ import {
   SkillCategory,
 } from "../types";
 import { formatDomainName, formatShortDomain } from "../utils/format";
-import { Detail } from "./modal/Detail";
-import { Certificate } from "./portfolio/Certificate";
+import { Detail } from "./modal/detail";
+import { Certificate } from "./portfolio/certificate";
 
 const {
   userProfile,

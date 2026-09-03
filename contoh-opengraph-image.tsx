@@ -20,22 +20,36 @@ export default async function OpenGraphImage() {
                     alignItems: 'center',
                     justifyContent: 'space-between',
                     backgroundColor: '#ffffff',
-                    padding: '60px 80px',
+                    padding: '40px 55px',
                     fontFamily: 'sans-serif',
+                    position: 'relative',
+                    border: '1px solid #e2e8f0',
                 }}
             >
-                {/* Kiri: Foto Profil (Aspect Ratio Terkunci, Tidak Gepeng) */}
+                {/* Aksen Bar Kiri */}
+                <div
+                    style={{
+                        position: 'absolute',
+                        left: 0,
+                        top: 0,
+                        width: '12px',
+                        height: '100%',
+                        backgroundColor: '#0f172a',
+                    }}
+                />
+
+                {/* Kiri: Foto Profil Besar (Aspect Ratio Terkunci, Tidak Gepeng) */}
                 <div
                     style={{
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        width: '260px',
-                        height: '260px',
-                        borderRadius: '32px',
+                        width: '380px',
+                        height: '380px',
+                        borderRadius: '40px',
                         backgroundColor: '#f8fafc',
-                        border: '2px solid #e2e8f0',
-                        boxShadow: '0 10px 25px rgba(0, 0, 0, 0.08)',
+                        border: '2.5px solid #e2e8f0',
+                        boxShadow: '0 16px 36px rgba(15, 23, 42, 0.09)',
                         padding: '16px',
                         flexShrink: 0,
                     }}
@@ -44,44 +58,44 @@ export default async function OpenGraphImage() {
                     <img
                         src="https://ikhwann.my.id/profile.png"
                         alt="Ikhwan Ramadhan"
-                        width="220"
-                        height="220"
+                        width="348"
+                        height="348"
                         style={{
                             width: '100%',
                             height: '100%',
                             objectFit: 'cover',
-                            borderRadius: '20px',
+                            borderRadius: '30px',
                         }}
                     />
                 </div>
 
-                {/* Kanan: Informasi & Metadata */}
+                {/* Kanan: Informasi & Metadata Padat & Jelas */}
                 <div
                     style={{
                         display: 'flex',
                         flexDirection: 'column',
                         justifyContent: 'center',
                         flexGrow: 1,
-                        marginLeft: '60px',
+                        marginLeft: '50px',
                     }}
                 >
-                    {/* Badge / Kategori */}
+                    {/* Badge */}
                     <div
                         style={{
                             display: 'flex',
                             alignItems: 'center',
-                            marginBottom: '16px',
+                            marginBottom: '18px',
                         }}
                     >
                         <span
                             style={{
                                 backgroundColor: '#f1f5f9',
                                 color: '#0f172a',
-                                border: '1px solid #cbd5e1',
-                                padding: '6px 18px',
+                                border: '1.5px solid #cbd5e1',
+                                padding: '8px 22px',
                                 borderRadius: '100px',
-                                fontSize: '16px',
-                                fontWeight: '700',
+                                fontSize: '15px',
+                                fontWeight: '800',
                                 letterSpacing: '1.5px',
                                 textTransform: 'uppercase',
                             }}
@@ -90,41 +104,41 @@ export default async function OpenGraphImage() {
                         </span>
                     </div>
 
-                    {/* Nama Lengkap */}
+                    {/* Nama Lengkap - Tebal & Jelas */}
                     <h1
                         style={{
-                            fontSize: '52px',
+                            fontSize: '66px',
                             fontWeight: '900',
-                            color: '#000000',
-                            lineHeight: '1.15',
-                            margin: '0 0 12px 0',
-                            letterSpacing: '-0.5px',
+                            color: '#090a0f',
+                            lineHeight: '1.1',
+                            margin: '0 0 14px 0',
+                            letterSpacing: '-1.2px',
                         }}
                     >
                         Ikhwan Ramadhan
                     </h1>
 
-                    {/* Pekerjaan / Spesialisasi */}
+                    {/* Role / Spesialisasi */}
                     <p
                         style={{
-                            fontSize: '24px',
+                            fontSize: '30px',
                             color: '#334155',
-                            fontWeight: '500',
-                            margin: '0 0 20px 0',
+                            fontWeight: '700',
+                            margin: '0 0 24px 0',
                             lineHeight: '1.3',
                         }}
                     >
                         Frontend Engineer, SEO specialist
                     </p>
 
-                    {/* Footer / URL & Tech Stack */}
+                    {/* Footer Info / URL & Tech Stack */}
                     <div
                         style={{
                             display: 'flex',
                             alignItems: 'center',
-                            gap: '16px',
-                            borderTop: '1px solid #e2e8f0',
-                            paddingTop: '18px',
+                            gap: '20px',
+                            borderTop: '2.5px solid #cbd5e1',
+                            paddingTop: '22px',
                         }}
                     >
                         <div
@@ -132,7 +146,7 @@ export default async function OpenGraphImage() {
                                 display: 'flex',
                                 alignItems: 'center',
                                 color: '#64748b',
-                                fontSize: '20px',
+                                fontSize: '23px',
                                 fontWeight: '600',
                             }}
                         >
@@ -143,8 +157,8 @@ export default async function OpenGraphImage() {
                                 display: 'flex',
                                 alignItems: 'center',
                                 color: '#0f172a',
-                                fontSize: '20px',
-                                fontWeight: '700',
+                                fontSize: '23px',
+                                fontWeight: '800',
                             }}
                         >
                             • Next.js · Angular · React · TypeScript

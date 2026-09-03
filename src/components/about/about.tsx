@@ -19,8 +19,8 @@ import {
   ExperienceItem,
   SkillCategory,
 } from "../../types";
-import { Certificate } from "../portfolio/Certificate";
-import { Detail } from "../modal/Detail";
+import { Certificate } from "../portfolio/certificate";
+import { Detail } from "../modal/detail";
 
 const {
   userProfile,

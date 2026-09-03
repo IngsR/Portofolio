@@ -94,7 +94,12 @@ export const Cv: React.FC<CVModalProps> = ({ isOpen, onClose }) => {
   return (
     <div className="cv-modal-backdrop fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-6 bg-slate-950/80 backdrop-blur-md animate-in fade-in duration-150 print:static print:p-0 print:m-0 print:bg-transparent dark:print:bg-transparent print:backdrop-blur-none">
       <div
-        className="cv-modal-container relative w-full max-w-4xl max-h-[94vh] flex flex-col bg-white dark:bg-[#0c0c0d] rounded-3xl border border-slate-200 dark:border-white/10 shadow-2xl overflow-hidden print:static print:max-h-none print:max-w-none print:w-full print:rounded-none print:border-none print:shadow-none print:bg-transparent dark:print:bg-transparent"
+        style={{
+          transform: "translateZ(0)",
+          willChange: "transform, opacity",
+          backfaceVisibility: "hidden",
+        }}
+        className="cv-modal-container relative w-full max-w-4xl max-h-[94vh] flex flex-col bg-white dark:bg-[#0c0c0d] rounded-3xl border border-slate-200 dark:border-white/10 shadow-2xl overflow-hidden transform-gpu print:static print:max-h-none print:max-w-none print:w-full print:rounded-none print:border-none print:shadow-none print:bg-transparent dark:print:bg-transparent"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header Toolbar — Hidden on Print */}

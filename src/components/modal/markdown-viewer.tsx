@@ -55,9 +55,14 @@ export const MarkdownViewer: React.FC<MarkdownViewerModalProps> = ({
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/80 backdrop-blur-xs animate-in fade-in duration-150 font-sans">
       
-      {/* Modal Container */}
+      {/* Modal Container (GPU Accelerated, No Shadow Flickering) */}
       <div 
-        className="relative w-full max-w-4xl max-h-[92vh] flex flex-col bg-white dark:bg-[#0a0a0a] border border-black/10 dark:border-white/10 shadow-2xl overflow-hidden"
+        style={{
+          transform: "translateZ(0)",
+          willChange: "transform, opacity",
+          backfaceVisibility: "hidden",
+        }}
+        className="relative w-full max-w-4xl max-h-[92vh] flex flex-col bg-white dark:bg-[#0a0a0a] border border-black/10 dark:border-white/10 shadow-2xl overflow-hidden transform-gpu"
         onClick={(e) => e.stopPropagation()}
       >
         

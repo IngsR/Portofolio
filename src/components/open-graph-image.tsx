@@ -1,11 +1,11 @@
 import { ImageResponse } from '@vercel/og';
 
-export const runtime = 'edge';
-export const alt = 'Ikhwan Ramadhan - Frontend Engineer, SEO specialist';
+// Konfigurasi ukuran standar OpenGraph (1200x630 px)
 export const size = {
     width: 1200,
     height: 630,
 };
+
 export const contentType = 'image/png';
 
 export default async function OpenGraphImage() {
@@ -20,9 +20,7 @@ export default async function OpenGraphImage() {
                     alignItems: 'center',
                     justifyContent: 'space-between',
                     backgroundColor: '#ffffff',
-                    backgroundImage:
-                        'radial-gradient(circle at 20% 25%, #ffffff 0%, #f8fafc 60%, #f1f5f9 100%)',
-                    padding: '60px 80px',
+                    padding: '40px 55px',
                     fontFamily: 'sans-serif',
                     position: 'relative',
                     border: '1px solid #e2e8f0',
@@ -34,24 +32,24 @@ export default async function OpenGraphImage() {
                         position: 'absolute',
                         left: 0,
                         top: 0,
-                        width: '10px',
+                        width: '12px',
                         height: '100%',
                         backgroundColor: '#0f172a',
                     }}
                 />
 
-                {/* Left: Foto Profil Card (Aspect Ratio Locked, No Distortion) */}
+                {/* Kiri: Foto Profil Besar (Aspect Ratio Terkunci, Tidak Gepeng) */}
                 <div
                     style={{
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        width: '280px',
-                        height: '280px',
-                        borderRadius: '36px',
-                        backgroundColor: '#ffffff',
-                        border: '2px solid #e2e8f0',
-                        boxShadow: '0 20px 40px rgba(15, 23, 42, 0.08)',
+                        width: '380px',
+                        height: '380px',
+                        borderRadius: '40px',
+                        backgroundColor: '#f8fafc',
+                        border: '2.5px solid #e2e8f0',
+                        boxShadow: '0 16px 36px rgba(15, 23, 42, 0.09)',
                         padding: '16px',
                         flexShrink: 0,
                     }}
@@ -60,33 +58,33 @@ export default async function OpenGraphImage() {
                     <img
                         src="https://ikhwann.my.id/profile.png"
                         alt="Ikhwan Ramadhan"
-                        width="248"
-                        height="248"
+                        width="348"
+                        height="348"
                         style={{
                             width: '100%',
                             height: '100%',
                             objectFit: 'cover',
-                            borderRadius: '24px',
+                            borderRadius: '30px',
                         }}
                     />
                 </div>
 
-                {/* Right: Personal Info & Metadata */}
+                {/* Kanan: Informasi & Metadata Padat & Jelas */}
                 <div
                     style={{
                         display: 'flex',
                         flexDirection: 'column',
                         justifyContent: 'center',
                         flexGrow: 1,
-                        marginLeft: '60px',
+                        marginLeft: '50px',
                     }}
                 >
-                    {/* Category / Badge */}
+                    {/* Badge */}
                     <div
                         style={{
                             display: 'flex',
                             alignItems: 'center',
-                            marginBottom: '16px',
+                            marginBottom: '18px',
                         }}
                     >
                         <span
@@ -94,10 +92,10 @@ export default async function OpenGraphImage() {
                                 backgroundColor: '#f1f5f9',
                                 color: '#0f172a',
                                 border: '1.5px solid #cbd5e1',
-                                padding: '6px 20px',
+                                padding: '8px 22px',
                                 borderRadius: '100px',
                                 fontSize: '15px',
-                                fontWeight: '700',
+                                fontWeight: '800',
                                 letterSpacing: '1.5px',
                                 textTransform: 'uppercase',
                             }}
@@ -106,26 +104,26 @@ export default async function OpenGraphImage() {
                         </span>
                     </div>
 
-                    {/* Full Name */}
+                    {/* Nama Lengkap - Tebal & Jelas */}
                     <h1
                         style={{
-                            fontSize: '56px',
+                            fontSize: '66px',
                             fontWeight: '900',
-                            color: '#0f172a',
-                            lineHeight: '1.15',
-                            margin: '0 0 12px 0',
-                            letterSpacing: '-0.8px',
+                            color: '#090a0f',
+                            lineHeight: '1.1',
+                            margin: '0 0 14px 0',
+                            letterSpacing: '-1.2px',
                         }}
                     >
                         Ikhwan Ramadhan
                     </h1>
 
-                    {/* Role & Tagline */}
+                    {/* Role / Spesialisasi */}
                     <p
                         style={{
-                            fontSize: '26px',
-                            color: '#475569',
-                            fontWeight: '600',
+                            fontSize: '30px',
+                            color: '#334155',
+                            fontWeight: '700',
                             margin: '0 0 24px 0',
                             lineHeight: '1.3',
                         }}
@@ -133,14 +131,14 @@ export default async function OpenGraphImage() {
                         Frontend Engineer, SEO specialist
                     </p>
 
-                    {/* Footer Info / Tech Stack & URL */}
+                    {/* Footer Info / URL & Tech Stack */}
                     <div
                         style={{
                             display: 'flex',
                             alignItems: 'center',
-                            gap: '16px',
-                            borderTop: '2px solid #e2e8f0',
-                            paddingTop: '20px',
+                            gap: '20px',
+                            borderTop: '2.5px solid #cbd5e1',
+                            paddingTop: '22px',
                         }}
                     >
                         <div
@@ -148,7 +146,7 @@ export default async function OpenGraphImage() {
                                 display: 'flex',
                                 alignItems: 'center',
                                 color: '#64748b',
-                                fontSize: '20px',
+                                fontSize: '23px',
                                 fontWeight: '600',
                             }}
                         >
@@ -159,8 +157,8 @@ export default async function OpenGraphImage() {
                                 display: 'flex',
                                 alignItems: 'center',
                                 color: '#0f172a',
-                                fontSize: '20px',
-                                fontWeight: '700',
+                                fontSize: '23px',
+                                fontWeight: '800',
                             }}
                         >
                             • Next.js · Angular · React · TypeScript
