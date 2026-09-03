@@ -16,7 +16,7 @@ const {
 } = Astro.props;
 const siteUrl = Astro.site?.toString().replace(/\/$/, "") ?? "https://ikhwann.my.id";
 const canonicalUrl = new URL(canonicalPath, Astro.site ?? Astro.url).toString();
-const ogImageUrl = `${siteUrl}/logo.jpg`;
+const ogImageUrl = `${siteUrl}/og.png`;
 
 // ── JSON-LD: Person Schema ──
 const personSchema = {
@@ -142,7 +142,7 @@ const breadcrumbSchema = {
     <meta property="og:image" content={ogImageUrl} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Logo Ikhwan Ramadhan - Frontend Engineer" />
+    <meta property="og:image:alt" content="Ikhwan Ramadhan - Frontend Engineer & SEO Specialist" />
     <meta property="og:locale" content="id_ID" />
     <meta property="og:site_name" content="Ikhwan Ramadhan" />
 
@@ -151,7 +151,7 @@ const breadcrumbSchema = {
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImageUrl} />
-    <meta name="twitter:image:alt" content="Logo Ikhwan Ramadhan - Frontend Engineer" />
+    <meta name="twitter:image:alt" content="Ikhwan Ramadhan - Frontend Engineer & SEO Specialist" />
 
     <!-- Structured Data (JSON-LD) -->
     <script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
