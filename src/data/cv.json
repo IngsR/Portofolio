@@ -68,8 +68,8 @@
         "techStack": [
           "Angular",
           "TypeScript",
-          "Angular Signals",
           "RxJS",
+          "Angular Signals",
           "Tailwind CSS v4",
           "Standalone Components",
           "Clean Domain Architecture"

@@ -8,7 +8,7 @@ import {
   Sun,
   UserRound,
 } from "lucide-react";
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import portfolioData from "../../data/portfolio.json";
 import { PageId } from "../../types";
 
@@ -41,6 +41,34 @@ export const Navbar: React.FC<NavbarProps> = ({
   setIsDark,
   onOpenCV,
 }) => {
+  const [isVisible, setIsVisible] = useState(true);
+  const scrollTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      // Sembunyikan navbar seketika saat pengguna melakukan scroll (up maupun down)
+      setIsVisible(false);
+
+      if (scrollTimeoutRef.current) {
+        clearTimeout(scrollTimeoutRef.current);
+      }
+
+      // Tampilkan kembali navbar saat scroll berhenti
+      scrollTimeoutRef.current = setTimeout(() => {
+        setIsVisible(true);
+      }, 250);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      if (scrollTimeoutRef.current) {
+        clearTimeout(scrollTimeoutRef.current);
+      }
+    };
+  }, []);
+
   const navItems: {
     id: PageId;
     label: string;
@@ -78,8 +106,23 @@ export const Navbar: React.FC<NavbarProps> = ({
   };
 
   return (
-    <header className="pointer-events-none fixed bottom-3 top-auto z-50 w-full px-3 transition-all duration-300 sm:px-6 lg:top-5 lg:px-12 md:sticky md:bottom-auto">
-      <div className="pointer-events-auto mx-auto w-fit max-w-7xl md:w-full">
+    <header
+      className={`
+        pointer-events-none fixed z-50 w-full px-3 transition-all duration-300 ease-in-out sm:px-6 lg:px-12
+        bottom-3 top-auto md:top-4 lg:top-5 md:bottom-auto
+        ${
+          isVisible
+            ? "translate-y-0 opacity-100"
+            : "translate-y-24 md:-translate-y-24 opacity-0"
+        }
+      `}
+    >
+      <div
+        className={`
+          mx-auto w-fit max-w-7xl md:w-full transition-opacity duration-200
+          ${isVisible ? "pointer-events-auto" : "pointer-events-none"}
+        `}
+      >
         <div
           className="
             relative

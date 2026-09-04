@@ -101,7 +101,7 @@
     {
       "id": "proj-2",
       "slug": "angular-property-platform",
-      "title": "Angular Property — HouseING Property",
+      "title": "HouseING - Project Angular",
       "shortDescription": "Aplikasi pencarian dan pengambilan keputusan properti modern berbasis Angular Standalone Components (Full TypeScript), Angular Signals, visual blueprint 2D, matriks komparasi side-by-side, dan simulator KPR standar BI.",
       "category": "Angular & Reactive Architecture",
       "tags": [
@@ -142,7 +142,7 @@
       "id": "proj-3",
       "slug": "tropical-cyclone-track-prediction",
       "title": "Prediksi Siklon Tropis (LSTM & Astro UI)",
-      "shortDescription": "Aplikasi web prediksi lintasan siklon tropis berbasis riset skripsi Deep Learning LSTM. Menguji 12 skenario pada 3 basin dengan window 8-16 terbaik (Haversine 14,2 km, R² 0,999), diimplementasikan dengan Astro Island Architecture dan ONNX Runtime serverless.",
+      "shortDescription": "Aplikasi web prediksi lintasan siklon tropis berbasis riset skripsi penelitian S1 saya dengan metode Deep Learning LSTM. Menguji 12 skenario pada 3 basin dengan window 8-16 terbaik (Haversine 14,2 km, R² 0,999), diimplementasikan dengan Astro Island Architecture dan ONNX Runtime serverless.",
       "category": "Astro & Geospatial UI",
       "tags": [
         "Astro",
@@ -182,8 +182,8 @@
     {
       "id": "proj-4",
       "slug": "ing-store-automotive-ecommerce",
-      "title": "Ing Store — Automotive Interactive Storefront",
-      "shortDescription": "Storefront e-commerce otomotif interaktif dengan simulasi kalkulator kredit real-time, filter multi-parameter instan, galeri kendaraan teroptimasi, dan antarmuka responsif.",
+      "title": "Ingstore - Website Penjual Mobil Berbasis CMS",
+      "shortDescription": "Website showroom dan penjualan mobil berbasis CMS dengan kalkulator simulasi kredit interaktif, filter spesifikasi kendaraan, dan katalog responsif.",
       "category": "React & Next.js UI",
       "tags": [
         "Next.js",
@@ -192,17 +192,17 @@
         "Tailwind CSS",
         "Interactive UI",
         "State Management",
-        "Client UX"
+        "CMS"
       ],
       "image": "/projects/ingstore.png",
-      "featured": false,
+      "featured": true,
       "publishedDate": "2025-07-23",
       "period": "2025",
       "role": "Frontend Engineer",
       "demoUrl": "https://ing-store.vercel.app",
       "githubUrl": "https://github.com/IngsR/web_store",
-      "problem": "Calon pembeli kendaraan membutuhkan pengalaman eksplorasi unit yang mulus dengan kalkulasi simulasi pembiayaan langsung tanpa reload halaman atau latensi komputasi.",
-      "solution": "Membangun antarmuka storefront modern berbasis Next.js dan React yang mengintegrasikan kalkulator kredit reaktif berbasis state client-side, sistem filter multi-dimensi instan, dan optimasi aset gambar kendaraan.",
+      "problem": "Calon pembeli membutuhkan kemudahan mengeksplorasi unit mobil dan simulasi cicilan kredit yang akurat secara real-time tanpa reload halaman, sedangkan pihak penjual memerlukan kemudahan manajemen unit berbasis CMS.",
+      "solution": "Mengembangkan website showroom dan penjualan mobil modern berbasis CMS menggunakan Next.js dan React, dilengkapi simulasi kalkulator kredit reaktif, filter instan multi-spesifikasi, dan antarmuka katalog yang responsif.",
       "metrics": [
         {
           "label": "Frontend Engine",
@@ -213,11 +213,11 @@
           "value": "Instant Dynamic Loan Calc"
         },
         {
-          "label": "UI System",
-          "value": "Tailwind CSS Modular"
+          "label": "CMS Architecture",
+          "value": "CMS-Ready Catalog"
         }
       ],
-      "markdownContent": "---\ntitle: \"Ing Store — Automotive E-Commerce\"\ndescription: \"Interactive automotive storefront with dynamic loan calculator, multi-parameter vehicle filter, and responsive visual catalog.\"\ndate: \"2025-07-23\"\ncategory: \"React & Next.js UI\"\ntags:\n  - Next.js\n  - React\n  - TypeScript\n  - Tailwind CSS\n  - Interactive UI\n  - State Management\ngithub: \"https://github.com/IngsR/web_store\"\ndemo: \"https://ing-store.vercel.app\"\nfeatured: false\n---\n\n# Ing Store — Automotive E-Commerce Storefront\n\n## 🚗 Solusi Antarmuka & UX\n**Ing Store** menghadirkan pengalaman belanja daring otomotif yang modern dengan fokus pada responsivitas interaksi pengguna dan visualisasi data kendaraan yang jelas.\n\n---\n\n## ⚙️ Fitur Frontend Utama\n- **Dynamic Loan Calculator**: Menghitung estimasi DP dan angsuran bulanan secara reaktif menggunakan state management React.\n- **Multi-Filter & Instant Search**: Filter transmisi, tipe bodi, dan rentang harga yang langsung memperbarui tampilan katalog secara instan.\n- **Optimized Media Assets**: Pemuatan galeri kendaraan dengan placeholder blur dan responsive image scaling."
+      "markdownContent": "---\ntitle: \"Ingstore — Website Penjual Mobil Berbasis CMS\"\ndescription: \"Website showroom dan penjualan mobil berbasis CMS dengan kalkulator simulasi kredit interaktif, filter spesifikasi kendaraan, dan katalog responsif.\"\ndate: \"2025-07-23\"\ncategory: \"React & Next.js UI\"\ntags:\n  - Next.js\n  - React\n  - TypeScript\n  - Tailwind CSS\n  - Interactive UI\n  - State Management\n  - CMS\ngithub: \"https://github.com/IngsR/web_store\"\ndemo: \"https://ing-store.vercel.app\"\nfeatured: true\n---\n\n# Ingstore — Website Penjual Mobil Berbasis CMS\n\n## 🚗 Solusi Antarmuka & UX\n**Ingstore** adalah platform website showroom dan penjualan mobil modern yang mengintegrasikan pengelolaan konten berbasis CMS dengan pengalaman belanja interaktif bagi calon pembeli kendaraan.\n\n---\n\n## ⚙️ Fitur Frontend Utama\n- **Dynamic Loan Calculator**: Menghitung estimasi DP dan cicilan kredit per bulan secara instan dan reaktif menggunakan state management React.\n- **Multi-Filter & Instant Search**: Filter transmisi, tipe bodi, tahun, dan rentang harga yang memperbarui daftar mobil secara langsung.\n- **Optimized Media Assets**: Pemuatan galeri kendaraan dengan placeholder blur dan responsive image scaling yang optimal di smartphone maupun desktop.\n- **CMS-Driven Content**: Struktur data unit mobil yang terorganisir rapi sehingga memudahkan update stok unit dan detail spesifikasi."
     },
     {
       "id": "proj-5",
@@ -671,7 +671,7 @@
       "id": "performance-design-systems",
       "category": "05 — Design Systems & Tooling",
       "title": "Tailwind CSS, shadcn/ui, Astro & Tooling",
-      "narrative": "Saya membangun antarmuka yang konsisten menggunakan Tailwind CSS dan sistem komponen shadcn/ui. Untuk aplikasi spesifik berskala ringan dan presentasi konten, saya memanfaatkan Astro (Island Architecture) dan Vite untuk mencapai waktu render tercepat dengan payload JavaScript minimal.",
+      "narrative": "Saya membangun antarmuka yang konsisten menggunakan Tailwind CSS dan sistem komponen shadcn/ui. Untuk aplikasi spesifik berskala ringan dan presentasi konten, saya memanfaatkan Astro (Island Architecture) untuk mencapai waktu render tercepat dengan payload JavaScript minimal.",
       "technologies": [
         "Tailwind CSS",
         "shadcn/ui",

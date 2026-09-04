@@ -49,7 +49,10 @@ export default function App({
         if (Array.isArray(parsed)) {
           const validProjects = parsed.filter(isProjectItem);
           if (validProjects.length > 0) {
-            setProjects(validProjects);
+            const customProjects = validProjects.filter(
+              (p: ProjectItem) => !initialProjects.some((bp) => bp.id === p.id)
+            );
+            setProjects([...customProjects, ...initialProjects]);
           }
         }
       }
@@ -85,10 +88,9 @@ export default function App({
     }
   };
 
-  const featuredProjects =
-    projects.filter((p) => p.featured).length > 0
-      ? projects.filter((p) => p.featured)
-      : projects.slice(0, 3);
+  const featuredProjects = initialProjects.filter(
+    (p) => p.featured || p.id === "proj-4"
+  );
 
   return (
     <div className="min-h-screen flex flex-col bg-slate-100 dark:bg-[#050505] text-slate-900 dark:text-slate-100 transition-colors duration-200">
@@ -104,7 +106,7 @@ export default function App({
       </div>
 
       {/* Main Page Content Container with Smooth Page Transitions */}
-      <main className="flex-1 max-w-7xl 2xl:max-w-[1500px] w-full mx-auto px-4 sm:px-6 lg:px-10 pb-28 md:pb-12 overflow-hidden print:hidden">
+      <main className="flex-1 max-w-7xl 2xl:max-w-[1500px] w-full mx-auto px-4 sm:px-6 lg:px-10 pt-3 md:pt-24 pb-28 md:pb-12 overflow-hidden print:hidden">
         <AnimatePresence mode="wait" initial={false}>
           <motion.div
             key={activePage}
