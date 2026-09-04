@@ -26,17 +26,6 @@ export default async function OpenGraphImage() {
                     border: '1px solid #e2e8f0',
                 }}
             >
-                {/* Aksen Bar Kiri */}
-                <div
-                    style={{
-                        position: 'absolute',
-                        left: 0,
-                        top: 0,
-                        width: '12px',
-                        height: '100%',
-                        backgroundColor: '#0f172a',
-                    }}
-                />
 
                 {/* Kiri: Foto Profil Besar (Aspect Ratio Terkunci, Tidak Gepeng) */}
                 <div
