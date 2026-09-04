@@ -1,5 +1,5 @@
 import { ArrowUpDown, Award, Grid, Layers, Search, X } from "lucide-react";
-import React, { useMemo, useRef, useState } from "react";
+import React, { useCallback, useMemo, useRef, useState } from "react";
 import portfolioData from "../../data/portfolio.json";
 import { CertificationItem, ProjectItem } from "../../types";
 import { Detail } from "../modal/detail";
@@ -220,27 +220,27 @@ export const Portfolio: React.FC<PortfolioSectionProps> = ({
 
   const totalItemsCount = filteredProjects.length + filteredCerts.length;
 
-  const handleOpenProjectDetail = (proj: ProjectItem) => {
+  const handleOpenProjectDetail = useCallback((proj: ProjectItem) => {
     setSelectedProjectForDetail(proj);
     setSelectedCertificateForDetail(null);
     setIsDetailModalOpen(true);
-  };
+  }, []);
 
-  const handleOpenCertDetail = (cert: CertificationItem) => {
+  const handleOpenCertDetail = useCallback((cert: CertificationItem) => {
     setSelectedCertificateForDetail(cert);
     setSelectedProjectForDetail(null);
     setIsDetailModalOpen(true);
-  };
+  }, []);
 
-  const handleKeywordClick = (keyword: string) => {
+  const handleKeywordClick = useCallback((keyword: string) => {
     setSelectedKeywords((current) =>
       current.includes(keyword)
         ? current.filter((item) => item !== keyword)
         : [...current, keyword],
     );
-  };
+  }, []);
 
-  const handleResetFilters = () => {
+  const handleResetFilters = useCallback(() => {
     setFilterType("all");
     setSelectedCategories(["Semua"]);
     setSelectedKeywords([]);
@@ -248,7 +248,7 @@ export const Portfolio: React.FC<PortfolioSectionProps> = ({
     setSearchQuery("");
     setSortBy("relevance");
     searchInputRef.current?.focus();
-  };
+  }, []);
 
   return (
     <div className="space-y-8 py-6 sm:py-8">

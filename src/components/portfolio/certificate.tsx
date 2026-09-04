@@ -6,7 +6,7 @@ import {
   Maximize2,
   ShieldCheck,
 } from "lucide-react";
-import React from "react";
+import React, { memo } from "react";
 import { CertificationItem } from "../../types";
 
 interface CertificateCardProps {
@@ -14,14 +14,14 @@ interface CertificateCardProps {
   onOpenDetail: (cert: CertificationItem) => void;
 }
 
-export const Certificate: React.FC<CertificateCardProps> = ({
+export const Certificate = memo<CertificateCardProps>(function Certificate({
   certificate,
   onOpenDetail,
-}) => {
+}) {
   return (
     <div
       onClick={() => onOpenDetail(certificate)}
-      className="group flex flex-col justify-between bg-white dark:bg-[#0f0f11] border border-slate-200 dark:border-white/10 rounded-2xl sm:rounded-3xl p-3 sm:p-4 lg:p-4 hover:border-slate-400 dark:hover:border-white/30 hover:shadow-xl transition-all duration-200 shadow-sm cursor-pointer"
+      className="group flex flex-col justify-between bg-white dark:bg-[#0f0f11] border border-slate-200 dark:border-white/10 rounded-2xl sm:rounded-3xl p-3 sm:p-4 lg:p-4 hover:border-slate-400 dark:hover:border-white/30 hover:shadow-lg transition-all duration-150 shadow-sm cursor-pointer will-change-transform"
     >
       <div className="space-y-2.5 sm:space-y-3">
         {/* Certificate Screenshot Preview Box - LOCKED ASPECT RATIO */}
@@ -173,4 +173,4 @@ export const Certificate: React.FC<CertificateCardProps> = ({
       </div>
     </div>
   );
-};
+});

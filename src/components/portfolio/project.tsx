@@ -1,5 +1,5 @@
 import { ArrowUpRight, Calendar, FileText, Github } from "lucide-react";
-import React from "react";
+import React, { memo } from "react";
 import { ProjectItem } from "../../types";
 import { formatDomainName, formatShortDomain } from "../../utils/format";
 
@@ -9,11 +9,11 @@ interface ProjectCardProps {
   onOpenMarkdown?: (project: ProjectItem) => void;
 }
 
-export const Project: React.FC<ProjectCardProps> = ({
+export const Project = memo<ProjectCardProps>(function Project({
   project,
   onOpenDetail,
   onOpenMarkdown,
-}) => {
+}) {
   const domain = formatDomainName(project.demoUrl);
   const shortDomain = formatShortDomain(project.demoUrl);
 
@@ -37,7 +37,7 @@ export const Project: React.FC<ProjectCardProps> = ({
               target.src = project.fallbackImage;
             }
           }}
-          className="w-full h-full object-cover sm:object-contain object-center rounded-lg sm:rounded-xl bg-white dark:bg-black/20 select-none"
+          className="w-full h-full object-cover sm:object-contain object-center rounded-lg sm:rounded-xl bg-white dark:bg-black/20 select-none group-hover:brightness-90 transition-[filter] duration-150"
           referrerPolicy="no-referrer"
         />
 
@@ -173,4 +173,4 @@ export const Project: React.FC<ProjectCardProps> = ({
       </div>
     </div>
   );
-};
+});

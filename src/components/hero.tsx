@@ -15,7 +15,7 @@ import {
   Server,
   Terminal,
 } from "lucide-react";
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import portfolioData from "../data/portfolio.json";
 import {
   CertificationItem,
@@ -59,19 +59,19 @@ export const Hero: React.FC<HeroSectionProps> = ({
     useState<CertificationItem | null>(null);
   const [isDetailOpen, setIsDetailOpen] = useState(false);
 
-  const handleOpenProjectDetail = (project: ProjectItem) => {
+  const handleOpenProjectDetail = useCallback((project: ProjectItem) => {
     setSelectedProjectForDetail(project);
     setSelectedCertForDetail(null);
     setIsDetailOpen(true);
-  };
+  }, []);
 
-  const handleOpenCertDetail = (cert: CertificationItem) => {
+  const handleOpenCertDetail = useCallback((cert: CertificationItem) => {
     setSelectedCertForDetail(cert);
     setSelectedProjectForDetail(null);
     setIsDetailOpen(true);
-  };
+  }, []);
 
-  const getSkillCategoryIcon = (iconName: string) => {
+  const getSkillCategoryIcon = useCallback((iconName: string) => {
     switch (iconName) {
       case "Layout":
         return <Code2 className="w-4 h-4 sm:w-5 sm:h-5 text-sky-600 dark:text-sky-400" />;
@@ -84,7 +84,7 @@ export const Hero: React.FC<HeroSectionProps> = ({
       default:
         return <Layers className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600 dark:text-blue-400" />;
     }
-  };
+  }, []);
 
   // Sertifikat pilihan di Home (Problem Solving Intermediate, AI Principles Huawei, HCIP Datacom Huawei, Problem Solving Basic)
   const homeCertificates: CertificationItem[] = [
@@ -465,7 +465,7 @@ export const Hero: React.FC<HeroSectionProps> = ({
                         target.src = project.fallbackImage;
                       }
                     }}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-all duration-300 select-none"
+                    className="w-full h-full object-cover group-hover:brightness-90 transition-[filter] duration-150 select-none"
                     referrerPolicy="no-referrer"
                   />
                 </div>
