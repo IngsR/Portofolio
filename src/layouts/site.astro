@@ -11,7 +11,7 @@ interface Props {
 
 const {
   title = "Ikhwan Ramadhan | Frontend Engineer (Next.js & Angular)",
-  description = "Portofolio resmi Ikhwan Ramadhan, Frontend Engineer spesialis Next.js, Angular, React.js, dan TypeScript dengan pemahaman mendalam Technical SEO, SSR/SSG/CDN, dan Reactive Programming.",
+  description = "Portofolio resmi Ikhwan Ramadhan, Frontend Engineer spesialis Next.js, Angular, React.js, dan TypeScript dengan pemahaman mendalam Technical SEO, SSR/SSG/ISR, dan Reactive Programming.",
   canonicalPath = Astro.url.pathname,
 } = Astro.props;
 const siteUrl = Astro.site?.toString().replace(/\/$/, "") ?? "https://ikhwann.my.id";
@@ -45,6 +45,7 @@ const personSchema = {
     "Technical SEO",
     "Server-Side Rendering (SSR)",
     "Static Site Generation (SSG)",
+    "Incremental Static Regeneration (ISR)",
     "Open Graph Optimization",
     "Reactive Programming (RxJS & Signals)",
     "Tailwind CSS",

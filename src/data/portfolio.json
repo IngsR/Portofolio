@@ -2,10 +2,10 @@
   "userProfile": {
     "name": "Ikhwan Ramadhan",
     "title": "Frontend Engineer",
-    "tagline": "Lulusan S1 Teknik Informatika UPI \"YPTK\" Padang, dengan fokus pada Frontend Engineering. Dua framework utama saya adalah Next.js dan Angular, didukung kemampuan Technical SEO, rendering SSR/SSG, dan Reactive Programming (RxJS & Signals).",
-    "shortBio": "Lulusan S1 Teknik Informatika UPI \"YPTK\" Padang, dengan fokus pada Frontend Engineering. Dua framework utama saya adalah Next.js dan Angular, didukung kemampuan Technical SEO, rendering SSR/SSG, dan Reactive Programming (RxJS & Signals).",
+    "tagline": "Fresh Graduate S1 Teknik Informatika UPI \"YPTK\" Padang, dengan fokus pada Frontend Engineering. Dua framework utama saya adalah Next.js dan Angular, didukung kemampuan Technical SEO, rendering SSR/SSG, dan Reactive Programming (RxJS & Signals).",
+    "shortBio": "Fresh Graduate S1 Teknik Informatika UPI \"YPTK\" Padang, dengan fokus pada Frontend Engineering. Dua framework utama saya adalah Next.js dan Angular, didukung kemampuan Technical SEO, rendering SSR/SSG, dan Reactive Programming (RxJS & Signals).",
     "fullBio": [
-      "Saya Ikhwan Ramadhan, lulusan S1 Teknik Informatika Universitas Putra Indonesia \"YPTK\" Padang, dengan fokus keahlian pada Frontend Engineering.",
+      "Saya Ikhwan Ramadhan, Fresh Graduate S1 Teknik Informatika Universitas Putra Indonesia \"YPTK\" Padang, dengan fokus keahlian pada Frontend Engineering.",
       "Dua framework utama yang saya kuasai adalah Next.js (App Router, SSR/SSG/ISR, Technical SEO, Dynamic Open Graph) dan Angular (Standalone Component Architecture, Reactive Programming dengan RxJS & Signals). Untuk proyek antarmuka yang lebih ringan dan spesifik, saya menggunakan Astro dan Vite sesuai kebutuhan.",
       "Bagi saya, Frontend Engineering bukan hanya soal membangun tampilan yang bagus. Ini tentang menerjemahkan kebutuhan nyata menjadi antarmuka yang responsif, cepat, mudah ditemukan di mesin pencari, dan benar-benar nyaman digunakan. Mulai dari memilih strategi rendering yang tepat, mengoptimalkan performa Core Web Vitals, sampai memastikan setiap interaksi terasa alami bagi pengguna akhir.",
       "Saya siap berkontribusi secara profesional, baik On-Site (WFO) di seluruh Indonesia maupun Remote / Hybrid."
@@ -695,7 +695,7 @@
     },
     {
       "question": "Teknologi dan spesialisasi apa yang menjadi fokus utama Anda?",
-      "answer": "Fokus utama saya adalah Frontend Engineering dengan React.js, TypeScript, Next.js, dan Angular. Saya berfokus mendalam pada Technical SEO, Rendering Strategies (SSR/SSG/ISR/CDN/OpenGraph), Reactive Programming (RxJS & Signals), serta sistem desain modular berbasis Tailwind CSS dan shadcn/ui."
+      "answer": "Fokus utama saya adalah Frontend Engineering dengan React.js, TypeScript, Next.js, dan Angular. Saya berfokus mendalam pada Technical SEO, Rendering Strategies (SSR/SSG/ISR), Open Graph Optimization, Reactive Programming (RxJS & Signals), serta sistem desain modular berbasis Tailwind CSS dan shadcn/ui."
     }
   ]
 }

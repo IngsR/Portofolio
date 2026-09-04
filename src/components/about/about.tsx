@@ -185,7 +185,7 @@ export const About: React.FC<AboutSectionProps> = ({ onOpenCV }) => {
             </h4>
 
             <p className="text-xs leading-relaxed text-slate-600 dark:text-slate-400">
-              Lulusan Universitas Putra Indonesia &ldquo;YPTK&rdquo; Padang
+              Fresh Graduate Jurusan Teknik Informatika di Universitas Putra Indonesia &ldquo;YPTK&rdquo; Padang
               dengan pendalaman Rekayasa Perangkat Lunak, DSA, basis data
               relasional, arsitektur sistem web, Deep Learning/LSTM Time Series,
               dan Sistem Temu Balik Informasi.

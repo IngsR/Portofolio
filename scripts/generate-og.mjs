@@ -1,13 +1,13 @@
-import sharp from 'sharp';
-import fs from 'node:fs';
-import path from 'node:path';
+import fs from "node:fs";
+import path from "node:path";
+import sharp from "sharp";
 
 async function generateOpenGraph() {
   const width = 1200;
   const height = 630;
 
   // 1. Foto profil dari public/profile.png berukuran besar (360x360) dengan aspect ratio terkunci & rounded corner
-  const profileInputPath = path.resolve('public/profile.png');
+  const profileInputPath = path.resolve("public/profile.png");
   const profileSize = 360;
   const cornerRadius = 32;
 
@@ -19,8 +19,8 @@ async function generateOpenGraph() {
   `);
 
   const roundedProfile = await sharp(profileInputPath)
-    .resize(profileSize, profileSize, { fit: 'cover' })
-    .composite([{ input: roundedMask, blend: 'dest-in' }])
+    .resize(profileSize, profileSize, { fit: "cover" })
+    .composite([{ input: roundedMask, blend: "dest-in" }])
     .png()
     .toBuffer();
 
@@ -33,11 +33,6 @@ async function generateOpenGraph() {
         <stop offset="60%" stop-color="#fafbfd" />
         <stop offset="100%" stop-color="#f1f5f9" />
       </linearGradient>
-      <linearGradient id="barGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-        <stop offset="0%" stop-color="#0f172a" />
-        <stop offset="50%" stop-color="#334155" />
-        <stop offset="100%" stop-color="#0f172a" />
-      </linearGradient>
       <filter id="cardShadow" x="-20%" y="-20%" width="140%" height="140%">
         <feDropShadow dx="0" dy="16" stdDeviation="24" flood-color="#0f172a" flood-opacity="0.10" />
         <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#0f172a" flood-opacity="0.05" />
@@ -46,9 +41,6 @@ async function generateOpenGraph() {
 
     <!-- Background Utama -->
     <rect width="${width}" height="${height}" fill="url(#bgGrad)" />
-
-    <!-- Aksen Bar Kiri -->
-    <rect x="0" y="0" width="12" height="${height}" fill="url(#barGrad)" />
 
     <!-- Border Luar Halus -->
     <rect x="1" y="1" width="${width - 2}" height="${height - 2}" fill="none" stroke="#e2e8f0" stroke-width="2" />
@@ -120,18 +112,20 @@ async function generateOpenGraph() {
     .toBuffer();
 
   // Simpan ke public/og.png dan public/opengraph-image.png untuk mengunci tampilan
-  const targetOgPng = path.resolve('public/og.png');
-  const targetOpengraphPng = path.resolve('public/opengraph-image.png');
+  const targetOgPng = path.resolve("public/og.png");
+  const targetOpengraphPng = path.resolve("public/opengraph-image.png");
   fs.writeFileSync(targetOgPng, outputBuffer);
   fs.writeFileSync(targetOpengraphPng, outputBuffer);
 
-  console.log(`✅ Berhasil mengunci tampilan OpenGraph baru (lebih besar & minim ruang kosong)!`);
+  console.log(
+    `✅ Berhasil mengunci tampilan OpenGraph baru (lebih besar & minim ruang kosong)!`,
+  );
   console.log(`📁 File tersimpan di:`);
   console.log(`   - ${targetOgPng}`);
   console.log(`   - ${targetOpengraphPng}`);
 }
 
 generateOpenGraph().catch((err) => {
-  console.error('Error generating OpenGraph:', err);
+  console.error("Error generating OpenGraph:", err);
   process.exit(1);
 });

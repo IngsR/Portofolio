@@ -117,22 +117,33 @@ export const Hero: React.FC<HeroSectionProps> = ({
             </div>
 
             {/* Main Name & Title */}
-            <div className="space-y-2">
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-slate-950 dark:text-white">
+            <div className="space-y-2 sm:space-y-2.5">
+              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.12] text-slate-950 dark:text-white">
                 {userProfile.name}
               </h1>
-              <p className="text-xl sm:text-2xl font-bold text-slate-700 dark:text-slate-300">
-                {userProfile.title} | Next.js & Angular
-              </p>
+              <div className="flex flex-wrap items-center gap-x-2.5 gap-y-1 text-lg sm:text-2xl font-bold tracking-tight">
+                <span className="text-slate-800 dark:text-slate-200">
+                  {userProfile.title}
+                </span>
+                <span className="text-slate-300 dark:text-slate-700 font-light select-none">
+                  |
+                </span>
+                <span className="text-blue-600 dark:text-blue-400 font-extrabold">
+                  Next.js &amp; Angular
+                </span>
+              </div>
             </div>
 
             {/* Bio Narrative */}
-            <p className="text-slate-600 dark:text-slate-400 text-base sm:text-lg leading-relaxed font-normal max-w-4xl">
-              Lulusan S1 Teknik Informatika UPI &ldquo;YPTK&rdquo; Padang, dengan spesialisasi pada{" "}
+            <p className="text-[15px] sm:text-base lg:text-lg leading-relaxed sm:leading-relaxed text-slate-600 dark:text-slate-300 font-normal max-w-3xl">
+              <span className="font-semibold text-slate-900 dark:text-white">
+                Fresh Graduate S1 Teknik Informatika
+              </span>{" "}
+              UPI &ldquo;YPTK&rdquo; Padang dengan spesialisasi pada{" "}
               <span className="font-semibold text-slate-900 dark:text-white">
                 Frontend Engineering
               </span>
-              . Menguasai{" "}
+              . Menguasai pengembangan antarmuka modern berbasis{" "}
               <span className="font-semibold text-slate-900 dark:text-white">
                 React.js dan TypeScript
               </span>{" "}
@@ -140,7 +151,15 @@ export const Hero: React.FC<HeroSectionProps> = ({
               <span className="font-semibold text-slate-900 dark:text-white">
                 Next.js dan Angular
               </span>
-              , serta memahami strategi rendering (SSR, SSG, CDN), Technical SEO, Open Graph, dan Reactive Programming (RxJS &amp; Signals).
+              , serta mendalami strategi hybrid rendering{" "}
+              <span className="font-semibold text-slate-900 dark:text-white">
+                (SSR, SSG, ISR)
+              </span>
+              , Technical SEO, Open Graph, dan Reactive Programming{" "}
+              <span className="font-semibold text-slate-900 dark:text-white">
+                (RxJS &amp; Signals)
+              </span>
+              .
             </p>
 
             {/* Quick Highlights Grid */}
