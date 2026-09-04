@@ -2,7 +2,7 @@
   "id": {
     "header": {
       "name": "Ikhwan Ramadhan",
-      "title": "Frontend Engineer",
+      "title": "Junior Frontend Engineer",
       "email": "ikhwn.rdn@gmail.com",
       "phone": "+6282386473410",
       "github": "github.com/IngsR",
@@ -61,7 +61,7 @@
       {
         "id": "proj-1",
         "title": "Website Penjualan Rumah (HouseING Property)",
-        "role": "Frontend Engineer",
+        "role": "Junior Frontend Engineer",
         "link": "angular.ikhwann.my.id",
         "period": "2026",
         "description": "Mengembangkan platform pencarian dan simulasi properti modern berbasis Angular Standalone Components dan TypeScript strict. Memanfaatkan keunggulan Angular Signals (signal, computed, effect) untuk manajemen reaktivitas state berkecepatan tinggi tanpa overhead Zone.js berlebih, sinkronisasi kalkulator simulasi KPR formula anuitas perbankan secara real-time, penjelajahan denah arsitektur 2D interaktif (multi-floor switcher dan visual orientasi kompas) pada 60 FPS, serta pengurutan data properti instan.",
@@ -155,7 +155,7 @@
   "en": {
     "header": {
       "name": "Ikhwan Ramadhan",
-      "title": "Frontend Engineer",
+      "title": "Junior Frontend Engineer",
       "email": "ikhwn.rdn@gmail.com",
       "phone": "+6282386473410",
       "github": "github.com/IngsR",
@@ -214,7 +214,7 @@
       {
         "id": "proj-1",
         "title": "HouseING Property Portal (Angular Real Estate Platform)",
-        "role": "Frontend Engineer",
+        "role": "Junior Frontend Engineer",
         "link": "angular.ikhwann.my.id",
         "period": "2026",
         "description": "Engineered a modern property search and mortgage simulation platform using Angular Standalone Components and strict TypeScript. Leveraged Angular Signals (signal, computed, effect) for granular reactive state management, enabling real-time banking annuity mortgage calculation, dynamic multi-attribute property filtering, interactive 2D architectural blueprint floorplan exploration (with multi-floor switcher and compass orientation) at 60 FPS, and clean domain-driven module structuring.",

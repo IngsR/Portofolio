@@ -66,7 +66,7 @@ export const Project: React.FC<ProjectCardProps> = ({
               {project.period || project.publishedDate}
             </span>
             <span className="text-[10px] sm:text-[11px] font-medium text-slate-600 dark:text-slate-300">
-              {project.role || "Frontend Engineer"}
+              {project.role || "Junior Frontend Engineer"}
             </span>
           </div>
 

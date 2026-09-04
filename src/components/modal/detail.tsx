@@ -58,7 +58,7 @@ export const Detail: React.FC<DetailModalProps> = ({
     ? project.period || project.publishedDate
     : certificate?.period || certificate?.issueDate;
   const itemRoleOrIssuer = isProject
-    ? project.role || "Frontend Engineer"
+    ? project.role || "Junior Frontend Engineer"
     : certificate?.issuer;
 
   return (

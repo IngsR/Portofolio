@@ -79,7 +79,7 @@ async function generateOpenGraph() {
 
     <!-- Subtitle / Role (Frontend Engineer, SEO specialist) - 32px -->
     <text x="485" y="305" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="32" font-weight="700" fill="#334155" letter-spacing="-0.3">
-      Frontend Engineer, SEO specialist
+      Junior Frontend Engineer, SEO specialist
     </text>
 
     <!-- Divider Line -->

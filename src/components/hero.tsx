@@ -244,7 +244,7 @@ export const Hero: React.FC<HeroSectionProps> = ({
                       fallback.innerHTML = `
                         <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-white/10 border border-white/20 flex items-center justify-center text-2xl sm:text-3xl font-black tracking-tight mb-3">IR</div>
                         <p class="font-bold text-sm tracking-wide">Ikhwan Ramadhan</p>
-                        <p class="text-xs text-slate-400 mt-1">Frontend Engineer</p>
+                        <p class="text-xs text-slate-400 mt-1">Junior Frontend Engineer</p>
                       `;
                       parent.appendChild(fallback);
                     }
@@ -260,7 +260,7 @@ export const Hero: React.FC<HeroSectionProps> = ({
                     </span>
                   </div>
                   <span className="text-slate-300 text-[9px] sm:text-[10px] shrink-0 font-medium ml-1">
-                    Frontend Engineer
+                    Junior Frontend Engineer
                   </span>
                 </div>
               </div>
@@ -695,7 +695,7 @@ export const Hero: React.FC<HeroSectionProps> = ({
             Mari Berdiskusi & Bekerja Sama
           </h2>
           <p className="text-xs sm:text-sm text-slate-300 max-w-3xl leading-relaxed">
-            Terbuka untuk posisi <strong className="text-white">Frontend Engineer</strong> baik On-Site (WFO) di seluruh Indonesia maupun Remote / Hybrid. Silakan akses CV atau hubungi via kanal resmi berikut:
+            Terbuka untuk posisi <strong className="text-white">Junior Frontend Engineer</strong> baik On-Site (WFO) di seluruh Indonesia maupun Remote / Hybrid. Silakan akses CV atau hubungi via kanal resmi berikut:
           </p>
         </div>
 
@@ -722,7 +722,7 @@ export const Hero: React.FC<HeroSectionProps> = ({
                   {userProfile.name}
                 </h3>
                 <p className="text-xs text-slate-300 font-medium truncate">
-                  Frontend Engineer (Next.js &amp; Angular)
+                  Junior Frontend Engineer (Next.js &amp; Angular)
                 </p>
               </div>
             </div>

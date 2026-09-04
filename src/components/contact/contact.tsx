@@ -380,7 +380,7 @@ export const Contact: React.FC = () => {
                     className="w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-[#0f0f10] border border-black/10 dark:border-white/10 text-slate-950 dark:text-white text-xs focus:outline-none focus:border-black dark:focus:border-white transition-all"
                   >
                     <option value="Kerja Sama">
-                      Peluang Kerja Frontend Engineer (WFO / Remote)
+                      Peluang Kerja Junior Frontend Engineer (WFO / Remote)
                     </option>
                     <option value="Web Development">
                       Proyek Next.js / Angular / Web UI

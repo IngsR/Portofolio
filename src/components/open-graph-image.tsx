@@ -128,7 +128,7 @@ export default async function OpenGraphImage() {
                             lineHeight: '1.3',
                         }}
                     >
-                        Frontend Engineer, SEO specialist
+                        Junior Frontend Engineer, SEO specialist
                     </p>
 
                     {/* Footer Info / URL & Tech Stack */}

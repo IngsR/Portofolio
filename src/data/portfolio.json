@@ -1,7 +1,7 @@
 {
   "userProfile": {
     "name": "Ikhwan Ramadhan",
-    "title": "Frontend Engineer",
+    "title": "Junior Frontend Engineer",
     "tagline": "Fresh Graduate S1 Teknik Informatika UPI \"YPTK\" Padang, dengan fokus pada Frontend Engineering. Dua framework utama saya adalah Next.js dan Angular, didukung kemampuan Technical SEO, rendering SSR/SSG, dan Reactive Programming (RxJS & Signals).",
     "shortBio": "Fresh Graduate S1 Teknik Informatika UPI \"YPTK\" Padang, dengan fokus pada Frontend Engineering. Dua framework utama saya adalah Next.js dan Angular, didukung kemampuan Technical SEO, rendering SSR/SSG, dan Reactive Programming (RxJS & Signals).",
     "fullBio": [
@@ -117,7 +117,7 @@
       "featured": true,
       "publishedDate": "2026-03-01",
       "period": "2026 (Proyek Unggulan)",
-      "role": "Frontend Engineer",
+      "role": "Junior Frontend Engineer",
       "demoUrl": "https://angular.ikhwann.my.id",
       "githubUrl": "https://github.com/IngsR/Angular-Property",
       "problem": "Calon pembeli rumah sering kesulitan membandingkan spesifikasi properti secara objektif, menghitung estimasi cicilan KPR dengan rumus anuitas perbankan yang akurat, serta memvisualisasikan denah arsitektur bertingkat dalam satu antarmuka yang cepat dan responsif.",
@@ -198,7 +198,7 @@
       "featured": true,
       "publishedDate": "2025-07-23",
       "period": "2025",
-      "role": "Frontend Engineer",
+      "role": "Junior Frontend Engineer",
       "demoUrl": "https://ing-store.vercel.app",
       "githubUrl": "https://github.com/IngsR/web_store",
       "problem": "Calon pembeli membutuhkan kemudahan mengeksplorasi unit mobil dan simulasi cicilan kredit yang akurat secara real-time tanpa reload halaman, sedangkan pihak penjual memerlukan kemudahan manajemen unit berbasis CMS.",
@@ -238,7 +238,7 @@
       "featured": false,
       "publishedDate": "2025-11-30",
       "period": "2025",
-      "role": "Frontend Engineer (Monorepo & Design System)",
+      "role": "Junior Frontend Engineer (Monorepo & Design System)",
       "demoUrl": "",
       "githubUrl": "https://github.com/IngsR/Monorepo-CRM",
       "metrics": [
@@ -276,7 +276,7 @@
       "featured": false,
       "publishedDate": "2025-07-15",
       "period": "2025",
-      "role": "Frontend Engineer",
+      "role": "Junior Frontend Engineer",
       "demoUrl": "https://kelola-barang.vercel.app",
       "githubUrl": "https://github.com/IngsR/manajemen-iventory",
       "metrics": [
@@ -313,7 +313,7 @@
       "featured": false,
       "publishedDate": "2025-07-07",
       "period": "2025",
-      "role": "Frontend Engineer",
+      "role": "Junior Frontend Engineer",
       "demoUrl": "https://tfidf.vercel.app",
       "githubUrl": "https://github.com/IngsR/DockRank_TF-IDF",
       "metrics": [
@@ -350,7 +350,7 @@
       "featured": false,
       "publishedDate": "2026-04-13",
       "period": "2026",
-      "role": "Frontend Engineer",
+      "role": "Junior Frontend Engineer",
       "demoUrl": "https://blogsing.vercel.app",
       "githubUrl": "https://github.com/IngsR/AdminBlog_nextjs",
       "metrics": [
@@ -686,7 +686,7 @@
   ],
   "contactFaq": [
     {
-      "question": "Bagaimana cara menghubungi Ikhwan Ramadhan untuk peluang kerja Frontend Engineer?",
+      "question": "Bagaimana cara menghubungi Ikhwan Ramadhan untuk peluang kerja Junior Frontend Engineer?",
       "answer": "Anda dapat menghubungi saya langsung melalui WhatsApp di +62 823-8647-3410, via email ke ikhwn.rdn@gmail.com, atau melalui formulir kontak di website ini. Saya merespons secara cepat dan profesional."
     },
     {
