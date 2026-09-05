@@ -8,7 +8,7 @@
  * "https://smpn24padang.sch.id" -> "smpn24padang.sch.id"
  * "https://prediksi.ikhwann.my.id" -> "prediksi.ikhwann.my.id"
  * "https://github.com/IngsR/Angular-Property" -> "github.com/IngsR/Angular-Property"
- * "https://ing-store.vercel.app" -> "ing-store.vercel.app"
+ * "https://cars.ikhwann.my.id" -> "ing-store.vercel.app"
  */
 export function formatDomainName(url?: string): string {
   if (!url) return "";

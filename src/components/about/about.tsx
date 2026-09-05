@@ -185,7 +185,7 @@ export const About: React.FC<AboutSectionProps> = ({ onOpenCV }) => {
             </h4>
 
             <p className="text-xs leading-relaxed text-slate-600 dark:text-slate-400">
-              Fresh Graduate Jurusan Teknik Informatika di Universitas Putra Indonesia &ldquo;YPTK&rdquo; Padang
+              Fresh Graduate S1 Teknik Informatika di Universitas Putra Indonesia &ldquo;YPTK&rdquo; Padang
               dengan pendalaman Rekayasa Perangkat Lunak, DSA, basis data
               relasional, arsitektur sistem web, Deep Learning/LSTM Time Series,
               dan Sistem Temu Balik Informasi.
@@ -196,6 +196,7 @@ export const About: React.FC<AboutSectionProps> = ({ onOpenCV }) => {
           <div className="space-y-1.5 rounded-2xl border border-slate-200/70 bg-slate-50 p-4 dark:border-white/5 dark:bg-white/[0.02] sm:p-5">
             <span className="text-xs font-semibold text-slate-500 dark:text-slate-400">
               Fokus Keahlian
+              
             </span>
 
             <h4 className="text-sm font-bold text-slate-950 dark:text-white">
