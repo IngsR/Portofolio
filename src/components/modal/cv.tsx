@@ -1,15 +1,24 @@
-import { ExternalLink, FileText, Printer, X } from "lucide-react";
-import React, { useEffect, useRef } from "react";
+import { ExternalLink, FileText, Globe, Printer, X } from "lucide-react";
+import React, { useEffect, useRef, useState } from "react";
 
 interface CVModalProps {
   isOpen: boolean;
   onClose: () => void;
 }
 
-const cvUrl = "/CV/IkhwanRamadhanCV.pdf";
+const cvFiles = {
+  id: "/CV/IkhwanRamadhanCV.pdf",
+  en: "/CV/IkhwanRmadhanCVeng.pdf",
+} as const;
+
+type CVLang = keyof typeof cvFiles;
 
 export const Cv: React.FC<CVModalProps> = ({ isOpen, onClose }) => {
   const cvFrame = useRef<HTMLIFrameElement>(null);
+  const [lang, setLang] = useState<CVLang>("id");
+
+  const cvUrl = cvFiles[lang];
+
   useEffect(() => {
     const closeWithEscape = (event: KeyboardEvent) => {
       if (event.key === "Escape") onClose();
@@ -52,6 +61,33 @@ export const Cv: React.FC<CVModalProps> = ({ isOpen, onClose }) => {
             </div>
           </div>
           <div className="flex items-center gap-2">
+            {/* Language Toggle */}
+            <div className="flex items-center gap-1 rounded-xl border border-slate-200 bg-white p-1 dark:border-white/10 dark:bg-white/[0.04]">
+              <Globe className="ml-1.5 h-3.5 w-3.5 shrink-0 text-slate-400" />
+              <button
+                type="button"
+                onClick={() => setLang("id")}
+                className={`rounded-lg px-2.5 py-1 text-xs font-bold transition-all ${
+                  lang === "id"
+                    ? "bg-slate-900 text-white dark:bg-white dark:text-slate-950"
+                    : "text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-white"
+                }`}
+              >
+                ID
+              </button>
+              <button
+                type="button"
+                onClick={() => setLang("en")}
+                className={`rounded-lg px-2.5 py-1 text-xs font-bold transition-all ${
+                  lang === "en"
+                    ? "bg-slate-900 text-white dark:bg-white dark:text-slate-950"
+                    : "text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-white"
+                }`}
+              >
+                EN
+              </button>
+            </div>
+
             <a
               href={cvUrl}
               target="_blank"
