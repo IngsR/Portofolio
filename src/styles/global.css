@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-@variant dark (&:where(.dark, .dark *));
+@variant dark (&:where(.dark, .dark *)); 
 
 @layer base {
   html {
@@ -81,7 +81,8 @@ html:not(.dark) .aceternity-card:hover {
 .aceternity-card::before {
   content: "";
   position: absolute;
-  inset-x: 0;
+  left: 0;
+  right: 0;
   top: 0;
   height: 1px;
   background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);

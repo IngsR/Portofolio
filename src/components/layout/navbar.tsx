@@ -126,18 +126,18 @@ export const Navbar: React.FC<NavbarProps> = ({
               rounded-2xl
               sm:rounded-full
               border
-              border-slate-200/90
-              bg-white/90
+              border-slate-300
+              bg-white
               px-3
-              py-2
-              shadow-lg
-              shadow-slate-950/5
+              py-2.5
+              shadow-xl
+              shadow-slate-950/10
               backdrop-blur-xl
               transition-all
-              dark:border-white/10
-              dark:bg-[#0c0c0e]/90
+              dark:border-white/15
+              dark:bg-[#0c0c0e]/95
               dark:shadow-2xl
-              dark:shadow-black/60
+              dark:shadow-black/70
               sm:gap-3
               sm:px-5
               sm:py-2.5
@@ -410,16 +410,16 @@ export const Navbar: React.FC<NavbarProps> = ({
             flex
             items-center
             justify-between
-            gap-1
-            p-1.5
+            gap-1.5
+            p-2
             rounded-2xl
-            bg-white/95
-            dark:bg-[#0c0c0e]/95
+            bg-white
+            dark:bg-[#111113]
             border
-            border-slate-200/90
-            dark:border-white/15
-            shadow-[0_12px_36px_-4px_rgba(15,23,42,0.18)]
-            dark:shadow-[0_12px_36px_-4px_rgba(0,0,0,0.7)]
+            border-slate-300
+            dark:border-white/20
+            shadow-[0_16px_40px_-4px_rgba(15,23,42,0.25)]
+            dark:shadow-[0_16px_40px_-4px_rgba(0,0,0,0.8)]
             backdrop-blur-2xl
           "
         >
@@ -436,7 +436,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                   items-center
                   justify-center
                   gap-1.5
-                  py-2
+                  py-3
                   rounded-xl
                   text-xs
                   font-bold
@@ -445,12 +445,14 @@ export const Navbar: React.FC<NavbarProps> = ({
                   active:scale-95
                   ${
                     isActive
-                      ? "flex-1 bg-slate-950 text-white dark:bg-white dark:text-slate-950 shadow-sm px-3"
-                      : "px-3 text-slate-500 hover:text-slate-950 dark:text-slate-400 dark:hover:text-white"
+                      ? "flex-1 bg-slate-950 text-white dark:bg-white dark:text-slate-950 shadow-sm px-4"
+                      : "px-4 text-slate-500 hover:text-slate-950 dark:text-slate-400 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/8"
                   }
                 `}
               >
-                <span className="shrink-0">{item.icon}</span>
+                <span className="shrink-0">
+                  <span className="block [&>svg]:h-5 [&>svg]:w-5">{item.icon}</span>
+                </span>
                 {isActive && (
                   <span className="truncate text-[11px] tracking-tight animate-in fade-in zoom-in-95 duration-150">
                     {item.label}
