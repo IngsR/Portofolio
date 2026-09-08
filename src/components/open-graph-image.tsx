@@ -117,7 +117,7 @@ export default async function OpenGraphImage() {
                             lineHeight: '1.3',
                         }}
                     >
-                        Junior Frontend Engineer, SEO specialist
+                        Junior Fullstack Web Engineer
                     </p>
 
                     {/* Footer Info / URL & Tech Stack */}
@@ -150,7 +150,7 @@ export default async function OpenGraphImage() {
                                 fontWeight: '800',
                             }}
                         >
-                            • Next.js · Angular · React · TypeScript
+                            • Next.js · REST API · CI/CD · Serverless
                         </div>
                     </div>
                 </div>

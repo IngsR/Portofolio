@@ -19,6 +19,9 @@ import React, { useEffect, useState } from "react";
 import portfolioData from "../../data/portfolio.json";
 import { ContactMessage } from "../../types";
 import { isContactCategory, isContactMessage } from "../../utils/guard";
+import { motion, AnimatePresence } from "motion/react";
+import { CardSpotlight } from "../ui/card-spotlight";
+import { MagneticButton } from "../ui/magnetic-button";
 
 const { userProfile, contactFaq } = portfolioData;
 
@@ -138,9 +141,9 @@ export const Contact: React.FC = () => {
   return (
     <div className="space-y-12 py-6 sm:py-8">
       {/* Header */}
-      <div className="space-y-2 pb-6 border-b border-black/10 dark:border-white/10">
-        <span className="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">
-          Kontak & Informasi Terhubung
+      <div className="space-y-2.5 pb-6 border-b border-slate-200/90 dark:border-white/10">
+        <span className="text-[11px] font-bold uppercase tracking-widest text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-800/40 px-2.5 py-1 rounded-full inline-block">
+          Kontak &amp; Informasi Terhubung
         </span>
         <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-slate-950 dark:text-white font-display">
           Mari Berkolaborasi
@@ -154,18 +157,23 @@ export const Contact: React.FC = () => {
       {/* Main Grid: Direct Contact Channels & Form */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
         {/* Contact Info Cards (5 cols) */}
-        <div className="lg:col-span-5 space-y-6">
+        <div className="lg:col-span-5 space-y-5">
           {/* WhatsApp Direct Card */}
-          <div className="p-6 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-950 dark:text-emerald-100 space-y-4 shadow-sm">
+          <CardSpotlight
+            tilt={true}
+            radius={280}
+            color="rgba(16, 185, 129, 0.12)"
+            className="p-6 rounded-2xl bg-gradient-to-b from-emerald-50/70 to-emerald-100/30 dark:from-emerald-950/30 dark:to-emerald-950/10 border border-emerald-500/40 text-emerald-950 dark:text-emerald-100 space-y-4 shadow-[0_2px_12px_-2px_rgba(16,185,129,0.12)] hover:border-emerald-500 hover:shadow-xl transition-all"
+          >
             <div className="flex items-center gap-3">
-              <div className="p-2.5 rounded-xl bg-emerald-500 text-white">
+              <div className="p-2.5 rounded-xl bg-emerald-600 text-white shadow-sm">
                 <MessageCircle className="w-5 h-5" />
               </div>
               <div>
                 <h3 className="font-bold text-base text-slate-950 dark:text-white">
                   WhatsApp Langsung
                 </h3>
-                <p className="text-xs text-slate-600 dark:text-emerald-300">
+                <p className="text-xs text-emerald-700 dark:text-emerald-300 font-medium">
                   Respon cepat & santai
                 </p>
               </div>
@@ -180,17 +188,21 @@ export const Contact: React.FC = () => {
               href={userProfile.whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold tracking-wider transition-all shadow-sm"
+              className="w-full flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold tracking-wider transition-all shadow-md shadow-emerald-600/20"
             >
               <MessageCircle className="w-4 h-4" />
               <span>Chat WhatsApp ({userProfile.phone})</span>
             </a>
-          </div>
+          </CardSpotlight>
 
           {/* Direct Email Card */}
-          <div className="p-6 rounded-2xl bg-white dark:bg-[#0a0a0a] border border-black/10 dark:border-white/10 space-y-4 shadow-sm">
+          <CardSpotlight
+            tilt={true}
+            radius={280}
+            className="p-6 rounded-2xl bg-white dark:bg-[#0d0d0f] border border-slate-200/90 dark:border-white/10 space-y-4 shadow-[0_2px_10px_-2px_rgba(15,23,42,0.06)] hover:border-blue-500/40 hover:shadow-xl transition-all"
+          >
             <div className="flex items-center gap-3">
-              <div className="p-2.5 rounded-xl bg-slate-100 dark:bg-white/5 text-slate-900 dark:text-white">
+              <div className="p-2.5 rounded-xl bg-blue-50 text-blue-600 dark:bg-white/5 dark:text-white border border-blue-200/60 dark:border-white/10">
                 <Mail className="w-5 h-5" />
               </div>
               <div>
@@ -203,7 +215,7 @@ export const Contact: React.FC = () => {
               </div>
             </div>
 
-            <div className="flex items-center justify-between p-3.5 rounded-xl bg-slate-50 dark:bg-white/[0.03] border border-black/5 dark:border-white/5">
+            <div className="flex items-center justify-between p-3.5 rounded-xl bg-slate-50 dark:bg-white/[0.03] border border-slate-200/80 dark:border-white/5">
               <span className="text-xs font-semibold text-slate-900 dark:text-white truncate mr-2">
                 {userProfile.email}
               </span>
@@ -211,7 +223,7 @@ export const Contact: React.FC = () => {
               <div className="flex items-center gap-2 shrink-0">
                 <button
                   onClick={handleCopyEmail}
-                  className="px-2.5 py-1 text-xs rounded-lg border border-black/10 dark:border-white/10 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-white/10 transition-all"
+                  className="px-2.5 py-1 text-xs rounded-lg border border-slate-200 dark:border-white/10 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-white/10 transition-all font-medium"
                   title="Salin Email"
                 >
                   {emailCopied ? (
@@ -224,25 +236,29 @@ export const Contact: React.FC = () => {
 
                 <a
                   href={`mailto:${userProfile.email}`}
-                  className="p-1.5 rounded-lg border border-black/10 dark:border-white/10 hover:bg-slate-200 dark:hover:bg-white/10 transition-all text-slate-800 dark:text-slate-200"
+                  className="p-1.5 rounded-lg border border-slate-200 dark:border-white/10 hover:bg-slate-200 dark:hover:bg-white/10 transition-all text-slate-800 dark:text-slate-200"
                   title="Buka Email"
                 >
                   <ArrowUpRight className="w-3.5 h-3.5" />
                 </a>
               </div>
             </div>
-          </div>
+          </CardSpotlight>
 
           {/* Location & Work Preference */}
-          <div className="p-6 rounded-2xl bg-white dark:bg-[#0a0a0a] border border-black/10 dark:border-white/10 space-y-4 shadow-sm">
+          <CardSpotlight
+            tilt={true}
+            radius={280}
+            className="p-6 rounded-2xl bg-white dark:bg-[#0d0d0f] border border-slate-200/90 dark:border-white/10 space-y-4 shadow-[0_2px_10px_-2px_rgba(15,23,42,0.06)] hover:border-slate-400 dark:hover:border-white/20 transition-all"
+          >
             <h3 className="font-bold text-base text-slate-950 dark:text-white flex items-center gap-2">
-              <Briefcase className="w-4 h-4 text-slate-500" />
+              <Briefcase className="w-4 h-4 text-blue-600 dark:text-blue-400" />
               <span>Kesiapan & Lokasi</span>
             </h3>
 
             <div className="space-y-3 text-xs">
               <div className="flex items-start gap-2.5">
-                <MapPin className="w-4 h-4 mt-0.5 text-slate-400 shrink-0" />
+                <MapPin className="w-4 h-4 mt-0.5 text-blue-500 shrink-0" />
                 <div>
                   <strong className="text-slate-900 dark:text-white block">
                     Status Kerja & Lokasi:
@@ -254,7 +270,7 @@ export const Contact: React.FC = () => {
               </div>
 
               <div className="flex items-start gap-2.5">
-                <Clock className="w-4 h-4 mt-0.5 text-slate-400 shrink-0" />
+                <Clock className="w-4 h-4 mt-0.5 text-emerald-500 shrink-0" />
                 <div>
                   <strong className="text-slate-900 dark:text-white block">
                     Waktu Respon:
@@ -265,10 +281,14 @@ export const Contact: React.FC = () => {
                 </div>
               </div>
             </div>
-          </div>
+          </CardSpotlight>
 
           {/* Social Links Cards */}
-          <div className="p-6 rounded-2xl bg-white dark:bg-[#0a0a0a] border border-black/10 dark:border-white/10 space-y-3 shadow-sm">
+          <CardSpotlight
+            tilt={true}
+            radius={280}
+            className="p-6 rounded-2xl bg-white dark:bg-[#0d0d0f] border border-slate-200/90 dark:border-white/10 space-y-3 shadow-[0_2px_10px_-2px_rgba(15,23,42,0.06)]"
+          >
             <h3 className="font-bold text-base text-slate-950 dark:text-white">
               Tautan Profesional
             </h3>
@@ -280,7 +300,7 @@ export const Contact: React.FC = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={`Buka ${social.name}`}
-                  className="flex items-center gap-3 p-3 rounded-xl border border-black/10 dark:border-white/10 hover:bg-slate-50 dark:hover:bg-white/5 text-xs font-medium text-slate-800 dark:text-slate-200 transition-all"
+                  className="flex items-center gap-3 p-3 rounded-xl border border-slate-200/80 dark:border-white/10 hover:bg-slate-50 dark:hover:bg-white/5 text-xs font-medium text-slate-800 dark:text-slate-200 transition-all hover:border-blue-500/40"
                 >
                   <span className={`shrink-0 ${social.colorClass}`}>
                     {getSocialIcon(social.icon)}
@@ -295,15 +315,15 @@ export const Contact: React.FC = () => {
                 </a>
               ))}
             </div>
-          </div>
+          </CardSpotlight>
         </div>
 
         {/* Form Container (7 cols) */}
         <div className="lg:col-span-7 h-full">
-          <div className="h-full p-6 sm:p-8 bg-white dark:bg-[#0a0a0a] border border-black/10 dark:border-white/10 rounded-2xl space-y-6 shadow-sm flex flex-col">
-            <div className="border-b border-black/10 dark:border-white/10 pb-4">
+          <div className="h-full p-6 sm:p-8 bg-white dark:bg-[#0c0c0e] border border-slate-200/90 dark:border-white/10 rounded-3xl space-y-6 shadow-[0_4px_24px_-4px_rgba(15,23,42,0.06)] flex flex-col">
+            <div className="border-b border-slate-100 dark:border-white/10 pb-4">
               <h2 className="font-bold text-xl text-slate-950 dark:text-white flex items-center gap-2">
-                <Mail className="w-5 h-5" />
+                <Mail className="w-5 h-5 text-blue-600 dark:text-blue-400" />
                 <span>Kirim Pesan Langsung</span>
               </h2>
               <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
@@ -312,7 +332,7 @@ export const Contact: React.FC = () => {
             </div>
 
             {submitted && (
-              <div className="p-5 rounded-xl bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-500/30 text-slate-950 dark:text-white space-y-2">
+              <div className="p-5 rounded-2xl bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-500/30 text-slate-950 dark:text-white space-y-2">
                 <div className="flex items-center gap-2 font-bold text-sm text-emerald-800 dark:text-emerald-300">
                   <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
                   <span>Pesan Berhasil Terkirim!</span>
@@ -345,7 +365,7 @@ export const Contact: React.FC = () => {
                     placeholder="Contoh: Budi Santoso / PT Maju Jaya"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    className="w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-[#0f0f10] border border-black/10 dark:border-white/10 text-slate-950 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 text-xs focus:outline-none focus:border-black dark:focus:border-white transition-all"
+                    className="w-full px-4 py-2.5 rounded-xl bg-slate-50/80 dark:bg-white/[0.04] border border-slate-200/90 dark:border-white/10 text-slate-950 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 text-xs focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 transition-all"
                   />
                 </div>
 
@@ -359,7 +379,7 @@ export const Contact: React.FC = () => {
                     placeholder="nama@perusahaan.com"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-[#0f0f10] border border-black/10 dark:border-white/10 text-slate-950 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 text-xs focus:outline-none focus:border-black dark:focus:border-white transition-all"
+                    className="w-full px-4 py-2.5 rounded-xl bg-slate-50/80 dark:bg-white/[0.04] border border-slate-200/90 dark:border-white/10 text-slate-950 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 text-xs focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 transition-all"
                   />
                 </div>
               </div>
@@ -377,16 +397,16 @@ export const Contact: React.FC = () => {
                         setCategory(value);
                       }
                     }}
-                    className="w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-[#0f0f10] border border-black/10 dark:border-white/10 text-slate-950 dark:text-white text-xs focus:outline-none focus:border-black dark:focus:border-white transition-all"
+                    className="w-full px-4 py-2.5 rounded-xl bg-slate-50/80 dark:bg-white/[0.04] border border-slate-200/90 dark:border-white/10 text-slate-950 dark:text-white text-xs focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 transition-all cursor-pointer"
                   >
                     <option value="Kerja Sama">
-                      Peluang Kerja Junior Frontend Engineer (WFO / Remote)
+                      Peluang Kerja Junior Fullstack Web Engineer (WFO / Hybrid / Remote)
                     </option>
                     <option value="Web Development">
-                      Proyek Next.js / Angular / Web UI
+                      Pengembangan Web End-to-End (Next.js &amp; REST API)
                     </option>
                     <option value="Konsultasi">
-                      Konsultasi SEO Teknis & Rendering
+                      Diskusi Teknis / Arsitektur Web &amp; Deployment
                     </option>
                     <option value="Lainnya">Keperluan Lainnya</option>
                   </select>
@@ -401,7 +421,7 @@ export const Contact: React.FC = () => {
                     placeholder="Contoh: Diskusi Lowongan Software Engineer"
                     value={subject}
                     onChange={(e) => setSubject(e.target.value)}
-                    className="w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-[#0f0f10] border border-black/10 dark:border-white/10 text-slate-950 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 text-xs focus:outline-none focus:border-black dark:focus:border-white transition-all"
+                    className="w-full px-4 py-2.5 rounded-xl bg-slate-50/80 dark:bg-white/[0.04] border border-slate-200/90 dark:border-white/10 text-slate-950 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 text-xs focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 transition-all"
                   />
                 </div>
               </div>
@@ -416,60 +436,74 @@ export const Contact: React.FC = () => {
                   placeholder="Tuliskan pesan, rincian tawaran, atau kebutuhan proyek Anda..."
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
-                  className="w-full min-h-[160px] lg:flex-1 px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-[#0f0f10] border border-black/10 dark:border-white/10 text-slate-950 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 text-xs focus:outline-none focus:border-black dark:focus:border-white transition-all leading-relaxed resize-y"
+                  className="w-full min-h-[160px] lg:flex-1 px-4 py-2.5 rounded-xl bg-slate-50/80 dark:bg-white/[0.04] border border-slate-200/90 dark:border-white/10 text-slate-950 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 text-xs focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 transition-all leading-relaxed resize-y"
                 />
               </div>
 
-              <button
-                id="contact-submit-button"
-                type="submit"
-                disabled={isSubmitting}
-                className="w-full sm:w-auto flex items-center justify-center gap-2 px-8 py-3 rounded-xl bg-slate-950 text-white dark:bg-white dark:text-slate-950 disabled:opacity-50 text-xs font-bold uppercase tracking-wider hover:opacity-90 transition-all shadow-sm"
-              >
-                <Send className="w-4 h-4" />
-                <span>
-                  {isSubmitting ? "Mengirim Pesan..." : "Kirim Pesan"}
-                </span>
-              </button>
+              <div className="pt-2">
+                <MagneticButton>
+                  <button
+                    id="contact-submit-button"
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full bg-slate-950 text-white dark:bg-white dark:text-slate-950 disabled:opacity-50 text-xs font-bold uppercase tracking-wider hover:bg-slate-800 dark:hover:bg-slate-100 transition-all shadow-md"
+                  >
+                    <Send className="w-4 h-4" />
+                    <span>
+                      {isSubmitting ? "Mengirim Pesan..." : "Kirim Pesan"}
+                    </span>
+                  </button>
+                </MagneticButton>
+              </div>
             </form>
           </div>
         </div>
       </div>
 
-      {/* FAQ Section */}
-      <section className="p-6 sm:p-8 bg-white dark:bg-[#0a0a0a] border border-black/10 dark:border-white/10 rounded-2xl space-y-6 shadow-sm">
-        <div className="space-y-1 pb-4 border-b border-black/10 dark:border-white/10">
-          <span className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
+      {/* FAQ Section with Smooth Animated Expansion */}
+      <section className="p-6 sm:p-8 bg-white dark:bg-[#0c0c0e] border border-slate-200/90 dark:border-white/10 rounded-3xl space-y-6 shadow-[0_2px_12px_-2px_rgba(15,23,42,0.05)]">
+        <div className="space-y-1 pb-4 border-b border-slate-100 dark:border-white/10">
+          <span className="text-[11px] font-bold uppercase tracking-widest text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-white/5 px-2.5 py-1 rounded-full inline-block">
             Tanya Jawab
           </span>
-          <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-slate-950 dark:text-white">
+          <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-slate-950 dark:text-white pt-1">
             Pertanyaan yang Sering Diajukan
           </h2>
         </div>
 
-        <div className="space-y-3 divide-y divide-black/10 dark:divide-white/10">
+        <div className="space-y-2 divide-y divide-slate-100 dark:divide-white/10">
           {contactFaq.map((faq, index) => {
             const isOpen = openFaqIndex === index;
             return (
-              <div key={index} className={index !== 0 ? "pt-4" : ""}>
+              <div key={index} className={index !== 0 ? "pt-3.5" : ""}>
                 <button
                   onClick={() => setOpenFaqIndex(isOpen ? null : index)}
-                  className="w-full flex items-center justify-between text-left py-2 text-sm sm:text-base font-bold tracking-tight text-slate-950 dark:text-white hover:opacity-80 transition-all"
+                  className="w-full flex items-center justify-between text-left py-2 text-sm sm:text-base font-bold tracking-tight text-slate-950 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
                 >
                   <span>{faq.question}</span>
                   <ChevronDown
                     className={`w-4 h-4 transition-transform duration-200 shrink-0 ml-2 ${
                       isOpen
-                        ? "rotate-180 text-slate-950 dark:text-white"
+                        ? "rotate-180 text-blue-600 dark:text-blue-400"
                         : "text-slate-400"
                     }`}
                   />
                 </button>
-                {isOpen && (
-                  <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 pt-2 pb-3 leading-relaxed font-light">
-                    {faq.answer}
-                  </p>
-                )}
+                <AnimatePresence initial={false}>
+                  {isOpen && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.2, ease: "easeInOut" }}
+                      className="overflow-hidden"
+                    >
+                      <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 pt-1 pb-3 leading-relaxed font-light">
+                        {faq.answer}
+                      </p>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
             );
           })}

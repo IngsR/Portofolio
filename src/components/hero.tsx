@@ -26,7 +26,19 @@ import {
 } from "../types";
 import { formatDomainName, formatShortDomain } from "../utils/format";
 import { Detail } from "./modal/detail";
+import { CardPreviewModal } from "./modal/card-preview-modal";
 import { Certificate } from "./portfolio/certificate";
+import { AnimatedTooltip } from "./ui/animated-tooltip";
+import { BackgroundBeams } from "./ui/background-beams";
+import { CardSpotlight } from "./ui/card-spotlight";
+import { EncryptedText } from "./ui/encrypted-text";
+import { FlipWords } from "./ui/flip-words";
+import { FocusCards } from "./ui/focus-cards";
+import { GlowingEffect } from "./ui/glowing-effect";
+import { MagneticButton } from "./ui/magnetic-button";
+import { MovingBorder } from "./ui/moving-border";
+import { Sparkles } from "./ui/sparkles";
+import { TextGenerateEffect } from "./ui/text-generate-effect";
 
 const {
   userProfile,
@@ -59,6 +71,11 @@ export const Hero: React.FC<HeroSectionProps> = ({
     useState<CertificationItem | null>(null);
   const [isDetailOpen, setIsDetailOpen] = useState(false);
 
+  // Quick Card Preview State
+  const [selectedCertForPreview, setSelectedCertForPreview] =
+    useState<CertificationItem | null>(null);
+  const [isPreviewModalOpen, setIsPreviewModalOpen] = useState(false);
+
   const handleOpenProjectDetail = useCallback((project: ProjectItem) => {
     setSelectedProjectForDetail(project);
     setSelectedCertForDetail(null);
@@ -69,6 +86,11 @@ export const Hero: React.FC<HeroSectionProps> = ({
     setSelectedCertForDetail(cert);
     setSelectedProjectForDetail(null);
     setIsDetailOpen(true);
+  }, []);
+
+  const handleOpenCertPreview = useCallback((cert: CertificationItem) => {
+    setSelectedCertForPreview(cert);
+    setIsPreviewModalOpen(true);
   }, []);
 
   const getSkillCategoryIcon = useCallback((iconName: string) => {
@@ -113,48 +135,54 @@ export const Hero: React.FC<HeroSectionProps> = ({
 
   return (
     <div className="space-y-16 py-6 sm:py-8">
-      {/* 1. HERO PERKENALAN FRONTEND ENGINEER + CARD FOTO PROFILE & KONTAK */}
+      {/* 1. HERO PERKENALAN FULLSTACK ENGINEER + CARD FOTO PROFILE & KONTAK */}
       <section className="rounded-3xl border border-slate-200/80 dark:border-white/10 bg-white dark:bg-[#0c0c0d] p-6 sm:p-10 lg:p-12 shadow-sm transition-all">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
           {/* Left Column: Brief Introduction for 60s Scan */}
           <div className="lg:col-span-7 space-y-6">
-            {/* Availability Pill */}
-            <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border border-emerald-500/30 bg-emerald-50/80 dark:bg-emerald-950/30 text-emerald-800 dark:text-emerald-300 text-xs font-semibold">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-              </span>
-              <span>
-                Siap On-Site (WFO) Seluruh Indonesia / Relokasi & Remote
-              </span>
-            </div>
+            {/* Availability Pill with Sparkles */}
+            <Sparkles sparkleCount={5} colors={["#34d399", "#6ee7b7", "#a7f3d0"]}>
+              <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border border-emerald-500/30 bg-emerald-50/80 dark:bg-emerald-950/30 text-emerald-800 dark:text-emerald-300 text-xs font-semibold">
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                </span>
+                <span>
+                  Siap On-Site (WFO) Seluruh Indonesia / Relokasi &amp; Remote
+                </span>
+              </div>
+            </Sparkles>
 
-            {/* Main Name & Title */}
+            {/* Main Name with EncryptedText + FlipWords for role */}
             <div className="space-y-2">
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-slate-950 dark:text-white">
-                {userProfile.name}
+                <EncryptedText
+                  text={userProfile.name}
+                  className="font-black"
+                  revealDelay={40}
+                />
               </h1>
-              <p className="text-xl sm:text-2xl font-bold text-slate-700 dark:text-slate-300">
-                {userProfile.title} | Next.js & Angular
+              <p className="text-xl sm:text-2xl font-bold text-slate-700 dark:text-slate-300 flex items-center gap-2 flex-wrap">
+                <FlipWords
+                  words={[
+                    "Junior Fullstack Web Engineer",
+                    "Next.js Specialist",
+                    "React Developer",
+                    "REST API Engineer",
+                  ]}
+                  className="text-slate-700 dark:text-slate-300"
+                />
               </p>
             </div>
 
-            {/* Bio Narrative */}
-            <p className="text-slate-600 dark:text-slate-400 text-base sm:text-lg leading-relaxed font-normal max-w-4xl">
-              Fresh Graduate S1 Teknik Informatika UPI &ldquo;YPTK&rdquo; Padang, dengan spesialisasi pada{" "}
-              <span className="font-semibold text-slate-900 dark:text-white">
-                Frontend Engineering
-              </span>
-              . Menguasai{" "}
-              <span className="font-semibold text-slate-900 dark:text-white">
-                React.js dan TypeScript
-              </span>{" "}
-              dengan dua framework utama{" "}
-              <span className="font-semibold text-slate-900 dark:text-white">
-                Next.js dan Angular
-              </span>
-              , serta memahami strategi rendering (SSR, SSG, CDN), Technical SEO, Open Graph, dan Reactive Programming (RxJS &amp; Signals).
-            </p>
+            {/* Bio Narrative with TextGenerateEffect */}
+            <TextGenerateEffect
+              words="Lulusan S1 Teknik Informatika UPI 'YPTK' Padang yang membangun aplikasi web dari hulu ke hilir. Kekuatan utama saya ada di Next.js, lalu saya lengkapi dengan REST API, testing, dan deployment serverless. Saya terbiasa bekerja dengan Git workflow tim, CI/CD, rollback, dan dasar keamanan OWASP Top 10."
+              className="text-slate-600 dark:text-slate-400 text-base sm:text-lg max-w-4xl"
+              wordClassName="text-slate-600 dark:text-slate-400"
+              duration={0.4}
+              delay={0.06}
+            />
 
             {/* Quick Highlights Grid */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs text-slate-700 dark:text-slate-300">
@@ -183,58 +211,69 @@ export const Hero: React.FC<HeroSectionProps> = ({
               </div>
             </div>
 
-            {/* Action Buttons with Capsule (rounded-full) Style */}
-            <div className="flex flex-nowrap justify-center sm:justify-start items-center gap-2 sm:gap-3 pt-2">
-              <button
-                id="hero-view-portfolio-btn"
-                onClick={() => {
-                  setActivePage("portfolio");
-                  window.scrollTo({ top: 0, behavior: "smooth" });
-                }}
-                className="flex-1 sm:flex-none px-3 sm:px-6 py-2.5 sm:py-3 rounded-full text-xs font-bold sm:uppercase sm:tracking-wider bg-slate-950 text-white dark:bg-white dark:text-slate-950 hover:bg-slate-800 dark:hover:bg-slate-100 transition-all flex items-center justify-center gap-1.5 sm:gap-2 shadow-sm"
-              >
-                <span>Lihat Portofolio</span>
-                <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
-              </button>
+            {/* Action Buttons with MagneticButton + MovingBorder */}
+            <div className="flex flex-nowrap justify-center sm:justify-start items-center gap-3 pt-2">
+              <MagneticButton strength={0.25}>
+                <button
+                  id="hero-view-portfolio-btn"
+                  onClick={() => {
+                    setActivePage("portfolio");
+                    window.scrollTo({ top: 0, behavior: "smooth" });
+                  }}
+                  className="flex-1 sm:flex-none px-5 sm:px-6 py-2.5 sm:py-3 rounded-full text-xs font-bold sm:uppercase sm:tracking-wider bg-slate-950 text-white dark:bg-white dark:text-slate-950 hover:bg-slate-800 dark:hover:bg-slate-100 transition-all flex items-center justify-center gap-1.5 sm:gap-2 shadow-sm"
+                >
+                  <span>Lihat Portofolio</span>
+                  <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
+                </button>
+              </MagneticButton>
 
-              <a
-                id="hero-whatsapp-btn"
-                href={userProfile.whatsappUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex-1 sm:flex-none px-3 sm:px-5 py-2.5 sm:py-3 rounded-full border border-emerald-600/30 bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-700 dark:text-emerald-300 text-xs font-bold sm:tracking-wider transition-all flex items-center justify-center gap-1.5 sm:gap-2"
-              >
-                <MessageCircle className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
-                <span className="sm:hidden">WhatsApp</span>
-                <span className="hidden sm:inline">Hubungi via WhatsApp</span>
-              </a>
+              <MagneticButton strength={0.25}>
+                <a
+                  id="hero-whatsapp-btn"
+                  href={userProfile.whatsappUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1 sm:flex-none px-3 sm:px-5 py-2.5 sm:py-3 rounded-full border border-emerald-600/30 bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-700 dark:text-emerald-300 text-xs font-bold sm:tracking-wider transition-all flex items-center justify-center gap-1.5 sm:gap-2"
+                >
+                  <MessageCircle className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
+                  <span className="sm:hidden">WhatsApp</span>
+                  <span className="hidden sm:inline">Hubungi via WhatsApp</span>
+                </a>
+              </MagneticButton>
 
-              <button
-                id="hero-cv-btn"
+              <MovingBorder
+                as="button"
                 onClick={onOpenCV}
-                className="flex-1 sm:flex-none px-3 sm:px-5 py-2.5 sm:py-3 rounded-full border border-slate-300 dark:border-white/15 text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-white/5 text-xs font-semibold sm:tracking-wider transition-all flex items-center justify-center gap-1.5 sm:gap-2"
+                containerClassName="h-auto rounded-full"
+                className="px-3 sm:px-5 py-2.5 sm:py-3 text-xs font-semibold sm:tracking-wider flex items-center gap-1.5 sm:gap-2 rounded-full"
+                duration={3000}
               >
                 <FileText className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
                 <span>Curriculum Vitae</span>
-              </button>
+              </MovingBorder>
             </div>
           </div>
 
-          {/* Right Column: Profile Photo Card with COMPLETE CONTACTS */}
+          {/* Right Column: Profile Photo Card with GlowingEffect */}
           <div className="lg:col-span-5 flex justify-center">
-            <div className="w-full sm:max-w-sm rounded-2xl sm:rounded-3xl border border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-white/[0.02] p-4 sm:p-6 space-y-4 sm:space-y-5 shadow-sm">
-              {/* Photo Container - Ukuran Pas & Proporsional (w-60 h-60 di mobile, w-72 di tablet, w-full di desktop) */}
-              <div className="relative aspect-square w-60 h-60 sm:w-72 sm:h-72 lg:w-full lg:h-auto mx-auto rounded-2xl overflow-hidden bg-slate-200 dark:bg-slate-800 border border-slate-200 dark:border-white/10 group">
+            <GlowingEffect containerClassName="w-full sm:max-w-sm rounded-2xl sm:rounded-3xl" spread={120}>
+              <div className="w-full sm:max-w-sm rounded-2xl sm:rounded-3xl border border-slate-200/90 dark:border-white/10 bg-white dark:bg-[#0d0d10] p-4 sm:p-5 space-y-4 shadow-[0_2px_12px_-2px_rgba(15,23,42,0.06)]">
+              {/* Photo Container - Bingkai Presisi Mengikuti Rasio Asli Ikhwan.jpg (1024x1257), Tanpa Bagian Hitam di Kiri/Kanan, Ukuran Terkunci Bebas Blur/Zoom */}
+              <div className="relative aspect-[1024/1257] w-full max-w-[280px] sm:max-w-[310px] mx-auto rounded-2xl overflow-hidden bg-slate-100 dark:bg-white/[0.04] border border-slate-200/80 dark:border-white/10 flex items-center justify-center">
                 <img
-                  src={userProfile.avatarUrl}
+                  src="/Ikhwan.jpg"
                   alt={userProfile.name}
-                  width={400}
-                  height={400}
+                  width={1024}
+                  height={1257}
                   loading="eager"
                   decoding="async"
                   fetchPriority="high"
                   onError={(e) => {
                     const target = e.currentTarget;
+                    if (!target.src.endsWith("profile.png")) {
+                      target.src = "/profile.png";
+                      return;
+                    }
                     target.style.display = "none";
                     const parent = target.parentElement;
                     if (parent && !parent.querySelector(".avatar-fallback")) {
@@ -244,15 +283,15 @@ export const Hero: React.FC<HeroSectionProps> = ({
                       fallback.innerHTML = `
                         <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-white/10 border border-white/20 flex items-center justify-center text-2xl sm:text-3xl font-black tracking-tight mb-3">IR</div>
                         <p class="font-bold text-sm tracking-wide">Ikhwan Ramadhan</p>
-                        <p class="text-xs text-slate-400 mt-1">Junior Frontend Engineer</p>
+                        <p class="text-xs text-slate-400 mt-1">Junior Fullstack Web Engineer</p>
                       `;
                       parent.appendChild(fallback);
                     }
                   }}
-                  className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                  className="w-full h-full object-cover object-center select-none"
                 />
 
-                <div className="absolute bottom-2 left-2 right-2 bg-slate-950/85 backdrop-blur-md rounded-full px-3 py-1.5 sm:py-2 text-white text-[10px] sm:text-[11px] flex items-center justify-between">
+                <div className="absolute bottom-2.5 left-2.5 right-2.5 bg-slate-950/85 dark:bg-black/85 backdrop-blur-md rounded-xl px-3 py-1.5 sm:py-2 text-white text-[10px] sm:text-[11px] flex items-center justify-between border border-white/10 shadow-sm pointer-events-none">
                   <div className="flex items-center gap-1.5 truncate">
                     <span className="w-2 h-2 rounded-full bg-emerald-400 shrink-0 animate-pulse"></span>
                     <span className="font-semibold truncate">
@@ -260,7 +299,7 @@ export const Hero: React.FC<HeroSectionProps> = ({
                     </span>
                   </div>
                   <span className="text-slate-300 text-[9px] sm:text-[10px] shrink-0 font-medium ml-1">
-                    Junior Frontend Engineer
+                    Junior Fullstack Web Engineer
                   </span>
                 </div>
               </div>
@@ -352,7 +391,8 @@ export const Hero: React.FC<HeroSectionProps> = ({
                   </a>
                 </div>
               </div>
-            </div>
+              </div>
+            </GlowingEffect>
           </div>
         </div>
       </section>
@@ -554,7 +594,7 @@ export const Hero: React.FC<HeroSectionProps> = ({
         </div>
       </section>
 
-      {/* 4. TENTANG SAYA (RINGKASAN FRONTEND POSITIONING) */}
+      {/* 4. TENTANG SAYA (RINGKASAN FULLSTACK POSITIONING) */}
       <section className="rounded-3xl border border-slate-200/80 dark:border-white/10 bg-white dark:bg-[#0c0c0d] p-6 sm:p-10 shadow-sm space-y-6">
         <div className="space-y-2 border-b border-slate-200 dark:border-white/10 pb-4">
           <span className="text-xs font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400">
@@ -568,29 +608,29 @@ export const Hero: React.FC<HeroSectionProps> = ({
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           <div className="lg:col-span-8 space-y-4 text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed">
             <p>
-              Saya <strong className="text-slate-950 dark:text-white font-bold">Ikhwan Ramadhan</strong>, lulusan S1 Teknik Informatika Universitas Putra Indonesia &ldquo;YPTK&rdquo; Padang, dengan fokus keahlian pada <strong className="text-slate-950 dark:text-white font-bold">Frontend Engineering</strong>.
+              Saya <strong className="text-slate-950 dark:text-white font-bold">Ikhwan Ramadhan</strong>, lulusan S1 Teknik Informatika Universitas Putra Indonesia &ldquo;YPTK&rdquo; Padang. Saya menempatkan diri sebagai <strong className="text-slate-950 dark:text-white font-bold">Junior Fullstack Web Engineer.</strong>
             </p>
             <p>
-              Dua framework utama yang saya kuasai adalah <strong className="text-slate-950 dark:text-white font-bold">Next.js</strong> (App Router, SSR/SSG/ISR, Technical SEO, Dynamic Open Graph) dan <strong className="text-slate-950 dark:text-white font-bold">Angular</strong> (Standalone Component Architecture, Reactive Programming dengan RxJS &amp; Signals). Untuk proyek antarmuka yang lebih ringan dan spesifik, saya menggunakan <strong className="text-slate-950 dark:text-white font-bold">Astro</strong> sesuai kebutuhan. Siap berkontribusi secara profesional <strong className="text-slate-950 dark:text-white font-bold"> baik On-Site (WFO) di seluruh Indonesia</strong> maupun <strong className="text-slate-950 dark:text-white font-bold">Hybrid/Remote</strong>.
+              Saya kuat di <strong className="text-slate-950 dark:text-white font-bold">Next.js</strong>, termasuk App Router dan pola rendering yang tepat. Untuk produk yang siap jalan, saya bisa menghubungkan REST API, menulis test yang relevan, menyiapkan CI/CD dan deployment serverless, serta menjaga perubahan lewat branch, review, dan rollback. Saya terbuka untuk <strong className="text-slate-950 dark:text-white font-bold">WFO, hybrid, maupun remote</strong>.
             </p>
           </div>
 
           <div className="lg:col-span-4 grid grid-cols-2 gap-3 text-xs">
-            <div className="p-4 rounded-2xl bg-blue-50 dark:bg-blue-500/5 border border-blue-200/70 dark:border-blue-500/15 space-y-1">
-              <span className="font-bold text-blue-700 dark:text-blue-400 block">Next.js & React</span>
-              <span className="text-blue-600/80 dark:text-blue-300/70">SSR, SSG, App Router</span>
+            <div className="p-4 rounded-2xl bg-blue-50/80 dark:bg-blue-500/5 border border-blue-200/80 dark:border-blue-500/20 space-y-1 shadow-[0_2px_8px_-2px_rgba(59,130,246,0.1)] hover:shadow-md hover:-translate-y-0.5 transition-all">
+              <span className="font-bold text-blue-700 dark:text-blue-400 block">Next.js</span>
+              <span className="text-blue-600/80 dark:text-blue-300/70">App Router, SSR, SSG, ISR</span>
             </div>
-            <div className="p-4 rounded-2xl bg-slate-50 dark:bg-white/[0.03] border border-slate-200/60 dark:border-white/5 space-y-1">
-              <span className="font-bold text-slate-950 dark:text-white block">Angular & RxJS</span>
-              <span className="text-slate-500 dark:text-slate-400">Signals, Reactive State</span>
+            <div className="p-4 rounded-2xl bg-emerald-50/80 dark:bg-emerald-500/5 border border-emerald-200/80 dark:border-emerald-500/20 space-y-1 shadow-[0_2px_8px_-2px_rgba(16,185,129,0.1)] hover:shadow-md hover:-translate-y-0.5 transition-all">
+              <span className="font-bold text-emerald-700 dark:text-emerald-400 block">REST API &amp; Testing</span>
+              <span className="text-emerald-600/80 dark:text-emerald-300/70">Validasi, integrasi, test</span>
             </div>
-            <div className="p-4 rounded-2xl bg-slate-50 dark:bg-white/[0.03] border border-slate-200/60 dark:border-white/5 space-y-1">
-              <span className="font-bold text-slate-950 dark:text-white block">Technical SEO</span>
-              <span className="text-slate-500 dark:text-slate-400">Open Graph, Schema</span>
+            <div className="p-4 rounded-2xl bg-purple-50/80 dark:bg-purple-500/5 border border-purple-200/80 dark:border-purple-500/20 space-y-1 shadow-[0_2px_8px_-2px_rgba(168,85,247,0.1)] hover:shadow-md hover:-translate-y-0.5 transition-all">
+              <span className="font-bold text-purple-700 dark:text-purple-400 block">Security Basics</span>
+              <span className="text-purple-600/80 dark:text-purple-300/70">OWASP Top 10 awareness</span>
             </div>
-            <div className="p-4 rounded-2xl bg-slate-50 dark:bg-white/[0.03] border border-slate-200/60 dark:border-white/5 space-y-1">
-              <span className="font-bold text-slate-950 dark:text-white block">Tooling & Styling</span>
-              <span className="text-slate-500 dark:text-slate-400">Tailwind, Astro, Vite</span>
+            <div className="p-4 rounded-2xl bg-amber-50/80 dark:bg-amber-500/5 border border-amber-200/80 dark:border-amber-500/20 space-y-1 shadow-[0_2px_8px_-2px_rgba(245,158,11,0.1)] hover:shadow-md hover:-translate-y-0.5 transition-all">
+              <span className="font-bold text-amber-700 dark:text-amber-400 block">Delivery Workflow</span>
+              <span className="text-amber-600/80 dark:text-amber-300/70">Git, CI/CD, serverless</span>
             </div>
           </div>
         </div>
@@ -626,19 +666,20 @@ export const Hero: React.FC<HeroSectionProps> = ({
               key={cert.id}
               certificate={cert}
               onOpenDetail={handleOpenCertDetail}
+              onOpenPreview={handleOpenCertPreview}
             />
           ))}
         </div>
       </section>
 
-      {/* 6. SKILL (KEAHLIAN & STACK TEKNIS FRONTEND) */}
+      {/* 6. SKILL (KEAHLIAN & STACK TEKNIS FULLSTACK) */}
       <section className="space-y-6">
         <div className="space-y-1.5 sm:space-y-2 border-b border-slate-200 dark:border-white/10 pb-3 sm:pb-4">
           <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400">
             05 / KEAHLIAN & TEKNOLOGI
           </span>
           <h2 className="text-xl sm:text-2xl lg:text-3xl font-black tracking-tight text-slate-950 dark:text-white">
-            Keahlian & Technical Stack Frontend
+            Keahlian Fullstack & Delivery
           </h2>
         </div>
 
@@ -695,7 +736,7 @@ export const Hero: React.FC<HeroSectionProps> = ({
             Mari Berdiskusi & Bekerja Sama
           </h2>
           <p className="text-xs sm:text-sm text-slate-300 max-w-3xl leading-relaxed">
-            Terbuka untuk posisi <strong className="text-white">Junior Frontend Engineer</strong> baik On-Site (WFO) di seluruh Indonesia maupun Remote / Hybrid. Silakan akses CV atau hubungi via kanal resmi berikut:
+            Terbuka untuk posisi <strong className="text-white">Junior Fullstack Web Engineer</strong> baik On-Site (WFO) di seluruh Indonesia maupun Remote / Hybrid. Lihat CV atau hubungi saya lewat kanal berikut.
           </p>
         </div>
 
@@ -722,7 +763,7 @@ export const Hero: React.FC<HeroSectionProps> = ({
                   {userProfile.name}
                 </h3>
                 <p className="text-xs text-slate-300 font-medium truncate">
-                  Junior Frontend Engineer (Next.js &amp; Angular)
+                  Junior Fullstack Web Engineer
                 </p>
               </div>
             </div>
@@ -801,7 +842,7 @@ export const Hero: React.FC<HeroSectionProps> = ({
                     Curriculum Vitae
                   </span>
                   <span className="text-[11px] text-slate-600 truncate block">
-                    Akses ringkasan keahlian teknis, pendidikan S1, &amp; pengalaman lengkap
+                    Lihat CV PDF, lalu cetak langsung dari browser bila diperlukan
                   </span>
                 </div>
               </div>
@@ -908,6 +949,14 @@ export const Hero: React.FC<HeroSectionProps> = ({
         project={selectedProjectForDetail}
         certificate={selectedCertForDetail}
         onOpenMarkdown={onOpenProjectMarkdown}
+      />
+
+      {/* Quick Certificate Preview Modal */}
+      <CardPreviewModal
+        isOpen={isPreviewModalOpen}
+        onClose={() => setIsPreviewModalOpen(false)}
+        certificate={selectedCertForPreview}
+        onOpenDetail={(item) => handleOpenCertDetail(item as CertificationItem)}
       />
     </div>
   );

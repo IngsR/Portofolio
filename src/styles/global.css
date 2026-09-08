@@ -5,17 +5,96 @@
 @layer base {
   html {
     scroll-behavior: smooth;
-    font-family: 'Space Grotesk', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    font-family: 'Plus Jakarta Sans', 'Space Grotesk', system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
   }
   
   code, pre, kbd, .font-mono {
     font-family: 'JetBrains Mono', monospace;
   }
+
+  ::selection {
+    background-color: rgba(99, 102, 241, 0.25);
+    color: inherit;
+  }
+}
+
+/* Aceternity UI Pattern & Lighting Utilities */
+.bg-grid-pattern {
+  background-size: 32px 32px;
+  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                    linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+}
+
+.light .bg-grid-pattern,
+html:not(.dark) .bg-grid-pattern {
+  background-size: 32px 32px;
+  background-image: linear-gradient(to right, rgba(15, 23, 42, 0.035) 1px, transparent 1px),
+                    linear-gradient(to bottom, rgba(15, 23, 42, 0.035) 1px, transparent 1px);
+}
+
+.bg-dot-pattern {
+  background-size: 24px 24px;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.12) 1px, transparent 1px);
+}
+
+.light .bg-dot-pattern,
+html:not(.dark) .bg-dot-pattern {
+  background-size: 24px 24px;
+  background-image: radial-gradient(rgba(15, 23, 42, 0.065) 1.2px, transparent 1.2px);
+}
+
+/* Light mode rich ambient calm background - Modern & Anti-Glare */
+.light-ambient-mesh {
+  background-image: 
+    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(59, 130, 246, 0.05), transparent 70%),
+    radial-gradient(ellipse 60% 40% at 15% 25%, rgba(99, 102, 241, 0.04), transparent 60%),
+    radial-gradient(ellipse 60% 40% at 85% 30%, rgba(16, 185, 129, 0.03), transparent 60%);
+}
+
+.radial-mask {
+  mask-image: radial-gradient(ellipse at center, black 45%, transparent 85%);
+  -webkit-mask-image: radial-gradient(ellipse at center, black 45%, transparent 85%);
+}
+
+.radial-mask-top {
+  mask-image: radial-gradient(ellipse 80% 50% at 50% 0%, black 70%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 50% at 50% 0%, black 70%, transparent 100%);
+}
+
+/* Crisp Aceternity Card & Depth System (Anti-Flat / Anti-Slope) */
+.aceternity-card {
+  position: relative;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+html:not(.dark) .aceternity-card {
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.03), 0 6px 16px -2px rgba(15, 23, 42, 0.04), 0 0 0 1px rgba(226, 232, 240, 0.85);
+}
+
+html:not(.dark) .aceternity-card:hover {
+  box-shadow: 0 16px 32px -4px rgba(37, 99, 235, 0.1), 0 4px 12px 0 rgba(15, 23, 42, 0.04), 0 0 0 1px rgba(59, 130, 246, 0.3);
+}
+
+.aceternity-card::before {
+  content: "";
+  position: absolute;
+  inset-x: 0;
+  top: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+  pointer-events: none;
+}
+
+html:not(.dark) .aceternity-card::before {
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.9), transparent);
 }
 
 .font-display {
-  font-family: 'Space Grotesk', 'Plus Jakarta Sans', sans-serif;
-  letter-spacing: -0.04em;
+  font-family: 'Plus Jakarta Sans', 'Space Grotesk', sans-serif;
+  letter-spacing: -0.03em;
 }
 
 .text-outline {

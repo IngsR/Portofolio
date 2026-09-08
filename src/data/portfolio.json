@@ -1,22 +1,22 @@
 {
   "userProfile": {
     "name": "Ikhwan Ramadhan",
-    "title": "Junior Frontend Engineer",
-    "tagline": "Fresh Graduate S1 Teknik Informatika UPI \"YPTK\" Padang, dengan fokus pada Frontend Engineering. Dua framework utama saya adalah Next.js dan Angular, didukung kemampuan Technical SEO, rendering SSR/SSG, dan Reactive Programming (RxJS & Signals).",
-    "shortBio": "Fresh Graduate S1 Teknik Informatika UPI \"YPTK\" Padang, dengan fokus pada Frontend Engineering. Dua framework utama saya adalah Next.js dan Angular, didukung kemampuan Technical SEO, rendering SSR/SSG, dan Reactive Programming (RxJS & Signals).",
+    "title": "Junior Fullstack Web Engineer",
+    "tagline": "Junior Fullstack Web Engineer yang kuat di Next.js, terbiasa membawa aplikasi dari permintaan client sampai rilis di internet, pengujian, CI/CD, deployment serverless, dan Git workflow tim.",
+    "shortBio": "Saya membangun aplikasi web end-to-end dengan Next.js sebagai kekuatan utama, dari REST API dan pengujian sampai deployment serverless yang rapi.",
     "fullBio": [
-      "Saya Ikhwan Ramadhan, Fresh Graduate S1 Teknik Informatika Universitas Putra Indonesia \"YPTK\" Padang, dengan fokus keahlian pada Frontend Engineering.",
-      "Dua framework utama yang saya kuasai adalah Next.js (App Router, SSR/SSG/ISR, Technical SEO, Dynamic Open Graph) dan Angular (Standalone Component Architecture, Reactive Programming dengan RxJS & Signals). Untuk proyek antarmuka yang lebih ringan dan spesifik, saya menggunakan Astro dan Vite sesuai kebutuhan.",
-      "Bagi saya, Frontend Engineering bukan hanya soal membangun tampilan yang bagus. Ini tentang menerjemahkan kebutuhan nyata menjadi antarmuka yang responsif, cepat, mudah ditemukan di mesin pencari, dan benar-benar nyaman digunakan. Mulai dari memilih strategi rendering yang tepat, mengoptimalkan performa Core Web Vitals, sampai memastikan setiap interaksi terasa alami bagi pengguna akhir.",
+      "Saya Ikhwan Ramadhan, lulusan S1 Teknik Informatika Universitas Putra Indonesia \"YPTK\" Padang. Saya berkembang sebagai Junior Fullstack Web Engineer dengan Next.js sebagai framework yang paling saya pahami.",
+      "Saya nyaman mengerjakan alur web secara utuh: merancang REST API, menghubungkan database dan antarmuka, menulis pengujian, lalu menyiapkan CI/CD serta deployment serverless. Di sisi keamanan, saya membiasakan validasi input, kontrol akses, dan pengecekan risiko yang sejalan dengan OWASP Top 10.",
+      "Saya juga terbiasa bekerja dengan Git dalam pola kerja tim: branch terpisah, pull request, review, rollback, dan menjaga perubahan tetap mudah dilacak. Target saya sederhana: fitur yang berguna, mudah dirawat, dan aman untuk dirilis.",
       "Saya siap berkontribusi secara profesional, baik On-Site (WFO) di seluruh Indonesia maupun Remote / Hybrid."
     ],
     "location": "Indonesia",
     "workPreference": "On-Site / WFO di Seluruh Indonesia (Siap Relokasi) & Hybrid / Remote",
     "email": "ikhwn.rdn@gmail.com",
     "phone": "+6282386473410",
-    "whatsappUrl": "https://wa.me/6282386473410?text=Halo%20Ikhwan%2C%20saya%20melihat%20portofolio%20Anda%20dan%20tertarik%20untuk%20berdiskusi%20terkait%20peluang%20kerja%20Frontend%20Engineer%20%2F%20proyek.",
+    "whatsappUrl": "https://wa.me/6282386473410?text=Halo%20Ikhwan%2C%20saya%20melihat%20portofolio%20Anda%20dan%20tertarik%20untuk%20berdiskusi%20terkait%20peluang%20Junior%20Fullstack%20Web%20Engineer%20%2F%20proyek.",
     "avatarUrl": "/profile.png",
-    "statusText": "Siap Bekerja On-Site (WFO) di Seluruh Indonesia / Relokasi & Remote",
+    "statusText": "Terbuka untuk Junior Fullstack Web Engineer — WFO, hybrid, atau remote",
     "isAvailableForHire": true,
     "stats": {
       "projectsCompleted": 8,
@@ -41,7 +41,7 @@
       },
       {
         "name": "WhatsApp",
-        "url": "https://wa.me/6282386473410?text=Halo%20Ikhwan%2C%20saya%20melihat%20portofolio%20Anda%20dan%20tertarik%20untuk%20berdiskusi%20terkait%20peluang%20kerja%20Frontend%20Engineer%20%2F%20proyek.",
+        "url": "https://wa.me/6282386473410?text=Halo%20Ikhwan%2C%20saya%20melihat%20portofolio%20Anda%20dan%20tertarik%20untuk%20berdiskusi%20terkait%20peluang%20Junior%20Fullstack%20Web%20Engineer%20%2F%20proyek.",
         "icon": "Phone",
         "username": "+62 823-8647-3410",
         "colorClass": "hover:text-emerald-600 dark:hover:text-emerald-400"
@@ -77,11 +77,11 @@
       "featured": true,
       "publishedDate": "2025-12-01",
       "period": "2025 (Proyek Produksi)",
-      "role": "Lead Frontend Engineer",
+      "role": "Fullstack Web Developer (Magang)",
       "demoUrl": "https://smpn24padang.sch.id",
       "githubUrl": "https://github.com/Informatics-2025/Website-SMPN24padang",
-      "problem": "Portal sekolah sebelumnya lambat dimuat di perangkat mobile, belum terindeks secara optimal di mesin pencari (SEO rendah), tidak memiliki pratinjau media sosial (Open Graph), serta membutuhkan antarmuka pengelolaan informasi akademik yang terstruktur.",
-      "solution": "Merancang arsitektur antarmuka modern dengan Next.js App Router yang mengombinasikan Server-Side Rendering (SSR) & Static Site Generation (SSG) caching, optimasi Technical SEO (Dynamic Metadata, Open Graph, Sitemap & Robots.txt), tata letak semantik HTML5, serta panel administrasi modular berbasis shadcn/ui dan validasi skema form Zod.",
+      "problem": "Portal sekolah sebelumnya lambat dimuat di perangkat mobile, belum terindeks secara optimal di mesin pencari, serta membutuhkan sistem informasi dan publikasi berita akademik yang mudah dikelola staf.",
+      "solution": "Membangun aplikasi web sekolah terpadu dengan Next.js App Router: validasi input form dengan Zod, rendering hybrid SSR/SSG untuk kecepatan akses dan SEO, panel pengelolaan konten yang rapi, serta penyiapan rilis ke domain produksi.",
       "metrics": [
         {
           "label": "Rendering & SEO",
@@ -96,7 +96,7 @@
           "value": "Mobile Optimized & Fast Indexing"
         }
       ],
-      "markdownContent": "---\ntitle: \"Website SMP Negeri 24 Padang\"\ndescription: \"High-performance school portal and academic information platform powered by Next.js App Router, featuring Technical SEO, SSR/SSG caching, dynamic Open Graph, and modular UI.\"\ndate: \"2025-12-01\"\ncategory: \"Next.js & Performance\"\ntags:\n  - Next.js\n  - React\n  - TypeScript\n  - Technical SEO\n  - SSR / SSG\n  - Open Graph\n  - Tailwind CSS\n  - shadcn/ui\n  - Zod\ngithub: \"https://github.com/Informatics-2025/Website-SMPN24padang\"\ndemo: \"https://smpn24padang.sch.id\"\nfeatured: true\n---\n\n# Website SMP Negeri 24 Padang\n\n## 📌 Ringkasan Proyek\nWebsite profil dan sistem informasi sekolah resmi untuk **SMP Negeri 24 Padang**. Proyek ini dirancang sebagai platform terpadu untuk publikasi berita, pengumuman akademik, galeri kegiatan, serta portal administrasi terintegrasi bagi guru dan staf.\n\n> **Catatan Tim & Peran**: Bertindak sebagai **Lead Frontend Engineer**, memimpin perancangan arsitektur antarmuka, optimasi performa Core Web Vitals, implementasi SEO teknis menyeluruh (Dynamic Open Graph, Metadata, Sitemap), standarisasi komponen shadcn/ui, serta integrasi form validation type-safe Zod.\n\n---\n\n## 🛠️ Tech Stack & Arsitektur Frontend\n- **Framework & Runtime**: Next.js App Router (SSR, SSG, Static Assets Optimization), React, TypeScript\n- **Styling & Design System**: Tailwind CSS, shadcn/ui, Lucide Icons\n- **Technical SEO & Metadata**: Dynamic Metadata API, Open Graph Image Generation, Automated XML Sitemap, Robots.txt, Semantic HTML5\n- **Form & Validation**: React Hook Form, Zod Schema Validation\n- **Performance Strategy**: Server-side rendering dengan edge caching, lazy loading gambar teroptimasi, dan isolasi Client Components\n\n---\n\n## ✨ Fitur Teknis Utama\n1. **Technical SEO & Social Sharing (Open Graph)**: Pengaturan metadata otomatis pada setiap halaman artikel dan pengumuman untuk pratinjau kaya di media sosial dan indeks pencarian Google.\n2. **Hybrid Rendering (SSR / SSG)**: Halaman profil statis di-generate secara SSG untuk kecepatan instan, sementara data berita dan pengumuman di-render secara SSR dengan caching revalidasi.\n3. **Admin Panel Modular & Type-Safe**: Dashboard pengelolaan berita dan galeri dengan komponen modular shadcn/ui dan validasi form Zod.\n4. **Mobile First & Responsive Layout**: Aksesibilitas tinggi pada berbagai ukuran layar dengan Core Web Vitals yang teroptimasi."
+      "markdownContent": "---\ntitle: \"Website SMP Negeri 24 Padang\"\ndescription: \"Portal resmi dan sistem informasi akademik sekolah berkinerja tinggi berbasis Next.js App Router, SSR/SSG caching, dan validasi form Zod.\"\ndate: \"2025-12-01\"\ncategory: \"Next.js & Performance\"\ntags:\n  - Next.js\n  - React\n  - TypeScript\n  - REST API\n  - SSR / SSG\n  - Zod\n  - Tailwind CSS\n  - shadcn/ui\ngithub: \"https://github.com/Informatics-2025/Website-SMPN24padang\"\ndemo: \"https://smpn24padang.sch.id\"\nfeatured: true\n---\n\n# Website SMP Negeri 24 Padang\n\n## 📌 Ringkasan Proyek\nWebsite profil dan sistem informasi sekolah resmi untuk **SMP Negeri 24 Padang**. Proyek ini dirancang sebagai platform terpadu untuk publikasi berita, pengumuman akademik, galeri kegiatan, serta portal administrasi bagi guru dan staf.\n\n> **Peran & Tanggung Jawab**: Bertindak sebagai **Fullstack Web Developer (Magang)**, bertanggung jawab atas perancangan arsitektur antarmuka dan alur data Next.js, validasi input form Zod, optimasi performa Core Web Vitals, serta deployment ke server produksi sekolah.\n\n---\n\n## 🛠️ Tech Stack & Arsitektur\n- **Framework & Runtime**: Next.js App Router (SSR, SSG, Static Assets Optimization), React, TypeScript\n- **Styling & UI**: Tailwind CSS, shadcn/ui, Lucide Icons\n- **Metadata & SEO**: Dynamic Metadata, Open Graph, Automated XML Sitemap, Robots.txt, Semantic HTML5\n- **Form & Validasi**: React Hook Form, Zod Schema Validation\n- **Strategi Delivery**: Caching revalidasi berkala, isolasi client components, dan deployment rilis yang stabil\n\n---\n\n## ✨ Fitur Teknis Utama\n1. **Akses Cepat & SEO Ramah**: Kombinasi SSG untuk halaman statis dan SSR dengan caching untuk pembaruan berita sekolah.\n2. **Validasi Form Type-Safe**: Validasi skema Zod untuk form data berita dan galeri agar terhindar dari payload yang rusak.\n3. **Panel Admin Terstruktur**: Antarmuka dashboard sederhana dan mudah digunakan staf untuk memperbarui info sekolah.\n4. **Responsif di Seluruh Perangkat**: Nyaman diakses oleh wali murid dan siswa melalui smartphone maupun laptop."
     },
     {
       "id": "proj-2",
@@ -198,7 +198,7 @@
       "featured": true,
       "publishedDate": "2025-07-23",
       "period": "2025",
-      "role": "Junior Frontend Engineer",
+      "role": "Junior Fullstack Web Engineer",
       "demoUrl": "https://cars.ikhwann.my.id",
       "githubUrl": "https://github.com/IngsR/web_store",
       "problem": "Calon pembeli membutuhkan kemudahan mengeksplorasi unit mobil dan simulasi cicilan kredit yang akurat secara real-time tanpa reload halaman, sedangkan pihak penjual memerlukan kemudahan manajemen unit berbasis CMS.",
@@ -238,7 +238,7 @@
       "featured": false,
       "publishedDate": "2025-11-30",
       "period": "2025",
-      "role": "Junior Frontend Engineer (Monorepo & Design System)",
+      "role": "Junior Fullstack Web Engineer",
       "demoUrl": "",
       "githubUrl": "https://github.com/IngsR/Monorepo-CRM",
       "metrics": [
@@ -276,7 +276,7 @@
       "featured": false,
       "publishedDate": "2025-07-15",
       "period": "2025",
-      "role": "Junior Frontend Engineer",
+      "role": "Junior Fullstack Web Engineer",
       "demoUrl": "https://kelola-barang.vercel.app",
       "githubUrl": "https://github.com/IngsR/manajemen-iventory",
       "metrics": [
@@ -313,7 +313,7 @@
       "featured": false,
       "publishedDate": "2025-07-07",
       "period": "2025",
-      "role": "Junior Frontend Engineer",
+      "role": "Junior Fullstack Web Engineer",
       "demoUrl": "https://tfidf.vercel.app",
       "githubUrl": "https://github.com/IngsR/DockRank_TF-IDF",
       "metrics": [
@@ -350,7 +350,7 @@
       "featured": false,
       "publishedDate": "2026-04-13",
       "period": "2026",
-      "role": "Junior Frontend Engineer",
+      "role": "Junior Fullstack Web Engineer",
       "demoUrl": "https://blogsing.vercel.app",
       "githubUrl": "https://github.com/IngsR/AdminBlog_nextjs",
       "metrics": [
@@ -387,7 +387,7 @@
       "featured": false,
       "publishedDate": "2025-06-06",
       "period": "2025",
-      "role": "Mobile Frontend Developer",
+      "role": "Fullstack Web & Mobile Developer",
       "demoUrl": "",
       "githubUrl": "https://github.com/IngsR/ReactExpo-Mobile-Ecomerce",
       "metrics": [
@@ -409,67 +409,72 @@
   ],
   "skillCategories": [
     {
-      "title": "CORE FRONTEND & FRAMEWORKS",
+      "title": "FULLSTACK & NEXT.JS ECOSYSTEM",
       "iconName": "Layout",
-      "description": "Fondasi utama rekayasa antarmuka web modern dan scalable.",
+      "description": "Fokus utama saya membangun aplikasi web modern, cepat, dan terstruktur rapi.",
       "coreStack": [
-        "Next.js",
-        "Angular",
+        "Next.js (App Router)",
         "React.js",
-        "TypeScript"
+        "TypeScript",
+        "Node.js"
       ],
       "alsoUsed": [
-        "JavaScript (ES6+)",
-        "HTML5 Semantic",
-        "CSS3 / Modern Layouts"
-      ]
-    },
-    {
-      "title": "RENDERING, SEO & WEB PERFORMANCE",
-      "iconName": "Server",
-      "description": "Arsitektur rendering, optimasi mesin pencari, dan kecepatan web.",
-      "coreStack": [
-        "SSR / SSG / ISR",
-        "Technical SEO",
-        "Dynamic Open Graph"
-      ],
-      "alsoUsed": [
-        "Edge CDN Caching",
-        "Core Web Vitals",
-        "Automated Sitemap / Schema"
-      ]
-    },
-    {
-      "title": "REACTIVE PROGRAMMING & STATE",
-      "iconName": "Cpu",
-      "description": "Manajemen aliran data asinkron, reaktivitas, dan validasi type-safe.",
-      "coreStack": [
-        "RxJS",
-        "Angular Signals",
-        "React State & Context"
-      ],
-      "alsoUsed": [
-        "TanStack Query",
-        "Zod Schema Validation",
-        "Event-Driven UI"
-      ]
-    },
-    {
-      "title": "MODERN STYLING & TOOLING",
-      "iconName": "Terminal",
-      "description": "Desain sistem modular, build tooling, dan arsitektur pengiriman.",
-      "coreStack": [
+        "Server Actions",
         "Tailwind CSS",
         "shadcn/ui",
-        "Astro",
-        "Vite"
+        "HTML5 / CSS3"
+      ]
+    },
+    {
+      "title": "REST API & DATA INTEGRATION",
+      "iconName": "Server",
+      "description": "Perancangan endpoint RESTful, validasi skema request-response, dan integrasi database.",
+      "coreStack": [
+        "REST API",
+        "Route Handlers",
+        "Zod Schema Validation",
+        "Relational Database / SQL"
       ],
-      "alsoUsedLabel": "TOOLING & DEPLOY",
       "alsoUsed": [
-        "Turborepo",
-        "Git & GitHub",
-        "Vercel",
-        "Docker"
+        "Prisma / Drizzle ORM",
+        "Supabase",
+        "Postman",
+        "Data Modeling"
+      ]
+    },
+    {
+      "title": "TESTING, SECURITY & OWASP",
+      "iconName": "Cpu",
+      "description": "Kebiasaan menulis kode yang aman dari celah umum dan teruji sebelum ke produksi.",
+      "coreStack": [
+        "Unit & Integration Testing",
+        "OWASP Top 10 Awareness",
+        "Input Sanitization",
+        "Auth & Session Management"
+      ],
+      "alsoUsed": [
+        "Role-Based Access Control",
+        "Security Headers & CORS",
+        "Rate Limiting",
+        "Structured Error Handling"
+      ]
+    },
+    {
+      "title": "DEVOPS, CI/CD & GIT WORKFLOW",
+      "iconName": "Terminal",
+      "description": "Workflow tim korporat yang rapi dengan branch teratur, review PR, dan rilis otomatis.",
+      "coreStack": [
+        "Git Branching & PR Review",
+        "Git Reset, Revert & Rollback",
+        "CI/CD Pipeline",
+        "Serverless Deployment (Vercel)"
+      ],
+      "alsoUsedLabel": "TOOLING & ENV",
+      "alsoUsed": [
+        "GitHub Actions",
+        "Environment Secret Management",
+        "Docker Basic",
+        "Vite & Astro"
       ]
     }
   ],
@@ -481,32 +486,33 @@
       "location": "Padang, Indonesia",
       "period": "Agustus - September 2025",
       "type": "Magang",
-      "description": "Membangun website resmi SMP Negeri 24 Padang dari awal selama magang 2 bulan. Bertanggung jawab penuh atas arsitektur frontend, optimasi SEO, dan deployment ke produksi.",
+      "description": "Membangun sistem informasi dan website profil SMP Negeri 24 Padang secara end-to-end selama masa magang 2 bulan, mulai dari perancangan arsitektur, integrasi alur data pengumuman dan berita, optimasi rilis, hingga deployment ke server produksi.",
       "achievements": [
-        "Merancang dan mengimplementasikan portal resmi sekolah menggunakan Next.js App Router, TypeScript, dan Tailwind CSS, berkoordinasi langsung dengan pihak sekolah.",
-        "Menerapkan Technical SEO menyeluruh: Dynamic Metadata API, Open Graph Image Generator, sitemap otomatis, robots.txt, dan semantic HTML5 sehingga skor SEO Lighthouse mencapai 100/100.",
-        "Mengoptimalkan strategi rendering SSR/SSG hingga skor performa Lighthouse 99/100 dengan FCP 0,5 detik, kemudian berhasil deploy ke produksi di smpn24padang.sch.id dalam 2 bulan."
+        "Merancang dan mengimplementasikan aplikasi web sekolah dengan Next.js App Router dan TypeScript, bekerja sama langsung dengan pihak sekolah untuk memetakan kebutuhan portal publik dan panel pengelolaan konten.",
+        "Mengatur alur data dan validasi skema form menggunakan Zod untuk mencegah input yang tidak valid dan menjaga konsistensi data sebelum disimpan.",
+        "Menerapkan strategi rendering SSR dan SSG dengan caching revalidasi sehingga halaman memuat dengan cepat (Lighthouse performa 99/100) serta SEO terindeks baik.",
+        "Menyiapkan pipeline deployment ke domain produksi smpn24padang.sch.id dan memastikan workflow pembaruan konten berjalan stabil tanpa kendala."
       ],
       "techStack": [
         "Next.js (App Router)",
         "React",
         "TypeScript",
+        "REST API",
+        "Zod",
         "Tailwind CSS",
         "shadcn/ui",
-        "Technical SEO",
-        "Dynamic Open Graph",
         "SSR / SSG",
-        "Zod"
+        "Git & Deployment"
       ]
     }
   ],
   "education": [
     {
       "id": "edu-1",
-      "degree": "S1 Teknik Informatika",
-      "institution": "Universitas Putra Indonesia “YPTK” Padang",
-      "period": "Teknik Informatika • Sep 2022 – Okt 2026",
-      "details": ""
+      "degree": "Sarjana Komputer (S.Kom) - S1 Teknik Informatika",
+      "institution": "Universitas Putra Indonesia \"YPTK\" Padang",
+      "period": "2022 - 2026",
+      "details": "Lulus S1 Teknik Informatika dengan pemahaman kuat pada Rekayasa Perangkat Lunak, Struktur Data & Algoritma, Basis Data Relasional, Pemrograman Web Fullstack, Keamanan Sistem Informasi, serta penyusunan skripsi berbasis Machine Learning & deep learning untuk analisis data."
     }
   ],
   "certifications": [
@@ -607,95 +613,92 @@
   ],
   "engineeringMindsetSkills": [
     {
-      "id": "rendering-architecture",
-      "category": "01 — Rendering Strategies & Architecture",
-      "title": "SSR, SSG, ISR & CDN Edge Caching",
-      "narrative": "Saya memandang arsitektur rendering sebagai keputusan strategis. Setiap halaman memiliki kebutuhan berbeda: halaman publik sekolah membutuhkan SSG dengan caching revalidasi untuk waktu muat instan, sedangkan dashboard interaktif memerlukan client hydration yang terukur. Dengan memahami Server-Side Rendering (SSR), Static Site Generation (SSG), Incremental Static Regeneration (ISR), dan distribusi Edge CDN, saya memastikan aplikasi web memuat secara instan dengan efisiensi server maksimal.",
+      "id": "fullstack-nextjs-arch",
+      "category": "01 — Arsitektur Fullstack & Next.js",
+      "title": "Next.js App Router, SSR/SSG & Server Actions",
+      "narrative": "Next.js adalah framework yang paling saya kuasai. Saya terbiasa menyusun struktur proyek yang jelas, membedakan Server Components dan Client Components dengan tepat, serta memanfaatkan Server Actions untuk mutasi data tanpa boilerplate berlebih. Pilihan rendering (SSR, SSG, atau revalidasi berkala) saya sesuaikan dengan kebutuhan data di lapangan agar halaman cepat dimuat dan beban server tetap hemat.",
       "technologies": [
-        "SSR",
-        "SSG",
-        "ISR",
-        "Edge CDN",
-        "Next.js App Router",
-        "Astro Islands",
-        "Web Performance"
-      ],
-      "iconName": "Server"
-    },
-    {
-      "id": "nextjs-react-core",
-      "category": "02 — Next.js & React Ecosystem",
-      "title": "Modern React & App Router Mastery",
-      "narrative": "React.js dan Next.js adalah salah satu pilar utama saya. Saya membangun antarmuka dengan memisahkan Server Components dan Client Components secara presisi, mengoptimalkan re-render, menyusun hierarki komponen yang modular, serta menerapkan optimasi aset media Next/Image dan font agar skor Core Web Vitals tetap prima.",
-      "technologies": [
-        "Next.js",
+        "Next.js (App Router)",
         "React",
         "TypeScript",
         "Server Components",
-        "Client Boundary",
-        "Core Web Vitals"
+        "Server Actions",
+        "SSR / SSG Caching"
       ],
       "iconName": "Layout"
     },
     {
-      "id": "angular-reactive-patterns",
-      "category": "03 — Angular & Reactive Architecture",
-      "title": "Enterprise Frontend with Angular & RxJS",
-      "narrative": "Untuk aplikasi enterprise dengan kompleksitas tinggi, saya memanfaatkan Angular dengan arsitektur modular yang kuat. Saya menguasai Reactive Programming menggunakan RxJS Observables dan Angular Signals untuk mengalirkan data asinkron secara terprediksi, dependency injection untuk modularitas service, dan Angular Reactive Forms dengan validasi ketat.",
+      "id": "rest-api-backend",
+      "category": "02 — REST API & Alur Data",
+      "title": "Perancangan RESTful API & Validasi Skema",
+      "narrative": "Saya merancang Route Handlers dan REST API dengan struktur endpoint yang jelas, status HTTP yang tepat, dan validasi input yang ketat menggunakan Zod. Saya menghubungkan backend dengan basis data relasional melalui query yang efisien, memastikan relasi data konsisten, serta menyusun penanganan error yang informatif bagi klien.",
       "technologies": [
-        "Angular",
-        "TypeScript",
-        "RxJS",
-        "Angular Signals",
-        "Dependency Injection",
-        "Reactive Forms"
+        "REST API",
+        "Next.js Route Handlers",
+        "Zod Schema",
+        "Relational DB (SQL)",
+        "Prisma / Supabase",
+        "API Error Handling"
+      ],
+      "iconName": "Server"
+    },
+    {
+      "id": "security-owasp-top10",
+      "category": "03 — Keamanan Aplikasi & OWASP Top 10",
+      "title": "Validasi Input, Autentikasi & Dasar Keamanan Web",
+      "narrative": "Saya membiasakan diri menulis kode yang waspada terhadap risiko keamanan, merujuk pada prinsip OWASP Top 10. Mulai dari sanitasi input dan validasi tipe data untuk mencegah injection, pengelolaan autentikasi berbasis session/token yang aman, pembatasan akses berbasis peran (RBAC), hingga penataan header keamanan dan proteksi CORS.",
+      "technologies": [
+        "OWASP Top 10",
+        "Input Sanitization",
+        "Auth & Session Guard",
+        "RBAC",
+        "CORS & Security Headers",
+        "Rate Limiting"
       ],
       "iconName": "Cpu"
     },
     {
-      "id": "technical-seo-opengraph",
-      "category": "04 — Technical SEO & Open Graph Strategy",
-      "title": "Search Engine Optimization & Social Previews",
-      "narrative": "Bagi saya, website yang hebat harus mudah ditemukan oleh pengguna dan mesin pencari. Saya menerapkan Technical SEO secara mendalam: Dynamic Metadata, Open Graph & Twitter Cards untuk pratinjau sosial yang kaya, semantic HTML5, validasi JSON-LD Schema (Person, WebSite, Breadcrumbs), serta XML sitemap dan robots.txt otomatis.",
+      "id": "testing-qa",
+      "category": "04 — Pengujian & Kualitas Kode",
+      "title": "Unit & Integration Testing untuk Stabilitas Fitur",
+      "narrative": "Bagi saya, fitur yang selesai adalah fitur yang tidak mudah rusak saat ada perubahan berikutnya. Saya membiasakan menulis pengujian untuk alur logika inti dan endpoint kritis, memeriksa skenario sukses maupun penanganan kondisi gagal (edge cases), sehingga setiap perubahan kode bisa digabungkan dengan percaya diri.",
       "technologies": [
-        "Technical SEO",
-        "Open Graph",
-        "JSON-LD Schema",
-        "Semantic HTML5",
-        "Sitemap & Robots",
-        "Twitter Cards"
+        "Unit Testing",
+        "Integration Testing",
+        "API Test / Postman",
+        "Edge Case Verification",
+        "Clean Code"
       ],
       "iconName": "Layers"
     },
     {
-      "id": "performance-design-systems",
-      "category": "05 — Design Systems & Tooling",
-      "title": "Tailwind CSS, shadcn/ui, Astro & Tooling",
-      "narrative": "Saya membangun antarmuka yang konsisten menggunakan Tailwind CSS dan sistem komponen shadcn/ui. Untuk aplikasi spesifik berskala ringan dan presentasi konten, saya memanfaatkan Astro (Island Architecture) untuk mencapai waktu render tercepat dengan payload JavaScript minimal.",
+      "id": "git-cicd-delivery",
+      "category": "05 — Git Workflow Tim & CI/CD",
+      "title": "Branching Standar Korporat, Rollback & Serverless Deploy",
+      "narrative": "Saya terbiasa bekerja dengan Git standar tim: membuat branch fitur yang terpisah, menulis pesan commit yang jelas, mengajukan Pull Request untuk review, dan menangani merge conflict dengan hati-hati. Saya juga paham langkah mitigasi seperti git reset dan revert/rollback jika terjadi masalah di rilis produksi, serta memanfaatkan pipeline CI/CD dan deployment serverless di Vercel.",
       "technologies": [
-        "Tailwind CSS",
-        "shadcn/ui",
-        "Astro",
-        "Vite",
-        "Turborepo",
-        "Git",
-        "Vercel"
+        "Git (Branch, PR, Merge)",
+        "Git Reset, Revert & Rollback",
+        "CI/CD Pipeline",
+        "Serverless Deployment (Vercel)",
+        "Environment Secrets",
+        "Production Release"
       ],
       "iconName": "Terminal"
     }
   ],
   "contactFaq": [
     {
-      "question": "Bagaimana cara menghubungi Ikhwan Ramadhan untuk peluang kerja Junior Frontend Engineer?",
-      "answer": "Anda dapat menghubungi saya langsung melalui WhatsApp di +62 823-8647-3410, via email ke ikhwn.rdn@gmail.com, atau melalui formulir kontak di website ini. Saya merespons secara cepat dan profesional."
+      "question": "Bagaimana cara menghubungi Ikhwan Ramadhan untuk peluang kerja Junior Fullstack Web Engineer?",
+      "answer": "Anda bisa menghubungi saya langsung melalui WhatsApp di +62 823-8647-3410, via email ke ikhwn.rdn@gmail.com, atau lewat form pesan di situs ini. Saya siap merespons dengan cepat untuk jadwal wawancara maupun diskusi teknis."
     },
     {
-      "question": "Apakah Anda siap untuk posisi On-Site (WFO) atau relokasi?",
-      "answer": "Ya, saya siap dan terbuka penuh untuk posisi On-Site / WFO di seluruh wilayah Indonesia (siap relokasi), maupun sistem kerja Hybrid dan Remote."
+      "question": "Apakah Anda siap bekerja On-Site (WFO) atau siap relokasi?",
+      "answer": "Ya, saya siap dan terbuka untuk penempatan On-Site (WFO) di seluruh wilayah Indonesia dan siap relokasi, begitu pula untuk sistem kerja Hybrid maupun Remote."
     },
     {
-      "question": "Teknologi dan spesialisasi apa yang menjadi fokus utama Anda?",
-      "answer": "Fokus utama saya adalah Frontend Engineering dengan React.js, TypeScript, Next.js, dan Angular. Saya berfokus mendalam pada Technical SEO, Rendering Strategies (SSR/SSG/ISR), Open Graph Optimization, Reactive Programming (RxJS & Signals), serta sistem desain modular berbasis Tailwind CSS dan shadcn/ui."
+      "question": "Apa keahlian teknis utama yang Anda bawa untuk tim?",
+      "answer": "Kekuatan utama saya ada di pengembangan aplikasi web fullstack dengan Next.js dan TypeScript. Saya terbiasa menangani alur menyeluruh: merancang REST API, validasi data dengan Zod, pengujian, memperhatikan dasar keamanan OWASP Top 10, mengelola Git workflow tim (branch, PR, rollback), hingga deployment serverless dan CI/CD."
     }
   ]
 }

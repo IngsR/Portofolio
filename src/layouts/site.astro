@@ -10,8 +10,8 @@ interface Props {
 }
 
 const {
-  title = "Ikhwan Ramadhan | Frontend Engineer (Next.js & Angular)",
-  description = "Portofolio resmi Ikhwan Ramadhan, Frontend Engineer spesialis Next.js, Angular, React.js, dan TypeScript dengan pemahaman mendalam Technical SEO, SSR/SSG/ISR, dan Reactive Programming.",
+  title = "Ikhwan Ramadhan | Junior Fullstack Web Engineer",
+  description = "Portofolio Ikhwan Ramadhan, Junior Fullstack Web Engineer dengan kekuatan utama di Next.js, REST API, testing, CI/CD, deployment serverless, dan Git workflow tim.",
   canonicalPath = Astro.url.pathname,
 } = Astro.props;
 const siteUrl = Astro.site?.toString().replace(/\/$/, "") ?? "https://ikhwann.my.id";
@@ -23,7 +23,7 @@ const personSchema = {
   "@context": "https://schema.org",
   "@type": "Person",
   name: "Ikhwan Ramadhan",
-  jobTitle: "Frontend Engineer",
+  jobTitle: "Junior Fullstack Web Engineer",
   url: `${siteUrl}/`,
   image: `${siteUrl}/profile.png`,
   email: "mailto:ikhwn.rdn@gmail.com",
@@ -36,18 +36,23 @@ const personSchema = {
     "https://www.linkedin.com/in/ikhwn-rdn",
   ],
   knowsAbout: [
-    "Frontend Engineering",
+    "Fullstack Web Engineering",
     "Next.js",
-    "Angular",
+    "REST API",
     "React.js",
     "TypeScript",
     "JavaScript",
-    "Technical SEO",
+    "Server-Side Rendering (SSR)",
+    "REST API",
+    "Testing",
+    "OWASP Top 10",
+    "CI/CD",
+    "Serverless Deployment",
+    "Git Workflow",
     "Server-Side Rendering (SSR)",
     "Static Site Generation (SSG)",
     "Incremental Static Regeneration (ISR)",
     "Open Graph Optimization",
-    "Reactive Programming (RxJS & Signals)",
     "Tailwind CSS",
     "shadcn/ui",
     "Astro",
@@ -143,7 +148,7 @@ const breadcrumbSchema = {
     <meta property="og:image" content={ogImageUrl} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Ikhwan Ramadhan - Frontend Engineer & SEO Specialist" />
+    <meta property="og:image:alt" content="Ikhwan Ramadhan - Junior Fullstack Web Engineer" />
     <meta property="og:locale" content="id_ID" />
     <meta property="og:site_name" content="Ikhwan Ramadhan" />
 
@@ -152,7 +157,7 @@ const breadcrumbSchema = {
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImageUrl} />
-    <meta name="twitter:image:alt" content="Ikhwan Ramadhan - Frontend Engineer & SEO Specialist" />
+    <meta name="twitter:image:alt" content="Ikhwan Ramadhan - Junior Fullstack Web Engineer" />
 
     <!-- Structured Data (JSON-LD) -->
     <script type="application/ld+json" set:html={JSON.stringify(personSchema)} />

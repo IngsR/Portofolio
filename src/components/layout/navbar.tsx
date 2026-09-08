@@ -1,3 +1,4 @@
+"use client";
 import {
   BriefcaseBusiness,
   FileText,
@@ -42,31 +43,27 @@ export const Navbar: React.FC<NavbarProps> = ({
   onOpenCV,
 }) => {
   const [isVisible, setIsVisible] = useState(true);
-  const scrollTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const lastScrollYRef = useRef(0);
 
   useEffect(() => {
     const handleScroll = () => {
-      // Sembunyikan navbar seketika saat pengguna melakukan scroll (up maupun down)
-      setIsVisible(false);
-
-      if (scrollTimeoutRef.current) {
-        clearTimeout(scrollTimeoutRef.current);
-      }
-
-      // Tampilkan kembali navbar saat scroll berhenti
-      scrollTimeoutRef.current = setTimeout(() => {
+      const currentScrollY = window.scrollY;
+      
+      // Keep navbar visible near top
+      if (currentScrollY < 80) {
         setIsVisible(true);
-      }, 250);
+      } else if (currentScrollY > lastScrollYRef.current + 10) {
+        // Scrolling down
+        setIsVisible(false);
+      } else if (currentScrollY < lastScrollYRef.current - 10) {
+        // Scrolling up
+        setIsVisible(true);
+      }
+      lastScrollYRef.current = currentScrollY;
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-      if (scrollTimeoutRef.current) {
-        clearTimeout(scrollTimeoutRef.current);
-      }
-    };
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const navItems: {
@@ -77,28 +74,27 @@ export const Navbar: React.FC<NavbarProps> = ({
     {
       id: "home",
       label: "Beranda",
-      icon: <House className="h-6 w-6 md:h-3.5 md:w-3.5" />,
+      icon: <House className="h-4 w-4" />,
     },
     {
       id: "portfolio",
       label: "Portofolio",
-      icon: <BriefcaseBusiness className="h-6 w-6 md:h-3.5 md:w-3.5" />,
+      icon: <BriefcaseBusiness className="h-4 w-4" />,
     },
     {
       id: "about",
-      label: "Tentang Saya",
-      icon: <UserRound className="h-6 w-6 md:h-3.5 md:w-3.5" />,
+      label: "Tentang",
+      icon: <UserRound className="h-4 w-4" />,
     },
     {
       id: "contact",
       label: "Kontak",
-      icon: <Mail className="h-6 w-6 md:h-3.5 md:w-3.5" />,
+      icon: <Mail className="h-4 w-4" />,
     },
   ];
 
   const handleNavClick = (id: PageId) => {
     setActivePage(id);
-
     window.scrollTo({
       top: 0,
       behavior: "smooth",
@@ -106,346 +102,365 @@ export const Navbar: React.FC<NavbarProps> = ({
   };
 
   return (
-    <header
-      className={`
-        pointer-events-none fixed z-50 w-full px-3 transition-all duration-300 ease-in-out sm:px-6 lg:px-12
-        bottom-3 top-auto md:top-4 lg:top-5 md:bottom-auto
-        ${
-          isVisible
-            ? "translate-y-0 opacity-100"
-            : "translate-y-24 md:-translate-y-24 opacity-0"
-        }
-      `}
-    >
-      <div
+    <>
+      {/* TOP HEADER BAR (Clean, spacious, no squished buttons on mobile) */}
+      <header
         className={`
-          mx-auto w-fit max-w-7xl md:w-full transition-opacity duration-200
-          ${isVisible ? "pointer-events-auto" : "pointer-events-none"}
+          fixed z-50 w-full px-3 transition-all duration-300 ease-in-out sm:px-6 lg:px-12
+          top-2.5 sm:top-4 lg:top-5
+          ${
+            isVisible
+              ? "translate-y-0 opacity-100 pointer-events-auto"
+              : "-translate-y-24 opacity-0 pointer-events-none"
+          }
         `}
       >
-        <div
-          className="
-            relative
-            flex
-            items-center
-            justify-between
-            gap-2
-            rounded-full
-            border
-            border-slate-800
-            bg-slate-950
-            px-2
-            py-2
-            shadow-xl
-            shadow-slate-950/25
-            backdrop-blur-xl
-            transition-all
-            duration-200
-            dark:border-slate-200
-            dark:bg-white
-            dark:shadow-slate-950/20
-            sm:gap-3
-            sm:px-4
-            sm:py-2.5
-          "
-        >
-          {/* Brand */}
-          <button
-            type="button"
-            onClick={() => handleNavClick("home")}
-            className="group hidden shrink-0 items-center gap-2.5 text-left focus:outline-none md:flex"
+        <div className="mx-auto w-full max-w-7xl">
+          <div
+            className="
+              relative
+              flex
+              items-center
+              justify-between
+              gap-2
+              rounded-2xl
+              sm:rounded-full
+              border
+              border-slate-200/90
+              bg-white/90
+              px-3
+              py-2
+              shadow-lg
+              shadow-slate-950/5
+              backdrop-blur-xl
+              transition-all
+              dark:border-white/10
+              dark:bg-[#0c0c0e]/90
+              dark:shadow-2xl
+              dark:shadow-black/60
+              sm:gap-3
+              sm:px-5
+              sm:py-2.5
+            "
           >
-            <img
-              src="/logo.jpg"
-              alt="Logo Ikhwan Ramadhan"
-              width={36}
-              height={36}
-              loading="eager"
-              decoding="async"
-              className="
-                h-8
-                w-8
-                rounded-2xl
-                object-cover
-                shadow-sm
-                transition-transform
-                group-hover:scale-105
-                sm:h-9
-                sm:w-9
-              "
-            />
-
-            <div>
-              <div className="flex items-center gap-1.5 text-xs font-bold tracking-tight text-white sm:text-sm dark:text-slate-950">
-                <span>{userProfile.name}</span>
-
+            {/* Brand Logo & Name */}
+            <button
+              type="button"
+              onClick={() => handleNavClick("home")}
+              className="group flex shrink-0 items-center gap-2.5 text-left focus:outline-none"
+            >
+              <div className="relative">
+                <img
+                  src="/logo.jpg"
+                  alt="Logo Ikhwan Ramadhan"
+                  width={36}
+                  height={36}
+                  loading="eager"
+                  decoding="async"
+                  className="
+                    h-8
+                    w-8
+                    rounded-xl
+                    object-cover
+                    border
+                    border-slate-200/90
+                    shadow-xs
+                    transition-transform
+                    group-hover:scale-105
+                    dark:border-white/15
+                    sm:h-9
+                    sm:w-9
+                  "
+                />
                 <span
-                  className="h-1.5 w-1.5 rounded-full bg-emerald-500"
+                  className="absolute -bottom-0.5 -right-0.5 h-2.5 w-2.5 rounded-full bg-emerald-500 ring-2 ring-white dark:ring-black animate-pulse"
                   title="Terbuka untuk On-Site / Remote"
                 />
               </div>
 
-              <p className="text-[10px] font-medium text-slate-300 dark:text-slate-700">
-                {userProfile.title}
-              </p>
+              <div>
+                <div className="flex items-center gap-1.5 text-xs font-bold tracking-tight text-slate-950 sm:text-sm dark:text-white">
+                  <span>Ikhwan Ramadhan</span>
+                </div>
+                <p className="hidden sm:block text-[10.5px] font-mono text-slate-500 dark:text-slate-400">
+                  {userProfile.title}
+                </p>
+                <span className="sm:hidden text-[9px] font-mono font-medium text-emerald-600 dark:text-emerald-400 block leading-none">
+                  Siap Kerja WFO/Remote
+                </span>
+              </div>
+            </button>
+
+            {/* Desktop Navigation Tabs (Aceternity Floating Pills) */}
+            <nav
+              className="
+                hidden
+                items-center
+                gap-1
+                rounded-full
+                border
+                border-slate-200/80
+                bg-slate-100/70
+                p-1
+                dark:border-white/10
+                dark:bg-white/[0.04]
+                md:flex
+              "
+              aria-label="Navigasi utama desktop"
+            >
+              {navItems.map((item) => {
+                const isActive = activePage === item.id;
+                return (
+                  <button
+                    type="button"
+                    key={item.id}
+                    id={`nav-btn-${item.id}`}
+                    onClick={() => handleNavClick(item.id)}
+                    className={`
+                      relative
+                      flex
+                      items-center
+                      gap-1.5
+                      rounded-full
+                      px-4
+                      py-1.5
+                      text-xs
+                      font-semibold
+                      transition-all
+                      duration-200
+                      ${
+                        isActive
+                          ? "bg-white text-slate-950 shadow-sm dark:bg-white dark:text-slate-950"
+                          : "text-slate-600 hover:text-slate-950 dark:text-slate-400 dark:hover:text-white hover:bg-white/60 dark:hover:bg-white/5"
+                      }
+                    `}
+                  >
+                    {item.icon}
+                    <span>{item.label === "Tentang" ? "Tentang Saya" : item.label}</span>
+                  </button>
+                );
+              })}
+            </nav>
+
+            {/* Actions: Clean & Accessible */}
+            <div className="flex items-center justify-end gap-1.5 sm:gap-2">
+              {/* WhatsApp Direct Link */}
+              <a
+                href={userProfile.whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Hubungi via WhatsApp"
+                title="Hubungi via WhatsApp"
+                className="
+                  flex
+                  shrink-0
+                  items-center
+                  justify-center
+                  gap-1.5
+                  rounded-full
+                  border
+                  border-emerald-500/30
+                  bg-emerald-500/10
+                  px-2.5
+                  py-1.5
+                  text-emerald-700
+                  transition-all
+                  hover:bg-emerald-500/20
+                  active:scale-95
+                  dark:border-emerald-400/25
+                  dark:bg-emerald-500/10
+                  dark:text-emerald-300
+                  sm:px-3
+                "
+              >
+                <WhatsAppIcon className="h-3.5 w-3.5" />
+                <span className="text-[11px] font-bold">Chat</span>
+              </a>
+
+              {/* GitHub Account Link (Desktop only to prevent clutter on mobile) */}
+              <a
+                href={
+                  userProfile.socials.find((s) => s.name === "GitHub")?.url ||
+                  "https://github.com/IngsR"
+                }
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Profil GitHub"
+                title="Lihat Profil GitHub"
+                className="
+                  hidden
+                  sm:flex
+                  shrink-0
+                  items-center
+                  justify-center
+                  gap-1.5
+                  rounded-full
+                  border
+                  border-slate-200/90
+                  px-3
+                  py-1.5
+                  text-xs
+                  font-semibold
+                  text-slate-700
+                  transition-all
+                  hover:bg-slate-100
+                  hover:text-slate-950
+                  dark:border-white/10
+                  dark:text-slate-300
+                  dark:hover:bg-white/10
+                  dark:hover:text-white
+                "
+              >
+                <Github className="h-3.5 w-3.5" />
+                <span>GitHub</span>
+              </a>
+
+              {/* CV Button */}
+              <button
+                type="button"
+                onClick={onOpenCV}
+                aria-label="Buka CV"
+                title="Buka Curriculum Vitae"
+                className="
+                  flex
+                  shrink-0
+                  items-center
+                  gap-1.5
+                  rounded-full
+                  bg-slate-950
+                  text-white
+                  px-3
+                  py-1.5
+                  text-xs
+                  font-bold
+                  shadow-sm
+                  transition-all
+                  hover:bg-slate-800
+                  active:scale-95
+                  dark:bg-white
+                  dark:text-slate-950
+                  dark:hover:bg-slate-100
+                "
+              >
+                <FileText className="h-3.5 w-3.5" />
+                <span>CV</span>
+              </button>
+
+              {/* Theme Toggle Button */}
+              <button
+                type="button"
+                id="theme-toggle-btn"
+                onClick={() => setIsDark(!isDark)}
+                aria-label={
+                  isDark ? "Beralih ke Mode Terang" : "Beralih ke Mode Gelap"
+                }
+                title={
+                  isDark ? "Beralih ke Mode Terang" : "Beralih ke Mode Gelap"
+                }
+                className="
+                  flex
+                  h-8
+                  w-8
+                  shrink-0
+                  items-center
+                  justify-center
+                  rounded-full
+                  border
+                  border-slate-200/90
+                  text-slate-600
+                  transition-all
+                  hover:bg-slate-100
+                  hover:text-slate-950
+                  active:scale-90
+                  dark:border-white/10
+                  dark:text-slate-300
+                  dark:hover:bg-white/10
+                  dark:hover:text-white
+                "
+              >
+                {isDark ? (
+                  <Sun className="h-4 w-4 text-amber-400" />
+                ) : (
+                  <Moon className="h-4 w-4 text-slate-700" />
+                )}
+              </button>
             </div>
-          </button>
-
-          {/* Desktop Navigation */}
-          <nav
-            className="
-              hidden
-              items-center
-              gap-0.5
-              rounded-full
-              border
-              border-white/15
-              bg-white/[0.07]
-              p-1
-              dark:border-slate-950/10
-              dark:bg-slate-950/[0.06]
-              md:flex
-            "
-            aria-label="Navigasi utama"
-          >
-            {navItems.map((item) => {
-              const isActive = activePage === item.id;
-
-              return (
-                <button
-                  type="button"
-                  key={item.id}
-                  id={`nav-btn-${item.id}`}
-                  onClick={() => handleNavClick(item.id)}
-                  className={`
-                    relative
-                    flex
-                    items-center
-                    gap-1.5
-                    rounded-full
-                    px-3.5
-                    py-1.5
-                    text-xs
-                    font-semibold
-                    transition-all
-                    duration-200
-                    ${
-                      isActive
-                        ? "bg-white/15 font-bold text-emerald-300 dark:bg-slate-950/10 dark:text-emerald-700"
-                        : "text-slate-300 hover:bg-white/10 hover:text-white dark:text-slate-700 dark:hover:bg-slate-950/10 dark:hover:text-slate-950"
-                    }
-                  `}
-                >
-                  {item.icon}
-
-                  <span>{item.label}</span>
-
-                  {isActive && (
-                    <span className="absolute bottom-0 left-1/2 h-1 w-1 -translate-x-1/2 rounded-full bg-emerald-400 dark:bg-emerald-600" />
-                  )}
-                </button>
-              );
-            })}
-          </nav>
-
-          {/* Mobile Navigation */}
-          <nav
-            className="flex items-center justify-center gap-0.5 md:hidden"
-            aria-label="Navigasi mobile"
-          >
-            {navItems.map((item) => {
-              const isActive = activePage === item.id;
-
-              return (
-                <button
-                  type="button"
-                  key={item.id}
-                  onClick={() => handleNavClick(item.id)}
-                  aria-label={item.label}
-                  title={item.label}
-                  className={`
-                    relative
-                    shrink-0
-                    rounded-full
-                    p-2.5
-                    transition-all
-                    ${
-                      isActive
-                        ? "bg-white/15 text-emerald-300 dark:bg-slate-950/10 dark:text-emerald-700"
-                        : "text-slate-300 hover:bg-white/10 dark:text-slate-700 dark:hover:bg-slate-950/10"
-                    }
-                  `}
-                >
-                  {item.icon}
-
-                  {isActive && (
-                    <span className="absolute bottom-1 left-1/2 h-1 w-1 -translate-x-1/2 rounded-full bg-emerald-400 dark:bg-emerald-600" />
-                  )}
-                </button>
-              );
-            })}
-          </nav>
-
-          {/* Actions */}
-          <div
-            className="
-              ml-1
-              flex
-              w-full
-              items-center
-              justify-end
-              gap-1.5
-              border-l
-              border-white/20
-              pl-2
-              dark:border-slate-950/15
-              sm:ml-2
-              sm:w-auto
-              sm:gap-2
-              sm:pl-3
-            "
-          >
-            {/* GitHub Account Link */}
-            <a
-              href={
-                userProfile.socials.find((s) => s.name === "GitHub")?.url ||
-                "https://github.com/IngsR"
-              }
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Profil GitHub"
-              title="Lihat Profil GitHub"
-              className="
-                flex
-                shrink-0
-                items-center
-                justify-center
-                gap-1
-                rounded-full
-                border
-                border-white/20
-                p-2
-                text-slate-300
-                transition-all
-                hover:border-white/40
-                hover:bg-white/10
-                hover:text-white
-                dark:border-slate-950/15
-                dark:text-slate-700
-                dark:hover:bg-slate-950/10
-                dark:hover:text-slate-950
-              "
-            >
-              <Github className="h-[17px] w-[17px]" />
-              <span className="hidden pl-0.5 lg:inline text-xs font-semibold">
-                GitHub
-              </span>
-            </a>
-
-            {/* WhatsApp */}
-            <a
-              href={userProfile.whatsappUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Hubungi via WhatsApp"
-              title="Hubungi via WhatsApp"
-              className="
-                flex
-                shrink-0
-                items-center
-                justify-center
-                rounded-full
-                border
-                border-emerald-400/30
-                bg-emerald-500/10
-                p-2
-                text-emerald-400
-                transition-all
-                hover:border-emerald-400/50
-                hover:bg-emerald-500/20
-                hover:text-emerald-300
-                dark:border-emerald-600/20
-                dark:bg-emerald-500/10
-                dark:text-emerald-600
-                dark:hover:bg-emerald-500/15
-              "
-            >
-              <WhatsAppIcon className="h-[17px] w-[17px]" />
-
-              <span className="hidden pl-0.5 lg:inline text-xs font-semibold">
-                WhatsApp
-              </span>
-            </a>
-
-            {/* CV */}
-            <button
-              type="button"
-              onClick={onOpenCV}
-              aria-label="Buka CV"
-              title="Buka CV"
-              className="
-                flex
-                shrink-0
-                items-center
-                gap-1
-                rounded-full
-                bg-white
-                p-2
-                text-slate-950
-                shadow-sm
-                transition-all
-                hover:bg-slate-100
-                dark:bg-slate-950
-                dark:text-white
-                dark:hover:bg-slate-800
-                md:px-2.5
-                md:py-1.5
-              "
-            >
-              <FileText className="h-4 w-4" />
-
-              <span className="hidden text-xs font-bold md:inline">
-                Curriculum Vitae
-              </span>
-            </button>
-
-            {/* Theme */}
-            <button
-              type="button"
-              id="theme-toggle-btn"
-              onClick={() => setIsDark(!isDark)}
-              aria-label={
-                isDark ? "Beralih ke Mode Terang" : "Beralih ke Mode Gelap"
-              }
-              title={
-                isDark ? "Beralih ke Mode Terang" : "Beralih ke Mode Gelap"
-              }
-              className="
-                flex
-                items-center
-                justify-center
-                rounded-full
-                border
-                border-white/20
-                p-2
-                text-slate-300
-                transition-all
-                hover:bg-white/10
-                hover:text-white
-                dark:border-slate-950/10
-                dark:text-slate-700
-                dark:hover:bg-slate-950/10
-              "
-            >
-              {isDark ? (
-                <Sun className="h-[17px] w-[17px] text-amber-400" />
-              ) : (
-                <Moon className="h-[17px] w-[17px]" />
-              )}
-            </button>
           </div>
         </div>
-      </div>
-    </header>
+      </header>
+
+      {/* MOBILE BOTTOM FLOATING DOCK (Purposeful, Tactile, With Soul) */}
+      <nav
+        className="
+          fixed
+          bottom-4
+          left-1/2
+          -translate-x-1/2
+          z-50
+          w-[calc(100%-2rem)]
+          max-w-sm
+          md:hidden
+          transition-all
+          duration-300
+        "
+        aria-label="Navigasi mobile floating dock"
+      >
+        <div
+          className="
+            flex
+            items-center
+            justify-between
+            gap-1
+            p-1.5
+            rounded-2xl
+            bg-white/95
+            dark:bg-[#0c0c0e]/95
+            border
+            border-slate-200/90
+            dark:border-white/15
+            shadow-[0_12px_36px_-4px_rgba(15,23,42,0.18)]
+            dark:shadow-[0_12px_36px_-4px_rgba(0,0,0,0.7)]
+            backdrop-blur-2xl
+          "
+        >
+          {navItems.map((item) => {
+            const isActive = activePage === item.id;
+            return (
+              <button
+                type="button"
+                key={item.id}
+                onClick={() => handleNavClick(item.id)}
+                className={`
+                  relative
+                  flex
+                  items-center
+                  justify-center
+                  gap-1.5
+                  py-2
+                  rounded-xl
+                  text-xs
+                  font-bold
+                  transition-all
+                  duration-200
+                  active:scale-95
+                  ${
+                    isActive
+                      ? "flex-1 bg-slate-950 text-white dark:bg-white dark:text-slate-950 shadow-sm px-3"
+                      : "px-3 text-slate-500 hover:text-slate-950 dark:text-slate-400 dark:hover:text-white"
+                  }
+                `}
+              >
+                <span className="shrink-0">{item.icon}</span>
+                {isActive && (
+                  <span className="truncate text-[11px] tracking-tight animate-in fade-in zoom-in-95 duration-150">
+                    {item.label}
+                  </span>
+                )}
+              </button>
+            );
+          })}
+        </div>
+      </nav>
+    </>
   );
 };

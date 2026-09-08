@@ -21,6 +21,11 @@ import {
 } from "../../types";
 import { Certificate } from "../portfolio/certificate";
 import { Detail } from "../modal/detail";
+import { CardPreviewModal } from "../modal/card-preview-modal";
+import { AnimatedTabs } from "../ui/animated-tabs";
+import { TracingBeam } from "../ui/tracing-beam";
+import { CardSpotlight } from "../ui/card-spotlight";
+import { WobbleCard } from "../ui/wobble-card";
 
 const {
   userProfile,
@@ -47,12 +52,21 @@ export const About: React.FC<AboutSectionProps> = ({ onOpenCV }) => {
 
   const [selectedCertForModal, setSelectedCertForModal] =
     useState<CertificationItem | null>(null);
-
   const [isCertModalOpen, setIsCertModalOpen] = useState(false);
+
+  // Quick Certificate Preview Modal State
+  const [selectedCertForPreview, setSelectedCertForPreview] =
+    useState<CertificationItem | null>(null);
+  const [isCertPreviewOpen, setIsCertPreviewOpen] = useState(false);
 
   const handleOpenCertModal = (cert: CertificationItem) => {
     setSelectedCertForModal(cert);
     setIsCertModalOpen(true);
+  };
+
+  const handleOpenCertPreview = (cert: CertificationItem) => {
+    setSelectedCertForPreview(cert);
+    setIsCertPreviewOpen(true);
   };
 
   const getCategoryIcon = (iconName: string) => {
@@ -80,12 +94,10 @@ export const About: React.FC<AboutSectionProps> = ({ onOpenCV }) => {
 
   return (
     <div className="space-y-10 py-4 sm:space-y-12 sm:py-6">
-      {/* =====================================================
-          HEADER PROFILE
-      ====================================================== */}
-      <section className="space-y-7 rounded-3xl border border-slate-200/80 bg-white p-5 shadow-sm dark:border-white/10 dark:bg-[#0c0c0d] sm:space-y-8 sm:p-8 lg:p-10">
+      {/* HEADER PROFILE */}
+      <section className="space-y-6 rounded-3xl border border-slate-200/80 dark:border-white/[0.08] bg-white dark:bg-[#0c0c0d] p-5 shadow-sm sm:p-8 lg:p-10">
         {/* Profile Header */}
-        <div className="flex flex-col items-start justify-between gap-6 border-b border-slate-200 pb-7 dark:border-white/10 lg:flex-row lg:items-center lg:pb-8">
+        <div className="flex flex-col items-start justify-between gap-6 border-b border-slate-100 dark:border-white/[0.08] pb-6 lg:flex-row lg:items-center">
           {/* Identity */}
           <div className="flex items-center gap-4 sm:gap-5">
             <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-2xl border border-slate-200 bg-slate-900 dark:border-white/10 sm:h-20 sm:w-20 lg:h-24 lg:w-24">
@@ -101,15 +113,13 @@ export const About: React.FC<AboutSectionProps> = ({ onOpenCV }) => {
             </div>
 
             <div className="space-y-1">
-              <span className="text-[10px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 sm:text-xs">
-                Profil Profesional & Latar Belakang
+              <span className="text-[10px] font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500">
+                Profil Profesional
               </span>
-
               <h1 className="text-2xl font-black tracking-tight text-slate-950 dark:text-white sm:text-3xl lg:text-4xl">
                 {userProfile.name}
               </h1>
-
-              <p className="text-xs font-semibold text-slate-600 dark:text-slate-400 sm:text-sm">
+              <p className="text-xs font-mono text-slate-500 dark:text-slate-400 sm:text-sm">
                 {userProfile.title}
               </p>
             </div>
@@ -150,302 +160,101 @@ export const About: React.FC<AboutSectionProps> = ({ onOpenCV }) => {
         </div>
 
         {/* Bio */}
-        <div className="max-w-7xl space-y-4 text-sm leading-relaxed text-slate-700 dark:text-slate-300 sm:text-base lg:text-lg">
+        <div className="max-w-4xl space-y-3 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
           {userProfile.fullBio.map((paragraph, index) => (
             <p key={index}>{paragraph}</p>
           ))}
         </div>
 
-        {/* Summary */}
-        <div className="grid grid-cols-1 gap-3 pt-1 sm:grid-cols-3 sm:gap-4">
-          {/* Kesiapan */}
-          <div className="space-y-1.5 rounded-2xl border border-slate-200/70 bg-slate-50 p-4 dark:border-white/5 dark:bg-white/[0.02] sm:p-5">
-            <span className="text-xs font-semibold text-slate-500 dark:text-slate-400">
-              Kesiapan Kerja
-            </span>
-
-            <h4 className="text-sm font-bold text-slate-950 dark:text-white">
-              On-Site / WFO & Remote
+        {/* Summary Highlights (Mobile-First Bento Cards) */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3.5 sm:gap-4 pt-2">
+          {/* 1. Kesiapan Kerja */}
+          <div className="rounded-2xl sm:rounded-3xl border border-slate-200/90 dark:border-white/10 bg-white dark:bg-[#0f0f12] p-4 sm:p-5 shadow-[0_2px_8px_-2px_rgba(15,23,42,0.06)] hover:shadow-md hover:border-emerald-500/40 active:scale-[0.99] transition-all flex flex-col justify-between space-y-2.5">
+            <div className="flex items-center gap-2">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+              </span>
+              <span className="text-[10.5px] font-bold font-mono uppercase tracking-wider text-emerald-700 dark:text-emerald-400">
+                Kesiapan Kerja
+              </span>
+            </div>
+            <h4 className="text-sm sm:text-base font-bold text-slate-950 dark:text-white">
+              On-Site / WFO &amp; Remote
             </h4>
-
             <p className="text-xs leading-relaxed text-slate-600 dark:text-slate-400">
-              Siap bekerja on-site / WFO di seluruh Indonesia, serta sistem
-              kerja Hybrid / Remote.
+              Siap bekerja on-site / WFO di seluruh Indonesia, serta sistem kerja Hybrid / Remote.
             </p>
           </div>
 
-          {/* Pendidikan */}
-          <div className="space-y-1.5 rounded-2xl border border-slate-200/70 bg-slate-50 p-4 dark:border-white/5 dark:bg-white/[0.02] sm:p-5">
-            <span className="text-xs font-semibold text-slate-500 dark:text-slate-400">
-              Pendidikan Terakhir
-            </span>
-
-            <h4 className="text-sm font-bold text-slate-950 dark:text-white">
+          {/* 2. Pendidikan Terakhir */}
+          <div className="rounded-2xl sm:rounded-3xl border border-slate-200/90 dark:border-white/10 bg-white dark:bg-[#0f0f12] p-4 sm:p-5 shadow-[0_2px_8px_-2px_rgba(15,23,42,0.06)] hover:shadow-md hover:border-blue-500/40 active:scale-[0.99] transition-all flex flex-col justify-between space-y-2.5">
+            <div className="flex items-center gap-2">
+              <GraduationCap className="h-3.5 w-3.5 text-blue-600 dark:text-blue-400 shrink-0" />
+              <span className="text-[10.5px] font-bold font-mono uppercase tracking-wider text-blue-700 dark:text-blue-400">
+                Pendidikan Terakhir
+              </span>
+            </div>
+            <h4 className="text-sm sm:text-base font-bold text-slate-950 dark:text-white">
               S1 Teknik Informatika
             </h4>
-
             <p className="text-xs leading-relaxed text-slate-600 dark:text-slate-400">
-              Fresh Graduate S1 Teknik Informatika di Universitas Putra Indonesia &ldquo;YPTK&rdquo; Padang
-              dengan pendalaman Rekayasa Perangkat Lunak, DSA, basis data
-              relasional, arsitektur sistem web, Deep Learning/LSTM Time Series,
-              dan Sistem Temu Balik Informasi.
+              Fresh Graduate S1 TI UPI &ldquo;YPTK&rdquo; Padang — RPL, DSA, basis data relasional, arsitektur sistem web, dan Deep Learning.
             </p>
           </div>
 
-          {/* Fokus */}
-          <div className="space-y-1.5 rounded-2xl border border-slate-200/70 bg-slate-50 p-4 dark:border-white/5 dark:bg-white/[0.02] sm:p-5">
-            <span className="text-xs font-semibold text-slate-500 dark:text-slate-400">
-              Fokus Keahlian
-              
-            </span>
-
-            <h4 className="text-sm font-bold text-slate-950 dark:text-white">
-              Frontend Engineering
+          {/* 3. Fokus Keahlian */}
+          <div className="rounded-2xl sm:rounded-3xl border border-slate-200/90 dark:border-white/10 bg-white dark:bg-[#0f0f12] p-4 sm:p-5 shadow-[0_2px_8px_-2px_rgba(15,23,42,0.06)] hover:shadow-md hover:border-purple-500/40 active:scale-[0.99] transition-all flex flex-col justify-between space-y-2.5">
+            <div className="flex items-center gap-2">
+              <Cpu className="h-3.5 w-3.5 text-purple-600 dark:text-purple-400 shrink-0" />
+              <span className="text-[10.5px] font-bold font-mono uppercase tracking-wider text-purple-700 dark:text-purple-400">
+                Fokus Keahlian
+              </span>
+            </div>
+            <h4 className="text-sm sm:text-base font-bold text-slate-950 dark:text-white">
+              Junior Fullstack Web Engineer
             </h4>
-
             <p className="text-xs leading-relaxed text-slate-600 dark:text-slate-400">
-              Next.js, Angular, React.js, TypeScript, Technical SEO, Rendering SSR/SSG/CDN, Reactive Programming (RxJS/Signals), Tailwind CSS, dan shadcn/ui.
+              Next.js (App Router), REST API, Zod, testing, OWASP Top 10, Git workflow tim, CI/CD, deployment serverless.
             </p>
           </div>
         </div>
       </section>
 
-      {/* =====================================================
-          TAB NAVIGATION
-      ====================================================== */}
+      {/* TAB NAVIGATION */}
       <section className="w-full">
-        <div
-          className="
-            mx-auto
-            grid
-            w-full
-            max-w-5xl
-            grid-cols-3
-            items-center
-            gap-1.5
-            rounded-full
-            border
-            border-slate-300/80
-            bg-slate-100/90
-            p-1.5
-            shadow-sm
-            backdrop-blur-sm
-            dark:border-white/15
-            dark:bg-white/[0.06]
-            sm:gap-2.5
-            sm:p-2
-          "
-        >
-          {/* =================================================
-              EXPERIENCE
-          ================================================== */}
-          <button
-            type="button"
-            onClick={() => setActiveTab("experience")}
-            aria-pressed={activeTab === "experience"}
-            className={`
-              group
-              flex
-              w-full
-              min-w-0
-              items-center
-              justify-center
-              gap-2
-              rounded-full
-              border
-              px-2.5
-              py-2.5
-              text-xs
-              font-bold
-              leading-none
-              transition-all
-              duration-200
-              active:scale-[0.98]
-              sm:gap-2.5
-              sm:px-5
-              sm:py-3.5
-              sm:text-sm
-              ${
-                activeTab === "experience"
-                  ? "border-slate-950 bg-slate-950 text-white shadow-md dark:border-white dark:bg-white dark:text-slate-950"
-                  : "border-transparent bg-transparent text-slate-700 hover:border-slate-300/60 hover:bg-white/80 hover:text-slate-950 dark:text-slate-300 dark:hover:border-white/20 dark:hover:bg-white/[0.10] dark:hover:text-white"
-              }
-            `}
-          >
-            <Briefcase
-              strokeWidth={2.2}
-              className={`
-                h-5
-                w-5
-                shrink-0
-                transition-transform
-                duration-200
-                group-hover:scale-110
-                sm:h-5.5
-                sm:w-5.5
-                lg:h-6
-                lg:w-6
-                ${
-                  activeTab === "experience"
-                    ? "text-white dark:text-slate-950"
-                    : "text-slate-600 dark:text-slate-400 group-hover:text-slate-950 dark:group-hover:text-white"
-                }
-              `}
-            />
-
-            {/* Mobile */}
-            <span className="truncate font-bold sm:hidden">Pengalaman</span>
-
-            {/* Desktop */}
-            <span className="hidden truncate font-bold sm:inline">
-              Pengalaman Kerja & Proyek
-            </span>
-          </button>
-
-          {/* =================================================
-              SKILLS
-          ================================================== */}
-          <button
-            type="button"
-            onClick={() => setActiveTab("skills")}
-            aria-pressed={activeTab === "skills"}
-            className={`
-              group
-              flex
-              w-full
-              min-w-0
-              items-center
-              justify-center
-              gap-2
-              rounded-full
-              border
-              px-2.5
-              py-2.5
-              text-xs
-              font-bold
-              leading-none
-              transition-all
-              duration-200
-              active:scale-[0.98]
-              sm:gap-2.5
-              sm:px-5
-              sm:py-3.5
-              sm:text-sm
-              ${
-                activeTab === "skills"
-                  ? "border-slate-950 bg-slate-950 text-white shadow-md dark:border-white dark:bg-white dark:text-slate-950"
-                  : "border-transparent bg-transparent text-slate-700 hover:border-slate-300/60 hover:bg-white/80 hover:text-slate-950 dark:text-slate-300 dark:hover:border-white/20 dark:hover:bg-white/[0.10] dark:hover:text-white"
-              }
-            `}
-          >
-            <Cpu
-              strokeWidth={2.2}
-              className={`
-                h-5
-                w-5
-                shrink-0
-                transition-transform
-                duration-200
-                group-hover:scale-110
-                sm:h-5.5
-                sm:w-5.5
-                lg:h-6
-                lg:w-6
-                ${
-                  activeTab === "skills"
-                    ? "text-white dark:text-slate-950"
-                    : "text-slate-600 dark:text-slate-400 group-hover:text-slate-950 dark:group-hover:text-white"
-                }
-              `}
-            />
-
-            {/* Mobile */}
-            <span className="truncate font-bold sm:hidden">Keahlian</span>
-
-            {/* Desktop */}
-            <span className="hidden truncate font-bold sm:inline">
-              Keahlian Teknis & Tools
-            </span>
-          </button>
-
-          {/* =================================================
-              EDUCATION
-          ================================================== */}
-          <button
-            type="button"
-            onClick={() => setActiveTab("education")}
-            aria-pressed={activeTab === "education"}
-            className={`
-              group
-              flex
-              w-full
-              min-w-0
-              items-center
-              justify-center
-              gap-2
-              rounded-full
-              border
-              px-2.5
-              py-2.5
-              text-xs
-              font-bold
-              leading-none
-              transition-all
-              duration-200
-              active:scale-[0.98]
-              sm:gap-2.5
-              sm:px-5
-              sm:py-3.5
-              sm:text-sm
-              ${
-                activeTab === "education"
-                  ? "border-slate-950 bg-slate-950 text-white shadow-md dark:border-white dark:bg-white dark:text-slate-950"
-                  : "border-transparent bg-transparent text-slate-700 hover:border-slate-300/60 hover:bg-white/80 hover:text-slate-950 dark:text-slate-300 dark:hover:border-white/20 dark:hover:bg-white/[0.10] dark:hover:text-white"
-              }
-            `}
-          >
-            <GraduationCap
-              strokeWidth={2.2}
-              className={`
-                h-5
-                w-5
-                shrink-0
-                transition-transform
-                duration-200
-                group-hover:scale-110
-                sm:h-5.5
-                sm:w-5.5
-                lg:h-6
-                lg:w-6
-                ${
-                  activeTab === "education"
-                    ? "text-white dark:text-slate-950"
-                    : "text-slate-600 dark:text-slate-400 group-hover:text-slate-950 dark:group-hover:text-white"
-                }
-              `}
-            />
-
-            {/* Mobile */}
-            <span className="truncate font-bold sm:hidden">Pendidikan</span>
-
-            {/* Desktop */}
-            <span className="hidden truncate font-bold sm:inline">
-              Pendidikan & Sertifikasi
-            </span>
-          </button>
-        </div>
+        <AnimatedTabs
+          className="mx-auto"
+          activeTab={activeTab}
+          onTabChange={(id) => setActiveTab(id as "experience" | "skills" | "education")}
+          tabs={[
+            {
+              id: "experience",
+              label: "Pengalaman Kerja",
+              icon: <Briefcase className="h-3.5 w-3.5 shrink-0" />,
+            },
+            {
+              id: "skills",
+              label: "Keahlian Teknis",
+              icon: <Cpu className="h-3.5 w-3.5 shrink-0" />,
+            },
+            {
+              id: "education",
+              label: "Pendidikan & Sertifikasi",
+              icon: <GraduationCap className="h-3.5 w-3.5 shrink-0" />,
+            },
+          ]}
+        />
       </section>
 
       {/* =====================================================
           EXPERIENCE
       ====================================================== */}
       {activeTab === "experience" && (
-        <div className="space-y-6">
-          <div className="relative space-y-6 pl-6 before:absolute before:bottom-2 before:left-2 before:top-2 before:w-px before:bg-slate-200 dark:before:bg-white/10 sm:pl-8 sm:before:left-3">
+        <TracingBeam className="px-0 sm:px-4">
+          <div className="space-y-6">
             {experienceData.map((exp) => (
               <div key={exp.id} className="relative space-y-3">
-                <div className="absolute -left-6 top-1.5 h-3 w-3 rounded-full border-2 border-white bg-slate-950 dark:border-slate-900 dark:bg-white sm:-left-8" />
-
                 <div className="space-y-4 rounded-3xl border border-slate-200/80 bg-white p-5 shadow-sm dark:border-white/10 dark:bg-[#0c0c0d] sm:p-8">
                   <div className="flex flex-col justify-between gap-3 border-b border-slate-100 pb-4 dark:border-white/10 sm:flex-row sm:items-center">
                     <div>
@@ -482,7 +291,6 @@ export const About: React.FC<AboutSectionProps> = ({ onOpenCV }) => {
                       {exp.achievements.map((achievement, index) => (
                         <li key={index} className="flex items-start gap-2">
                           <span className="font-bold text-emerald-500">✓</span>
-
                           <span>{achievement}</span>
                         </li>
                       ))}
@@ -503,7 +311,7 @@ export const About: React.FC<AboutSectionProps> = ({ onOpenCV }) => {
               </div>
             ))}
           </div>
-        </div>
+        </TracingBeam>
       )}
 
       {/* =====================================================
@@ -524,9 +332,11 @@ export const About: React.FC<AboutSectionProps> = ({ onOpenCV }) => {
 
           <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
             {skillCategories.map((category) => (
-              <div
+              <CardSpotlight
                 key={category.title}
-                className="space-y-5 rounded-3xl border border-slate-200/80 bg-white p-5 shadow-sm dark:border-white/10 dark:bg-[#0c0c0d] sm:p-6"
+                tilt={true}
+                radius={280}
+                className="space-y-5 rounded-3xl border border-slate-200/90 bg-white p-5 shadow-[0_2px_10px_-2px_rgba(15,23,42,0.06)] dark:border-white/10 dark:bg-[#0c0c0d] sm:p-6 hover:border-blue-500/40"
               >
                 <div className="flex items-start gap-3 border-b border-slate-100 pb-4 dark:border-white/10">
                   <div className="shrink-0 rounded-2xl border border-slate-200/60 bg-slate-100 p-2.5 dark:border-white/5 dark:bg-white/5">
@@ -579,7 +389,7 @@ export const About: React.FC<AboutSectionProps> = ({ onOpenCV }) => {
                     </div>
                   </div>
                 </div>
-              </div>
+              </CardSpotlight>
             ))}
           </div>
         </div>
@@ -637,6 +447,7 @@ export const About: React.FC<AboutSectionProps> = ({ onOpenCV }) => {
                   key={cert.id}
                   certificate={cert}
                   onOpenDetail={handleOpenCertModal}
+                  onOpenPreview={handleOpenCertPreview}
                 />
               ))}
             </div>
@@ -645,12 +456,22 @@ export const About: React.FC<AboutSectionProps> = ({ onOpenCV }) => {
       )}
 
       {/* =====================================================
-          CERTIFICATE MODAL
+          CERTIFICATE DETAIL MODAL
       ====================================================== */}
       <Detail
         isOpen={isCertModalOpen}
         onClose={() => setIsCertModalOpen(false)}
         certificate={selectedCertForModal}
+      />
+
+      {/* =====================================================
+          QUICK CARD PREVIEW MODAL
+      ====================================================== */}
+      <CardPreviewModal
+        isOpen={isCertPreviewOpen}
+        onClose={() => setIsCertPreviewOpen(false)}
+        certificate={selectedCertForPreview}
+        onOpenDetail={(item) => handleOpenCertModal(item as CertificationItem)}
       />
     </div>
   );

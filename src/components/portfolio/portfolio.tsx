@@ -3,6 +3,8 @@ import React, { useCallback, useMemo, useRef, useState } from "react";
 import portfolioData from "../../data/portfolio.json";
 import { CertificationItem, ProjectItem } from "../../types";
 import { Detail } from "../modal/detail";
+import { CardPreviewModal } from "../modal/card-preview-modal";
+import { AnimatedTabs } from "../ui/animated-tabs";
 import { Certificate } from "./certificate";
 import { Project } from "./project";
 
@@ -21,12 +23,12 @@ type SortOption = "relevance" | "date" | "title";
 
 const FILTER_KEYWORDS = [
   "Next.js",
-  "Angular",
+  "REST API",
   "TypeScript",
   "React",
-  "Technical SEO",
-  "RxJS",
-  "Astro",
+  "Zod",
+  "SSR / SSG",
+  "Tailwind CSS",
 ] as const;
 
 const FILTER_CATEGORIES = [
@@ -71,6 +73,23 @@ export const Portfolio: React.FC<PortfolioSectionProps> = ({
   const [selectedCertificateForDetail, setSelectedCertificateForDetail] =
     useState<CertificationItem | null>(null);
   const [isDetailModalOpen, setIsDetailModalOpen] = useState(false);
+
+  // Quick Card Preview Modal State
+  const [previewProject, setPreviewProject] = useState<ProjectItem | null>(null);
+  const [previewCert, setPreviewCert] = useState<CertificationItem | null>(null);
+  const [isPreviewModalOpen, setIsPreviewModalOpen] = useState(false);
+
+  const handleOpenProjectPreview = (project: ProjectItem) => {
+    setPreviewProject(project);
+    setPreviewCert(null);
+    setIsPreviewModalOpen(true);
+  };
+
+  const handleOpenCertPreview = (cert: CertificationItem) => {
+    setPreviewCert(cert);
+    setPreviewProject(null);
+    setIsPreviewModalOpen(true);
+  };
 
   // Categories based on active filter
   const allCategories = FILTER_CATEGORIES;
@@ -253,87 +272,52 @@ export const Portfolio: React.FC<PortfolioSectionProps> = ({
   return (
     <div className="space-y-8 py-6 sm:py-8">
       {/* Header Banner */}
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-6 border-b border-slate-200 dark:border-white/10">
-        <div className="space-y-1.5">
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-6 border-b border-slate-200 dark:border-white/[0.08]">
+        <div className="space-y-2">
+          <span className="text-[10px] font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500">Karya Teknis</span>
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-slate-950 dark:text-white">
             Portofolio
           </h1>
-          <p className="text-sm sm:text-base lg:text-lg text-slate-600 dark:text-slate-400 max-w-none font-light">
-            Rekayasa antarmuka web modern, arsitektur Next.js & Angular, Technical SEO &
+          <p className="text-sm text-slate-500 dark:text-slate-400 max-w-xl leading-relaxed">
+            Rekayasa antarmuka web modern, arsitektur Next.js &amp; Angular, Technical SEO &amp;
             sistem produksi yang saya rancang dan bangun.
           </p>
         </div>
       </div>
 
-      {/* Main Filter Buttons (Semua, Project, Sertifikasi & Lisensi) */}
-      <div className="grid grid-cols-3 items-center gap-2.5 border-b border-slate-300/70 dark:border-white/10 pb-4">
-        {/* Tombol Tampilkan Semua */}
-        <button
-          id="filter-all-btn"
-          onClick={() => {
-            setFilterType("all");
-            setSelectedCategories(["Semua"]);
-            setSelectedKeywords([]);
-          }}
-          className={`flex items-center gap-2 px-4 sm:px-5 py-2.5 rounded-xl text-xs font-bold tracking-wide transition-all ${
-            filterType === "all"
-              ? "bg-emerald-700 text-white dark:bg-emerald-400 dark:text-slate-950 shadow-sm"
-              : "bg-slate-200/80 dark:bg-white/5 text-slate-700 dark:text-slate-400 hover:text-slate-950 dark:hover:text-white"
-          }`}
-        >
-          <Grid className="w-3.5 h-3.5" />
-          <span className="truncate">
-            Semua ({projects.length + certificationsData.length})
-          </span>
-        </button>
-
-        {/* Tombol Project */}
-        <button
-          id="filter-projects-btn"
-          onClick={() => {
-            setFilterType("projects");
-            setSelectedCategories(["Semua"]);
-            setSelectedKeywords([]);
-          }}
-          className={`flex items-center gap-2 px-4 sm:px-5 py-2.5 rounded-xl text-xs font-bold tracking-wide transition-all ${
-            filterType === "projects"
-              ? "bg-emerald-700 text-white dark:bg-emerald-400 dark:text-slate-950 shadow-sm"
-              : "bg-slate-200/80 dark:bg-white/5 text-slate-700 dark:text-slate-400 hover:text-slate-950 dark:hover:text-white"
-          }`}
-        >
-          <Layers className="w-3.5 h-3.5" />
-          <span className="truncate">Project ({projects.length})</span>
-        </button>
-
-        {/* Tombol Sertifikasi & Lisensi */}
-        <button
-          id="filter-certificates-btn"
-          onClick={() => {
-            setFilterType("certificates");
-            setSelectedCategories(["Semua"]);
-            setSelectedKeywords([]);
-          }}
-          className={`flex items-center gap-2 px-4 sm:px-5 py-2.5 rounded-xl text-xs font-bold tracking-wide transition-all ${
-            filterType === "certificates"
-              ? "bg-emerald-700 text-white dark:bg-emerald-400 dark:text-slate-950 shadow-sm"
-              : "bg-slate-200/80 dark:bg-white/5 text-slate-700 dark:text-slate-400 hover:text-slate-950 dark:hover:text-white"
-          }`}
-        >
-          <Award className="w-3.5 h-3.5" />
-          <span className="truncate sm:hidden">
-            Sertifikat ({certificationsData.length})
-          </span>
-          <span className="hidden truncate sm:inline">
-            Sertifikasi & Lisensi ({certificationsData.length})
-          </span>
-        </button>
-      </div>
+      {/* Main Filter Tabs */}
+      <AnimatedTabs
+        activeTab={filterType}
+        onTabChange={(id) => {
+          const type = id as PortfolioFilterType;
+          setFilterType(type);
+          setSelectedCategories(["Semua"]);
+          setSelectedKeywords([]);
+        }}
+        tabs={[
+          {
+            id: "all",
+            label: `Semua (${projects.length + certificationsData.length})`,
+            icon: <Grid className="w-3 h-3" />,
+          },
+          {
+            id: "projects",
+            label: `Project (${projects.length})`,
+            icon: <Layers className="w-3 h-3" />,
+          },
+          {
+            id: "certificates",
+            label: `Sertifikasi (${certificationsData.length})`,
+            icon: <Award className="w-3 h-3" />,
+          },
+        ]}
+      />
 
       {/* Filter and Search Controls */}
       <div className="space-y-4">
         {/* Search Input Bar */}
-        <div className="relative group">
-          <div className="absolute left-4 top-1/2 -translate-y-1/2 flex items-center gap-2 pointer-events-none text-slate-400">
+        <div className="relative">
+          <div className="absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400">
             <Search className="w-4 h-4" />
           </div>
 
@@ -341,65 +325,60 @@ export const Portfolio: React.FC<PortfolioSectionProps> = ({
             ref={searchInputRef}
             id="portfolio-search-input"
             type="text"
-            placeholder="Cari berdasarkan judul, tech stack (Next.js, PostgreSQL, Docker, dll), atau sertifikasi..."
+            placeholder="Cari judul, tech stack, atau sertifikasi..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full pl-11 pr-24 py-3 rounded-2xl bg-slate-50 dark:bg-[#0f0f11] border border-slate-300 dark:border-white/10 text-slate-950 dark:text-white placeholder:text-slate-500 dark:placeholder:text-slate-500 text-xs focus:outline-none focus:border-emerald-600 dark:focus:border-emerald-400 transition-all shadow-sm"
+            className="w-full pl-11 pr-10 py-2.5 rounded-xl bg-white dark:bg-[#0d0d0f] border border-slate-200 dark:border-white/10 text-slate-950 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-600 text-sm focus:outline-none focus:border-slate-400 dark:focus:border-white/25 transition-all"
           />
 
-          <div className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center gap-2">
-            {searchQuery && (
-              <button
-                onClick={() => {
-                  setSearchQuery("");
-                  searchInputRef.current?.focus();
-                }}
-                className="p-1 text-slate-400 hover:text-slate-950 dark:hover:text-white transition-colors"
-                title="Hapus pencarian"
-                aria-label="Hapus pencarian"
-              >
-                <X className="w-4 h-4" />
-              </button>
-            )}
-          </div>
+          {searchQuery && (
+            <button
+              onClick={() => {
+                setSearchQuery("");
+                searchInputRef.current?.focus();
+              }}
+              className="absolute right-3 top-1/2 -translate-y-1/2 p-1 text-slate-400 hover:text-slate-950 dark:hover:text-white transition-colors"
+              title="Hapus pencarian"
+              aria-label="Hapus pencarian"
+            >
+              <X className="w-3.5 h-3.5" />
+            </button>
+          )}
         </div>
 
-        {/* Quick Keyword Suggestion Tags */}
-        <div className="flex flex-wrap items-center gap-1.5 text-xs pb-1">
-          <span className="text-xs text-slate-400 mr-1">Kata kunci:</span>
-          <div className="flex flex-wrap items-center gap-1.5">
-            {visibleKeywords.map((kw) => {
-              const isActive = selectedKeywords.includes(kw);
-              return (
-                <button
-                  key={kw}
-                  onClick={() => handleKeywordClick(kw)}
-                  className={`inline-flex px-2.5 py-1 text-xs rounded-lg transition-all border ${
-                    isActive
-                      ? "bg-emerald-700 text-white dark:bg-emerald-400 dark:text-slate-950 border-transparent font-semibold"
-                      : "bg-slate-100 dark:bg-[#0f0f11] border-slate-300 dark:border-white/10 text-slate-700 dark:text-slate-400 hover:text-slate-950 dark:hover:text-white"
-                  }`}
-                >
-                  #{kw}
-                </button>
-              );
-            })}
-            {keywordGroups.otherKeywords.length > 0 && (
+        {/* Keyword Tags */}
+        <div className="flex flex-wrap items-center gap-1.5">
+          <span className="text-[10px] font-medium text-slate-400 dark:text-slate-600 uppercase tracking-wider mr-0.5">Filter:</span>
+          {visibleKeywords.map((kw) => {
+            const isActive = selectedKeywords.includes(kw);
+            return (
               <button
-                type="button"
-                onClick={() => setShowAllKeywords((visible) => !visible)}
-                className="inline-flex px-2.5 py-1 text-xs rounded-lg border border-dashed border-slate-300 dark:border-white/15 text-slate-500 dark:text-slate-400 hover:text-slate-950 dark:hover:text-white transition-all"
+                key={kw}
+                onClick={() => handleKeywordClick(kw)}
+                className={`inline-flex items-center px-2.5 py-1 text-[11px] rounded-full transition-all border font-medium ${
+                  isActive
+                    ? "bg-slate-950 text-white dark:bg-white dark:text-slate-950 border-transparent"
+                    : "bg-white dark:bg-transparent border-slate-200 dark:border-white/10 text-slate-700 dark:text-slate-400 hover:border-slate-400 dark:hover:border-white/25 hover:text-slate-950 dark:hover:text-white"
+                }`}
               >
-                {showAllKeywords ? "Sembunyikan" : "Lainnya"}
+                #{kw}
               </button>
-            )}
-          </div>
+            );
+          })}
+          {keywordGroups.otherKeywords.length > 0 && (
+            <button
+              type="button"
+              onClick={() => setShowAllKeywords((v) => !v)}
+              className="inline-flex px-2.5 py-1 text-[11px] rounded-full border border-dashed border-slate-300 dark:border-white/10 text-slate-500 dark:text-slate-500 hover:text-slate-950 dark:hover:text-white transition-all"
+            >
+              {showAllKeywords ? "Sembunyikan" : "Lainnya"}
+            </button>
+          )}
         </div>
 
-        {/* Category Pills & Sort Dropdown */}
-        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pt-1">
-          {/* Categories */}
-          <div className="flex flex-1 min-w-0 flex-wrap items-center gap-1.5 pb-1">
+        {/* Category Pills & Sort */}
+        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-3">
+          <div className="flex flex-1 min-w-0 flex-wrap items-center gap-1.5">
             {allCategories.map((category) => {
               const isSelected = selectedCategories.includes(category);
               return (
@@ -411,46 +390,37 @@ export const Portfolio: React.FC<PortfolioSectionProps> = ({
                       return;
                     }
                     setSelectedCategories((current) => {
-                      const withoutAll = current.filter(
-                        (item) => item !== "Semua",
-                      );
+                      const withoutAll = current.filter((item) => item !== "Semua");
                       const next = withoutAll.includes(category)
                         ? withoutAll.filter((item) => item !== category)
                         : [...withoutAll, category];
                       return next.length > 0 ? next : ["Semua"];
                     });
                   }}
-                  className={`flex items-center gap-1.5 px-3.5 py-1.5 text-xs rounded-xl transition-all whitespace-nowrap border ${
+                  className={`px-3 py-1 text-[11px] rounded-full transition-all whitespace-nowrap border font-medium ${
                     isSelected
-                      ? "bg-emerald-700 text-white dark:bg-emerald-400 dark:text-slate-950 border-transparent font-bold shadow-sm"
-                      : "border-slate-300 dark:border-white/10 text-slate-700 dark:text-slate-400 hover:text-slate-950 dark:hover:text-white bg-slate-100 dark:bg-[#0f0f11]"
+                      ? "bg-slate-950 text-white dark:bg-white dark:text-slate-950 border-transparent"
+                      : "border-slate-200 dark:border-white/10 text-slate-600 dark:text-slate-400 hover:border-slate-400 dark:hover:border-white/25 hover:text-slate-950 dark:hover:text-white bg-white dark:bg-transparent"
                   }`}
                 >
-                  <span>{category}</span>
+                  {category}
                 </button>
               );
             })}
           </div>
 
-          {/* Sort Selector */}
-          <div className="flex items-center gap-2 self-start lg:self-auto shrink-0 text-xs">
-            <span className="text-slate-400 flex items-center gap-1">
+          <div className="flex items-center gap-2 self-start shrink-0">
+            <span className="text-[10px] text-slate-400 dark:text-slate-600 uppercase tracking-wider flex items-center gap-1">
               <ArrowUpDown className="w-3 h-3" />
-              <span>Urutkan:</span>
+              Urut:
             </span>
             <select
               value={sortBy}
               onChange={(e) => {
                 const value = e.target.value;
-                if (
-                  value === "relevance" ||
-                  value === "date" ||
-                  value === "title"
-                ) {
-                  setSortBy(value);
-                }
+                if (value === "relevance" || value === "date" || value === "title") setSortBy(value);
               }}
-              className="px-3 py-1.5 rounded-xl bg-white dark:bg-[#0f0f11] border border-slate-200 dark:border-white/10 text-slate-900 dark:text-white text-xs focus:outline-none focus:border-slate-500 cursor-pointer"
+              className="px-3 py-1.5 rounded-lg bg-white dark:bg-[#0d0d0f] border border-slate-200 dark:border-white/10 text-slate-900 dark:text-white text-xs focus:outline-none focus:border-slate-400 cursor-pointer"
             >
               <option value="relevance">Relevansi</option>
               <option value="date">Terbaru</option>
@@ -524,7 +494,7 @@ export const Portfolio: React.FC<PortfolioSectionProps> = ({
                     </h2>
                   </div>
                   <span className="text-xs text-slate-500 dark:text-slate-400">
-                    Frontend Engineering & UI Architecture
+                    Aplikasi Web & Studi Kasus Fullstack
                   </span>
                 </div>
               )}
@@ -536,6 +506,7 @@ export const Portfolio: React.FC<PortfolioSectionProps> = ({
                     project={project}
                     onOpenDetail={handleOpenProjectDetail}
                     onOpenMarkdown={onOpenMarkdown}
+                    onOpenPreview={handleOpenProjectPreview}
                   />
                 ))}
               </div>
@@ -565,6 +536,7 @@ export const Portfolio: React.FC<PortfolioSectionProps> = ({
                     key={cert.id}
                     certificate={cert}
                     onOpenDetail={handleOpenCertDetail}
+                    onOpenPreview={handleOpenCertPreview}
                   />
                 ))}
               </div>
@@ -580,6 +552,21 @@ export const Portfolio: React.FC<PortfolioSectionProps> = ({
         project={selectedProjectForDetail}
         certificate={selectedCertificateForDetail}
         onOpenMarkdown={onOpenMarkdown}
+      />
+
+      {/* Interactive Card Quick Preview Modal */}
+      <CardPreviewModal
+        isOpen={isPreviewModalOpen}
+        onClose={() => setIsPreviewModalOpen(false)}
+        project={previewProject}
+        certificate={previewCert}
+        onOpenDetail={(item) => {
+          if ("role" in item || "demoUrl" in item) {
+            handleOpenProjectDetail(item as ProjectItem);
+          } else {
+            handleOpenCertDetail(item as CertificationItem);
+          }
+        }}
       />
     </div>
   );

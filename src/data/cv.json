@@ -2,7 +2,7 @@
   "id": {
     "header": {
       "name": "Ikhwan Ramadhan",
-      "title": "Junior Frontend Engineer",
+      "title": "Junior Fullstack Web Engineer",
       "email": "ikhwn.rdn@gmail.com",
       "phone": "+6282386473410",
       "github": "github.com/IngsR",
@@ -11,7 +11,7 @@
       "location": "Padang, Sumatera Barat (Siap On-Site / Relokasi)",
       "birthInfo": "Padang, 18 November 2003"
     },
-    "summary": "Fresh Graduate S1 Teknik Informatika UPI “YPTK” Padang dengan spesialisasi Frontend Engineering. Menguasai React.js dan TypeScript dengan fokus framework utama pada Next.js dan Angular. Berpengalaman menerapkan strategi rendering hybrid (SSR, SSG, ISR), Technical SEO & Open Graph, reaktivitas modern (Angular Signals & RxJS), serta arsitektur antarmuka web berkinerja tinggi dan teruji di lingkungan produksi.",
+    "summary": "Lulusan S1 Teknik Informatika UPI \"YPTK\" Padang sebagai Junior Fullstack Web Engineer dengan fokus utama pada Next.js. Terbiasa menangani siklus aplikasi web dari REST API, integrasi database, validasi input, testing, dasar keamanan OWASP Top 10, hingga CI/CD, deployment serverless, dan Git workflow tim (branch, PR, rollback).",
     "labels": {
       "modalTitle": "Curriculum Vitae - Ikhwan Ramadhan",
       "modalSubtitle": "Pratinjau Dokumen & Siap Unduh (PDF / DOCX)",
@@ -155,7 +155,7 @@
   "en": {
     "header": {
       "name": "Ikhwan Ramadhan",
-      "title": "Junior Frontend Engineer",
+      "title": "Junior Fullstack Web Engineer",
       "email": "ikhwn.rdn@gmail.com",
       "phone": "+6282386473410",
       "github": "github.com/IngsR",
@@ -164,7 +164,7 @@
       "location": "Padang, West Sumatra (Ready for On-Site / Relocation)",
       "birthInfo": "Padang, November 18, 2003"
     },
-    "summary": "Informatics Engineering Graduate from UPI “YPTK” Padang specializing in Frontend Engineering. Proficient in React.js and TypeScript with primary focus on Next.js and Angular frameworks. Experienced in implementing hybrid rendering strategies (SSR, SSG, ISR), Technical SEO & Open Graph, modern reactivity (Angular Signals & RxJS), and delivering high-performance, production-ready web interfaces.",
+    "summary": "Informatics Engineering graduate from UPI \"YPTK\" Padang as a Junior Fullstack Web Engineer with strong focus on Next.js. Experienced across the web lifecycle: building REST APIs, database integration, input validation, testing, OWASP Top 10 security basics, CI/CD, serverless deployment, and corporate Git teamwork (branch, PR, rollback).",
     "labels": {
       "modalTitle": "Curriculum Vitae - Ikhwan Ramadhan",
       "modalSubtitle": "Document Preview & Ready to Download (PDF / DOCX)",
