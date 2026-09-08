@@ -31,37 +31,40 @@ export const FlipWords = ({
   }, [isAnimating, currentWord, duration]);
 
   return (
-    <AnimatePresence
-      onExitComplete={() => setIsAnimating(false)}
-      mode="wait"
-    >
-      <motion.div
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ type: "spring", stiffness: 100, damping: 10 }}
-        exit={{
-          opacity: 0,
-          y: -20,
-          x: 20,
-          filter: "blur(8px)",
-          scale: 2,
-          position: "absolute",
-        }}
-        className={cn("z-10 inline-block relative text-left", className)}
-        key={currentWord}
+    <div className="relative inline-flex items-center">
+      <AnimatePresence
+        onExitComplete={() => setIsAnimating(false)}
+        mode="popLayout"
       >
-        {currentWord.split(" ").map((w, wi) => (
-          <motion.span
-            key={w + wi}
-            initial={{ opacity: 0, y: 10, filter: "blur(8px)" }}
-            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-            transition={{ delay: wi * 0.3, duration: 0.3 }}
-            className="inline-block whitespace-nowrap mr-1.5"
-          >
-            {w}
-          </motion.span>
-        ))}
-      </motion.div>
-    </AnimatePresence>
+        <motion.div
+          key={currentWord}
+          initial={{ opacity: 0, y: 10, filter: "blur(4px)" }}
+          animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          exit={{
+            opacity: 0,
+            y: -10,
+            filter: "blur(4px)",
+          }}
+          transition={{
+            type: "spring",
+            stiffness: 120,
+            damping: 14,
+          }}
+          className={cn("z-10 inline-block text-left", className)}
+        >
+          {currentWord.split(" ").map((w, wi) => (
+            <motion.span
+              key={w + wi}
+              initial={{ opacity: 0, y: 8, filter: "blur(4px)" }}
+              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              transition={{ delay: wi * 0.08, duration: 0.22 }}
+              className="inline-block whitespace-nowrap mr-1.5"
+            >
+              {w}
+            </motion.span>
+          ))}
+        </motion.div>
+      </AnimatePresence>
+    </div>
   );
 };

@@ -139,7 +139,7 @@ export const Hero: React.FC<HeroSectionProps> = ({
       <section className="rounded-3xl border border-slate-200/80 dark:border-white/10 bg-white dark:bg-[#0c0c0d] p-6 sm:p-10 lg:p-12 shadow-sm transition-all">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
           {/* Left Column: Brief Introduction for 60s Scan */}
-          <div className="lg:col-span-7 space-y-6">
+          <div className="lg:col-span-7 space-y-2 sm:space-y-3">
             {/* Availability Pill with Sparkles */}
             <Sparkles sparkleCount={5} colors={["#34d399", "#6ee7b7", "#a7f3d0"]}>
               <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border border-emerald-500/30 bg-emerald-50/80 dark:bg-emerald-950/30 text-emerald-800 dark:text-emerald-300 text-xs font-semibold">
@@ -154,7 +154,7 @@ export const Hero: React.FC<HeroSectionProps> = ({
             </Sparkles>
 
             {/* Main Name with EncryptedText + FlipWords for role */}
-            <div className="space-y-2">
+            <div className="space-y-0.5">
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-slate-950 dark:text-white">
                 <EncryptedText
                   text={userProfile.name}
@@ -162,24 +162,26 @@ export const Hero: React.FC<HeroSectionProps> = ({
                   revealDelay={40}
                 />
               </h1>
-              <p className="text-xl sm:text-2xl font-bold text-slate-700 dark:text-slate-300 flex items-center gap-2 flex-wrap">
-                <FlipWords
-                  words={[
-                    "Junior Fullstack Web Engineer",
-                    "Next.js Specialist",
-                    "React Developer",
-                    "REST API Engineer",
-                  ]}
-                  className="text-slate-700 dark:text-slate-300"
-                />
-              </p>
+              <div className="min-h-[1.875rem] sm:min-h-[2rem] flex items-center">
+                <p className="text-xl sm:text-2xl font-bold text-slate-950 dark:text-slate-300 flex items-center gap-2">
+                  <FlipWords
+                    words={[
+                      "Junior Fullstack Web Engineer",
+                      "Next.js Specialist",
+                      "React Developer",
+                      "REST API Engineer",
+                    ]}
+                    className="text-slate-950 dark:text-slate-300"
+                  />
+                </p>
+              </div>
             </div>
 
             {/* Bio Narrative with TextGenerateEffect */}
             <TextGenerateEffect
               words="Lulusan S1 Teknik Informatika UPI 'YPTK' Padang yang membangun aplikasi web dari hulu ke hilir. Kekuatan utama saya ada di Next.js, lalu saya lengkapi dengan REST API, testing, dan deployment serverless. Saya terbiasa bekerja dengan Git workflow tim, CI/CD, rollback, dan dasar keamanan OWASP Top 10."
-              className="text-slate-600 dark:text-slate-400 text-base sm:text-lg max-w-4xl"
-              wordClassName="text-slate-600 dark:text-slate-400"
+              className="text-slate-900 dark:text-slate-400 text-base sm:text-lg max-w-4xl"
+              wordClassName="text-slate-900 dark:text-slate-400"
               duration={0.4}
               delay={0.06}
             />
@@ -205,7 +207,7 @@ export const Hero: React.FC<HeroSectionProps> = ({
                     Pendidikan Akademis:
                   </span>
                   <span className="text-slate-600 dark:text-slate-400">
-                    S1 Teknik Informatika — UPI &ldquo;YPTK&rdquo;
+                    S1 Teknik Informatika - UPI &ldquo;YPTK&rdquo;
                   </span>
                 </div>
               </div>

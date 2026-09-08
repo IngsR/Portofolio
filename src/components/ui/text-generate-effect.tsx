@@ -36,20 +36,18 @@ export const TextGenerateEffect = ({
 
   return (
     <div ref={ref} className={cn("font-normal", className)}>
-      <div className="mt-4">
-        <div className="leading-relaxed tracking-wide">
-          {wordsArray.map((word, i) => (
-            <motion.span
-              key={word + i}
-              initial={{ opacity: 0, filter: filter ? "blur(8px)" : "none" }}
-              animate={scope ? { opacity: 1, filter: "blur(0px)" } : {}}
-              transition={{ duration, delay: i * delay }}
-              className={cn("inline-block mr-1", wordClassName)}
-            >
-              {word}
-            </motion.span>
-          ))}
-        </div>
+      <div className="leading-relaxed tracking-wide">
+        {wordsArray.map((word, i) => (
+          <motion.span
+            key={word + i}
+            initial={{ opacity: 0, filter: filter ? "blur(8px)" : "none" }}
+            animate={scope ? { opacity: 1, filter: "blur(0px)" } : {}}
+            transition={{ duration, delay: i * delay }}
+            className={cn("inline-block mr-1", wordClassName)}
+          >
+            {word}
+          </motion.span>
+        ))}
       </div>
     </div>
   );

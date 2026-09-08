@@ -37,13 +37,13 @@ html:not(.dark) .bg-grid-pattern {
 
 .bg-dot-pattern {
   background-size: 24px 24px;
-  background-image: radial-gradient(rgba(255, 255, 255, 0.12) 1px, transparent 1px);
+  background-image: radial-gradient(rgba(15, 23, 42, 0.18) 1.5px, transparent 1.5px);
 }
 
-.light .bg-dot-pattern,
-html:not(.dark) .bg-dot-pattern {
+.dark .bg-dot-pattern,
+html.dark .bg-dot-pattern {
   background-size: 24px 24px;
-  background-image: radial-gradient(rgba(15, 23, 42, 0.065) 1.2px, transparent 1.2px);
+  background-image: radial-gradient(rgba(255, 255, 255, 0.13) 1.5px, transparent 1.5px);
 }
 
 /* Light mode rich ambient calm background - Modern & Anti-Glare */

@@ -95,8 +95,8 @@ export default function App({
   return (
     <div className="min-h-screen flex flex-col bg-[#f3f4f6] dark:bg-[#070709] text-slate-950 dark:text-slate-100 transition-colors duration-200 relative">
       {/* Subtle background ambient mesh & dot pattern */}
-      <div className="fixed inset-0 light-ambient-mesh dark:opacity-0 opacity-100 pointer-events-none z-0 transition-opacity" aria-hidden="true" />
-      <div className="fixed inset-0 bg-dot-pattern dark:opacity-100 opacity-70 pointer-events-none z-0 radial-mask" aria-hidden="true" />
+      <div className="fixed inset-0 light-ambient-mesh dark:opacity-0 opacity-100 pointer-events-none z-0 transition-opacity duration-300" aria-hidden="true" />
+      <div className="fixed inset-0 bg-dot-pattern pointer-events-none z-0" aria-hidden="true" />
       {/* Top Navigation */}
       <div className="print:hidden">
         <Navbar

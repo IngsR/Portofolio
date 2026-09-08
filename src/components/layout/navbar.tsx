@@ -186,7 +186,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                   {userProfile.title}
                 </p>
                 <span className="sm:hidden text-[9px] font-mono font-medium text-emerald-600 dark:text-emerald-400 block leading-none">
-                  Siap Kerja WFO/Remote
+                  Siap Kerja WFO/Hybrid
                 </span>
               </div>
             </button>
