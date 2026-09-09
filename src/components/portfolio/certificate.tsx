@@ -24,7 +24,7 @@ export const Certificate = memo<CertificateCardProps>(function Certificate({
   return (
     <CardSpotlight
       onClick={() => onOpenDetail(certificate)}
-      className="group flex flex-col justify-between bg-white dark:bg-[#0f0f11] border border-slate-200/90 dark:border-white/10 rounded-2xl sm:rounded-3xl p-3 sm:p-4 lg:p-4 hover:border-emerald-500/40 dark:hover:border-white/30 hover:shadow-xl transition-all duration-300 shadow-[0_2px_10px_-3px_rgba(15,23,42,0.06)] cursor-pointer will-change-transform"
+      className="group flex flex-col justify-between bg-white dark:bg-[#0f0f11] border border-slate-200/90 dark:border-white/10 rounded-2xl sm:rounded-3xl p-3 sm:p-4 lg:p-4 hover:border-emerald-500/40 dark:hover:border-white/30 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 shadow-[0_2px_10px_-3px_rgba(15,23,42,0.06)] cursor-pointer will-change-transform"
       radius={300}
       tilt={true}
     >
@@ -47,9 +47,28 @@ export const Certificate = memo<CertificateCardProps>(function Certificate({
                 target.src = certificate.fallbackImage;
               }
             }}
-            className="w-full h-full object-contain object-center rounded-lg bg-white shadow-xs select-none"
+            className="w-full h-full object-contain object-center rounded-lg bg-white shadow-xs select-none group-hover:brightness-95 transition-[filter] duration-200"
             referrerPolicy="no-referrer"
           />
+
+          {/* Quick Preview Hover Trigger (mata) — CSS-only, tanpa JS listener per frame */}
+          <div className="absolute inset-0 bg-black/25 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center justify-center pointer-events-none">
+            <button
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation();
+                if (onOpenPreview) {
+                  onOpenPreview(certificate);
+                } else {
+                  onOpenDetail(certificate);
+                }
+              }}
+              className="pointer-events-auto inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-950/90 hover:bg-slate-900 text-white dark:bg-white/90 dark:hover:bg-white dark:text-slate-950 text-[11px] font-bold shadow-lg backdrop-blur-md transition-transform duration-200 scale-90 group-hover:scale-100"
+            >
+              <Eye className="w-3.5 h-3.5" />
+              <span>Lihat Preview</span>
+            </button>
+          </div>
 
           {/* Screenshot badge */}
           <div className="absolute top-2 left-2 sm:top-3 sm:left-3 flex items-center gap-1 bg-black/75 backdrop-blur-md px-2 py-0.5 rounded-md sm:rounded-lg text-white text-[8.5px] sm:text-[10px] font-semibold pointer-events-none shadow-xs">

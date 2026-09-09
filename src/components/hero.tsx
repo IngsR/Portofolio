@@ -4,6 +4,7 @@ import {
   Code2,
   Cpu,
   ExternalLink,
+  Eye,
   FileText,
   Github,
   GraduationCap,
@@ -25,14 +26,9 @@ import {
   SkillCategory,
 } from "../types";
 import { formatDomainName, formatShortDomain } from "../utils/format";
-import { Detail } from "./modal/detail";
 import { Certificate } from "./portfolio/certificate";
-import { AnimatedTooltip } from "./ui/animated-tooltip";
-import { BackgroundBeams } from "./ui/background-beams";
-import { CardSpotlight } from "./ui/card-spotlight";
 import { EncryptedText } from "./ui/encrypted-text";
 import { FlipWords } from "./ui/flip-words";
-import { FocusCards } from "./ui/focus-cards";
 import { GlowingEffect } from "./ui/glowing-effect";
 import { MagneticButton } from "./ui/magnetic-button";
 import { MovingBorder } from "./ui/moving-border";
@@ -40,17 +36,14 @@ import { Sparkles } from "./ui/sparkles";
 import { TextGenerateEffect } from "./ui/text-generate-effect";
 
 import {
-  selectedProjectForDetailStore,
-  selectedCertForDetailStore,
-  isDetailOpenStore,
-  selectedPreviewItemStore,
-  isPreviewOpenStore,
   isCVModalOpenStore,
+  isDetailOpenStore,
+  isPreviewOpenStore,
+  selectedCertForDetailStore,
+  selectedPreviewItemStore,
+  selectedProjectForDetailStore,
 } from "../store/portfolio";
-import {
-  DetailModalIsland,
-  PreviewModalIsland,
-} from "./modal/modal-islands";
+import { DetailModalIsland, PreviewModalIsland } from "./modal/modal-islands";
 
 const {
   userProfile,
@@ -97,6 +90,11 @@ export const Hero: React.FC<HeroSectionProps> = ({
     isPreviewOpenStore.set(true);
   }, []);
 
+  const handleOpenProjectPreview = useCallback((project: ProjectItem) => {
+    selectedPreviewItemStore.set(project);
+    isPreviewOpenStore.set(true);
+  }, []);
+
   const getSkillCategoryIcon = useCallback((iconName: string) => {
     switch (iconName) {
       case "Layout":
@@ -123,12 +121,20 @@ export const Hero: React.FC<HeroSectionProps> = ({
   }, []);
 
   // Sertifikat pilihan di Home - Memoized
-  const homeCertificates = useMemo(() => [
-    certificationsData.find((c) => c.id === "cert-5") || certificationsData[4]!,
-    certificationsData.find((c) => c.id === "cert-2") || certificationsData[1]!,
-    certificationsData.find((c) => c.id === "cert-3") || certificationsData[2]!,
-    certificationsData.find((c) => c.id === "cert-4") || certificationsData[3]!,
-  ].filter(Boolean) as CertificationItem[], []);
+  const homeCertificates = useMemo(
+    () =>
+      [
+        certificationsData.find((c) => c.id === "cert-5") ||
+          certificationsData[4]!,
+        certificationsData.find((c) => c.id === "cert-2") ||
+          certificationsData[1]!,
+        certificationsData.find((c) => c.id === "cert-3") ||
+          certificationsData[2]!,
+        certificationsData.find((c) => c.id === "cert-4") ||
+          certificationsData[3]!,
+      ].filter(Boolean) as CertificationItem[],
+    [],
+  );
 
   // Proyek pilihan di Beranda - Memoized
   const homeFeaturedProjects = useMemo(() => {
@@ -143,9 +149,14 @@ export const Hero: React.FC<HeroSectionProps> = ({
   }, [featuredProjects]);
 
   // Pendidikan Sarjana S1 - Memoized
-  const sarjanaEducation = useMemo(() => educationData.filter(
-    (edu) => edu.id === "edu-1" || edu.degree.toLowerCase().includes("sarjana"),
-  ), []);
+  const sarjanaEducation = useMemo(
+    () =>
+      educationData.filter(
+        (edu) =>
+          edu.id === "edu-1" || edu.degree.toLowerCase().includes("sarjana"),
+      ),
+    [],
+  );
 
   return (
     <div className="space-y-16 py-6 sm:py-8">
@@ -171,16 +182,16 @@ export const Hero: React.FC<HeroSectionProps> = ({
             </Sparkles>
 
             {/* Main Name with EncryptedText + FlipWords for role */}
-            <div className="space-y-0.5">
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-slate-950 dark:text-white">
+            <div className="space-y-1">
+              <h1 className="text-5xl sm:text-6xl lg:text-7xl tracking-tighter text-black dark:text-white font-caveat font-bold">
                 <EncryptedText
                   text={userProfile.name}
-                  className="font-black"
+                  className="font-caveat font-bold"
                   revealDelay={40}
                 />
               </h1>
-              <div className="min-h-[1.875rem] sm:min-h-[2rem] flex items-center">
-                <p className="text-xl sm:text-2xl font-bold text-slate-950 dark:text-slate-300 flex items-center gap-2">
+              <div className="min-h-[2.25rem] sm:min-h-[2.5rem] flex items-center">
+                <p className="text-2xl sm:text-3xl font-extrabold text-black dark:text-slate-100 flex items-center gap-2 tracking-tight font-script">
                   <FlipWords
                     words={[
                       "Junior Fullstack Web Engineer",
@@ -188,7 +199,7 @@ export const Hero: React.FC<HeroSectionProps> = ({
                       "React Developer",
                       "REST API Engineer",
                     ]}
-                    className="text-slate-950 dark:text-slate-300"
+                    className="font-script text-black dark:text-slate-100"
                   />
                 </p>
               </div>
@@ -196,9 +207,10 @@ export const Hero: React.FC<HeroSectionProps> = ({
 
             {/* Bio Narrative with TextGenerateEffect */}
             <TextGenerateEffect
-              words="Lulusan S1 Teknik Informatika UPI 'YPTK' Padang yang membangun aplikasi web dari hulu ke hilir. Kekuatan utama saya ada di Next.js, lalu saya lengkapi dengan REST API, testing, dan deployment serverless. Saya terbiasa bekerja dengan Git workflow tim, CI/CD, rollback, dan dasar keamanan OWASP Top 10."
-              className="text-slate-900 dark:text-slate-400 text-base sm:text-lg max-w-4xl"
-              wordClassName="text-slate-900 dark:text-slate-400"
+              words="Fresh graduate S1 Teknik Informatika yang berfokus pada pengembangan aplikasi web. Saya memiliki pengalaman membangun aplikasi mulai dari memahami kebutuhan, mengembangkan fitur, melakukan testing, hingga deployment ke production. Kekuatan utama saya ada di Next.js, dengan pengalaman menggunakan REST API dan deployment serverless. Saya juga terbiasa dengan Git workflow, CI/CD, rollback, serta dasar keamanan aplikasi berdasarkan OWASP Top 10.
+"
+              className="text-black dark:text-slate-300 text-base sm:text-lg max-w-4xl font-medium"
+              wordClassName="text-black dark:text-slate-300 font-medium"
               duration={0.4}
               delay={0.06}
             />
@@ -424,10 +436,10 @@ export const Hero: React.FC<HeroSectionProps> = ({
       {/* 2. PENDIDIKAN (SARJANA S1) */}
       <section className="rounded-3xl border border-slate-200/80 dark:border-white/10 bg-white dark:bg-[#0c0c0d] p-6 sm:p-10 shadow-sm space-y-6">
         <div className="space-y-2 border-b border-slate-200 dark:border-white/10 pb-4">
-          <span className="text-xs font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400">
+          {/* <span className="text-xs font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400">
             01 / PENDIDIKAN AKADEMIS
-          </span>
-          <h2 className="text-2xl sm:text-3xl font-black tracking-tight text-slate-950 dark:text-white">
+          </span> */}
+          <h2 className="ornament-underline text-2xl sm:text-3xl font-black tracking-tight text-slate-950 dark:text-white">
             Pendidikan Perguruan Tinggi (S1)
           </h2>
         </div>
@@ -470,11 +482,11 @@ export const Hero: React.FC<HeroSectionProps> = ({
       <section className="space-y-6">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-slate-200 dark:border-white/10 pb-4">
           <div>
-            <span className="text-xs font-bold text-blue-600 dark:text-blue-400 uppercase tracking-wider">
+            {/* <span className="text-xs font-bold text-blue-600 dark:text-blue-400 uppercase tracking-wider">
               02 / PROYEK PILIHAN
-            </span>
-            <h2 className="text-2xl sm:text-3xl font-black tracking-tight text-slate-950 dark:text-white mt-1">
-              Proyek Pilihan & Solusi Teknis
+            </span> */}
+            <h2 className="ornament-underline text-2xl sm:text-3xl font-black tracking-tight text-slate-950 dark:text-white mt-1">
+              Portofolio
             </h2>
           </div>
 
@@ -495,7 +507,7 @@ export const Hero: React.FC<HeroSectionProps> = ({
             <div
               key={project.id}
               onClick={() => handleOpenProjectDetail(project)}
-              className="group rounded-2xl sm:rounded-3xl border border-slate-200/80 dark:border-white/10 bg-white dark:bg-[#0c0c0d] p-3 sm:p-4 lg:p-4 flex flex-col justify-between hover:border-slate-400 dark:hover:border-white/30 hover:shadow-lg transition-all shadow-sm cursor-pointer overflow-hidden"
+              className="group rounded-2xl sm:rounded-3xl border border-slate-200/80 dark:border-white/10 bg-white dark:bg-[#0c0c0d] p-3 sm:p-4 lg:p-4 flex flex-col justify-between hover:border-slate-400 dark:hover:border-white/30 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 will-change-transform shadow-sm cursor-pointer overflow-hidden"
             >
               <div className="space-y-2 sm:space-y-3">
                 {/* Category & Live Domain Indicator */}
@@ -534,6 +546,21 @@ export const Hero: React.FC<HeroSectionProps> = ({
                     className="w-full h-full object-cover group-hover:brightness-90 transition-[filter] duration-150 select-none"
                     referrerPolicy="no-referrer"
                   />
+
+                  {/* Quick Preview Hover Trigger (mata) — hanya animasi opacity/scale via CSS, ringan */}
+                  <div className="absolute inset-0 bg-black/25 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center justify-center pointer-events-none">
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleOpenProjectPreview(project);
+                      }}
+                      className="pointer-events-auto inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-950/90 hover:bg-slate-900 text-white dark:bg-white/90 dark:hover:bg-white dark:text-slate-950 text-[11px] font-bold shadow-lg backdrop-blur-md transition-transform duration-200 scale-90 group-hover:scale-100"
+                    >
+                      <Eye className="w-3.5 h-3.5" />
+                      <span>Lihat Preview</span>
+                    </button>
+                  </div>
                 </div>
 
                 {/* Judul Project - Dipastikan 1 Baris (truncate) untuk Estetika Sempurna */}
@@ -623,16 +650,16 @@ export const Hero: React.FC<HeroSectionProps> = ({
       {/* 4. TENTANG SAYA (RINGKASAN FULLSTACK POSITIONING) */}
       <section className="rounded-3xl border border-slate-200/80 dark:border-white/10 bg-white dark:bg-[#0c0c0d] p-6 sm:p-10 shadow-sm space-y-6">
         <div className="space-y-2 border-b border-slate-200 dark:border-white/10 pb-4">
-          <span className="text-xs font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400">
+          {/* <span className="text-xs font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400">
             03 / PROFIL SINGKAT
-          </span>
-          <h2 className="text-2xl sm:text-3xl font-black tracking-tight text-slate-950 dark:text-white">
+          </span> */}
+          <h2 className="ornament-underline text-2xl sm:text-3xl font-black tracking-tight text-slate-950 dark:text-white">
             Tentang Saya
           </h2>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-          <div className="lg:col-span-8 space-y-4 text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed">
+          <div className="lg:col-span-8 space-y-4 text-black dark:text-slate-300 text-sm sm:text-base leading-relaxed font-medium">
             <p>
               Saya{" "}
               <strong className="text-slate-950 dark:text-white font-bold">
@@ -702,11 +729,11 @@ export const Hero: React.FC<HeroSectionProps> = ({
       <section className="space-y-6">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-slate-200 dark:border-white/10 pb-4">
           <div>
-            <span className="text-xs font-bold text-blue-600 dark:text-blue-400 uppercase tracking-wider">
+            {/* <span className="text-xs font-bold text-blue-600 dark:text-blue-400 uppercase tracking-wider">
               04 / KREDENSIAL TERVERIFIKASI
-            </span>
-            <h2 className="text-2xl sm:text-3xl font-black tracking-tight text-slate-950 dark:text-white mt-1">
-              Sertifikasi Utama Pilihan
+            </span> */}
+            <h2 className="ornament-underline text-2xl sm:text-3xl font-black tracking-tight text-slate-950 dark:text-white mt-1">
+              Sertifikasi
             </h2>
           </div>
 
@@ -737,11 +764,11 @@ export const Hero: React.FC<HeroSectionProps> = ({
       {/* 6. SKILL (KEAHLIAN & STACK TEKNIS FULLSTACK) */}
       <section className="space-y-6">
         <div className="space-y-1.5 sm:space-y-2 border-b border-slate-200 dark:border-white/10 pb-3 sm:pb-4">
-          <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400">
+          {/* <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400">
             05 / KEAHLIAN & TEKNOLOGI
-          </span>
-          <h2 className="text-xl sm:text-2xl lg:text-3xl font-black tracking-tight text-slate-950 dark:text-white">
-            Keahlian Fullstack & Delivery
+          </span> */}
+          <h2 className="ornament-underline text-xl sm:text-2xl lg:text-3xl font-black tracking-tight text-slate-950 dark:text-white">
+            Keahlian
           </h2>
         </div>
 

@@ -537,7 +537,7 @@ export const Portfolio: React.FC<PortfolioSectionProps> = ({
                   <div className="flex items-center gap-2">
                     <Award className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
                     <h2 className="text-lg font-bold text-slate-950 dark:text-white">
-                      Sertifikasi & Lisensi ({filteredCerts.length})
+                      Sertifikasi({filteredCerts.length})
                     </h2>
                   </div>
                   <span className="text-xs text-slate-500 dark:text-slate-400">

@@ -93,7 +93,7 @@ export const About: React.FC<AboutSectionProps> = ({ onOpenCV }) => {
   };
 
   return (
-    <div className="space-y-10 py-4 sm:space-y-12 sm:py-6">
+    <div className="about-page space-y-10 py-4 sm:space-y-12 sm:py-6">
       {/* HEADER PROFILE */}
       <section className="space-y-6 rounded-3xl border border-slate-200/80 dark:border-white/[0.08] bg-white dark:bg-[#0c0c0d] p-5 shadow-sm sm:p-8 lg:p-10">
         {/* Profile Header */}
@@ -116,10 +116,10 @@ export const About: React.FC<AboutSectionProps> = ({ onOpenCV }) => {
               <span className="text-[10px] font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500">
                 Profil Profesional
               </span>
-              <h1 className="text-2xl font-black tracking-tight text-slate-950 dark:text-white sm:text-3xl lg:text-4xl">
+              <h1 className="text-2xl sm:text-3xl lg:text-4xl tracking-tight text-slate-950 dark:text-white font-caveat font-bold">
                 {userProfile.name}
               </h1>
-              <p className="text-xs font-mono text-slate-500 dark:text-slate-400 sm:text-sm">
+              <p className="text-sm sm:text-base font-script text-slate-700 dark:text-slate-300">
                 {userProfile.title}
               </p>
             </div>
@@ -227,7 +227,7 @@ export const About: React.FC<AboutSectionProps> = ({ onOpenCV }) => {
       {/* TAB NAVIGATION */}
       <section className="w-full">
         <AnimatedTabs
-          className="mx-auto"
+          className="tab-nav-art mx-auto"
           activeTab={activeTab}
           onTabChange={(id) =>
             setActiveTab(id as "experience" | "skills" | "education")
@@ -325,7 +325,7 @@ export const About: React.FC<AboutSectionProps> = ({ onOpenCV }) => {
       {activeTab === "skills" && (
         <div className="space-y-6">
           <div className="space-y-1">
-            <h2 className="text-2xl font-black tracking-tight text-slate-950 dark:text-white sm:text-3xl">
+            <h2 className="ornament-underline text-2xl font-black tracking-tight text-slate-950 dark:text-white sm:text-3xl">
               Teknologi yang Saya Gunakan
             </h2>
 
@@ -410,7 +410,7 @@ export const About: React.FC<AboutSectionProps> = ({ onOpenCV }) => {
             <div className="flex items-center gap-2 border-b border-slate-200 pb-2 text-lg font-bold text-slate-950 dark:border-white/10 dark:text-white">
               <GraduationCap className="h-5 w-5" />
 
-              <h2>Riwayat Pendidikan</h2>
+              <h2 className="ornament-underline">Riwayat Pendidikan</h2>
             </div>
 
             {educationData.map((education) => (
@@ -443,7 +443,7 @@ export const About: React.FC<AboutSectionProps> = ({ onOpenCV }) => {
           <div className="space-y-4">
             <div className="flex items-center gap-2 border-b border-slate-200 pb-2 text-lg font-bold text-slate-950 dark:border-white/10 dark:text-white">
               <Award className="h-5 w-5" />
-              <h2>Sertifikasi &amp; Kredensial</h2>
+              <h2 className="ornament-underline">Sertifikasi &amp; Kredensial</h2>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

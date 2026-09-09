@@ -6,14 +6,22 @@
   html {
     scroll-behavior: smooth;
     font-family:
-      "Plus Jakarta Sans",
-      "Space Grotesk",
+      "Instrument Sans",
       system-ui,
       -apple-system,
       sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
+  }
+
+  /* Judul memakai Bricolage Grotesque — ekspresif, berkarakter artistik */
+  h1,
+  h2,
+  h3 {
+    font-family: "Bricolage Grotesque", "Space Grotesk", system-ui, sans-serif;
+    font-weight: 800;
+    letter-spacing: -0.02em;
   }
 
   code,
@@ -29,7 +37,49 @@
   }
 }
 
-/* Aceternity UI Pattern & Lighting Utilities */
+/* ── Ornamen underline: goresan kuas (brush stroke) hitam pekat di bawah
+      judul seksi. Bentuk tak beraturan via SVG mask, warna dari background. ── */
+.ornament-underline {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 0.5em;
+}
+.ornament-underline::after {
+  content: "";
+  position: absolute;
+  left: -0.15em;
+  right: -0.15em;
+  bottom: 0;
+  width: auto;
+  height: 1em;
+  min-height: 22px;
+  background-color: #0a0a0a;
+  /* Coretan garis natural sekali lengkung tipis — seperti goresan tangan
+     yang sedikit melengkung, bukan gelombang. Tebal di tengah, menipis di ujung. */
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 24' preserveAspectRatio='none'%3E%3Cpath d='M2 16 C 90 9.5, 240 6.5, 398 9 C 399 9.6, 399 10.6, 398 11.2 C 250 9.5, 100 12, 4 19 C 2.5 18.4, 2 17, 2 16 Z'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 24' preserveAspectRatio='none'%3E%3Cpath d='M2 16 C 90 9.5, 240 6.5, 398 9 C 399 9.6, 399 10.6, 398 11.2 C 250 9.5, 100 12, 4 19 C 2.5 18.4, 2 17, 2 16 Z'/%3E%3C/svg%3E");
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  pointer-events: none;
+}
+.dark .ornament-underline::after {
+  background-color: #fafafa;
+  opacity: 0.92;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .ornament-underline::after {
+    transform-origin: left;
+    animation: ornament-draw 700ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+  @keyframes ornament-draw {
+    from {
+      transform: scaleX(0);
+    }
+    to {
+      transform: scaleX(1);
+    }
+  }
+}
 .bg-grid-pattern {
   background-size: 32px 32px;
   background-image:
@@ -149,8 +199,46 @@ html:not(.dark) .aceternity-card::before {
   );
 }
 
+.font-caveat {
+  font-family: "Caveat", cursive;
+}
+
+/* Teks animasi FlipWords di hero — display serif tebal, mudah dibaca */
+.font-script {
+  font-family: "Abril Fatface", serif;
+  font-style: normal;
+  letter-spacing: 0.01em;
+}
+
+/* Narasi (paragraf) di seluruh halaman memakai DM Sans */
+p {
+  font-family: "DM Sans", sans-serif;
+}
+
+/* ── Halaman About: tipografi berlapis seni — setiap elemen punya
+      karakter font berbeda agar tidak kaku/seragam ── */
+/* Narasi & deskripsi: Nunito — humanis membulat, hangat */
+.about-page p {
+  font-family: "Nunito", sans-serif;
+}
+/* Sub-judul card (h3/h4): Playfair Display — serif elegan berkelas */
+.about-page h3,
+.about-page h4 {
+  font-family: "Playfair Display", serif;
+  letter-spacing: -0.01em;
+}
+/* Tab navigasi: Caveat — aksen tulisan tangan */
+.tab-nav-art {
+  font-family: "Caveat", cursive;
+}
+.tab-nav-art button {
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
 .font-display {
-  font-family: "Plus Jakarta Sans", "Space Grotesk", sans-serif;
+  font-family: "DM Sans", "Instrument Sans", sans-serif;
   letter-spacing: -0.03em;
 }
 
@@ -408,5 +496,80 @@ html:not(.dark) .aceternity-card::before {
   .cv-section {
     break-inside: avoid !important;
     page-break-inside: avoid !important;
+  }
+}
+
+/* ============================================================
+   SCROLL & RENDER PERFORMANCE LAYER
+   - content-visibility: section di luar viewport dilewati
+     layout/paint-nya (scroll jauh lebih ringan, halaman panjang)
+   - contain: layout paint → mencegah reflow menyebar keluar card
+   - transform/opacity promotion → animasi dijalankan GPU (compositor)
+   - Semua di-guard @supports agar browser lama tetap aman.
+   ============================================================ */
+
+@supports (content-visibility: auto) {
+  /* Section berat: layout & paint di-skip saat tak terlihat.
+     contain-intrinsic-size menjaga tinggi estimasi agar scrollbar tidak loncat. */
+  main section {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 520px;
+  }
+
+  /* Grid card besar: skip render item di luar layar */
+  main [class*="grid-cols"] {
+    contain: layout style paint;
+  }
+}
+
+/* Promosi komposit GPU — hanya properti compositor-friendly
+   (transform/opacity), tidak memicu layout/paint ulang. */
+.group,
+.group > img {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Hover card: animasi via compositor (translateZ + scale) */
+@media (prefers-reduced-motion: no-preference) {
+  .hover\:scale-90:hover,
+  .group:hover .group-hover\:scale-100 {
+    will-change: transform;
+  }
+}
+
+/* Backdrop-blur mahal — batasi layer blur hanya pada elemen yang
+   benar-benar tampil, dan aktifkan hanya di device capable. */
+@supports (backdrop-filter: blur(1px)) and (background: paint(x)) {
+  @media (min-resolution: 1dppx) {
+    .backdrop-blur-md {
+      backdrop-filter: blur(8px);
+      transform: translateZ(0); /* isolate blur layer → GPU */
+    }
+  }
+}
+
+/* Scrollbar mulus tanpa layout thrash */
+* {
+  scrollbar-gutter: stable;
+}
+
+html {
+  /* Scroll berbasis compositor — tidak blok main thread */
+  overscroll-behavior-y: none;
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* Hemat daya: matikan animasi dekoratif saat tab tak aktif / low-power */
+@media (prefers-reduced-motion: reduce) {
+  .animate-ping,
+  .animate-pulse {
+    animation: none;
   }
 }
