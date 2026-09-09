@@ -20,7 +20,7 @@ export const AnimatedTabs = ({
     <div
       className={cn(
         "flex items-center gap-1 p-1 rounded-full border border-slate-200 dark:border-white/10 bg-slate-100/80 dark:bg-white/[0.03] w-fit",
-        className
+        className,
       )}
     >
       {tabs.map((tab) => (
@@ -32,7 +32,7 @@ export const AnimatedTabs = ({
             "relative flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold transition-colors duration-200 z-10",
             activeTab === tab.id
               ? "text-slate-950"
-              : "text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
+              : "text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white",
           )}
         >
           {activeTab === tab.id && (

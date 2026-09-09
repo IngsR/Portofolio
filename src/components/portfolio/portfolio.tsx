@@ -75,8 +75,12 @@ export const Portfolio: React.FC<PortfolioSectionProps> = ({
   const [isDetailModalOpen, setIsDetailModalOpen] = useState(false);
 
   // Quick Card Preview Modal State
-  const [previewProject, setPreviewProject] = useState<ProjectItem | null>(null);
-  const [previewCert, setPreviewCert] = useState<CertificationItem | null>(null);
+  const [previewProject, setPreviewProject] = useState<ProjectItem | null>(
+    null,
+  );
+  const [previewCert, setPreviewCert] = useState<CertificationItem | null>(
+    null,
+  );
   const [isPreviewModalOpen, setIsPreviewModalOpen] = useState(false);
 
   const handleOpenProjectPreview = (project: ProjectItem) => {
@@ -274,13 +278,15 @@ export const Portfolio: React.FC<PortfolioSectionProps> = ({
       {/* Header Banner */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-6 border-b border-slate-200 dark:border-white/[0.08]">
         <div className="space-y-2">
-          <span className="text-[10px] font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500">Karya Teknis</span>
+          <span className="text-[10px] font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500">
+            Karya Teknis
+          </span>
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-slate-950 dark:text-white">
             Portofolio
           </h1>
           <p className="text-sm text-slate-500 dark:text-slate-400 max-w-xl leading-relaxed">
-            Rekayasa antarmuka web modern, arsitektur Next.js &amp; Angular, Technical SEO &amp;
-            sistem produksi yang saya rancang dan bangun.
+            Rekayasa antarmuka web modern, arsitektur Next.js &amp; Angular,
+            Technical SEO &amp; sistem produksi yang saya rancang dan bangun.
           </p>
         </div>
       </div>
@@ -348,7 +354,9 @@ export const Portfolio: React.FC<PortfolioSectionProps> = ({
 
         {/* Keyword Tags */}
         <div className="flex flex-wrap items-center gap-1.5">
-          <span className="text-[10px] font-medium text-slate-400 dark:text-slate-600 uppercase tracking-wider mr-0.5">Filter:</span>
+          <span className="text-[10px] font-medium text-slate-400 dark:text-slate-600 uppercase tracking-wider mr-0.5">
+            Filter:
+          </span>
           {visibleKeywords.map((kw) => {
             const isActive = selectedKeywords.includes(kw);
             return (
@@ -390,7 +398,9 @@ export const Portfolio: React.FC<PortfolioSectionProps> = ({
                       return;
                     }
                     setSelectedCategories((current) => {
-                      const withoutAll = current.filter((item) => item !== "Semua");
+                      const withoutAll = current.filter(
+                        (item) => item !== "Semua",
+                      );
                       const next = withoutAll.includes(category)
                         ? withoutAll.filter((item) => item !== category)
                         : [...withoutAll, category];
@@ -418,7 +428,12 @@ export const Portfolio: React.FC<PortfolioSectionProps> = ({
               value={sortBy}
               onChange={(e) => {
                 const value = e.target.value;
-                if (value === "relevance" || value === "date" || value === "title") setSortBy(value);
+                if (
+                  value === "relevance" ||
+                  value === "date" ||
+                  value === "title"
+                )
+                  setSortBy(value);
               }}
               className="px-3 py-1.5 rounded-lg bg-white dark:bg-[#0d0d0f] border border-slate-200 dark:border-white/10 text-slate-900 dark:text-white text-xs focus:outline-none focus:border-slate-400 cursor-pointer"
             >

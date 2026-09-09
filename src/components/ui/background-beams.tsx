@@ -22,7 +22,7 @@ export const BackgroundBeams = ({ className }: BackgroundBeamsProps) => {
     <div
       className={cn(
         "absolute inset-0 flex items-center justify-center overflow-hidden pointer-events-none",
-        className
+        className,
       )}
     >
       <svg

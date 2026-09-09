@@ -48,7 +48,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-      
+
       // Keep navbar visible near top
       if (currentScrollY < 80) {
         setIsVisible(true);
@@ -236,7 +236,9 @@ export const Navbar: React.FC<NavbarProps> = ({
                     `}
                   >
                     {item.icon}
-                    <span>{item.label === "Tentang" ? "Tentang Saya" : item.label}</span>
+                    <span>
+                      {item.label === "Tentang" ? "Tentang Saya" : item.label}
+                    </span>
                   </button>
                 );
               })}
@@ -451,7 +453,9 @@ export const Navbar: React.FC<NavbarProps> = ({
                 `}
               >
                 <span className="shrink-0">
-                  <span className="block [&>svg]:h-5 [&>svg]:w-5">{item.icon}</span>
+                  <span className="block [&>svg]:h-5 [&>svg]:w-5">
+                    {item.icon}
+                  </span>
                 </span>
                 {isActive && (
                   <span className="truncate text-[11px] tracking-tight animate-in fade-in zoom-in-95 duration-150">

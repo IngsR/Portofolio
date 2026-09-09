@@ -60,7 +60,10 @@ export const CardSpotlight = ({
           transform: tilt
             ? `rotateX(${tiltStyle.rotateX}deg) rotateY(${tiltStyle.rotateY}deg)`
             : undefined,
-          transition: opacity === 0 ? "transform 0.5s ease-out" : "transform 0.1s ease-out",
+          transition:
+            opacity === 0
+              ? "transform 0.5s ease-out"
+              : "transform 0.1s ease-out",
         }}
         className={cn(
           "relative overflow-hidden rounded-2xl border transition-all duration-300 will-change-transform",
@@ -70,7 +73,7 @@ export const CardSpotlight = ({
           "dark:shadow-none",
           "hover:shadow-[0_16px_36px_-6px_rgba(37,99,235,0.12),0_4px_12px_rgba(15,23,42,0.04)]",
           "hover:border-blue-500/40 dark:hover:border-white/30",
-          className
+          className,
         )}
         onMouseMove={handleMouseMove}
         onMouseEnter={() => setOpacity(1)}

@@ -50,7 +50,7 @@ export default function App({
           const validProjects = parsed.filter(isProjectItem);
           if (validProjects.length > 0) {
             const customProjects = validProjects.filter(
-              (p: ProjectItem) => !initialProjects.some((bp) => bp.id === p.id)
+              (p: ProjectItem) => !initialProjects.some((bp) => bp.id === p.id),
             );
             setProjects([...customProjects, ...initialProjects]);
           }
@@ -89,13 +89,16 @@ export default function App({
   };
 
   const featuredProjects = initialProjects.filter(
-    (p) => p.featured || p.id === "proj-4"
+    (p) => p.featured || p.id === "proj-4",
   );
 
   return (
     <div className="min-h-screen flex flex-col bg-[#f3f4f6] dark:bg-[#070709] text-slate-950 dark:text-slate-100 transition-colors duration-200 relative">
       {/* Subtle background ambient mesh */}
-      <div className="fixed inset-0 light-ambient-mesh dark:opacity-0 opacity-100 pointer-events-none z-0 transition-opacity duration-300" aria-hidden="true" />
+      <div
+        className="fixed inset-0 light-ambient-mesh dark:opacity-0 opacity-100 pointer-events-none z-0 transition-opacity duration-300"
+        aria-hidden="true"
+      />
       {/* Top Navigation */}
       <div className="print:hidden">
         <Navbar

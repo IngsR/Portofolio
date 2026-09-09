@@ -11,7 +11,8 @@ interface EncryptedTextProps {
   revealDelay?: number;
 }
 
-const DEFAULT_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%&";
+const DEFAULT_CHARS =
+  "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%&";
 
 export const EncryptedText = ({
   text,
@@ -21,7 +22,10 @@ export const EncryptedText = ({
   revealDelay = 30,
 }: EncryptedTextProps) => {
   const [displayText, setDisplayText] = useState(
-    text.split("").map(() => chars[Math.floor(Math.random() * chars.length)]).join("")
+    text
+      .split("")
+      .map(() => chars[Math.floor(Math.random() * chars.length)])
+      .join(""),
   );
   const [isRevealed, setIsRevealed] = useState(false);
 
@@ -34,10 +38,13 @@ export const EncryptedText = ({
     // Shuffle animation
     shuffleInterval = setInterval(() => {
       setDisplayText(
-        text.split("").map((char, i) => {
-          if (revealedChars[i] || char === " ") return char;
-          return chars[Math.floor(Math.random() * chars.length)];
-        }).join("")
+        text
+          .split("")
+          .map((char, i) => {
+            if (revealedChars[i] || char === " ") return char;
+            return chars[Math.floor(Math.random() * chars.length)];
+          })
+          .join(""),
       );
     }, 50);
 

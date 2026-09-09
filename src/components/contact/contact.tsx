@@ -400,7 +400,8 @@ export const Contact: React.FC = () => {
                     className="w-full px-4 py-2.5 rounded-xl bg-slate-50/80 dark:bg-white/[0.04] border border-slate-200/90 dark:border-white/10 text-slate-950 dark:text-white text-xs focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 transition-all cursor-pointer"
                   >
                     <option value="Kerja Sama">
-                      Peluang Kerja Junior Fullstack Web Engineer (WFO / Hybrid / Remote)
+                      Peluang Kerja Junior Fullstack Web Engineer (WFO / Hybrid
+                      / Remote)
                     </option>
                     <option value="Web Development">
                       Pengembangan Web End-to-End (Next.js &amp; REST API)

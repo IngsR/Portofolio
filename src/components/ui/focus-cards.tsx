@@ -9,14 +9,18 @@ interface FocusCardsProps<T> {
   className?: string;
 }
 
-export function FocusCards<T>({ cards, renderCard, className }: FocusCardsProps<T>) {
+export function FocusCards<T>({
+  cards,
+  renderCard,
+  className,
+}: FocusCardsProps<T>) {
   const [hovered, setHovered] = useState<number | null>(null);
 
   return (
     <div
       className={cn(
         "grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4",
-        className
+        className,
       )}
     >
       {cards.map((card, i) => (

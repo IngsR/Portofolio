@@ -183,7 +183,8 @@ export const About: React.FC<AboutSectionProps> = ({ onOpenCV }) => {
               On-Site / WFO &amp; Remote
             </h4>
             <p className="text-xs leading-relaxed text-slate-600 dark:text-slate-400">
-              Siap bekerja on-site / WFO di seluruh Indonesia, serta sistem kerja Hybrid / Remote.
+              Siap bekerja on-site / WFO di seluruh Indonesia, serta sistem
+              kerja Hybrid / Remote.
             </p>
           </div>
 
@@ -199,7 +200,8 @@ export const About: React.FC<AboutSectionProps> = ({ onOpenCV }) => {
               S1 Teknik Informatika
             </h4>
             <p className="text-xs leading-relaxed text-slate-600 dark:text-slate-400">
-              Fresh Graduate S1 TI UPI &ldquo;YPTK&rdquo; Padang — RPL, DSA, basis data relasional, arsitektur sistem web, dan Deep Learning.
+              Fresh Graduate S1 TI UPI &ldquo;YPTK&rdquo; Padang — RPL, DSA,
+              basis data relasional, arsitektur sistem web, dan Deep Learning.
             </p>
           </div>
 
@@ -215,7 +217,8 @@ export const About: React.FC<AboutSectionProps> = ({ onOpenCV }) => {
               Junior Fullstack Web Engineer
             </h4>
             <p className="text-xs leading-relaxed text-slate-600 dark:text-slate-400">
-              Next.js (App Router), REST API, Zod, testing, OWASP Top 10, Git workflow tim, CI/CD, deployment serverless.
+              Next.js (App Router), REST API, Zod, testing, OWASP Top 10, Git
+              workflow tim, CI/CD, deployment serverless.
             </p>
           </div>
         </div>
@@ -226,7 +229,9 @@ export const About: React.FC<AboutSectionProps> = ({ onOpenCV }) => {
         <AnimatedTabs
           className="mx-auto"
           activeTab={activeTab}
-          onTabChange={(id) => setActiveTab(id as "experience" | "skills" | "education")}
+          onTabChange={(id) =>
+            setActiveTab(id as "experience" | "skills" | "education")
+          }
           tabs={[
             {
               id: "experience",

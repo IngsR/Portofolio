@@ -33,7 +33,7 @@ export const Sparkles = ({
   colors = ["#34d399", "#6ee7b7", "#a7f3d0"],
 }: SparklesProps) => {
   const sparkles = Array.from({ length: sparkleCount }, () =>
-    generateSparkle(colors)
+    generateSparkle(colors),
   );
 
   return (
@@ -44,8 +44,17 @@ export const Sparkles = ({
           className="pointer-events-none absolute"
           style={{ left: s.x, top: s.y }}
           initial={{ opacity: 0, scale: 0 }}
-          animate={{ opacity: [0, 1, 0], scale: [0, 1, 0], rotate: [0, 90, 180] }}
-          transition={{ duration: s.duration, delay: s.delay, repeat: Infinity, repeatDelay: random(1, 3) }}
+          animate={{
+            opacity: [0, 1, 0],
+            scale: [0, 1, 0],
+            rotate: [0, 90, 180],
+          }}
+          transition={{
+            duration: s.duration,
+            delay: s.delay,
+            repeat: Infinity,
+            repeatDelay: random(1, 3),
+          }}
         >
           <svg
             width={s.size}

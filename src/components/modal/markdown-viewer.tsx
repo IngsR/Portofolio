@@ -1,18 +1,18 @@
-import React, { useState, useEffect } from 'react';
-import ReactMarkdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
-import { ProjectItem } from '../../types';
-import { 
-  X, 
-  Copy, 
-  Check, 
-  Download, 
-  ArrowUpRight, 
-  Github, 
-  FileText, 
-  Code, 
-  Calendar
-} from 'lucide-react';
+import React, { useState, useEffect } from "react";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+import { ProjectItem } from "../../types";
+import {
+  X,
+  Copy,
+  Check,
+  Download,
+  ArrowUpRight,
+  Github,
+  FileText,
+  Code,
+  Calendar,
+} from "lucide-react";
 
 interface MarkdownViewerModalProps {
   project: ProjectItem | null;
@@ -23,15 +23,15 @@ export const MarkdownViewer: React.FC<MarkdownViewerModalProps> = ({
   project,
   onClose,
 }) => {
-  const [activeTab, setActiveTab] = useState<'rendered' | 'raw'>('rendered');
+  const [activeTab, setActiveTab] = useState<"rendered" | "raw">("rendered");
   const [copied, setCopied] = useState(false);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onClose();
+      if (e.key === "Escape") onClose();
     };
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
   }, [onClose]);
 
   if (!project) return null;
@@ -43,10 +43,10 @@ export const MarkdownViewer: React.FC<MarkdownViewerModalProps> = ({
   };
 
   const handleDownloadMarkdown = () => {
-    const element = document.createElement('a');
-    const file = new Blob([project.markdownContent], { type: 'text/markdown' });
+    const element = document.createElement("a");
+    const file = new Blob([project.markdownContent], { type: "text/markdown" });
     element.href = URL.createObjectURL(file);
-    element.download = `${project.slug || 'project'}.md`;
+    element.download = `${project.slug || "project"}.md`;
     document.body.appendChild(element);
     element.click();
     document.body.removeChild(element);
@@ -54,9 +54,8 @@ export const MarkdownViewer: React.FC<MarkdownViewerModalProps> = ({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/80 backdrop-blur-xs animate-in fade-in duration-150 font-sans">
-      
       {/* Modal Container (GPU Accelerated, No Shadow Flickering) */}
-      <div 
+      <div
         style={{
           transform: "translateZ(0)",
           willChange: "transform, opacity",
@@ -65,7 +64,6 @@ export const MarkdownViewer: React.FC<MarkdownViewerModalProps> = ({
         className="relative w-full max-w-4xl max-h-[92vh] flex flex-col bg-white dark:bg-[#0a0a0a] border border-black/10 dark:border-white/10 shadow-2xl overflow-hidden transform-gpu"
         onClick={(e) => e.stopPropagation()}
       >
-        
         {/* Modal Header */}
         <div className="p-4 sm:p-5 border-b border-black/10 dark:border-white/10 bg-black/[0.02] dark:bg-white/[0.02] flex items-center justify-between gap-4">
           <div className="min-w-0">
@@ -86,22 +84,22 @@ export const MarkdownViewer: React.FC<MarkdownViewerModalProps> = ({
             {/* Tab switch */}
             <div className="flex items-center border border-black/10 dark:border-white/10 p-0.5 text-xs font-mono">
               <button
-                onClick={() => setActiveTab('rendered')}
+                onClick={() => setActiveTab("rendered")}
                 className={`flex items-center gap-1 px-3 py-1 uppercase tracking-wider transition-all ${
-                  activeTab === 'rendered'
-                    ? 'bg-black text-white dark:bg-white dark:text-black font-bold'
-                    : 'text-slate-600 dark:text-white/60 hover:text-black dark:hover:text-white'
+                  activeTab === "rendered"
+                    ? "bg-black text-white dark:bg-white dark:text-black font-bold"
+                    : "text-slate-600 dark:text-white/60 hover:text-black dark:hover:text-white"
                 }`}
               >
                 <FileText className="w-3.5 h-3.5" />
                 <span className="hidden sm:inline">RENDERED</span>
               </button>
               <button
-                onClick={() => setActiveTab('raw')}
+                onClick={() => setActiveTab("raw")}
                 className={`flex items-center gap-1 px-3 py-1 uppercase tracking-wider transition-all ${
-                  activeTab === 'raw'
-                    ? 'bg-black text-white dark:bg-white dark:text-black font-bold'
-                    : 'text-slate-600 dark:text-white/60 hover:text-black dark:hover:text-white'
+                  activeTab === "raw"
+                    ? "bg-black text-white dark:bg-white dark:text-black font-bold"
+                    : "text-slate-600 dark:text-white/60 hover:text-black dark:hover:text-white"
                 }`}
               >
                 <Code className="w-3.5 h-3.5" />
@@ -130,7 +128,10 @@ export const MarkdownViewer: React.FC<MarkdownViewerModalProps> = ({
             <span>//</span>
             <div className="flex flex-wrap gap-1">
               {project.tags.map((tag) => (
-                <span key={tag} className="px-1.5 py-0.2 border border-black/10 dark:border-white/10 text-[10px] uppercase">
+                <span
+                  key={tag}
+                  className="px-1.5 py-0.2 border border-black/10 dark:border-white/10 text-[10px] uppercase"
+                >
                   {tag}
                 </span>
               ))}
@@ -142,8 +143,12 @@ export const MarkdownViewer: React.FC<MarkdownViewerModalProps> = ({
               onClick={handleCopyMarkdown}
               className="flex items-center gap-1 px-3 py-1 border border-black/20 dark:border-white/20 text-slate-900 dark:text-white uppercase tracking-wider text-[10px] hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-all"
             >
-              {copied ? <Check className="w-3.5 h-3.5 text-emerald-500" /> : <Copy className="w-3.5 h-3.5" />}
-              <span>{copied ? 'COPIED' : 'COPY .MD'}</span>
+              {copied ? (
+                <Check className="w-3.5 h-3.5 text-emerald-500" />
+              ) : (
+                <Copy className="w-3.5 h-3.5" />
+              )}
+              <span>{copied ? "COPIED" : "COPY .MD"}</span>
             </button>
 
             <button
@@ -182,7 +187,7 @@ export const MarkdownViewer: React.FC<MarkdownViewerModalProps> = ({
 
         {/* Modal Scrollable Body */}
         <div className="flex-1 overflow-y-auto p-5 sm:p-8 bg-white dark:bg-[#0a0a0a] text-slate-900 dark:text-white">
-          {activeTab === 'rendered' ? (
+          {activeTab === "rendered" ? (
             <div className="markdown-content max-w-none prose dark:prose-invert">
               <ReactMarkdown remarkPlugins={[remarkGfm]}>
                 {project.markdownContent}
@@ -191,7 +196,9 @@ export const MarkdownViewer: React.FC<MarkdownViewerModalProps> = ({
           ) : (
             <div className="space-y-2 font-mono">
               <div className="text-[10px] uppercase tracking-widest text-slate-400 dark:text-white/40 flex items-center justify-between pb-2 border-b border-black/10 dark:border-white/10">
-                <span>RAW MARKDOWN SOURCE ({project.markdownContent.length} CHARS)</span>
+                <span>
+                  RAW MARKDOWN SOURCE ({project.markdownContent.length} CHARS)
+                </span>
                 <span>UTF-8</span>
               </div>
               <pre className="p-4 bg-[#050505] text-slate-200 font-mono text-xs overflow-x-auto leading-relaxed border border-white/10 whitespace-pre-wrap select-all">
@@ -203,7 +210,9 @@ export const MarkdownViewer: React.FC<MarkdownViewerModalProps> = ({
 
         {/* Modal Footer */}
         <div className="p-3.5 px-6 bg-black/[0.02] dark:bg-white/[0.02] border-t border-black/10 dark:border-white/10 flex items-center justify-between text-[11px] font-mono text-slate-500 dark:text-white/40">
-          <span className="uppercase tracking-wider">DOC // GITHUB FLAVORED MARKDOWN</span>
+          <span className="uppercase tracking-wider">
+            DOC // GITHUB FLAVORED MARKDOWN
+          </span>
           <button
             onClick={onClose}
             className="px-4 py-1.5 border border-black/20 dark:border-white/20 text-slate-900 dark:text-white uppercase tracking-widest text-[10px] hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-all"
@@ -211,7 +220,6 @@ export const MarkdownViewer: React.FC<MarkdownViewerModalProps> = ({
             [ CLOSE ]
           </button>
         </div>
-
       </div>
     </div>
   );

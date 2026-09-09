@@ -25,10 +25,8 @@ export const Footer: React.FC<FooterProps> = ({ setActivePage, onOpenCV }) => {
   return (
     <footer className="relative mt-12 border-t border-slate-200 dark:border-white/[0.06] bg-white dark:bg-[#080809] text-slate-800 dark:text-slate-200 transition-colors duration-200 sm:mt-16">
       <div className="mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-10 xl:px-12">
-
         {/* Main Footer Grid */}
         <div className="grid grid-cols-1 gap-10 py-10 sm:py-12 lg:grid-cols-12 lg:gap-x-12">
-
           {/* Brand Column */}
           <div className="space-y-5 lg:col-span-5">
             <div className="flex items-center gap-3">
@@ -141,7 +139,8 @@ export const Footer: React.FC<FooterProps> = ({ setActivePage, onOpenCV }) => {
         {/* Bottom Bar */}
         <div className="flex flex-col items-start gap-3 border-t border-slate-200 dark:border-white/[0.06] py-5 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-[11px] text-slate-500 dark:text-slate-500">
-            © {new Date().getFullYear()} {userProfile.name}. All rights reserved.
+            © {new Date().getFullYear()} {userProfile.name}. All rights
+            reserved.
           </p>
 
           <button

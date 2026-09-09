@@ -96,15 +96,25 @@ export const Hero: React.FC<HeroSectionProps> = ({
   const getSkillCategoryIcon = useCallback((iconName: string) => {
     switch (iconName) {
       case "Layout":
-        return <Code2 className="w-4 h-4 sm:w-5 sm:h-5 text-sky-600 dark:text-sky-400" />;
+        return (
+          <Code2 className="w-4 h-4 sm:w-5 sm:h-5 text-sky-600 dark:text-sky-400" />
+        );
       case "Server":
-        return <Server className="w-4 h-4 sm:w-5 sm:h-5 text-indigo-600 dark:text-indigo-400" />;
+        return (
+          <Server className="w-4 h-4 sm:w-5 sm:h-5 text-indigo-600 dark:text-indigo-400" />
+        );
       case "Terminal":
-        return <Terminal className="w-4 h-4 sm:w-5 sm:h-5 text-purple-600 dark:text-purple-400" />;
+        return (
+          <Terminal className="w-4 h-4 sm:w-5 sm:h-5 text-purple-600 dark:text-purple-400" />
+        );
       case "Cpu":
-        return <Cpu className="w-4 h-4 sm:w-5 sm:h-5 text-emerald-600 dark:text-emerald-400" />;
+        return (
+          <Cpu className="w-4 h-4 sm:w-5 sm:h-5 text-emerald-600 dark:text-emerald-400" />
+        );
       default:
-        return <Layers className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600 dark:text-blue-400" />;
+        return (
+          <Layers className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600 dark:text-blue-400" />
+        );
     }
   }, []);
 
@@ -120,7 +130,7 @@ export const Hero: React.FC<HeroSectionProps> = ({
   const homeFeaturedProjects: ProjectItem[] = (() => {
     const list = [...(featuredProjects || [])];
     const ingstore = (portfolioData.projects as ProjectItem[]).find(
-      (p) => p.id === "proj-4"
+      (p) => p.id === "proj-4",
     );
     if (ingstore && !list.some((p) => p.id === "proj-4")) {
       list.push(ingstore);
@@ -130,7 +140,7 @@ export const Hero: React.FC<HeroSectionProps> = ({
 
   // Pendidikan Sarjana S1
   const sarjanaEducation = educationData.filter(
-    (edu) => edu.id === "edu-1" || edu.degree.toLowerCase().includes("sarjana")
+    (edu) => edu.id === "edu-1" || edu.degree.toLowerCase().includes("sarjana"),
   );
 
   return (
@@ -141,7 +151,10 @@ export const Hero: React.FC<HeroSectionProps> = ({
           {/* Left Column: Brief Introduction for 60s Scan */}
           <div className="lg:col-span-7 space-y-2 sm:space-y-3">
             {/* Availability Pill with Sparkles */}
-            <Sparkles sparkleCount={5} colors={["#34d399", "#6ee7b7", "#a7f3d0"]}>
+            <Sparkles
+              sparkleCount={5}
+              colors={["#34d399", "#6ee7b7", "#a7f3d0"]}
+            >
               <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border border-emerald-500/30 bg-emerald-50/80 dark:bg-emerald-950/30 text-emerald-800 dark:text-emerald-300 text-xs font-semibold">
                 <span className="relative flex h-2 w-2">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
@@ -258,141 +271,146 @@ export const Hero: React.FC<HeroSectionProps> = ({
 
           {/* Right Column: Profile Photo Card with GlowingEffect */}
           <div className="lg:col-span-5 flex justify-center">
-            <GlowingEffect containerClassName="w-full sm:max-w-sm rounded-2xl sm:rounded-3xl" spread={120}>
+            <GlowingEffect
+              containerClassName="w-full sm:max-w-sm rounded-2xl sm:rounded-3xl"
+              spread={120}
+            >
               <div className="w-full sm:max-w-sm rounded-2xl sm:rounded-3xl border border-slate-200/90 dark:border-white/10 bg-white dark:bg-[#0d0d10] p-4 sm:p-5 space-y-4 shadow-[0_2px_12px_-2px_rgba(15,23,42,0.06)]">
-              {/* Photo Container - Bingkai Presisi Mengikuti Rasio Asli Ikhwan.jpg (1024x1257), Tanpa Bagian Hitam di Kiri/Kanan, Ukuran Terkunci Bebas Blur/Zoom */}
-              <div className="relative aspect-[1024/1257] w-full max-w-[280px] sm:max-w-[310px] mx-auto rounded-2xl overflow-hidden bg-slate-100 dark:bg-white/[0.04] border border-slate-200/80 dark:border-white/10 flex items-center justify-center">
-                <img
-                  src="/Ikhwan.jpg"
-                  alt={userProfile.name}
-                  width={1024}
-                  height={1257}
-                  loading="eager"
-                  decoding="async"
-                  fetchPriority="high"
-                  onError={(e) => {
-                    const target = e.currentTarget;
-                    if (!target.src.endsWith("profile.png")) {
-                      target.src = "/profile.png";
-                      return;
-                    }
-                    target.style.display = "none";
-                    const parent = target.parentElement;
-                    if (parent && !parent.querySelector(".avatar-fallback")) {
-                      const fallback = document.createElement("div");
-                      fallback.className =
-                        "avatar-fallback w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-slate-800 to-slate-950 text-white p-6 text-center";
-                      fallback.innerHTML = `
+                {/* Photo Container - Bingkai Presisi Mengikuti Rasio Asli Ikhwan.jpg (1024x1257), Tanpa Bagian Hitam di Kiri/Kanan, Ukuran Terkunci Bebas Blur/Zoom */}
+                <div className="relative aspect-[1024/1257] w-full max-w-[280px] sm:max-w-[310px] mx-auto rounded-2xl overflow-hidden bg-slate-100 dark:bg-white/[0.04] border border-slate-200/80 dark:border-white/10 flex items-center justify-center">
+                  <img
+                    src="/Ikhwan.jpg"
+                    alt={userProfile.name}
+                    width={1024}
+                    height={1257}
+                    loading="eager"
+                    decoding="async"
+                    fetchPriority="high"
+                    onError={(e) => {
+                      const target = e.currentTarget;
+                      if (!target.src.endsWith("profile.png")) {
+                        target.src = "/profile.png";
+                        return;
+                      }
+                      target.style.display = "none";
+                      const parent = target.parentElement;
+                      if (parent && !parent.querySelector(".avatar-fallback")) {
+                        const fallback = document.createElement("div");
+                        fallback.className =
+                          "avatar-fallback w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-slate-800 to-slate-950 text-white p-6 text-center";
+                        fallback.innerHTML = `
                         <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-white/10 border border-white/20 flex items-center justify-center text-2xl sm:text-3xl font-black tracking-tight mb-3">IR</div>
                         <p class="font-bold text-sm tracking-wide">Ikhwan Ramadhan</p>
                         <p class="text-xs text-slate-400 mt-1">Junior Fullstack Web Engineer</p>
                       `;
-                      parent.appendChild(fallback);
-                    }
-                  }}
-                  className="w-full h-full object-cover object-center select-none"
-                />
+                        parent.appendChild(fallback);
+                      }
+                    }}
+                    className="w-full h-full object-cover object-center select-none"
+                  />
 
-                <div className="absolute bottom-2.5 left-2.5 right-2.5 bg-slate-950/85 dark:bg-black/85 backdrop-blur-md rounded-xl px-3 py-1.5 sm:py-2 text-white text-[10px] sm:text-[11px] flex items-center justify-between border border-white/10 shadow-sm pointer-events-none">
-                  <div className="flex items-center gap-1.5 truncate">
-                    <span className="w-2 h-2 rounded-full bg-emerald-400 shrink-0 animate-pulse"></span>
-                    <span className="font-semibold truncate">
-                      {userProfile.name}
+                  <div className="absolute bottom-2.5 left-2.5 right-2.5 bg-slate-950/85 dark:bg-black/85 backdrop-blur-md rounded-xl px-3 py-1.5 sm:py-2 text-white text-[10px] sm:text-[11px] flex items-center justify-between border border-white/10 shadow-sm pointer-events-none">
+                    <div className="flex items-center gap-1.5 truncate">
+                      <span className="w-2 h-2 rounded-full bg-emerald-400 shrink-0 animate-pulse"></span>
+                      <span className="font-semibold truncate">
+                        {userProfile.name}
+                      </span>
+                    </div>
+                    <span className="text-slate-300 text-[9px] sm:text-[10px] shrink-0 font-medium ml-1">
+                      Junior Fullstack Web Engineer
                     </span>
                   </div>
-                  <span className="text-slate-300 text-[9px] sm:text-[10px] shrink-0 font-medium ml-1">
-                    Junior Fullstack Web Engineer
-                  </span>
-                </div>
-              </div>
-
-              {/* Explicit Contact Badges inside Profile Photo Card */}
-              <div className="space-y-3 pt-1">
-                <div className="flex items-center justify-between px-1">
-                  <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400">
-                    Tautan Kontak Profil:
-                  </span>
-                  <span className="text-[10px] font-semibold text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/40 px-2.5 py-0.5 rounded-full">
-                    Resmi & Aktif
-                  </span>
                 </div>
 
-                <div className="grid grid-cols-1 gap-2 text-xs">
-                  {/* LinkedIn */}
-                  <a
-                    href="https://www.linkedin.com/in/ikhwn-rdn"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center justify-between px-3 py-1.5 sm:px-3.5 sm:py-2.5 rounded-full bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 hover:border-blue-500/50 hover:bg-blue-50/50 dark:hover:bg-blue-950/30 text-slate-800 dark:text-slate-200 transition-all group/link shadow-xs"
-                  >
-                    <div className="flex items-center gap-2.5 truncate">
-                      <div className="p-1.5 rounded-full bg-blue-600 text-white flex items-center justify-center">
-                        <Linkedin className="w-3.5 h-3.5" />
-                      </div>
-                      <span className="font-semibold truncate">LinkedIn</span>
-                    </div>
-                    <span className="text-[11px] text-slate-500 dark:text-slate-400 flex items-center gap-1 group-hover/link:text-blue-600 dark:group-hover/link:text-blue-400">
-                      in/ikhwn-rdn
-                      <ExternalLink className="w-3 h-3" />
+                {/* Explicit Contact Badges inside Profile Photo Card */}
+                <div className="space-y-3 pt-1">
+                  <div className="flex items-center justify-between px-1">
+                    <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400">
+                      Tautan Kontak Profil:
                     </span>
-                  </a>
+                    <span className="text-[10px] font-semibold text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/40 px-2.5 py-0.5 rounded-full">
+                      Resmi & Aktif
+                    </span>
+                  </div>
 
-                  {/* Email */}
-                  <a
-                    href={`mailto:${userProfile.email}`}
-                    className="flex items-center justify-between px-3 py-1.5 sm:px-3.5 sm:py-2.5 rounded-full bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 hover:border-rose-500/50 hover:bg-rose-50/50 dark:hover:bg-rose-950/30 text-slate-800 dark:text-slate-200 transition-all group/link shadow-xs"
-                  >
-                    <div className="flex items-center gap-2.5 truncate">
-                      <div className="p-1.5 rounded-full bg-rose-600 text-white flex items-center justify-center">
-                        <Mail className="w-3.5 h-3.5" />
+                  <div className="grid grid-cols-1 gap-2 text-xs">
+                    {/* LinkedIn */}
+                    <a
+                      href="https://www.linkedin.com/in/ikhwn-rdn"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-between px-3 py-1.5 sm:px-3.5 sm:py-2.5 rounded-full bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 hover:border-blue-500/50 hover:bg-blue-50/50 dark:hover:bg-blue-950/30 text-slate-800 dark:text-slate-200 transition-all group/link shadow-xs"
+                    >
+                      <div className="flex items-center gap-2.5 truncate">
+                        <div className="p-1.5 rounded-full bg-blue-600 text-white flex items-center justify-center">
+                          <Linkedin className="w-3.5 h-3.5" />
+                        </div>
+                        <span className="font-semibold truncate">LinkedIn</span>
                       </div>
-                      <span className="font-semibold truncate">Email</span>
-                    </div>
-                    <span className="text-[11px] text-slate-500 dark:text-slate-400 flex items-center gap-1 group-hover/link:text-rose-600 dark:group-hover/link:text-rose-400 truncate max-w-[150px]">
-                      {userProfile.email}
-                      <ExternalLink className="w-3 h-3 shrink-0" />
-                    </span>
-                  </a>
+                      <span className="text-[11px] text-slate-500 dark:text-slate-400 flex items-center gap-1 group-hover/link:text-blue-600 dark:group-hover/link:text-blue-400">
+                        in/ikhwn-rdn
+                        <ExternalLink className="w-3 h-3" />
+                      </span>
+                    </a>
 
-                  {/* GitHub */}
-                  <a
-                    href="https://github.com/IngsR"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center justify-between px-3 py-1.5 sm:px-3.5 sm:py-2.5 rounded-full bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 hover:border-slate-500/50 hover:bg-slate-100 dark:hover:bg-white/10 text-slate-800 dark:text-slate-200 transition-all group/link shadow-xs"
-                  >
-                    <div className="flex items-center gap-2.5 truncate">
-                      <div className="p-1.5 rounded-full bg-slate-900 text-white flex items-center justify-center">
-                        <Github className="w-3.5 h-3.5" />
+                    {/* Email */}
+                    <a
+                      href={`mailto:${userProfile.email}`}
+                      className="flex items-center justify-between px-3 py-1.5 sm:px-3.5 sm:py-2.5 rounded-full bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 hover:border-rose-500/50 hover:bg-rose-50/50 dark:hover:bg-rose-950/30 text-slate-800 dark:text-slate-200 transition-all group/link shadow-xs"
+                    >
+                      <div className="flex items-center gap-2.5 truncate">
+                        <div className="p-1.5 rounded-full bg-rose-600 text-white flex items-center justify-center">
+                          <Mail className="w-3.5 h-3.5" />
+                        </div>
+                        <span className="font-semibold truncate">Email</span>
                       </div>
-                      <span className="font-semibold truncate">GitHub</span>
-                    </div>
-                    <span className="text-[11px] text-slate-500 dark:text-slate-400 flex items-center gap-1 group-hover/link:text-slate-950 dark:group-hover/link:text-white">
-                      github.com/IngsR
-                      <ExternalLink className="w-3 h-3" />
-                    </span>
-                  </a>
+                      <span className="text-[11px] text-slate-500 dark:text-slate-400 flex items-center gap-1 group-hover/link:text-rose-600 dark:group-hover/link:text-rose-400 truncate max-w-[150px]">
+                        {userProfile.email}
+                        <ExternalLink className="w-3 h-3 shrink-0" />
+                      </span>
+                    </a>
 
-                  {/* WhatsApp */}
-                  <a
-                    href={userProfile.whatsappUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center justify-between px-3 py-1.5 sm:px-3.5 sm:py-2.5 rounded-full bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 hover:border-emerald-500/50 hover:bg-emerald-50/50 dark:hover:bg-emerald-950/30 text-slate-800 dark:text-slate-200 transition-all group/link shadow-xs"
-                  >
-                    <div className="flex items-center gap-2.5 truncate">
-                      <div className="p-1.5 rounded-full bg-emerald-600 text-white flex items-center justify-center">
-                        <MessageCircle className="w-3.5 h-3.5" />
+                    {/* GitHub */}
+                    <a
+                      href="https://github.com/IngsR"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-between px-3 py-1.5 sm:px-3.5 sm:py-2.5 rounded-full bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 hover:border-slate-500/50 hover:bg-slate-100 dark:hover:bg-white/10 text-slate-800 dark:text-slate-200 transition-all group/link shadow-xs"
+                    >
+                      <div className="flex items-center gap-2.5 truncate">
+                        <div className="p-1.5 rounded-full bg-slate-900 text-white flex items-center justify-center">
+                          <Github className="w-3.5 h-3.5" />
+                        </div>
+                        <span className="font-semibold truncate">GitHub</span>
                       </div>
-                      <span className="font-semibold truncate">No. WhatsApp</span>
-                    </div>
-                    <span className="text-[11px] text-emerald-600 dark:text-emerald-400 font-semibold flex items-center gap-1">
-                      {userProfile.phone}
-                      <ExternalLink className="w-3 h-3" />
-                    </span>
-                  </a>
+                      <span className="text-[11px] text-slate-500 dark:text-slate-400 flex items-center gap-1 group-hover/link:text-slate-950 dark:group-hover/link:text-white">
+                        github.com/IngsR
+                        <ExternalLink className="w-3 h-3" />
+                      </span>
+                    </a>
+
+                    {/* WhatsApp */}
+                    <a
+                      href={userProfile.whatsappUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-between px-3 py-1.5 sm:px-3.5 sm:py-2.5 rounded-full bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 hover:border-emerald-500/50 hover:bg-emerald-50/50 dark:hover:bg-emerald-950/30 text-slate-800 dark:text-slate-200 transition-all group/link shadow-xs"
+                    >
+                      <div className="flex items-center gap-2.5 truncate">
+                        <div className="p-1.5 rounded-full bg-emerald-600 text-white flex items-center justify-center">
+                          <MessageCircle className="w-3.5 h-3.5" />
+                        </div>
+                        <span className="font-semibold truncate">
+                          No. WhatsApp
+                        </span>
+                      </div>
+                      <span className="text-[11px] text-emerald-600 dark:text-emerald-400 font-semibold flex items-center gap-1">
+                        {userProfile.phone}
+                        <ExternalLink className="w-3 h-3" />
+                      </span>
+                    </a>
+                  </div>
                 </div>
-              </div>
               </div>
             </GlowingEffect>
           </div>
@@ -484,7 +502,9 @@ export const Hero: React.FC<HeroSectionProps> = ({
                   {project.demoUrl && (
                     <span className="inline-flex items-center gap-1 text-[8px] sm:text-[9.5px] text-emerald-700 dark:text-emerald-300 font-mono font-medium bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-500/20 px-1.5 py-0.5 rounded-full max-w-[45%] truncate">
                       <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse shrink-0"></span>
-                      <span className="truncate">{formatShortDomain(project.demoUrl)}</span>
+                      <span className="truncate">
+                        {formatShortDomain(project.demoUrl)}
+                      </span>
                     </span>
                   )}
                 </div>
@@ -610,29 +630,65 @@ export const Hero: React.FC<HeroSectionProps> = ({
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           <div className="lg:col-span-8 space-y-4 text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed">
             <p>
-              Saya <strong className="text-slate-950 dark:text-white font-bold">Ikhwan Ramadhan</strong>, lulusan S1 Teknik Informatika Universitas Putra Indonesia &ldquo;YPTK&rdquo; Padang. Saya menempatkan diri sebagai <strong className="text-slate-950 dark:text-white font-bold">Junior Fullstack Web Engineer.</strong>
+              Saya{" "}
+              <strong className="text-slate-950 dark:text-white font-bold">
+                Ikhwan Ramadhan
+              </strong>
+              , lulusan S1 Teknik Informatika Universitas Putra Indonesia
+              &ldquo;YPTK&rdquo; Padang. Saya menempatkan diri sebagai{" "}
+              <strong className="text-slate-950 dark:text-white font-bold">
+                Junior Fullstack Web Engineer.
+              </strong>
             </p>
             <p>
-              Saya kuat di <strong className="text-slate-950 dark:text-white font-bold">Next.js</strong>, termasuk App Router dan pola rendering yang tepat. Untuk produk yang siap jalan, saya bisa menghubungkan REST API, menulis test yang relevan, menyiapkan CI/CD dan deployment serverless, serta menjaga perubahan lewat branch, review, dan rollback. Saya terbuka untuk <strong className="text-slate-950 dark:text-white font-bold">WFO, hybrid, maupun remote</strong>.
+              Saya kuat di{" "}
+              <strong className="text-slate-950 dark:text-white font-bold">
+                Next.js
+              </strong>
+              , termasuk App Router dan pola rendering yang tepat. Untuk produk
+              yang siap jalan, saya bisa menghubungkan REST API, menulis test
+              yang relevan, menyiapkan CI/CD dan deployment serverless, serta
+              menjaga perubahan lewat branch, review, dan rollback. Saya terbuka
+              untuk{" "}
+              <strong className="text-slate-950 dark:text-white font-bold">
+                WFO, hybrid, maupun remote
+              </strong>
+              .
             </p>
           </div>
 
           <div className="lg:col-span-4 grid grid-cols-2 gap-3 text-xs">
             <div className="p-4 rounded-2xl bg-blue-50/80 dark:bg-blue-500/5 border border-blue-200/80 dark:border-blue-500/20 space-y-1 shadow-[0_2px_8px_-2px_rgba(59,130,246,0.1)] hover:shadow-md hover:-translate-y-0.5 transition-all">
-              <span className="font-bold text-blue-700 dark:text-blue-400 block">Next.js</span>
-              <span className="text-blue-600/80 dark:text-blue-300/70">App Router, SSR, SSG, ISR</span>
+              <span className="font-bold text-blue-700 dark:text-blue-400 block">
+                Next.js
+              </span>
+              <span className="text-blue-600/80 dark:text-blue-300/70">
+                App Router, SSR, SSG, ISR
+              </span>
             </div>
             <div className="p-4 rounded-2xl bg-emerald-50/80 dark:bg-emerald-500/5 border border-emerald-200/80 dark:border-emerald-500/20 space-y-1 shadow-[0_2px_8px_-2px_rgba(16,185,129,0.1)] hover:shadow-md hover:-translate-y-0.5 transition-all">
-              <span className="font-bold text-emerald-700 dark:text-emerald-400 block">REST API &amp; Testing</span>
-              <span className="text-emerald-600/80 dark:text-emerald-300/70">Validasi, integrasi, test</span>
+              <span className="font-bold text-emerald-700 dark:text-emerald-400 block">
+                REST API &amp; Testing
+              </span>
+              <span className="text-emerald-600/80 dark:text-emerald-300/70">
+                Validasi, integrasi, test
+              </span>
             </div>
             <div className="p-4 rounded-2xl bg-purple-50/80 dark:bg-purple-500/5 border border-purple-200/80 dark:border-purple-500/20 space-y-1 shadow-[0_2px_8px_-2px_rgba(168,85,247,0.1)] hover:shadow-md hover:-translate-y-0.5 transition-all">
-              <span className="font-bold text-purple-700 dark:text-purple-400 block">Security Basics</span>
-              <span className="text-purple-600/80 dark:text-purple-300/70">OWASP Top 10 awareness</span>
+              <span className="font-bold text-purple-700 dark:text-purple-400 block">
+                Security Basics
+              </span>
+              <span className="text-purple-600/80 dark:text-purple-300/70">
+                OWASP Top 10 awareness
+              </span>
             </div>
             <div className="p-4 rounded-2xl bg-amber-50/80 dark:bg-amber-500/5 border border-amber-200/80 dark:border-amber-500/20 space-y-1 shadow-[0_2px_8px_-2px_rgba(245,158,11,0.1)] hover:shadow-md hover:-translate-y-0.5 transition-all">
-              <span className="font-bold text-amber-700 dark:text-amber-400 block">Delivery Workflow</span>
-              <span className="text-amber-600/80 dark:text-amber-300/70">Git, CI/CD, serverless</span>
+              <span className="font-bold text-amber-700 dark:text-amber-400 block">
+                Delivery Workflow
+              </span>
+              <span className="text-amber-600/80 dark:text-amber-300/70">
+                Git, CI/CD, serverless
+              </span>
             </div>
           </div>
         </div>
@@ -738,7 +794,12 @@ export const Hero: React.FC<HeroSectionProps> = ({
             Mari Berdiskusi & Bekerja Sama
           </h2>
           <p className="text-xs sm:text-sm text-slate-300 max-w-3xl leading-relaxed">
-            Terbuka untuk posisi <strong className="text-white">Junior Fullstack Web Engineer</strong> baik On-Site (WFO) di seluruh Indonesia maupun Remote / Hybrid. Lihat CV atau hubungi saya lewat kanal berikut.
+            Terbuka untuk posisi{" "}
+            <strong className="text-white">
+              Junior Fullstack Web Engineer
+            </strong>{" "}
+            baik On-Site (WFO) di seluruh Indonesia maupun Remote / Hybrid.
+            Lihat CV atau hubungi saya lewat kanal berikut.
           </p>
         </div>
 
@@ -778,8 +839,12 @@ export const Hero: React.FC<HeroSectionProps> = ({
               >
                 <div className="flex items-center gap-2 min-w-0">
                   <Mail className="w-3.5 h-3.5 text-rose-400 shrink-0" />
-                  <span className="text-slate-400 text-[11px] shrink-0">Email:</span>
-                  <span className="font-mono text-[11px] truncate text-white">{userProfile.email}</span>
+                  <span className="text-slate-400 text-[11px] shrink-0">
+                    Email:
+                  </span>
+                  <span className="font-mono text-[11px] truncate text-white">
+                    {userProfile.email}
+                  </span>
                 </div>
                 <ExternalLink className="w-3 h-3 text-slate-400 group-hover:text-white shrink-0 ml-1" />
               </a>
@@ -792,8 +857,12 @@ export const Hero: React.FC<HeroSectionProps> = ({
               >
                 <div className="flex items-center gap-2 min-w-0">
                   <Github className="w-3.5 h-3.5 text-slate-300 shrink-0" />
-                  <span className="text-slate-400 text-[11px] shrink-0">GitHub:</span>
-                  <span className="font-mono text-[11px] truncate text-white">github.com/IngsR</span>
+                  <span className="text-slate-400 text-[11px] shrink-0">
+                    GitHub:
+                  </span>
+                  <span className="font-mono text-[11px] truncate text-white">
+                    github.com/IngsR
+                  </span>
                 </div>
                 <ExternalLink className="w-3 h-3 text-slate-400 group-hover:text-white shrink-0 ml-1" />
               </a>
@@ -806,8 +875,12 @@ export const Hero: React.FC<HeroSectionProps> = ({
               >
                 <div className="flex items-center gap-2 min-w-0">
                   <MessageCircle className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
-                  <span className="text-slate-400 text-[11px] shrink-0">No. WhatsApp:</span>
-                  <span className="font-mono text-[11px] font-semibold text-emerald-300 truncate">{userProfile.phone}</span>
+                  <span className="text-slate-400 text-[11px] shrink-0">
+                    No. WhatsApp:
+                  </span>
+                  <span className="font-mono text-[11px] font-semibold text-emerald-300 truncate">
+                    {userProfile.phone}
+                  </span>
                 </div>
                 <ExternalLink className="w-3 h-3 text-slate-400 group-hover:text-white shrink-0 ml-1" />
               </a>
@@ -820,8 +893,12 @@ export const Hero: React.FC<HeroSectionProps> = ({
               >
                 <div className="flex items-center gap-2 min-w-0">
                   <Linkedin className="w-3.5 h-3.5 text-blue-400 shrink-0" />
-                  <span className="text-slate-400 text-[11px] shrink-0">LinkedIn:</span>
-                  <span className="font-mono text-[11px] truncate text-white">in/ikhwn-rdn</span>
+                  <span className="text-slate-400 text-[11px] shrink-0">
+                    LinkedIn:
+                  </span>
+                  <span className="font-mono text-[11px] truncate text-white">
+                    in/ikhwn-rdn
+                  </span>
                 </div>
                 <ExternalLink className="w-3 h-3 text-slate-400 group-hover:text-white shrink-0 ml-1" />
               </a>
@@ -844,7 +921,8 @@ export const Hero: React.FC<HeroSectionProps> = ({
                     Curriculum Vitae
                   </span>
                   <span className="text-[11px] text-slate-600 truncate block">
-                    Lihat CV PDF, lalu cetak langsung dari browser bila diperlukan
+                    Lihat CV PDF, lalu cetak langsung dari browser bila
+                    diperlukan
                   </span>
                 </div>
               </div>

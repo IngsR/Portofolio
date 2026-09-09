@@ -51,17 +51,10 @@ export const WobbleCard: React.FC<WobbleCardProps> = ({
       }}
       className={cn(
         "relative rounded-3xl overflow-hidden will-change-transform",
-        containerClassName
+        containerClassName,
       )}
     >
-      <div
-        className={cn(
-          "relative h-full w-full",
-          className
-        )}
-      >
-        {children}
-      </div>
+      <div className={cn("relative h-full w-full", className)}>{children}</div>
     </motion.section>
   );
 };

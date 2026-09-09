@@ -16,10 +16,14 @@ interface AnimatedTooltipProps {
 }
 
 export const AnimatedTooltip = ({ items, className }: AnimatedTooltipProps) => {
-  const [hoveredIndex, setHoveredIndex] = useState<number | string | null>(null);
+  const [hoveredIndex, setHoveredIndex] = useState<number | string | null>(
+    null,
+  );
 
   return (
-    <div className={cn("flex flex-row items-center gap-2 flex-wrap", className)}>
+    <div
+      className={cn("flex flex-row items-center gap-2 flex-wrap", className)}
+    >
       {items.map((item) => (
         <div
           key={item.id}
@@ -54,7 +58,11 @@ export const AnimatedTooltip = ({ items, className }: AnimatedTooltipProps) => {
 
           <div className="relative inline-flex items-center justify-center rounded-full px-2.5 py-1 text-[10px] font-semibold bg-slate-100 dark:bg-white/5 border border-slate-200/60 dark:border-white/10 text-slate-700 dark:text-slate-300 cursor-default transition-colors hover:border-slate-400 dark:hover:border-white/25">
             {item.image && (
-              <img src={item.image} alt={item.name} className="w-3 h-3 mr-1 rounded-full object-cover" />
+              <img
+                src={item.image}
+                alt={item.name}
+                className="w-3 h-3 mr-1 rounded-full object-cover"
+              />
             )}
             {item.name}
           </div>

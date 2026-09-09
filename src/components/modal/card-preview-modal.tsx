@@ -49,10 +49,16 @@ export const CardPreviewModal: React.FC<CardPreviewModalProps> = ({
   const isProject = !!project;
   const title = isProject ? project.title : certificate?.title;
   const image = isProject ? project.image : certificate?.image;
-  const fallbackImage = isProject ? project.fallbackImage : certificate?.fallbackImage;
+  const fallbackImage = isProject
+    ? project.fallbackImage
+    : certificate?.fallbackImage;
   const category = isProject ? project.category : certificate?.category;
-  const period = isProject ? (project.period || project.publishedDate) : (certificate?.period || certificate?.issueDate);
-  const description = isProject ? project.shortDescription : certificate?.description;
+  const period = isProject
+    ? project.period || project.publishedDate
+    : certificate?.period || certificate?.issueDate;
+  const description = isProject
+    ? project.shortDescription
+    : certificate?.description;
   const domain = isProject ? formatDomainName(project.demoUrl) : null;
   const shortDomain = isProject ? formatShortDomain(project.demoUrl) : null;
 
@@ -81,7 +87,11 @@ export const CardPreviewModal: React.FC<CardPreviewModalProps> = ({
           <div className="flex items-center justify-between px-5 py-3.5 border-b border-slate-100 dark:border-white/10 bg-slate-50/70 dark:bg-white/[0.02]">
             <div className="flex items-center gap-2">
               <span className="p-1.5 rounded-lg bg-blue-500/10 text-blue-600 dark:text-blue-400">
-                {isProject ? <Layers className="w-3.5 h-3.5" /> : <Award className="w-3.5 h-3.5" />}
+                {isProject ? (
+                  <Layers className="w-3.5 h-3.5" />
+                ) : (
+                  <Award className="w-3.5 h-3.5" />
+                )}
               </span>
               <span className="text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-300">
                 {category}

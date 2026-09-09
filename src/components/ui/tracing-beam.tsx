@@ -26,7 +26,7 @@ export const TracingBeam = ({ children, className }: TracingBeamProps) => {
 
   const y1 = useSpring(
     useSpring(scrollYProgress, { stiffness: 500, damping: 90 }),
-    { stiffness: 500, damping: 90 }
+    { stiffness: 500, damping: 90 },
   );
 
   return (

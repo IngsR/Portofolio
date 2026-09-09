@@ -29,7 +29,7 @@ function downloadBlob(blob: Blob, filename: string) {
  */
 export async function exportCVToDocx(
   cv: CVContent,
-  lang: CVLanguage
+  lang: CVLanguage,
 ): Promise<void> {
   const borderBottom = {
     bottom: {
@@ -202,7 +202,7 @@ export async function exportCVToDocx(
                     }),
                     new TextRun({ text: ach, size: 19 }),
                   ],
-                })
+                }),
             ),
             // Tech stack line
             new Paragraph({
@@ -400,9 +400,9 @@ export async function exportCVToDocx(
                         color: "64748b",
                       }),
                     ],
-                  })
+                  }),
               ),
-            ]
+            ],
           ),
 
           // ── 5. SECTION: TECHNICAL SKILLS ──
@@ -437,7 +437,7 @@ export async function exportCVToDocx(
                     color: "334155",
                   }),
                 ],
-              })
+              }),
           ),
         ],
       },
@@ -455,7 +455,7 @@ export async function exportCVToDocx(
  */
 export async function exportCVToPdf(
   cv: CVContent,
-  lang: CVLanguage
+  lang: CVLanguage,
 ): Promise<void> {
   const doc = new jsPDF({
     orientation: "portrait",
@@ -602,7 +602,7 @@ export async function exportCVToPdf(
     doc.setTextColor(51, 65, 85);
     const stackLines = doc.splitTextToSize(
       exp.techStack.join(", "),
-      contentWidth - prefixWidth
+      contentWidth - prefixWidth,
     );
     doc.text(stackLines, leftMargin + prefixWidth, y);
     y += stackLines.length * 3.3 + 2;
@@ -689,7 +689,7 @@ export async function exportCVToPdf(
     doc.setTextColor(51, 65, 85);
     const stackLines = doc.splitTextToSize(
       proj.techStack.join(", "),
-      contentWidth - prefixWidth
+      contentWidth - prefixWidth,
     );
     doc.text(stackLines, leftMargin + prefixWidth, y);
     y += stackLines.length * 3.3 + 2;
@@ -739,7 +739,7 @@ export async function exportCVToPdf(
     doc.setTextColor(51, 65, 85);
     const skillLines = doc.splitTextToSize(
       skill.items,
-      contentWidth - catWidth
+      contentWidth - catWidth,
     );
     doc.text(skillLines, leftMargin + catWidth, y);
     y += skillLines.length * 3.3 + 1;

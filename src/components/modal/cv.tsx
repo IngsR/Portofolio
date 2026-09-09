@@ -56,8 +56,12 @@ export const Cv: React.FC<CVModalProps> = ({ isOpen, onClose }) => {
               <FileText className="h-4 w-4" />
             </span>
             <div className="min-w-0">
-              <h2 className="truncate text-sm font-bold text-slate-950 dark:text-white">Curriculum Vitae</h2>
-              <p className="text-xs text-slate-500 dark:text-slate-400">Pratinjau Dokumen PDF • Ikhwan Ramadhan</p>
+              <h2 className="truncate text-sm font-bold text-slate-950 dark:text-white">
+                Curriculum Vitae
+              </h2>
+              <p className="text-xs text-slate-500 dark:text-slate-400">
+                Pratinjau Dokumen PDF • Ikhwan Ramadhan
+              </p>
             </div>
           </div>
           <div className="flex items-center gap-2">
@@ -117,8 +121,16 @@ export const Cv: React.FC<CVModalProps> = ({ isOpen, onClose }) => {
             </button>
           </div>
         </header>
-        <iframe ref={cvFrame} src={cvUrl} title="CV Ikhwan Ramadhan" className="min-h-0 flex-1 bg-slate-100">
-          <p>Browser Anda tidak dapat menampilkan PDF. Buka <a href={cvUrl}>dokumen CV</a>.</p>
+        <iframe
+          ref={cvFrame}
+          src={cvUrl}
+          title="CV Ikhwan Ramadhan"
+          className="min-h-0 flex-1 bg-slate-100"
+        >
+          <p>
+            Browser Anda tidak dapat menampilkan PDF. Buka{" "}
+            <a href={cvUrl}>dokumen CV</a>.
+          </p>
         </iframe>
       </section>
     </div>
