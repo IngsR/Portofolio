@@ -9,8 +9,6 @@ import {
   Github,
   GraduationCap,
   Layers,
-  Linkedin,
-  Mail,
   MapPin,
   MessageCircle,
   Server,
@@ -27,9 +25,16 @@ import {
 } from "../types";
 import { formatDomainName, formatShortDomain } from "../utils/format";
 import { Certificate } from "./portfolio/certificate";
+import {
+  GithubBrandIcon,
+  GmailBrandIcon,
+  LinkedInBrandIcon,
+  WhatsAppBrandIcon,
+} from "./ui/brand-icons";
 import { EncryptedText } from "./ui/encrypted-text";
 import { FlipWords } from "./ui/flip-words";
 import { GlowingEffect } from "./ui/glowing-effect";
+import { LazyMount } from "./ui/lazy-mount";
 import { MagneticButton } from "./ui/magnetic-button";
 import { MovingBorder } from "./ui/moving-border";
 import { Sparkles } from "./ui/sparkles";
@@ -190,11 +195,13 @@ export const Hero: React.FC<HeroSectionProps> = ({
                   revealDelay={40}
                 />
               </h1>
-              <div className="min-h-[2.25rem] sm:min-h-[2.5rem] flex items-center">
-                <p className="text-2xl sm:text-3xl font-extrabold text-black dark:text-slate-100 flex items-center gap-2 tracking-tight font-script">
+              {/* min-h dikunci (1 baris mobile / desktop) agar pergantian kata
+                  FlipWords tidak menggeser layout halaman naik-turun */}
+              <div className="min-h-[1.9rem] sm:min-h-[2.5rem] flex items-center">
+                <p className="text-lg sm:text-3xl font-extrabold text-black dark:text-slate-100 flex items-center gap-2 tracking-tight font-script">
                   <FlipWords
                     words={[
-                      "Junior Fullstack Web Engineer",
+                      "Junior Fullstack web Engineer",
                       "Next.js Specialist",
                       "React Developer",
                       "REST API Engineer",
@@ -359,7 +366,7 @@ export const Hero: React.FC<HeroSectionProps> = ({
                     >
                       <div className="flex items-center gap-2.5 truncate">
                         <div className="p-1.5 rounded-full bg-blue-600 text-white flex items-center justify-center">
-                          <Linkedin className="w-3.5 h-3.5" />
+                          <LinkedInBrandIcon className="w-3.5 h-3.5" />
                         </div>
                         <span className="font-semibold truncate">LinkedIn</span>
                       </div>
@@ -376,7 +383,7 @@ export const Hero: React.FC<HeroSectionProps> = ({
                     >
                       <div className="flex items-center gap-2.5 truncate">
                         <div className="p-1.5 rounded-full bg-rose-600 text-white flex items-center justify-center">
-                          <Mail className="w-3.5 h-3.5" />
+                          <GmailBrandIcon className="w-3.5 h-3.5" />
                         </div>
                         <span className="font-semibold truncate">Email</span>
                       </div>
@@ -395,7 +402,7 @@ export const Hero: React.FC<HeroSectionProps> = ({
                     >
                       <div className="flex items-center gap-2.5 truncate">
                         <div className="p-1.5 rounded-full bg-slate-900 text-white flex items-center justify-center">
-                          <Github className="w-3.5 h-3.5" />
+                          <GithubBrandIcon className="w-3.5 h-3.5" />
                         </div>
                         <span className="font-semibold truncate">GitHub</span>
                       </div>
@@ -414,7 +421,7 @@ export const Hero: React.FC<HeroSectionProps> = ({
                     >
                       <div className="flex items-center gap-2.5 truncate">
                         <div className="p-1.5 rounded-full bg-emerald-600 text-white flex items-center justify-center">
-                          <MessageCircle className="w-3.5 h-3.5" />
+                          <WhatsAppBrandIcon className="w-3.5 h-3.5" />
                         </div>
                         <span className="font-semibold truncate">
                           No. WhatsApp
@@ -749,16 +756,18 @@ export const Hero: React.FC<HeroSectionProps> = ({
           </button>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-4.5">
-          {homeCertificates.map((cert) => (
-            <Certificate
-              key={cert.id}
-              certificate={cert}
-              onOpenDetail={handleOpenCertDetail}
-              onOpenPreview={handleOpenCertPreview}
-            />
-          ))}
-        </div>
+        <LazyMount estimatedHeight={homeCertificates.length * 480}>
+          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-4.5">
+            {homeCertificates.map((cert) => (
+              <Certificate
+                key={cert.id}
+                certificate={cert}
+                onOpenDetail={handleOpenCertDetail}
+                onOpenPreview={handleOpenCertPreview}
+              />
+            ))}
+          </div>
+        </LazyMount>
       </section>
 
       {/* 6. SKILL (KEAHLIAN & STACK TEKNIS FULLSTACK) */}
@@ -869,7 +878,7 @@ export const Hero: React.FC<HeroSectionProps> = ({
                 className="flex items-center justify-between p-2.5 rounded-xl bg-white/[0.03] hover:bg-white/[0.08] border border-white/10 text-slate-200 transition-colors group"
               >
                 <div className="flex items-center gap-2 min-w-0">
-                  <Mail className="w-3.5 h-3.5 text-rose-400 shrink-0" />
+                  <GmailBrandIcon className="w-3.5 h-3.5 text-rose-400 shrink-0" />
                   <span className="text-slate-400 text-[11px] shrink-0">
                     Email:
                   </span>
@@ -887,7 +896,7 @@ export const Hero: React.FC<HeroSectionProps> = ({
                 className="flex items-center justify-between p-2.5 rounded-xl bg-white/[0.03] hover:bg-white/[0.08] border border-white/10 text-slate-200 transition-colors group"
               >
                 <div className="flex items-center gap-2 min-w-0">
-                  <Github className="w-3.5 h-3.5 text-slate-300 shrink-0" />
+                  <GithubBrandIcon className="w-3.5 h-3.5 text-slate-300 shrink-0" />
                   <span className="text-slate-400 text-[11px] shrink-0">
                     GitHub:
                   </span>
@@ -905,7 +914,7 @@ export const Hero: React.FC<HeroSectionProps> = ({
                 className="flex items-center justify-between p-2.5 rounded-xl bg-white/[0.03] hover:bg-white/[0.08] border border-white/10 text-slate-200 transition-colors group"
               >
                 <div className="flex items-center gap-2 min-w-0">
-                  <MessageCircle className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                  <WhatsAppBrandIcon className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
                   <span className="text-slate-400 text-[11px] shrink-0">
                     No. WhatsApp:
                   </span>
@@ -923,7 +932,7 @@ export const Hero: React.FC<HeroSectionProps> = ({
                 className="flex items-center justify-between p-2.5 rounded-xl bg-white/[0.03] hover:bg-white/[0.08] border border-white/10 text-slate-200 transition-colors group"
               >
                 <div className="flex items-center gap-2 min-w-0">
-                  <Linkedin className="w-3.5 h-3.5 text-blue-400 shrink-0" />
+                  <LinkedInBrandIcon className="w-3.5 h-3.5 text-blue-400 shrink-0" />
                   <span className="text-slate-400 text-[11px] shrink-0">
                     LinkedIn:
                   </span>
@@ -969,7 +978,7 @@ export const Hero: React.FC<HeroSectionProps> = ({
             >
               <div className="flex items-center gap-3 min-w-0">
                 <div className="p-2.5 rounded-xl bg-white/15 shrink-0">
-                  <Linkedin className="w-5 h-5" />
+                  <LinkedInBrandIcon className="w-5 h-5" />
                 </div>
                 <div className="min-w-0">
                   <span className="text-xs font-black uppercase tracking-wider block">
@@ -992,7 +1001,7 @@ export const Hero: React.FC<HeroSectionProps> = ({
             >
               <div className="flex items-center gap-3 min-w-0">
                 <div className="p-2.5 rounded-xl bg-white/15 shrink-0">
-                  <MessageCircle className="w-5 h-5" />
+                  <WhatsAppBrandIcon className="w-5 h-5" />
                 </div>
                 <div className="min-w-0">
                   <span className="text-xs font-black uppercase tracking-wider block">
@@ -1013,7 +1022,7 @@ export const Hero: React.FC<HeroSectionProps> = ({
             >
               <div className="flex items-center gap-3 min-w-0">
                 <div className="p-2.5 rounded-xl bg-white/15 shrink-0">
-                  <Mail className="w-5 h-5" />
+                  <GmailBrandIcon className="w-5 h-5" />
                 </div>
                 <div className="min-w-0">
                   <span className="text-xs font-black uppercase tracking-wider block">
@@ -1036,7 +1045,7 @@ export const Hero: React.FC<HeroSectionProps> = ({
             >
               <div className="flex items-center gap-3 min-w-0">
                 <div className="p-2.5 rounded-xl bg-white/10 shrink-0">
-                  <Github className="w-5 h-5" />
+                  <GithubBrandIcon className="w-5 h-5" />
                 </div>
                 <div className="min-w-0">
                   <span className="text-xs font-black uppercase tracking-wider block">

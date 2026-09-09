@@ -50,7 +50,10 @@ export const FlipWords = ({
             stiffness: 120,
             damping: 14,
           }}
-          className={cn("z-10 inline-block text-left", className)}
+          className={cn(
+            "z-10 inline-block text-left whitespace-nowrap",
+            className,
+          )}
         >
           {currentWord.split(" ").map((w, wi) => (
             <motion.span

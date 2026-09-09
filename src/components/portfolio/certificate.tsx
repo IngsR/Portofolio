@@ -6,7 +6,7 @@ import {
   Maximize2,
   ShieldCheck,
 } from "lucide-react";
-import React, { memo } from "react";
+import React, { memo, useEffect, useState } from "react";
 import { CertificationItem } from "../../types";
 import { CardSpotlight } from "../ui/card-spotlight";
 
@@ -21,13 +21,63 @@ export const Certificate = memo<CertificateCardProps>(function Certificate({
   onOpenDetail,
   onOpenPreview,
 }) {
-  return (
+  // Tilt/spotlight 3D hanya aktif di device dengan mouse (hover-capable).
+  // Di HP (touch), CardSpotlight + perspective + mousemove listener per card
+  // memicu compositing layer berlebihan → scroll patah-patah saat melewati
+  // grid sertifikasi. Mobile dapat card statis yang jauh lebih ringan.
+  const [canHover, setCanHover] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia("(hover: hover) and (pointer: fine)");
+    setCanHover(mq.matches);
+    const onChange = (e: MediaQueryListEvent) => setCanHover(e.matches);
+    mq.addEventListener("change", onChange);
+    return () => mq.removeEventListener("change", onChange);
+  }, []);
+
+  // transition-all + will-change-transform dihapus: keduanya mempromosikan
+  // setiap card jadi layer GPU permanen. Transition dibatasi ke properti yang
+  // benar-benar berubah, dan hanya di device hover.
+  const cardClassName = `group flex flex-col justify-between bg-white dark:bg-[#0f0f11] border border-slate-200/90 dark:border-white/10 rounded-2xl sm:rounded-3xl p-3 sm:p-4 lg:p-4 shadow-[0_2px_10px_-3px_rgba(15,23,42,0.06)] cursor-pointer${
+    canHover
+      ? " hover:border-emerald-500/40 dark:hover:border-white/30 hover:shadow-xl hover:-translate-y-1 transition-[border-color,box-shadow,transform] duration-300"
+      : ""
+  }`;
+
+  const handleCardClick = () => onOpenDetail(certificate);
+
+  const card = canHover ? (
     <CardSpotlight
-      onClick={() => onOpenDetail(certificate)}
-      className="group flex flex-col justify-between bg-white dark:bg-[#0f0f11] border border-slate-200/90 dark:border-white/10 rounded-2xl sm:rounded-3xl p-3 sm:p-4 lg:p-4 hover:border-emerald-500/40 dark:hover:border-white/30 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 shadow-[0_2px_10px_-3px_rgba(15,23,42,0.06)] cursor-pointer will-change-transform"
+      onClick={handleCardClick}
+      className={cardClassName}
       radius={300}
       tilt={true}
     >
+      <CertificateContent
+        certificate={certificate}
+        onOpenDetail={onOpenDetail}
+        onOpenPreview={onOpenPreview}
+      />
+    </CardSpotlight>
+  ) : (
+    <div className={cardClassName} onClick={handleCardClick}>
+      <CertificateContent
+        certificate={certificate}
+        onOpenDetail={onOpenDetail}
+        onOpenPreview={onOpenPreview}
+      />
+    </div>
+  );
+
+  return card;
+});
+
+const CertificateContent = memo<{
+  certificate: CertificationItem;
+  onOpenDetail: (cert: CertificationItem) => void;
+  onOpenPreview?: ((cert: CertificationItem) => void) | undefined;
+}>(function CertificateContent({ certificate, onOpenDetail, onOpenPreview }) {
+  return (
+    <>
       <div className="space-y-2.5 sm:space-y-3">
         {/* Certificate Screenshot Preview Box - LOCKED ASPECT RATIO */}
         <div className="relative w-full aspect-[16/11] rounded-xl sm:rounded-2xl overflow-hidden shrink-0 bg-slate-100 dark:bg-[#141416] p-1.5 sm:p-3 border border-slate-200 dark:border-white/10 flex items-center justify-center group-hover:border-slate-400 dark:group-hover:border-white/30 transition-all">
@@ -70,25 +120,26 @@ export const Certificate = memo<CertificateCardProps>(function Certificate({
             </button>
           </div>
 
-          {/* Screenshot badge */}
-          <div className="absolute top-2 left-2 sm:top-3 sm:left-3 flex items-center gap-1 bg-black/75 backdrop-blur-md px-2 py-0.5 rounded-md sm:rounded-lg text-white text-[8.5px] sm:text-[10px] font-semibold pointer-events-none shadow-xs">
-            <Eye className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-blue-400" />
+          {/* Badge backdrop-blur hanya di desktop — blur berlapis sangat mahal
+              saat scroll di HP (memaksa repaint area blur tiap frame) */}
+          <div className="hidden sm:flex absolute top-2 left-2 sm:top-3 sm:left-3 items-center gap-1 bg-black/75 backdrop-blur-md px-2 py-0.5 rounded-md sm:rounded-lg text-white text-[10px] font-semibold pointer-events-none shadow-xs">
+            <Eye className="w-3 h-3 text-blue-400" />
             <span className="truncate">Kredensial Asli</span>
           </div>
 
-          <div className="absolute top-2 right-2 sm:top-3 sm:right-3 pointer-events-none">
-            <span className="inline-flex items-center gap-1 text-[8.5px] sm:text-[10px] font-bold text-emerald-300 bg-emerald-950/85 backdrop-blur-md border border-emerald-500/30 px-2 py-0.5 rounded-full shadow-xs">
-              <ShieldCheck className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
+          <div className="hidden sm:block absolute top-2 right-2 sm:top-3 sm:right-3 pointer-events-none">
+            <span className="inline-flex items-center gap-1 text-[10px] font-bold text-emerald-300 bg-emerald-950/85 backdrop-blur-md border border-emerald-500/30 px-2 py-0.5 rounded-full shadow-xs">
+              <ShieldCheck className="w-3 h-3" />
               <span>Resmi</span>
             </span>
           </div>
 
           {/* Bottom Badge Bar */}
           <div className="absolute bottom-2 left-2 right-2 sm:bottom-3 sm:left-3 sm:right-3 flex items-center justify-between text-white text-[8.5px] sm:text-[10px] pointer-events-none">
-            <span className="font-mono text-[8px] sm:text-[9.5px] bg-black/70 backdrop-blur-md px-1.5 py-0.5 rounded text-slate-200 truncate max-w-[60%]">
+            <span className="font-mono text-[9.5px] bg-black/80 sm:bg-black/70 sm:backdrop-blur-md px-1.5 py-0.5 rounded text-slate-200 truncate max-w-[60%]">
               {certificate.badgeCode || "VERIFIED"}
             </span>
-            <span className="flex items-center gap-1 text-[8px] sm:text-[9.5px] font-medium opacity-90 group-hover:opacity-100 bg-slate-900/80 backdrop-blur-md px-1.5 py-0.5 rounded shrink-0">
+            <span className="flex items-center gap-1 text-[9.5px] font-medium opacity-90 group-hover:opacity-100 bg-slate-900/90 sm:bg-slate-900/80 sm:backdrop-blur-md px-1.5 py-0.5 rounded shrink-0">
               <Maximize2 className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
               <span>Perbesar</span>
             </span>
@@ -195,6 +246,6 @@ export const Certificate = memo<CertificateCardProps>(function Certificate({
           </a>
         )}
       </div>
-    </CardSpotlight>
+    </>
   );
 });

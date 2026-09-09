@@ -11,6 +11,7 @@ import {
 import { CertificationItem, ProjectItem } from "../../types";
 import { DetailModalIsland, PreviewModalIsland } from "../modal/modal-islands";
 import { AnimatedTabs } from "../ui/animated-tabs";
+import { LazyMount } from "../ui/lazy-mount";
 import { Certificate } from "./certificate";
 import { Project } from "./project";
 
@@ -531,32 +532,34 @@ export const Portfolio: React.FC<PortfolioSectionProps> = ({
 
           {/* Certifications Section (Rendered if filter is 'all' or 'certificates') */}
           {filteredCerts.length > 0 && (
-            <div className="space-y-5">
-              {filterType === "all" && (
-                <div className="flex items-center justify-between border-b border-slate-200 dark:border-white/10 pb-3">
-                  <div className="flex items-center gap-2">
-                    <Award className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
-                    <h2 className="text-lg font-bold text-slate-950 dark:text-white">
-                      Sertifikasi({filteredCerts.length})
-                    </h2>
+            <LazyMount estimatedHeight={filteredCerts.length * 480}>
+              <div className="space-y-5">
+                {filterType === "all" && (
+                  <div className="flex items-center justify-between border-b border-slate-200 dark:border-white/10 pb-3">
+                    <div className="flex items-center gap-2">
+                      <Award className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
+                      <h2 className="text-lg font-bold text-slate-950 dark:text-white">
+                        Sertifikasi({filteredCerts.length})
+                      </h2>
+                    </div>
+                    <span className="text-xs text-slate-500 dark:text-slate-400">
+                      Validasi Kompetensi Teknis
+                    </span>
                   </div>
-                  <span className="text-xs text-slate-500 dark:text-slate-400">
-                    Validasi Kompetensi Teknis
-                  </span>
-                </div>
-              )}
+                )}
 
-              <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-5 lg:gap-6">
-                {filteredCerts.map((cert) => (
-                  <Certificate
-                    key={cert.id}
-                    certificate={cert}
-                    onOpenDetail={handleOpenCertDetail}
-                    onOpenPreview={handleOpenCertPreview}
-                  />
-                ))}
+                <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-5 lg:gap-6">
+                  {filteredCerts.map((cert) => (
+                    <Certificate
+                      key={cert.id}
+                      certificate={cert}
+                      onOpenDetail={handleOpenCertDetail}
+                      onOpenPreview={handleOpenCertPreview}
+                    />
+                  ))}
+                </div>
               </div>
-            </div>
+            </LazyMount>
           )}
         </div>
       )}
