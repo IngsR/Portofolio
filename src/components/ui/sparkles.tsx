@@ -1,6 +1,6 @@
 "use client";
 import { motion } from "motion/react";
-import React from "react";
+import React, { useMemo } from "react";
 import { cn } from "./utils";
 
 interface SparklesProps {
@@ -32,8 +32,9 @@ export const Sparkles = ({
   maxSize = 8,
   colors = ["#34d399", "#6ee7b7", "#a7f3d0"],
 }: SparklesProps) => {
-  const sparkles = Array.from({ length: sparkleCount }, () =>
-    generateSparkle(colors),
+  const sparkles = useMemo(() => 
+    Array.from({ length: sparkleCount }, () => generateSparkle(colors)),
+    [sparkleCount, colors]
   );
 
   return (
@@ -74,3 +75,4 @@ export const Sparkles = ({
     </span>
   );
 };
+

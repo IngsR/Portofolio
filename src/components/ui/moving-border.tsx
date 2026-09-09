@@ -1,5 +1,10 @@
 "use client";
-import { motion } from "motion/react";
+import {
+  motion,
+  useAnimationFrame,
+  useMotionValue,
+  useSpring,
+} from "motion/react";
 import React, { useEffect, useRef, useState } from "react";
 import { cn } from "./utils";
 
@@ -27,36 +32,49 @@ export const MovingBorder = ({
   ...otherProps
 }: MovingBorderProps) => {
   const pathRef = useRef<SVGRectElement | null>(null);
-  const progressRef = useRef(0);
-  const animRef = useRef<number | null>(null);
-  const startTimeRef = useRef<number | null>(null);
-  const [borderPos, setBorderPos] = useState({ x: 0, y: 0 });
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+
+  // Use a spring for smoother movement if needed, but here direct is fine
+  const smoothX = useSpring(x, { damping: 20, stiffness: 300 });
+  const smoothY = useSpring(y, { damping: 20, stiffness: 300 });
+
+  // PAUSE animasi saat komponen off-screen: getPointAtLength() adalah layout
+  // read per frame yang mahal — menjalankannya untuk elemen yang tidak terlihat
+  // hanya membuang frame budget saat scrolling.
+  const [isVisible, setIsVisible] = useState(false);
+  const containerRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
-    const animate = (time: number) => {
-      if (!startTimeRef.current) startTimeRef.current = time;
-      const elapsed = time - startTimeRef.current;
-      progressRef.current = (elapsed % duration) / duration;
+    const el = containerRef.current;
+    if (!el || typeof IntersectionObserver === "undefined") {
+      setIsVisible(true);
+      return;
+    }
+    const observer = new IntersectionObserver(
+      (entries) => setIsVisible(entries[0]?.isIntersecting ?? false),
+      { threshold: 0 },
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
-      if (pathRef.current) {
-        const length = pathRef.current.getTotalLength?.() ?? 0;
-        if (length) {
-          const pt = pathRef.current.getPointAtLength(
-            progressRef.current * length,
-          );
-          setBorderPos({ x: pt.x, y: pt.y });
-        }
-      }
-      animRef.current = requestAnimationFrame(animate);
-    };
-    animRef.current = requestAnimationFrame(animate);
-    return () => {
-      if (animRef.current) cancelAnimationFrame(animRef.current);
-    };
-  }, [duration]);
+  useAnimationFrame((time) => {
+    if (!isVisible) return;
+    if (!pathRef.current) return;
+
+    const length = pathRef.current.getTotalLength?.() ?? 0;
+    if (length) {
+      const progress = (time % duration) / duration;
+      const pt = pathRef.current.getPointAtLength(progress * length);
+      x.set(pt.x);
+      y.set(pt.y);
+    }
+  });
 
   return (
     <Component
+      ref={containerRef}
       className={cn(
         "relative h-10 overflow-hidden rounded-full border border-transparent p-[1px] text-sm",
         containerClassName,
@@ -80,12 +98,13 @@ export const MovingBorder = ({
             ref={pathRef as React.RefObject<SVGRectElement>}
           />
         </svg>
-        <div
+        <motion.div
           className="absolute"
           style={{
-            left: `${borderPos.x}px`,
-            top: `${borderPos.y}px`,
-            transform: "translate(-50%,-50%)",
+            x: smoothX,
+            y: smoothY,
+            translateX: "-50%",
+            translateY: "-50%",
           }}
         >
           <motion.div
@@ -94,7 +113,7 @@ export const MovingBorder = ({
               borderClassName,
             )}
           />
-        </div>
+        </motion.div>
       </div>
 
       <div

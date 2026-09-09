@@ -1,9 +1,15 @@
 import { ArrowUpDown, Award, Grid, Layers, Search, X } from "lucide-react";
 import React, { useCallback, useMemo, useRef, useState } from "react";
 import portfolioData from "../../data/portfolio.json";
+import {
+  isDetailOpenStore,
+  isPreviewOpenStore,
+  selectedCertForDetailStore,
+  selectedPreviewItemStore,
+  selectedProjectForDetailStore,
+} from "../../store/portfolio";
 import { CertificationItem, ProjectItem } from "../../types";
-import { Detail } from "../modal/detail";
-import { CardPreviewModal } from "../modal/card-preview-modal";
+import { DetailModalIsland, PreviewModalIsland } from "../modal/modal-islands";
 import { AnimatedTabs } from "../ui/animated-tabs";
 import { Certificate } from "./certificate";
 import { Project } from "./project";
@@ -67,33 +73,22 @@ export const Portfolio: React.FC<PortfolioSectionProps> = ({
   const [sortBy, setSortBy] = useState<SortOption>("relevance");
   const searchInputRef = useRef<HTMLInputElement>(null);
 
-  // Modal State for Project / Certificate Detail Pop-up
-  const [selectedProjectForDetail, setSelectedProjectForDetail] =
-    useState<ProjectItem | null>(null);
-  const [selectedCertificateForDetail, setSelectedCertificateForDetail] =
-    useState<CertificationItem | null>(null);
-  const [isDetailModalOpen, setIsDetailModalOpen] = useState(false);
+  // Modal state hidup di island terpisah (DetailModalIsland/PreviewModalIsland)
+  // yang subscribe store sendiri — buka/tutup modal tidak me-render ulang
+  // halaman ini beserta seluruh grid card.
 
-  // Quick Card Preview Modal State
-  const [previewProject, setPreviewProject] = useState<ProjectItem | null>(
-    null,
-  );
-  const [previewCert, setPreviewCert] = useState<CertificationItem | null>(
-    null,
-  );
-  const [isPreviewModalOpen, setIsPreviewModalOpen] = useState(false);
+  // Handler stabil (useCallback) agar memo() pada card Project/Certificate
+  // efektif: perubahan state filter/search tidak me-render ulang card mana pun
+  // yang datanya tidak berubah.
+  const handleOpenProjectPreview = useCallback((project: ProjectItem) => {
+    selectedPreviewItemStore.set(project);
+    isPreviewOpenStore.set(true);
+  }, []);
 
-  const handleOpenProjectPreview = (project: ProjectItem) => {
-    setPreviewProject(project);
-    setPreviewCert(null);
-    setIsPreviewModalOpen(true);
-  };
-
-  const handleOpenCertPreview = (cert: CertificationItem) => {
-    setPreviewCert(cert);
-    setPreviewProject(null);
-    setIsPreviewModalOpen(true);
-  };
+  const handleOpenCertPreview = useCallback((cert: CertificationItem) => {
+    selectedPreviewItemStore.set(cert);
+    isPreviewOpenStore.set(true);
+  }, []);
 
   // Categories based on active filter
   const allCategories = FILTER_CATEGORIES;
@@ -244,16 +239,22 @@ export const Portfolio: React.FC<PortfolioSectionProps> = ({
   const totalItemsCount = filteredProjects.length + filteredCerts.length;
 
   const handleOpenProjectDetail = useCallback((proj: ProjectItem) => {
-    setSelectedProjectForDetail(proj);
-    setSelectedCertificateForDetail(null);
-    setIsDetailModalOpen(true);
+    selectedProjectForDetailStore.set(proj);
+    selectedCertForDetailStore.set(null);
+    isDetailOpenStore.set(true);
   }, []);
 
   const handleOpenCertDetail = useCallback((cert: CertificationItem) => {
-    setSelectedCertificateForDetail(cert);
-    setSelectedProjectForDetail(null);
-    setIsDetailModalOpen(true);
+    selectedCertForDetailStore.set(cert);
+    selectedProjectForDetailStore.set(null);
+    isDetailOpenStore.set(true);
   }, []);
+
+  // Identitas stabil untuk prop onOpenMarkdown card (menjaga memo() efektif)
+  const handleOpenMarkdown = useCallback(
+    (project: ProjectItem) => onOpenMarkdown(project),
+    [onOpenMarkdown],
+  );
 
   const handleKeywordClick = useCallback((keyword: string) => {
     setSelectedKeywords((current) =>
@@ -520,7 +521,7 @@ export const Portfolio: React.FC<PortfolioSectionProps> = ({
                     key={project.id}
                     project={project}
                     onOpenDetail={handleOpenProjectDetail}
-                    onOpenMarkdown={onOpenMarkdown}
+                    onOpenMarkdown={handleOpenMarkdown}
                     onOpenPreview={handleOpenProjectPreview}
                   />
                 ))}
@@ -560,29 +561,9 @@ export const Portfolio: React.FC<PortfolioSectionProps> = ({
         </div>
       )}
 
-      {/* Item Detail Pop-up Modal */}
-      <Detail
-        isOpen={isDetailModalOpen}
-        onClose={() => setIsDetailModalOpen(false)}
-        project={selectedProjectForDetail}
-        certificate={selectedCertificateForDetail}
-        onOpenMarkdown={onOpenMarkdown}
-      />
-
-      {/* Interactive Card Quick Preview Modal */}
-      <CardPreviewModal
-        isOpen={isPreviewModalOpen}
-        onClose={() => setIsPreviewModalOpen(false)}
-        project={previewProject}
-        certificate={previewCert}
-        onOpenDetail={(item) => {
-          if ("role" in item || "demoUrl" in item) {
-            handleOpenProjectDetail(item as ProjectItem);
-          } else {
-            handleOpenCertDetail(item as CertificationItem);
-          }
-        }}
-      />
+      {/* Item Detail & Quick Preview Modal — island terisolasi */}
+      <DetailModalIsland onOpenMarkdown={handleOpenMarkdown} />
+      <PreviewModalIsland />
     </div>
   );
 };

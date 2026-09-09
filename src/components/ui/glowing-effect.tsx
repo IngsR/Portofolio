@@ -1,6 +1,6 @@
 "use client";
 import { motion } from "motion/react";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { cn } from "./utils";
 
 interface GlowingEffectProps {
@@ -22,40 +22,37 @@ export const GlowingEffect = ({
   spread = 80,
 }: GlowingEffectProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [position, setPosition] = useState({ x: 0, y: 0 });
   const [isHovered, setIsHovered] = useState(false);
 
-  useEffect(() => {
-    if (disabled) return;
-    const el = containerRef.current;
-    if (!el) return;
-
-    const handleMouseMove = (e: MouseEvent) => {
-      const rect = el.getBoundingClientRect();
-      setPosition({ x: e.clientX - rect.left, y: e.clientY - rect.top });
-    };
-
-    el.addEventListener("mousemove", handleMouseMove);
-    el.addEventListener("mouseenter", () => setIsHovered(true));
-    el.addEventListener("mouseleave", () => setIsHovered(false));
-    return () => el.removeEventListener("mousemove", handleMouseMove);
-  }, [disabled]);
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (disabled || !containerRef.current) return;
+    const rect = containerRef.current.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    containerRef.current.style.setProperty("--x", `${x}px`);
+    containerRef.current.style.setProperty("--y", `${y}px`);
+  };
 
   return (
     <div
       ref={containerRef}
       className={cn("relative overflow-hidden", containerClassName)}
+      onMouseMove={handleMouseMove}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
     >
       {!disabled && (
         <motion.div
           className="pointer-events-none absolute inset-0 z-0 rounded-[inherit] transition-opacity duration-500"
-          style={{
+          animate={{
+            opacity: isHovered ? 1 : 0,
             background: isHovered
-              ? `radial-gradient(${spread}px circle at ${position.x}px ${position.y}px, rgba(255,255,255,0.12), transparent 70%)`
+              ? `radial-gradient(${spread}px circle at var(--x, 0px) var(--y, 0px), rgba(255,255,255,0.12), transparent 70%)`
               : "transparent",
+          }}
+          style={{
             filter: `blur(${blur}px)`,
           }}
-          animate={{ opacity: isHovered ? 1 : 0 }}
           transition={{ duration: 0.3 }}
         />
       )}

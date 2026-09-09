@@ -25,8 +25,8 @@ export const TextGenerateEffect = ({
 
   useEffect(() => {
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) setScope(true);
+      (entries) => {
+        if (entries[0]?.isIntersecting) setScope(true);
       },
       { threshold: 0.1 },
     );

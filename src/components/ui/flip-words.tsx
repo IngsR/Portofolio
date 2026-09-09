@@ -14,11 +14,11 @@ export const FlipWords = ({
   duration = 3000,
   className,
 }: FlipWordsProps) => {
-  const [currentWord, setCurrentWord] = useState(words[0]);
+  const [currentWord, setCurrentWord] = useState(words[0] ?? "");
   const [isAnimating, setIsAnimating] = useState(false);
 
   const startAnimation = () => {
-    const next = words[words.indexOf(currentWord) + 1] || words[0];
+    const next = words[words.indexOf(currentWord) + 1] ?? words[0] ?? "";
     setCurrentWord(next);
     setIsAnimating(true);
   };

@@ -15,7 +15,7 @@ import {
   Server,
   Terminal,
 } from "lucide-react";
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useMemo } from "react";
 import portfolioData from "../data/portfolio.json";
 import {
   CertificationItem,
@@ -26,7 +26,6 @@ import {
 } from "../types";
 import { formatDomainName, formatShortDomain } from "../utils/format";
 import { Detail } from "./modal/detail";
-import { CardPreviewModal } from "./modal/card-preview-modal";
 import { Certificate } from "./portfolio/certificate";
 import { AnimatedTooltip } from "./ui/animated-tooltip";
 import { BackgroundBeams } from "./ui/background-beams";
@@ -39,6 +38,19 @@ import { MagneticButton } from "./ui/magnetic-button";
 import { MovingBorder } from "./ui/moving-border";
 import { Sparkles } from "./ui/sparkles";
 import { TextGenerateEffect } from "./ui/text-generate-effect";
+
+import {
+  selectedProjectForDetailStore,
+  selectedCertForDetailStore,
+  isDetailOpenStore,
+  selectedPreviewItemStore,
+  isPreviewOpenStore,
+  isCVModalOpenStore,
+} from "../store/portfolio";
+import {
+  DetailModalIsland,
+  PreviewModalIsland,
+} from "./modal/modal-islands";
 
 const {
   userProfile,
@@ -65,32 +77,24 @@ export const Hero: React.FC<HeroSectionProps> = ({
   onOpenProjectMarkdown,
   onOpenCV,
 }) => {
-  const [selectedProjectForDetail, setSelectedProjectForDetail] =
-    useState<ProjectItem | null>(null);
-  const [selectedCertForDetail, setSelectedCertForDetail] =
-    useState<CertificationItem | null>(null);
-  const [isDetailOpen, setIsDetailOpen] = useState(false);
-
-  // Quick Card Preview State
-  const [selectedCertForPreview, setSelectedCertForPreview] =
-    useState<CertificationItem | null>(null);
-  const [isPreviewModalOpen, setIsPreviewModalOpen] = useState(false);
-
+  // Semua state modal (detail & preview) hidup di island terpisah yang
+  // subscribe store sendiri — membuka/menutup modal TIDAK me-render ulang
+  // seluruh halaman ini. Lihat DetailModalIsland / PreviewModalIsland.
   const handleOpenProjectDetail = useCallback((project: ProjectItem) => {
-    setSelectedProjectForDetail(project);
-    setSelectedCertForDetail(null);
-    setIsDetailOpen(true);
+    selectedProjectForDetailStore.set(project);
+    selectedCertForDetailStore.set(null);
+    isDetailOpenStore.set(true);
   }, []);
 
   const handleOpenCertDetail = useCallback((cert: CertificationItem) => {
-    setSelectedCertForDetail(cert);
-    setSelectedProjectForDetail(null);
-    setIsDetailOpen(true);
+    selectedCertForDetailStore.set(cert);
+    selectedProjectForDetailStore.set(null);
+    isDetailOpenStore.set(true);
   }, []);
 
   const handleOpenCertPreview = useCallback((cert: CertificationItem) => {
-    setSelectedCertForPreview(cert);
-    setIsPreviewModalOpen(true);
+    selectedPreviewItemStore.set(cert);
+    isPreviewOpenStore.set(true);
   }, []);
 
   const getSkillCategoryIcon = useCallback((iconName: string) => {
@@ -118,16 +122,16 @@ export const Hero: React.FC<HeroSectionProps> = ({
     }
   }, []);
 
-  // Sertifikat pilihan di Home (Problem Solving Intermediate, AI Principles Huawei, HCIP Datacom Huawei, Problem Solving Basic)
-  const homeCertificates: CertificationItem[] = [
+  // Sertifikat pilihan di Home - Memoized
+  const homeCertificates = useMemo(() => [
     certificationsData.find((c) => c.id === "cert-5") || certificationsData[4]!,
     certificationsData.find((c) => c.id === "cert-2") || certificationsData[1]!,
     certificationsData.find((c) => c.id === "cert-3") || certificationsData[2]!,
     certificationsData.find((c) => c.id === "cert-4") || certificationsData[3]!,
-  ].filter(Boolean) as CertificationItem[];
+  ].filter(Boolean) as CertificationItem[], []);
 
-  // Proyek pilihan di Beranda: pastikan 4 proyek pilihan utama termasuk Ingstore selalu tampil
-  const homeFeaturedProjects: ProjectItem[] = (() => {
+  // Proyek pilihan di Beranda - Memoized
+  const homeFeaturedProjects = useMemo(() => {
     const list = [...(featuredProjects || [])];
     const ingstore = (portfolioData.projects as ProjectItem[]).find(
       (p) => p.id === "proj-4",
@@ -136,12 +140,12 @@ export const Hero: React.FC<HeroSectionProps> = ({
       list.push(ingstore);
     }
     return list.filter((p) => p.featured || p.id === "proj-4").slice(0, 4);
-  })();
+  }, [featuredProjects]);
 
-  // Pendidikan Sarjana S1
-  const sarjanaEducation = educationData.filter(
+  // Pendidikan Sarjana S1 - Memoized
+  const sarjanaEducation = useMemo(() => educationData.filter(
     (edu) => edu.id === "edu-1" || edu.degree.toLowerCase().includes("sarjana"),
-  );
+  ), []);
 
   return (
     <div className="space-y-16 py-6 sm:py-8">
@@ -258,7 +262,7 @@ export const Hero: React.FC<HeroSectionProps> = ({
 
               <MovingBorder
                 as="button"
-                onClick={onOpenCV}
+                onClick={() => isCVModalOpenStore.set(true)}
                 containerClassName="h-auto rounded-full"
                 className="px-3 sm:px-5 py-2.5 sm:py-3 text-xs font-semibold sm:tracking-wider flex items-center gap-1.5 sm:gap-2 rounded-full"
                 duration={3000}
@@ -1022,22 +1026,11 @@ export const Hero: React.FC<HeroSectionProps> = ({
         </div>
       </section>
 
-      {/* Pop up Detail Modal (Project / Certificate) */}
-      <Detail
-        isOpen={isDetailOpen}
-        onClose={() => setIsDetailOpen(false)}
-        project={selectedProjectForDetail}
-        certificate={selectedCertForDetail}
-        onOpenMarkdown={onOpenProjectMarkdown}
-      />
+      {/* Pop up Detail Modal (Project / Certificate) — island terisolasi */}
+      <DetailModalIsland onOpenMarkdown={onOpenProjectMarkdown} />
 
-      {/* Quick Certificate Preview Modal */}
-      <CardPreviewModal
-        isOpen={isPreviewModalOpen}
-        onClose={() => setIsPreviewModalOpen(false)}
-        certificate={selectedCertForPreview}
-        onOpenDetail={(item) => handleOpenCertDetail(item as CertificationItem)}
-      />
+      {/* Quick Certificate Preview Modal — island terisolasi */}
+      <PreviewModalIsland />
     </div>
   );
 };
