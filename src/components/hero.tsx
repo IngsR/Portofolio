@@ -298,13 +298,13 @@ export const Hero: React.FC<HeroSectionProps> = ({
               spread={120}
             >
               <div className="w-full sm:max-w-sm rounded-2xl sm:rounded-3xl border border-slate-200/90 dark:border-white/10 bg-white dark:bg-[#0d0d10] p-4 sm:p-5 space-y-4 shadow-[0_2px_12px_-2px_rgba(15,23,42,0.06)]">
-                {/* Photo Container - Bingkai Presisi Mengikuti Rasio Asli Ikhwan.jpg (1024x1257), Tanpa Bagian Hitam di Kiri/Kanan, Ukuran Terkunci Bebas Blur/Zoom */}
-                <div className="relative aspect-[1024/1257] w-full max-w-[280px] sm:max-w-[310px] mx-auto rounded-2xl overflow-hidden bg-slate-100 dark:bg-white/[0.04] border border-slate-200/80 dark:border-white/10 flex items-center justify-center">
+                {/* Photo Container — rasio mengikuti Ikhwan.webp (640×786 ≈ 4:5), penuh lebar card, tanpa sisa background di sisi */}
+                <div className="relative w-full rounded-2xl overflow-hidden bg-white dark:bg-[#0d0d10] border border-slate-200/80 dark:border-white/10" style={{aspectRatio: '640/786'}}>
                   <img
                     src="/Ikhwan.webp"
                     alt={userProfile.name}
-                    width={1024}
-                    height={1257}
+                    width={640}
+                    height={786}
                     loading="eager"
                     decoding="async"
                     fetchPriority="high"
@@ -328,18 +328,18 @@ export const Hero: React.FC<HeroSectionProps> = ({
                         parent.appendChild(fallback);
                       }
                     }}
-                    className="w-full h-full object-cover object-center select-none"
+                    className="absolute inset-0 w-full h-full object-cover object-center select-none"
                   />
 
                   <div className="absolute bottom-2.5 left-2.5 right-2.5 bg-slate-950/85 dark:bg-black/85 backdrop-blur-md rounded-xl px-3 py-1.5 sm:py-2 text-white text-[10px] sm:text-[11px] flex items-center justify-between border border-white/10 shadow-sm pointer-events-none">
-                    <div className="flex items-center gap-1.5 truncate">
+                    <div className="flex items-center gap-1.5 min-w-0 flex-1">
                       <span className="w-2 h-2 rounded-full bg-emerald-400 shrink-0 animate-pulse"></span>
                       <span className="font-semibold truncate">
                         {userProfile.name}
                       </span>
                     </div>
-                    <span className="text-slate-300 text-[9px] sm:text-[10px] shrink-0 font-medium ml-1">
-                      Junior Fullstack Web Engineer
+                    <span className="text-slate-300 text-[9px] sm:text-[10px] shrink-0 font-medium ml-2">
+                      Fullstack Engineer
                     </span>
                   </div>
                 </div>

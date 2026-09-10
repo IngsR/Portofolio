@@ -9,6 +9,8 @@ export const LinkedInBrandIcon: React.FC<BrandIconProps> = ({ className }) => (
   <svg
     viewBox="0 0 24 24"
     fill="currentColor"
+    width="16"
+    height="16"
     className={className}
     aria-hidden="true"
   >
@@ -20,6 +22,8 @@ export const GithubBrandIcon: React.FC<BrandIconProps> = ({ className }) => (
   <svg
     viewBox="0 0 24 24"
     fill="currentColor"
+    width="16"
+    height="16"
     className={className}
     aria-hidden="true"
   >
@@ -31,6 +35,8 @@ export const GmailBrandIcon: React.FC<BrandIconProps> = ({ className }) => (
   <svg
     viewBox="0 0 24 24"
     fill="currentColor"
+    width="16"
+    height="16"
     className={className}
     aria-hidden="true"
   >
@@ -42,6 +48,8 @@ export const WhatsAppBrandIcon: React.FC<BrandIconProps> = ({ className }) => (
   <svg
     viewBox="0 0 24 24"
     fill="currentColor"
+    width="16"
+    height="16"
     className={className}
     aria-hidden="true"
   >
