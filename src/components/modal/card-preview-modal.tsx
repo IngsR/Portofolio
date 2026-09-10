@@ -48,7 +48,9 @@ export const CardPreviewModal: React.FC<CardPreviewModalProps> = ({
 
   const isProject = !!project;
   const title = isProject ? project.title : certificate?.title;
-  const image = isProject ? project.image : certificate?.image;
+  const image = isProject
+    ? (project.imageFull ?? project.image)
+    : certificate?.image;
   const fallbackImage = isProject
     ? project.fallbackImage
     : certificate?.fallbackImage;

@@ -10,6 +10,7 @@ export interface ProjectItem {
   category: string;
   tags: string[];
   image: string;
+  imageFull?: string; // varian 1280w untuk modal/detail
   fallbackImage?: string;
   featured?: boolean;
   publishedDate: string;

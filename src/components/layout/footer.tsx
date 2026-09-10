@@ -31,7 +31,7 @@ export const Footer: React.FC<FooterProps> = ({ setActivePage, onOpenCV }) => {
           <div className="space-y-5 lg:col-span-5">
             <div className="flex items-center gap-3">
               <img
-                src="/logo.jpg"
+                src="/logo.webp"
                 alt="Logo Ikhwan Ramadhan"
                 width={40}
                 height={40}

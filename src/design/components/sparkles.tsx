@@ -1,6 +1,5 @@
 "use client";
-import { motion } from "motion/react";
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo, useRef } from "react";
 import { cn } from "../utils";
 
 interface SparklesProps {
@@ -16,46 +15,67 @@ const random = (min: number, max: number) => Math.random() * (max - min) + min;
 
 const generateSparkle = (colors: string[]) => ({
   id: Math.random(),
-  x: `${random(0, 100)}%`,
-  y: `${random(0, 100)}%`,
-  size: random(4, 10),
+  x: `${random(5, 95)}%`,
+  y: `${random(5, 95)}%`,
+  size: random(4, 9),
   color: colors[Math.floor(Math.random() * colors.length)],
-  delay: random(0, 1),
-  duration: random(0.8, 1.6),
+  // durasi & delay sebagai CSS custom property agar tidak ada JS per frame
+  duration: `${random(0.9, 1.6).toFixed(2)}s`,
+  delay: `${random(0, 1).toFixed(2)}s`,
+  repeatDelay: `${random(1, 3).toFixed(2)}s`,
 });
 
+/**
+ * Sparkles dioptimalkan — animasi pure CSS (keyframes), bukan motion.js per span.
+ * - IntersectionObserver: animasi PAUSE saat tidak di viewport
+ * - Zero JS per frame, zero rAF, zero motion dependency
+ */
 export const Sparkles = ({
   children,
   className,
-  sparkleCount = 6,
-  minSize = 3,
-  maxSize = 8,
+  sparkleCount = 4,
   colors = ["#34d399", "#6ee7b7", "#a7f3d0"],
 }: SparklesProps) => {
-  const sparkles = useMemo(() => 
-    Array.from({ length: sparkleCount }, () => generateSparkle(colors)),
-    [sparkleCount, colors]
+  const containerRef = useRef<HTMLSpanElement>(null);
+  const sparkles = useMemo(
+    () => Array.from({ length: sparkleCount }, () => generateSparkle(colors)),
+    // colors: hanya re-generate saat sparkleCount berubah untuk stabilitas
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [sparkleCount],
   );
 
+  // Pause animasi saat off-screen menggunakan animation-play-state CSS
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el || typeof IntersectionObserver === "undefined") return;
+    const spans = el.querySelectorAll<HTMLSpanElement>(".sparkle-item");
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        const state = entry?.isIntersecting ? "running" : "paused";
+        spans.forEach((s) => (s.style.animationPlayState = state));
+      },
+      { threshold: 0 },
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <span className={cn("relative inline-block", className)}>
+    <span ref={containerRef} className={cn("relative inline-block", className)}>
       {sparkles.map((s) => (
-        <motion.span
+        <span
           key={s.id}
-          className="pointer-events-none absolute"
-          style={{ left: s.x, top: s.y }}
-          initial={{ opacity: 0, scale: 0 }}
-          animate={{
-            opacity: [0, 1, 0],
-            scale: [0, 1, 0],
-            rotate: [0, 90, 180],
-          }}
-          transition={{
-            duration: s.duration,
-            delay: s.delay,
-            repeat: Infinity,
-            repeatDelay: random(1, 3),
-          }}
+          className="sparkle-item pointer-events-none absolute"
+          style={
+            {
+              left: s.x,
+              top: s.y,
+              "--sparkle-duration": s.duration,
+              "--sparkle-delay": s.delay,
+              "--sparkle-repeat-delay": s.repeatDelay,
+              animation: `sparkle-pulse var(--sparkle-duration) var(--sparkle-delay) infinite`,
+            } as React.CSSProperties
+          }
         >
           <svg
             width={s.size}
@@ -69,10 +89,9 @@ export const Sparkles = ({
               fill={s.color}
             />
           </svg>
-        </motion.span>
+        </span>
       ))}
       {children}
     </span>
   );
 };
-

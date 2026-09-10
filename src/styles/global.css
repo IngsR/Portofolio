@@ -522,13 +522,8 @@ p {
   }
 }
 
-/* Promosi komposit GPU — hanya properti compositor-friendly
-   (transform/opacity), tidak memicu layout/paint ulang. */
-.group,
-.group > img {
-  transform: translateZ(0);
-  backface-visibility: hidden;
-}
+
+
 
 /* Hover card: animasi via compositor (translateZ + scale) */
 @media (prefers-reduced-motion: no-preference) {
@@ -573,3 +568,67 @@ html {
     animation: none;
   }
 }
+
+/* ============================================================
+   SPARKLES — pure CSS animation (menggantikan motion.js per span)
+   Animasi hanya opacity + scale → compositor layer, zero layout.
+   ============================================================ */
+@keyframes sparkle-pulse {
+  0%,
+  100% {
+    opacity: 0;
+    transform: scale(0) rotate(0deg);
+  }
+  30% {
+    opacity: 1;
+    transform: scale(1) rotate(90deg);
+  }
+  70% {
+    opacity: 0.6;
+    transform: scale(0.8) rotate(180deg);
+  }
+}
+
+/* Hentikan animasi jika user lebih suka reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  .sparkle-item {
+    animation: none !important;
+    opacity: 0 !important;
+  }
+}
+
+/* ============================================================
+   TEXT GENERATE EFFECT — pure CSS fade + blur (menggantikan
+   motion.span per kata — bisa 60+ elemen di hero bio)
+   .tge-word  = state awal (tersembunyi)
+   .tge-visible ditambahkan via IntersectionObserver → trigger animasi
+   ============================================================ */
+.tge-word {
+  opacity: 0;
+  filter: var(--tge-filter, blur(6px));
+}
+
+.tge-word.tge-visible {
+  animation: tge-reveal var(--tge-duration, 0.4s) var(--tge-delay, 0s)
+    cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes tge-reveal {
+  from {
+    opacity: 0;
+    filter: var(--tge-filter, blur(6px));
+  }
+  to {
+    opacity: 1;
+    filter: blur(0px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tge-word {
+    opacity: 1 !important;
+    filter: none !important;
+    animation: none !important;
+  }
+}
+

@@ -150,7 +150,7 @@ export const Detail: React.FC<DetailModalProps> = ({
             {isProject && project && (
               <div className="relative w-full aspect-video rounded-xl sm:rounded-2xl overflow-hidden bg-slate-900 border border-slate-200 dark:border-white/10 group">
                 <img
-                  src={project.image}
+                  src={project.imageFull ?? project.image}
                   alt={project.title}
                   onError={(e) => {
                     const target = e.currentTarget;

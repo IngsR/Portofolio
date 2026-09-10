@@ -151,7 +151,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             >
               <div className="relative">
                 <img
-                  src="/logo.jpg"
+                  src="/logo.webp"
                   alt="Logo Ikhwan Ramadhan"
                   width={36}
                   height={36}

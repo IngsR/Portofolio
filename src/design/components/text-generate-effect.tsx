@@ -1,6 +1,5 @@
 "use client";
-import { motion } from "motion/react";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { cn } from "../utils";
 
 interface TextGenerateEffectProps {
@@ -12,43 +11,63 @@ interface TextGenerateEffectProps {
   filter?: boolean;
 }
 
+/**
+ * TextGenerateEffect dioptimalkan — pure CSS animation, bukan motion.span per kata.
+ * - Tidak ada JS per frame sama sekali
+ * - IntersectionObserver: animasi dimulai hanya saat masuk viewport
+ * - CSS custom property --delay per kata, satu @keyframes untuk semua
+ * - Filter blur juga dihandle CSS (compositor layer, bukan layout)
+ */
 export const TextGenerateEffect = ({
   words,
   className,
   wordClassName,
-  duration = 0.5,
-  delay = 0.08,
+  duration = 0.4,
+  delay = 0.05,
   filter = true,
 }: TextGenerateEffectProps) => {
-  const [scope, setScope] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const wordsArray = words.split(" ");
 
   useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+    // Semua span mulai invisible
+    const spans = el.querySelectorAll<HTMLSpanElement>(".tge-word");
+    if (typeof IntersectionObserver === "undefined") {
+      spans.forEach((s) => s.classList.add("tge-visible"));
+      return;
+    }
     const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0]?.isIntersecting) setScope(true);
+      ([entry]) => {
+        if (entry?.isIntersecting) {
+          spans.forEach((s) => s.classList.add("tge-visible"));
+          observer.disconnect();
+        }
       },
       { threshold: 0.1 },
     );
-    if (ref.current) observer.observe(ref.current);
+    observer.observe(el);
     return () => observer.disconnect();
   }, []);
 
-  const wordsArray = words.split(" ");
-
   return (
-    <div ref={ref} className={cn("font-normal", className)}>
+    <div ref={containerRef} className={cn("font-normal", className)}>
       <div className="leading-relaxed tracking-wide">
         {wordsArray.map((word, i) => (
-          <motion.span
+          <span
             key={word + i}
-            initial={{ opacity: 0, filter: filter ? "blur(8px)" : "none" }}
-            animate={scope ? { opacity: 1, filter: "blur(0px)" } : {}}
-            transition={{ duration, delay: i * delay }}
-            className={cn("inline-block mr-1", wordClassName)}
+            className={cn("tge-word inline-block mr-1", wordClassName)}
+            style={
+              {
+                "--tge-duration": `${duration}s`,
+                "--tge-delay": `${(i * delay).toFixed(3)}s`,
+                "--tge-filter": filter ? "blur(6px)" : "none",
+              } as React.CSSProperties
+            }
           >
             {word}
-          </motion.span>
+          </span>
         ))}
       </div>
     </div>

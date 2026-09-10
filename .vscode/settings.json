@@ -1,5 +1,6 @@
 {
   "css.lint.unknownAtRules": "ignore",
   "tailwindCSS.lint.suggestCanonicalClasses": "ignore",
-  "tailwindCSS.lint.deprecatedAtRule": "ignore"
+  "tailwindCSS.lint.deprecatedAtRule": "ignore",
+  "CodeGPT.apiKey": "Antigravity"
 }

@@ -101,7 +101,7 @@ export const About: React.FC<AboutSectionProps> = ({ onOpenCV }) => {
           <div className="flex items-center gap-4 sm:gap-5">
             <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-2xl border border-slate-200 bg-slate-900 dark:border-white/10 sm:h-20 sm:w-20 lg:h-24 lg:w-24">
               <img
-                src="/logo.jpg"
+                src="/logo.webp"
                 alt="Logo Ikhwan Ramadhan"
                 width={96}
                 height={96}

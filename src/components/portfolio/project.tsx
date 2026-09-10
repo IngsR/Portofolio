@@ -11,6 +11,25 @@ interface ProjectCardProps {
   onOpenPreview?: (project: ProjectItem) => void;
 }
 
+// Module-level singleton — detect sekali, share ke semua card
+const getCanHover = (() => {
+  let cached: boolean | null = null;
+  return () => {
+    if (cached !== null) return cached;
+    if (typeof window === "undefined") return false;
+    cached = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+    window
+      .matchMedia("(hover: hover) and (pointer: fine)")
+      .addEventListener("change", (e) => { cached = e.matches; });
+    return cached;
+  };
+})();
+
+const CARD_BASE =
+  "group flex flex-col bg-white dark:bg-[#0f0f11] border border-slate-200/90 dark:border-white/10 rounded-2xl sm:rounded-3xl overflow-hidden shadow-[0_2px_10px_-3px_rgba(15,23,42,0.06)] cursor-pointer";
+const CARD_HOVER =
+  " hover:border-blue-500/40 dark:hover:border-white/30 hover:shadow-xl transition-[border-color,box-shadow] duration-300";
+
 export const Project = memo<ProjectCardProps>(function Project({
   project,
   onOpenDetail,
@@ -19,6 +38,8 @@ export const Project = memo<ProjectCardProps>(function Project({
 }) {
   const domain = formatDomainName(project.demoUrl);
   const shortDomain = formatShortDomain(project.demoUrl);
+  const canHover = getCanHover();
+  const cardClassName = CARD_BASE + (canHover ? CARD_HOVER : "");
 
   const handlePreviewClick = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -29,14 +50,9 @@ export const Project = memo<ProjectCardProps>(function Project({
     }
   };
 
-  return (
-    <CardSpotlight
-      className="group flex flex-col bg-white dark:bg-[#0f0f11] border border-slate-200/90 dark:border-white/10 rounded-2xl sm:rounded-3xl overflow-hidden hover:border-blue-500/40 dark:hover:border-white/30 hover:shadow-xl transition-all duration-300 shadow-[0_2px_10px_-3px_rgba(15,23,42,0.06)] cursor-pointer"
-      radius={320}
-      tilt={true}
-      onClick={() => onOpenDetail(project)}
-    >
-      {/* Screenshot / Cover Container - LOCKED ASPECT RATIO */}
+  const content = (
+    <>
+
       <div className="relative aspect-[16/10] w-full overflow-hidden shrink-0 bg-slate-100 dark:bg-[#141416] p-1.5 sm:p-2.5 flex items-center justify-center border-b border-slate-100 dark:border-white/10">
         <img
           src={project.image}
@@ -199,6 +215,26 @@ export const Project = memo<ProjectCardProps>(function Project({
           </div>
         </div>
       </div>
-    </CardSpotlight>
+    </>
+  );
+
+  if (canHover) {
+    return (
+      <CardSpotlight
+        className={cardClassName}
+        radius={320}
+        tilt={true}
+        onClick={() => onOpenDetail(project)}
+      >
+        {content}
+      </CardSpotlight>
+    );
+  }
+
+  return (
+    <div className={cardClassName} onClick={() => onOpenDetail(project)}>
+      {content}
+    </div>
   );
 });
+

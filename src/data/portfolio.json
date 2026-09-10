@@ -73,7 +73,8 @@
         "shadcn/ui",
         "Zod"
       ],
-      "image": "/projects/smpn24.png",
+      "image": "/projects/smpn24.webp",
+      "imageFull": "/projects/smpn24@full.webp",
       "featured": true,
       "publishedDate": "2025-12-01",
       "period": "2025 (Proyek Produksi)",
@@ -113,7 +114,8 @@
         "Reactive State",
         "KPR Simulator"
       ],
-      "image": "/projects/property.png",
+      "image": "/projects/property.webp",
+      "imageFull": "/projects/property@full.webp",
       "featured": true,
       "publishedDate": "2026-03-01",
       "period": "2026 (Proyek Unggulan)",
@@ -154,7 +156,8 @@
         "SSG / Edge CDN",
         "Tailwind CSS"
       ],
-      "image": "/projects/siklon.png",
+      "image": "/projects/siklon.webp",
+      "imageFull": "/projects/siklon@full.webp",
       "featured": true,
       "publishedDate": "2026-08-10",
       "period": "2026 (Riset Skripsi & Aplikasi Web)",
@@ -194,7 +197,8 @@
         "State Management",
         "CMS"
       ],
-      "image": "/projects/ingstore.png",
+      "image": "/projects/ingstore.webp",
+      "imageFull": "/projects/ingstore@full.webp",
       "featured": true,
       "publishedDate": "2025-07-23",
       "period": "2025",
@@ -272,7 +276,8 @@
         "Data Grid",
         "State Management"
       ],
-      "image": "/projects/inventory.png",
+      "image": "/projects/inventory.webp",
+      "imageFull": "/projects/inventory@full.webp",
       "featured": false,
       "publishedDate": "2025-07-15",
       "period": "2025",
@@ -309,7 +314,8 @@
         "Search UI",
         "Data Visualization"
       ],
-      "image": "/projects/dockrank.png",
+      "image": "/projects/dockrank.webp",
+      "imageFull": "/projects/dockrank@full.webp",
       "featured": false,
       "publishedDate": "2025-07-07",
       "period": "2025",
@@ -346,7 +352,8 @@
         "Markdown UI",
         "Technical SEO"
       ],
-      "image": "/projects/adminblog.png",
+      "image": "/projects/adminblog.webp",
+      "imageFull": "/projects/adminblog@full.webp",
       "featured": false,
       "publishedDate": "2026-04-13",
       "period": "2026",
@@ -525,7 +532,7 @@
       "badgeCode": "HUAWEI-AI-FUNDAMENTALS",
       "category": "Artificial Intelligence",
       "credentialUrl": "https://e.huawei.com/en/talent/#/",
-      "image": "/certificates/Artificial Intelligence Fundamentals.png",
+      "image": "/certificates/Artificial Intelligence Fundamentals.webp",
       "skills": [
         "Artificial Intelligence",
         "Machine Learning Basics",
@@ -544,7 +551,7 @@
       "badgeCode": "HUAWEI-AI-PRINCIPLES-APP",
       "category": "Artificial Intelligence & Deep Learning",
       "credentialUrl": "https://e.huawei.com/en/talent/#/",
-      "image": "/certificates/Artificial Intelligence_ Principles and Applications.png",
+      "image": "/certificates/Artificial Intelligence_ Principles and Applications.webp",
       "skills": [
         "AI Principles",
         "Deep Learning Architecture",
@@ -563,7 +570,7 @@
       "badgeCode": "HUAWEI-HCIP-DATACOM-V1.0",
       "category": "Network & Infrastructure Engineering",
       "credentialUrl": "https://e.huawei.com/en/talent/#/",
-      "image": "/certificates/HCIP-Datacom Core Technology V1.0 Course.png",
+      "image": "/certificates/HCIP-Datacom Core Technology V1.0 Course.webp",
       "skills": [
         "Datacom Routing & Switching",
         "Advanced IP Networking",
@@ -582,7 +589,7 @@
       "badgeCode": "HACKERRANK-PS-BASIC",
       "category": "Problem Solving & DSA",
       "credentialUrl": "https://www.hackerrank.com/certificates/iframe/18c088033553",
-      "image": "/certificates/Problem Solving (Basic).png",
+      "image": "/certificates/Problem Solving (Basic).webp",
       "skills": [
         "Problem Solving",
         "Data Structures",
@@ -601,7 +608,7 @@
       "badgeCode": "HACKERRANK-PS-INTERMEDIATE",
       "category": "Problem Solving & DSA",
       "credentialUrl": "https://www.hackerrank.com/certificates/iframe/f839f365795c",
-      "image": "/certificates/Problem Solving (Intermediate).png",
+      "image": "/certificates/Problem Solving (Intermediate).webp",
       "skills": [
         "Advanced Problem Solving",
         "Complex Data Structures",
@@ -702,3 +709,5 @@
     }
   ]
 }
+
+

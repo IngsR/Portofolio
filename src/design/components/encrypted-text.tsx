@@ -1,6 +1,5 @@
 "use client";
-import { motion } from "motion/react";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { cn } from "../utils";
 
 interface EncryptedTextProps {
@@ -14,6 +13,12 @@ interface EncryptedTextProps {
 const DEFAULT_CHARS =
   "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%&";
 
+/**
+ * EncryptedText dioptimalkan:
+ * - IntersectionObserver: animasi hanya mulai saat elemen masuk viewport
+ * - Cleanup interval lebih ketat (tidak ada interval leak)
+ * - Langsung tampilkan teks asli jika sudah pernah revealed (no repeated animation)
+ */
 export const EncryptedText = ({
   text,
   className,
@@ -21,60 +26,82 @@ export const EncryptedText = ({
   chars = DEFAULT_CHARS,
   revealDelay = 30,
 }: EncryptedTextProps) => {
-  const [displayText, setDisplayText] = useState(
-    text
-      .split("")
-      .map(() => chars[Math.floor(Math.random() * chars.length)])
-      .join(""),
-  );
-  const [isRevealed, setIsRevealed] = useState(false);
+  const [displayText, setDisplayText] = useState(text);
+  const [revealed, setRevealed] = useState(false);
+  const spanRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
-    const revealedChars: boolean[] = new Array(text.length).fill(false);
-    let revealCount = 0;
-    let shuffleInterval: ReturnType<typeof setInterval>;
-    let revealInterval: ReturnType<typeof setInterval>;
+    // Jika sudah revealed sebelumnya, tampilkan teks langsung
+    if (revealed) return;
 
-    // Shuffle animation
-    shuffleInterval = setInterval(() => {
-      setDisplayText(
-        text
-          .split("")
-          .map((char, i) => {
-            if (revealedChars[i] || char === " ") return char;
-            return chars[Math.floor(Math.random() * chars.length)];
-          })
-          .join(""),
-      );
-    }, 50);
+    const el = spanRef.current;
+    if (!el) return;
 
-    // Reveal one char at a time
-    revealInterval = setInterval(() => {
-      if (revealCount >= text.length) {
-        clearInterval(shuffleInterval);
-        clearInterval(revealInterval);
-        setIsRevealed(true);
-        setDisplayText(text);
-        return;
-      }
-      revealedChars[revealCount] = true;
-      revealCount++;
-    }, revealDelay);
+    let shuffleId: ReturnType<typeof setInterval> | null = null;
+    let revealId: ReturnType<typeof setInterval> | null = null;
+
+    const startAnimation = () => {
+      const revealedChars: boolean[] = new Array(text.length).fill(false);
+      let revealCount = 0;
+
+      shuffleId = setInterval(() => {
+        setDisplayText(
+          text
+            .split("")
+            .map((char, i) => {
+              if (revealedChars[i] || char === " ") return char;
+              return chars[Math.floor(Math.random() * chars.length)];
+            })
+            .join(""),
+        );
+      }, 50);
+
+      revealId = setInterval(() => {
+        if (revealCount >= text.length) {
+          if (shuffleId) clearInterval(shuffleId);
+          if (revealId) clearInterval(revealId);
+          setRevealed(true);
+          setDisplayText(text);
+          return;
+        }
+        revealedChars[revealCount] = true;
+        revealCount++;
+      }, revealDelay);
+    };
+
+    if (typeof IntersectionObserver === "undefined") {
+      startAnimation();
+      return () => {
+        if (shuffleId) clearInterval(shuffleId);
+        if (revealId) clearInterval(revealId);
+      };
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry?.isIntersecting) {
+          observer.disconnect();
+          startAnimation();
+        }
+      },
+      { threshold: 0.1 },
+    );
+    observer.observe(el);
 
     return () => {
-      clearInterval(shuffleInterval);
-      clearInterval(revealInterval);
+      observer.disconnect();
+      if (shuffleId) clearInterval(shuffleId);
+      if (revealId) clearInterval(revealId);
     };
-  }, [text, chars, revealDelay]);
+  }, [text, chars, revealDelay, revealed]);
 
   return (
-    <motion.span
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.3 }}
+    <span
+      ref={spanRef}
       className={cn("font-mono", className)}
+      style={{ opacity: 1 }}
     >
       {displayText}
-    </motion.span>
+    </span>
   );
 };

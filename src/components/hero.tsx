@@ -172,8 +172,7 @@ export const Hero: React.FC<HeroSectionProps> = ({
           <div className="lg:col-span-7 space-y-2 sm:space-y-3">
             {/* Availability Pill with Sparkles */}
             <Sparkles
-              sparkleCount={5}
-              colors={["#34d399", "#6ee7b7", "#a7f3d0"]}
+              sparkleCount={4}
             >
               <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border border-emerald-500/30 bg-emerald-50/80 dark:bg-emerald-950/30 text-emerald-800 dark:text-emerald-300 text-xs font-semibold">
                 <span className="relative flex h-2 w-2">
@@ -302,7 +301,7 @@ export const Hero: React.FC<HeroSectionProps> = ({
                 {/* Photo Container - Bingkai Presisi Mengikuti Rasio Asli Ikhwan.jpg (1024x1257), Tanpa Bagian Hitam di Kiri/Kanan, Ukuran Terkunci Bebas Blur/Zoom */}
                 <div className="relative aspect-[1024/1257] w-full max-w-[280px] sm:max-w-[310px] mx-auto rounded-2xl overflow-hidden bg-slate-100 dark:bg-white/[0.04] border border-slate-200/80 dark:border-white/10 flex items-center justify-center">
                   <img
-                    src="/Ikhwan.jpg"
+                    src="/Ikhwan.webp"
                     alt={userProfile.name}
                     width={1024}
                     height={1257}
@@ -514,7 +513,7 @@ export const Hero: React.FC<HeroSectionProps> = ({
             <div
               key={project.id}
               onClick={() => handleOpenProjectDetail(project)}
-              className="group rounded-2xl sm:rounded-3xl border border-slate-200/80 dark:border-white/10 bg-white dark:bg-[#0c0c0d] p-3 sm:p-4 lg:p-4 flex flex-col justify-between hover:border-slate-400 dark:hover:border-white/30 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 will-change-transform shadow-sm cursor-pointer overflow-hidden"
+              className="group rounded-2xl sm:rounded-3xl border border-slate-200/80 dark:border-white/10 bg-white dark:bg-[#0c0c0d] p-3 sm:p-4 lg:p-4 flex flex-col justify-between hover:border-slate-400 dark:hover:border-white/30 hover:shadow-lg hover:-translate-y-1 transition-[border-color,box-shadow,transform] duration-300 shadow-sm cursor-pointer overflow-hidden"
             >
               <div className="space-y-2 sm:space-y-3">
                 {/* Category & Live Domain Indicator */}
@@ -535,10 +534,8 @@ export const Hero: React.FC<HeroSectionProps> = ({
                 {/* Screenshot Image - LOCKED ASPECT RATIO */}
                 <div className="relative aspect-[16/10] w-full rounded-xl sm:rounded-2xl overflow-hidden shrink-0 bg-slate-900 border border-slate-200/80 dark:border-white/10">
                   <img
-                    src={project.image}
+                    src={project.imageFull ?? project.image}
                     alt={project.title}
-                    width={640}
-                    height={400}
                     loading="lazy"
                     decoding="async"
                     onError={(e) => {
@@ -756,7 +753,7 @@ export const Hero: React.FC<HeroSectionProps> = ({
           </button>
         </div>
 
-        <LazyMount estimatedHeight={homeCertificates.length * 480}>
+        <LazyMount estimatedHeight={homeCertificates.length * 460}>
           <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-4.5">
             {homeCertificates.map((cert) => (
               <Certificate
