@@ -446,7 +446,7 @@ export const Hero: React.FC<HeroSectionProps> = ({
           {/* <span className="text-xs font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400">
             01 / PENDIDIKAN AKADEMIS
           </span> */}
-          <h2 className="ornament-underline text-2xl sm:text-3xl font-black tracking-tight text-slate-950 dark:text-white">
+          <h2 className="ornament-underline text-xl sm:text-3xl font-black tracking-tight text-slate-950 dark:text-white">
             Pendidikan Perguruan Tinggi (S1)
           </h2>
         </div>
