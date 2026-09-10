@@ -22,10 +22,9 @@ import {
 import { Certificate } from "../portfolio/certificate";
 import { Detail } from "../modal/detail";
 import { CardPreviewModal } from "../modal/card-preview-modal";
-import { AnimatedTabs } from "../ui/animated-tabs";
-import { TracingBeam } from "../ui/tracing-beam";
-import { CardSpotlight } from "../ui/card-spotlight";
-import { WobbleCard } from "../ui/wobble-card";
+import { AnimatedTabs } from "../../design/components/animated-tabs";
+import { TracingBeam } from "../../design/components/tracing-beam";
+import { CardSpotlight } from "../../design/components/card-spotlight";
 
 const {
   userProfile,

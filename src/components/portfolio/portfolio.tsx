@@ -10,8 +10,8 @@ import {
 } from "../../store/portfolio";
 import { CertificationItem, ProjectItem } from "../../types";
 import { DetailModalIsland, PreviewModalIsland } from "../modal/modal-islands";
-import { AnimatedTabs } from "../ui/animated-tabs";
-import { LazyMount } from "../ui/lazy-mount";
+import { AnimatedTabs } from "../../design/components/animated-tabs";
+import { LazyMount } from "../../design/components/lazy-mount";
 import { Certificate } from "./certificate";
 import { Project } from "./project";
 

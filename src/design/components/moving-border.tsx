@@ -6,7 +6,7 @@ import {
   useSpring,
 } from "motion/react";
 import React, { useEffect, useRef, useState } from "react";
-import { cn } from "./utils";
+import { cn } from "../utils";
 
 interface MovingBorderProps {
   children: React.ReactNode;

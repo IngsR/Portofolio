@@ -1,7 +1,7 @@
 "use client";
 import { motion } from "motion/react";
 import React, { useRef, useState } from "react";
-import { cn } from "./utils";
+import { cn } from "../utils";
 
 interface GlowingEffectProps {
   children: React.ReactNode;

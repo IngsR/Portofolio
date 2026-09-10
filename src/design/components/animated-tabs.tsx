@@ -1,7 +1,7 @@
 "use client";
 import { motion } from "motion/react";
 import React, { useState } from "react";
-import { cn } from "./utils";
+import { cn } from "../utils";
 
 interface AnimatedTabsProps {
   tabs: { id: string; label: string; icon?: React.ReactNode }[];

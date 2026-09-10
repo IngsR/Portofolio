@@ -8,7 +8,7 @@ import {
 } from "lucide-react";
 import React, { memo, useEffect, useState } from "react";
 import { CertificationItem } from "../../types";
-import { CardSpotlight } from "../ui/card-spotlight";
+import { CardSpotlight } from "../../design/components/card-spotlight";
 
 interface CertificateCardProps {
   certificate: CertificationItem;

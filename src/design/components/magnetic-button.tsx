@@ -1,7 +1,7 @@
 "use client";
 import { motion, useMotionValue, useSpring } from "motion/react";
 import React, { useRef } from "react";
-import { cn } from "./utils";
+import { cn } from "../utils";
 
 interface MagneticButtonProps {
   children: React.ReactNode;

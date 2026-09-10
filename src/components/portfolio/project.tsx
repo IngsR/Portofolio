@@ -2,7 +2,7 @@ import { ArrowUpRight, Calendar, Eye, FileText, Github } from "lucide-react";
 import React, { memo } from "react";
 import { ProjectItem } from "../../types";
 import { formatDomainName, formatShortDomain } from "../../utils/format";
-import { CardSpotlight } from "../ui/card-spotlight";
+import { CardSpotlight } from "../../design/components/card-spotlight";
 
 interface ProjectCardProps {
   project: ProjectItem;

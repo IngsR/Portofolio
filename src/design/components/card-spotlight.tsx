@@ -1,6 +1,6 @@
 "use client";
 import React, { useCallback, useRef } from "react";
-import { cn } from "./utils";
+import { cn } from "../utils";
 
 interface CardSpotlightProps {
   children: React.ReactNode;

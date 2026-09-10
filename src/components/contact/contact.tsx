@@ -20,8 +20,8 @@ import portfolioData from "../../data/portfolio.json";
 import { ContactMessage } from "../../types";
 import { isContactCategory, isContactMessage } from "../../utils/guard";
 import { motion, AnimatePresence } from "motion/react";
-import { CardSpotlight } from "../ui/card-spotlight";
-import { MagneticButton } from "../ui/magnetic-button";
+import { CardSpotlight } from "../../design/components/card-spotlight";
+import { MagneticButton } from "../../design/components/magnetic-button";
 
 const { userProfile, contactFaq } = portfolioData;
 

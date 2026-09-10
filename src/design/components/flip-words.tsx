@@ -1,7 +1,7 @@
 "use client";
 import { motion, AnimatePresence } from "motion/react";
 import { useEffect, useState } from "react";
-import { cn } from "./utils";
+import { cn } from "../utils";
 
 interface FlipWordsProps {
   words: string[];

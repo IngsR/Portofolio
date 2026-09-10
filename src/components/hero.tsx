@@ -17,6 +17,20 @@ import {
 import React, { useCallback, useMemo } from "react";
 import portfolioData from "../data/portfolio.json";
 import {
+  GithubBrandIcon,
+  GmailBrandIcon,
+  LinkedInBrandIcon,
+  WhatsAppBrandIcon,
+} from "../design/components/brand-icons";
+import { EncryptedText } from "../design/components/encrypted-text";
+import { FlipWords } from "../design/components/flip-words";
+import { GlowingEffect } from "../design/components/glowing-effect";
+import { LazyMount } from "../design/components/lazy-mount";
+import { MagneticButton } from "../design/components/magnetic-button";
+import { MovingBorder } from "../design/components/moving-border";
+import { Sparkles } from "../design/components/sparkles";
+import { TextGenerateEffect } from "../design/components/text-generate-effect";
+import {
   CertificationItem,
   EducationItem,
   PageId,
@@ -25,20 +39,6 @@ import {
 } from "../types";
 import { formatDomainName, formatShortDomain } from "../utils/format";
 import { Certificate } from "./portfolio/certificate";
-import {
-  GithubBrandIcon,
-  GmailBrandIcon,
-  LinkedInBrandIcon,
-  WhatsAppBrandIcon,
-} from "./ui/brand-icons";
-import { EncryptedText } from "./ui/encrypted-text";
-import { FlipWords } from "./ui/flip-words";
-import { GlowingEffect } from "./ui/glowing-effect";
-import { LazyMount } from "./ui/lazy-mount";
-import { MagneticButton } from "./ui/magnetic-button";
-import { MovingBorder } from "./ui/moving-border";
-import { Sparkles } from "./ui/sparkles";
-import { TextGenerateEffect } from "./ui/text-generate-effect";
 
 import {
   isCVModalOpenStore,

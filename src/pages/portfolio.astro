@@ -2,7 +2,8 @@
 import App from "../app";
 import SiteLayout from "../layouts/site.astro";
 
-export const prerender = false;
+// Shell halaman statis (App berjalan via client:load), sehingga ikut masuk sitemap.
+export const prerender = true;
 ---
 <SiteLayout
   title="Portofolio Fullstack Web | Ikhwan Ramadhan"
