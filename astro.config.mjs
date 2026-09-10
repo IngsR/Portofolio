@@ -1,4 +1,5 @@
 import react from "@astrojs/react";
+import sitemap from "@astrojs/sitemap";
 import vercel from "@astrojs/vercel";
 import tailwindcss from "@tailwindcss/vite";
 import { defineConfig } from "astro/config";
@@ -22,7 +23,17 @@ export default defineConfig({
   site: "https://ikhwann.my.id",
   output: "server",
   trailingSlash: "never",
-  integrations: [react()],
+  integrations: [
+    react(),
+    sitemap({
+      // Sitemap XML di-generate otomatis saat build dari halaman yang
+      // benar-benar ada (yang di-prerender), lengkap dengan <lastmod>.
+      changefreq: "weekly",
+      priority: 0.7,
+      lastmod: new Date(),
+      filter: (page) => !page.includes("/cv"),
+    }),
+  ],
   adapter: vercel({
     isr: {
       expiration: 60 * 60,
