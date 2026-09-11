@@ -158,67 +158,75 @@ export const About: React.FC<AboutSectionProps> = ({ onOpenCV }) => {
           </div>
         </div>
 
-        {/* Bio */}
-        <div className="max-w-4xl space-y-3 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
-          {userProfile.fullBio.map((paragraph, index) => (
-            <p key={index}>{paragraph}</p>
-          ))}
-        </div>
-
-        {/* Summary Highlights (Mobile-First Bento Cards) */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-3.5 sm:gap-4 pt-2">
-          {/* 1. Kesiapan Kerja */}
-          <div className="rounded-2xl sm:rounded-3xl border border-slate-200/90 dark:border-white/10 bg-white dark:bg-[#0f0f12] p-4 sm:p-5 shadow-[0_2px_8px_-2px_rgba(15,23,42,0.06)] hover:shadow-md hover:border-emerald-500/40 active:scale-[0.99] transition-all flex flex-col justify-between space-y-2.5">
-            <div className="flex items-center gap-2">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-              </span>
-              <span className="text-[10.5px] font-bold font-mono uppercase tracking-wider text-emerald-700 dark:text-emerald-400">
-                Kesiapan Kerja
-              </span>
-            </div>
-            <h4 className="text-sm sm:text-base font-bold text-slate-950 dark:text-white">
-              On-Site / WFO &amp; Remote
-            </h4>
-            <p className="text-xs leading-relaxed text-slate-600 dark:text-slate-400">
-              Siap bekerja on-site / WFO di seluruh Indonesia, serta sistem
-              kerja Hybrid / Remote.
-            </p>
+        {/* Bio + Kartu Ringkasan — 2 kolom di desktop agar ruang kanan
+            narasi terpakai, bukan menyisakan area kosong */}
+        <div className="grid grid-cols-1 gap-6 lg:grid-cols-12 lg:gap-8 lg:items-start">
+          {/* Bio */}
+          <div className="space-y-3.5 text-base leading-relaxed text-slate-600 dark:text-slate-400 sm:space-y-4 sm:text-lg sm:leading-[1.75] lg:col-span-7">
+            {userProfile.fullBio.map((paragraph, index) => (
+              <p key={index} className="text-pretty">
+                {paragraph}
+              </p>
+            ))}
           </div>
 
-          {/* 2. Pendidikan Terakhir */}
-          <div className="rounded-2xl sm:rounded-3xl border border-slate-200/90 dark:border-white/10 bg-white dark:bg-[#0f0f12] p-4 sm:p-5 shadow-[0_2px_8px_-2px_rgba(15,23,42,0.06)] hover:shadow-md hover:border-blue-500/40 active:scale-[0.99] transition-all flex flex-col justify-between space-y-2.5">
-            <div className="flex items-center gap-2">
-              <GraduationCap className="h-3.5 w-3.5 text-blue-600 dark:text-blue-400 shrink-0" />
-              <span className="text-[10.5px] font-bold font-mono uppercase tracking-wider text-blue-700 dark:text-blue-400">
-                Pendidikan Terakhir
-              </span>
+          {/* Summary Highlights (Mobile-First Bento Cards) */}
+          <div className="grid grid-cols-1 gap-3.5 sm:gap-4 md:grid-cols-3 lg:col-span-5 lg:grid-cols-1">
+            {/* 1. Kesiapan Kerja */}
+            <div className="rounded-2xl sm:rounded-3xl border border-slate-200/90 dark:border-white/10 bg-white dark:bg-[#0f0f12] p-4 sm:p-5 shadow-[0_2px_8px_-2px_rgba(15,23,42,0.06)] hover:shadow-md hover:border-emerald-500/40 active:scale-[0.99] transition-all flex flex-col justify-between space-y-2.5">
+              <div className="flex items-center gap-2">
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                </span>
+                <span className="text-[10.5px] font-bold font-mono uppercase tracking-wider text-emerald-700 dark:text-emerald-400">
+                  Kesiapan Kerja
+                </span>
+              </div>
+              <h4 className="text-sm sm:text-base font-bold text-slate-950 dark:text-white">
+                On-Site / WFO &amp; Remote
+              </h4>
+              <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+                Siap bekerja on-site / WFO di seluruh Indonesia, serta sistem
+                kerja Hybrid / Remote.
+              </p>
             </div>
-            <h4 className="text-sm sm:text-base font-bold text-slate-950 dark:text-white">
-              S1 Teknik Informatika
-            </h4>
-            <p className="text-xs leading-relaxed text-slate-600 dark:text-slate-400">
-              Fresh Graduate S1 TI UPI &ldquo;YPTK&rdquo; Padang — RPL, DSA,
-              basis data relasional, arsitektur sistem web, dan Deep Learning.
-            </p>
-          </div>
 
-          {/* 3. Fokus Keahlian */}
-          <div className="rounded-2xl sm:rounded-3xl border border-slate-200/90 dark:border-white/10 bg-white dark:bg-[#0f0f12] p-4 sm:p-5 shadow-[0_2px_8px_-2px_rgba(15,23,42,0.06)] hover:shadow-md hover:border-purple-500/40 active:scale-[0.99] transition-all flex flex-col justify-between space-y-2.5">
-            <div className="flex items-center gap-2">
-              <Cpu className="h-3.5 w-3.5 text-purple-600 dark:text-purple-400 shrink-0" />
-              <span className="text-[10.5px] font-bold font-mono uppercase tracking-wider text-purple-700 dark:text-purple-400">
-                Fokus Keahlian
-              </span>
+            {/* 2. Pendidikan Terakhir */}
+            <div className="rounded-2xl sm:rounded-3xl border border-slate-200/90 dark:border-white/10 bg-white dark:bg-[#0f0f12] p-4 sm:p-5 shadow-[0_2px_8px_-2px_rgba(15,23,42,0.06)] hover:shadow-md hover:border-blue-500/40 active:scale-[0.99] transition-all flex flex-col justify-between space-y-2.5">
+              <div className="flex items-center gap-2">
+                <GraduationCap className="h-3.5 w-3.5 text-blue-600 dark:text-blue-400 shrink-0" />
+                <span className="text-[10.5px] font-bold font-mono uppercase tracking-wider text-blue-700 dark:text-blue-400">
+                  Pendidikan Terakhir
+                </span>
+              </div>
+              <h4 className="text-sm sm:text-base font-bold text-slate-950 dark:text-white">
+                S1 Teknik Informatika
+              </h4>
+              <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+                Fresh Graduate S1 TI UPI &ldquo;YPTK&rdquo; Padang, konsentrasi
+                Data Science — RPL, DSA, basis data relasional, arsitektur
+                sistem web, dan Deep Learning.
+              </p>
             </div>
-            <h4 className="text-sm sm:text-base font-bold text-slate-950 dark:text-white">
-              Junior Fullstack Web Engineer
-            </h4>
-            <p className="text-xs leading-relaxed text-slate-600 dark:text-slate-400">
-              Next.js (App Router), REST API, Zod, testing, OWASP Top 10, Git
-              workflow tim, CI/CD, deployment serverless.
-            </p>
+
+            {/* 3. Fokus Keahlian */}
+            <div className="rounded-2xl sm:rounded-3xl border border-slate-200/90 dark:border-white/10 bg-white dark:bg-[#0f0f12] p-4 sm:p-5 shadow-[0_2px_8px_-2px_rgba(15,23,42,0.06)] hover:shadow-md hover:border-purple-500/40 active:scale-[0.99] transition-all flex flex-col justify-between space-y-2.5">
+              <div className="flex items-center gap-2">
+                <Cpu className="h-3.5 w-3.5 text-purple-600 dark:text-purple-400 shrink-0" />
+                <span className="text-[10.5px] font-bold font-mono uppercase tracking-wider text-purple-700 dark:text-purple-400">
+                  Fokus Keahlian
+                </span>
+              </div>
+              <h4 className="text-sm sm:text-base font-bold text-slate-950 dark:text-white">
+                Junior Web Developer
+              </h4>
+              <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+                Frontend dan backend dengan Next.js (App Router), REST API, Zod,
+                testing, OWASP Top 10, Git workflow, CI/CD, dan deployment
+                serverless.
+              </p>
+            </div>
           </div>
         </div>
       </section>
@@ -282,7 +290,7 @@ export const About: React.FC<AboutSectionProps> = ({ onOpenCV }) => {
                     </div>
                   </div>
 
-                  <p className="text-xs leading-relaxed text-slate-700 dark:text-slate-300 sm:text-sm lg:text-base">
+                  <p className="text-[15px] leading-relaxed text-slate-700 dark:text-slate-300 sm:text-base lg:text-[17px] lg:leading-[1.75]">
                     {exp.description}
                   </p>
 
@@ -291,7 +299,7 @@ export const About: React.FC<AboutSectionProps> = ({ onOpenCV }) => {
                       Pencapaian Utama
                     </h4>
 
-                    <ul className="space-y-1.5 text-xs text-slate-700 dark:text-slate-300">
+                    <ul className="space-y-2 text-[15px] leading-relaxed text-slate-700 dark:text-slate-300 sm:text-base">
                       {exp.achievements.map((achievement, index) => (
                         <li key={index} className="flex items-start gap-2">
                           <span className="font-bold text-emerald-500">✓</span>
@@ -352,7 +360,7 @@ export const About: React.FC<AboutSectionProps> = ({ onOpenCV }) => {
                       {category.title}
                     </h3>
 
-                    <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">
+                    <p className="mt-1.5 text-sm leading-relaxed text-slate-500 dark:text-slate-400">
                       {category.description}
                     </p>
                   </div>
@@ -422,7 +430,7 @@ export const About: React.FC<AboutSectionProps> = ({ onOpenCV }) => {
                     {education.degree}
                   </h3>
 
-                  <span className="rounded-full bg-slate-100 px-2.5 py-1 text-xs font-semibold text-slate-800 dark:bg-white/10 dark:text-slate-200">
+                  <span className="rounded-full bg-slate-100 px-2.5 py-1 text-xs font-semibold text-slate-800 dark:bg-white/10 dark:text-slate-200 shrink-0">
                     {education.period}
                   </span>
                 </div>
@@ -431,7 +439,13 @@ export const About: React.FC<AboutSectionProps> = ({ onOpenCV }) => {
                   {education.institution}
                 </p>
 
-                <p className="pt-1 text-xs leading-relaxed text-slate-600 dark:text-slate-400">
+                {education.gpa && (
+                  <span className="inline-flex items-center rounded-full bg-blue-50 px-2.5 py-1 text-[11px] font-semibold text-blue-700 dark:bg-blue-950/40 dark:text-blue-300">
+                    IPK {education.gpa}
+                  </span>
+                )}
+
+                <p className="pt-1.5 text-[15px] leading-relaxed text-slate-600 dark:text-slate-400 sm:text-base">
                   {education.details}
                 </p>
               </div>
@@ -442,7 +456,9 @@ export const About: React.FC<AboutSectionProps> = ({ onOpenCV }) => {
           <div className="space-y-4">
             <div className="flex items-center gap-2 border-b border-slate-200 pb-2 text-lg font-bold text-slate-950 dark:border-white/10 dark:text-white">
               <Award className="h-5 w-5" />
-              <h2 className="ornament-underline">Sertifikasi &amp; Kredensial</h2>
+              <h2 className="ornament-underline">
+                Sertifikasi &amp; Kredensial
+              </h2>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

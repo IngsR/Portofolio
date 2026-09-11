@@ -2,5 +2,6 @@
   "css.lint.unknownAtRules": "ignore",
   "tailwindCSS.lint.suggestCanonicalClasses": "ignore",
   "tailwindCSS.lint.deprecatedAtRule": "ignore",
-  "CodeGPT.apiKey": "Antigravity"
+  "CodeGPT.apiKey": "Antigravity",
+  "js/ts.experimental.useTsgo": false
 }

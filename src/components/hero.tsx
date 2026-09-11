@@ -165,15 +165,13 @@ export const Hero: React.FC<HeroSectionProps> = ({
 
   return (
     <div className="space-y-16 py-6 sm:py-8">
-      {/* 1. HERO PERKENALAN FULLSTACK ENGINEER + CARD FOTO PROFILE & KONTAK */}
+      {/* 1. HERO PERKENALAN JUNIOR WEB DEVELOPER + CARD FOTO PROFILE & KONTAK */}
       <section className="rounded-3xl border border-slate-200/80 dark:border-white/10 bg-white dark:bg-[#0c0c0d] p-6 sm:p-10 lg:p-12 shadow-sm transition-all">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
           {/* Left Column: Brief Introduction for 60s Scan */}
           <div className="lg:col-span-7 space-y-2 sm:space-y-3">
             {/* Availability Pill with Sparkles */}
-            <Sparkles
-              sparkleCount={4}
-            >
+            <Sparkles sparkleCount={4}>
               <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border border-emerald-500/30 bg-emerald-50/80 dark:bg-emerald-950/30 text-emerald-800 dark:text-emerald-300 text-xs font-semibold">
                 <span className="relative flex h-2 w-2">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
@@ -200,10 +198,10 @@ export const Hero: React.FC<HeroSectionProps> = ({
                 <p className="text-lg sm:text-3xl font-extrabold text-black dark:text-slate-100 flex items-center gap-2 tracking-tight font-script">
                   <FlipWords
                     words={[
-                      "Junior Fullstack web Engineer",
-                      "Next.js Specialist",
-                      "React Developer",
-                      "REST API Engineer",
+                      "Junior Web Developer",
+                      "Frontend & Backend",
+                      "Next.js & React Developer",
+                      "REST API & Database",
                     ]}
                     className="font-script text-black dark:text-slate-100"
                   />
@@ -213,7 +211,7 @@ export const Hero: React.FC<HeroSectionProps> = ({
 
             {/* Bio Narrative with TextGenerateEffect */}
             <TextGenerateEffect
-              words="Fresh graduate S1 Teknik Informatika yang berfokus pada pengembangan aplikasi web. Saya memiliki pengalaman membangun aplikasi mulai dari memahami kebutuhan, mengembangkan fitur, melakukan testing, hingga deployment ke production. Kekuatan utama saya ada di Next.js, dengan pengalaman menggunakan REST API dan deployment serverless. Saya juga terbiasa dengan Git workflow, CI/CD, rollback, serta dasar keamanan aplikasi berdasarkan OWASP Top 10.
+              words="Fresh graduate S1 Teknik Informatika dengan konsentrasi Data Science yang berfokus pada pengembangan aplikasi web. Saya banyak belajar melalui project, eksperimen, dan trial and error, menemukan masalah, memperbaiki, lalu memahami cara membuatnya lebih baik. Saat ini saya terus berkembang sebagai Junior Web Developer dan terbuka untuk kesempatan kerja, berkontribusi, serta berkembang bersama tim.
 "
               className="text-black dark:text-slate-300 text-base sm:text-lg max-w-4xl font-medium"
               wordClassName="text-black dark:text-slate-300 font-medium"
@@ -299,7 +297,10 @@ export const Hero: React.FC<HeroSectionProps> = ({
             >
               <div className="w-full sm:max-w-sm rounded-2xl sm:rounded-3xl border border-slate-200/90 dark:border-white/10 bg-white dark:bg-[#0d0d10] p-4 sm:p-5 space-y-4 shadow-[0_2px_12px_-2px_rgba(15,23,42,0.06)]">
                 {/* Photo Container — rasio mengikuti Ikhwan.webp (640×786 ≈ 4:5), penuh lebar card, tanpa sisa background di sisi */}
-                <div className="relative w-full rounded-2xl overflow-hidden bg-white dark:bg-[#0d0d10] border border-slate-200/80 dark:border-white/10" style={{aspectRatio: '640/786'}}>
+                <div
+                  className="relative w-full rounded-2xl overflow-hidden bg-white dark:bg-[#0d0d10] border border-slate-200/80 dark:border-white/10"
+                  style={{ aspectRatio: "640/786" }}
+                >
                   <img
                     src="/Ikhwan.webp"
                     alt={userProfile.name}
@@ -323,7 +324,7 @@ export const Hero: React.FC<HeroSectionProps> = ({
                         fallback.innerHTML = `
                         <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-white/10 border border-white/20 flex items-center justify-center text-2xl sm:text-3xl font-black tracking-tight mb-3">IR</div>
                         <p class="font-bold text-sm tracking-wide">Ikhwan Ramadhan</p>
-                        <p class="text-xs text-slate-400 mt-1">Junior Fullstack Web Engineer</p>
+                        <p class="text-xs text-slate-400 mt-1">Junior Web Developer</p>
                       `;
                         parent.appendChild(fallback);
                       }
@@ -339,7 +340,7 @@ export const Hero: React.FC<HeroSectionProps> = ({
                       </span>
                     </div>
                     <span className="text-slate-300 text-[9px] sm:text-[10px] shrink-0 font-medium ml-2">
-                      Fullstack Engineer
+                      Web Developer
                     </span>
                   </div>
                 </div>
@@ -471,9 +472,16 @@ export const Hero: React.FC<HeroSectionProps> = ({
                   </div>
                 </div>
 
-                <span className="inline-flex items-center px-3.5 py-1 rounded-full text-xs font-bold bg-blue-50 text-blue-700 dark:bg-blue-950/40 dark:text-blue-300 w-fit">
-                  {edu.period}
-                </span>
+                <div className="flex flex-wrap items-center gap-2">
+                  <span className="inline-flex items-center px-3.5 py-1 rounded-full text-xs font-bold bg-blue-50 text-blue-700 dark:bg-blue-950/40 dark:text-blue-300 w-fit">
+                    {edu.period}
+                  </span>
+                  {edu.gpa && (
+                    <span className="inline-flex items-center px-3.5 py-1 rounded-full text-xs font-bold bg-emerald-50 text-emerald-700 dark:bg-emerald-950/40 dark:text-emerald-300 w-fit">
+                      IPK {edu.gpa}
+                    </span>
+                  )}
+                </div>
               </div>
 
               <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed font-normal">
@@ -651,7 +659,7 @@ export const Hero: React.FC<HeroSectionProps> = ({
         </div>
       </section>
 
-      {/* 4. TENTANG SAYA (RINGKASAN FULLSTACK POSITIONING) */}
+      {/* 4. TENTANG SAYA (RINGKASAN IDENTITAS JUNIOR WEB DEVELOPER) */}
       <section className="rounded-3xl border border-slate-200/80 dark:border-white/10 bg-white dark:bg-[#0c0c0d] p-6 sm:p-10 shadow-sm space-y-6">
         <div className="space-y-2 border-b border-slate-200 dark:border-white/10 pb-4">
           {/* <span className="text-xs font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400">
@@ -663,32 +671,30 @@ export const Hero: React.FC<HeroSectionProps> = ({
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-          <div className="lg:col-span-8 space-y-4 text-black dark:text-slate-300 text-sm sm:text-base leading-relaxed font-medium">
+          <div className="lg:col-span-8 space-y-4 text-black dark:text-slate-300 text-[15px] sm:text-base leading-relaxed font-medium">
             <p>
               Saya{" "}
               <strong className="text-slate-950 dark:text-white font-bold">
                 Ikhwan Ramadhan
               </strong>
               , lulusan S1 Teknik Informatika Universitas Putra Indonesia
-              &ldquo;YPTK&rdquo; Padang. Saya menempatkan diri sebagai{" "}
+              &ldquo;YPTK&rdquo; Padang dengan konsentrasi{" "}
               <strong className="text-slate-950 dark:text-white font-bold">
-                Junior Fullstack Web Engineer.
+                Data Science
               </strong>
+              . Ketertarikan saya berkembang dari eksplorasi data dan AI/ML
+              hingga pengembangan aplikasi web yang lebih dekat dengan proses
+              membangun produk secara langsung.
             </p>
             <p>
-              Saya kuat di{" "}
+              Bagi saya, development bukan sekadar membuat sesuatu berjalan,
+              tetapi juga memahami{" "}
               <strong className="text-slate-950 dark:text-white font-bold">
-                Next.js
+                mengapa sesuatu tidak berjalan
               </strong>
-              , termasuk App Router dan pola rendering yang tepat. Untuk produk
-              yang siap jalan, saya bisa menghubungkan REST API, menulis test
-              yang relevan, menyiapkan CI/CD dan deployment serverless, serta
-              menjaga perubahan lewat branch, review, dan rollback. Saya terbuka
-              untuk{" "}
-              <strong className="text-slate-950 dark:text-white font-bold">
-                WFO, hybrid, maupun remote
-              </strong>
-              .
+              , mencari penyebabnya, dan menemukan cara yang lebih baik untuk
+              menyelesaikannya. Karena itu, saya terus mengeksplorasi teknologi
+              dan pendekatan baru melalui berbagai project yang saya kerjakan.
             </p>
           </div>
 
@@ -832,11 +838,9 @@ export const Hero: React.FC<HeroSectionProps> = ({
           </h2>
           <p className="text-xs sm:text-sm text-slate-300 max-w-3xl leading-relaxed">
             Terbuka untuk posisi{" "}
-            <strong className="text-white">
-              Junior Fullstack Web Engineer
-            </strong>{" "}
-            baik On-Site (WFO) di seluruh Indonesia maupun Remote / Hybrid.
-            Lihat CV atau hubungi saya lewat kanal berikut.
+            <strong className="text-white">Junior Web Developer</strong> baik
+            On-Site (WFO) di seluruh Indonesia maupun Remote / Hybrid. Lihat CV
+            atau hubungi saya lewat kanal berikut.
           </p>
         </div>
 
@@ -863,7 +867,7 @@ export const Hero: React.FC<HeroSectionProps> = ({
                   {userProfile.name}
                 </h3>
                 <p className="text-xs text-slate-300 font-medium truncate">
-                  Junior Fullstack Web Engineer
+                  Junior Web Developer
                 </p>
               </div>
             </div>

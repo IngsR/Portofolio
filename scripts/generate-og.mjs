@@ -77,9 +77,9 @@ async function generateOpenGraph() {
       Ikhwan Ramadhan
     </text>
 
-    <!-- Subtitle / Role (Junior Fullstack Web Engineer) - 32px -->
+    <!-- Subtitle / Role (Junior Web Developer) - 32px -->
     <text x="485" y="305" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="32" font-weight="700" fill="#334155" letter-spacing="-0.3">
-      Junior Fullstack Web Engineer
+      Junior Web Developer
     </text>
 
     <!-- Divider Line -->

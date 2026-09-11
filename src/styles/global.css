@@ -217,9 +217,13 @@ p {
 
 /* ── Halaman About: tipografi berlapis seni — setiap elemen punya
       karakter font berbeda agar tidak kaku/seragam ── */
-/* Narasi & deskripsi: Nunito — humanis membulat, hangat */
+/* Narasi & deskripsi: Nunito — membulat, ramah, dan punya cakupan
+   glyph paling luas (Latin Extended, tanda baca — • ✓) sehingga aman
+   di semua browser & OS. Fallback sistem memastikan tetap terbaca
+   meski webfont gagal dimuat. */
 .about-page p {
-  font-family: "Nunito", sans-serif;
+  font-family:
+    "Nunito", "Segoe UI", "Helvetica Neue", Arial, system-ui, sans-serif;
 }
 /* Sub-judul card (h3/h4): Playfair Display — serif elegan berkelas */
 .about-page h3,
@@ -522,9 +526,6 @@ p {
   }
 }
 
-
-
-
 /* Hover card: animasi via compositor (translateZ + scale) */
 @media (prefers-reduced-motion: no-preference) {
   .hover\:scale-90:hover,
@@ -631,4 +632,3 @@ html {
     animation: none !important;
   }
 }
-

@@ -2,7 +2,7 @@
   "id": {
     "header": {
       "name": "Ikhwan Ramadhan",
-      "title": "Junior Fullstack Web Engineer",
+      "title": "Junior Web Developer",
       "email": "ikhwn.rdn@gmail.com",
       "phone": "+6282386473410",
       "github": "github.com/IngsR",
@@ -11,7 +11,7 @@
       "location": "Padang, Sumatera Barat (Siap On-Site / Relokasi)",
       "birthInfo": "Padang, 18 November 2003"
     },
-    "summary": "Lulusan S1 Teknik Informatika UPI \"YPTK\" Padang sebagai Junior Fullstack Web Engineer dengan fokus utama pada Next.js. Terbiasa menangani siklus aplikasi web dari REST API, integrasi database, validasi input, testing, dasar keamanan OWASP Top 10, hingga CI/CD, deployment serverless, dan Git workflow tim (branch, PR, rollback).",
+    "summary": "Fresh graduate S1 Teknik Informatika UPI \"YPTK\" Padang (konsentrasi Data Science) sebagai Junior Web Developer dengan fokus pada pengembangan aplikasi web frontend dan backend. Berpengalaman menangani siklus aplikasi web: menyusun antarmuka, merancang REST API, integrasi database, validasi input, testing, dasar keamanan OWASP Top 10, hingga CI/CD, deployment serverless, dan Git workflow. Memiliki latar akademik Data Science dan AI/ML yang membentuk cara kerja analitis dan eksperimental.",
     "labels": {
       "modalTitle": "Curriculum Vitae - Ikhwan Ramadhan",
       "modalSubtitle": "Pratinjau Dokumen & Siap Unduh (PDF / DOCX)",
@@ -23,7 +23,7 @@
       "projects": "PORTOFOLIO",
       "education": "PENDIDIKAN",
       "certifications": "SERTIFIKASI & KREDENSIAL",
-      "technicalSkills": "KETERAMPILAN TEKNIS (FOKUS FRONTEND)",
+      "technicalSkills": "KETERAMPILAN TEKNIS",
       "techStackLabel": "Tech Stack",
       "liveDemoLabel": "Live Web",
       "langId": "Indonesia",
@@ -97,9 +97,9 @@
     "education": [
       {
         "id": "edu-1",
-        "degree": "S1 Teknik Informatika",
+        "degree": "S1 Teknik Informatika (Konsentrasi Data Science)",
         "institution": "Universitas Putra Indonesia “YPTK” Padang",
-        "period": "Teknik Informatika • Sep 2022 - Okt 2026"
+        "period": "Teknik Informatika • Sep 2022 - Okt 2026 • IPK 3.27/4.00"
       }
     ],
     "certificationsByIssuer": {
@@ -155,7 +155,7 @@
   "en": {
     "header": {
       "name": "Ikhwan Ramadhan",
-      "title": "Junior Fullstack Web Engineer",
+      "title": "Junior Web Developer",
       "email": "ikhwn.rdn@gmail.com",
       "phone": "+6282386473410",
       "github": "github.com/IngsR",
@@ -164,7 +164,7 @@
       "location": "Padang, West Sumatra (Ready for On-Site / Relocation)",
       "birthInfo": "Padang, November 18, 2003"
     },
-    "summary": "Informatics Engineering graduate from UPI \"YPTK\" Padang as a Junior Fullstack Web Engineer with strong focus on Next.js. Experienced across the web lifecycle: building REST APIs, database integration, input validation, testing, OWASP Top 10 security basics, CI/CD, serverless deployment, and corporate Git teamwork (branch, PR, rollback).",
+    "summary": "Informatics Engineering graduate from UPI \"YPTK\" Padang (Data Science concentration) working as a Junior Web Developer focused on frontend and backend web applications. Experienced across the web lifecycle: building interfaces, designing REST APIs, database integration, input validation, testing, OWASP Top 10 security basics, CI/CD, serverless deployment, and Git teamwork. Academic background in Data Science and AI/ML shapes an analytical, experiment-driven way of working.",
     "labels": {
       "modalTitle": "Curriculum Vitae - Ikhwan Ramadhan",
       "modalSubtitle": "Document Preview & Ready to Download (PDF / DOCX)",
@@ -176,7 +176,7 @@
       "projects": "PORTFOLIO",
       "education": "EDUCATION",
       "certifications": "CERTIFICATIONS & CREDENTIALS",
-      "technicalSkills": "TECHNICAL SKILLS (FRONTEND FOCUS)",
+      "technicalSkills": "TECHNICAL SKILLS",
       "techStackLabel": "Tech Stack",
       "liveDemoLabel": "Live Web",
       "langId": "Indonesian",
@@ -250,9 +250,9 @@
     "education": [
       {
         "id": "edu-1",
-        "degree": "Bachelor of Informatics (B.S. in Computer Science)",
+        "degree": "Bachelor of Informatics (B.S. in Computer Science) — Data Science Concentration",
         "institution": "Universitas Putra Indonesia “YPTK” Padang",
-        "period": "Informatics Engineering • Sep 2022 - Oct 2026"
+        "period": "Informatics Engineering • Sep 2022 - Oct 2026 • GPA 3.27/4.00"
       }
     ],
     "certificationsByIssuer": {

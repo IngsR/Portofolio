@@ -10,8 +10,8 @@ interface Props {
 }
 
 const {
-  title = "Ikhwan Ramadhan | Junior Fullstack Web Engineer",
-  description = "Portofolio Ikhwan Ramadhan, Junior Fullstack Web Engineer dengan kekuatan utama di Next.js, REST API, testing, CI/CD, deployment serverless, dan Git workflow tim.",
+  title = "Ikhwan Ramadhan | Junior Web Developer",
+  description = "Portofolio Ikhwan Ramadhan, Junior Web Developer dengan pengalaman membangun aplikasi web frontend dan backend, serta latar akademik Data Science dan AI/ML.",
   canonicalPath = Astro.url.pathname,
 } = Astro.props;
 const siteUrl =
@@ -24,7 +24,7 @@ const personSchema = {
   "@context": "https://schema.org",
   "@type": "Person",
   name: "Ikhwan Ramadhan",
-  jobTitle: "Junior Fullstack Web Engineer",
+  jobTitle: "Junior Web Developer",
   url: `${siteUrl}/`,
   image: `${siteUrl}/profile.png`,
   email: "mailto:ikhwn.rdn@gmail.com",
@@ -34,25 +34,32 @@ const personSchema = {
   },
   sameAs: ["https://github.com/IngsR", "https://www.linkedin.com/in/ikhwn-rdn"],
   knowsAbout: [
-    "Fullstack Web Engineering",
+    "Web Development",
+    "Frontend Development",
+    "Backend Development",
     "Next.js",
-    "REST API",
     "React.js",
+    "Angular",
     "TypeScript",
     "JavaScript",
+    "Node.js",
+    "REST API",
+    "PostgreSQL",
+    "Prisma",
     "Server-Side Rendering (SSR)",
+    "Static Site Generation (SSG)",
+    "Incremental Static Regeneration (ISR)",
     "Testing",
     "OWASP Top 10",
     "CI/CD",
     "Serverless Deployment",
     "Git Workflow",
-    "Static Site Generation (SSG)",
-    "Incremental Static Regeneration (ISR)",
-    "Open Graph Optimization",
+    "Docker",
     "Tailwind CSS",
-    "shadcn/ui",
-    "Astro",
-    "Vite",
+    "Data Science",
+    "Machine Learning",
+    "Deep Learning (LSTM)",
+    "ONNX Runtime",
   ],
 };
 
@@ -154,7 +161,7 @@ const breadcrumbSchema = {
     <meta property="og:image:height" content="630" />
     <meta
       property="og:image:alt"
-      content="Ikhwan Ramadhan - Junior Fullstack Web Engineer"
+      content="Ikhwan Ramadhan - Junior Web Developer"
     />
     <meta property="og:locale" content="id_ID" />
     <meta property="og:site_name" content="Ikhwan Ramadhan" />
@@ -166,7 +173,7 @@ const breadcrumbSchema = {
     <meta name="twitter:image" content={ogImageUrl} />
     <meta
       name="twitter:image:alt"
-      content="Ikhwan Ramadhan - Junior Fullstack Web Engineer"
+      content="Ikhwan Ramadhan - Junior Web Developer"
     />
 
     <!-- Structured Data (JSON-LD) -->
