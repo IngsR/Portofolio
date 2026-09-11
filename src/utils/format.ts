@@ -36,3 +36,28 @@ export function formatShortDomain(url?: string): string {
   }
   return full;
 }
+
+/**
+ * Tanggal ringkas ala kartu proyek/sertifikat.
+ * E.g. "2024-03-11" -> "11 Mar 2024" (tetap aman untuk format bebas selain itu).
+ */
+export function formatShortDate(value?: string): string {
+  if (!value) return "";
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return value;
+  return date.toLocaleDateString("id-ID", {
+    day: "numeric",
+    month: "short",
+    year: "numeric",
+  });
+}
+
+/**
+ * Nomor telepon Indonesia -> tautan wa.me tanpa simbol.
+ * E.g. "+62 812-3456-7890" -> "https://wa.me/6281234567890"
+ */
+export function toWhatsAppUrl(phone?: string): string {
+  if (!phone) return "";
+  const digits = phone.replace(/[^\d]/g, "").replace(/^0/, "62");
+  return digits ? `https://wa.me/${digits}` : "";
+}
