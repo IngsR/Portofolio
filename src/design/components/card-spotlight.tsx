@@ -32,6 +32,7 @@ export const CardSpotlight = ({
   const rectRef = useRef<{ left: number; top: number; width: number; height: number } | null>(null);
   const rafRef = useRef<number | null>(null);
   const coordsRef = useRef({ x: 0, y: 0 });
+  const hoverRef = useRef(false);
 
   // Tulis CSS variables maksimal 1x per frame (rAF batching)
   const flush = useCallback(() => {
@@ -42,7 +43,7 @@ export const CardSpotlight = ({
     el.style.setProperty("--x", `${x}px`);
     el.style.setProperty("--y", `${y}px`);
 
-    if (tilt) {
+    if (tilt && hoverRef.current) {
       const rect = rectRef.current;
       if (rect && rect.width > 0 && rect.height > 0) {
         const centerX = rect.width / 2;
@@ -57,9 +58,13 @@ export const CardSpotlight = ({
 
   const handleMouseEnter = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
     // Cache posisi card SEKALI saat masuk hover (satu-satunya layout read)
+    hoverRef.current = true;
     rectRef.current = null;
     const el = divRef.current;
     if (el) {
+      // will-change hanya diaktifkan selama hover → tidak ada layer GPU
+      // permanen untuk puluhan card sekaligus (ini yang bikin scroll berat).
+      if (tilt) el.style.willChange = "transform";
       const rect = el.getBoundingClientRect();
       rectRef.current = {
         left: rect.left,
@@ -102,24 +107,26 @@ export const CardSpotlight = ({
     if (tilt) {
       el.style.setProperty("--rotate-x", "0deg");
       el.style.setProperty("--rotate-y", "0deg");
+      // Lepas hint GPU saat hover selesai agar layer compositor dibebaskan.
+      el.style.willChange = "auto";
     }
+    hoverRef.current = false;
   }, [tilt]);
 
   return (
+  // `perspective` hanya diberikan saat kartu punya tilt. Perspective
+  // permanen memaksa context 3D + layer komposit per kartu — puluhan kartu
+  // sekaligus = memori GPU tinggi & scroll turun ke < 60fps.
+  <div style={tilt ? { perspective: "1000px" } : undefined} className="relative">
     <div
+      ref={divRef}
       style={{
-        perspective: "1000px",
-      }}
-      className="relative"
-    >
-      <div
-        ref={divRef}
-        style={{
-          transform: tilt
-            ? "rotateX(var(--rotate-x, 0deg)) rotateY(var(--rotate-y, 0deg))"
-            : undefined,
-          transition: "transform 0.15s ease-out, box-shadow 0.3s ease, border-color 0.3s ease",
-        } as React.CSSProperties}
+        transform: tilt
+          ? "rotateX(var(--rotate-x, 0deg)) rotateY(var(--rotate-y, 0deg))"
+          : undefined,
+        transition: "transform 0.15s ease-out, box-shadow 0.3s ease, border-color 0.3s ease",
+        backfaceVisibility: "hidden",
+      } as React.CSSProperties}
         className={cn(
           "relative overflow-hidden rounded-2xl border",
           "border-slate-200/90 dark:border-white/10",

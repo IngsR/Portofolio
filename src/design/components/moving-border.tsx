@@ -77,11 +77,16 @@ export const MovingBorder = ({
       ref={containerRef}
       className={cn(
         "relative h-10 overflow-hidden rounded-full border border-transparent p-[1px] text-sm",
+        "cursor-pointer select-none",
         containerClassName,
       )}
       {...otherProps}
     >
-      <div className="absolute inset-0" style={{ borderRadius: "inherit" }}>
+      <div
+        className="pointer-events-none absolute inset-0"
+        style={{ borderRadius: "inherit" }}
+        aria-hidden="true"
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           preserveAspectRatio="none"
@@ -119,6 +124,7 @@ export const MovingBorder = ({
       <div
         className={cn(
           "relative flex h-full w-full items-center justify-center rounded-full border border-slate-200 bg-white text-slate-900 dark:border-white/10 dark:bg-slate-950 dark:text-white antialiased text-xs font-semibold",
+          "cursor-pointer",
           className,
         )}
       >

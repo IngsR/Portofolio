@@ -145,7 +145,12 @@ export const HeroCard = memo<HeroCardProps>(function HeroCard({
   // Perangkat sentuh: kartu datar, tanpa efek berat (hemat frame saat scroll).
   if (hoverable) {
     return (
-      <CardSpotlight className={cardClassName} radius={320} tilt={true}>
+      <CardSpotlight
+        className={cardClassName}
+        radius={320}
+        tilt={true}
+        onClick={onOpenDetail}
+      >
         {content}
       </CardSpotlight>
     );

@@ -513,16 +513,21 @@ p {
    ============================================================ */
 
 @supports (content-visibility: auto) {
-  /* Section berat: layout & paint di-skip saat tak terlihat.
-     contain-intrinsic-size menjaga tinggi estimasi agar scrollbar tidak loncat. */
-  main section {
-    content-visibility: auto;
-    contain-intrinsic-size: auto 520px;
-  }
+  /* PENTING: JANGAN pasang `content-visibility: auto` secara blanket ke
+     SEMUA `main section`. Section hero/portfolio tingginya jauh berbeda-beda,
+     dan `contain-intrinsic-size: 520px` (nilai tetap) membuat browser terus
+     memperkirakan ulang tinggi tiap section saat di-scroll → inilah sumber
+     utama scroll terasa "patah-patah" & layout shift.
 
-  /* Grid card besar: skip render item di luar layar */
+     Sebagai gantinya, content-visibility hanya diaktifkan lewat komponen
+     <LazyMount> yang menyertakan estimasi tinggi akurat per-konten
+     (lihat src/design/components/lazy-mount.tsx). */
+
+  /* Grid card besar: batasi reflow agar tidak menyebar keluar grid.
+     Hanya `layout` + `style` (TANPA `paint`) supaya efek spotlight/absolute
+     yang menjulur keluar card tetap bisa dilukis dengan benar. */
   main [class*="grid-cols"] {
-    contain: layout style paint;
+    contain: layout style;
   }
 }
 

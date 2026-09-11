@@ -1,5 +1,11 @@
 import { ArrowUpDown, Award, Grid, Layers, Search, X } from "lucide-react";
-import React, { useCallback, useMemo, useRef, useState } from "react";
+import React, {
+  useCallback,
+  useDeferredValue,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import portfolioData from "../../data/portfolio.json";
 import {
   isDetailOpenStore,
@@ -74,6 +80,13 @@ export const Portfolio: React.FC<PortfolioSectionProps> = ({
   const [sortBy, setSortBy] = useState<SortOption>("relevance");
   const searchInputRef = useRef<HTMLInputElement>(null);
 
+  // Nilai pencarian diturunkan secara "deferred" (React concurrent): input
+  // tetap responsif 60fps saat mengetik, sementara proses filter berat
+  // (yang membaca markdownContent puluhan project) dijalankan di priority
+  // lebih rendah. Inilah penyebab utama halaman portofolio terasa
+  // "patah-patah" saat mengetik/memfilter.
+  const deferredSearchQuery = useDeferredValue(searchQuery);
+
   // Modal state hidup di island terpisah (DetailModalIsland/PreviewModalIsland)
   // yang subscribe store sendiri — buka/tutup modal tidak me-render ulang
   // halaman ini beserta seluruh grid card.
@@ -123,12 +136,40 @@ export const Portfolio: React.FC<PortfolioSectionProps> = ({
     ? [...keywordGroups.knownKeywords, ...keywordGroups.otherKeywords]
     : keywordGroups.knownKeywords;
 
+  // Search index: semua field lower-case dihitung SEKALI per perubahan
+  // `projects`. Tanpa ini, setiap ketikan mengulang toLowerCase() pada
+  // markdownContent (string panjang) puluhan kali → penyebab lag mengetik.
+  const searchIndex = useMemo(
+    () =>
+      new Map(
+        projects.map((project) => [
+          project.id,
+          {
+            title: project.title.toLowerCase(),
+            desc: project.shortDescription.toLowerCase(),
+            tags: (project.tags || []).map((t) => t.toLowerCase()),
+            md: project.markdownContent.toLowerCase(),
+            category: project.category.toLowerCase(),
+            tagSet: new Set(
+              (project.tags || [])
+                .map((tag) => tag.trim().toLowerCase())
+                .filter(Boolean),
+            ),
+          },
+        ]),
+      ),
+    [projects],
+  );
+
   // Filtered and Sorted Projects
   const filteredProjects = useMemo(() => {
     if (filterType === "certificates") return [];
 
-    const q = searchQuery.toLowerCase().trim();
+    const q = deferredSearchQuery.toLowerCase().trim();
     const tokens = q.split(/\s+/).filter(Boolean);
+    const keywordSet = new Set(
+      selectedKeywords.map((keyword) => keyword.toLowerCase()),
+    );
 
     const matches = projects.filter((project) => {
       // Category filter
@@ -141,35 +182,26 @@ export const Portfolio: React.FC<PortfolioSectionProps> = ({
         );
       if (!matchCategory) return false;
 
-      const projectTags = new Set(
-        (project.tags || [])
-          .map((tag) => tag.trim().toLowerCase())
-          .filter(Boolean),
-      );
+      const index = searchIndex.get(project.id);
+
       if (
-        selectedKeywords.some(
-          (keyword) => !projectTags.has(keyword.toLowerCase()),
-        )
+        keywordSet.size > 0 &&
+        (!index ||
+          [...keywordSet].some((keyword) => !index.tagSet.has(keyword)))
       ) {
         return false;
       }
 
       // Search tokens
-      if (tokens.length === 0) return true;
-
-      const titleLower = project.title.toLowerCase();
-      const descLower = project.shortDescription.toLowerCase();
-      const tagsLower = project.tags.map((t) => t.toLowerCase());
-      const mdLower = project.markdownContent.toLowerCase();
-      const categoryLower = project.category.toLowerCase();
+      if (tokens.length === 0 || !index) return true;
 
       return tokens.every((token) => {
         return (
-          titleLower.includes(token) ||
-          descLower.includes(token) ||
-          tagsLower.some((t) => t.includes(token)) ||
-          mdLower.includes(token) ||
-          categoryLower.includes(token)
+          index.title.includes(token) ||
+          index.desc.includes(token) ||
+          index.tags.some((t) => t.includes(token)) ||
+          index.md.includes(token) ||
+          index.category.includes(token)
         );
       });
     });
@@ -192,10 +224,11 @@ export const Portfolio: React.FC<PortfolioSectionProps> = ({
     });
   }, [
     projects,
+    searchIndex,
     filterType,
     selectedCategories,
     selectedKeywords,
-    searchQuery,
+    deferredSearchQuery,
     sortBy,
   ]);
 
@@ -203,7 +236,7 @@ export const Portfolio: React.FC<PortfolioSectionProps> = ({
   const filteredCerts = useMemo(() => {
     if (filterType === "projects") return [];
 
-    const q = searchQuery.toLowerCase().trim();
+    const q = deferredSearchQuery.toLowerCase().trim();
     const tokens = q.split(/\s+/).filter(Boolean);
 
     const matches = certificationsData.filter((cert) => {
@@ -235,7 +268,7 @@ export const Portfolio: React.FC<PortfolioSectionProps> = ({
     });
 
     return matches;
-  }, [filterType, selectedCategories, searchQuery]);
+  }, [filterType, selectedCategories, deferredSearchQuery]);
 
   const totalItemsCount = filteredProjects.length + filteredCerts.length;
 
@@ -516,17 +549,19 @@ export const Portfolio: React.FC<PortfolioSectionProps> = ({
                 </div>
               )}
 
-              <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-5 lg:gap-6">
-                {filteredProjects.map((project) => (
-                  <Project
-                    key={project.id}
-                    project={project}
-                    onOpenDetail={handleOpenProjectDetail}
-                    onOpenMarkdown={handleOpenMarkdown}
-                    onOpenPreview={handleOpenProjectPreview}
-                  />
-                ))}
-              </div>
+              <LazyMount estimatedHeight={filteredProjects.length * 460}>
+                <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-5 lg:gap-6">
+                  {filteredProjects.map((project) => (
+                    <Project
+                      key={project.id}
+                      project={project}
+                      onOpenDetail={handleOpenProjectDetail}
+                      onOpenMarkdown={handleOpenMarkdown}
+                      onOpenPreview={handleOpenProjectPreview}
+                    />
+                  ))}
+                </div>
+              </LazyMount>
             </div>
           )}
 

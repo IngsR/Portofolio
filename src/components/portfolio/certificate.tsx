@@ -8,6 +8,7 @@ import {
 } from "lucide-react";
 import React, { memo } from "react";
 import { CertificationItem } from "../../types";
+import { canHover } from "../../utils/hover";
 import { CardSpotlight } from "../../design/components/card-spotlight";
 
 interface CertificateCardProps {
@@ -16,41 +17,23 @@ interface CertificateCardProps {
   onOpenPreview?: (cert: CertificationItem) => void;
 }
 
-// Module-level singleton: detect hover capability sekali untuk seluruh halaman.
-// Semua card Certificate share nilai ini — tidak ada per-card listener sama sekali.
-const getCanHover = (() => {
-  let cached: boolean | null = null;
-  return () => {
-    if (cached !== null) return cached;
-    if (typeof window === "undefined") return false;
-    cached = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
-    // Update cache jika device berubah (misalnya tablet mode)
-    window
-      .matchMedia("(hover: hover) and (pointer: fine)")
-      .addEventListener("change", (e) => {
-        cached = e.matches;
-      });
-    return cached;
-  };
-})();
-
 export const Certificate = memo<CertificateCardProps>(function Certificate({
   certificate,
   onOpenDetail,
   onOpenPreview,
 }) {
   // Baca nilai hover capability dari module-level singleton — tidak ada useState/useEffect
-  const canHover = getCanHover();
+  const hoverable = canHover();
 
   const cardClassName = `group flex flex-col justify-between bg-white dark:bg-[#0f0f11] border border-slate-200/90 dark:border-white/10 rounded-2xl sm:rounded-3xl p-3 sm:p-4 lg:p-4 shadow-[0_2px_10px_-3px_rgba(15,23,42,0.06)] cursor-pointer${
-    canHover
+    hoverable
       ? " hover:border-emerald-500/40 dark:hover:border-white/30 hover:shadow-xl hover:-translate-y-1 transition-[border-color,box-shadow,transform] duration-300"
       : ""
   }`;
 
   const handleCardClick = () => onOpenDetail(certificate);
 
-  const card = canHover ? (
+  const card = hoverable ? (
     <CardSpotlight
       onClick={handleCardClick}
       className={cardClassName}

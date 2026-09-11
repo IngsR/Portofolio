@@ -2,6 +2,7 @@ import { ArrowUpRight, Calendar, Eye, FileText, Github } from "lucide-react";
 import React, { memo } from "react";
 import { ProjectItem } from "../../types";
 import { formatDomainName, formatShortDomain } from "../../utils/format";
+import { canHover } from "../../utils/hover";
 import { CardSpotlight } from "../../design/components/card-spotlight";
 
 interface ProjectCardProps {
@@ -10,20 +11,6 @@ interface ProjectCardProps {
   onOpenMarkdown?: (project: ProjectItem) => void;
   onOpenPreview?: (project: ProjectItem) => void;
 }
-
-// Module-level singleton — detect sekali, share ke semua card
-const getCanHover = (() => {
-  let cached: boolean | null = null;
-  return () => {
-    if (cached !== null) return cached;
-    if (typeof window === "undefined") return false;
-    cached = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
-    window
-      .matchMedia("(hover: hover) and (pointer: fine)")
-      .addEventListener("change", (e) => { cached = e.matches; });
-    return cached;
-  };
-})();
 
 const CARD_BASE =
   "group flex flex-col bg-white dark:bg-[#0f0f11] border border-slate-200/90 dark:border-white/10 rounded-2xl sm:rounded-3xl overflow-hidden shadow-[0_2px_10px_-3px_rgba(15,23,42,0.06)] cursor-pointer";
@@ -38,8 +25,8 @@ export const Project = memo<ProjectCardProps>(function Project({
 }) {
   const domain = formatDomainName(project.demoUrl);
   const shortDomain = formatShortDomain(project.demoUrl);
-  const canHover = getCanHover();
-  const cardClassName = CARD_BASE + (canHover ? CARD_HOVER : "");
+  const hoverable = canHover();
+  const cardClassName = CARD_BASE + (hoverable ? CARD_HOVER : "");
 
   const handlePreviewClick = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -218,7 +205,7 @@ export const Project = memo<ProjectCardProps>(function Project({
     </>
   );
 
-  if (canHover) {
+  if (hoverable) {
     return (
       <CardSpotlight
         className={cardClassName}

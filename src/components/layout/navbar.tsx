@@ -44,26 +44,46 @@ export const Navbar: React.FC<NavbarProps> = ({
 }) => {
   const [isVisible, setIsVisible] = useState(true);
   const lastScrollYRef = useRef(0);
+  const rafRef = useRef<number | null>(null);
+  // Mirror nilai isVisible ke ref agar handler scroll tidak perlu masuk
+  // dependency array (tetap stabil, tanpa re-subscribe listener).
+  const isVisibleRef = useRef(true);
+  if (isVisibleRef.current !== isVisible) isVisibleRef.current = isVisible;
 
   useEffect(() => {
-    const handleScroll = () => {
+    const update = () => {
+      rafRef.current = null;
       const currentScrollY = window.scrollY;
+      const last = lastScrollYRef.current;
 
       // Keep navbar visible near top
       if (currentScrollY < 80) {
-        setIsVisible(true);
-      } else if (currentScrollY > lastScrollYRef.current + 10) {
+        if (!isVisibleRef.current) setIsVisible(true);
+      } else if (currentScrollY > last + 10) {
         // Scrolling down
-        setIsVisible(false);
-      } else if (currentScrollY < lastScrollYRef.current - 10) {
+        if (isVisibleRef.current) setIsVisible(false);
+      } else if (currentScrollY < last - 10) {
         // Scrolling up
-        setIsVisible(true);
+        if (!isVisibleRef.current) setIsVisible(true);
       }
       lastScrollYRef.current = currentScrollY;
     };
 
+    // rAF-throttle: scroll event bisa terpicu ratusan kali/detik. Kita
+    // koalesensikan jadi maksimal 1 perhitungan per frame, dan hanya
+    // memanggil setState saat nilai `isVisible` benar-benar berubah
+    // (menghindari re-render navbar yang tidak perlu saat scroll).
+    const handleScroll = () => {
+      if (rafRef.current === null) {
+        rafRef.current = requestAnimationFrame(update);
+      }
+    };
+
     window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      if (rafRef.current !== null) cancelAnimationFrame(rafRef.current);
+    };
   }, []);
 
   const navItems: {
