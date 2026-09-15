@@ -6,27 +6,35 @@ interface SparklesProps {
   children?: React.ReactNode;
   className?: string;
   sparkleCount?: number;
-  minSize?: number;
-  maxSize?: number;
   colors?: string[];
 }
 
-const random = (min: number, max: number) => Math.random() * (max - min) + min;
+/**
+ * Angka pseudo-acak deterministik dari seed — nilai sama di server & client,
+ * jadi markup SSR identik dengan render pertama client (tidak ada hydration
+ * mismatch) tanpa perlu menunggu useEffect.
+ */
+const seededValue = (seed: number, min: number, max: number) => {
+  const hash = Math.sin(seed * 12.9898) * 43758.5453;
+  const fraction = hash - Math.floor(hash);
+  return min + fraction * (max - min);
+};
 
-const generateSparkle = (colors: string[]) => ({
-  id: Math.random(),
-  x: `${random(5, 95)}%`,
-  y: `${random(5, 95)}%`,
-  size: random(4, 9),
-  color: colors[Math.floor(Math.random() * colors.length)],
+const generateSparkle = (seed: number, colors: string[]) => ({
+  id: seed,
+  x: `${seededValue(seed, 5, 95).toFixed(2)}%`,
+  y: `${seededValue(seed + 1, 5, 95).toFixed(2)}%`,
+  size: Number(seededValue(seed + 2, 4, 9).toFixed(2)),
+  color:
+    colors[Math.floor(seededValue(seed + 3, 0, colors.length)) % colors.length],
   // durasi & delay sebagai CSS custom property agar tidak ada JS per frame
-  duration: `${random(0.9, 1.6).toFixed(2)}s`,
-  delay: `${random(0, 1).toFixed(2)}s`,
-  repeatDelay: `${random(1, 3).toFixed(2)}s`,
+  duration: `${seededValue(seed + 4, 0.9, 1.6).toFixed(2)}s`,
+  delay: `${seededValue(seed + 5, 0, 1).toFixed(2)}s`,
 });
 
 /**
- * Sparkles dioptimalkan — animasi pure CSS (keyframes), bukan motion.js per span.
+ * Sparkles — animasi pure CSS (keyframes), bukan motion.js per span.
+ * - Posisi/ukuran deterministik → SSR & client identik (tanpa hydration error)
  * - IntersectionObserver: animasi PAUSE saat tidak di viewport
  * - Zero JS per frame, zero rAF, zero motion dependency
  */
@@ -38,7 +46,10 @@ export const Sparkles = ({
 }: SparklesProps) => {
   const containerRef = useRef<HTMLSpanElement>(null);
   const sparkles = useMemo(
-    () => Array.from({ length: sparkleCount }, () => generateSparkle(colors)),
+    () =>
+      Array.from({ length: sparkleCount }, (_, index) =>
+        generateSparkle(index + 1, colors),
+      ),
     // colors: hanya re-generate saat sparkleCount berubah untuk stabilitas
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [sparkleCount],
@@ -72,7 +83,6 @@ export const Sparkles = ({
               top: s.y,
               "--sparkle-duration": s.duration,
               "--sparkle-delay": s.delay,
-              "--sparkle-repeat-delay": s.repeatDelay,
               animation: `sparkle-pulse var(--sparkle-duration) var(--sparkle-delay) infinite`,
             } as React.CSSProperties
           }

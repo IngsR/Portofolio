@@ -6,7 +6,7 @@ import {
   MapPin,
   MessageCircle,
 } from "lucide-react";
-import { memo } from "react";
+import { memo, useMemo } from "react";
 import portfolioData from "../../../data/portfolio.json";
 import { EncryptedText } from "../../../design/components/encrypted-text";
 import { FlipWords } from "../../../design/components/flip-words";
@@ -31,6 +31,11 @@ import { ProfilePhotoCard } from "../cards/profile-photo-card";
 export const IntroSection = memo<HeroPageProps & { onOpenCV: () => void }>(
   function IntroSection({ onNavigate, onOpenCV }) {
     const userProfile = portfolioData.userProfile as unknown as UserProfile;
+
+    // Salinan array stabil: referensi `HERO_ROLES` tetap sama walau modul data
+    // di-reload (HMR), sehingga kartu perkenalan ini tidak ikut re-render
+    // ketika state Hero lain berubah.
+    const roles = useMemo(() => [...HERO_ROLES], []);
 
     return (
       <section className="rounded-3xl border-slate-200/80 dark:border-white/10 bg-white dark:bg-[#0c0c0d] p-6 sm:p-10 lg:p-12 shadow-sm transition-all">
@@ -57,13 +62,11 @@ export const IntroSection = memo<HeroPageProps & { onOpenCV: () => void }>(
               </h1>
               {/* min-h dikunci (1 baris mobile / desktop) agar pergantian kata
                 FlipWords tidak menggeser layout halaman naik-turun */}
-              <div className="min-h-[1.9rem] sm:min-h-[2.5rem] flex items-center">
-                <p className="text-lg sm:text-3xl font-extrabold text-black dark:text-slate-100 flex items-center gap-2 tracking-tight font-script">
-                  <FlipWords
-                    words={[...HERO_ROLES]}
-                    className="font-script text-black dark:text-slate-100"
-                  />
-                </p>
+              <div className="min-h-[1.9rem] sm:min-h-[2.5rem] flex items-center text-lg sm:text-3xl font-extrabold text-black dark:text-slate-100 gap-2 tracking-tight font-script">
+                <FlipWords
+                  words={roles}
+                  className="font-script text-black dark:text-slate-100"
+                />
               </div>
             </div>
 

@@ -1,6 +1,5 @@
 "use client";
-import { motion, AnimatePresence } from "motion/react";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { cn } from "../utils";
 
 interface FlipWordsProps {
@@ -9,65 +8,48 @@ interface FlipWordsProps {
   className?: string;
 }
 
+/**
+ * FlipWords — pergantian kata dengan animasi flip.
+ *
+ * Dioptimalkan (KISS):
+ * - Satu kata aktif dalam DOM (bukan dua versi yang saling tumpang tindih
+ *   saat exit) → beban paint/GPU saat animasi jauh lebih ringan.
+ * - Efek flip ditulis lewat CSS class (keyframes di global.css), bukan
+ *   motion.js; tidak ada spring yang dihitung per frame.
+ * - Reflow pemilihan kata dibaca dari ref saat pergantian, bukan lewat
+ *   dependency state.
+ */
 export const FlipWords = ({
   words,
   duration = 3000,
   className,
 }: FlipWordsProps) => {
-  const [currentWord, setCurrentWord] = useState(words[0] ?? "");
-  const [isAnimating, setIsAnimating] = useState(false);
-
-  const startAnimation = () => {
-    const next = words[words.indexOf(currentWord) + 1] ?? words[0] ?? "";
-    setCurrentWord(next);
-    setIsAnimating(true);
-  };
+  const [index, setIndex] = useState(0);
+  const wordsRef = useRef(words);
+  wordsRef.current = words;
 
   useEffect(() => {
-    if (!isAnimating) {
-      const timer = setTimeout(startAnimation, duration);
-      return () => clearTimeout(timer);
-    }
-  }, [isAnimating, currentWord, duration]);
+    const id = setInterval(() => {
+      setIndex((prev) => (prev + 1) % wordsRef.current.length);
+    }, duration);
+    return () => clearInterval(id);
+  }, [duration]);
+
+  const currentWord = words[index] ?? words[0] ?? "";
+
+  if (!currentWord) return null;
 
   return (
     <div className="relative inline-flex items-center">
-      <AnimatePresence
-        onExitComplete={() => setIsAnimating(false)}
-        mode="popLayout"
+      <div
+        key={index}
+        className={cn(
+          "flip-word z-10 inline-block text-left whitespace-nowrap",
+          className,
+        )}
       >
-        <motion.div
-          key={currentWord}
-          initial={{ opacity: 0, y: 10, filter: "blur(4px)" }}
-          animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-          exit={{
-            opacity: 0,
-            y: -10,
-            filter: "blur(4px)",
-          }}
-          transition={{
-            type: "spring",
-            stiffness: 120,
-            damping: 14,
-          }}
-          className={cn(
-            "z-10 inline-block text-left whitespace-nowrap",
-            className,
-          )}
-        >
-          {currentWord.split(" ").map((w, wi) => (
-            <motion.span
-              key={w + wi}
-              initial={{ opacity: 0, y: 8, filter: "blur(4px)" }}
-              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-              transition={{ delay: wi * 0.08, duration: 0.22 }}
-              className="inline-block whitespace-nowrap mr-1.5"
-            >
-              {w}
-            </motion.span>
-          ))}
-        </motion.div>
-      </AnimatePresence>
+        {currentWord}
+      </div>
     </div>
   );
 };

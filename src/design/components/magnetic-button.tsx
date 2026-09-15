@@ -1,6 +1,7 @@
 "use client";
 import { motion, useMotionValue, useSpring } from "motion/react";
 import React, { useRef } from "react";
+import { canHover } from "../../utils/hover";
 import { cn } from "../utils";
 
 interface MagneticButtonProps {
@@ -15,6 +16,10 @@ export const MagneticButton = ({
   strength = 0.3,
 }: MagneticButtonProps) => {
   const ref = useRef<HTMLDivElement>(null);
+  // Efek magnetik hanya masuk akal di perangkat ber-hover. Di layar sentuh
+  // pointer tidak melayang, jadi listener + spring x/y cukup dibuang saja:
+  // tanpa efek ini pun tampilan tombol tetap identik.
+  const hoverable = canHover();
   // Cache pusat tombol: diukur SEKALI saat mouseenter, bukan tiap mousemove.
   // getBoundingClientRect() per mousemove memaksa synchronous layout (thrash)
   // — sumber jank klasik pada tombol magnetik.
@@ -28,7 +33,7 @@ export const MagneticButton = ({
 
   const handleMouseEnter = () => {
     const el = ref.current;
-    if (!el) return;
+    if (!el || !hoverable) return;
     const rect = el.getBoundingClientRect();
     centerRef.current = {
       x: rect.left + rect.width / 2,
@@ -38,7 +43,7 @@ export const MagneticButton = ({
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const center = centerRef.current;
-    if (!center) return;
+    if (!center || !hoverable) return;
     x.set((e.clientX - center.x) * strength);
     y.set((e.clientY - center.y) * strength);
   };

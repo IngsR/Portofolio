@@ -1,5 +1,6 @@
 "use client";
 import React, { useCallback, useRef } from "react";
+import { canHover } from "../../utils/hover";
 import { cn } from "../utils";
 
 interface GlowingEffectProps {
@@ -14,6 +15,8 @@ interface GlowingEffectProps {
 
 /**
  * GlowingEffect dioptimalkan — zero React re-render saat hover:
+ * - Efek glow hanya aktif di perangkat ber-hover (mouse): di layar sentuh
+ *   tidak ada glow/layer blur sama sekali → hemat frame saat scroll di HP
  * - Tidak pakai useState/setState sama sekali
  * - getBoundingClientRect() diukur SEKALI saat mouseenter (bukan tiap
  *   mousemove) → menghilangkan layout thrash / forced reflow
@@ -31,6 +34,9 @@ export const GlowingEffect = ({
 }: GlowingEffectProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const glowRef = useRef<HTMLDivElement>(null);
+  // Singleton modul: di perangkat sentuh tidak ada listener/pointer sama sekali
+  const hoverable = canHover();
+  const isDisabled = disabled || !hoverable;
   const rafRef = useRef<number | null>(null);
   const coordsRef = useRef({ x: 0, y: 0 });
   // Cache rect: diukur SEKALI saat mouseenter, bukan tiap mousemove.
@@ -56,7 +62,7 @@ export const GlowingEffect = ({
 
   const handleMouseMove = useCallback(
     (e: React.MouseEvent<HTMLDivElement>) => {
-      if (disabled) return;
+      if (isDisabled) return;
       const rect = rectRef.current;
       if (!rect) return;
       coordsRef.current = { x: e.clientX - rect.left, y: e.clientY - rect.top };
@@ -64,12 +70,12 @@ export const GlowingEffect = ({
         rafRef.current = requestAnimationFrame(flush);
       }
     },
-    [disabled, flush],
+    [isDisabled, flush],
   );
 
   const handleMouseEnter = useCallback(
     (e: React.MouseEvent<HTMLDivElement>) => {
-      if (disabled) return;
+      if (isDisabled) return;
       // Ukur posisi container sekali saja di sini (satu-satunya layout read).
       const el = containerRef.current;
       if (el) {
@@ -93,7 +99,7 @@ export const GlowingEffect = ({
         }
       }
     },
-    [disabled, flush],
+    [isDisabled, flush],
   );
 
   const handleMouseLeave = useCallback(() => {
@@ -114,7 +120,7 @@ export const GlowingEffect = ({
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      {!disabled && (
+      {!isDisabled && (
         <div
           ref={glowRef}
           className="pointer-events-none absolute inset-0 z-0 rounded-[inherit]"

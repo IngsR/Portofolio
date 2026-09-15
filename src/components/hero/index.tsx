@@ -53,11 +53,12 @@ export const Hero: React.FC<HeroSectionProps> = ({
   onOpenProjectMarkdown,
   onOpenCV,
 }) => {
-  /** Navigasi halaman + scroll ke atas dengan animasi (dipakai CTA) */
+  /** Navigasi halaman + scroll instan ke atas (scroll mulus global dimatikan
+   *  karena membuat dokumen setinggi ini terasa berat di HP) */
   const handleNavigate = useCallback(
     (page: PageId) => {
       setActivePage(page);
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      window.scrollTo({ top: 0, behavior: "auto" });
     },
     [setActivePage],
   );

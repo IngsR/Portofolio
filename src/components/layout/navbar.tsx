@@ -115,10 +115,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 
   const handleNavClick = (id: PageId) => {
     setActivePage(id);
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
+    window.scrollTo({ top: 0, behavior: "auto" });
   };
 
   return (

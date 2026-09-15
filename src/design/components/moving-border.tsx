@@ -6,6 +6,7 @@ import {
   useSpring,
 } from "motion/react";
 import React, { useEffect, useRef, useState } from "react";
+import { canHover } from "../../utils/hover";
 import { cn } from "../utils";
 
 interface MovingBorderProps {
@@ -39,13 +40,16 @@ export const MovingBorder = ({
   const smoothX = useSpring(x, { damping: 20, stiffness: 300 });
   const smoothY = useSpring(y, { damping: 20, stiffness: 300 });
 
-  // PAUSE animasi saat komponen off-screen: getPointAtLength() adalah layout
-  // read per frame yang mahal — menjalankannya untuk elemen yang tidak terlihat
-  // hanya membuang frame budget saat scrolling.
+  // Animasi berjalan HANYA di perangkat ber-hover (mouse). Di layar sentuh
+  // animasi ini memboroskan frame budget saat scroll, jadi cukup dimatikan —
+  // tanpa animasi pun border tombol tetap tampil utuh seperti biasa.
   const [isVisible, setIsVisible] = useState(false);
+  const hoverable = canHover();
+  const isAnimating = isVisible && hoverable;
   const containerRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
+    if (!canHover()) return;
     const el = containerRef.current;
     if (!el || typeof IntersectionObserver === "undefined") {
       setIsVisible(true);
@@ -60,7 +64,7 @@ export const MovingBorder = ({
   }, []);
 
   useAnimationFrame((time) => {
-    if (!isVisible) return;
+    if (!isAnimating) return;
     if (!pathRef.current) return;
 
     const length = pathRef.current.getTotalLength?.() ?? 0;

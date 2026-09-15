@@ -64,7 +64,10 @@ export const CardSpotlight = ({
     if (el) {
       // will-change hanya diaktifkan selama hover → tidak ada layer GPU
       // permanen untuk puluhan card sekaligus (ini yang bikin scroll berat).
-      if (tilt) el.style.willChange = "transform";
+      if (tilt) {
+        el.style.setProperty("transform-perspective", "1000px");
+        el.style.willChange = "transform";
+      }
       const rect = el.getBoundingClientRect();
       rectRef.current = {
         left: rect.left,
@@ -107,26 +110,31 @@ export const CardSpotlight = ({
     if (tilt) {
       el.style.setProperty("--rotate-x", "0deg");
       el.style.setProperty("--rotate-y", "0deg");
-      // Lepas hint GPU saat hover selesai agar layer compositor dibebaskan.
+      // Lepas hint GPU + context 3D saat hover selesai agar layer compositor
+      // dibebaskan (kartu diam tidak perlu menyimpan layer GPU).
+      el.style.setProperty("transform-perspective", "");
       el.style.willChange = "auto";
     }
     hoverRef.current = false;
   }, [tilt]);
 
+  // `perspective` dipasang sekali lewat event (lihat handleMouseEnter):
+  // context 3D permanen di puluhan kartu memaksa layer komposit per kartu
+  // → memori GPU tinggi & scroll turun di bawah 60fps.
   return (
-  // `perspective` hanya diberikan saat kartu punya tilt. Perspective
-  // permanen memaksa context 3D + layer komposit per kartu — puluhan kartu
-  // sekaligus = memori GPU tinggi & scroll turun ke < 60fps.
-  <div style={tilt ? { perspective: "1000px" } : undefined} className="relative">
-    <div
-      ref={divRef}
-      style={{
-        transform: tilt
-          ? "rotateX(var(--rotate-x, 0deg)) rotateY(var(--rotate-y, 0deg))"
-          : undefined,
-        transition: "transform 0.15s ease-out, box-shadow 0.3s ease, border-color 0.3s ease",
-        backfaceVisibility: "hidden",
-      } as React.CSSProperties}
+    <div className="relative">
+      <div
+        ref={divRef}
+        style={
+          {
+            transform: tilt
+              ? "rotateX(var(--rotate-x, 0deg)) rotateY(var(--rotate-y, 0deg))"
+              : undefined,
+            transition:
+              "transform 0.15s ease-out, box-shadow 0.3s ease, border-color 0.3s ease",
+            backfaceVisibility: "hidden",
+          } as React.CSSProperties
+        }
         className={cn(
           "relative overflow-hidden rounded-2xl border",
           "border-slate-200/90 dark:border-white/10",

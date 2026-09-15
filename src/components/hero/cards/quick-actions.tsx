@@ -75,8 +75,8 @@ const QuickActionCard = memo<{
         <div className="p-2.5 rounded-xl shrink-0 bg-white/15">
           {action.icon}
         </div>
-        <div className="min-w-0">
-          <span className="text-xs font-black uppercase tracking-wider block">
+        <div className="min-w-0 flex-1">
+          <span className="text-xs font-black uppercase tracking-wider block truncate">
             {action.label}
           </span>
           <span className={`text-[11px] truncate block ${hintClass}`}>
@@ -88,7 +88,7 @@ const QuickActionCard = memo<{
     </>
   );
 
-  const className = `flex items-center justify-between p-4 rounded-2xl transition-all text-left shadow-sm group ${action.cardClass}`;
+  const className = `flex items-center justify-between gap-3 p-4 rounded-2xl transition-all text-left shadow-sm group min-w-0 w-full ${action.cardClass}`;
 
   if (action.id === "cv") {
     return (
@@ -121,7 +121,7 @@ export const QuickActions = memo<{
   const actions = buildQuickActions(userProfile);
 
   return (
-    <div className="lg:col-span-7 grid-cols-1 sm:grid-cols-2 gap-3">
+    <div className="lg:col-span-7 grid-cols-1 sm:grid-cols-2 gap-3 min-w-0">
       {actions.map((action) => (
         <QuickActionCard
           key={action.id}

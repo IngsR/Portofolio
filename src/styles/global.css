@@ -558,11 +558,17 @@ p {
 html {
   /* Scroll berbasis compositor — tidak blok main thread */
   overscroll-behavior-y: none;
+}
+
+/* Smooth scroll hanya saat diminta (mis. navigasi halaman), bukan default:
+   scroll-behavior: smooth global membuat setiap scroll jump/restorasi
+   dianimasikan melewati halaman panjang → terasa "patah-patah" di HP. */
+.smooth-scroll {
   scroll-behavior: smooth;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  html {
+  .smooth-scroll {
     scroll-behavior: auto;
   }
 }
@@ -600,6 +606,33 @@ html {
   .sparkle-item {
     animation: none !important;
     opacity: 0 !important;
+  }
+}
+
+/* ============================================================
+   FLIP WORDS — pure CSS flip (menggantikan motion/AnimatePresence)
+   Hanya opacity + translate + blur → compositor, tanpa spring per frame.
+   ============================================================ */
+.flip-word {
+  animation: flip-word-in 0.32s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes flip-word-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+    filter: blur(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flip-word {
+    animation: none !important;
   }
 }
 
