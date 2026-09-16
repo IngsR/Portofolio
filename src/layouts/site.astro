@@ -201,20 +201,25 @@ const breadcrumbSchema = {
     />
     <meta name="msvalidate.01" content="92D58529971734088AE431B5DA99146C" />
 
-    <!-- Google Fonts (non-blocking async load to eliminate render-blocking) -->
+    <!-- Google Fonts: font utama di-preload duluan (critical path) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
-    <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
     <link
       rel="preload"
       as="style"
-      href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Caveat:wght@500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Instrument+Sans:wght@400;500;600;700&family=Nunito:ital,wght@0,400..800;1,400..800&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Bricolage+Grotesque:opsz,wght@12..96,700..800&display=swap"
       onload="this.onload=null;this.rel='stylesheet'"
+    />
+    <!-- Font dekoratif dimuat lazy setelah main thread bebas -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Caveat:wght@500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,400;1,9..40,400&family=Nunito:wght@400;600&family=Playfair+Display:ital,wght@0,500;1,500&display=optional"
+      media="print"
+      onload="this.media='all'"
     />
     <noscript>
       <link
-        href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Caveat:wght@500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Instrument+Sans:wght@400;500;600;700&family=Nunito:ital,wght@0,400..800;1,400..800&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Bricolage+Grotesque:opsz,wght@12..96,700..800&family=Abril+Fatface&family=Caveat:wght@500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,400;1,9..40,400&family=Nunito:wght@400;600&family=Playfair+Display:ital,wght@0,500;1,500&display=swap"
         rel="stylesheet"
       />
     </noscript>

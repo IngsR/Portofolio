@@ -38,8 +38,9 @@ export const SkillCard = memo<{ category: SkillCategory }>(function SkillCard({
   return (
     <div className="p-3.5 sm:p-4 lg:p-5 rounded-2xl sm:rounded-3xl border border-slate-200 dark:border-white/10 bg-white/80 dark:bg-[#0c0c0d]/75 backdrop-blur-md flex-col justify-between space-y-3 sm:space-y-4 hover:border-slate-400 dark:hover:border-white/30 transition-all shadow-sm">
       <div className="space-y-2 sm:space-y-2.5">
-        <div className="flex items-center justify-between gap-1.5">
-          <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400 truncate">
+        <div className="flex items-start justify-between gap-2">
+          {/* Judul: izinkan wrap di mobile agar tidak terpotong dengan ... */}
+          <span className="text-[9.5px] sm:text-[11px] font-bold uppercase tracking-tight sm:tracking-wider leading-tight text-blue-600 dark:text-blue-400 break-words min-w-0">
             {category.title}
           </span>
           <div className="p-1.5 sm:p-2 rounded-xl bg-slate-100 dark:bg-white/5 shrink-0">
@@ -47,7 +48,7 @@ export const SkillCard = memo<{ category: SkillCategory }>(function SkillCard({
           </div>
         </div>
 
-        <p className="text-[10.5px] sm:text-xs text-slate-600 dark:text-slate-400 leading-relaxed line-clamp-2 sm:line-clamp-3">
+        <p className="text-[10.5px] sm:text-xs text-slate-600 dark:text-slate-400 leading-relaxed line-clamp-3 sm:line-clamp-3">
           {category.description}
         </p>
       </div>
