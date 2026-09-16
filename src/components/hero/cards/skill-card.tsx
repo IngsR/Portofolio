@@ -36,7 +36,7 @@ export const SkillCard = memo<{ category: SkillCategory }>(function SkillCard({
   const iconColor = COLOR_BY_NAME[category.iconName] ?? DEFAULT_COLOR;
 
   return (
-    <div className="p-3.5 sm:p-4 lg:p-5 rounded-2xl sm:rounded-3xl border-slate-200 dark:border-white/10 bg-white dark:bg-[#0c0c0d] flex-col justify-between space-y-3 sm:space-y-4 hover:border-slate-400 dark:hover:border-white/30 transition-all shadow-sm">
+    <div className="p-3.5 sm:p-4 lg:p-5 rounded-2xl sm:rounded-3xl border border-slate-200 dark:border-white/10 bg-white/80 dark:bg-[#0c0c0d]/75 backdrop-blur-md flex-col justify-between space-y-3 sm:space-y-4 hover:border-slate-400 dark:hover:border-white/30 transition-all shadow-sm">
       <div className="space-y-2 sm:space-y-2.5">
         <div className="flex items-center justify-between gap-1.5">
           <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400 truncate">

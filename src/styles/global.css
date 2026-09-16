@@ -154,17 +154,25 @@ html.dark .bg-dot-pattern {
   );
 }
 
-/* Crisp Aceternity Card & Depth System (Anti-Flat / Anti-Slope) */
+/* Crisp Aceternity Card & Depth System (Anti-Flat / Anti-Slope / Frosted Glass) */
 .aceternity-card {
   position: relative;
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
 }
 
 html:not(.dark) .aceternity-card {
+  background-color: rgba(255, 255, 255, 0.8);
   box-shadow:
     0 1px 3px 0 rgba(0, 0, 0, 0.03),
     0 6px 16px -2px rgba(15, 23, 42, 0.04),
     0 0 0 1px rgba(226, 232, 240, 0.85);
+}
+
+html.dark .aceternity-card,
+.dark .aceternity-card {
+  background-color: rgba(12, 12, 13, 0.75);
 }
 
 html:not(.dark) .aceternity-card:hover {
@@ -539,14 +547,20 @@ p {
   }
 }
 
-/* Backdrop-blur mahal — batasi layer blur hanya pada elemen yang
-   benar-benar tampil, dan aktifkan hanya di device capable. */
-@supports (backdrop-filter: blur(1px)) and (background: paint(x)) {
-  @media (min-resolution: 1dppx) {
-    .backdrop-blur-md {
-      backdrop-filter: blur(8px);
-      transform: translateZ(0); /* isolate blur layer → GPU */
-    }
+/* Backdrop-blur mahal — gunakan blur(4px) agar kompositor tidak
+   kelebihan beban terutama di Firefox dengan banyak blur layer. */
+@supports (backdrop-filter: blur(1px)) {
+  .backdrop-blur-md {
+    backdrop-filter: blur(4px) !important;
+    transform: translateZ(0); /* isolate → GPU composited layer */
+  }
+  .backdrop-blur-xl {
+    backdrop-filter: blur(12px) !important;
+    transform: translateZ(0);
+  }
+  .backdrop-blur-2xl {
+    backdrop-filter: blur(16px) !important;
+    transform: translateZ(0);
   }
 }
 
@@ -668,5 +682,23 @@ html {
     opacity: 1 !important;
     filter: none !important;
     animation: none !important;
+  }
+}
+
+/* ============================================================
+   BEAM FALL — animasi tetes cahaya pure CSS (@keyframes).
+   Dijalankan di GPU compositor (transform only), zero JS.
+   ============================================================ */
+@keyframes beamFall {
+  0%   { transform: translateY(-220px); opacity: 0; }
+  5%   { opacity: 1; }
+  95%  { opacity: 1; }
+  100% { transform: translateY(110vh); opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [style*="beamFall"] {
+    animation: none !important;
+    opacity: 0 !important;
   }
 }

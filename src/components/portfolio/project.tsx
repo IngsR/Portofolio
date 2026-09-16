@@ -13,7 +13,7 @@ interface ProjectCardProps {
 }
 
 const CARD_BASE =
-  "group flex flex-col bg-white dark:bg-[#0f0f11] border border-slate-200/90 dark:border-white/10 rounded-2xl sm:rounded-3xl overflow-hidden shadow-[0_2px_10px_-3px_rgba(15,23,42,0.06)] cursor-pointer";
+  "group flex flex-col bg-white/80 dark:bg-[#0f0f11]/75 backdrop-blur-md border border-slate-200/90 dark:border-white/10 rounded-2xl sm:rounded-3xl overflow-hidden shadow-[0_2px_10px_-3px_rgba(15,23,42,0.06)] cursor-pointer";
 const CARD_HOVER =
   " hover:border-blue-500/40 dark:hover:border-white/30 hover:shadow-xl transition-[border-color,box-shadow] duration-300";
 
@@ -39,7 +39,6 @@ export const Project = memo<ProjectCardProps>(function Project({
 
   const content = (
     <>
-
       <div className="relative aspect-[16/10] w-full overflow-hidden shrink-0 bg-slate-100 dark:bg-[#141416] p-1.5 sm:p-2.5 flex items-center justify-center border-b border-slate-100 dark:border-white/10">
         <img
           src={project.image}
@@ -224,4 +223,3 @@ export const Project = memo<ProjectCardProps>(function Project({
     </div>
   );
 });
-

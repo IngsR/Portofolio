@@ -29,7 +29,7 @@ interface HeroCardProps {
 }
 
 const BASE_CLASS =
-  "group flex-col justify-between bg-white dark:bg-[#0c0c0d] border-slate-200/80 dark:border-white/10 rounded-2xl sm:rounded-3xl overflow-hidden shadow-sm cursor-pointer";
+  "group flex-col justify-between bg-white/80 dark:bg-[#0c0c0d]/75 backdrop-blur-md border border-slate-200/80 dark:border-white/10 rounded-2xl sm:rounded-3xl overflow-hidden shadow-sm cursor-pointer";
 
 const PROJECT_HOVER =
   " hover:border-slate-400 dark:hover:border-white/30 hover:shadow-lg hover:-translate-y-1 transition-[border-color,box-shadow,transform] duration-300";

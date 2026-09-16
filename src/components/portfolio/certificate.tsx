@@ -25,7 +25,7 @@ export const Certificate = memo<CertificateCardProps>(function Certificate({
   // Baca nilai hover capability dari module-level singleton — tidak ada useState/useEffect
   const hoverable = canHover();
 
-  const cardClassName = `group flex flex-col justify-between bg-white dark:bg-[#0f0f11] border border-slate-200/90 dark:border-white/10 rounded-2xl sm:rounded-3xl p-3 sm:p-4 lg:p-4 shadow-[0_2px_10px_-3px_rgba(15,23,42,0.06)] cursor-pointer${
+  const cardClassName = `group flex flex-col justify-between bg-white/80 dark:bg-[#0f0f11]/75 backdrop-blur-md border border-slate-200/90 dark:border-white/10 rounded-2xl sm:rounded-3xl p-3 sm:p-4 lg:p-4 shadow-[0_2px_10px_-3px_rgba(15,23,42,0.06)] cursor-pointer${
     hoverable
       ? " hover:border-emerald-500/40 dark:hover:border-white/30 hover:shadow-xl hover:-translate-y-1 transition-[border-color,box-shadow,transform] duration-300"
       : ""
@@ -58,8 +58,6 @@ export const Certificate = memo<CertificateCardProps>(function Certificate({
 
   return card;
 });
-
-
 
 const CertificateContent = memo<{
   certificate: CertificationItem;

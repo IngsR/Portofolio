@@ -29,7 +29,12 @@ export const CardSpotlight = ({
   onClick,
 }: CardSpotlightProps) => {
   const divRef = useRef<HTMLDivElement>(null);
-  const rectRef = useRef<{ left: number; top: number; width: number; height: number } | null>(null);
+  const rectRef = useRef<{
+    left: number;
+    top: number;
+    width: number;
+    height: number;
+  } | null>(null);
   const rafRef = useRef<number | null>(null);
   const coordsRef = useRef({ x: 0, y: 0 });
   const hoverRef = useRef(false);
@@ -56,47 +61,53 @@ export const CardSpotlight = ({
     }
   }, [tilt]);
 
-  const handleMouseEnter = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
-    // Cache posisi card SEKALI saat masuk hover (satu-satunya layout read)
-    hoverRef.current = true;
-    rectRef.current = null;
-    const el = divRef.current;
-    if (el) {
-      // will-change hanya diaktifkan selama hover → tidak ada layer GPU
-      // permanen untuk puluhan card sekaligus (ini yang bikin scroll berat).
-      if (tilt) {
-        el.style.setProperty("transform-perspective", "1000px");
-        el.style.willChange = "transform";
+  const handleMouseEnter = useCallback(
+    (e: React.MouseEvent<HTMLDivElement>) => {
+      // Cache posisi card SEKALI saat masuk hover (satu-satunya layout read)
+      hoverRef.current = true;
+      rectRef.current = null;
+      const el = divRef.current;
+      if (el) {
+        // will-change hanya diaktifkan selama hover → tidak ada layer GPU
+        // permanen untuk puluhan card sekaligus (ini yang bikin scroll berat).
+        if (tilt) {
+          el.style.setProperty("transform-perspective", "1000px");
+          el.style.willChange = "transform";
+        }
+        const rect = el.getBoundingClientRect();
+        rectRef.current = {
+          left: rect.left,
+          top: rect.top,
+          width: rect.width,
+          height: rect.height,
+        };
+        coordsRef.current = {
+          x: e.clientX - rect.left,
+          y: e.clientY - rect.top,
+        };
       }
-      const rect = el.getBoundingClientRect();
-      rectRef.current = {
-        left: rect.left,
-        top: rect.top,
-        width: rect.width,
-        height: rect.height,
-      };
+      el?.style.setProperty("--opacity", "1");
+      if (rafRef.current === null) {
+        rafRef.current = requestAnimationFrame(flush);
+      }
+    },
+    [flush],
+  );
+
+  const handleMouseMove = useCallback(
+    (e: React.MouseEvent<HTMLDivElement>) => {
+      const rect = rectRef.current;
+      if (!rect) return;
       coordsRef.current = {
         x: e.clientX - rect.left,
         y: e.clientY - rect.top,
       };
-    }
-    el?.style.setProperty("--opacity", "1");
-    if (rafRef.current === null) {
-      rafRef.current = requestAnimationFrame(flush);
-    }
-  }, [flush]);
-
-  const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
-    const rect = rectRef.current;
-    if (!rect) return;
-    coordsRef.current = {
-      x: e.clientX - rect.left,
-      y: e.clientY - rect.top,
-    };
-    if (rafRef.current === null) {
-      rafRef.current = requestAnimationFrame(flush);
-    }
-  }, [flush]);
+      if (rafRef.current === null) {
+        rafRef.current = requestAnimationFrame(flush);
+      }
+    },
+    [flush],
+  );
 
   const handleMouseLeave = useCallback(() => {
     // Batalkan frame yang masih pending saat keluar hover
@@ -138,7 +149,7 @@ export const CardSpotlight = ({
         className={cn(
           "relative overflow-hidden rounded-2xl border",
           "border-slate-200/90 dark:border-white/10",
-          "bg-white dark:bg-[#0c0c0d]",
+          "bg-white/80 dark:bg-[#0c0c0d]/75 backdrop-blur-md",
           "shadow-[0_2px_8px_-2px_rgba(15,23,42,0.05),0_10px_25px_-5px_rgba(15,23,42,0.05)]",
           "dark:shadow-none",
           "hover:shadow-[0_16px_36px_-6px_rgba(37,99,235,0.12),0_4px_12px_rgba(15,23,42,0.04)]",
@@ -153,12 +164,14 @@ export const CardSpotlight = ({
         {/* Dynamic Spotlight: Luminous blue-slate in light, white in dark */}
         <div
           className="pointer-events-none absolute inset-0 z-0 transition-opacity duration-300 rounded-[inherit]"
-          style={{
-            opacity: "var(--opacity, 0)",
-            background: color
-              ? `radial-gradient(${radius}px circle at var(--x, 0px) var(--y, 0px), ${color}, transparent 70%)`
-              : `radial-gradient(${radius}px circle at var(--x, 0px) var(--y, 0px), var(--spotlight-color, rgba(59, 130, 246, 0.09)), transparent 70%)`,
-          } as React.CSSProperties}
+          style={
+            {
+              opacity: "var(--opacity, 0)",
+              background: color
+                ? `radial-gradient(${radius}px circle at var(--x, 0px) var(--y, 0px), ${color}, transparent 70%)`
+                : `radial-gradient(${radius}px circle at var(--x, 0px) var(--y, 0px), var(--spotlight-color, rgba(59, 130, 246, 0.09)), transparent 70%)`,
+            } as React.CSSProperties
+          }
         />
         <div className="relative z-10 h-full w-full">{children}</div>
       </div>

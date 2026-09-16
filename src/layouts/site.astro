@@ -2,6 +2,7 @@
 import "../styles/global.css";
 import Analytics from "@vercel/analytics/astro";
 import SpeedInsights from "@vercel/speed-insights/astro";
+import { BackgroundBeamsWithCollision } from "../components/layout/background-beams-with-collision";
 
 interface Props {
   title?: string;
@@ -218,8 +219,14 @@ const breadcrumbSchema = {
       />
     </noscript>
   </head>
-  <body>
-    <slot />
+  <body class="min-h-screen bg-[#f3f4f6] dark:bg-[#070709] text-slate-950 dark:text-slate-100 transition-colors duration-200 relative overflow-x-hidden">
+    <BackgroundBeamsWithCollision
+      client:idle
+      className="fixed inset-0 pointer-events-none z-0"
+    />
+    <div class="relative z-10">
+      <slot />
+    </div>
     <Analytics />
     <SpeedInsights />
   </body>

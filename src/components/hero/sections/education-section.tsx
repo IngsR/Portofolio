@@ -12,7 +12,7 @@ export const EducationSection = memo<{ items: EducationItem[] }>(
     if (items.length === 0) return null;
 
     return (
-      <section className="rounded-3xl border-slate-200/80 dark:border-white/10 bg-white dark:bg-[#0c0c0d] p-6 sm:p-10 shadow-sm space-y-6">
+      <section className="rounded-3xl border border-slate-200/80 dark:border-white/10 bg-white/80 dark:bg-[#0c0c0d]/75 backdrop-blur-md p-6 sm:p-10 shadow-sm space-y-6">
         <div className="space-y-2 border-b border-slate-200 dark:border-white/10 pb-4">
           <h2 className="ornament-underline text-xl sm:text-3xl font-black tracking-tight text-slate-950 dark:text-white">
             Pendidikan Perguruan Tinggi (S1)

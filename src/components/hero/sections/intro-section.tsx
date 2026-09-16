@@ -38,7 +38,7 @@ export const IntroSection = memo<HeroPageProps & { onOpenCV: () => void }>(
     const roles = useMemo(() => [...HERO_ROLES], []);
 
     return (
-      <section className="rounded-3xl border-slate-200/80 dark:border-white/10 bg-white dark:bg-[#0c0c0d] p-6 sm:p-10 lg:p-12 shadow-sm transition-all">
+      <section className="rounded-3xl border border-slate-200/80 dark:border-white/10 bg-white/80 dark:bg-[#0c0c0d]/75 backdrop-blur-md p-6 sm:p-10 lg:p-12 shadow-sm transition-all">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
           {/* Kolom kiri: ringkasan 60 detik pertama */}
           <div className="lg:col-span-7 space-y-2 sm:space-y-3">
