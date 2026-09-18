@@ -1,9 +1,5 @@
 User-agent: *
 Allow: /
 
-# Aset build & endpoint internal tidak perlu di-crawl
-Disallow: /_astro/
-Disallow: /api/
-
 # Sitemap otomatis dari @astrojs/sitemap (di-generate saat build)
 Sitemap: https://ikhwann.my.id/sitemap-index.xml

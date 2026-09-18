@@ -34,13 +34,7 @@ export const FeaturedProjectsSection = memo<
           </h2>
         </div>
 
-        <button
-          onClick={() => onNavigate?.("portfolio")}
-          className="text-xs font-bold uppercase tracking-wider text-slate-900 dark:text-white hover:opacity-80 flex items-center gap-1.5 px-4 py-2 rounded-full border-slate-200 dark:border-white/10"
-        >
-          <span>Lihat Semua Proyek ({totalProjects})</span>
-          <ArrowRight className="w-4 h-4" />
-        </button>
+        <a href="/portfolio" onClick={(e) => { e.preventDefault(); onNavigate?.("portfolio"); }} className="text-xs font-bold uppercase tracking-wider text-slate-900 dark:text-white hover:opacity-80 flex items-center gap-1.5 px-4 py-2 rounded-full border-slate-200 dark:border-white/10"><span>Lihat Semua Proyek ({totalProjects})</span><ArrowRight className="w-4 h-4" /></a>
       </div>
 
       <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-4.5">

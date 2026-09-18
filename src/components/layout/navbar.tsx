@@ -89,26 +89,31 @@ export const Navbar: React.FC<NavbarProps> = ({
   const navItems: {
     id: PageId;
     label: string;
+    href: string;
     icon: React.ReactNode;
   }[] = [
     {
       id: "home",
       label: "Beranda",
+      href: "/",
       icon: <House className="h-4 w-4" />,
     },
     {
       id: "portfolio",
       label: "Portofolio",
+      href: "/portfolio",
       icon: <BriefcaseBusiness className="h-4 w-4" />,
     },
     {
       id: "about",
       label: "Tentang",
+      href: "/about",
       icon: <UserRound className="h-4 w-4" />,
     },
     {
       id: "contact",
       label: "Kontak",
+      href: "/contact",
       icon: <Mail className="h-4 w-4" />,
     },
   ];
@@ -161,10 +166,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             "
           >
             {/* Brand Logo & Name */}
-            <button
-              type="button"
-              onClick={() => handleNavClick("home")}
-              className="group flex shrink-0 items-center gap-2.5 text-left focus:outline-none"
+            <a href="/" onClick={(e) => { e.preventDefault(); handleNavClick("home"); }} aria-label="Kembali ke Beranda" className="group flex shrink-0 items-center gap-2.5 text-left focus:outline-none"
             >
               <div className="relative">
                 <img
@@ -206,7 +208,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                   Siap Kerja WFO/Hybrid
                 </span>
               </div>
-            </button>
+            </a>
 
             {/* Desktop Navigation Tabs (Aceternity Floating Pills) */}
             <nav
@@ -228,12 +230,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               {navItems.map((item) => {
                 const isActive = activePage === item.id;
                 return (
-                  <button
-                    type="button"
-                    key={item.id}
-                    id={`nav-btn-${item.id}`}
-                    onClick={() => handleNavClick(item.id)}
-                    className={`
+                  <a key={item.id} href={item.href} id={`nav-btn-${item.id}`} onClick={(e) => { e.preventDefault(); handleNavClick(item.id); }} className={`
                       relative
                       flex
                       items-center
@@ -250,13 +247,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                           ? "bg-white text-slate-950 shadow-sm dark:bg-white dark:text-slate-950"
                           : "text-slate-600 hover:text-slate-950 dark:text-slate-400 dark:hover:text-white hover:bg-white/60 dark:hover:bg-white/5"
                       }
-                    `}
-                  >
-                    {item.icon}
-                    <span>
-                      {item.label === "Tentang" ? "Tentang Saya" : item.label}
-                    </span>
-                  </button>
+                    `}>{item.icon}<span>{item.label === "Tentang" ? "Tentang Saya" : item.label}</span></a>
                 );
               })}
             </nav>
@@ -445,11 +436,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           {navItems.map((item) => {
             const isActive = activePage === item.id;
             return (
-              <button
-                type="button"
-                key={item.id}
-                onClick={() => handleNavClick(item.id)}
-                className={`
+              <a key={item.id} href={item.href} onClick={(e) => { e.preventDefault(); handleNavClick(item.id); }} className={`
                   relative
                   flex
                   items-center
@@ -467,9 +454,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                       ? "flex-1 bg-slate-950 text-white dark:bg-white dark:text-slate-950 shadow-sm px-4"
                       : "px-4 text-slate-500 hover:text-slate-950 dark:text-slate-400 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/8"
                   }
-                `}
-              >
-                <span className="shrink-0">
+                `}> <span className="shrink-0">
                   <span className="block [&>svg]:h-5 [&>svg]:w-5">
                     {item.icon}
                   </span>
@@ -479,7 +464,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                     {item.label}
                   </span>
                 )}
-              </button>
+              </a>
             );
           })}
         </div>

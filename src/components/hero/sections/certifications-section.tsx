@@ -45,13 +45,7 @@ export const CertificationsSection = memo<CertificationsSectionProps>(
             </h2>
           </div>
 
-          <button
-            onClick={() => onNavigate?.("about")}
-            className="text-xs font-bold uppercase tracking-wider text-slate-900 dark:text-white hover:opacity-80 flex items-center gap-1.5 px-4 py-2 rounded-full border-slate-200 dark:border-white/10"
-          >
-            <span>Lihat Semua Sertifikat ({certificates.length})</span>
-            <ArrowRight className="w-4 h-4" />
-          </button>
+          <a href="/about" onClick={(e) => { e.preventDefault(); onNavigate?.("about"); }} className="text-xs font-bold uppercase tracking-wider text-slate-900 dark:text-white hover:opacity-80 flex items-center gap-1.5 px-4 py-2 rounded-full border-slate-200 dark:border-white/10"><span>Lihat Semua Sertifikat ({certificates.length})</span><ArrowRight className="w-4 h-4" /></a>
         </div>
 
         <LazyMount estimatedHeight={certificates.length * 460}>

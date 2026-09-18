@@ -108,14 +108,12 @@ export const IntroSection = memo<HeroPageProps & { onOpenCV: () => void }>(
             {/* CTA */}
             <div className="flex flex-nowrap justify-center sm:justify-start items-center gap-3 pt-2">
               <MagneticButton strength={0.25}>
-                <button
-                  id="hero-view-portfolio-btn"
-                  onClick={() => onNavigate?.("portfolio")}
+                <a id="hero-view-portfolio-btn" href="/portfolio" onClick={(e) => { e.preventDefault(); onNavigate?.("portfolio"); }}
                   className="flex-1 sm:flex-none px-5 sm:px-6 py-2.5 sm:py-3 rounded-full text-xs font-bold sm:uppercase sm:tracking-wider bg-slate-950 text-white dark:bg-white dark:text-slate-950 hover:bg-slate-800 dark:hover:bg-slate-100 transition-all flex items-center justify-center gap-1.5 sm:gap-2 shadow-sm"
                 >
                   <span>Lihat Portofolio</span>
                   <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
-                </button>
+                </a>
               </MagneticButton>
 
               <MagneticButton strength={0.25}>

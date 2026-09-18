@@ -15,11 +15,11 @@ export const Footer: React.FC<FooterProps> = ({ setActivePage, onOpenCV }) => {
     window.scrollTo({ top: 0, behavior: "auto" });
   };
 
-  const navigationItems: [PageId, string][] = [
-    ["home", "Beranda"],
-    ["portfolio", "Portofolio"],
-    ["about", "Tentang Saya"],
-    ["contact", "Kontak"],
+  const navigationItems: [PageId, string, string][] = [
+    ["home", "Beranda", "/"],
+    ["portfolio", "Portofolio", "/portfolio"],
+    ["about", "Tentang Saya", "/about"],
+    ["contact", "Kontak", "/contact"],
   ];
 
   return (
@@ -76,18 +76,19 @@ export const Footer: React.FC<FooterProps> = ({ setActivePage, onOpenCV }) => {
               Navigasi
             </h4>
             <div className="flex flex-col gap-1.5">
-              {navigationItems.map(([page, label]) => (
-                <button
+              {navigationItems.map(([page, label, path]) => (
+                <a
                   key={page}
-                  type="button"
-                  onClick={() => {
+                  href={path}
+                  onClick={(e) => {
+                    e.preventDefault();
                     setActivePage(page);
                     scrollToTop();
                   }}
                   className="text-left text-sm font-medium text-slate-700 dark:text-slate-300 transition-colors hover:text-slate-950 dark:hover:text-white w-fit"
                 >
                   {label}
-                </button>
+                </a>
               ))}
             </div>
           </div>

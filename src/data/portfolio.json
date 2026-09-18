@@ -537,7 +537,7 @@
       "degree": "Sarjana Komputer (S.Kom) - S1 Teknik Informatika (Konsentrasi Data Science)",
       "institution": "Universitas Putra Indonesia \"YPTK\" Padang",
       "period": "2022 - 2026",
-      "gpa": "3.27 / 4.00",
+      "gpa": "3.26 / 4.00",
       "details": "Fresh graduate S1 Teknik Informatika dengan konsentrasi Data Science. Fondasi akademik saya mencakup Rekayasa Perangkat Lunak, Struktur Data & Algoritma, Basis Data Relasional, Pemrograman Web, dan Keamanan Sistem Informasi, ditambah skripsi berbasis Deep Learning (LSTM) untuk prediksi data deret waktu lintasan siklon tropis."
     }
   ],
@@ -559,7 +559,7 @@
         "Neural Networks",
         "Python for AI"
       ],
-      "description": "Sertifikasi kompetensi fundamental kecerdasan buatan dari Huawei ICT Academy yang mencakup pengenalan komprehensif konsep AI, dasar-dasar machine learning, pemodelan deep learning, arsitektur neural networks, serta implementasi dasar komputasi cerdas dalam penyelesaian masalah."
+      "description": "Mempelajari konsep dasar machine learning dan neural network sebagai bekal mengintegrasikan model cerdas, mengolah data input-output, dan memanfaatkan AI untuk fitur aplikasi web."
     },
     {
       "id": "cert-2",
@@ -578,7 +578,7 @@
         "Natural Language Processing",
         "AI Industry Applications"
       ],
-      "description": "Sertifikasi penguasaan prinsip dan aplikasi kecerdasan buatan dari Huawei ICT Academy, mencakup arsitektur deep learning tingkat lanjut, Computer Vision (CV), pemrosesan bahasa alami (NLP), pipeline data, dan integrasi solusi AI pada skenario industri nyata."
+      "description": "Mempelajari penerapan model AI pada skenario nyata, membantu saya memahami alur pipeline data, konsumsi model lewat API, dan integrasi fitur AI ke dalam aplikasi web."
     },
     {
       "id": "cert-3",
@@ -597,7 +597,7 @@
         "VLAN & STP",
         "Enterprise Network Security"
       ],
-      "description": "Validasi kompetensi profesional teknologi komunikasi data (Datacom) Huawei tingkat HCIP, mencakup perancangan dan konfigurasi arsitektur jaringan skala enterprise, routing dinamis (OSPF/BGP), teknologi switching, keandalan jaringan, dan keamanan infrastruktur."
+      "description": "Mempelajari dasar komunikasi data dan infrastruktur jaringan yang berguna untuk memahami alur data client-server, latency, keandalan koneksi, serta troubleshooting jaringan saat mendeploy dan menghubungkan aplikasi web."
     },
     {
       "id": "cert-4",
