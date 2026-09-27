@@ -71,7 +71,8 @@ export const CardSpotlight = ({
         // will-change hanya diaktifkan selama hover → tidak ada layer GPU
         // permanen untuk puluhan card sekaligus (ini yang bikin scroll berat).
         if (tilt) {
-          el.style.setProperty("transform-perspective", "1000px");
+          // `perspective` harus lewat properti CSS valid — context 3D untuk tilt
+          el.style.perspective = "1000px";
           el.style.willChange = "transform";
         }
         const rect = el.getBoundingClientRect();
@@ -123,7 +124,7 @@ export const CardSpotlight = ({
       el.style.setProperty("--rotate-y", "0deg");
       // Lepas hint GPU + context 3D saat hover selesai agar layer compositor
       // dibebaskan (kartu diam tidak perlu menyimpan layer GPU).
-      el.style.setProperty("transform-perspective", "");
+      el.style.perspective = "";
       el.style.willChange = "auto";
     }
     hoverRef.current = false;

@@ -10,7 +10,6 @@ import {
   User,
   X,
 } from "lucide-react";
-import { AnimatePresence, motion } from "motion/react";
 import React, { useEffect } from "react";
 import { CertificationItem, ProjectItem } from "../../types";
 import { formatDomainName } from "../../utils/format";
@@ -62,30 +61,16 @@ export const Detail: React.FC<DetailModalProps> = ({
     : certificate?.issuer;
 
   return (
-    <AnimatePresence>
-      <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
-        {/* Backdrop overlay */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.15 }}
-          onClick={onClose}
-          className="fixed inset-0 bg-slate-950/70 backdrop-blur-sm"
-        />
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
+      {/* Backdrop overlay — entrance murni CSS (zero runtime JS) */}
+      <div
+        onClick={onClose}
+        className="fixed inset-0 bg-slate-950/70 backdrop-blur-sm animate-modal-backdrop"
+      />
 
-        {/* Modal Container (GPU Accelerated, No Shadow Flickering) */}
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: 12 }}
-          transition={{ duration: 0.18, ease: [0.16, 1, 0.3, 1] }}
-          style={{
-            transform: "translateZ(0)",
-            willChange: "transform, opacity",
-            backfaceVisibility: "hidden",
-          }}
-          className="relative w-full max-w-3xl bg-white dark:bg-[#0f0f11] rounded-2xl sm:rounded-3xl border border-slate-200 dark:border-white/10 shadow-2xl overflow-hidden my-auto max-h-[90vh] flex flex-col z-10 transform-gpu"
+        {/* Modal Container — entrance murni CSS (compositor: opacity + translateY) */}
+        <div
+          className="relative w-full max-w-3xl bg-white dark:bg-[#0f0f11] rounded-2xl sm:rounded-3xl border border-slate-200 dark:border-white/10 shadow-2xl overflow-hidden my-auto max-h-[90vh] flex flex-col z-10 animate-modal-card"
         >
           {/* Header Bar */}
           <div className="flex items-center justify-between gap-3 p-4 sm:p-6 border-b border-slate-100 dark:border-white/10 bg-slate-50/50 dark:bg-white/[0.02]">
@@ -393,8 +378,7 @@ export const Detail: React.FC<DetailModalProps> = ({
               )}
             </div>
           </div>
-        </motion.div>
       </div>
-    </AnimatePresence>
+    </div>
   );
 };

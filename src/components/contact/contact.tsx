@@ -19,7 +19,6 @@ import React, { useEffect, useState } from "react";
 import portfolioData from "../../data/portfolio.json";
 import { ContactMessage } from "../../types";
 import { isContactCategory, isContactMessage } from "../../utils/guard";
-import { motion, AnimatePresence } from "motion/react";
 import { CardSpotlight } from "../../design/components/card-spotlight";
 import { MagneticButton } from "../../design/components/magnetic-button";
 
@@ -489,21 +488,24 @@ export const Contact: React.FC = () => {
                     }`}
                   />
                 </button>
-                <AnimatePresence initial={false}>
-                  {isOpen && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.2, ease: "easeInOut" }}
-                      className="overflow-hidden"
-                    >
-                      <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 pt-1 pb-3 leading-relaxed font-light">
-                        {faq.answer}
-                      </p>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+                {/* Zero-runtime: accordion murni CSS. Grid 0fr→1fr
+                    menganimasikan tinggi ke "auto" tanpa JS runtime —
+                    isi selalu ada di DOM (masih terbaca screen reader),
+                    animasi jalan di compositor. */}
+                <div
+                  className={`grid transition-[grid-template-rows,opacity] duration-200 ease-in-out ${
+                    isOpen
+                      ? "grid-rows-[1fr] opacity-100"
+                      : "grid-rows-[0fr] opacity-0"
+                  }`}
+                  aria-hidden={!isOpen}
+                >
+                  <div className="overflow-hidden min-h-0">
+                    <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 pt-1 pb-3 leading-relaxed font-light">
+                      {faq.answer}
+                    </p>
+                  </div>
+                </div>
               </div>
             );
           })}

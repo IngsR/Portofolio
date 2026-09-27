@@ -42,7 +42,7 @@ export const AVAILABILITY_TEXT =
   "Siap On-Site (WFO) Seluruh Indonesia / Relokasi & Remote";
 
 export const HERO_BIO =
-  "Fresh graduate S1 Teknik Informatika dengan konsentrasi Data Science yang berfokus pada pengembangan aplikasi web. Saya banyak belajar melalui project, eksperimen, dan trial and error, menemukan masalah, memperbaiki, lalu memahami cara membuatnya lebih baik. Saat ini saya terus berkembang sebagai Junior Web Developer dan terbuka untuk kesempatan kerja, berkontribusi, serta berkembang bersama tim.";
+  "Fresh graduate S1 Teknik Informatika yang berfokus pada pengembangan web development secara end to end. Konsentrasi Data Science di perkuliahan saya jadikan latar akademik pelengkap yang melatih cara berpikir analitis. Saya banyak belajar melalui project, eksperimen, dan trial and error: menemukan masalah, memperbaiki, lalu memahami cara membuatnya lebih baik. Saat ini saya terus berkembang sebagai Junior Web Developer dan terbuka untuk kesempatan kerja serta berkembang bersama tim.";
 
 /** Ringkasan fokus teknis di section "Tentang Saya" pada Beranda */
 export const HERO_SUMMARY_CARDS: HeroSummaryCard[] = [
@@ -59,8 +59,9 @@ export const HERO_SUMMARY_CARDS: HeroSummaryCard[] = [
 export const SKILL_CATEGORY_ICONS: Record<string, string> = {
   Layout: "text-sky-600 dark:text-sky-400",
   Server: "text-indigo-600 dark:text-indigo-400",
+  Shield: "text-emerald-600 dark:text-emerald-400",
+  Cpu: "text-amber-600 dark:text-amber-400",
   Terminal: "text-purple-600 dark:text-purple-400",
-  Cpu: "text-emerald-600 dark:text-emerald-400",
 };
 
 export const DEFAULT_SKILL_CATEGORY_COLOR = "text-blue-600 dark:text-blue-400";

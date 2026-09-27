@@ -27,13 +27,17 @@ export const AboutSection = memo(function AboutSection() {
               Ikhwan Ramadhan
             </strong>
             , lulusan S1 Teknik Informatika Universitas Putra Indonesia
-            &ldquo;YPTK&rdquo; Padang dengan konsentrasi{" "}
+            &ldquo;YPTK&rdquo; Padang.{" "}
             <strong className="text-slate-950 dark:text-white font-bold">
-              Data Science
-            </strong>
-            . Ketertarikan saya berkembang dari eksplorasi data dan AI/ML hingga
-            pengembangan aplikasi web yang lebih dekat dengan proses membangun
-            produk secara langsung.
+              Fokus karir saya adalah web development
+            </strong>{" "}
+            dari antarmuka, REST API, database, hingga deployment. Konsentrasi
+            Data Science di perkuliahan saya jadikan{" "}
+            <strong className="text-slate-950 dark:text-white font-bold">
+              latar akademik pelengkap
+            </strong>{" "}
+            yang melatih cara berpikir analitis dan bagaimana cara melakukan
+            eksperiment
           </p>
           <p>
             Bagi saya, development bukan sekadar membuat sesuatu berjalan,
@@ -47,7 +51,7 @@ export const AboutSection = memo(function AboutSection() {
           </p>
         </div>
 
-        <div className="lg:col-span-4 grid-cols-2 gap-3 text-xs">
+        <div className="lg:col-span-4 grid grid-cols-2 gap-3 text-xs">
           {HERO_SUMMARY_CARDS.map((card, index) => {
             const cardClass = SUMMARY_CARD_CLASSES[index] ?? "";
             const textClass =

@@ -5,7 +5,7 @@
     "tagline": "Junior Web Developer yang membangun aplikasi web dari antarmuka hingga REST API, database, dan deployment, sambil terus memperdalam praktik software engineering melalui project nyata.",
     "shortBio": "Saya membangun aplikasi web dari frontend sampai backend: menyusun antarmuka, merancang REST API, menghubungkan database, lalu merilisnya ke internet.",
     "fullBio": [
-      "Saya Ikhwan Ramadhan, fresh graduate S1 Teknik Informatika Universitas Putra Indonesia \"YPTK\" Padang dengan konsentrasi Data Science. Saat ini saya menempatkan diri sebagai Junior Web Developer, karena web development adalah fokus profesional yang paling saya tekuni dan ingin kembangkan lebih jauh.",
+      "Saya Ikhwan Ramadhan, fresh graduate S1 Teknik Informatika Universitas Putra Indonesia \"YPTK\" Padang yang memposisikan diri sebagai Junior Web Developer.bidang ini adalah fokus profesional yang paling saya tekuni dan ingin kembangkan lebih jauh. Konsentrasi Data Science di perkuliahan saya pandang sebagai latar akademik pelengkap.",
       "Sebagian besar kemampuan web saya tumbuh dari project nyata dan belajar mandiri, bukan hanya dari kelas. Dari mengerjakan portal sekolah, aplikasi properti, sampai website showroom mobil, saya belajar memahami kebutuhan pengguna, membangun fitur, lalu berhadapan langsung dengan masalah: bug yang sulit dilacak, integrasi API yang tidak sesuai dugaan, struktur database yang perlu dirapikan, authentication, sampai proses deployment. Di situlah saya belajar membaca error, melakukan debugging, mencoba pendekatan lain, menguji ulang, dan mengevaluasi apakah hasilnya benar-benar lebih baik.",
       "Latar akademik Data Science dan AI/ML melengkapi cara saya bekerja. Skripsi saya membangun model LSTM untuk prediksi lintasan siklon tropis, yang saya uji melalui beberapa skenario konfigurasi, bandingkan hasilnya, dan evaluasi performanya sebelum memilih pendekatan terbaik. Kebiasaan bekerja eksperimental dan belajar dari hasil itu ikut memengaruhi cara saya menyusun, menguji, dan memperbaiki aplikasi web.",
       "Saya tidak menganggap proses belajar saya selesai setelah lulus. Saya ingin terus memperdalam web development, membangun kebiasaan software engineering yang lebih baik, dan memperluas pemahaman teknis melalui project serta pengalaman kerja nyata."
@@ -22,7 +22,7 @@
       "projectsCompleted": 8,
       "yearsExperience": 2,
       "happyClients": 8,
-      "codeCommits": "500+"
+      "codeCommits": "1.200+"
     },
     "socials": [
       {
@@ -450,44 +450,26 @@
       ]
     },
     {
-      "title": "TESTING, SECURITY & OWASP",
-      "iconName": "Cpu",
-      "description": "Kebiasaan menulis kode yang aman dari celah umum dan teruji sebelum ke produksi.",
+      "title": "QUALITY, SECURITY & DELIVERY",
+      "iconName": "Shield",
+      "description": "Kebiasaan merilis yang aman dan teruji: kode diuji, workflow rapi, dan rilis yang bisa dilacak.",
       "coreStack": [
         "Unit & Integration Testing",
         "OWASP Top 10 Awareness",
-        "Input Sanitization",
-        "Auth & Session Management"
-      ],
-      "alsoUsed": [
-        "Role-Based Access Control",
-        "Security Headers & CORS",
-        "Rate Limiting",
-        "Structured Error Handling"
-      ]
-    },
-    {
-      "title": "DEVOPS, CI/CD & GIT WORKFLOW",
-      "iconName": "Terminal",
-      "description": "Kebiasaan kerja yang rapi: branch teratur, review PR, dan rilis yang bisa dilacak.",
-      "coreStack": [
         "Git Branching & PR Review",
-        "Git Reset, Revert & Rollback",
-        "CI/CD Pipeline",
-        "Serverless Deployment (Vercel)"
+        "CI/CD & Serverless Deploy"
       ],
-      "alsoUsedLabel": "TOOLING & ENV",
       "alsoUsed": [
+        "Auth & Session Management",
+        "Input Sanitization",
         "GitHub Actions",
-        "Environment Secret Management",
-        "Docker Basic",
-        "Vite & Astro"
+        "Vercel Deployment"
       ]
     },
     {
-      "title": "DATA / AI / TECHNICAL EXPLORATION",
+      "title": "DATA SCIENCE & AI (SUPPORTING)",
       "iconName": "Cpu",
-      "description": "Latar akademik Data Science dan eksplorasi AI/ML yang membentuk cara saya bereksperimen dan belajar dari hasil.",
+      "description": "Latar akademik konsentrasi Data Science sebagai nilai tambah analitis di luar fokus utama web development.",
       "coreStack": [
         "Python",
         "Data Preprocessing",

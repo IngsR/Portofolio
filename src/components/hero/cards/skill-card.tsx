@@ -1,5 +1,5 @@
 "use client";
-import { Code2, Cpu, Layers, Server, Terminal } from "lucide-react";
+import { Code2, Cpu, Layers, Server, ShieldCheck } from "lucide-react";
 import { memo } from "react";
 import { SkillCategory } from "../../../types";
 
@@ -16,39 +16,60 @@ const ICON_BY_NAME: Record<
 > = {
   Layout: Code2,
   Server,
-  Terminal,
+  Shield: ShieldCheck,
   Cpu: Cpu,
 };
 
-const COLOR_BY_NAME: Record<string, string> = {
+/** Aksen warna per kartu: ikon + judul + garis atas (4 kartu = 4 identitas) */
+const ACCENT_BY_NAME: Record<string, string> = {
   Layout: "text-sky-600 dark:text-sky-400",
   Server: "text-indigo-600 dark:text-indigo-400",
-  Terminal: "text-purple-600 dark:text-purple-400",
-  Cpu: "text-emerald-600 dark:text-emerald-400",
+  Shield: "text-emerald-600 dark:text-emerald-400",
+  Cpu: "text-amber-600 dark:text-amber-400",
 };
 
-const DEFAULT_COLOR = "text-blue-600 dark:text-blue-400";
+const BORDER_ACCENT_BY_NAME: Record<string, string> = {
+  Layout: "hover:border-sky-400/80 dark:hover:border-sky-400/50",
+  Server: "hover:border-indigo-400/80 dark:hover:border-indigo-400/50",
+  Shield: "hover:border-emerald-400/80 dark:hover:border-emerald-400/50",
+  Cpu: "hover:border-amber-400/80 dark:hover:border-amber-400/50",
+};
+
+const DEFAULT_ACCENT = "text-blue-600 dark:text-blue-400";
+const DEFAULT_BORDER_ACCENT =
+  "hover:border-blue-400/80 dark:hover:border-blue-400/50";
 
 export const SkillCard = memo<{ category: SkillCategory }>(function SkillCard({
   category,
 }) {
   const Icon = ICON_BY_NAME[category.iconName] ?? Layers;
-  const iconColor = COLOR_BY_NAME[category.iconName] ?? DEFAULT_COLOR;
+  const accent = ACCENT_BY_NAME[category.iconName] ?? DEFAULT_ACCENT;
+  const borderAccent =
+    BORDER_ACCENT_BY_NAME[category.iconName] ?? DEFAULT_BORDER_ACCENT;
 
   return (
-    <div className="p-3.5 sm:p-4 lg:p-5 rounded-2xl sm:rounded-3xl border border-slate-200 dark:border-white/10 bg-white/80 dark:bg-[#0c0c0d]/75 backdrop-blur-md flex-col justify-between space-y-3 sm:space-y-4 hover:border-slate-400 dark:hover:border-white/30 transition-all shadow-sm">
+    <div
+      className={`relative overflow-hidden p-3.5 sm:p-4 lg:p-5 rounded-2xl sm:rounded-3xl border border-slate-200 dark:border-white/10 bg-white/80 dark:bg-[#0c0c0d]/75 backdrop-blur-md flex flex-col justify-between space-y-3 sm:space-y-4 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 ${borderAccent}`}
+    >
+      {/* Garis aksen atas — identitas warna per kartu */}
+      <span
+        className={`absolute inset-x-0 top-0 h-0.5 bg-current opacity-70 ${accent}`}
+      />
+
       <div className="space-y-2 sm:space-y-2.5">
         <div className="flex items-start justify-between gap-2">
           {/* Judul: izinkan wrap di mobile agar tidak terpotong dengan ... */}
-          <span className="text-[9.5px] sm:text-[11px] font-bold uppercase tracking-tight sm:tracking-wider leading-tight text-blue-600 dark:text-blue-400 break-words min-w-0">
+          <span
+            className={`text-[9.5px] sm:text-[11px] font-bold uppercase tracking-tight sm:tracking-wider leading-tight break-words min-w-0 ${accent}`}
+          >
             {category.title}
           </span>
           <div className="p-1.5 sm:p-2 rounded-xl bg-slate-100 dark:bg-white/5 shrink-0">
-            <Icon className={`w-4 h-4 sm:w-5 sm:h-5 ${iconColor}`} />
+            <Icon className={`w-4 h-4 sm:w-5 sm:h-5 ${accent}`} />
           </div>
         </div>
 
-        <p className="text-[10.5px] sm:text-xs text-slate-600 dark:text-slate-400 leading-relaxed line-clamp-3 sm:line-clamp-3">
+        <p className="text-[10.5px] sm:text-xs text-slate-600 dark:text-slate-400 leading-relaxed line-clamp-3">
           {category.description}
         </p>
       </div>
@@ -61,7 +82,7 @@ export const SkillCard = memo<{ category: SkillCategory }>(function SkillCard({
           {category.coreStack.map((tech) => (
             <span
               key={tech}
-              className="px-2 py-0.5 sm:px-2.5 sm:py-1 text-[8.5px] sm:text-[10px] lg:text-[11px] font-semibold rounded-full bg-slate-100 dark:bg-white/5 text-slate-800 dark:text-slate-200 border-slate-200/60 dark:border-white/5 truncate max-w-[100px] sm:max-w-none"
+              className="px-2 py-0.5 sm:px-2.5 sm:py-1 text-[8.5px] sm:text-[10px] lg:text-[11px] font-semibold rounded-full bg-slate-100 dark:bg-white/5 text-slate-800 dark:text-slate-200 border border-slate-200/60 dark:border-white/5 hover:border-current transition-colors"
               title={tech}
             >
               {tech}
