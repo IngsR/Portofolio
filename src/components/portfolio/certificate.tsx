@@ -13,14 +13,12 @@ import { CardSpotlight } from "../../design/components/card-spotlight";
 
 interface CertificateCardProps {
   certificate: CertificationItem;
-  onOpenDetail: (cert: CertificationItem) => void;
-  onOpenPreview?: (cert: CertificationItem) => void;
+  onOpenDetail?: (cert: CertificationItem) => void;
 }
 
 export const Certificate = memo<CertificateCardProps>(function Certificate({
   certificate,
   onOpenDetail,
-  onOpenPreview,
 }) {
   // Baca nilai hover capability dari module-level singleton — tidak ada useState/useEffect
   const hoverable = canHover();
@@ -31,7 +29,13 @@ export const Certificate = memo<CertificateCardProps>(function Certificate({
       : ""
   }`;
 
-  const handleCardClick = () => onOpenDetail(certificate);
+  const handleCardClick = () => {
+    if (certificate?.id) {
+      window.location.href = `/certificate/${certificate.id}`;
+      return;
+    }
+    if (onOpenDetail) onOpenDetail(certificate);
+  };
 
   const card = hoverable ? (
     <CardSpotlight
@@ -43,7 +47,6 @@ export const Certificate = memo<CertificateCardProps>(function Certificate({
       <CertificateContent
         certificate={certificate}
         onOpenDetail={onOpenDetail}
-        onOpenPreview={onOpenPreview}
       />
     </CardSpotlight>
   ) : (
@@ -51,7 +54,6 @@ export const Certificate = memo<CertificateCardProps>(function Certificate({
       <CertificateContent
         certificate={certificate}
         onOpenDetail={onOpenDetail}
-        onOpenPreview={onOpenPreview}
       />
     </div>
   );
@@ -61,9 +63,8 @@ export const Certificate = memo<CertificateCardProps>(function Certificate({
 
 const CertificateContent = memo<{
   certificate: CertificationItem;
-  onOpenDetail: (cert: CertificationItem) => void;
-  onOpenPreview?: ((cert: CertificationItem) => void) | undefined;
-}>(function CertificateContent({ certificate, onOpenDetail, onOpenPreview }) {
+  onOpenDetail?: (cert: CertificationItem) => void;
+}>(function CertificateContent({ certificate, onOpenDetail }) {
   return (
     <>
       <div className="space-y-2.5 sm:space-y-3">
@@ -88,25 +89,6 @@ const CertificateContent = memo<{
             className="w-full h-full object-contain object-center rounded-lg bg-white shadow-xs select-none group-hover:brightness-95 transition-[filter] duration-200"
             referrerPolicy="no-referrer"
           />
-
-          {/* Quick Preview Hover Trigger (mata) — CSS-only, tanpa JS listener per frame */}
-          <div className="absolute inset-0 bg-black/25 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center justify-center pointer-events-none">
-            <button
-              type="button"
-              onClick={(e) => {
-                e.stopPropagation();
-                if (onOpenPreview) {
-                  onOpenPreview(certificate);
-                } else {
-                  onOpenDetail(certificate);
-                }
-              }}
-              className="pointer-events-auto inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-950/90 hover:bg-slate-900 text-white dark:bg-white/90 dark:hover:bg-white dark:text-slate-950 text-[11px] font-bold shadow-lg backdrop-blur-md transition-transform duration-200 scale-90 group-hover:scale-100"
-            >
-              <Eye className="w-3.5 h-3.5" />
-              <span>Lihat Preview</span>
-            </button>
-          </div>
 
           {/* Badge backdrop-blur hanya di desktop — blur berlapis sangat mahal
               saat scroll di HP (memaksa repaint area blur tiap frame) */}
@@ -213,14 +195,14 @@ const CertificateContent = memo<{
         className="pt-3 sm:pt-4 mt-3 sm:mt-4 border-t border-slate-200/80 dark:border-white/10 flex items-center justify-between gap-1.5 sm:gap-2"
         onClick={(e) => e.stopPropagation()}
       >
-        <button
-          onClick={() => onOpenDetail(certificate)}
-          className="flex items-center justify-center gap-1 p-1.5 sm:px-4 sm:py-2 rounded-full border border-slate-300 dark:border-white/10 text-slate-900 dark:text-white hover:bg-slate-100 dark:hover:bg-white/10 text-[10px] sm:text-xs font-bold transition-all shrink-0"
-          title="Detail Sertifikat"
+        <a
+          href={`/certificate/${certificate.id}`}
+          className="flex items-center justify-center gap-1.5 p-1.5 sm:px-4 sm:py-2 rounded-full border border-slate-300 dark:border-white/10 text-slate-900 dark:text-white hover:bg-slate-950 hover:text-white dark:hover:bg-white dark:hover:text-slate-950 text-[10px] sm:text-xs font-bold transition-all shrink-0 shadow-xs"
+          title="Lihat Detail Sertifikasi Sinematik"
         >
           <FileText className="w-3.5 h-3.5" />
-          <span className="hidden sm:inline">Detail</span>
-        </button>
+          <span>Detail</span>
+        </a>
 
         {certificate.credentialUrl && (
           <a

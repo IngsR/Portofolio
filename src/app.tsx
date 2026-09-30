@@ -7,7 +7,6 @@ import { Footer } from "./components/layout/footer";
 import { Navbar } from "./components/layout/navbar";
 import { Cv } from "./components/modal/cv";
 import { MarkdownEditor } from "./components/modal/markdown-editor";
-import { MarkdownViewer } from "./components/modal/markdown-viewer";
 import { Portfolio } from "./components/portfolio/portfolio";
 import { useModal, useProjects, useSmoothScroll, useTheme } from "./hooks";
 import { PageId } from "./types";
@@ -35,9 +34,6 @@ export default function App({
     isCVOpen,
     openCV,
     closeCV,
-    selectedMarkdownProject,
-    openMarkdown,
-    closeMarkdown,
     isCreateModalOpen,
     openCreateModal,
     closeCreateModal,
@@ -51,8 +47,7 @@ export default function App({
       isDetailOpen ||
       isPreviewOpen ||
       isCVOpen ||
-      isCreateModalOpen ||
-      !!selectedMarkdownProject,
+      isCreateModalOpen,
   });
 
   return (
@@ -89,16 +84,14 @@ export default function App({
               <HeroPage
                 setActivePage={setActivePage}
                 featuredProjects={featuredProjects}
-                onOpenProjectMarkdown={openMarkdown}
                 onOpenCV={openCV}
               />
             )}
 
-            {/* 2. Portofolio (Portfolio & Markdown Case Studies) */}
+            {/* 2. Portofolio (Portfolio) */}
             {activePage === "portfolio" && (
               <PortfolioPage
                 projects={projects}
-                onOpenMarkdown={openMarkdown}
                 onOpenCreateModal={openCreateModal}
               />
             )}
@@ -116,12 +109,6 @@ export default function App({
       <div className="print:hidden">
         <FooterPage setActivePage={setActivePage} onOpenCV={openCV} />
       </div>
-
-      {/* Markdown Case Study Viewer Modal */}
-      <MarkdownViewer
-        project={selectedMarkdownProject}
-        onClose={closeMarkdown}
-      />
 
       {/* Markdown Editor & Project Authoring Modal */}
       <MarkdownEditor

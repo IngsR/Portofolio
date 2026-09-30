@@ -1,4 +1,4 @@
-import { ArrowUpRight, Calendar, Eye, FileText, Github } from "lucide-react";
+import { ArrowUpRight, Calendar, FileText, Github } from "lucide-react";
 import React, { memo } from "react";
 import { ProjectItem } from "../../types";
 import { formatDomainName, formatShortDomain } from "../../utils/format";
@@ -7,9 +7,7 @@ import { CardSpotlight } from "../../design/components/card-spotlight";
 
 interface ProjectCardProps {
   project: ProjectItem;
-  onOpenDetail: (project: ProjectItem) => void;
-  onOpenMarkdown?: (project: ProjectItem) => void;
-  onOpenPreview?: (project: ProjectItem) => void;
+  onOpenDetail?: (project: ProjectItem) => void;
 }
 
 const CARD_BASE =
@@ -20,22 +18,11 @@ const CARD_HOVER =
 export const Project = memo<ProjectCardProps>(function Project({
   project,
   onOpenDetail,
-  onOpenMarkdown,
-  onOpenPreview,
 }) {
   const domain = formatDomainName(project.demoUrl);
   const shortDomain = formatShortDomain(project.demoUrl);
   const hoverable = canHover();
   const cardClassName = CARD_BASE + (hoverable ? CARD_HOVER : "");
-
-  const handlePreviewClick = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    if (onOpenPreview) {
-      onOpenPreview(project);
-    } else {
-      onOpenDetail(project);
-    }
-  };
 
   const content = (
     <>
@@ -62,18 +49,6 @@ export const Project = memo<ProjectCardProps>(function Project({
           <span className="px-2 py-0.5 sm:px-2.5 sm:py-1 text-[9px] sm:text-[11px] font-semibold rounded-md sm:rounded-lg bg-slate-950/85 text-white dark:bg-white/90 dark:text-slate-950 backdrop-blur-md shadow-xs truncate">
             {project.category}
           </span>
-        </div>
-
-        {/* Quick Preview Hover Trigger */}
-        <div className="absolute inset-0 bg-black/25 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center pointer-events-none">
-          <button
-            type="button"
-            onClick={handlePreviewClick}
-            className="pointer-events-auto inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-950/90 hover:bg-slate-900 text-white dark:bg-white/90 dark:hover:bg-white dark:text-slate-950 text-xs font-bold shadow-lg backdrop-blur-md transition-transform scale-90 group-hover:scale-100"
-          >
-            <Eye className="w-3.5 h-3.5" />
-            <span>Lihat Preview</span>
-          </button>
         </div>
 
         {/* Live Domain Indicator if available */}
@@ -211,7 +186,7 @@ export const Project = memo<ProjectCardProps>(function Project({
       window.location.href = `/project/${project.slug}`;
       return;
     }
-    onOpenDetail(project);
+    if (onOpenDetail) onOpenDetail(project);
   };
 
   if (hoverable) {

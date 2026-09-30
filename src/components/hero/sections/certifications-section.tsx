@@ -2,37 +2,14 @@
 import { ArrowRight } from "lucide-react";
 import { memo } from "react";
 import { LazyMount } from "../../../design/components/lazy-mount";
-import {
-  isDetailOpenStore,
-  isPreviewOpenStore,
-  selectedCertForDetailStore,
-  selectedPreviewItemStore,
-  selectedProjectForDetailStore,
-} from "../../../store/portfolio";
-import { CertificationItem } from "../../../types";
 import { Certificate } from "../../portfolio/certificate";
 import { CertificationsSectionProps } from "../types";
 
 /**
- * Handler modal berupa helper modul (bukan state lokal), jadi section ini
- * tetap bebas state dan tidak ikut re-render saat modal dibuka/ditutup.
- */
-const handleOpenCertDetail = (cert: CertificationItem) => {
-  selectedCertForDetailStore.set(cert);
-  selectedProjectForDetailStore.set(null);
-  isDetailOpenStore.set(true);
-};
-
-const handleOpenCertPreview = (cert: CertificationItem) => {
-  selectedPreviewItemStore.set(cert);
-  isPreviewOpenStore.set(true);
-};
-
-/**
  * CertificationsSection — sertifikat pilihan di Beranda.
  *
- * Grid dibungkus LazyMount (content-visibility) seperti sebelumnya, dan kartu
- * tetap memakai komponen `Certificate` yang dipakai bersama halaman lain.
+ * Grid dibungkus LazyMount (content-visibility), dan kartu
+ * langsung membuka halaman detail sinematik saat diklik.
  */
 export const CertificationsSection = memo<CertificationsSectionProps>(
   function CertificationsSection({ certificates, onNavigate }) {
@@ -54,8 +31,6 @@ export const CertificationsSection = memo<CertificationsSectionProps>(
               <Certificate
                 key={cert.id}
                 certificate={cert}
-                onOpenDetail={handleOpenCertDetail}
-                onOpenPreview={handleOpenCertPreview}
               />
             ))}
           </div>

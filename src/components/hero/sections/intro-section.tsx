@@ -1,11 +1,15 @@
-"use client";
 import {
   ArrowRight,
+  Briefcase,
+  CheckCircle2,
+  Cpu,
   FileText,
+  GitCommit,
   GraduationCap,
   MapPin,
   MessageCircle,
 } from "lucide-react";
+import { motion } from "motion/react";
 import { memo, useMemo } from "react";
 import portfolioData from "../../../data/portfolio.json";
 import { EncryptedText } from "../../../design/components/encrypted-text";
@@ -15,54 +19,83 @@ import { MovingBorder } from "../../../design/components/moving-border";
 import { Sparkles } from "../../../design/components/sparkles";
 import { TextGenerateEffect } from "../../../design/components/text-generate-effect";
 import { UserProfile } from "../../../types";
+import { CinematicViewportFx } from "../cinematic-viewport-fx";
 import { ProfilePhotoCard } from "../cards/profile-photo-card";
 import { AVAILABILITY_TEXT, HERO_BIO, HERO_ROLES } from "../hero.data";
 import { HeroPageProps } from "../types";
 
 /**
- * IntroSection — kartu perkenalan (kiri: nama, peran, bio, CTA; kanan: foto).
- *
- * Layout & animasi dipertahankan apa adanya:
- * - EncryptedText untuk nama, FlipWords untuk peran (min-h dikunci agar
- *   pergantian kata tidak menggeser halaman)
- * - TextGenerateEffect untuk bio, Sparkles untuk pill ketersediaan
- * - MagneticButton + MovingBorder untuk tombol aksi
+ * IntroSection — kartu perkenalan sinematik dengan visual mewah di light mode
+ * dan ambient motion yang ringan di mobile.
  */
 export const IntroSection = memo<HeroPageProps & { onOpenCV: () => void }>(
   function IntroSection({ onNavigate, onOpenCV }) {
     const userProfile = portfolioData.userProfile as unknown as UserProfile;
 
-    // Salinan array stabil: referensi `HERO_ROLES` tetap sama walau modul data
-    // di-reload (HMR), sehingga kartu perkenalan ini tidak ikut re-render
-    // ketika state Hero lain berubah.
     const roles = useMemo(() => [...HERO_ROLES], []);
 
-    /** Strip statistik singkat — angka nyata dari data profil, memberi ritme visual */
+    /** Strip statistik singkat dengan ikon berkarakter */
     const stats = useMemo(
       () => [
         {
           label: "Proyek Selesai",
           value: `${userProfile.stats.projectsCompleted}+`,
+          icon: (
+            <CheckCircle2 className="w-3.5 h-3.5 text-indigo-600 dark:text-indigo-400 shrink-0" />
+          ),
         },
         {
           label: "Pengalaman Profesional",
           value: `${userProfile.stats.yearsExperience} Bulan`,
+          icon: (
+            <Briefcase className="w-3.5 h-3.5 text-sky-600 dark:text-sky-400 shrink-0" />
+          ),
         },
-        { label: "Commit per Tahun", value: userProfile.stats.codeCommits },
+        {
+          label: "Commit per Tahun",
+          value: userProfile.stats.codeCommits,
+          icon: (
+            <GitCommit className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400 shrink-0" />
+          ),
+        },
       ],
       [userProfile.stats],
     );
 
     return (
-      <section className="relative overflow-hidden rounded-3xl border border-slate-200/80 dark:border-white/10 bg-white/80 dark:bg-[#0c0c0d]/75 backdrop-blur-md p-6 sm:p-10 lg:p-12 shadow-sm transition-all">
-        {/* Aksen latar lembut — memberi "udara" dan kedalaman tanpa mengganggu konten */}
-        <div
+      <section className="relative overflow-hidden rounded-3xl border border-slate-200/90 dark:border-white/10 bg-gradient-to-b from-white via-[#fdfdfe] to-[#f8f9fc] dark:from-[#0d0d10] dark:via-[#09090b] dark:to-[#08080a] backdrop-blur-md p-6 sm:p-10 lg:p-12 shadow-[0_20px_50px_-15px_rgba(15,23,42,0.06),0_1px_3px_rgba(15,23,42,0.03)] transition-all">
+        {/* Cinematic Viewport FX — anamorphic lens flare + viewfinder HUD (desktop only for perf) */}
+        <div className="hidden sm:block">
+          <CinematicViewportFx />
+        </div>
+
+        {/* Cinematic ambient aurora lighting on desktop (fluid motion) */}
+        <motion.div
           aria-hidden
-          className="pointer-events-none absolute -top-24 -right-24 h-64 w-64 rounded-full bg-gradient-to-br from-sky-200/40 to-indigo-200/30 blur-3xl dark:from-sky-500/10 dark:to-indigo-500/10"
+          animate={{
+            scale: [1, 1.15, 1],
+            opacity: [0.6, 0.85, 0.6],
+            x: [0, 15, 0],
+            y: [0, -10, 0],
+          }}
+          transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
+          className="pointer-events-none hidden md:block absolute -top-28 -right-28 h-80 w-80 rounded-full bg-gradient-to-br from-indigo-300/35 via-sky-200/30 to-purple-200/20 blur-3xl dark:from-indigo-500/15 dark:via-sky-500/10 dark:to-purple-500/10"
         />
+        <motion.div
+          aria-hidden
+          animate={{
+            scale: [1, 1.12, 1],
+            opacity: [0.5, 0.75, 0.5],
+            x: [0, -10, 0],
+            y: [0, 15, 0],
+          }}
+          transition={{ duration: 11, repeat: Infinity, ease: "easeInOut" }}
+          className="pointer-events-none hidden md:block absolute -bottom-36 -left-20 h-72 w-72 rounded-full bg-gradient-to-tr from-emerald-200/30 via-teal-200/20 to-transparent blur-3xl dark:from-emerald-500/10 dark:via-teal-500/5 dark:to-transparent"
+        />
+        {/* Lightweight static gradient on mobile (zero CPU/GPU overhead) */}
         <div
           aria-hidden
-          className="pointer-events-none absolute -bottom-32 -left-16 h-56 w-56 rounded-full bg-gradient-to-tr from-emerald-200/30 to-transparent blur-3xl dark:from-emerald-500/10 dark:to-transparent"
+          className="pointer-events-none block md:hidden absolute -top-16 -right-16 h-48 w-48 rounded-full bg-sky-200/30 blur-2xl dark:bg-sky-500/10"
         />
 
         <div className="relative grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
@@ -106,8 +139,8 @@ export const IntroSection = memo<HeroPageProps & { onOpenCV: () => void }>(
 
             {/* Highlight singkat */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs text-slate-700 dark:text-slate-300">
-              <div className="flex items-start gap-2.5 p-4 rounded-2xl bg-slate-50 dark:bg-white/[0.03] border-slate-200/60 dark:border-white/5">
-                <MapPin className="w-4 h-4 text-slate-500 dark:text-slate-400 mt-0.5 shrink-0" />
+              <div className="flex items-start gap-2.5 p-4 rounded-2xl bg-white/95 dark:bg-white/[0.03] border border-slate-200/80 dark:border-white/5 shadow-xs">
+                <MapPin className="w-4 h-4 text-indigo-500 dark:text-indigo-400 mt-0.5 shrink-0" />
                 <div>
                   <span className="font-bold block text-slate-900 dark:text-white">
                     Kesiapan Kerja:
@@ -118,31 +151,34 @@ export const IntroSection = memo<HeroPageProps & { onOpenCV: () => void }>(
                 </div>
               </div>
 
-              <div className="flex items-start gap-2.5 p-4 rounded-2xl bg-slate-50 dark:bg-white/[0.03] border-slate-200/60 dark:border-white/5">
-                <GraduationCap className="w-4 h-4 text-slate-500 dark:text-slate-400 mt-0.5 shrink-0" />
+              <div className="flex items-start gap-2.5 p-4 rounded-2xl bg-white/95 dark:bg-white/[0.03] border border-slate-200/80 dark:border-white/5 shadow-xs">
+                <GraduationCap className="w-4 h-4 text-sky-500 dark:text-sky-400 mt-0.5 shrink-0" />
                 <div>
                   <span className="font-bold block text-slate-900 dark:text-white">
                     Pendidikan Akademis:
                   </span>
                   <span className="text-slate-600 dark:text-slate-400">
-                    S1 Teknik Informatika - UPI &ldquo;YPTK&rdquo;
+                    S1 Teknik Informatika - UPI &ldquo;YPTK&rdquo; (IPK 3.26)
                   </span>
                 </div>
               </div>
             </div>
 
-            {/* Strip statistik — grid 3 kolom, ritme angka di bawah bio */}
+            {/* Strip statistik — grid 3 kolom, ritme angka nyata di bawah bio */}
             <div className="grid grid-cols-3 gap-2 sm:gap-3 pt-1">
               {stats.map((stat) => (
                 <div
                   key={stat.label}
-                  className="rounded-2xl bg-slate-50 dark:bg-white/[0.03] border border-slate-200/60 dark:border-white/5 px-2 py-3 sm:px-3 text-center sm:text-left"
+                  className="rounded-2xl bg-white/95 dark:bg-white/[0.03] border border-slate-200/80 dark:border-white/5 p-3 text-left shadow-xs hover:border-slate-300 dark:hover:border-white/20 transition-all duration-200"
                 >
+                  <div className="flex items-center justify-between mb-1">
+                    <span className="text-[9px] sm:text-[10px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 truncate">
+                      {stat.label}
+                    </span>
+                    {stat.icon}
+                  </div>
                   <span className="block text-base sm:text-xl font-black tracking-tight text-slate-950 dark:text-white">
                     {stat.value}
-                  </span>
-                  <span className="block text-[9px] sm:text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mt-0.5">
-                    {stat.label}
                   </span>
                 </div>
               ))}
@@ -171,7 +207,7 @@ export const IntroSection = memo<HeroPageProps & { onOpenCV: () => void }>(
                   href={userProfile.whatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex-1 sm:flex-none px-3 sm:px-5 py-2.5 sm:py-3 rounded-full border-emerald-600/30 bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-700 dark:text-emerald-300 text-xs font-bold sm:tracking-wider transition-all flex items-center justify-center gap-1.5 sm:gap-2"
+                  className="flex-1 sm:flex-none px-3 sm:px-5 py-2.5 sm:py-3 rounded-full border border-emerald-600/30 bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-700 dark:text-emerald-300 text-xs font-bold sm:tracking-wider transition-all flex items-center justify-center gap-1.5 sm:gap-2 shadow-xs"
                 >
                   <MessageCircle className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
                   <span className="sm:hidden">WhatsApp</span>
@@ -191,8 +227,36 @@ export const IntroSection = memo<HeroPageProps & { onOpenCV: () => void }>(
             </div>
           </div>
 
-          {/* Kolom kanan: kartu foto profil + tautan kontak */}
-          <div className="lg:col-span-5 flex justify-center">
+          {/* Kolom kanan: kartu foto profil + floating HUD chips di desktop */}
+          <div className="lg:col-span-5 flex justify-center relative">
+            {/* Desktop-only floating chips (hidden on mobile for 60fps lightweight performance) */}
+            <motion.div
+              animate={{ y: [-4, 4, -4] }}
+              transition={{
+                duration: 4.5,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+              className="hidden xl:flex absolute -top-3 -left-6 z-20 items-center gap-2 px-3 py-1.5 rounded-2xl bg-white/95 dark:bg-[#121216]/95 border border-slate-200/90 dark:border-white/15 shadow-[0_8px_20px_-4px_rgba(15,23,42,0.1)] dark:shadow-black/60 backdrop-blur-md text-[11px] font-bold text-slate-800 dark:text-white pointer-events-none"
+            >
+              <span className="flex h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
+              <span>Next.js 15 &amp; React 19</span>
+            </motion.div>
+
+            <motion.div
+              animate={{ y: [4, -4, 4] }}
+              transition={{
+                duration: 5,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: 0.5,
+              }}
+              className="hidden xl:flex absolute -bottom-2 -right-5 z-20 items-center gap-2 px-3 py-1.5 rounded-2xl bg-white/95 dark:bg-[#121216]/95 border border-slate-200/90 dark:border-white/15 shadow-[0_8px_20px_-4px_rgba(15,23,42,0.1)] dark:shadow-black/60 backdrop-blur-md text-[11px] font-bold text-slate-800 dark:text-white pointer-events-none"
+            >
+              <Cpu className="w-3.5 h-3.5 text-indigo-500" />
+              <span>Fullstack &amp; Architecture</span>
+            </motion.div>
+
             <ProfilePhotoCard userProfile={userProfile} />
           </div>
         </div>

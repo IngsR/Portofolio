@@ -24,18 +24,17 @@ interface HeroCardProps {
   variant: HeroCardVariant;
   project?: ProjectItem | undefined;
   certificate?: CertificationItem | undefined;
-  onOpenDetail: () => void;
-  onOpenPreview: () => void;
+  onOpenDetail?: () => void;
 }
 
 const BASE_CLASS =
-  "group flex-col justify-between bg-white/80 dark:bg-[#0c0c0d]/75 backdrop-blur-md border border-slate-200/80 dark:border-white/10 rounded-2xl sm:rounded-3xl overflow-hidden shadow-sm cursor-pointer";
+  "group flex-col justify-between bg-gradient-to-b from-white via-white/95 to-slate-50/90 dark:from-[#0f0f13]/90 dark:via-[#0c0c0f]/80 dark:to-[#09090b]/85 backdrop-blur-md border border-slate-200/90 dark:border-white/10 rounded-2xl sm:rounded-3xl overflow-hidden shadow-[0_4px_20px_-4px_rgba(15,23,42,0.05)] cursor-pointer";
 
 const PROJECT_HOVER =
-  " hover:border-slate-400 dark:hover:border-white/30 hover:shadow-lg hover:-translate-y-1 transition-[border-color,box-shadow,transform] duration-300";
+  " hover:border-indigo-500/40 dark:hover:border-white/30 hover:shadow-[0_20px_35px_-8px_rgba(15,23,42,0.12)] hover:-translate-y-1 transition-[border-color,box-shadow,transform] duration-300";
 
 const CERT_HOVER =
-  " hover:border-emerald-500/40 dark:hover:border-white/30 hover:shadow-xl hover:-translate-y-1 transition-[border-color,box-shadow,transform] duration-300";
+  " hover:border-emerald-500/40 dark:hover:border-white/30 hover:shadow-[0_20px_35px_-8px_rgba(15,23,42,0.12)] hover:-translate-y-1 transition-[border-color,box-shadow,transform] duration-300";
 
 /** Gambar dengan nilai fallback (dipakai proyek & sertifikat) */
 const CardImage: React.FC<{
@@ -74,50 +73,11 @@ const CardImage: React.FC<{
   );
 });
 
-/** Tombol "Lihat Preview" yang muncul saat hover di atas gambar */
-const PreviewOverlay: React.FC<{
-  sizeClass: string;
-  onOpenPreview: () => void;
-}> = memo(function PreviewOverlay({ sizeClass, onOpenPreview }) {
-  return (
-    <div className="absolute inset-0 bg-black/25 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center justify-center pointer-events-none">
-      <button
-        type="button"
-        onClick={(e) => {
-          e.stopPropagation();
-          onOpenPreview();
-        }}
-        className={`pointer-events-auto inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-950/90 hover:bg-slate-900 text-white dark:bg-white/90 dark:hover:bg-white dark:text-slate-950 ${sizeClass} font-bold shadow-lg backdrop-blur-md transition-transform duration-200 scale-90 group-hover:scale-100`}
-      >
-        <EyeIcon />
-        <span>Lihat Preview</span>
-      </button>
-    </div>
-  );
-});
-
-const EyeIcon = () => (
-  <svg
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    className="w-3.5 h-3.5"
-    aria-hidden="true"
-  >
-    <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z" />
-    <circle cx="12" cy="12" r="3" />
-  </svg>
-);
-
 export const HeroCard = memo<HeroCardProps>(function HeroCard({
   variant,
   project,
   certificate,
   onOpenDetail,
-  onOpenPreview,
 }) {
   const hoverable = canHover();
   const cardClassName = `${BASE_CLASS}${
@@ -128,14 +88,10 @@ export const HeroCard = memo<HeroCardProps>(function HeroCard({
     variant === "project" && project ? (
       <ProjectCardBody
         project={project}
-        onOpenDetail={onOpenDetail}
-        onOpenPreview={onOpenPreview}
       />
     ) : certificate ? (
       <CertificateCardBody
         certificate={certificate}
-        onOpenDetail={onOpenDetail}
-        onOpenPreview={onOpenPreview}
       />
     ) : null;
 
@@ -146,7 +102,11 @@ export const HeroCard = memo<HeroCardProps>(function HeroCard({
       window.location.href = `/project/${project.slug}`;
       return;
     }
-    onOpenDetail();
+    if (variant === "certificate" && certificate?.id) {
+      window.location.href = `/certificate/${certificate.id}`;
+      return;
+    }
+    if (onOpenDetail) onOpenDetail();
   };
 
   // Perangkat hover: spotlight mengikuti kursor + tilt halus.
@@ -173,9 +133,7 @@ export const HeroCard = memo<HeroCardProps>(function HeroCard({
 
 const ProjectCardBody = memo<{
   project: ProjectItem;
-  onOpenDetail: () => void;
-  onOpenPreview: () => void;
-}>(function ProjectCardBody({ project, onOpenDetail, onOpenPreview }) {
+}>(function ProjectCardBody({ project }) {
   return (
     <>
       <div className="space-y-2 sm:space-y-3 p-3 sm:p-4 lg:p-4">
@@ -201,10 +159,6 @@ const ProjectCardBody = memo<{
             fallbackSrc={project.fallbackImage}
             alt={project.title}
             className="w-full h-full object-cover group-hover:brightness-90 transition-[filter] duration-150 select-none"
-          />
-          <PreviewOverlay
-            sizeClass="text-[11px]"
-            onOpenPreview={onOpenPreview}
           />
         </div>
 
@@ -295,9 +249,7 @@ const ProjectCardBody = memo<{
 
 const CertificateCardBody = memo<{
   certificate: CertificationItem;
-  onOpenDetail: () => void;
-  onOpenPreview: () => void;
-}>(function CertificateCardBody({ certificate, onOpenDetail, onOpenPreview }) {
+}>(function CertificateCardBody({ certificate }) {
   return (
     <>
       <div className="space-y-2 sm:space-y-3 p-3">
@@ -308,10 +260,6 @@ const CertificateCardBody = memo<{
             fallbackSrc={certificate.fallbackImage}
             alt={`Sertifikat ${certificate.title}`}
             className="w-full h-full object-contain object-center rounded-lg bg-white shadow-xs select-none group-hover:brightness-95 transition-[filter] duration-200"
-          />
-          <PreviewOverlay
-            sizeClass="text-[11px]"
-            onOpenPreview={onOpenPreview}
           />
         </div>
 
@@ -343,14 +291,14 @@ const CertificateCardBody = memo<{
         className="px-3 pb-3 pt-2 border-t border-slate-100 dark:border-white/10 flex items-center justify-between gap-1.5"
         onClick={(e) => e.stopPropagation()}
       >
-        <button
-          onClick={onOpenDetail}
-          className="flex items-center justify-center gap-1 p-1.5 sm:px-3 sm:py-1 rounded-full border-slate-200 dark:border-white/10 text-slate-900 dark:text-white font-bold hover:bg-slate-100 dark:hover:bg-white/10 text-[10px] sm:text-xs transition-all shrink-0"
-          title="Detail Sertifikat"
+        <a
+          href={`/certificate/${certificate.id}`}
+          className="flex items-center justify-center gap-1.5 p-1.5 sm:px-3 sm:py-1 rounded-full border border-slate-200 dark:border-white/10 text-slate-900 dark:text-white font-bold hover:bg-slate-950 hover:text-white dark:hover:bg-white dark:hover:text-slate-950 text-[10px] sm:text-xs transition-all shrink-0 shadow-xs"
+          title="Detail Sertifikat Sinematik"
         >
           <DetailIcon />
-          <span className="hidden sm:inline">Detail</span>
-        </button>
+          <span>Detail</span>
+        </a>
 
         {certificate.credentialUrl && (
           <a

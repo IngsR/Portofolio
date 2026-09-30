@@ -31,7 +31,6 @@ export interface HeroPageProps {
 export interface HeroSectionProps {
   setActivePage: (page: PageId) => void;
   featuredProjects: ProjectItem[];
-  onOpenProjectMarkdown: (project: ProjectItem) => void;
   onOpenCV: () => void;
 }
 

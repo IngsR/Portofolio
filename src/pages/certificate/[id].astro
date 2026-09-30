@@ -1,0 +1,40 @@
+---
+import portfolioDataJson from "../../data/portfolio.json";
+import SiteLayout from "../../layouts/site.astro";
+import { UniversalDetailView } from "../../components/portfolio/universal-detail-view";
+import type { CertificationItem } from "../../types";
+
+export const prerender = true;
+
+export function getStaticPaths() {
+  const certs = portfolioDataJson.certifications as CertificationItem[];
+  return certs.map((cert) => ({
+    params: { id: cert.id },
+    props: {
+      certificate: cert,
+      relatedCertificates: certs.filter((c) => c.id !== cert.id),
+    },
+  }));
+}
+
+interface Props {
+  certificate: CertificationItem;
+  relatedCertificates: CertificationItem[];
+}
+
+const { certificate, relatedCertificates } = Astro.props;
+---
+
+<SiteLayout
+  title={`${certificate.title} | Kredensial & Sertifikasi Ikhwan Ramadhan`}
+  description={certificate.description || `Sertifikasi resmi ${certificate.title} dari ${certificate.issuer}`}
+  canonicalPath={`/certificate/${certificate.id}`}
+>
+  <UniversalDetailView
+    client:load
+    certificate={certificate}
+    relatedCertificates={relatedCertificates}
+    backHref="/portfolio"
+    backLabel="Kembali ke Portofolio"
+  />
+</SiteLayout>

@@ -79,7 +79,7 @@ const ContactRow = memo<{ link: HeroContactLink }>(function ContactRow({
     <a
       href={link.href}
       {...(isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-      className={`flex items-center justify-between px-3 py-1.5 sm:px-3.5 sm:py-2.5 rounded-full bg-white dark:bg-white/5 border-slate-200 dark:border-white/10 text-slate-800 dark:text-slate-200 transition-all group/link shadow-xs ${link.hoverClass}`}
+      className={`flex items-center justify-between px-3 py-1.5 sm:px-3.5 sm:py-2.5 rounded-full bg-white/95 dark:bg-white/5 border border-slate-200/80 dark:border-white/10 text-slate-800 dark:text-slate-200 transition-all group/link shadow-[0_1px_3px_rgba(15,23,42,0.04)] hover:shadow-sm ${link.hoverClass}`}
     >
       <div className="flex items-center gap-2.5 truncate">
         <div
@@ -181,7 +181,7 @@ export const ProfilePhotoCard = memo<{ userProfile: UserProfile }>(
         containerClassName="w-full sm:max-w-sm rounded-2xl sm:rounded-3xl"
         spread={120}
       >
-        <div className="w-full sm:max-w-sm rounded-2xl sm:rounded-3xl border-slate-200/90 dark:border-white/10 bg-white dark:bg-[#0d0d10] p-4 sm:p-5 space-y-4 shadow-[0_2px_12px_-2px_rgba(15,23,42,0.06)]">
+        <div className="w-full sm:max-w-sm rounded-2xl sm:rounded-3xl border border-slate-200/90 dark:border-white/10 bg-gradient-to-b from-white via-white/95 to-slate-50/90 dark:from-[#0e0e12] dark:via-[#0c0c0f] dark:to-[#09090b] p-4 sm:p-5 space-y-4 shadow-[0_16px_36px_-8px_rgba(15,23,42,0.08),0_1px_3px_rgba(15,23,42,0.03)]">
           <ProfilePhoto userProfile={userProfile} />
 
           <div className="space-y-3 pt-1">

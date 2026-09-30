@@ -16,15 +16,11 @@ export const FeaturedProjectsSection = memo<
   HeroPageProps & {
     totalProjects: number;
     projects: ProjectItem[];
-    onOpenProjectDetail: (project: ProjectItem) => void;
-    onOpenProjectPreview: (project: ProjectItem) => void;
   }
 >(function FeaturedProjectsSection({
   totalProjects,
   projects,
   onNavigate,
-  onOpenProjectDetail,
-  onOpenProjectPreview,
 }) {
   return (
     <section className="space-y-6">
@@ -50,8 +46,6 @@ export const FeaturedProjectsSection = memo<
             key={project.id}
             variant="project"
             project={project}
-            onOpenDetail={() => onOpenProjectDetail(project)}
-            onOpenPreview={() => onOpenProjectPreview(project)}
           />
         ))}
       </motion.div>

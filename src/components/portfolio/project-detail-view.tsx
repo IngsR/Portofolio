@@ -1,7 +1,8 @@
-"use client";
 import { motion } from "motion/react";
 import {
+  Activity,
   ArrowLeft,
+  ArrowRight,
   ArrowUpRight,
   Calendar,
   CheckCircle2,
@@ -14,13 +15,75 @@ import {
   Share2,
   Sparkles,
   Tag,
+  Target,
   User,
+  Zap,
 } from "lucide-react";
 import React, { useState } from "react";
-import ReactMarkdown from "react-markdown";
-import remarkGfm from "remark-gfm";
 import { useSmoothScroll } from "../../hooks";
 import type { ProjectItem } from "../../types";
+
+const getMetricTheme = (
+  label: string,
+  idx: number,
+  customIcon?: React.ReactNode,
+) => {
+  const l = label.toLowerCase();
+  if (l.includes("akurasi") || l.includes("model") || l.includes("accuracy")) {
+    return {
+      icon: customIcon || <Activity className="w-5 h-5" />,
+      badge:
+        "bg-indigo-50 text-indigo-600 border-indigo-200/70 dark:bg-indigo-500/15 dark:text-indigo-400 dark:border-indigo-500/30",
+    };
+  }
+  if (
+    l.includes("engine") ||
+    l.includes("frontend") ||
+    l.includes("architecture") ||
+    l.includes("arsitektur") ||
+    l.includes("core")
+  ) {
+    return {
+      icon: customIcon || <Layers className="w-5 h-5" />,
+      badge:
+        "bg-sky-50 text-sky-600 border-sky-200/70 dark:bg-sky-500/15 dark:text-sky-400 dark:border-sky-500/30",
+    };
+  }
+  if (
+    l.includes("inference") ||
+    l.includes("runtime") ||
+    l.includes("speed") ||
+    l.includes("vitals") ||
+    l.includes("performance") ||
+    l.includes("ux") ||
+    l.includes("interactive")
+  ) {
+    return {
+      icon: customIcon || <Zap className="w-5 h-5" />,
+      badge:
+        "bg-emerald-50 text-emerald-600 border-emerald-200/70 dark:bg-emerald-500/15 dark:text-emerald-400 dark:border-emerald-500/30",
+    };
+  }
+
+  const palettes = [
+    {
+      icon: customIcon || <Cpu className="w-5 h-5" />,
+      badge:
+        "bg-indigo-50 text-indigo-600 border-indigo-200/70 dark:bg-indigo-500/15 dark:text-indigo-400 dark:border-indigo-500/30",
+    },
+    {
+      icon: customIcon || <Code2 className="w-5 h-5" />,
+      badge:
+        "bg-sky-50 text-sky-600 border-sky-200/70 dark:bg-sky-500/15 dark:text-sky-400 dark:border-sky-500/30",
+    },
+    {
+      icon: customIcon || <Sparkles className="w-5 h-5" />,
+      badge:
+        "bg-emerald-50 text-emerald-600 border-emerald-200/70 dark:bg-emerald-500/15 dark:text-emerald-400 dark:border-emerald-500/30",
+    },
+  ];
+  return palettes[idx % palettes.length];
+};
 
 interface ProjectDetailViewProps {
   project: ProjectItem;
@@ -32,9 +95,6 @@ export const ProjectDetailView: React.FC<ProjectDetailViewProps> = ({
   relatedProjects = [],
 }) => {
   const [copied, setCopied] = useState(false);
-  const [activeTab, setActiveTab] = useState<"overview" | "casestudy">(
-    "overview",
-  );
 
   // Buttery cinematic smooth scroll
   useSmoothScroll({ enabled: true });
@@ -67,9 +127,10 @@ export const ProjectDetailView: React.FC<ProjectDetailViewProps> = ({
         >
           <a
             href="/"
-            className="group inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/80 dark:bg-white/[0.04] border border-slate-200 dark:border-white/10 text-xs font-semibold hover:border-slate-400 dark:hover:border-white/30 backdrop-blur-md transition-all duration-200 shadow-xs"
+            className="group inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/95 dark:bg-white/[0.06] border border-slate-200/90 dark:border-white/10 text-xs font-bold text-slate-800 dark:text-slate-100 hover:border-slate-400 dark:hover:border-white/30 backdrop-blur-md transition-all duration-200 shadow-xs hover:shadow-sm"
+            title="Kembali ke Beranda"
           >
-            <ArrowLeft className="w-3.5 h-3.5 transition-transform group-hover:-translate-x-1" />
+            <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-1 text-slate-700 dark:text-slate-300" />
             <span>Kembali ke Beranda</span>
           </a>
 
@@ -233,95 +294,78 @@ export const ProjectDetailView: React.FC<ProjectDetailViewProps> = ({
             transition={{ duration: 0.5, delay: 0.3 }}
             className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-4"
           >
-            {project.metrics.map((metric, idx) => (
-              <div
-                key={idx}
-                className="p-5 rounded-2xl bg-gradient-to-br from-white/90 to-slate-50/70 dark:from-[#0d0d10] dark:to-[#08080a] border border-slate-200/90 dark:border-white/10 shadow-xs flex items-center gap-4"
-              >
-                <div className="p-3 rounded-xl bg-slate-950 text-white dark:bg-white dark:text-slate-950 shrink-0">
-                  <Cpu className="w-5 h-5" />
+            {project.metrics.map((metric, idx) => {
+              const theme = getMetricTheme(metric.label, idx);
+              return (
+                <div
+                  key={idx}
+                  className="p-5 rounded-2xl bg-white/95 dark:bg-[#111116] border border-slate-200/90 dark:border-white/10 shadow-[0_2px_12px_-3px_rgba(15,23,42,0.06)] dark:shadow-[0_4px_24px_-4px_rgba(0,0,0,0.5)] flex items-center gap-4 transition-all duration-200 hover:border-slate-300 dark:hover:border-white/20"
+                >
+                  <div
+                    className={`p-3 rounded-xl border shrink-0 ${theme.badge}`}
+                  >
+                    {theme.icon}
+                  </div>
+                  <div className="min-w-0">
+                    <span className="block text-[11px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 truncate">
+                      {metric.label}
+                    </span>
+                    <span
+                      className="block text-sm sm:text-base font-black text-slate-950 dark:text-white mt-0.5 tracking-tight truncate"
+                      title={metric.value}
+                    >
+                      {metric.value}
+                    </span>
+                  </div>
                 </div>
-                <div>
-                  <span className="block text-[11px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
-                    {metric.label}
-                  </span>
-                  <span className="block text-sm sm:text-base font-extrabold text-slate-900 dark:text-white mt-0.5">
-                    {metric.value}
-                  </span>
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </motion.div>
         )}
 
-        {/* Content Navigation Tabs */}
-        <div className="mt-12 flex items-center gap-2 border-b border-slate-200 dark:border-white/10 pb-3">
-          <button
-            type="button"
-            onClick={() => setActiveTab("overview")}
-            className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all ${
-              activeTab === "overview"
-                ? "bg-slate-950 text-white dark:bg-white dark:text-slate-950 shadow-xs"
-                : "text-slate-600 dark:text-slate-400 hover:text-slate-950 dark:hover:text-white"
-            }`}
-          >
-            Ringkasan &amp; Arsitektur
-          </button>
-          <button
-            type="button"
-            onClick={() => setActiveTab("casestudy")}
-            className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all ${
-              activeTab === "casestudy"
-                ? "bg-slate-950 text-white dark:bg-white dark:text-slate-950 shadow-xs"
-                : "text-slate-600 dark:text-slate-400 hover:text-slate-950 dark:hover:text-white"
-            }`}
-          >
-            Studi Kasus Lengkap (.md)
-          </button>
-        </div>
-
-        {/* Tab 1: Overview & Architecture Breakdown */}
-        {activeTab === "overview" && (
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4 }}
-            className="mt-8 space-y-10"
-          >
-            {/* Problem & Solution Split Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {/* Problem Card */}
-              <div className="p-6 sm:p-8 rounded-3xl bg-white/80 dark:bg-white/[0.02] border border-slate-200/90 dark:border-white/10 shadow-sm space-y-3">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-rose-500/10 text-rose-600 dark:text-rose-400 text-xs font-bold">
-                  <span>Tantangan &amp; Masalah</span>
-                </div>
-                <h3 className="text-xl sm:text-2xl font-bold text-slate-950 dark:text-white">
-                  Konteks &amp; Masalah Nyata
-                </h3>
-                <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed">
-                  {project.problem ||
-                    "Proyek ini dibangun untuk menjawab tantangan kinerja web dan penyajian data yang membutuhkan arsitektur terstruktur dan efisiensi waktu render."}
-                </p>
+        {/* Unified Cinematic Case Study */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4 }}
+          className="mt-10 space-y-10"
+        >
+          {/* Problem & Solution Split Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* Context & Requirements Card */}
+            <div className="p-6 sm:p-8 rounded-3xl bg-white/90 dark:bg-white/[0.02] border border-slate-200/90 dark:border-white/10 shadow-sm space-y-3">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 text-xs font-bold">
+                <Target className="w-3.5 h-3.5" />
+                <span>Latar Belakang &amp; Kebutuhan</span>
               </div>
-
-              {/* Solution Card */}
-              <div className="p-6 sm:p-8 rounded-3xl bg-white/80 dark:bg-white/[0.02] border border-slate-200/90 dark:border-white/10 shadow-sm space-y-3">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 text-xs font-bold">
-                  <CheckCircle2 className="w-3.5 h-3.5" />
-                  <span>Solusi Rekayasa</span>
-                </div>
-                <h3 className="text-xl sm:text-2xl font-bold text-slate-950 dark:text-white">
-                  Pendekatan Rekayasa Software
-                </h3>
-                <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed">
-                  {project.solution ||
-                    "Menerapkan arsitektur reaktif modern, pembagian kode modular, caching cerdas, dan pengoptimalan Web Vitals untuk pengalaman pengguna yang maksimal."}
-                </p>
-              </div>
+              <h3 className="text-xl sm:text-2xl font-bold text-slate-950 dark:text-white">
+                Konteks &amp; Kebutuhan Sistem
+              </h3>
+              <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed">
+                {project.problem ||
+                  "Setiap sistem dirancang untuk memenuhi spesifikasi kebutuhan fungsional dan teknis yang jelas — mulai dari efisiensi alur data, responsivitas antarmuka, hingga kemudahan pemeliharaan jangka panjang."}
+              </p>
             </div>
 
-            {/* Technologies & Tags Showcase */}
-            <div className="p-6 sm:p-8 rounded-3xl bg-white/80 dark:bg-white/[0.02] border border-slate-200/90 dark:border-white/10 shadow-sm space-y-4">
+            {/* Architectural Decisions & Solutions Card */}
+            <div className="p-6 sm:p-8 rounded-3xl bg-white/90 dark:bg-white/[0.02] border border-slate-200/90 dark:border-white/10 shadow-sm space-y-3">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 text-xs font-bold">
+                <CheckCircle2 className="w-3.5 h-3.5" />
+                <span>Keputusan Rekayasa</span>
+              </div>
+              <h3 className="text-xl sm:text-2xl font-bold text-slate-950 dark:text-white">
+                Pendekatan &amp; Solusi Teknis
+              </h3>
+              <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed">
+                {project.solution ||
+                  "Pendekatan teknis disesuaikan dengan karakteristik arsitektur sistem: pemilihan strategi rendering, modularitas komponen, validasi data tipe-ketat, serta integrasi deployment yang andal."}
+              </p>
+            </div>
+          </div>
+
+          {/* Technologies & Tags Showcase */}
+          {project.tags && project.tags.length > 0 && (
+            <div className="p-6 sm:p-8 rounded-3xl bg-white/90 dark:bg-white/[0.02] border border-slate-200/90 dark:border-white/10 shadow-sm space-y-4">
               <div className="flex items-center gap-2">
                 <Code2 className="w-5 h-5 text-indigo-500" />
                 <h3 className="text-lg sm:text-xl font-bold text-slate-950 dark:text-white">
@@ -329,7 +373,7 @@ export const ProjectDetailView: React.FC<ProjectDetailViewProps> = ({
                 </h3>
               </div>
               <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400">
-                Alat, library, dan pola arsitektur yang digunakan dalam proyek ini:
+                Alat, pustaka, dan pola arsitektur yang digunakan dalam proyek ini:
               </p>
               <div className="flex flex-wrap gap-2 pt-1">
                 {project.tags.map((tag, idx) => (
@@ -343,22 +387,8 @@ export const ProjectDetailView: React.FC<ProjectDetailViewProps> = ({
                 ))}
               </div>
             </div>
-          </motion.div>
-        )}
-
-        {/* Tab 2: Full Markdown Technical Case Study */}
-        {activeTab === "casestudy" && (
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4 }}
-            className="mt-8 p-6 sm:p-10 rounded-3xl bg-white/90 dark:bg-[#0c0c0e] border border-slate-200/90 dark:border-white/10 shadow-sm prose prose-slate dark:prose-invert max-w-none prose-headings:font-display prose-headings:tracking-tight prose-a:text-indigo-600 dark:prose-a:text-indigo-400 prose-pre:bg-slate-950 prose-pre:border prose-pre:border-slate-800"
-          >
-            <ReactMarkdown remarkPlugins={[remarkGfm]}>
-              {project.markdownContent}
-            </ReactMarkdown>
-          </motion.div>
-        )}
+          )}
+        </motion.div>
 
         {/* Related Projects Showcase Footer */}
         {relatedProjects.length > 0 && (
@@ -374,9 +404,10 @@ export const ProjectDetailView: React.FC<ProjectDetailViewProps> = ({
               </div>
               <a
                 href="/portfolio"
-                className="text-xs font-bold uppercase tracking-wider text-slate-900 dark:text-white hover:opacity-75"
+                className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-slate-900 dark:text-white hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
               >
-                Lihat Semua Portofolio →
+                <span>Lihat Semua Portofolio</span>
+                <ArrowRight className="w-4 h-4" />
               </a>
             </div>
 

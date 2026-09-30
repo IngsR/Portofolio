@@ -7,15 +7,7 @@ import React, {
   useState,
 } from "react";
 import portfolioData from "../../data/portfolio.json";
-import {
-  isDetailOpenStore,
-  isPreviewOpenStore,
-  selectedCertForDetailStore,
-  selectedPreviewItemStore,
-  selectedProjectForDetailStore,
-} from "../../store/portfolio";
 import { CertificationItem, ProjectItem } from "../../types";
-import { DetailModalIsland, PreviewModalIsland } from "../modal/modal-islands";
 import { AnimatedTabs } from "../../design/components/animated-tabs";
 import { LazyMount } from "../../design/components/lazy-mount";
 import { Certificate } from "./certificate";
@@ -27,7 +19,6 @@ const { certifications: certificationsData } = portfolioData as {
 
 interface PortfolioSectionProps {
   projects: ProjectItem[];
-  onOpenMarkdown: (project: ProjectItem) => void;
   onOpenCreateModal: () => void;
 }
 
@@ -66,7 +57,6 @@ const isListedCategory = (category: string) =>
 
 export const Portfolio: React.FC<PortfolioSectionProps> = ({
   projects,
-  onOpenMarkdown,
   onOpenCreateModal,
 }) => {
   // Main view filter: 'all' (Tampilkan Semua), 'projects' (Project), 'certificates' (Sertifikasi & Lisensi)
@@ -80,29 +70,7 @@ export const Portfolio: React.FC<PortfolioSectionProps> = ({
   const [sortBy, setSortBy] = useState<SortOption>("relevance");
   const searchInputRef = useRef<HTMLInputElement>(null);
 
-  // Nilai pencarian diturunkan secara "deferred" (React concurrent): input
-  // tetap responsif 60fps saat mengetik, sementara proses filter berat
-  // (yang membaca markdownContent puluhan project) dijalankan di priority
-  // lebih rendah. Inilah penyebab utama halaman portofolio terasa
-  // "patah-patah" saat mengetik/memfilter.
   const deferredSearchQuery = useDeferredValue(searchQuery);
-
-  // Modal state hidup di island terpisah (DetailModalIsland/PreviewModalIsland)
-  // yang subscribe store sendiri — buka/tutup modal tidak me-render ulang
-  // halaman ini beserta seluruh grid card.
-
-  // Handler stabil (useCallback) agar memo() pada card Project/Certificate
-  // efektif: perubahan state filter/search tidak me-render ulang card mana pun
-  // yang datanya tidak berubah.
-  const handleOpenProjectPreview = useCallback((project: ProjectItem) => {
-    selectedPreviewItemStore.set(project);
-    isPreviewOpenStore.set(true);
-  }, []);
-
-  const handleOpenCertPreview = useCallback((cert: CertificationItem) => {
-    selectedPreviewItemStore.set(cert);
-    isPreviewOpenStore.set(true);
-  }, []);
 
   // Categories based on active filter
   const allCategories = FILTER_CATEGORIES;
@@ -271,24 +239,6 @@ export const Portfolio: React.FC<PortfolioSectionProps> = ({
   }, [filterType, selectedCategories, deferredSearchQuery]);
 
   const totalItemsCount = filteredProjects.length + filteredCerts.length;
-
-  const handleOpenProjectDetail = useCallback((proj: ProjectItem) => {
-    selectedProjectForDetailStore.set(proj);
-    selectedCertForDetailStore.set(null);
-    isDetailOpenStore.set(true);
-  }, []);
-
-  const handleOpenCertDetail = useCallback((cert: CertificationItem) => {
-    selectedCertForDetailStore.set(cert);
-    selectedProjectForDetailStore.set(null);
-    isDetailOpenStore.set(true);
-  }, []);
-
-  // Identitas stabil untuk prop onOpenMarkdown card (menjaga memo() efektif)
-  const handleOpenMarkdown = useCallback(
-    (project: ProjectItem) => onOpenMarkdown(project),
-    [onOpenMarkdown],
-  );
 
   const handleKeywordClick = useCallback((keyword: string) => {
     setSelectedKeywords((current) =>
@@ -555,9 +505,6 @@ export const Portfolio: React.FC<PortfolioSectionProps> = ({
                     <Project
                       key={project.id}
                       project={project}
-                      onOpenDetail={handleOpenProjectDetail}
-                      onOpenMarkdown={handleOpenMarkdown}
-                      onOpenPreview={handleOpenProjectPreview}
                     />
                   ))}
                 </div>
@@ -588,8 +535,6 @@ export const Portfolio: React.FC<PortfolioSectionProps> = ({
                     <Certificate
                       key={cert.id}
                       certificate={cert}
-                      onOpenDetail={handleOpenCertDetail}
-                      onOpenPreview={handleOpenCertPreview}
                     />
                   ))}
                 </div>
@@ -598,10 +543,6 @@ export const Portfolio: React.FC<PortfolioSectionProps> = ({
           )}
         </div>
       )}
-
-      {/* Item Detail & Quick Preview Modal — island terisolasi */}
-      <DetailModalIsland onOpenMarkdown={handleOpenMarkdown} />
-      <PreviewModalIsland />
     </div>
   );
 };

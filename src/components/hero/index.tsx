@@ -1,13 +1,6 @@
 "use client";
 import React, { useCallback, useMemo } from "react";
 import portfolioData from "../../data/portfolio.json";
-import {
-  isDetailOpenStore,
-  isPreviewOpenStore,
-  selectedCertForDetailStore,
-  selectedPreviewItemStore,
-  selectedProjectForDetailStore,
-} from "../../store/portfolio";
 import type {
   CertificationItem,
   EducationItem,
@@ -15,7 +8,6 @@ import type {
   ProjectItem,
   SkillCategory,
 } from "../../types";
-import { DetailModalIsland, PreviewModalIsland } from "../modal/modal-islands";
 import { isHeroSectionVisible } from "./hero.data";
 import { AboutSection } from "./sections/about-section";
 import { CertificationsSection } from "./sections/certifications-section";
@@ -39,22 +31,15 @@ const {
 /**
  * Hero — komposisi halaman Beranda.
  *
- * Berkas ini hanya menyusun section (tanpa markup besar): tiap unit punya
- * file sendiri di `./hero/`, sehingga layout & animasi tetap utuh tapi
- * jauh lebih mudah dibaca dan dikembangkan.
- *
- * State modal hidup di island terpisah (DetailModalIsland/PreviewModalIsland)
- * yang subscribe store sendiri — membuka/menutup modal TIDAK me-render ulang
- * halaman ini beserta seluruh kartu di dalamnya.
+ * Berkas ini menyusun section: tiap unit punya file sendiri di `./hero/`.
+ * Setiap kartu langsung bernavigasi ke halaman detail sinematik.
  */
 export const Hero: React.FC<HeroSectionProps> = ({
   setActivePage,
   featuredProjects,
-  onOpenProjectMarkdown,
   onOpenCV,
 }) => {
-  /** Navigasi halaman + scroll instan ke atas (scroll mulus global dimatikan
-   *  karena membuat dokumen setinggi ini terasa berat di HP) */
+  /** Navigasi halaman + scroll instan ke atas */
   const handleNavigate = useCallback(
     (page: PageId) => {
       setActivePage(page);
@@ -62,18 +47,6 @@ export const Hero: React.FC<HeroSectionProps> = ({
     },
     [setActivePage],
   );
-
-  // Handler modal: helper stabil (tanpa state lokal di halaman ini)
-  const handleOpenProjectDetail = useCallback((project: ProjectItem) => {
-    selectedProjectForDetailStore.set(project);
-    selectedCertForDetailStore.set(null);
-    isDetailOpenStore.set(true);
-  }, []);
-
-  const handleOpenProjectPreview = useCallback((project: ProjectItem) => {
-    selectedPreviewItemStore.set(project);
-    isPreviewOpenStore.set(true);
-  }, []);
 
   // Sertifikat pilihan di Beranda — Memoized
   const homeCertificates = useMemo(
@@ -131,8 +104,6 @@ export const Hero: React.FC<HeroSectionProps> = ({
           totalProjects={featuredProjects.length}
           projects={homeFeaturedProjects}
           onNavigate={handleNavigate}
-          onOpenProjectDetail={handleOpenProjectDetail}
-          onOpenProjectPreview={handleOpenProjectPreview}
         />
       )}
 
@@ -156,12 +127,6 @@ export const Hero: React.FC<HeroSectionProps> = ({
       {isHeroSectionVisible("contact") && (
         <ContactSection onOpenCV={onOpenCV} />
       )}
-
-      {/* Pop up Detail Modal (Project / Certificate) — island terisolasi */}
-      <DetailModalIsland onOpenMarkdown={onOpenProjectMarkdown} />
-
-      {/* Quick Certificate Preview Modal — island terisolasi */}
-      <PreviewModalIsland />
     </div>
   );
 };
