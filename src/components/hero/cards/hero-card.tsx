@@ -141,6 +141,14 @@ export const HeroCard = memo<HeroCardProps>(function HeroCard({
 
   if (!content) return null;
 
+  const handleCardClick = () => {
+    if (variant === "project" && project?.slug) {
+      window.location.href = `/project/${project.slug}`;
+      return;
+    }
+    onOpenDetail();
+  };
+
   // Perangkat hover: spotlight mengikuti kursor + tilt halus.
   // Perangkat sentuh: kartu datar, tanpa efek berat (hemat frame saat scroll).
   if (hoverable) {
@@ -149,7 +157,7 @@ export const HeroCard = memo<HeroCardProps>(function HeroCard({
         className={cardClassName}
         radius={320}
         tilt={true}
-        onClick={onOpenDetail}
+        onClick={handleCardClick}
       >
         {content}
       </CardSpotlight>
@@ -157,7 +165,7 @@ export const HeroCard = memo<HeroCardProps>(function HeroCard({
   }
 
   return (
-    <div className={cardClassName} onClick={onOpenDetail}>
+    <div className={cardClassName} onClick={handleCardClick}>
       {content}
     </div>
   );
@@ -242,14 +250,14 @@ const ProjectCardBody = memo<{
         className="px-3 sm:px-4 lg:px-4 pb-3 sm:pb-4 pt-2 sm:pt-3 border-t border-slate-100 dark:border-white/10 flex items-center justify-between gap-1.5 min-w-0"
         onClick={(e) => e.stopPropagation()}
       >
-        <button
-          onClick={onOpenDetail}
-          className="flex items-center justify-center gap-1 p-1.5 sm:px-2.5 sm:py-1 rounded-full border-slate-200 dark:border-white/10 text-slate-900 dark:text-white font-bold hover:bg-slate-100 dark:hover:bg-white/10 text-[10px] sm:text-xs transition-all shrink-0"
-          title="Detail Teknis"
+        <a
+          href={`/project/${project.slug}`}
+          className="flex items-center justify-center gap-1.5 px-2.5 sm:px-3 py-1 rounded-full border border-slate-200 dark:border-white/15 bg-slate-100/90 dark:bg-white/[0.06] text-slate-900 dark:text-white font-bold hover:bg-slate-950 hover:text-white dark:hover:bg-white dark:hover:text-slate-950 text-[10px] sm:text-xs transition-all shrink-0 shadow-xs"
+          title="Buka Halaman Detail Mewah"
         >
           <DetailIcon />
-          <span className="hidden xl:inline">Detail</span>
-        </button>
+          <span>Detail</span>
+        </a>
 
         <div className="flex items-center gap-1 sm:gap-1.5 min-w-0 shrink">
           {project.githubUrl && (

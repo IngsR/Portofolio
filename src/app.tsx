@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from "motion/react";
-import { memo, useCallback, useEffect, useMemo, useState } from "react";
+import { memo, useCallback, useState } from "react";
 import { About } from "./components/about/about";
 import { Contact } from "./components/contact/contact";
 import { Hero } from "./components/hero";
@@ -9,11 +9,8 @@ import { Cv } from "./components/modal/cv";
 import { MarkdownEditor } from "./components/modal/markdown-editor";
 import { MarkdownViewer } from "./components/modal/markdown-viewer";
 import { Portfolio } from "./components/portfolio/portfolio";
-import portfolioDataJson from "./data/portfolio.json";
-import { PageId, ProjectItem } from "./types";
-import { isProjectItem } from "./utils/guard";
-
-const initialProjects = portfolioDataJson.projects as ProjectItem[];
+import { useModal, useProjects, useSmoothScroll, useTheme } from "./hooks";
+import { PageId } from "./types";
 
 // Halaman di-memo: perubahan state modal/tema di App TIDAK me-render ulang
 // isi halaman (Hero/Portfolio/About/Contact beserta puluhan card di dalamnya).
@@ -31,92 +28,32 @@ export default function App({
   // Navigation State
   const [activePage, setActivePage] = useState<PageId>(initialPage);
 
-  // Dark Mode State (Light mode is the default for optimal readability for all ages)
-  const [isDark, setIsDark] = useState(false);
-  const [isThemeInitialized, setIsThemeInitialized] = useState(false);
+  // Reusable Reactive State Hooks
+  const { isDark, setTheme } = useTheme();
+  const { projects, featuredProjects, saveProject } = useProjects();
+  const {
+    isCVOpen,
+    openCV,
+    closeCV,
+    selectedMarkdownProject,
+    openMarkdown,
+    closeMarkdown,
+    isCreateModalOpen,
+    openCreateModal,
+    closeCreateModal,
+    isDetailOpen,
+    isPreviewOpen,
+  } = useModal();
 
-  // Projects State (with persistence)
-  const [projects, setProjects] = useState<ProjectItem[]>(initialProjects);
-
-  // Modal States
-  const [selectedProjectForMarkdown, setSelectedProjectForMarkdown] =
-    useState<ProjectItem | null>(null);
-  const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
-  const [isCVModalOpen, setIsCVModalOpen] = useState(false);
-
-  // Callback stabil — memo() pada halaman/card tetap efektif walau App re-render.
-  const handleOpenCV = useCallback(() => setIsCVModalOpen(true), []);
-  const handleOpenMarkdown = useCallback(
-    (proj: ProjectItem) => setSelectedProjectForMarkdown(proj),
-    [],
-  );
-  const handleOpenCreateModal = useCallback(
-    () => setIsCreateModalOpen(true),
-    [],
-  );
-
-  // Restore browser-only preferences after the server-rendered HTML hydrates.
-  useEffect(() => {
-    const savedTheme = localStorage.getItem("portfolio_theme");
-    setIsDark(savedTheme === "dark");
-    setIsThemeInitialized(true);
-
-    try {
-      const savedProjects = localStorage.getItem("portfolio_projects_list");
-      if (savedProjects) {
-        const parsed = JSON.parse(savedProjects);
-        if (Array.isArray(parsed)) {
-          const validProjects = parsed.filter(isProjectItem);
-          if (validProjects.length > 0) {
-            const customProjects = validProjects.filter(
-              (p: ProjectItem) => !initialProjects.some((bp) => bp.id === p.id),
-            );
-            setProjects([...customProjects, ...initialProjects]);
-          }
-        }
-      }
-    } catch {
-      // Keep the build-time project data when persisted data is invalid.
-    }
-  }, []);
-
-  // Sync dark class on document element
-  useEffect(() => {
-    if (!isThemeInitialized) {
-      return;
-    }
-
-    const root = document.documentElement;
-    if (isDark) {
-      root.classList.add("dark");
-      localStorage.setItem("portfolio_theme", "dark");
-    } else {
-      root.classList.remove("dark");
-      localStorage.setItem("portfolio_theme", "light");
-    }
-  }, [isDark, isThemeInitialized]);
-
-  // Handle saving new project created via markdown editor
-  const handleSaveProject = useCallback((newProject: ProjectItem) => {
-    setProjects((current) => {
-      const updated = [newProject, ...current];
-      try {
-        localStorage.setItem(
-          "portfolio_projects_list",
-          JSON.stringify(updated),
-        );
-      } catch (err) {
-        console.error(err);
-      }
-      return updated;
-    });
-  }, []);
-
-  // Memoized: hanya dihitung ulang sekali (data statis)
-  const featuredProjects = useMemo(
-    () => initialProjects.filter((p) => p.featured || p.id === "proj-4"),
-    [],
-  );
+  // Inertial smooth scroll sinematik (otomatis pause saat modal aktif)
+  useSmoothScroll({
+    isPaused:
+      isDetailOpen ||
+      isPreviewOpen ||
+      isCVOpen ||
+      isCreateModalOpen ||
+      !!selectedMarkdownProject,
+  });
 
   return (
     <div className="min-h-screen flex flex-col bg-transparent text-slate-950 dark:text-slate-100 transition-colors duration-200 relative">
@@ -131,8 +68,8 @@ export default function App({
           activePage={activePage}
           setActivePage={setActivePage}
           isDark={isDark}
-          setIsDark={setIsDark}
-          onOpenCV={handleOpenCV}
+          setIsDark={setTheme}
+          onOpenCV={openCV}
         />
       </div>
 
@@ -152,8 +89,8 @@ export default function App({
               <HeroPage
                 setActivePage={setActivePage}
                 featuredProjects={featuredProjects}
-                onOpenProjectMarkdown={handleOpenMarkdown}
-                onOpenCV={handleOpenCV}
+                onOpenProjectMarkdown={openMarkdown}
+                onOpenCV={openCV}
               />
             )}
 
@@ -161,13 +98,13 @@ export default function App({
             {activePage === "portfolio" && (
               <PortfolioPage
                 projects={projects}
-                onOpenMarkdown={handleOpenMarkdown}
-                onOpenCreateModal={handleOpenCreateModal}
+                onOpenMarkdown={openMarkdown}
+                onOpenCreateModal={openCreateModal}
               />
             )}
 
             {/* 3. Tentang Saya (About Me) */}
-            {activePage === "about" && <AboutPage onOpenCV={handleOpenCV} />}
+            {activePage === "about" && <AboutPage onOpenCV={openCV} />}
 
             {/* 4. Kontak (Contact Form & Details) */}
             {activePage === "contact" && <Contact />}
@@ -177,24 +114,25 @@ export default function App({
 
       {/* Footer */}
       <div className="print:hidden">
-        <FooterPage setActivePage={setActivePage} onOpenCV={handleOpenCV} />
+        <FooterPage setActivePage={setActivePage} onOpenCV={openCV} />
       </div>
 
       {/* Markdown Case Study Viewer Modal */}
       <MarkdownViewer
-        project={selectedProjectForMarkdown}
-        onClose={() => setSelectedProjectForMarkdown(null)}
+        project={selectedMarkdownProject}
+        onClose={closeMarkdown}
       />
 
       {/* Markdown Editor & Project Authoring Modal */}
       <MarkdownEditor
         isOpen={isCreateModalOpen}
-        onClose={() => setIsCreateModalOpen(false)}
-        onSaveProject={handleSaveProject}
+        onClose={closeCreateModal}
+        onSaveProject={saveProject}
       />
 
       {/* Printable / Preview CV Modal */}
-      <Cv isOpen={isCVModalOpen} onClose={() => setIsCVModalOpen(false)} />
+      <Cv isOpen={isCVOpen} onClose={closeCV} />
     </div>
   );
 }
+

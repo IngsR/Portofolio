@@ -79,19 +79,19 @@ export const IntroSection = memo<HeroPageProps & { onOpenCV: () => void }>(
             </Sparkles>
 
             <div className="space-y-1">
-              <h1 className="text-5xl sm:text-6xl lg:text-7xl tracking-tighter text-black dark:text-white font-caveat font-bold">
+              <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight text-slate-950 dark:text-white leading-[1.08]">
                 <EncryptedText
                   text={userProfile.name}
-                  className="font-caveat font-bold"
+                  className="font-black tracking-tight text-slate-950 dark:text-white"
                   revealDelay={40}
                 />
               </h1>
               {/* min-h dikunci (1 baris mobile / desktop) agar pergantian kata
                 FlipWords tidak menggeser layout halaman naik-turun */}
-              <div className="min-h-[1.9rem] sm:min-h-[2.5rem] flex items-center text-lg sm:text-3xl font-extrabold text-black dark:text-slate-100 gap-2 tracking-tight font-script">
+              <div className="min-h-[1.9rem] sm:min-h-[2.5rem] flex items-center text-lg sm:text-3xl font-extrabold gap-2 tracking-tight">
                 <FlipWords
                   words={roles}
-                  className="font-script text-black dark:text-slate-100"
+                  className="font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-sky-500 to-emerald-500 dark:from-indigo-400 dark:via-sky-300 dark:to-emerald-400"
                 />
               </div>
             </div>

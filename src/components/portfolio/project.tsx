@@ -162,14 +162,14 @@ export const Project = memo<ProjectCardProps>(function Project({
           className="pt-2.5 sm:pt-4 border-t border-slate-100 dark:border-white/10 flex items-center justify-between gap-1.5 min-w-0"
           onClick={(e) => e.stopPropagation()} // Prevent card double triggering
         >
-          <button
-            onClick={() => onOpenDetail(project)}
-            className="flex items-center justify-center gap-1 p-1.5 sm:px-3.5 sm:py-1.5 rounded-full border border-slate-200 dark:border-white/10 text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-white/10 text-[10px] sm:text-xs font-semibold transition-all shrink-0"
-            title="Detail Proyek"
+          <a
+            href={`/project/${project.slug}`}
+            className="flex items-center justify-center gap-1.5 p-1.5 sm:px-3.5 sm:py-1.5 rounded-full border border-slate-200 dark:border-white/10 text-slate-800 dark:text-slate-200 hover:bg-slate-950 hover:text-white dark:hover:bg-white dark:hover:text-slate-950 text-[10px] sm:text-xs font-semibold transition-all shrink-0 shadow-xs"
+            title="Buka Halaman Detail Mewah"
           >
             <FileText className="w-3.5 h-3.5" />
             <span className="hidden sm:inline">Detail</span>
-          </button>
+          </a>
 
           <div className="flex items-center gap-1 sm:gap-2 min-w-0 shrink">
             {project.githubUrl && (
@@ -206,13 +206,21 @@ export const Project = memo<ProjectCardProps>(function Project({
     </>
   );
 
+  const handleCardClick = () => {
+    if (project?.slug) {
+      window.location.href = `/project/${project.slug}`;
+      return;
+    }
+    onOpenDetail(project);
+  };
+
   if (hoverable) {
     return (
       <CardSpotlight
         className={cardClassName}
         radius={320}
         tilt={true}
-        onClick={() => onOpenDetail(project)}
+        onClick={handleCardClick}
       >
         {content}
       </CardSpotlight>
@@ -220,7 +228,7 @@ export const Project = memo<ProjectCardProps>(function Project({
   }
 
   return (
-    <div className={cardClassName} onClick={() => onOpenDetail(project)}>
+    <div className={cardClassName} onClick={handleCardClick}>
       {content}
     </div>
   );

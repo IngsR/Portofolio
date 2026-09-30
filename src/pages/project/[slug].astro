@@ -1,0 +1,40 @@
+---
+import portfolioDataJson from "../../data/portfolio.json";
+import SiteLayout from "../../layouts/site.astro";
+import { ProjectDetailView } from "../../components/portfolio/project-detail-view";
+import type { ProjectItem } from "../../types";
+
+export const prerender = true;
+
+export function getStaticPaths() {
+  const projects = portfolioDataJson.projects as ProjectItem[];
+  return projects.map((project) => ({
+    params: { slug: project.slug },
+    props: {
+      project,
+      relatedProjects: projects.filter((p) => p.id !== project.id),
+    },
+  }));
+}
+
+interface Props {
+  project: ProjectItem;
+  relatedProjects: ProjectItem[];
+}
+
+const { project, relatedProjects } = Astro.props;
+const siteUrl = Astro.site?.toString().replace(/\/$/, "") ?? "https://ikhwann.my.id";
+const canonicalUrl = `${siteUrl}/project/${project.slug}`;
+---
+
+<SiteLayout
+  title={`${project.title} | Studi Kasus Web Developer`}
+  description={project.shortDescription}
+  canonicalPath={`/project/${project.slug}`}
+>
+  <ProjectDetailView
+    client:load
+    project={project}
+    relatedProjects={relatedProjects}
+  />
+</SiteLayout>

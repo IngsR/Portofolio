@@ -1,5 +1,6 @@
 "use client";
 import { ArrowRight } from "lucide-react";
+import { motion } from "motion/react";
 import { memo } from "react";
 import { ProjectItem } from "../../../types";
 import { HeroCard } from "../cards/hero-card";
@@ -37,7 +38,13 @@ export const FeaturedProjectsSection = memo<
         <a href="/portfolio" onClick={(e) => { e.preventDefault(); onNavigate?.("portfolio"); }} className="text-xs font-bold uppercase tracking-wider text-slate-900 dark:text-white hover:opacity-80 flex items-center gap-1.5 px-4 py-2 rounded-full border-slate-200 dark:border-white/10"><span>Lihat Semua Proyek ({totalProjects})</span><ArrowRight className="w-4 h-4" /></a>
       </div>
 
-      <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-4.5">
+      <motion.div
+        initial={{ opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-60px" }}
+        transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+        className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-4.5"
+      >
         {projects.map((project) => (
           <HeroCard
             key={project.id}
@@ -47,7 +54,7 @@ export const FeaturedProjectsSection = memo<
             onOpenPreview={() => onOpenProjectPreview(project)}
           />
         ))}
-      </div>
+      </motion.div>
     </section>
   );
 });
