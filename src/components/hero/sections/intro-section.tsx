@@ -222,23 +222,8 @@ export const IntroSection = memo<HeroPageProps & { onOpenCV: () => void }>(
             </div>
           </div>
 
-          {/* Kolom kanan: kartu foto profil + floating HUD chips di desktop */}
+          {/* Kolom kanan: kartu foto profil */}
           <div className="lg:col-span-5 flex justify-center relative">
-            {/* Desktop-only floating chips — pure CSS bounce animation */}
-            <div
-              className="hidden xl:flex absolute -top-3 -left-6 z-20 items-center gap-2 px-3 py-1.5 rounded-2xl bg-white/95 dark:bg-[#121216]/95 border border-slate-200/90 dark:border-white/15 shadow-[0_8px_20px_-4px_rgba(15,23,42,0.1)] dark:shadow-black/60 backdrop-blur-md text-[11px] font-bold text-slate-800 dark:text-white pointer-events-none float-chip-1"
-            >
-              <span className="flex h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
-              <span>Next.js 15 &amp; React 19</span>
-            </div>
-
-            <div
-              className="hidden xl:flex absolute -bottom-2 -right-5 z-20 items-center gap-2 px-3 py-1.5 rounded-2xl bg-white/95 dark:bg-[#121216]/95 border border-slate-200/90 dark:border-white/15 shadow-[0_8px_20px_-4px_rgba(15,23,42,0.1)] dark:shadow-black/60 backdrop-blur-md text-[11px] font-bold text-slate-800 dark:text-white pointer-events-none float-chip-2"
-            >
-              <Cpu className="w-3.5 h-3.5 text-indigo-500" />
-              <span>Fullstack &amp; Architecture</span>
-            </div>
-
             <ProfilePhotoCard userProfile={userProfile} />
           </div>
         </div>

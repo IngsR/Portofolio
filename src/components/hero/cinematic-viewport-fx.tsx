@@ -1,14 +1,11 @@
 "use client";
-import React, { memo } from "react";
+import { memo } from "react";
 
 /**
  * CinematicViewportFx
  *
- * Versi dioptimalkan untuk cross-browser performance:
- * - motion.div dihapus → animasi pure CSS @keyframes (berjalan di compositor GPU)
- * - mix-blend-mode dihilangkan dari elemen beranimasi (sangat mahal di Firefox:
- *   memaksa repaint seluruh stacking context setiap frame)
- * - Tetap ada efek sinematik HUD + aura tanpa frame drop di Firefox/Safari
+ * Lapisan dekoratif ringan: sudut bingkai + lens flare halus.
+ * Animasi pure CSS agar berjalan di compositor GPU tanpa frame drop.
  */
 export const CinematicViewportFx = memo(function CinematicViewportFx() {
   return (
@@ -89,9 +86,8 @@ export const CinematicViewportFx = memo(function CinematicViewportFx() {
         </svg>
       </div>
 
-      {/* 2. Director Viewfinder HUD Reticles (Sudut Kamera Sinema ┌ ┐ └ ┘) */}
+      {/* 2. Sudut bingkai ┌ ┐ └ ┘ */}
       <div className="absolute inset-0 p-3 sm:p-5 flex flex-col justify-between">
-        {/* Top Viewfinder Bar */}
         <div className="flex items-center justify-between">
           {/* Top-Left Corner: ┌ */}
           <div className="flex items-start gap-1.5">
@@ -109,31 +105,10 @@ export const CinematicViewportFx = memo(function CinematicViewportFx() {
                 strokeLinecap="round"
               />
             </svg>
-            <span className="hidden sm:inline font-mono text-[9px] font-semibold tracking-widest text-slate-500/70 dark:text-white/40 uppercase">
-              CAM 01 • 2.39:1
-            </span>
           </div>
 
-          {/* Center Aspect Ratio Framing Cue */}
-          <div className="hidden md:flex items-center gap-3">
-            <span className="w-6 h-[1px] bg-slate-300/60 dark:bg-white/15" />
-            <span className="font-mono text-[9px] tracking-wider text-slate-400 dark:text-white/30 uppercase">
-              CINEMATIC MASTER
-            </span>
-            <span className="w-6 h-[1px] bg-slate-300/60 dark:bg-white/15" />
-          </div>
-
-          {/* Top-Right Corner: ┐ with Filmic REC Indicator */}
+          {/* Top-Right Corner: ┐ */}
           <div className="flex items-start gap-2">
-            <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-slate-900/5 dark:bg-white/5 border border-slate-200/50 dark:border-white/10">
-              <span className="relative flex h-1.5 w-1.5">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-rose-500 opacity-75" />
-                <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-rose-600" />
-              </span>
-              <span className="font-mono text-[9px] font-bold tracking-wider text-rose-600 dark:text-rose-400">
-                REC 24.00 FPS
-              </span>
-            </div>
             <svg
               width="18"
               height="18"
@@ -151,7 +126,6 @@ export const CinematicViewportFx = memo(function CinematicViewportFx() {
           </div>
         </div>
 
-        {/* Bottom Viewfinder Bar */}
         <div className="flex items-end justify-between">
           {/* Bottom-Left Corner: └ */}
           <div className="flex items-end gap-1.5">
@@ -169,21 +143,10 @@ export const CinematicViewportFx = memo(function CinematicViewportFx() {
                 strokeLinecap="round"
               />
             </svg>
-            <span className="hidden sm:inline font-mono text-[8.5px] font-semibold tracking-wider text-slate-500/70 dark:text-white/40">
-              ARRI LOG-C • RAW
-            </span>
-          </div>
-
-          {/* Center Crosshair Tick */}
-          <div className="hidden sm:flex items-center gap-1 text-slate-300 dark:text-white/20">
-            <span className="font-mono text-[10px] select-none">+</span>
           </div>
 
           {/* Bottom-Right Corner: ┘ */}
           <div className="flex items-end gap-1.5">
-            <span className="hidden sm:inline font-mono text-[8.5px] font-semibold tracking-wider text-slate-500/70 dark:text-white/40">
-              SHUTTER 180° • 50MM T1.3
-            </span>
             <svg
               width="18"
               height="18"
@@ -202,7 +165,7 @@ export const CinematicViewportFx = memo(function CinematicViewportFx() {
         </div>
       </div>
 
-      {/* 3. Subtle Film Grain / Atmospheric Depth Wash */}
+      {/* 3. Wash gradient tipis untuk kedalaman atmosfer */}
       <div className="absolute inset-0 bg-gradient-to-t from-transparent via-transparent to-indigo-500/[0.02] dark:to-indigo-500/[0.04] pointer-events-none" />
     </div>
   );
