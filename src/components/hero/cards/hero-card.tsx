@@ -97,13 +97,26 @@ export const HeroCard = memo<HeroCardProps>(function HeroCard({
 
   if (!content) return null;
 
-  const handleCardClick = () => {
+  const handleCardClick = (e: React.MouseEvent) => {
+    if ((e.target as HTMLElement).closest("a, button")) return;
     if (variant === "project" && project?.slug) {
-      window.location.href = `/project/${project.slug}`;
+      if (typeof window !== "undefined") {
+        import("astro:transitions/client")
+          .then(({ navigate }) => navigate(`/project/${project.slug}`))
+          .catch(() => {
+            window.location.href = `/project/${project.slug}`;
+          });
+      }
       return;
     }
     if (variant === "certificate" && certificate?.id) {
-      window.location.href = `/certificate/${certificate.id}`;
+      if (typeof window !== "undefined") {
+        import("astro:transitions/client")
+          .then(({ navigate }) => navigate(`/certificate/${certificate.id}`))
+          .catch(() => {
+            window.location.href = `/certificate/${certificate.id}`;
+          });
+      }
       return;
     }
     if (onOpenDetail) onOpenDetail();

@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from "motion/react";
-import { memo, useCallback, useState } from "react";
+import { memo, useState } from "react";
 import { About } from "./components/about/about";
 import { Contact } from "./components/contact/contact";
 import { Hero } from "./components/hero";
@@ -8,7 +8,7 @@ import { Navbar } from "./components/layout/navbar";
 import { Cv } from "./components/modal/cv";
 import { MarkdownEditor } from "./components/modal/markdown-editor";
 import { Portfolio } from "./components/portfolio/portfolio";
-import { useModal, useProjects, useSmoothScroll, useTheme } from "./hooks";
+import { useModal, useProjects, useTheme } from "./hooks";
 import { PageId } from "./types";
 
 // Halaman di-memo: perubahan state modal/tema di App TIDAK me-render ulang
@@ -40,15 +40,6 @@ export default function App({
     isDetailOpen,
     isPreviewOpen,
   } = useModal();
-
-  // Inertial smooth scroll sinematik (otomatis pause saat modal aktif)
-  useSmoothScroll({
-    isPaused:
-      isDetailOpen ||
-      isPreviewOpen ||
-      isCVOpen ||
-      isCreateModalOpen,
-  });
 
   return (
     <div className="min-h-screen flex flex-col bg-transparent text-slate-950 dark:text-slate-100 transition-colors duration-200 relative">

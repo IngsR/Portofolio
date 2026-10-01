@@ -36,12 +36,7 @@ export function useProjects() {
   }, []);
 
   const featuredProjects = useMemo(() => {
-    const list = [...projects];
-    const ingstore = list.find((p) => p.id === "proj-4");
-    if (ingstore && !list.some((p) => p.id === "proj-4")) {
-      list.push(ingstore);
-    }
-    return list.filter((p) => p.featured || p.id === "proj-4").slice(0, 4);
+    return projects.filter((p) => p.featured || p.id === "proj-4").slice(0, 4);
   }, [projects]);
 
   const saveProject = useCallback((newProject: ProjectItem) => {
@@ -73,11 +68,14 @@ export function useProjects() {
     [projects],
   );
 
-  return {
-    projects,
-    featuredProjects,
-    saveProject,
-    getProjectBySlug,
-    getProjectById,
-  };
+  return useMemo(
+    () => ({
+      projects,
+      featuredProjects,
+      saveProject,
+      getProjectBySlug,
+      getProjectById,
+    }),
+    [projects, featuredProjects, saveProject, getProjectBySlug, getProjectById],
+  );
 }

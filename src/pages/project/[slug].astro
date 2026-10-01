@@ -33,7 +33,7 @@ const canonicalUrl = `${siteUrl}/project/${project.slug}`;
   canonicalPath={`/project/${project.slug}`}
 >
   <UniversalDetailView
-    client:load
+    client:idle
     project={project}
     relatedProjects={relatedProjects}
   />

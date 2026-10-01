@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 export type ScrollDirection = "up" | "down";
 
@@ -32,7 +32,10 @@ export function useScrollDirection(options?: UseScrollDirectionOptions) {
       const last = lastScrollYRef.current;
       const diff = currentScrollY - last;
 
-      setIsAtTop(currentScrollY < topThreshold);
+      setIsAtTop((prev) => {
+        const next = currentScrollY < topThreshold;
+        return prev !== next ? next : prev;
+      });
 
       if (Math.abs(diff) >= threshold) {
         const nextDirection: ScrollDirection = diff > 0 ? "down" : "up";
@@ -59,5 +62,8 @@ export function useScrollDirection(options?: UseScrollDirectionOptions) {
     };
   }, [threshold, topThreshold]);
 
-  return { scrollDirection, isAtTop };
+  return useMemo(
+    () => ({ scrollDirection, isAtTop }),
+    [scrollDirection, isAtTop],
+  );
 }

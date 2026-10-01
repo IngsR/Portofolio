@@ -145,7 +145,7 @@
       "slug": "tropical-cyclone-track-prediction",
       "title": "Prediksi Siklon Tropis (LSTM & Astro UI)",
       "shortDescription": "Ini proyek skripsi S1 saya: membuktikan LSTM bisa prediksi lintasan siklon tropis dengan akurat. Saya uji 12 skenario eksperimen (3 basin × 4 variasi timesteps), dan hasilnya window 8-16 paling bagus — rata-rata error cuma 14,2 km dengan R² 0,999. Modelnya saya konversi ke ONNX supaya bisa jalan langsung di browser, frontend pakai Astro Island Architecture.",
-      "category": "Astro & Geospatial UI",
+      "category": "Web Application",
       "tags": [
         "Astro",
         "TypeScript",
@@ -180,7 +180,7 @@
           "value": "Serverless ONNX Runtime"
         }
       ],
-      "markdownContent": "---\ntitle: \"Prediksi Lintasan Siklon Tropis dengan LSTM\"\ndescription: \"Aplikasi web interaktif prediksi lintasan siklon tropis berbasis riset skripsi Deep Learning LSTM dengan Astro Island Architecture dan ONNX Runtime serverless.\"\ndate: \"2026-08-10\"\ncategory: \"Astro & Geospatial UI\"\ntags:\n  - Astro\n  - TypeScript\n  - ONNX Runtime\n  - LSTM Time Series\n  - Island Architecture\n  - Geospatial UI\n  - SSG / Edge CDN\n  - Tailwind CSS\ngithub: \"https://github.com/IngsR/PrediksiSIklon-LSTM\"\ndemo: \"https://prediksi.ikhwann.my.id\"\nfeatured: true\n---\n\n# 🌪️ Prediksi Lintasan Siklon Tropis dengan LSTM\n\n## 📌 Konteks Riset & Objektif Sistem\nPenelitian skripsi ini membuktikan bahwa model **Long Short-Term Memory (LSTM)** mampu memprediksi lintasan siklon tropis di Samudra Hindia dengan akurasi sangat tinggi.\n\nSaya merancang **12 skenario eksperimen terkontrol**, membagi data observasi ke dalam **3 basin** (North Indian, South Indian, dan Gabungan) dengan **4 variasi timesteps** (8, 16, 24, 32). Temuan riset menunjukkan bahwa sliding window **8-16** memberikan error terendah, sedangkan window 32 mengalami overfitting. Model terbaik (**GAB-8**) mencapai **rata-rata error jarak Haversine 14,2 km** dengan **R² 0,999**.\n\n---\n\n## 🚀 Dari Riset ke Aplikasi Siap Pakai\nHasil riset ini diwujudkan menjadi aplikasi web interaktif publik pada domain **prediksi.ikhwann.my.id**:\n1. **Astro Island Architecture**: Landing page disajikan secara Zero-JS default dengan FCP instan di Edge CDN, mengisolasi hidrasi JavaScript hanya pada kanvas peta interaktif.\n2. **Serverless ONNX Runtime Inference**: Model LSTM dikonversi ke format ONNX sehingga proses inferensi berjalan langsung di peramban pengguna tanpa beban backend server.\n3. **Mitigasi Bencana Nyata**: Memungkinkan pengguna memasukkan koordinat dan kecepatan angin siklon untuk memprediksi lintasannya secara real-time demi mendukung mitigasi risiko bencana di pesisir Sumatera Barat."
+      "markdownContent": "---\ntitle: \"Prediksi Lintasan Siklon Tropis dengan LSTM\"\ndescription: \"Aplikasi web interaktif prediksi lintasan siklon tropis berbasis riset skripsi Deep Learning LSTM dengan Astro Island Architecture dan ONNX Runtime serverless.\"\ndate: \"2026-08-10\"\ncategory: \"Web Application\"\ntags:\n  - Astro\n  - TypeScript\n  - ONNX Runtime\n  - LSTM Time Series\n  - Island Architecture\n  - Geospatial UI\n  - SSG / Edge CDN\n  - Tailwind CSS\ngithub: \"https://github.com/IngsR/PrediksiSIklon-LSTM\"\ndemo: \"https://prediksi.ikhwann.my.id\"\nfeatured: true\n---\n\n# 🌪️ Prediksi Lintasan Siklon Tropis dengan LSTM\n\n## 📌 Konteks Riset & Objektif Sistem\nPenelitian skripsi ini membuktikan bahwa model **Long Short-Term Memory (LSTM)** mampu memprediksi lintasan siklon tropis di Samudra Hindia dengan akurasi sangat tinggi.\n\nSaya merancang **12 skenario eksperimen terkontrol**, membagi data observasi ke dalam **3 basin** (North Indian, South Indian, dan Gabungan) dengan **4 variasi timesteps** (8, 16, 24, 32). Temuan riset menunjukkan bahwa sliding window **8-16** memberikan error terendah, sedangkan window 32 mengalami overfitting. Model terbaik (**GAB-8**) mencapai **rata-rata error jarak Haversine 14,2 km** dengan **R² 0,999**.\n\n---\n\n## 🚀 Dari Riset ke Aplikasi Siap Pakai\nHasil riset ini diwujudkan menjadi aplikasi web interaktif publik pada domain **prediksi.ikhwann.my.id**:\n1. **Astro Island Architecture**: Landing page disajikan secara Zero-JS default dengan FCP instan di Edge CDN, mengisolasi hidrasi JavaScript hanya pada kanvas peta interaktif.\n2. **Serverless ONNX Runtime Inference**: Model LSTM dikonversi ke format ONNX sehingga proses inferensi berjalan langsung di peramban pengguna tanpa beban backend server.\n3. **Mitigasi Bencana Nyata**: Memungkinkan pengguna memasukkan koordinat dan kecepatan angin siklon untuk memprediksi lintasannya secara real-time demi mendukung mitigasi risiko bencana di pesisir Sumatera Barat."
     },
     {
       "id": "proj-4",
@@ -426,9 +426,9 @@
   ],
   "skillCategories": [
     {
-      "title": "FULLSTACK & NEXT.JS ECOSYSTEM",
+      "title": "Fullstack & Next.js",
       "iconName": "Layout",
-      "description": "Fokus utama saya membangun aplikasi web modern, cepat, dan terstruktur rapi.",
+      "description": "Fokus utama saya dalam membangun aplikasi web modern, responsif, dan terstruktur rapi.",
       "coreStack": [
         "Next.js (App Router)",
         "React.js",
@@ -443,14 +443,14 @@
       ]
     },
     {
-      "title": "REST API & DATA INTEGRATION",
+      "title": "REST API & Database",
       "iconName": "Server",
-      "description": "Perancangan endpoint RESTful, validasi skema request-response, dan integrasi database.",
+      "description": "Pembuatan endpoint RESTful yang efisien, validasi data, dan integrasi database relasional.",
       "coreStack": [
         "REST API",
         "Route Handlers",
-        "Zod Schema Validation",
-        "Relational Database / SQL"
+        "Zod Validation",
+        "SQL / Relational DB"
       ],
       "alsoUsed": [
         "Prisma / Drizzle ORM",
@@ -460,26 +460,26 @@
       ]
     },
     {
-      "title": "QUALITY, SECURITY & DELIVERY",
+      "title": "Git, Testing & Deployment",
       "iconName": "Shield",
-      "description": "Kebiasaan merilis yang aman dan teruji: kode diuji, workflow rapi, dan rilis yang bisa dilacak.",
+      "description": "Workflow pengembangan teratur dengan Git, pengujian fungsional, dan proses rilis CI/CD.",
       "coreStack": [
+        "Git & GitHub Workflow",
         "Unit & Integration Testing",
-        "OWASP Top 10 Awareness",
-        "Git Branching & PR Review",
-        "CI/CD & Serverless Deploy"
+        "CI/CD Pipeline",
+        "Vercel Deployment"
       ],
       "alsoUsed": [
-        "Auth & Session Management",
-        "Input Sanitization",
+        "Code Review",
+        "Input Validation",
         "GitHub Actions",
-        "Vercel Deployment"
+        "Environment Variables"
       ]
     },
     {
-      "title": "DATA SCIENCE & AI (SUPPORTING)",
+      "title": "Data Science & AI",
       "iconName": "Cpu",
-      "description": "Latar akademik konsentrasi Data Science sebagai nilai tambah analitis di luar fokus utama web development.",
+      "description": "Latar belakang akademik yang melatih cara berpikir analitis dan eksplorasi machine learning.",
       "coreStack": [
         "Python",
         "Data Preprocessing",
@@ -647,59 +647,30 @@
     },
     {
       "id": "rest-api-backend",
-      "category": "02 — REST API & Alur Data",
-      "title": "Perancangan RESTful API & Validasi Skema",
-      "narrative": "Saya merancang Route Handlers dan REST API dengan struktur endpoint yang jelas, status HTTP yang tepat, dan validasi input yang ketat menggunakan Zod. Saya menghubungkan backend dengan basis data relasional melalui query yang efisien, memastikan relasi data konsisten, serta menyusun penanganan error yang informatif bagi klien.",
+      "category": "02 — REST API & Database",
+      "title": "Route Handlers, Validasi Skema & Integrasi Database",
+      "narrative": "Saya merancang Route Handlers dengan struktur endpoint yang jelas, status HTTP yang tepat, dan validasi input ketat menggunakan Zod. Saya menghubungkan backend ke database relasional lewat Prisma atau Supabase, memastikan relasi data konsisten dan query efisien. Error handling dirancang agar responnya informatif — tidak hanya 500 generik.",
       "technologies": [
         "REST API",
         "Next.js Route Handlers",
-        "Zod Schema",
-        "Relational DB (SQL)",
-        "Prisma / Supabase",
-        "API Error Handling"
+        "Zod Schema Validation",
+        "Prisma ORM",
+        "Supabase",
+        "SQL & Relational DB"
       ],
       "iconName": "Server"
     },
     {
-      "id": "security-owasp-top10",
-      "category": "03 — Keamanan Aplikasi & OWASP Top 10",
-      "title": "Validasi Input, Autentikasi & Dasar Keamanan Web",
-      "narrative": "Saya membiasakan diri menulis kode yang waspada terhadap risiko keamanan, merujuk pada prinsip OWASP Top 10. Mulai dari sanitasi input dan validasi tipe data untuk mencegah injection, pengelolaan autentikasi berbasis session/token yang aman, pembatasan akses berbasis peran (RBAC), hingga penataan header keamanan dan proteksi CORS.",
-      "technologies": [
-        "OWASP Top 10",
-        "Input Sanitization",
-        "Auth & Session Guard",
-        "RBAC",
-        "CORS & Security Headers",
-        "Rate Limiting"
-      ],
-      "iconName": "Cpu"
-    },
-    {
-      "id": "testing-qa",
-      "category": "04 — Pengujian & Kualitas Kode",
-      "title": "Unit & Integration Testing untuk Stabilitas Fitur",
-      "narrative": "Bagi saya, fitur yang selesai adalah fitur yang tidak mudah rusak saat ada perubahan berikutnya. Saya membiasakan menulis pengujian untuk alur logika inti dan endpoint kritis, memeriksa skenario sukses maupun penanganan kondisi gagal (edge cases), sehingga setiap perubahan kode bisa digabungkan dengan percaya diri.",
-      "technologies": [
-        "Unit Testing",
-        "Integration Testing",
-        "API Test / Postman",
-        "Edge Case Verification",
-        "Clean Code"
-      ],
-      "iconName": "Layers"
-    },
-    {
       "id": "git-cicd-delivery",
-      "category": "05 — Git Workflow Tim & CI/CD",
-      "title": "Branching Standar Korporat, Rollback & Serverless Deploy",
-      "narrative": "Saya terbiasa bekerja dengan Git standar tim: membuat branch fitur yang terpisah, menulis pesan commit yang jelas, mengajukan Pull Request untuk review, dan menangani merge conflict dengan hati-hati. Saya juga paham langkah mitigasi seperti git reset dan revert/rollback jika terjadi masalah di rilis produksi, serta memanfaatkan pipeline CI/CD dan deployment serverless di Vercel.",
+      "category": "03 — Git Workflow & Deployment",
+      "title": "Branch, Pull Request, CI/CD & Serverless Deploy",
+      "narrative": "Saya terbiasa bekerja dengan Git standar tim: membuat branch fitur yang terpisah, menulis pesan commit yang jelas, mengajukan Pull Request untuk review, dan menangani merge conflict dengan hati-hati. Saya juga paham langkah mitigasi seperti git reset dan revert jika terjadi masalah di rilis produksi, serta memanfaatkan pipeline CI/CD dan deployment ke Vercel.",
       "technologies": [
         "Git (Branch, PR, Merge)",
-        "Git Reset, Revert & Rollback",
+        "Git Reset & Revert",
         "CI/CD Pipeline",
-        "Serverless Deployment (Vercel)",
-        "Environment Secrets",
+        "Vercel Deployment",
+        "Environment Variables",
         "Production Release"
       ],
       "iconName": "Terminal"

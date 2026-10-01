@@ -158,13 +158,13 @@ const ProfilePhoto = memo<{ userProfile: UserProfile }>(function ProfilePhoto({
         <AvatarFallback name={userProfile.name} role="Junior Web Developer" />
       )}
 
-      {/* Bar identitas di bawah foto */}
-      <div className="absolute bottom-2.5 left-2.5 right-2.5 bg-slate-950/85 dark:bg-black/85 backdrop-blur-md rounded-xl px-3 py-1.5 sm:py-2 text-white text-[10px] sm:text-[11px] flex items-center justify-between border-white/10 shadow-sm pointer-events-none">
+      {/* Bar identitas di bawah foto — kontras tinggi di light & dark mode */}
+      <div className="absolute bottom-2.5 left-2.5 right-2.5 bg-slate-950/90 dark:bg-black/90 rounded-xl px-3 py-1.5 sm:py-2 text-white text-[10px] sm:text-[11px] flex items-center justify-between border border-white/15 shadow-md pointer-events-none z-10">
         <div className="flex items-center gap-1.5 min-w-0 flex-1">
           <span className="w-2 h-2 rounded-full bg-emerald-400 shrink-0 animate-pulse"></span>
-          <span className="font-semibold truncate">{userProfile.name}</span>
+          <span className="font-semibold text-white truncate">{userProfile.name}</span>
         </div>
-        <span className="text-slate-300 text-[9px] sm:text-[10px] shrink-0 font-medium ml-2">
+        <span className="text-slate-200 text-[9px] sm:text-[10px] shrink-0 font-medium ml-2">
           Web Developer
         </span>
       </div>

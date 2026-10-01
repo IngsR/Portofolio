@@ -58,12 +58,12 @@ export const SkillCard = memo<{ category: SkillCategory }>(function SkillCard({
 
       <div className="space-y-2 sm:space-y-2.5">
         <div className="flex items-start justify-between gap-2">
-          {/* Judul: izinkan wrap di mobile agar tidak terpotong dengan ... */}
-          <span
-            className={`text-[9.5px] sm:text-[11px] font-bold uppercase tracking-tight sm:tracking-wider leading-tight break-words min-w-0 ${accent}`}
+          {/* Judul: teks natural tanpa uppercase berlebihan */}
+          <h3
+            className={`text-xs sm:text-sm font-bold tracking-tight leading-snug break-words min-w-0 ${accent}`}
           >
             {category.title}
-          </span>
+          </h3>
           <div className="p-1.5 sm:p-2 rounded-xl bg-slate-100 dark:bg-white/5 shrink-0">
             <Icon className={`w-4 h-4 sm:w-5 sm:h-5 ${accent}`} />
           </div>

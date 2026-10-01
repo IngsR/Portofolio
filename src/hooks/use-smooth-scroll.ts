@@ -1,63 +1,38 @@
-import Lenis from "lenis";
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 
 /**
- * Hook untuk mengaktifkan smooth scrolling sinematik berbasis Lenis.
- * Menghadirkan inersia scrolling mewah yang halus ala web studio terkemuka (Awwwards/Apple).
+ * useSmoothScroll — CSS-native smooth scroll, tanpa Lenis.
+ *
+ * Lenis menggunakan rAF loop yang berjalan setiap frame bahkan saat scroll diam,
+ * dan di Firefox tidak bisa pipeline dengan native scroll compositor → jank.
+ *
+ * Solusi: `scroll-behavior: smooth` via CSS sudah cukup untuk navigasi halaman,
+ * dan untuk inersia scroll, browser modern (Chrome, Firefox, Safari) sudah
+ * memiliki smooth scroll native yang diakselerasi GPU tanpa JS overhead.
+ *
+ * isPaused: saat modal aktif, matikan scroll pada body via overflow:hidden.
  */
 export function useSmoothScroll(options?: {
   enabled?: boolean;
   isPaused?: boolean;
 }) {
-  const { enabled = true, isPaused = false } = options || {};
-  const lenisRef = useRef<Lenis | null>(null);
+  const { isPaused = false } = options || {};
 
   useEffect(() => {
-    if (typeof window === "undefined" || !enabled) return;
-
-    // Hormati preferensi aksesibilitas pengguna
-    const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
-
-    if (prefersReducedMotion) return;
-
-    const lenis = new Lenis({
-      duration: 1.15,
-      easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      orientation: "vertical",
-      gestureOrientation: "vertical",
-      smoothWheel: true,
-      wheelMultiplier: 1.0,
-      touchMultiplier: 1.2,
-    });
-
-    lenisRef.current = lenis;
-
-    let rafId: number;
-    function raf(time: number) {
-      lenis.raf(time);
-      rafId = requestAnimationFrame(raf);
-    }
-
-    rafId = requestAnimationFrame(raf);
-
-    return () => {
-      cancelAnimationFrame(rafId);
-      lenis.destroy();
-      lenisRef.current = null;
-    };
-  }, [enabled]);
-
-  // Pause / resume scroll saat modal aktif
-  useEffect(() => {
-    if (!lenisRef.current) return;
     if (isPaused) {
-      lenisRef.current.stop();
-    } else {
-      lenisRef.current.start();
+      // Simpan scroll position sebelum lock agar tidak loncat saat modal tutup
+      const scrollY = window.scrollY;
+      document.body.style.overflow = "hidden";
+      document.body.style.position = "fixed";
+      document.body.style.top = `-${scrollY}px`;
+      document.body.style.width = "100%";
+      return () => {
+        document.body.style.overflow = "";
+        document.body.style.position = "";
+        document.body.style.top = "";
+        document.body.style.width = "";
+        window.scrollTo(0, scrollY);
+      };
     }
   }, [isPaused]);
-
-  return lenisRef;
 }

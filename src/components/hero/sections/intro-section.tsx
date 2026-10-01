@@ -15,7 +15,6 @@ import { EncryptedText } from "../../../design/components/encrypted-text";
 import { FlipWords } from "../../../design/components/flip-words";
 import { MagneticButton } from "../../../design/components/magnetic-button";
 import { MovingBorder } from "../../../design/components/moving-border";
-import { Sparkles } from "../../../design/components/sparkles";
 import { TextGenerateEffect } from "../../../design/components/text-generate-effect";
 import { UserProfile } from "../../../types";
 import { CinematicViewportFx } from "../cinematic-viewport-fx";
@@ -38,13 +37,15 @@ export const IntroSection = memo<HeroPageProps & { onOpenCV: () => void }>(
       () => [
         {
           label: "Proyek Selesai",
+          shortLabel: "Proyek",
           value: `${userProfile.stats.projectsCompleted}+`,
           icon: (
             <CheckCircle2 className="w-3.5 h-3.5 text-indigo-600 dark:text-indigo-400 shrink-0" />
           ),
         },
         {
-          label: "Pengalaman Profesional",
+          label: "Pengalaman Kerja",
+          shortLabel: "Pengalaman",
           value: `${userProfile.stats.yearsExperience} Bulan`,
           icon: (
             <Briefcase className="w-3.5 h-3.5 text-sky-600 dark:text-sky-400 shrink-0" />
@@ -52,6 +53,7 @@ export const IntroSection = memo<HeroPageProps & { onOpenCV: () => void }>(
         },
         {
           label: "Commit per Tahun",
+          shortLabel: "Commit",
           value: userProfile.stats.codeCommits,
           icon: (
             <GitCommit className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400 shrink-0" />
@@ -88,15 +90,13 @@ export const IntroSection = memo<HeroPageProps & { onOpenCV: () => void }>(
         <div className="relative grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
           {/* Kolom kiri: ringkasan 60 detik pertama */}
           <div className="lg:col-span-7 space-y-2 sm:space-y-3">
-            <Sparkles sparkleCount={4}>
-              <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border-emerald-500/30 bg-emerald-50/80 dark:bg-emerald-950/30 text-emerald-800 dark:text-emerald-300 text-xs font-semibold">
+            <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border border-emerald-500/30 bg-emerald-50/80 dark:bg-emerald-950/30 text-emerald-800 dark:text-emerald-300 text-xs font-semibold">
                 <span className="relative flex h-2 w-2">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
                 </span>
                 <span>{AVAILABILITY_TEXT}</span>
               </div>
-            </Sparkles>
 
             <div className="space-y-1">
               <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight text-slate-950 dark:text-white leading-[1.08]">
@@ -125,26 +125,26 @@ export const IntroSection = memo<HeroPageProps & { onOpenCV: () => void }>(
             />
 
             {/* Highlight singkat */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs text-slate-700 dark:text-slate-300">
-              <div className="flex items-start gap-2.5 p-4 rounded-2xl bg-white/95 dark:bg-white/[0.03] border border-slate-200/80 dark:border-white/5 shadow-xs">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3 text-xs text-slate-700 dark:text-slate-300">
+              <div className="flex items-start gap-2.5 p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-white/95 dark:bg-white/[0.03] border border-slate-200/80 dark:border-white/5 shadow-xs">
                 <MapPin className="w-4 h-4 text-indigo-500 dark:text-indigo-400 mt-0.5 shrink-0" />
-                <div>
-                  <span className="font-bold block text-slate-900 dark:text-white">
+                <div className="min-w-0">
+                  <span className="font-bold block text-slate-900 dark:text-white text-xs sm:text-sm">
                     Kesiapan Kerja:
                   </span>
-                  <span className="text-slate-600 dark:text-slate-400">
+                  <span className="text-slate-600 dark:text-slate-400 text-[11px] sm:text-xs leading-relaxed block">
                     On-Site (WFO) Seluruh Indonesia &amp; Remote
                   </span>
                 </div>
               </div>
 
-              <div className="flex items-start gap-2.5 p-4 rounded-2xl bg-white/95 dark:bg-white/[0.03] border border-slate-200/80 dark:border-white/5 shadow-xs">
+              <div className="flex items-start gap-2.5 p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-white/95 dark:bg-white/[0.03] border border-slate-200/80 dark:border-white/5 shadow-xs">
                 <GraduationCap className="w-4 h-4 text-sky-500 dark:text-sky-400 mt-0.5 shrink-0" />
-                <div>
-                  <span className="font-bold block text-slate-900 dark:text-white">
+                <div className="min-w-0">
+                  <span className="font-bold block text-slate-900 dark:text-white text-xs sm:text-sm">
                     Pendidikan Akademis:
                   </span>
-                  <span className="text-slate-600 dark:text-slate-400">
+                  <span className="text-slate-600 dark:text-slate-400 text-[11px] sm:text-xs leading-relaxed block">
                     S1 Teknik Informatika - UPI &ldquo;YPTK&rdquo; (IPK 3.26)
                   </span>
                 </div>
@@ -156,61 +156,69 @@ export const IntroSection = memo<HeroPageProps & { onOpenCV: () => void }>(
               {stats.map((stat) => (
                 <div
                   key={stat.label}
-                  className="rounded-2xl bg-white/95 dark:bg-white/[0.03] border border-slate-200/80 dark:border-white/5 p-3 text-left shadow-xs hover:border-slate-300 dark:hover:border-white/20 transition-all duration-200"
+                  className="rounded-xl sm:rounded-2xl bg-white/95 dark:bg-white/[0.03] border border-slate-200/80 dark:border-white/5 p-2 sm:p-3 text-left shadow-xs hover:border-slate-300 dark:hover:border-white/20 transition-all duration-200"
                 >
-                  <div className="flex items-center justify-between mb-1">
-                    <span className="text-[9px] sm:text-[10px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 truncate">
-                      {stat.label}
+                  <div className="flex items-center justify-between gap-1 mb-1">
+                    <span className="text-[10px] sm:text-[11px] font-semibold text-slate-500 dark:text-slate-400 truncate">
+                      <span className="sm:hidden">{stat.shortLabel}</span>
+                      <span className="hidden sm:inline">{stat.label}</span>
                     </span>
-                    {stat.icon}
+                    <span className="shrink-0">{stat.icon}</span>
                   </div>
-                  <span className="block text-base sm:text-xl font-black tracking-tight text-slate-950 dark:text-white">
+                  <span className="block text-sm sm:text-xl font-black tracking-tight text-slate-950 dark:text-white truncate">
                     {stat.value}
                   </span>
                 </div>
               ))}
             </div>
 
-            {/* CTA */}
-            <div className="flex flex-nowrap justify-center sm:justify-start items-center gap-3 pt-2">
-              <MagneticButton strength={0.25}>
-                <a
-                  id="hero-view-portfolio-btn"
-                  href="/portfolio"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    onNavigate?.("portfolio");
-                  }}
-                  className="flex-1 sm:flex-none px-5 sm:px-6 py-2.5 sm:py-3 rounded-full text-xs font-bold sm:uppercase sm:tracking-wider bg-slate-950 text-white dark:bg-white dark:text-slate-950 hover:bg-slate-800 dark:hover:bg-slate-100 transition-all flex items-center justify-center gap-1.5 sm:gap-2 shadow-sm"
-                >
-                  <span>Lihat Portofolio</span>
-                  <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
-                </a>
-              </MagneticButton>
+            {/* CTA — layout seimbang & proporsional */}
+            <div className="flex flex-col sm:flex-row items-center gap-2.5 sm:gap-3 pt-2">
+              {/* Baris 1 mobile: Portofolio hitam & WhatsApp berdampingan seimbang 50:50 */}
+              <div className="grid grid-cols-2 gap-2.5 w-full sm:w-auto sm:flex sm:items-center sm:gap-3">
+                {/* Portofolio */}
+                <MagneticButton strength={0.25} className="w-full sm:w-auto">
+                  <a
+                    id="hero-view-portfolio-btn"
+                    href="/portfolio"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      onNavigate?.("portfolio");
+                    }}
+                    className="w-full sm:w-auto px-4 sm:px-6 py-2.5 sm:py-3 rounded-full text-xs font-bold bg-slate-950 text-white dark:bg-white dark:text-slate-950 hover:bg-slate-800 dark:hover:bg-slate-100 transition-colors flex items-center justify-center gap-1.5 shadow-sm"
+                  >
+                    <span>Portofolio</span>
+                    <ArrowRight className="w-3.5 h-3.5 shrink-0" />
+                  </a>
+                </MagneticButton>
 
-              <MagneticButton strength={0.25}>
-                <a
-                  id="hero-whatsapp-btn"
-                  href={userProfile.whatsappUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex-1 sm:flex-none px-3 sm:px-5 py-2.5 sm:py-3 rounded-full border border-emerald-600/30 bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-700 dark:text-emerald-300 text-xs font-bold sm:tracking-wider transition-all flex items-center justify-center gap-1.5 sm:gap-2 shadow-xs"
-                >
-                  <MessageCircle className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
-                  <span className="sm:hidden">WhatsApp</span>
-                  <span className="hidden sm:inline">Hubungi via WhatsApp</span>
-                </a>
-              </MagneticButton>
+                {/* WhatsApp */}
+                <MagneticButton strength={0.25} className="w-full sm:w-auto">
+                  <a
+                    id="hero-whatsapp-btn"
+                    href={userProfile.whatsappUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full sm:w-auto px-3.5 sm:px-5 py-2.5 sm:py-3 rounded-full border border-emerald-600/30 bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-700 dark:text-emerald-300 text-xs font-bold transition-colors flex items-center justify-center gap-1.5 shadow-xs"
+                  >
+                    <MessageCircle className="w-3.5 h-3.5 shrink-0" />
+                    <span>WhatsApp</span>
+                  </a>
+                </MagneticButton>
+              </div>
 
-              <MovingBorder
-                containerClassName="h-auto rounded-full"
-                onClick={onOpenCV}
-                className="px-3 sm:px-5 py-2.5 sm:py-3 text-xs font-semibold sm:tracking-wider flex items-center gap-1.5 sm:gap-2 rounded-full"
-                duration={3000}
-              >
-                <FileText className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
-                <span>Curriculum Vitae</span>
-              </MovingBorder>
+              {/* Tombol CV: Kapsul proporsional (w-fit auto-width, tidak pernah melebar penuh) */}
+              <div className="w-full flex justify-center sm:w-auto">
+                <MovingBorder
+                  containerClassName="h-auto w-fit rounded-full shrink-0 shadow-xs"
+                  onClick={onOpenCV}
+                  className="px-4 sm:px-5 py-2 sm:py-2.5 text-xs font-semibold flex items-center gap-2 rounded-full whitespace-nowrap"
+                  duration={3500}
+                >
+                  <FileText className="w-3.5 h-3.5 shrink-0 text-slate-600 dark:text-slate-300" />
+                  <span>Curriculum Vitae</span>
+                </MovingBorder>
+              </div>
             </div>
           </div>
 

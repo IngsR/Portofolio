@@ -37,12 +37,10 @@ const FILTER_KEYWORDS = [
 
 const FILTER_CATEGORIES = [
   "Semua",
-  "Next.js & Performance",
-  "Angular & Reactive Architecture",
-  "Astro & Geospatial UI",
+  "Fullstack Web App",
+  "Web Platform",
+  "Web Application",
   "React & Next.js UI",
-  "Design System & Monorepo",
-  "Dashboard & Data Grid",
   "Mobile Frontend",
   "Lainnya",
 ] as const;

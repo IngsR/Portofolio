@@ -6,21 +6,18 @@ import {
   ArrowUpRight,
   Calendar,
   CheckCircle2,
-  Clock,
   Code2,
   Cpu,
   ExternalLink,
   Github,
   Layers,
   Share2,
-  Sparkles,
   Tag,
   Target,
   User,
   Zap,
 } from "lucide-react";
 import React, { useState } from "react";
-import { useSmoothScroll } from "../../hooks";
 import type { ProjectItem } from "../../types";
 
 const getMetricTheme = (
@@ -77,7 +74,7 @@ const getMetricTheme = (
         "bg-sky-50 text-sky-600 border-sky-200/70 dark:bg-sky-500/15 dark:text-sky-400 dark:border-sky-500/30",
     },
     {
-      icon: customIcon || <Sparkles className="w-5 h-5" />,
+      icon: customIcon || <Layers className="w-5 h-5" />,
       badge:
         "bg-emerald-50 text-emerald-600 border-emerald-200/70 dark:bg-emerald-500/15 dark:text-emerald-400 dark:border-emerald-500/30",
     },
@@ -178,18 +175,17 @@ export const ProjectDetailView: React.FC<ProjectDetailViewProps> = ({
           transition={{ duration: 0.5, delay: 0.1 }}
           className="space-y-6"
         >
-          {/* Badge & Category */}
-          <div className="flex flex-wrap items-center gap-2.5">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-sky-500/10 border border-sky-500/25 text-sky-600 dark:text-sky-400 text-xs font-semibold">
-              <Sparkles className="w-3 h-3" />
-              {project.category}
-            </span>
+          {/* Period & Category */}
+          <div className="flex flex-wrap items-center gap-2">
             {project.period && (
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-100 dark:bg-white/[0.05] border border-slate-200/60 dark:border-white/10 text-slate-600 dark:text-slate-300 text-xs font-medium">
-                <Clock className="w-3 h-3" />
+              <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/90 dark:bg-white/[0.05] border border-slate-200/80 dark:border-white/10 text-slate-600 dark:text-slate-300 text-xs font-medium">
+                <Calendar className="w-3 h-3 text-slate-400" />
                 {project.period}
               </span>
             )}
+            <span className="text-xs text-slate-500 dark:text-slate-400 font-medium">
+              {project.category}
+            </span>
           </div>
 
           {/* Project Title */}
@@ -399,26 +395,26 @@ export const ProjectDetailView: React.FC<ProjectDetailViewProps> = ({
                   Jelajahi Proyek Lainnya
                 </h3>
                 <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400">
-                  Studi kasus rekayasa web dan aplikasi interaktif lainnya
+                  Proyek-proyek lain yang mungkin menarik buat kamu lihat
                 </p>
               </div>
               <a
                 href="/portfolio"
                 className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-slate-900 dark:text-white hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
               >
-                <span>Lihat Semua Portofolio</span>
+                <span>Lihat Semua</span>
                 <ArrowRight className="w-4 h-4" />
               </a>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
               {relatedProjects.slice(0, 3).map((rel) => (
                 <a
                   key={rel.id}
                   href={`/project/${rel.slug}`}
-                  className="group block p-4 rounded-2xl bg-white/80 dark:bg-[#0c0c0e]/80 border border-slate-200 dark:border-white/10 hover:border-slate-400 dark:hover:border-white/30 transition-all hover:-translate-y-1 shadow-xs"
+                  className="group block p-3 sm:p-4 rounded-2xl bg-white/80 dark:bg-[#0c0c0e]/80 border border-slate-200 dark:border-white/10 hover:border-slate-400 dark:hover:border-white/30 transition-all hover:-translate-y-1 shadow-xs"
                 >
-                  <div className="aspect-[16/10] rounded-xl overflow-hidden mb-3 bg-slate-900">
+                  <div className="aspect-[16/10] rounded-xl overflow-hidden mb-2.5 bg-slate-900">
                     <img
                       src={rel.image}
                       alt={rel.title}
@@ -426,13 +422,13 @@ export const ProjectDetailView: React.FC<ProjectDetailViewProps> = ({
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                     />
                   </div>
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">
+                  <span className="text-[9px] sm:text-[10px] font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">
                     {rel.category}
                   </span>
-                  <h4 className="text-sm font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors truncate mt-1">
+                  <h4 className="text-[11px] sm:text-sm font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors line-clamp-2 mt-0.5 leading-snug">
                     {rel.title}
                   </h4>
-                  <p className="text-xs text-slate-500 dark:text-slate-400 line-clamp-2 mt-1">
+                  <p className="text-[10px] sm:text-xs text-slate-500 dark:text-slate-400 line-clamp-2 mt-1 leading-snug">
                     {rel.shortDescription}
                   </p>
                 </a>

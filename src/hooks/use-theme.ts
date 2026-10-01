@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from "react";
+import { useCallback, useEffect, useMemo } from "react";
 import { isDarkStore } from "../store/portfolio";
 import { useStore } from "../utils/store";
 
@@ -46,9 +46,12 @@ export function useTheme() {
     setTheme(!isDarkStore.get());
   }, [setTheme]);
 
-  return {
-    isDark,
-    setTheme,
-    toggleTheme,
-  };
+  return useMemo(
+    () => ({
+      isDark,
+      setTheme,
+      toggleTheme,
+    }),
+    [isDark, setTheme, toggleTheme],
+  );
 }

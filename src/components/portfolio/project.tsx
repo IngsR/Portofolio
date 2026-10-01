@@ -44,12 +44,6 @@ export const Project = memo<ProjectCardProps>(function Project({
           referrerPolicy="no-referrer"
         />
 
-        {/* Clean Category Badge */}
-        <div className="absolute top-2 left-2 sm:top-3 sm:left-3 flex items-center gap-1.5 pointer-events-none max-w-[55%]">
-          <span className="px-2 py-0.5 sm:px-2.5 sm:py-1 text-[9px] sm:text-[11px] font-semibold rounded-md sm:rounded-lg bg-slate-950/85 text-white dark:bg-white/90 dark:text-slate-950 backdrop-blur-md shadow-xs truncate">
-            {project.category}
-          </span>
-        </div>
 
         {/* Live Domain Indicator if available */}
         {domain && (
@@ -181,9 +175,16 @@ export const Project = memo<ProjectCardProps>(function Project({
     </>
   );
 
-  const handleCardClick = () => {
+  const handleCardClick = (e: React.MouseEvent) => {
+    if ((e.target as HTMLElement).closest("a, button")) return;
     if (project?.slug) {
-      window.location.href = `/project/${project.slug}`;
+      if (typeof window !== "undefined") {
+        import("astro:transitions/client")
+          .then(({ navigate }) => navigate(`/project/${project.slug}`))
+          .catch(() => {
+            window.location.href = `/project/${project.slug}`;
+          });
+      }
       return;
     }
     if (onOpenDetail) onOpenDetail(project);

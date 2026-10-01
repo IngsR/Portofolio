@@ -1,5 +1,3 @@
-"use client";
-import { motion, useMotionValue, useSpring } from "motion/react";
 import React, { useRef } from "react";
 import { canHover } from "../../utils/hover";
 import { cn } from "../utils";
@@ -10,26 +8,23 @@ interface MagneticButtonProps {
   strength?: number;
 }
 
+/**
+ * MagneticButton — efek magnetik pure CSS transform, tanpa motion/react.
+ *
+ * Sebelumnya menggunakan useSpring dari Framer Motion yang membuat
+ * JS animation loop berjalan setiap frame → jank di Firefox.
+ *
+ * Sekarang: CSS `transition: transform` yang di-handle GPU compositor.
+ * Efek tetap identik secara visual, performa jauh lebih baik.
+ */
 export const MagneticButton = ({
   children,
   className,
   strength = 0.3,
 }: MagneticButtonProps) => {
   const ref = useRef<HTMLDivElement>(null);
-  // Efek magnetik hanya masuk akal di perangkat ber-hover. Di layar sentuh
-  // pointer tidak melayang, jadi listener + spring x/y cukup dibuang saja:
-  // tanpa efek ini pun tampilan tombol tetap identik.
   const hoverable = canHover();
-  // Cache pusat tombol: diukur SEKALI saat mouseenter, bukan tiap mousemove.
-  // getBoundingClientRect() per mousemove memaksa synchronous layout (thrash)
-  // — sumber jank klasik pada tombol magnetik.
   const centerRef = useRef<{ x: number; y: number } | null>(null);
-
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
-
-  const springX = useSpring(x, { stiffness: 150, damping: 15, mass: 0.1 });
-  const springY = useSpring(y, { stiffness: 150, damping: 15, mass: 0.1 });
 
   const handleMouseEnter = () => {
     const el = ref.current;
@@ -44,26 +39,30 @@ export const MagneticButton = ({
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const center = centerRef.current;
     if (!center || !hoverable) return;
-    x.set((e.clientX - center.x) * strength);
-    y.set((e.clientY - center.y) * strength);
+    const dx = (e.clientX - center.x) * strength;
+    const dy = (e.clientY - center.y) * strength;
+    if (ref.current) {
+      ref.current.style.transform = `translate(${dx}px, ${dy}px)`;
+    }
   };
 
   const handleMouseLeave = () => {
     centerRef.current = null;
-    x.set(0);
-    y.set(0);
+    if (ref.current) {
+      ref.current.style.transform = "";
+    }
   };
 
   return (
-    <motion.div
+    <div
       ref={ref}
-      style={{ x: springX, y: springY }}
       onMouseEnter={handleMouseEnter}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
+      onMouseMove={hoverable ? handleMouseMove : undefined}
+      onMouseLeave={hoverable ? handleMouseLeave : undefined}
       className={cn("inline-flex", className)}
+      style={{ transition: "transform 0.25s cubic-bezier(0.22, 1, 0.36, 1)" }}
     >
       {children}
-    </motion.div>
+    </div>
   );
 };

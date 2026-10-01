@@ -31,7 +31,7 @@ const { certificate, relatedCertificates } = Astro.props;
   canonicalPath={`/certificate/${certificate.id}`}
 >
   <UniversalDetailView
-    client:load
+    client:idle
     certificate={certificate}
     relatedCertificates={relatedCertificates}
     backHref="/portfolio"

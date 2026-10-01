@@ -3,6 +3,7 @@ import "../styles/global.css";
 import Analytics from "@vercel/analytics/astro";
 import SpeedInsights from "@vercel/speed-insights/astro";
 import { BackgroundBeamsWithCollision } from "../components/layout/background-beams-with-collision";
+import { ClientRouter } from "astro:transitions";
 
 interface Props {
   title?: string;
@@ -51,7 +52,7 @@ const personSchema = {
     "Static Site Generation (SSG)",
     "Incremental Static Regeneration (ISR)",
     "Testing",
-    "OWASP Top 10",
+    "Zod Validation",
     "CI/CD",
     "Serverless Deployment",
     "Git Workflow",
@@ -134,6 +135,7 @@ const breadcrumbSchema = {
     <meta name="theme-color" content="#ffffff" />
     <link rel="canonical" href={canonicalUrl} />
     <link rel="icon" href="/logo.ico" />
+    <ClientRouter />
 
     <!-- Theme Initializer (Default: Light Mode) -->
     <script is:inline>

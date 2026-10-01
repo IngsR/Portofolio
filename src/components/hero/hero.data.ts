@@ -46,10 +46,10 @@ export const HERO_BIO =
 
 /** Ringkasan fokus teknis di section "Tentang Saya" pada Beranda */
 export const HERO_SUMMARY_CARDS: HeroSummaryCard[] = [
-  { title: "Next.js", subtitle: "App Router, SSR, SSG, ISR" },
-  { title: "REST API & Testing", subtitle: "Validasi, integrasi, test" },
-  { title: "Security Basics", subtitle: "OWASP Top 10 awareness" },
-  { title: "Delivery Workflow", subtitle: "Git, CI/CD, serverless" },
+  { title: "Next.js", subtitle: "App Router, SSR, SSG, Server Actions" },
+  { title: "React & TypeScript", subtitle: "Komponen, hooks, type-safe" },
+  { title: "REST API & Database", subtitle: "Route Handlers, Zod, Prisma" },
+  { title: "Git & Deployment", subtitle: "Branch, PR, Vercel, CI/CD" },
 ];
 
 /**

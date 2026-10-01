@@ -29,9 +29,16 @@ export const Certificate = memo<CertificateCardProps>(function Certificate({
       : ""
   }`;
 
-  const handleCardClick = () => {
+  const handleCardClick = (e: React.MouseEvent) => {
+    if ((e.target as HTMLElement).closest("a, button")) return;
     if (certificate?.id) {
-      window.location.href = `/certificate/${certificate.id}`;
+      if (typeof window !== "undefined") {
+        import("astro:transitions/client")
+          .then(({ navigate }) => navigate(`/certificate/${certificate.id}`))
+          .catch(() => {
+            window.location.href = `/certificate/${certificate.id}`;
+          });
+      }
       return;
     }
     if (onOpenDetail) onOpenDetail(certificate);

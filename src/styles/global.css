@@ -4,7 +4,6 @@
 
 @layer base {
   html {
-    scroll-behavior: smooth;
     font-family:
       "Instrument Sans",
       system-ui,
@@ -555,37 +554,38 @@ p {
   }
 }
 
-/* Backdrop-blur mahal — khususnya di Firefox yang tidak menggunakan
-   GPU compositor untuk backdrop-filter. Turunkan semua nilai blur.
-   Firefox terdeteksi via @-moz-document: gunakan blur lebih rendah. */
+/* Backdrop-blur: hindari transform: translateZ(0) pada setiap elemen blur
+   karena memicu pembuatan layer composited terpisah per-elemen (layer explosion)
+   yang membuat scrolling di Firefox tersendat-sendat (jank). */
 @supports (backdrop-filter: blur(1px)) {
   .backdrop-blur-sm {
     backdrop-filter: blur(2px) !important;
-    transform: translateZ(0);
   }
   .backdrop-blur-md {
     backdrop-filter: blur(4px) !important;
-    transform: translateZ(0); /* isolate → GPU composited layer */
   }
   .backdrop-blur-xl {
     backdrop-filter: blur(8px) !important;
-    transform: translateZ(0);
   }
   .backdrop-blur-2xl {
     backdrop-filter: blur(12px) !important;
-    transform: translateZ(0);
   }
 }
 
-/* Firefox: backdrop-filter sangat mahal (CPU-bound, bukan GPU).
-   Turunkan blur ke nilai minimum agar tetap ada efek tanpa frame drop. */
-@-moz-document url-prefix() {
-  [class*="backdrop-blur"] {
-    backdrop-filter: blur(4px) !important;
-    -webkit-backdrop-filter: none !important;
+/* Firefox WebRender Optimization:
+   Di Firefox, backdrop-filter berulang kali pada elemen kartu yang banyak
+   dapat menyebabkan frame drop saat scrolling. Matikan kalkulasi blur CPU
+   tanpa menimpa warna background elemen (agar elemen gelap tetap berkontras tinggi). */
+@supports (-moz-appearance: none) {
+  .backdrop-blur-sm,
+  .backdrop-blur-md,
+  .backdrop-blur-lg,
+  .backdrop-blur-xl,
+  .backdrop-blur-2xl {
+    backdrop-filter: none !important;
   }
   .aceternity-card {
-    backdrop-filter: blur(4px) !important;
+    backdrop-filter: none !important;
   }
 }
 
@@ -827,19 +827,19 @@ html {
 }
 
 /* ============================================================
-   AURORA ORB — menggantikan motion.div repeat Infinity di hero.
-   blur-3xl sudah di class Tailwind; animasi hanya opacity +
-   translate (compositor-only, zero layout, zero paint).
+   AURORA ORB — hanya translate + opacity (tidak ada scale).
+   Scale pada elemen blur menyebabkan repaint setiap frame di Firefox.
+   translate + opacity = murni GPU compositor, zero repaint.
    ============================================================ */
 @keyframes auroraOrb1 {
-  0%   { transform: translate(0px, 0px) scale(1); opacity: 0.6; }
-  50%  { transform: translate(15px, -10px) scale(1.15); opacity: 0.85; }
-  100% { transform: translate(0px, 0px) scale(1); opacity: 0.6; }
+  0%   { transform: translate(0, 0); opacity: 0.55; }
+  50%  { transform: translate(12px, -8px); opacity: 0.8; }
+  100% { transform: translate(0, 0); opacity: 0.55; }
 }
 @keyframes auroraOrb2 {
-  0%   { transform: translate(0px, 0px) scale(1); opacity: 0.5; }
-  50%  { transform: translate(-10px, 15px) scale(1.12); opacity: 0.75; }
-  100% { transform: translate(0px, 0px) scale(1); opacity: 0.5; }
+  0%   { transform: translate(0, 0); opacity: 0.45; }
+  50%  { transform: translate(-8px, 12px); opacity: 0.7; }
+  100% { transform: translate(0, 0); opacity: 0.45; }
 }
 
 .aurora-orb-1 {
