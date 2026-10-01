@@ -1,15 +1,14 @@
 "use client";
-import { motion } from "motion/react";
 import React, { memo } from "react";
 
 /**
  * CinematicViewportFx
  *
- * Efek visual & motion terinspirasi dari ahli video editing & sinematografi profesional:
- * 1. Anamorphic Lens Flare SVG: streak horizontal cahaya prisma khas lensa film Panavision / ARRI
- * 2. Viewfinder Reticles & HUD: sudut framing kamera sinema (┌ ┐ └ ┘) dengan status REC & 24 FPS
- * 3. Color Grade Atmospheric Aura: pencahayaan lembut yang nyaman di mata ("nyaman di mata")
- * 4. 100% GPU-accelerated: bebas frame-drop di mobile dengan komputasi transform native
+ * Versi dioptimalkan untuk cross-browser performance:
+ * - motion.div dihapus → animasi pure CSS @keyframes (berjalan di compositor GPU)
+ * - mix-blend-mode dihilangkan dari elemen beranimasi (sangat mahal di Firefox:
+ *   memaksa repaint seluruh stacking context setiap frame)
+ * - Tetap ada efek sinematik HUD + aura tanpa frame drop di Firefox/Safari
  */
 export const CinematicViewportFx = memo(function CinematicViewportFx() {
   return (
@@ -17,25 +16,13 @@ export const CinematicViewportFx = memo(function CinematicViewportFx() {
       className="pointer-events-none absolute inset-0 overflow-hidden rounded-3xl select-none"
       aria-hidden="true"
     >
-      {/* 1. Anamorphic Lens Flare Beam (Horizontal Prism Light Streak) */}
-      <motion.div
-        animate={{
-          x: ["-15%", "15%", "-15%"],
-          opacity: [0.45, 0.75, 0.45],
-          scaleY: [0.9, 1.15, 0.9],
-        }}
-        transition={{
-          duration: 12,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-        className="absolute -top-10 sm:-top-8 left-1/2 -translate-x-1/2 w-[160%] sm:w-[130%] h-32 sm:h-40"
-      >
+      {/* 1. Anamorphic Lens Flare Beam — pure CSS animation, no motion/react */}
+      <div className="cinematic-flare-beam absolute -top-10 sm:-top-8 left-1/2 -translate-x-1/2 w-[160%] sm:w-[130%] h-32 sm:h-40">
         <svg
           viewBox="0 0 1200 160"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          className="w-full h-full preserve-3d"
+          className="w-full h-full"
         >
           <defs>
             {/* Anamorphic Blue Streak Gradient */}
@@ -47,11 +34,11 @@ export const CinematicViewportFx = memo(function CinematicViewportFx() {
               y2="50%"
             >
               <stop offset="0%" stopColor="#38bdf8" stopOpacity="0" />
-              <stop offset="25%" stopColor="#6366f1" stopOpacity="0.15" />
-              <stop offset="45%" stopColor="#38bdf8" stopOpacity="0.55" />
-              <stop offset="50%" stopColor="#ffffff" stopOpacity="0.85" />
-              <stop offset="55%" stopColor="#38bdf8" stopOpacity="0.55" />
-              <stop offset="75%" stopColor="#a855f7" stopOpacity="0.15" />
+              <stop offset="25%" stopColor="#6366f1" stopOpacity="0.12" />
+              <stop offset="45%" stopColor="#38bdf8" stopOpacity="0.45" />
+              <stop offset="50%" stopColor="#ffffff" stopOpacity="0.7" />
+              <stop offset="55%" stopColor="#38bdf8" stopOpacity="0.45" />
+              <stop offset="75%" stopColor="#a855f7" stopOpacity="0.12" />
               <stop offset="100%" stopColor="#6366f1" stopOpacity="0" />
             </linearGradient>
 
@@ -64,18 +51,18 @@ export const CinematicViewportFx = memo(function CinematicViewportFx() {
               fx="50%"
               fy="50%"
             >
-              <stop offset="0%" stopColor="#ffffff" stopOpacity="0.9" />
-              <stop offset="20%" stopColor="#38bdf8" stopOpacity="0.6" />
-              <stop offset="50%" stopColor="#6366f1" stopOpacity="0.25" />
+              <stop offset="0%" stopColor="#ffffff" stopOpacity="0.75" />
+              <stop offset="20%" stopColor="#38bdf8" stopOpacity="0.45" />
+              <stop offset="50%" stopColor="#6366f1" stopOpacity="0.18" />
               <stop offset="100%" stopColor="#38bdf8" stopOpacity="0" />
             </radialGradient>
           </defs>
 
-          {/* Diffused Lens Flare Ribbon */}
+          {/* Diffused Lens Flare Ribbon — opacity dikurangi, tanpa mix-blend-mode */}
           <path
             d="M0 80 Q 600 55 1200 80 Q 600 105 0 80 Z"
             fill="url(#anamorphic-streak)"
-            className="dark:opacity-40 opacity-25 mix-blend-screen"
+            className="dark:opacity-35 opacity-20"
           />
 
           {/* Ultra Thin Sharp Anamorphic Streak Line */}
@@ -87,7 +74,7 @@ export const CinematicViewportFx = memo(function CinematicViewportFx() {
             stroke="url(#anamorphic-streak)"
             strokeWidth="1.5"
             strokeLinecap="round"
-            className="dark:opacity-75 opacity-40 mix-blend-screen"
+            className="dark:opacity-60 opacity-35"
           />
 
           {/* Central Lens Iris Flare Core */}
@@ -97,10 +84,10 @@ export const CinematicViewportFx = memo(function CinematicViewportFx() {
             rx="90"
             ry="24"
             fill="url(#prism-core)"
-            className="dark:opacity-50 opacity-30 mix-blend-screen"
+            className="dark:opacity-40 opacity-25"
           />
         </svg>
-      </motion.div>
+      </div>
 
       {/* 2. Director Viewfinder HUD Reticles (Sudut Kamera Sinema ┌ ┐ └ ┘) */}
       <div className="absolute inset-0 p-3 sm:p-5 flex flex-col justify-between">

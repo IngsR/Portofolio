@@ -9,7 +9,6 @@ import {
   MapPin,
   MessageCircle,
 } from "lucide-react";
-import { motion } from "motion/react";
 import { memo, useMemo } from "react";
 import portfolioData from "../../../data/portfolio.json";
 import { EncryptedText } from "../../../design/components/encrypted-text";
@@ -69,28 +68,16 @@ export const IntroSection = memo<HeroPageProps & { onOpenCV: () => void }>(
           <CinematicViewportFx />
         </div>
 
-        {/* Cinematic ambient aurora lighting on desktop (fluid motion) */}
-        <motion.div
+        {/* Cinematic ambient aurora lighting on desktop — pure CSS (tidak ada
+            JS per frame seperti motion.div). Berjalan di GPU compositor di
+            semua browser termasuk Firefox tanpa jank. */}
+        <div
           aria-hidden
-          animate={{
-            scale: [1, 1.15, 1],
-            opacity: [0.6, 0.85, 0.6],
-            x: [0, 15, 0],
-            y: [0, -10, 0],
-          }}
-          transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
-          className="pointer-events-none hidden md:block absolute -top-28 -right-28 h-80 w-80 rounded-full bg-gradient-to-br from-indigo-300/35 via-sky-200/30 to-purple-200/20 blur-3xl dark:from-indigo-500/15 dark:via-sky-500/10 dark:to-purple-500/10"
+          className="pointer-events-none hidden md:block absolute -top-28 -right-28 h-80 w-80 rounded-full bg-gradient-to-br from-indigo-300/35 via-sky-200/30 to-purple-200/20 blur-3xl dark:from-indigo-500/15 dark:via-sky-500/10 dark:to-purple-500/10 aurora-orb-1"
         />
-        <motion.div
+        <div
           aria-hidden
-          animate={{
-            scale: [1, 1.12, 1],
-            opacity: [0.5, 0.75, 0.5],
-            x: [0, -10, 0],
-            y: [0, 15, 0],
-          }}
-          transition={{ duration: 11, repeat: Infinity, ease: "easeInOut" }}
-          className="pointer-events-none hidden md:block absolute -bottom-36 -left-20 h-72 w-72 rounded-full bg-gradient-to-tr from-emerald-200/30 via-teal-200/20 to-transparent blur-3xl dark:from-emerald-500/10 dark:via-teal-500/5 dark:to-transparent"
+          className="pointer-events-none hidden md:block absolute -bottom-36 -left-20 h-72 w-72 rounded-full bg-gradient-to-tr from-emerald-200/30 via-teal-200/20 to-transparent blur-3xl dark:from-emerald-500/10 dark:via-teal-500/5 dark:to-transparent aurora-orb-2"
         />
         {/* Lightweight static gradient on mobile (zero CPU/GPU overhead) */}
         <div
@@ -229,33 +216,20 @@ export const IntroSection = memo<HeroPageProps & { onOpenCV: () => void }>(
 
           {/* Kolom kanan: kartu foto profil + floating HUD chips di desktop */}
           <div className="lg:col-span-5 flex justify-center relative">
-            {/* Desktop-only floating chips (hidden on mobile for 60fps lightweight performance) */}
-            <motion.div
-              animate={{ y: [-4, 4, -4] }}
-              transition={{
-                duration: 4.5,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-              className="hidden xl:flex absolute -top-3 -left-6 z-20 items-center gap-2 px-3 py-1.5 rounded-2xl bg-white/95 dark:bg-[#121216]/95 border border-slate-200/90 dark:border-white/15 shadow-[0_8px_20px_-4px_rgba(15,23,42,0.1)] dark:shadow-black/60 backdrop-blur-md text-[11px] font-bold text-slate-800 dark:text-white pointer-events-none"
+            {/* Desktop-only floating chips — pure CSS bounce animation */}
+            <div
+              className="hidden xl:flex absolute -top-3 -left-6 z-20 items-center gap-2 px-3 py-1.5 rounded-2xl bg-white/95 dark:bg-[#121216]/95 border border-slate-200/90 dark:border-white/15 shadow-[0_8px_20px_-4px_rgba(15,23,42,0.1)] dark:shadow-black/60 backdrop-blur-md text-[11px] font-bold text-slate-800 dark:text-white pointer-events-none float-chip-1"
             >
               <span className="flex h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
               <span>Next.js 15 &amp; React 19</span>
-            </motion.div>
+            </div>
 
-            <motion.div
-              animate={{ y: [4, -4, 4] }}
-              transition={{
-                duration: 5,
-                repeat: Infinity,
-                ease: "easeInOut",
-                delay: 0.5,
-              }}
-              className="hidden xl:flex absolute -bottom-2 -right-5 z-20 items-center gap-2 px-3 py-1.5 rounded-2xl bg-white/95 dark:bg-[#121216]/95 border border-slate-200/90 dark:border-white/15 shadow-[0_8px_20px_-4px_rgba(15,23,42,0.1)] dark:shadow-black/60 backdrop-blur-md text-[11px] font-bold text-slate-800 dark:text-white pointer-events-none"
+            <div
+              className="hidden xl:flex absolute -bottom-2 -right-5 z-20 items-center gap-2 px-3 py-1.5 rounded-2xl bg-white/95 dark:bg-[#121216]/95 border border-slate-200/90 dark:border-white/15 shadow-[0_8px_20px_-4px_rgba(15,23,42,0.1)] dark:shadow-black/60 backdrop-blur-md text-[11px] font-bold text-slate-800 dark:text-white pointer-events-none float-chip-2"
             >
               <Cpu className="w-3.5 h-3.5 text-indigo-500" />
               <span>Fullstack &amp; Architecture</span>
-            </motion.div>
+            </div>
 
             <ProfilePhotoCard userProfile={userProfile} />
           </div>

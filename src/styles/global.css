@@ -555,20 +555,37 @@ p {
   }
 }
 
-/* Backdrop-blur mahal — gunakan blur(4px) agar kompositor tidak
-   kelebihan beban terutama di Firefox dengan banyak blur layer. */
+/* Backdrop-blur mahal — khususnya di Firefox yang tidak menggunakan
+   GPU compositor untuk backdrop-filter. Turunkan semua nilai blur.
+   Firefox terdeteksi via @-moz-document: gunakan blur lebih rendah. */
 @supports (backdrop-filter: blur(1px)) {
+  .backdrop-blur-sm {
+    backdrop-filter: blur(2px) !important;
+    transform: translateZ(0);
+  }
   .backdrop-blur-md {
     backdrop-filter: blur(4px) !important;
     transform: translateZ(0); /* isolate → GPU composited layer */
   }
   .backdrop-blur-xl {
-    backdrop-filter: blur(12px) !important;
+    backdrop-filter: blur(8px) !important;
     transform: translateZ(0);
   }
   .backdrop-blur-2xl {
-    backdrop-filter: blur(16px) !important;
+    backdrop-filter: blur(12px) !important;
     transform: translateZ(0);
+  }
+}
+
+/* Firefox: backdrop-filter sangat mahal (CPU-bound, bukan GPU).
+   Turunkan blur ke nilai minimum agar tetap ada efek tanpa frame drop. */
+@-moz-document url-prefix() {
+  [class*="backdrop-blur"] {
+    backdrop-filter: blur(4px) !important;
+    -webkit-backdrop-filter: none !important;
+  }
+  .aceternity-card {
+    backdrop-filter: blur(4px) !important;
   }
 }
 
@@ -639,16 +656,16 @@ html {
   animation: flip-word-in 0.32s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
+/* PENTING: filter blur di @keyframes sangat mahal di Firefox — browser
+   menjalankannya di CPU bukan GPU. Gunakan hanya opacity + transform. */
 @keyframes flip-word-in {
   from {
     opacity: 0;
     transform: translateY(10px);
-    filter: blur(4px);
   }
   to {
     opacity: 1;
     transform: translateY(0);
-    filter: blur(0px);
   }
 }
 
@@ -666,7 +683,8 @@ html {
    ============================================================ */
 .tge-word {
   opacity: 0;
-  filter: var(--tge-filter, blur(6px));
+  /* filter blur dihilangkan dari initial state — Firefox merender
+     filter di CPU, dan 60+ elemen blur sekaligus = jank parah. */
 }
 
 .tge-word.tge-visible {
@@ -674,14 +692,16 @@ html {
     cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
+/* Keyframe murni opacity + transform — berjalan di GPU compositor
+   di semua browser (Chrome, Firefox, Safari) tanpa frame drop. */
 @keyframes tge-reveal {
   from {
     opacity: 0;
-    filter: var(--tge-filter, blur(6px));
+    transform: translateY(4px);
   }
   to {
     opacity: 1;
-    filter: blur(0px);
+    transform: translateY(0);
   }
 }
 
@@ -766,6 +786,102 @@ html {
     animation: none !important;
   }
   .animate-modal-card-scale {
+    animation: none !important;
+  }
+}
+
+/* ============================================================
+   CINEMATIC FLARE BEAM — pure CSS (menggantikan motion.div).
+   Hanya opacity + transform → GPU compositor, zero JS per frame.
+   ============================================================ */
+@keyframes cinematicFlare {
+  0%   { transform: translateX(-15%) scaleY(0.9); opacity: 0.45; }
+  50%  { transform: translateX(15%) scaleY(1.15); opacity: 0.75; }
+  100% { transform: translateX(-15%) scaleY(0.9); opacity: 0.45; }
+}
+
+.cinematic-flare-beam {
+  will-change: transform, opacity;
+  animation: cinematicFlare 12s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cinematic-flare-beam {
+    animation: none !important;
+    opacity: 0.3;
+  }
+}
+
+/* ============================================================
+   ACETERNITY CARD — Firefox: kurangi blur agar ringan.
+   ============================================================ */
+@-moz-document url-prefix() {
+  .aceternity-card {
+    backdrop-filter: blur(4px) !important;
+    background-color: rgba(255, 255, 255, 0.9) !important;
+  }
+  html.dark .aceternity-card,
+  .dark .aceternity-card {
+    background-color: rgba(12, 12, 13, 0.92) !important;
+  }
+}
+
+/* ============================================================
+   AURORA ORB — menggantikan motion.div repeat Infinity di hero.
+   blur-3xl sudah di class Tailwind; animasi hanya opacity +
+   translate (compositor-only, zero layout, zero paint).
+   ============================================================ */
+@keyframes auroraOrb1 {
+  0%   { transform: translate(0px, 0px) scale(1); opacity: 0.6; }
+  50%  { transform: translate(15px, -10px) scale(1.15); opacity: 0.85; }
+  100% { transform: translate(0px, 0px) scale(1); opacity: 0.6; }
+}
+@keyframes auroraOrb2 {
+  0%   { transform: translate(0px, 0px) scale(1); opacity: 0.5; }
+  50%  { transform: translate(-10px, 15px) scale(1.12); opacity: 0.75; }
+  100% { transform: translate(0px, 0px) scale(1); opacity: 0.5; }
+}
+
+.aurora-orb-1 {
+  will-change: transform, opacity;
+  animation: auroraOrb1 9s ease-in-out infinite;
+}
+.aurora-orb-2 {
+  will-change: transform, opacity;
+  animation: auroraOrb2 11s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aurora-orb-1,
+  .aurora-orb-2 {
+    animation: none !important;
+  }
+}
+
+/* ============================================================
+   FLOAT CHIP — menggantikan motion.div floating HUD di hero.
+   Hanya translateY → GPU compositor, zero main-thread cost.
+   ============================================================ */
+@keyframes floatChip1 {
+  0%, 100% { transform: translateY(-4px); }
+  50%       { transform: translateY(4px); }
+}
+@keyframes floatChip2 {
+  0%, 100% { transform: translateY(4px); }
+  50%       { transform: translateY(-4px); }
+}
+
+.float-chip-1 {
+  animation: floatChip1 4.5s ease-in-out infinite;
+}
+.float-chip-2 {
+  animation: floatChip2 5s ease-in-out infinite;
+  animation-delay: 0.5s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .float-chip-1,
+  .float-chip-2 {
     animation: none !important;
   }
 }
