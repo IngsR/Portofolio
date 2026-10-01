@@ -34,6 +34,37 @@
     background-color: rgba(99, 102, 241, 0.25);
     color: inherit;
   }
+
+  /* ── Light theme warm palette override ──────────────────────────────────
+     60% base  : #f0ede8  (krem linen — body background)
+     30% surface: #e9e5dd  (card/section — sedikit lebih hangat dari base)
+     10% accent : indigo/violet tetap (tidak diubah)
+
+     Override bg-white di light mode → warm cream agar konsisten dengan body.
+     Scope: html:not(.dark) saja, dark mode tidak terpengaruh.
+  ──────────────────────────────────────────────────────────────────────── */
+  html:not(.dark) {
+    --color-surface: #eae6df;
+    --color-surface-raised: #e4e0d8;
+    --color-surface-overlay: rgba(234, 230, 223, 0.9);
+    --color-border: rgba(180, 165, 140, 0.35);
+  }
+
+  /* Terapkan warm surface ke elemen bg-white & bg-slate-50 di light mode */
+  html:not(.dark) .bg-white,
+  html:not(.dark) .bg-white\/80,
+  html:not(.dark) .bg-white\/90,
+  html:not(.dark) .bg-white\/95 {
+    background-color: var(--color-surface) !important;
+  }
+
+  html:not(.dark) .bg-slate-50 {
+    background-color: var(--color-surface-raised) !important;
+  }
+
+  html:not(.dark) .bg-slate-100 {
+    background-color: #dbd6ce !important;
+  }
 }
 
 /* ── Ornamen underline: goresan kuas (brush stroke) hitam pekat di bawah
@@ -111,22 +142,23 @@ html.dark .bg-dot-pattern {
   );
 }
 
-/* Light mode rich ambient calm background - Modern & Anti-Glare */
+/* Light mode — warm linen ambient: mengurangi glare layar putih
+   60% base (#f0ede8 krem linen), 30% surface (card warm), 10% accent indigo/amber */
 .light-ambient-mesh {
   background-image:
     radial-gradient(
       ellipse 80% 50% at 50% -10%,
-      rgba(59, 130, 246, 0.05),
+      rgba(99, 102, 241, 0.06),
       transparent 70%
     ),
     radial-gradient(
       ellipse 60% 40% at 15% 25%,
-      rgba(99, 102, 241, 0.04),
+      rgba(217, 119, 6, 0.05),
       transparent 60%
     ),
     radial-gradient(
       ellipse 60% 40% at 85% 30%,
-      rgba(16, 185, 129, 0.03),
+      rgba(139, 92, 246, 0.04),
       transparent 60%
     );
 }
@@ -162,11 +194,12 @@ html.dark .bg-dot-pattern {
 }
 
 html:not(.dark) .aceternity-card {
-  background-color: rgba(255, 255, 255, 0.8);
+  /* 30% surface: sedikit lebih gelap dari base #f0ede8 → kedalaman tanpa bayangan kasar */
+  background-color: rgba(244, 240, 232, 0.88);
   box-shadow:
-    0 1px 3px 0 rgba(0, 0, 0, 0.03),
-    0 6px 16px -2px rgba(15, 23, 42, 0.04),
-    0 0 0 1px rgba(226, 232, 240, 0.85);
+    0 1px 3px 0 rgba(0, 0, 0, 0.04),
+    0 6px 16px -2px rgba(100, 80, 40, 0.06),
+    0 0 0 1px rgba(200, 190, 170, 0.5);
 }
 
 html.dark .aceternity-card,
@@ -176,9 +209,9 @@ html.dark .aceternity-card,
 
 html:not(.dark) .aceternity-card:hover {
   box-shadow:
-    0 16px 32px -4px rgba(37, 99, 235, 0.1),
-    0 4px 12px 0 rgba(15, 23, 42, 0.04),
-    0 0 0 1px rgba(59, 130, 246, 0.3);
+    0 16px 32px -4px rgba(99, 102, 241, 0.12),
+    0 4px 12px 0 rgba(100, 80, 40, 0.06),
+    0 0 0 1px rgba(139, 92, 246, 0.25);
 }
 
 .aceternity-card::before {
@@ -818,7 +851,7 @@ html {
 @-moz-document url-prefix() {
   .aceternity-card {
     backdrop-filter: blur(4px) !important;
-    background-color: rgba(255, 255, 255, 0.9) !important;
+    background-color: rgba(244, 240, 232, 0.94) !important;
   }
   html.dark .aceternity-card,
   .dark .aceternity-card {
