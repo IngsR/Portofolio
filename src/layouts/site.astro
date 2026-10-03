@@ -2,7 +2,7 @@
 import "../styles/global.css";
 import Analytics from "@vercel/analytics/astro";
 import SpeedInsights from "@vercel/speed-insights/astro";
-import { BackgroundBeamsWithCollision } from "../components/layout/background-beams-with-collision";
+import { PaperTexture } from "@paper-design/shaders-react";
 import { ClientRouter } from "astro:transitions";
 
 interface Props {
@@ -139,16 +139,18 @@ const breadcrumbSchema = {
 
     <!-- Theme Initializer (Default: Light Mode) -->
     <script is:inline>
-      try {
-        const theme = localStorage.getItem("portfolio_theme");
-        if (theme === "dark") {
-          document.documentElement.classList.add("dark");
-        } else {
+      const applyPortfolioTheme = () => {
+        try {
+          document.documentElement.classList.toggle(
+            "dark",
+            localStorage.getItem("portfolio_theme") === "dark",
+          );
+        } catch {
           document.documentElement.classList.remove("dark");
         }
-      } catch (e) {
-        document.documentElement.classList.remove("dark");
-      }
+      };
+      applyPortfolioTheme();
+      document.addEventListener("astro:after-swap", applyPortfolioTheme);
     </script>
     <!-- Language Alternate -->
     <link rel="alternate" hreflang="id" href={canonicalUrl} />
@@ -209,27 +211,43 @@ const breadcrumbSchema = {
     <link
       rel="preload"
       as="style"
-      href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Bricolage+Grotesque:opsz,wght@12..96,700..800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&display=swap"
       onload="this.onload=null;this.rel='stylesheet'"
     />
     <!-- Font dekoratif dimuat lazy setelah main thread bebas -->
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Caveat:wght@500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,400;1,9..40,400&family=Nunito:wght@400;600&family=Playfair+Display:ital,wght@0,500;1,500&display=optional"
+      href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,400;1,9..40,400&display=optional"
       media="print"
       onload="this.media='all'"
     />
     <noscript>
       <link
-        href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Bricolage+Grotesque:opsz,wght@12..96,700..800&family=Abril+Fatface&family=Caveat:wght@500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,400;1,9..40,400&family=Nunito:wght@400;600&family=Playfair+Display:ital,wght@0,500;1,500&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Caveat:wght@500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,400;1,9..40,400&display=swap"
         rel="stylesheet"
       />
     </noscript>
   </head>
-  <body class="min-h-screen bg-[#f0ede8] dark:bg-[#070709] text-slate-950 dark:text-slate-100 transition-colors duration-200 relative overflow-x-hidden antialiased">
-    <BackgroundBeamsWithCollision
+  <body class="min-h-screen bg-[#f0ebe1] dark:bg-[#24282b] text-slate-950 dark:text-slate-100 transition-colors duration-200 relative overflow-x-hidden antialiased">
+    <PaperTexture
       client:idle
-      className="fixed inset-0 pointer-events-none z-0"
+      className="paper-texture-background"
+      aria-hidden="true"
+      maxPixelCount={700000}
+      speed={0}
+      colorBack="#e9e0d2"
+      colorPaper="#f7f2e9"
+      colorShadow="#786953"
+      roughness={0.8}
+      roughnessSize={0.72}
+      fiber={0.62}
+      fiberSize={0.7}
+      folds={0}
+      wrinkles={0.95}
+      wrinkleSize={0.82}
+      crumples={0.24}
+      crumpleCount={7}
+      drops={0}
     />
     <div class="relative z-10">
       <slot />
