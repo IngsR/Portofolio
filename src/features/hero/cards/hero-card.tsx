@@ -1,14 +1,12 @@
 "use client";
 import { ExternalLink, Github } from "lucide-react";
 import React, { memo } from "react";
-import { CardSpotlight } from "../../../design/components/card-spotlight";
 import { CertificationItem, ProjectItem } from "../../../types";
 import {
   formatDomainName,
   formatShortDate,
   formatShortDomain,
 } from "../../../utils/format";
-import { canHover } from "../../../utils/hover";
 
 /**
  * HeroCard — satu implementasi kartu untuk proyek & sertifikat di Beranda.
@@ -28,13 +26,13 @@ interface HeroCardProps {
 }
 
 const BASE_CLASS =
-  "group flex-col justify-between bg-gradient-to-b from-white via-white/95 to-slate-50/90 dark:from-[#0f0f13]/90 dark:via-[#0c0c0f]/80 dark:to-[#09090b]/85 backdrop-blur-md border border-slate-200/90 dark:border-white/10 rounded-2xl sm:rounded-3xl overflow-hidden shadow-[0_4px_20px_-4px_rgba(15,23,42,0.05)] cursor-pointer";
+  "group flex-col justify-between bg-[#faf7f0] dark:bg-[#2b3034] border border-slate-300 dark:border-[#41494f] rounded-2xl sm:rounded-3xl overflow-hidden cursor-pointer";
 
 const PROJECT_HOVER =
-  " hover:border-indigo-500/40 dark:hover:border-white/30 hover:shadow-[0_20px_35px_-8px_rgba(15,23,42,0.12)] hover:-translate-y-1 transition-[border-color,box-shadow,transform] duration-300";
+  " hover:border-slate-400 dark:hover:border-[#64727b] transition-colors duration-200";
 
 const CERT_HOVER =
-  " hover:border-emerald-500/40 dark:hover:border-white/30 hover:shadow-[0_20px_35px_-8px_rgba(15,23,42,0.12)] hover:-translate-y-1 transition-[border-color,box-shadow,transform] duration-300";
+  " hover:border-slate-400 dark:hover:border-[#64727b] transition-colors duration-200";
 
 /** Gambar dengan nilai fallback (dipakai proyek & sertifikat) */
 const CardImage: React.FC<{
@@ -79,20 +77,13 @@ export const HeroCard = memo<HeroCardProps>(function HeroCard({
   certificate,
   onOpenDetail,
 }) {
-  const hoverable = canHover();
-  const cardClassName = `${BASE_CLASS}${
-    hoverable ? (variant === "project" ? PROJECT_HOVER : CERT_HOVER) : ""
-  }`;
+  const cardClassName = `${BASE_CLASS} ${variant === "project" ? PROJECT_HOVER : CERT_HOVER}`;
 
   const content =
     variant === "project" && project ? (
-      <ProjectCardBody
-        project={project}
-      />
+      <ProjectCardBody project={project} />
     ) : certificate ? (
-      <CertificateCardBody
-        certificate={certificate}
-      />
+      <CertificateCardBody certificate={certificate} />
     ) : null;
 
   if (!content) return null;
@@ -122,21 +113,6 @@ export const HeroCard = memo<HeroCardProps>(function HeroCard({
     if (onOpenDetail) onOpenDetail();
   };
 
-  // Perangkat hover: spotlight mengikuti kursor + tilt halus.
-  // Perangkat sentuh: kartu datar, tanpa efek berat (hemat frame saat scroll).
-  if (hoverable) {
-    return (
-      <CardSpotlight
-        className={cardClassName}
-        radius={320}
-        tilt={true}
-        onClick={handleCardClick}
-      >
-        {content}
-      </CardSpotlight>
-    );
-  }
-
   return (
     <div className={cardClassName} onClick={handleCardClick}>
       {content}
@@ -152,11 +128,11 @@ const ProjectCardBody = memo<{
       <div className="space-y-2 sm:space-y-3 p-3 sm:p-4 lg:p-4">
         {/* Kategori + indikator domain live */}
         <div className="flex items-center justify-between gap-1.5">
-          <span className="text-[9px] sm:text-[10px] font-bold text-slate-700 dark:text-slate-300 px-2 py-0.5 rounded-full bg-slate-100 dark:bg-white/5 border-slate-200/60 dark:border-white/5 truncate max-w-[55%]">
+          <span className="text-[10px] sm:text-[11px] font-bold text-slate-800 dark:text-slate-200 px-2 py-0.5 rounded-full bg-slate-100 dark:bg-white/5 border-slate-200/60 dark:border-white/5 truncate max-w-[55%]">
             {project.category}
           </span>
           {project.demoUrl && (
-            <span className="inline-flex items-center gap-1 text-[8px] sm:text-[9.5px] text-emerald-700 dark:text-emerald-300 font-mono font-medium bg-emerald-50 dark:bg-emerald-950/40 border-emerald-500/20 px-1.5 py-0.5 rounded-full max-w-[45%] truncate">
+            <span className="inline-flex items-center gap-1 text-[9px] sm:text-[10px] text-emerald-800 dark:text-emerald-200 font-mono font-semibold bg-emerald-50 dark:bg-emerald-950/40 border-emerald-500/20 px-1.5 py-0.5 rounded-full max-w-[45%] truncate">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse shrink-0"></span>
               <span className="truncate">
                 {formatShortDomain(project.demoUrl)}
@@ -185,10 +161,10 @@ const ProjectCardBody = memo<{
 
         {/* Ringkasan solusi */}
         <div className="text-xs bg-slate-50 dark:bg-white/[0.03] p-2 sm:p-2.5 rounded-xl border-slate-200/60 dark:border-white/5">
-          <span className="font-bold text-[10px] sm:text-[11px] text-emerald-600 dark:text-emerald-400 flex items-center gap-1 mb-0.5">
+          <span className="font-bold text-[11px] sm:text-xs text-emerald-700 dark:text-emerald-300 flex items-center gap-1 mb-0.5">
             💡 Solusi:
           </span>
-          <p className="text-[10px] sm:text-[11px] leading-relaxed text-slate-700 dark:text-slate-300 line-clamp-2">
+          <p className="text-[11px] sm:text-xs leading-relaxed text-slate-800 dark:text-slate-200 line-clamp-2">
             {project.solution || project.shortDescription}
           </p>
         </div>
@@ -198,14 +174,14 @@ const ProjectCardBody = memo<{
           {project.tags.slice(0, 2).map((tag) => (
             <span
               key={tag}
-              className="px-2 py-0.5 text-[8.5px] sm:text-[9.5px] font-medium rounded-full bg-slate-100 dark:bg-white/5 text-slate-700 dark:text-slate-300 border-slate-200/60 dark:border-white/5 truncate max-w-[120px]"
+              className="px-2 py-0.5 text-[9px] sm:text-[10px] font-medium rounded-full bg-slate-100 dark:bg-white/5 text-slate-800 dark:text-slate-200 border-slate-200/60 dark:border-white/5 truncate max-w-[120px]"
               title={tag}
             >
               {tag}
             </span>
           ))}
           {project.tags.length > 2 && (
-            <span className="px-1.5 py-0.5 text-[8.5px] sm:text-[9px] font-semibold rounded-full bg-slate-100 dark:bg-white/5 text-slate-500 shrink-0">
+            <span className="px-1.5 py-0.5 text-[9px] sm:text-[10px] font-semibold rounded-full bg-slate-100 dark:bg-white/5 text-slate-700 dark:text-slate-300 shrink-0">
               +{project.tags.length - 2}
             </span>
           )}

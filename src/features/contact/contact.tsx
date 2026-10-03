@@ -17,10 +17,10 @@ import {
 } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import portfolioData from "../../data/portfolio.json";
-import { ContactMessage } from "../../types";
-import { isContactCategory, isContactMessage } from "../../utils/guard";
 import { CardSpotlight } from "../../design/components/card-spotlight";
 import { MagneticButton } from "../../design/components/magnetic-button";
+import { ContactMessage } from "../../types";
+import { isContactCategory, isContactMessage } from "../../utils/guard";
 
 const { userProfile, contactFaq } = portfolioData;
 
@@ -162,7 +162,7 @@ export const Contact: React.FC = () => {
             tilt={true}
             radius={280}
             color="rgba(16, 185, 129, 0.12)"
-            className="p-6 rounded-2xl bg-gradient-to-b from-emerald-50/70 to-emerald-100/30 dark:from-emerald-950/30 dark:to-emerald-950/10 border border-emerald-500/40 text-emerald-950 dark:text-emerald-100 space-y-4 shadow-[0_2px_12px_-2px_rgba(16,185,129,0.12)] hover:border-emerald-500 hover:shadow-xl transition-all"
+            className="p-6 rounded-2xl bg-white dark:bg-[#2b3034] border border-slate-200 dark:border-[#41494f] text-slate-900 dark:text-slate-100 space-y-4 shadow-sm hover:border-slate-400 dark:hover:border-[#64727b] transition-colors"
           >
             <div className="flex items-center gap-3">
               <div className="p-2.5 rounded-xl bg-emerald-600 text-white shadow-sm">

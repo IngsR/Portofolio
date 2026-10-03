@@ -2,7 +2,6 @@ import {
   ArrowRight,
   Briefcase,
   CheckCircle2,
-  Cpu,
   FileText,
   GitCommit,
   GraduationCap,
@@ -11,30 +10,19 @@ import {
 } from "lucide-react";
 import { memo, useMemo } from "react";
 import portfolioData from "../../../data/portfolio.json";
-import { EncryptedText } from "../../../design/components/encrypted-text";
-import { FlipWords } from "../../../design/components/flip-words";
 import { MagneticButton } from "../../../design/components/magnetic-button";
-import { MovingBorder } from "../../../design/components/moving-border";
-import { TextGenerateEffect } from "../../../design/components/text-generate-effect";
 import { UserProfile } from "../../../types";
-import { CinematicViewportFx } from "../cinematic-viewport-fx";
 import { ProfilePhotoCard } from "../cards/profile-photo-card";
 // Konten diambil langsung dari portfolio.json — tidak ada duplikasi di hero.data.ts
 import { HeroPageProps } from "../types";
 
 /**
- * IntroSection — kartu perkenalan sinematik dengan visual mewah di light mode
- * dan ambient motion yang ringan di mobile.
+ * IntroSection — ringkasan profil utama.
  */
 export const IntroSection = memo<HeroPageProps & { onOpenCV: () => void }>(
   function IntroSection({ onNavigate, onOpenCV }) {
     const userProfile = portfolioData.userProfile as unknown as UserProfile;
 
-    // Roles & bio langsung dari JSON — single source of truth
-    const roles = useMemo(
-      () => [userProfile.title, "Frontend & Backend", "Next.js & React Developer", "REST API & Database"],
-      [userProfile.title],
-    );
     const heroBio = userProfile.shortBio;
     const availabilityText = userProfile.workPreference;
 
@@ -70,65 +58,30 @@ export const IntroSection = memo<HeroPageProps & { onOpenCV: () => void }>(
     );
 
     return (
-      <section className="relative overflow-hidden rounded-3xl border border-slate-200/90 dark:border-white/10 bg-gradient-to-b from-white via-[#fdfdfe] to-[#f8f9fc] dark:from-[#0d0d10] dark:via-[#09090b] dark:to-[#08080a] backdrop-blur-md p-6 sm:p-10 lg:p-12 shadow-[0_20px_50px_-15px_rgba(15,23,42,0.06),0_1px_3px_rgba(15,23,42,0.03)] transition-all">
-        {/* Cinematic Viewport FX — anamorphic lens flare + viewfinder HUD (desktop only for perf) */}
-        <div className="hidden sm:block">
-          <CinematicViewportFx />
-        </div>
-
-        {/* Cinematic ambient aurora lighting on desktop — pure CSS (tidak ada
-            JS per frame seperti motion.div). Berjalan di GPU compositor di
-            semua browser termasuk Firefox tanpa jank. */}
-        <div
-          aria-hidden
-          className="pointer-events-none hidden md:block absolute -top-28 -right-28 h-80 w-80 rounded-full bg-gradient-to-br from-indigo-300/35 via-sky-200/30 to-purple-200/20 blur-3xl dark:from-indigo-500/15 dark:via-sky-500/10 dark:to-purple-500/10 aurora-orb-1"
-        />
-        <div
-          aria-hidden
-          className="pointer-events-none hidden md:block absolute -bottom-36 -left-20 h-72 w-72 rounded-full bg-gradient-to-tr from-emerald-200/30 via-teal-200/20 to-transparent blur-3xl dark:from-emerald-500/10 dark:via-teal-500/5 dark:to-transparent aurora-orb-2"
-        />
-        {/* Lightweight static gradient on mobile (zero CPU/GPU overhead) */}
-        <div
-          aria-hidden
-          className="pointer-events-none block md:hidden absolute -top-16 -right-16 h-48 w-48 rounded-full bg-sky-200/30 blur-2xl dark:bg-sky-500/10"
-        />
-
+      <section className="relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-6 transition-colors sm:p-10 lg:p-12 dark:border-[#41494f] dark:bg-[#2b3034]">
         <div className="relative grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
           {/* Kolom kiri: ringkasan 60 detik pertama */}
           <div className="lg:col-span-7 space-y-2 sm:space-y-3">
             <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border border-emerald-500/30 bg-emerald-50/80 dark:bg-emerald-950/30 text-emerald-800 dark:text-emerald-300 text-xs font-semibold">
-                <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-                </span>
-                <span>{availabilityText}</span>
-              </div>
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+              </span>
+              <span>{availabilityText}</span>
+            </div>
 
             <div className="space-y-1">
               <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight text-slate-950 dark:text-white leading-[1.08]">
-                <EncryptedText
-                  text={userProfile.name}
-                  className="font-black tracking-tight text-slate-950 dark:text-white"
-                  revealDelay={40}
-                />
+                {userProfile.name}
               </h1>
-              {/* min-h dikunci (1 baris mobile / desktop) agar pergantian kata
-                FlipWords tidak menggeser layout halaman naik-turun */}
-              <div className="min-h-[1.9rem] sm:min-h-[2.5rem] flex items-center text-lg sm:text-3xl font-extrabold gap-2 tracking-tight">
-                <FlipWords
-                  words={roles}
-                  className="font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-sky-500 to-emerald-500 dark:from-indigo-400 dark:via-sky-300 dark:to-emerald-400"
-                />
-              </div>
+              <p className="text-lg sm:text-2xl font-bold text-[#426b82] dark:text-[#8caec2]">
+                {userProfile.title}
+              </p>
             </div>
 
-            <TextGenerateEffect
-              words={heroBio}
-              className="text-black dark:text-slate-300 text-base sm:text-lg max-w-4xl font-medium"
-              wordClassName="text-black dark:text-slate-300 font-medium"
-              duration={0.4}
-              delay={0.06}
-            />
+            <p className="text-slate-800 dark:text-slate-300 text-base sm:text-lg max-w-4xl font-medium leading-relaxed">
+              {heroBio}
+            </p>
 
             {/* Highlight singkat */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3 text-xs text-slate-700 dark:text-slate-300">
@@ -213,17 +166,18 @@ export const IntroSection = memo<HeroPageProps & { onOpenCV: () => void }>(
                 </MagneticButton>
               </div>
 
-              {/* Tombol CV: Kapsul proporsional (w-fit auto-width, tidak pernah melebar penuh) */}
+              {/* CV action shares the same restrained magnetic interaction as the other hero actions. */}
               <div className="w-full flex justify-center sm:w-auto">
-                <MovingBorder
-                  containerClassName="h-auto w-fit rounded-full shrink-0 shadow-xs"
-                  onClick={onOpenCV}
-                  className="px-4 sm:px-5 py-2 sm:py-2.5 text-xs font-semibold flex items-center gap-2 rounded-full whitespace-nowrap"
-                  duration={3500}
-                >
-                  <FileText className="w-3.5 h-3.5 shrink-0 text-slate-600 dark:text-slate-300" />
-                  <span>Curriculum Vitae</span>
-                </MovingBorder>
+                <MagneticButton strength={0.25} className="w-fit">
+                  <button
+                    type="button"
+                    onClick={onOpenCV}
+                    className="px-4 sm:px-5 py-2.5 sm:py-3 rounded-full border border-slate-300 bg-[#faf7f0] text-slate-800 text-xs font-bold flex items-center justify-center gap-2 shadow-xs transition-colors hover:bg-[#f0e9dd] dark:border-[#59666e] dark:bg-[#363e43] dark:text-slate-100 dark:hover:bg-[#3d464c]"
+                  >
+                    <FileText className="w-3.5 h-3.5 shrink-0" />
+                    <span>Curriculum Vitae</span>
+                  </button>
+                </MagneticButton>
               </div>
             </div>
           </div>

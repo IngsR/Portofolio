@@ -123,10 +123,8 @@ export const Hero: React.FC<HeroSectionProps> = ({
         <SkillsSection categories={skillCategories} />
       )}
 
-      {/* 7. Kontak & aksi cepat HR */}
-      {isHeroSectionVisible("contact") && (
-        <ContactSection onOpenCV={onOpenCV} />
-      )}
+      {/* 7. Ajakan kontak penutup */}
+      {isHeroSectionVisible("contact") && <ContactSection />}
     </div>
   );
 };

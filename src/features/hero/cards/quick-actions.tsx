@@ -27,15 +27,16 @@ const buildQuickActions = (userProfile: UserProfile): QuickAction[] => [
     id: "cv",
     label: "Curriculum Vitae",
     hint: "Lihat CV PDF, lalu cetak langsung dari browser bila diperlukan",
-    cardClass: "bg-white text-slate-950 hover:bg-slate-100 sm:col-span-2",
-    icon: <FileText className="w-5 h-5 text-slate-950" />,
+    cardClass:
+      "bg-[#faf7f0] text-slate-950 hover:bg-[#f0e9dd] dark:bg-[#363e43] dark:text-slate-100 dark:hover:bg-[#3d464c] sm:col-span-2",
+    icon: <FileText className="w-5 h-5 text-slate-950 dark:text-slate-100" />,
   },
   {
     id: "linkedin",
     label: "LinkedIn Profile",
     hint: "linkedin.com/in/ikhwn-rdn",
     href: "https://www.linkedin.com/in/ikhwn-rdn",
-    cardClass: "bg-blue-600 text-white hover:bg-blue-500",
+    cardClass: "bg-blue-700/90 text-white hover:bg-blue-600/90",
     icon: <LinkedInBrandIcon className="w-5 h-5" />,
   },
   {
@@ -43,7 +44,7 @@ const buildQuickActions = (userProfile: UserProfile): QuickAction[] => [
     label: "WhatsApp & Fast Response",
     hint: userProfile.phone,
     href: userProfile.whatsappUrl,
-    cardClass: "bg-emerald-600 text-white hover:bg-emerald-500",
+    cardClass: "bg-emerald-700/90 text-white hover:bg-emerald-600/90",
     icon: <WhatsAppBrandIcon className="w-5 h-5" />,
   },
   {
@@ -51,7 +52,7 @@ const buildQuickActions = (userProfile: UserProfile): QuickAction[] => [
     label: "Kirim Pesan Email Resmi",
     hint: userProfile.email,
     href: `mailto:${userProfile.email}`,
-    cardClass: "bg-rose-600 text-white hover:bg-rose-500",
+    cardClass: "bg-rose-700/90 text-white hover:bg-rose-600/90",
     icon: <GmailBrandIcon className="w-5 h-5" />,
   },
   {
@@ -59,7 +60,8 @@ const buildQuickActions = (userProfile: UserProfile): QuickAction[] => [
     label: "Repositori Portofolio GitHub",
     hint: "github.com/IngsR",
     href: "https://github.com/IngsR",
-    cardClass: "bg-slate-900 border-white/15 text-white hover:bg-slate-800",
+    cardClass:
+      "bg-slate-900/90 border-white/15 text-white hover:bg-slate-800/90",
     icon: <GithubBrandIcon className="w-5 h-5" />,
   },
 ];
@@ -128,7 +130,7 @@ export const QuickActions = memo<{
           action={action}
           hintClass={
             action.id === "cv"
-              ? "text-slate-600"
+              ? "text-slate-600 dark:text-slate-300"
               : action.id === "linkedin"
                 ? "text-blue-100 font-mono"
                 : action.id === "whatsapp"

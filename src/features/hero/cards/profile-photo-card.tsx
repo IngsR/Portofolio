@@ -7,15 +7,13 @@ import {
   LinkedInBrandIcon,
   WhatsAppBrandIcon,
 } from "../../../design/components/brand-icons";
-import { GlowingEffect } from "../../../design/components/glowing-effect";
 import { UserProfile } from "../../../types";
 import { HeroContactLink } from "../types";
 
 /**
  * ProfilePhotoCard — foto profil + tautan kontak di kartu perkenalan.
  *
- * Perilaku lama dipertahankan: efek glow mengikuti kursor (GlowingEffect),
- * rasio foto 640/786, fallback /profile.png lalu kartu inisial bila keduanya
+ * Rasio foto 640/786, fallback /profile.png lalu kartu inisial bila keduanya
  * gagal dimuat. Fallback kini React state (bukan manipulasi DOM manual),
  * sehingga tidak ada `innerHTML` dan tetap satu alur render.
  */
@@ -162,7 +160,9 @@ const ProfilePhoto = memo<{ userProfile: UserProfile }>(function ProfilePhoto({
       <div className="absolute bottom-2.5 left-2.5 right-2.5 bg-slate-950/90 dark:bg-black/90 rounded-xl px-3 py-1.5 sm:py-2 text-white text-[10px] sm:text-[11px] flex items-center justify-between border border-white/15 shadow-md pointer-events-none z-10">
         <div className="flex items-center gap-1.5 min-w-0 flex-1">
           <span className="w-2 h-2 rounded-full bg-emerald-400 shrink-0 animate-pulse"></span>
-          <span className="font-semibold text-white truncate">{userProfile.name}</span>
+          <span className="font-semibold text-white truncate">
+            {userProfile.name}
+          </span>
         </div>
         <span className="text-slate-200 text-[9px] sm:text-[10px] shrink-0 font-medium ml-2">
           Web Developer
@@ -177,31 +177,26 @@ export const ProfilePhotoCard = memo<{ userProfile: UserProfile }>(
     const contactLinks = buildContactLinks(userProfile);
 
     return (
-      <GlowingEffect
-        containerClassName="w-full sm:max-w-sm rounded-2xl sm:rounded-3xl"
-        spread={120}
-      >
-        <div className="w-full sm:max-w-sm rounded-2xl sm:rounded-3xl border border-slate-200/90 dark:border-white/10 bg-gradient-to-b from-white via-white/95 to-slate-50/90 dark:from-[#0e0e12] dark:via-[#0c0c0f] dark:to-[#09090b] p-4 sm:p-5 space-y-4 shadow-[0_16px_36px_-8px_rgba(15,23,42,0.08),0_1px_3px_rgba(15,23,42,0.03)]">
-          <ProfilePhoto userProfile={userProfile} />
+      <div className="w-full sm:max-w-sm rounded-2xl sm:rounded-3xl border border-slate-200/90 dark:border-white/10 bg-[#faf7f0] dark:bg-[#2b3034] p-4 sm:p-5 space-y-4 shadow-sm">
+        <ProfilePhoto userProfile={userProfile} />
 
-          <div className="space-y-3 pt-1">
-            <div className="flex items-center justify-between px-1">
-              <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400">
-                Tautan Kontak Profil:
-              </span>
-              <span className="text-[10px] font-semibold text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/40 px-2.5 py-0.5 rounded-full">
-                Resmi &amp; Aktif
-              </span>
-            </div>
+        <div className="space-y-3 pt-1">
+          <div className="flex items-center justify-between px-1">
+            <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400">
+              Tautan Kontak Profil:
+            </span>
+            <span className="text-[10px] font-semibold text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/40 px-2.5 py-0.5 rounded-full">
+              Resmi &amp; Aktif
+            </span>
+          </div>
 
-            <div className="grid grid-cols-1 gap-2 text-xs">
-              {contactLinks.map((link) => (
-                <ContactRow key={link.id} link={link} />
-              ))}
-            </div>
+          <div className="grid grid-cols-1 gap-2 text-xs">
+            {contactLinks.map((link) => (
+              <ContactRow key={link.id} link={link} />
+            ))}
           </div>
         </div>
-      </GlowingEffect>
+      </div>
     );
   },
 );
