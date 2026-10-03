@@ -9,18 +9,19 @@ import {
   Sun,
   UserRound,
 } from "lucide-react";
-import React, { useEffect, useRef, useState } from "react";
+import React from "react";
 import portfolioData from "../../data/portfolio.json";
 import { PageId } from "../../types";
 
 const { userProfile } = portfolioData;
 
 interface NavbarProps {
-  activePage: PageId;
-  setActivePage: (page: PageId) => void;
-  isDark: boolean;
-  setIsDark: (dark: boolean) => void;
-  onOpenCV: () => void;
+  activePage?: PageId;
+  setActivePage?: (page: PageId) => void;
+  isDark?: boolean;
+  setIsDark?: (dark: boolean) => void;
+  onOpenCV?: () => void;
+  nativeNavigation?: boolean;
 }
 
 /* WhatsApp Icon */
@@ -43,6 +44,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   isDark: propIsDark,
   setIsDark: propSetIsDark,
   onOpenCV,
+  nativeNavigation = false,
 }) => {
   const { isDark: themeIsDark, toggleTheme } = useTheme();
   const isDark = propIsDark !== undefined ? propIsDark : themeIsDark;
@@ -90,7 +92,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   ];
 
   const handleNavClick = (id: PageId) => {
-    setActivePage(id);
+    setActivePage?.(id);
     window.scrollTo({ top: 0, behavior: "auto" });
   };
 
@@ -116,28 +118,32 @@ export const Navbar: React.FC<NavbarProps> = ({
               items-center
               justify-between
               gap-2
-              rounded-2xl
+              rounded-xl
               sm:rounded-full
-              border
-              border-slate-300
+              border border-slate-200
               bg-white
               px-3
               py-2.5
-              shadow-xl
-              shadow-slate-950/10
-              backdrop-blur-xl
+              shadow-sm
               transition-all
-              dark:border-white/15
-              dark:bg-[#0c0c0e]/95
-              dark:shadow-2xl
-              dark:shadow-black/70
+              dark:border-[#41494f]
+              dark:bg-[#2b3034]
               sm:gap-3
               sm:px-5
               sm:py-2.5
             "
           >
             {/* Brand Logo & Name */}
-            <a href="/" onClick={(e) => { e.preventDefault(); handleNavClick("home"); }} aria-label="Kembali ke Beranda" className="group flex shrink-0 items-center gap-2.5 text-left focus:outline-none"
+            <a
+              href="/"
+              onClick={(e) => {
+                if (!nativeNavigation) {
+                  e.preventDefault();
+                  handleNavClick("home");
+                }
+              }}
+              aria-label="Kembali ke Beranda"
+              className="group flex shrink-0 items-center gap-2.5 text-left focus:outline-none"
             >
               <div className="relative">
                 <img
@@ -201,7 +207,17 @@ export const Navbar: React.FC<NavbarProps> = ({
               {navItems.map((item) => {
                 const isActive = activePage === item.id;
                 return (
-                  <a key={item.id} href={item.href} id={`nav-btn-${item.id}`} onClick={(e) => { e.preventDefault(); handleNavClick(item.id); }} className={`
+                  <a
+                    key={item.id}
+                    href={item.href}
+                    id={`nav-btn-${item.id}`}
+                    onClick={(e) => {
+                      if (!nativeNavigation) {
+                        e.preventDefault();
+                        handleNavClick(item.id);
+                      }
+                    }}
+                    className={`
                       relative
                       flex
                       items-center
@@ -218,7 +234,13 @@ export const Navbar: React.FC<NavbarProps> = ({
                           ? "bg-white text-slate-950 shadow-sm dark:bg-white dark:text-slate-950"
                           : "text-slate-600 hover:text-slate-950 dark:text-slate-400 dark:hover:text-white hover:bg-white/60 dark:hover:bg-white/5"
                       }
-                    `}>{item.icon}<span>{item.label === "Tentang" ? "Tentang Saya" : item.label}</span></a>
+                    `}
+                  >
+                    {item.icon}
+                    <span>
+                      {item.label === "Tentang" ? "Tentang Saya" : item.label}
+                    </span>
+                  </a>
                 );
               })}
             </nav>
@@ -296,13 +318,13 @@ export const Navbar: React.FC<NavbarProps> = ({
                 <span>GitHub</span>
               </a>
 
-              {/* CV Button */}
-              <button
-                type="button"
-                onClick={onOpenCV}
-                aria-label="Buka CV"
-                title="Buka Curriculum Vitae"
-                className="
+              {onOpenCV && (
+                <button
+                  type="button"
+                  onClick={onOpenCV}
+                  aria-label="Buka CV"
+                  title="Buka Curriculum Vitae"
+                  className="
                   flex
                   shrink-0
                   items-center
@@ -321,11 +343,12 @@ export const Navbar: React.FC<NavbarProps> = ({
                   dark:bg-white
                   dark:text-slate-950
                   dark:hover:bg-slate-100
-                "
-              >
-                <FileText className="h-3.5 w-3.5" />
-                <span>CV</span>
-              </button>
+                  "
+                >
+                  <FileText className="h-3.5 w-3.5" />
+                  <span>CV</span>
+                </button>
+              )}
 
               {/* Theme Toggle Button */}
               <button
@@ -340,29 +363,35 @@ export const Navbar: React.FC<NavbarProps> = ({
                 }
                 className="
                   flex
-                  h-8
-                  w-8
+                  h-9
+                  w-9
                   shrink-0
                   items-center
                   justify-center
                   rounded-full
                   border
-                  border-slate-200/90
-                  text-slate-600
+                  border-slate-300
+                  bg-slate-100
+                  text-slate-900
                   transition-all
-                  hover:bg-slate-100
+                  hover:bg-slate-200
                   hover:text-slate-950
-                  active:scale-90
-                  dark:border-white/10
-                  dark:text-slate-300
-                  dark:hover:bg-white/10
+                  active:scale-95
+                  focus-visible:outline-none
+                  focus-visible:ring-2
+                  focus-visible:ring-[#607777]
+                  focus-visible:ring-offset-2
+                  dark:border-[#59666e]
+                  dark:bg-[#3a4348]
+                  dark:text-slate-100
+                  dark:hover:bg-[#46535a]
                   dark:hover:text-white
                 "
               >
                 {isDark ? (
-                  <Sun className="h-4 w-4 text-amber-400" />
+                  <Sun className="h-5 w-5 text-amber-500 dark:text-amber-300" />
                 ) : (
-                  <Moon className="h-4 w-4 text-slate-700" />
+                  <Moon className="h-5 w-5 text-[#36566a] dark:text-slate-100" />
                 )}
               </button>
             </div>
@@ -407,7 +436,16 @@ export const Navbar: React.FC<NavbarProps> = ({
           {navItems.map((item) => {
             const isActive = activePage === item.id;
             return (
-              <a key={item.id} href={item.href} onClick={(e) => { e.preventDefault(); handleNavClick(item.id); }} className={`
+              <a
+                key={item.id}
+                href={item.href}
+                onClick={(e) => {
+                  if (!nativeNavigation) {
+                    e.preventDefault();
+                    handleNavClick(item.id);
+                  }
+                }}
+                className={`
                   relative
                   flex
                   items-center
@@ -422,10 +460,13 @@ export const Navbar: React.FC<NavbarProps> = ({
                   active:scale-95
                   ${
                     isActive
-                      ? "flex-1 bg-slate-950 text-white dark:bg-white dark:text-slate-950 shadow-sm px-4"
-                      : "px-4 text-slate-500 hover:text-slate-950 dark:text-slate-400 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/8"
+                      ? "flex-1 bg-slate-950 text-white dark:bg-slate-100 dark:text-slate-950 shadow-sm px-4"
+                      : "px-4 text-slate-600 hover:text-slate-950 dark:text-slate-200 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/8"
                   }
-                `}> <span className="shrink-0">
+                `}
+              >
+                {" "}
+                <span className="shrink-0">
                   <span className="block [&>svg]:h-5 [&>svg]:w-5">
                     {item.icon}
                   </span>
