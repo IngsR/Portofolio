@@ -13,38 +13,16 @@ import {
   ExternalLink,
   Github,
   Layers,
-  Moon,
   Share2,
   ShieldCheck,
-  Sun,
   Tag,
   Target,
   User,
   Zap,
 } from "lucide-react";
 import React, { useState } from "react";
-import { useTheme } from "../../hooks/use-theme";
+import { Navbar } from "../../components/layout/navbar";
 import type { CertificationItem, ProjectItem } from "../../types";
-
-const ThemeToggle = () => {
-  const { isDark, toggleTheme } = useTheme();
-  return (
-    <button
-      type="button"
-      onClick={toggleTheme}
-      aria-label={isDark ? "Beralih ke Mode Terang" : "Beralih ke Mode Gelap"}
-      title={isDark ? "Beralih ke Mode Terang" : "Beralih ke Mode Gelap"}
-      className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white/90 dark:bg-white/[0.06] border border-slate-200/90 dark:border-white/10 text-slate-600 transition-all hover:bg-slate-100 hover:text-slate-950 active:scale-90 dark:text-slate-300 dark:hover:bg-white/10 dark:hover:text-white shadow-xs"
-    >
-      {isDark ? (
-        <Sun className="h-4 w-4 text-amber-400" />
-      ) : (
-        <Moon className="h-4 w-4 text-slate-700" />
-      )}
-    </button>
-  );
-};
-
 
 const getMetricTheme = (
   label: string,
@@ -199,38 +177,31 @@ export const UniversalDetailView: React.FC<UniversalDetailViewProps> = ({
     backLabel || (isProject ? "Kembali ke Beranda" : "Kembali ke Portofolio");
 
   // Certificate metrics helper
-  const certificateMetrics = !isProject && certificate
-    ? [
-        {
-          label: "Penerbit Kredensial",
-          value: certificate.issuer,
-          icon: <Building2 className="w-5 h-5" />,
-        },
-        {
-          label: "Nomor / ID Kredensial",
-          value: certificate.badgeCode || "Terverifikasi",
-          icon: <ShieldCheck className="w-5 h-5 text-indigo-500" />,
-        },
-        {
-          label: "Masa Berlaku",
-          value: certificate.period || "Aktif / Seumur Hidup",
-          icon: <CheckCircle2 className="w-5 h-5 text-emerald-500" />,
-        },
-      ]
-    : [];
+  const certificateMetrics =
+    !isProject && certificate
+      ? [
+          {
+            label: "Penerbit Kredensial",
+            value: certificate.issuer,
+            icon: <Building2 className="w-5 h-5" />,
+          },
+          {
+            label: "Nomor / ID Kredensial",
+            value: certificate.badgeCode || "Terverifikasi",
+            icon: <ShieldCheck className="w-5 h-5 text-indigo-500" />,
+          },
+          {
+            label: "Masa Berlaku",
+            value: certificate.period || "Aktif / Seumur Hidup",
+            icon: <CheckCircle2 className="w-5 h-5 text-emerald-500" />,
+          },
+        ]
+      : [];
 
   return (
     <div className="min-h-screen text-slate-900 dark:text-slate-100 transition-colors duration-200">
-      {/* Background cinematic aura & ambient glow */}
-      <div
-        aria-hidden="true"
-        className="fixed inset-0 pointer-events-none z-0 overflow-hidden"
-      >
-        <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[700px] h-[500px] bg-gradient-to-b from-indigo-500/15 via-sky-500/10 to-transparent blur-[120px] rounded-full dark:from-indigo-500/20 dark:via-sky-500/15" />
-        <div className="absolute top-[35%] -left-32 w-[450px] h-[450px] bg-emerald-500/10 blur-[100px] rounded-full dark:bg-emerald-500/10" />
-      </div>
-
-      <div className="relative z-10 max-w-6xl 2xl:max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 sm:pt-10 pb-24">
+      <Navbar nativeNavigation />
+      <div className="relative z-10 max-w-6xl 2xl:max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 sm:pt-28 pb-24">
         {/* Navigation & Breadcrumbs Bar */}
         <div className="flex flex-wrap items-center justify-between gap-4 pb-6 mb-8 border-b border-slate-200/80 dark:border-white/10">
           {onBack ? (
@@ -255,8 +226,6 @@ export const UniversalDetailView: React.FC<UniversalDetailViewProps> = ({
           )}
 
           <div className="flex items-center gap-2">
-            <ThemeToggle />
-
             <button
               type="button"
               onClick={handleShare}
@@ -603,7 +572,8 @@ export const UniversalDetailView: React.FC<UniversalDetailViewProps> = ({
                     <span className="font-mono font-bold text-slate-900 dark:text-white">
                       {certificate?.badgeCode || "Terverifikasi"}
                     </span>
-                    . Sertifikasi ini menjadi bukti kompetensi teknis yang dapat diverifikasi oleh HRD dan tim engineering.
+                    . Sertifikasi ini menjadi bukti kompetensi teknis yang dapat
+                    diverifikasi oleh HRD dan tim engineering.
                   </p>
                 </div>
               </div>
@@ -639,7 +609,8 @@ export const UniversalDetailView: React.FC<UniversalDetailViewProps> = ({
                       Verifikasi Resmi &amp; Bukti Sertifikat
                     </h3>
                     <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400">
-                      Kredensial dapat divalidasi langsung melalui portal resmi penerbit
+                      Kredensial dapat divalidasi langsung melalui portal resmi
+                      penerbit
                     </p>
                   </div>
 

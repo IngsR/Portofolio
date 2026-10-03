@@ -1,4 +1,3 @@
-import { motion } from "motion/react";
 import {
   Activity,
   ArrowLeft,
@@ -17,6 +16,7 @@ import {
   User,
   Zap,
 } from "lucide-react";
+import { motion } from "motion/react";
 import React, { useState } from "react";
 import { useSmoothScroll } from "../../hooks";
 import type { ProjectItem } from "../../types";
@@ -106,15 +106,6 @@ export const ProjectDetailView: React.FC<ProjectDetailViewProps> = ({
 
   return (
     <div className="min-h-screen text-slate-900 dark:text-slate-100 transition-colors duration-200">
-      {/* Background cinematic aura & ambient glow */}
-      <div
-        aria-hidden="true"
-        className="fixed inset-0 pointer-events-none z-0 overflow-hidden"
-      >
-        <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[700px] h-[500px] bg-gradient-to-b from-indigo-500/15 via-sky-500/10 to-transparent blur-[120px] rounded-full dark:from-indigo-500/20 dark:via-sky-500/15" />
-        <div className="absolute top-[35%] -left-32 w-[450px] h-[450px] bg-emerald-500/10 blur-[100px] rounded-full dark:bg-emerald-500/10" />
-      </div>
-
       <div className="relative z-10 max-w-6xl 2xl:max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 sm:pt-10 pb-24">
         {/* Navigation & Breadcrumbs Bar */}
         <motion.div
@@ -257,7 +248,10 @@ export const ProjectDetailView: React.FC<ProjectDetailViewProps> = ({
               alt={project.title}
               onError={(e) => {
                 const target = e.currentTarget;
-                if (project.fallbackImage && target.src !== project.fallbackImage) {
+                if (
+                  project.fallbackImage &&
+                  target.src !== project.fallbackImage
+                ) {
                   target.src = project.fallbackImage;
                 }
               }}
@@ -370,7 +364,8 @@ export const ProjectDetailView: React.FC<ProjectDetailViewProps> = ({
                 </h3>
               </div>
               <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400">
-                Alat, pustaka, dan pola arsitektur yang digunakan dalam proyek ini:
+                Alat, pustaka, dan pola arsitektur yang digunakan dalam proyek
+                ini:
               </p>
               <div className="flex flex-wrap gap-2 pt-1">
                 {project.tags.map((tag, idx) => (
