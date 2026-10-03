@@ -1,6 +1,5 @@
 import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
-import vercel from "@astrojs/vercel";
 import tailwindcss from "@tailwindcss/vite";
 import { defineConfig } from "astro/config";
 import { createLogger } from "vite";
@@ -21,7 +20,7 @@ customLogger.warn = (msg, options) => {
 
 export default defineConfig({
   site: "https://ikhwann.my.id",
-  output: "server",
+  output: "static",
   trailingSlash: "never",
   integrations: [
     react(),
@@ -34,12 +33,6 @@ export default defineConfig({
       filter: (page) => !page.includes("/cv"),
     }),
   ],
-  adapter: vercel({
-    isr: {
-      expiration: 60 * 60,
-      bypassToken: process.env.ISR_BYPASS_TOKEN,
-    },
-  }),
   vite: {
     customLogger,
     plugins: [tailwindcss()],
