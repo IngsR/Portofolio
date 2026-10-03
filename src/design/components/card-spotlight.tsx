@@ -23,7 +23,6 @@ interface CardSpotlightProps {
 export const CardSpotlight = ({
   children,
   className,
-  radius = 320,
   color,
   tilt = true,
   onClick,
@@ -162,15 +161,15 @@ export const CardSpotlight = ({
         onMouseLeave={handleMouseLeave}
         onClick={onClick}
       >
-        {/* Dynamic Spotlight: Luminous blue-slate in light, white in dark */}
+        {/* Subtle flat hover tint; card tilt remains available on hover. */}
         <div
           className="pointer-events-none absolute inset-0 z-0 transition-opacity duration-300 rounded-[inherit]"
           style={
             {
               opacity: "var(--opacity, 0)",
               background: color
-                ? `radial-gradient(${radius}px circle at var(--x, 0px) var(--y, 0px), ${color}, transparent 70%)`
-                : `radial-gradient(${radius}px circle at var(--x, 0px) var(--y, 0px), var(--spotlight-color, rgba(59, 130, 246, 0.09)), transparent 70%)`,
+                ? `color-mix(in srgb, ${color} 25%, transparent)`
+                : "color-mix(in srgb, var(--accent) 3%, transparent)",
             } as React.CSSProperties
           }
         />
