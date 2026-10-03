@@ -68,14 +68,11 @@ export function useProjects() {
     [projects],
   );
 
-  return useMemo(
-    () => ({
-      projects,
-      featuredProjects,
-      saveProject,
-      getProjectBySlug,
-      getProjectById,
-    }),
-    [projects, featuredProjects, saveProject, getProjectBySlug, getProjectById],
-  );
+  return {
+    projects,
+    featuredProjects,
+    saveProject,
+    getProjectBySlug,
+    getProjectById,
+  };
 }

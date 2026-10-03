@@ -46,12 +46,9 @@ export function useTheme() {
     setTheme(!isDarkStore.get());
   }, [setTheme]);
 
-  return useMemo(
-    () => ({
-      isDark,
-      setTheme,
-      toggleTheme,
-    }),
-    [isDark, setTheme, toggleTheme],
-  );
+  return {
+    isDark,
+    setTheme,
+    toggleTheme,
+  };
 }

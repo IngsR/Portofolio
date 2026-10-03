@@ -32,13 +32,10 @@ export function useStore<T, S = T>(
   store: Store<T>,
   selector?: (state: T) => S,
 ): S {
-  if (!selector) {
-    return useSyncExternalStore(store.subscribe, store.get, store.get) as unknown as S;
-  }
   return useSyncExternalStore(
     store.subscribe,
-    () => selector(store.get()),
-    () => selector(store.get()),
+    () => (selector ? selector(store.get()) : (store.get() as unknown as S)),
+    () => (selector ? selector(store.get()) : (store.get() as unknown as S))
   );
 }
 
