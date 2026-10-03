@@ -3,24 +3,51 @@
 @variant dark (&:where(.dark, .dark *));
 
 @layer base {
+  :root {
+    color-scheme: light;
+    --page-bg: #f0ebe1;
+    --surface: #f7f2e9;
+    --surface-raised: #eae2d5;
+    --surface-overlay: #f8f4ec;
+    --border: #d4c8b8;
+    --text-primary: #302c27;
+    --text-secondary: #675f55;
+    --accent: #607777;
+    --surface-shadow: 0 2px 8px rgba(32, 38, 43, 0.06);
+  }
+
+  html.dark {
+    color-scheme: dark;
+    --page-bg: #24282b;
+    --surface: #2b3034;
+    --surface-raised: #33393e;
+    --surface-overlay: #30363a;
+    --border: #41494f;
+    --text-primary: #e4e8eb;
+    --text-secondary: #aab3b9;
+    --accent: #8caec2;
+    --surface-shadow: 0 2px 8px rgba(0, 0, 0, 0.16);
+  }
+
   html {
     font-family:
-      "Instrument Sans",
-      system-ui,
-      -apple-system,
-      sans-serif;
+      "Instrument Sans", system-ui, -apple-system, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
   }
 
-  /* Judul memakai Bricolage Grotesque — ekspresif, berkarakter artistik */
+  body {
+    background-color: var(--page-bg);
+    color: var(--text-primary);
+  }
+
   h1,
   h2,
   h3 {
-    font-family: "Bricolage Grotesque", "Space Grotesk", system-ui, sans-serif;
-    font-weight: 800;
-    letter-spacing: -0.02em;
+    font-family: "Instrument Sans", system-ui, sans-serif;
+    font-weight: 700;
+    letter-spacing: 0;
   }
 
   code,
@@ -31,44 +58,102 @@
   }
 
   ::selection {
-    background-color: rgba(99, 102, 241, 0.25);
+    background-color: color-mix(in srgb, var(--accent) 24%, transparent);
     color: inherit;
   }
 
-  /* ── Light theme warm palette override ──────────────────────────────────
-     60% base  : #f0ede8  (krem linen — body background)
-     30% surface: #e9e5dd  (card/section — sedikit lebih hangat dari base)
-     10% accent : indigo/violet tetap (tidak diubah)
-
-     Override bg-white di light mode → warm cream agar konsisten dengan body.
-     Scope: html:not(.dark) saja, dark mode tidak terpengaruh.
-  ──────────────────────────────────────────────────────────────────────── */
   html:not(.dark) {
-    --color-surface: #eae6df;
-    --color-surface-raised: #e4e0d8;
-    --color-surface-overlay: rgba(234, 230, 223, 0.9);
-    --color-border: rgba(180, 165, 140, 0.35);
+    --color-surface: var(--surface);
+    --color-surface-raised: var(--surface-raised);
+    --color-surface-overlay: var(--surface-overlay);
+    --color-border: var(--border);
   }
 
-  /* Terapkan warm surface ke elemen bg-white & bg-slate-50 di light mode */
   html:not(.dark) .bg-white,
-  html:not(.dark) .bg-white\/80,
-  html:not(.dark) .bg-white\/90,
-  html:not(.dark) .bg-white\/95 {
-    background-color: var(--color-surface) !important;
+  html:not(.dark) [class*="bg-white/70"],
+  html:not(.dark) [class*="bg-white/80"],
+  html:not(.dark) [class*="bg-white/90"],
+  html:not(.dark) [class*="bg-white/95"] {
+    background-color: var(--surface) !important;
   }
 
-  html:not(.dark) .bg-slate-50 {
-    background-color: var(--color-surface-raised) !important;
-  }
-
+  html:not(.dark) .bg-slate-50,
   html:not(.dark) .bg-slate-100 {
-    background-color: #dbd6ce !important;
+    background-color: var(--surface-raised) !important;
+  }
+
+  html.dark [class*="dark:bg-[#"] {
+    background-color: var(--surface) !important;
+  }
+
+  html.dark [class*="dark:bg-white/"] {
+    background-color: var(--surface-raised) !important;
+  }
+
+  html.dark [class*="dark:border-white/"] {
+    border-color: var(--border) !important;
+  }
+
+  html:not(.dark) body :is(
+    [class*="rounded-xl"][class*="bg-white"],
+    [class*="rounded-2xl"][class*="bg-white"],
+    [class*="rounded-3xl"][class*="bg-white"],
+    [class*="rounded-xl"][class*="bg-[#"],
+    [class*="rounded-2xl"][class*="bg-[#"],
+    [class*="rounded-3xl"][class*="bg-[#"],
+    [class*="rounded-xl"][class*="bg-slate-50"],
+    [class*="rounded-xl"][class*="bg-slate-100"],
+    [class*="rounded-2xl"][class*="bg-slate-50"],
+    [class*="rounded-2xl"][class*="bg-slate-100"],
+    [class*="rounded-3xl"][class*="bg-slate-50"],
+    [class*="rounded-3xl"][class*="bg-slate-100"]
+  ) {
+    background-color: color-mix(in srgb, var(--surface) 85%, transparent) !important;
+  }
+
+  html.dark body :is(
+    [class*="rounded-xl"][class*="bg-white"],
+    [class*="rounded-2xl"][class*="bg-white"],
+    [class*="rounded-3xl"][class*="bg-white"],
+    [class*="rounded-xl"][class*="dark:bg-[#"],
+    [class*="rounded-2xl"][class*="dark:bg-[#"],
+    [class*="rounded-3xl"][class*="dark:bg-[#"],
+    [class*="rounded-xl"][class*="dark:bg-white/"],
+    [class*="rounded-2xl"][class*="dark:bg-white/"],
+    [class*="rounded-3xl"][class*="dark:bg-white/"]
+  ) {
+    background-color: color-mix(in srgb, var(--surface) 85%, transparent) !important;
   }
 }
 
-/* ── Ornamen underline: goresan kuas (brush stroke) hitam pekat di bawah
-      judul seksi. Bentuk tak beraturan via SVG mask, warna dari background. ── */
+.paper-texture-background {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  width: 100vw !important;
+  height: 100vh !important;
+  contain: strict;
+  opacity: 0.22;
+}
+
+.paper-texture-background canvas {
+  width: 100%;
+  height: 100%;
+}
+
+html.dark .paper-texture-background {
+  opacity: 0.16;
+  filter: brightness(0.42) saturate(0.7);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .paper-texture-background {
+    opacity: 0.16;
+  }
+}
+
+/* Underline accent used by section headings. */
 .ornament-underline {
   position: relative;
   display: inline-block;
@@ -83,9 +168,7 @@
   width: auto;
   height: 1em;
   min-height: 22px;
-  background-color: #0a0a0a;
-  /* Coretan garis natural sekali lengkung tipis — seperti goresan tangan
-     yang sedikit melengkung, bukan gelombang. Tebal di tengah, menipis di ujung. */
+  background-color: var(--accent);
   -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 24' preserveAspectRatio='none'%3E%3Cpath d='M2 16 C 90 9.5, 240 6.5, 398 9 C 399 9.6, 399 10.6, 398 11.2 C 250 9.5, 100 12, 4 19 C 2.5 18.4, 2 17, 2 16 Z'/%3E%3C/svg%3E");
   mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 24' preserveAspectRatio='none'%3E%3Cpath d='M2 16 C 90 9.5, 240 6.5, 398 9 C 399 9.6, 399 10.6, 398 11.2 C 250 9.5, 100 12, 4 19 C 2.5 18.4, 2 17, 2 16 Z'/%3E%3C/svg%3E");
   -webkit-mask-size: 100% 100%;
@@ -93,8 +176,8 @@
   pointer-events: none;
 }
 .dark .ornament-underline::after {
-  background-color: #fafafa;
-  opacity: 0.92;
+  background-color: var(--accent);
+  opacity: 0.8;
 }
 @media (prefers-reduced-motion: no-preference) {
   .ornament-underline::after {
@@ -110,59 +193,6 @@
     }
   }
 }
-.bg-grid-pattern {
-  background-size: 32px 32px;
-  background-image:
-    linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
-}
-
-.light .bg-grid-pattern,
-html:not(.dark) .bg-grid-pattern {
-  background-size: 32px 32px;
-  background-image:
-    linear-gradient(to right, rgba(15, 23, 42, 0.035) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(15, 23, 42, 0.035) 1px, transparent 1px);
-}
-
-.bg-dot-pattern {
-  background-size: 24px 24px;
-  background-image: radial-gradient(
-    rgba(15, 23, 42, 0.18) 1.5px,
-    transparent 1.5px
-  );
-}
-
-.dark .bg-dot-pattern,
-html.dark .bg-dot-pattern {
-  background-size: 24px 24px;
-  background-image: radial-gradient(
-    rgba(255, 255, 255, 0.13) 1.5px,
-    transparent 1.5px
-  );
-}
-
-/* Light mode — warm linen ambient: mengurangi glare layar putih
-   60% base (#f0ede8 krem linen), 30% surface (card warm), 10% accent indigo/amber */
-.light-ambient-mesh {
-  background-image:
-    radial-gradient(
-      ellipse 80% 50% at 50% -10%,
-      rgba(99, 102, 241, 0.06),
-      transparent 70%
-    ),
-    radial-gradient(
-      ellipse 60% 40% at 15% 25%,
-      rgba(217, 119, 6, 0.05),
-      transparent 60%
-    ),
-    radial-gradient(
-      ellipse 60% 40% at 85% 30%,
-      rgba(139, 92, 246, 0.04),
-      transparent 60%
-    );
-}
-
 .radial-mask {
   mask-image: radial-gradient(ellipse at center, black 45%, transparent 85%);
   -webkit-mask-image: radial-gradient(
@@ -185,58 +215,25 @@ html.dark .bg-dot-pattern {
   );
 }
 
-/* Crisp Aceternity Card & Depth System (Anti-Flat / Anti-Slope / Frosted Glass) */
+/* Shared solid card surface for any remaining legacy card utility. */
 .aceternity-card {
   position: relative;
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+  transition: border-color 0.2s ease, background-color 0.2s ease;
 }
 
 html:not(.dark) .aceternity-card {
-  /* 30% surface: sedikit lebih gelap dari base #f0ede8 → kedalaman tanpa bayangan kasar */
-  background-color: rgba(244, 240, 232, 0.88);
-  box-shadow:
-    0 1px 3px 0 rgba(0, 0, 0, 0.04),
-    0 6px 16px -2px rgba(100, 80, 40, 0.06),
-    0 0 0 1px rgba(200, 190, 170, 0.5);
+  background-color: var(--surface);
+  border: 1px solid var(--border);
 }
 
 html.dark .aceternity-card,
 .dark .aceternity-card {
-  background-color: rgba(12, 12, 13, 0.75);
-}
-
-html:not(.dark) .aceternity-card:hover {
-  box-shadow:
-    0 16px 32px -4px rgba(99, 102, 241, 0.12),
-    0 4px 12px 0 rgba(100, 80, 40, 0.06),
-    0 0 0 1px rgba(139, 92, 246, 0.25);
+  background-color: var(--surface);
+  border: 1px solid var(--border);
 }
 
 .aceternity-card::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  height: 1px;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.25),
-    transparent
-  );
-  pointer-events: none;
-}
-
-html:not(.dark) .aceternity-card::before {
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.9),
-    transparent
-  );
+  content: none;
 }
 
 .font-caveat {
@@ -245,9 +242,9 @@ html:not(.dark) .aceternity-card::before {
 
 /* Teks animasi FlipWords di hero — display serif tebal, mudah dibaca */
 .font-script {
-  font-family: "Abril Fatface", serif;
+  font-family: "Instrument Sans", system-ui, sans-serif;
   font-style: normal;
-  letter-spacing: 0.01em;
+  letter-spacing: 0;
 }
 
 /* Narasi (paragraf) di seluruh halaman memakai DM Sans */
@@ -262,18 +259,17 @@ p {
    di semua browser & OS. Fallback sistem memastikan tetap terbaca
    meski webfont gagal dimuat. */
 .about-page p {
-  font-family:
-    "Nunito", "Segoe UI", "Helvetica Neue", Arial, system-ui, sans-serif;
+  font-family: "Instrument Sans", system-ui, sans-serif;
 }
 /* Sub-judul card (h3/h4): Playfair Display — serif elegan berkelas */
 .about-page h3,
 .about-page h4 {
-  font-family: "Playfair Display", serif;
-  letter-spacing: -0.01em;
+  font-family: "Instrument Sans", system-ui, sans-serif;
+  letter-spacing: 0;
 }
 /* Tab navigasi: Caveat — aksen tulisan tangan */
 .tab-nav-art {
-  font-family: "Caveat", cursive;
+  font-family: "Instrument Sans", system-ui, sans-serif;
 }
 .tab-nav-art button {
   font-size: 1.05rem;
@@ -390,20 +386,20 @@ p {
 }
 
 .markdown-content code:not(pre code) {
-  background-color: rgba(99, 102, 241, 0.12);
-  color: #4f46e5;
+  background-color: color-mix(in srgb, var(--accent) 12%, transparent);
+  color: var(--accent);
   padding: 0.15rem 0.35rem;
   border-radius: 0.25rem;
   font-size: 0.85em;
 }
 
 .dark .markdown-content code:not(pre code) {
-  background-color: rgba(129, 140, 248, 0.2);
-  color: #a5b4fc;
+  background-color: color-mix(in srgb, var(--accent) 18%, transparent);
+  color: var(--accent);
 }
 
 .markdown-content blockquote {
-  border-left: 4px solid #6366f1;
+  border-left: 3px solid var(--accent);
   padding-left: 1rem;
   font-style: italic;
   margin-top: 0.75rem;
@@ -430,7 +426,7 @@ p {
 }
 
 .markdown-content th {
-  background-color: rgba(99, 102, 241, 0.08);
+  background-color: var(--surface-raised);
   font-weight: 600;
 }
 
@@ -465,15 +461,7 @@ p {
     print-color-adjust: exact !important;
   }
 
-  /* Completely remove all navigation, main content, footers, and modals from layout flow */
-  header,
-  nav,
-  main,
-  footer,
-  [role="navigation"],
-  .no-print,
-  [aria-hidden="true"],
-  .print\:hidden {
+  .paper-texture-background {
     display: none !important;
   }
 
@@ -682,89 +670,6 @@ html {
 }
 
 /* ============================================================
-   FLIP WORDS — pure CSS flip (menggantikan motion/AnimatePresence)
-   Hanya opacity + translate + blur → compositor, tanpa spring per frame.
-   ============================================================ */
-.flip-word {
-  animation: flip-word-in 0.32s cubic-bezier(0.22, 1, 0.36, 1) both;
-}
-
-/* PENTING: filter blur di @keyframes sangat mahal di Firefox — browser
-   menjalankannya di CPU bukan GPU. Gunakan hanya opacity + transform. */
-@keyframes flip-word-in {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .flip-word {
-    animation: none !important;
-  }
-}
-
-/* ============================================================
-   TEXT GENERATE EFFECT — pure CSS fade + blur (menggantikan
-   motion.span per kata — bisa 60+ elemen di hero bio)
-   .tge-word  = state awal (tersembunyi)
-   .tge-visible ditambahkan via IntersectionObserver → trigger animasi
-   ============================================================ */
-.tge-word {
-  opacity: 0;
-  /* filter blur dihilangkan dari initial state — Firefox merender
-     filter di CPU, dan 60+ elemen blur sekaligus = jank parah. */
-}
-
-.tge-word.tge-visible {
-  animation: tge-reveal var(--tge-duration, 0.4s) var(--tge-delay, 0s)
-    cubic-bezier(0.22, 1, 0.36, 1) forwards;
-}
-
-/* Keyframe murni opacity + transform — berjalan di GPU compositor
-   di semua browser (Chrome, Firefox, Safari) tanpa frame drop. */
-@keyframes tge-reveal {
-  from {
-    opacity: 0;
-    transform: translateY(4px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .tge-word {
-    opacity: 1 !important;
-    filter: none !important;
-    animation: none !important;
-  }
-}
-
-/* ============================================================
-   BEAM FALL — animasi tetes cahaya pure CSS (@keyframes).
-   Dijalankan di GPU compositor (transform only), zero JS.
-   ============================================================ */
-@keyframes beamFall {
-  0%   { transform: translateY(-220px); opacity: 0; }
-  5%   { opacity: 1; }
-  95%  { opacity: 1; }
-  100% { transform: translateY(110vh); opacity: 0; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  [style*="beamFall"] {
-    animation: none !important;
-    opacity: 0 !important;
-  }
-}
-
-/* ============================================================
    MODAL ENTRANCE — pure CSS (menggantikan motion.div per modal).
    Komponen modal unmount seketika saat close (early-return null)
    sehingga exit animation motion tidak pernah berjalan — entrance
@@ -824,74 +729,6 @@ html {
 }
 
 /* ============================================================
-   CINEMATIC FLARE BEAM — pure CSS (menggantikan motion.div).
-   Hanya opacity + transform → GPU compositor, zero JS per frame.
-   ============================================================ */
-@keyframes cinematicFlare {
-  0%   { transform: translateX(-15%) scaleY(0.9); opacity: 0.45; }
-  50%  { transform: translateX(15%) scaleY(1.15); opacity: 0.75; }
-  100% { transform: translateX(-15%) scaleY(0.9); opacity: 0.45; }
-}
-
-.cinematic-flare-beam {
-  will-change: transform, opacity;
-  animation: cinematicFlare 12s ease-in-out infinite;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .cinematic-flare-beam {
-    animation: none !important;
-    opacity: 0.3;
-  }
-}
-
-/* ============================================================
-   ACETERNITY CARD — Firefox: kurangi blur agar ringan.
-   ============================================================ */
-@-moz-document url-prefix() {
-  .aceternity-card {
-    backdrop-filter: blur(4px) !important;
-    background-color: rgba(244, 240, 232, 0.94) !important;
-  }
-  html.dark .aceternity-card,
-  .dark .aceternity-card {
-    background-color: rgba(12, 12, 13, 0.92) !important;
-  }
-}
-
-/* ============================================================
-   AURORA ORB — hanya translate + opacity (tidak ada scale).
-   Scale pada elemen blur menyebabkan repaint setiap frame di Firefox.
-   translate + opacity = murni GPU compositor, zero repaint.
-   ============================================================ */
-@keyframes auroraOrb1 {
-  0%   { transform: translate(0, 0); opacity: 0.55; }
-  50%  { transform: translate(12px, -8px); opacity: 0.8; }
-  100% { transform: translate(0, 0); opacity: 0.55; }
-}
-@keyframes auroraOrb2 {
-  0%   { transform: translate(0, 0); opacity: 0.45; }
-  50%  { transform: translate(-8px, 12px); opacity: 0.7; }
-  100% { transform: translate(0, 0); opacity: 0.45; }
-}
-
-.aurora-orb-1 {
-  will-change: transform, opacity;
-  animation: auroraOrb1 9s ease-in-out infinite;
-}
-.aurora-orb-2 {
-  will-change: transform, opacity;
-  animation: auroraOrb2 11s ease-in-out infinite;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .aurora-orb-1,
-  .aurora-orb-2 {
-    animation: none !important;
-  }
-}
-
-/* ============================================================
    FLOAT CHIP — menggantikan motion.div floating HUD di hero.
    Hanya translateY → GPU compositor, zero main-thread cost.
    ============================================================ */
@@ -917,4 +754,28 @@ html {
   .float-chip-2 {
     animation: none !important;
   }
+}
+
+/* Shared refinements for legacy utility classes. */
+[class*="backdrop-blur"] {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+[class*="shadow-xl"],
+[class*="shadow-2xl"],
+[class*="shadow-["] {
+  box-shadow: var(--surface-shadow) !important;
+}
+
+[class*="rounded-3xl"] {
+  border-radius: 0.875rem !important;
+}
+
+[class*="rounded-2xl"] {
+  border-radius: 0.75rem !important;
+}
+
+[class*="rounded-xl"] {
+  border-radius: 0.625rem !important;
 }
