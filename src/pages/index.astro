@@ -4,6 +4,7 @@ import SiteLayout from "../layouts/site.astro";
 
 export const prerender = true;
 ---
+
 <SiteLayout>
-  <App client:load />
+  <App client:idle />
 </SiteLayout>

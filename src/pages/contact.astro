@@ -4,9 +4,10 @@ import SiteLayout from "../layouts/site.astro";
 
 export const prerender = true;
 ---
+
 <SiteLayout
   title="Kontak Ikhwan Ramadhan | Junior Web Developer"
   description="Hubungi Ikhwan Ramadhan untuk peluang Junior Web Developer, kolaborasi, dan pengembangan aplikasi web dari frontend sampai backend."
 >
-  <App client:load initialPage="contact" />
+  <App client:idle initialPage="contact" />
 </SiteLayout>
