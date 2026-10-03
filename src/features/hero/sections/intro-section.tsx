@@ -19,7 +19,7 @@ import { TextGenerateEffect } from "../../../design/components/text-generate-eff
 import { UserProfile } from "../../../types";
 import { CinematicViewportFx } from "../cinematic-viewport-fx";
 import { ProfilePhotoCard } from "../cards/profile-photo-card";
-import { AVAILABILITY_TEXT, HERO_BIO, HERO_ROLES } from "../hero.data";
+// Konten diambil langsung dari portfolio.json — tidak ada duplikasi di hero.data.ts
 import { HeroPageProps } from "../types";
 
 /**
@@ -30,7 +30,13 @@ export const IntroSection = memo<HeroPageProps & { onOpenCV: () => void }>(
   function IntroSection({ onNavigate, onOpenCV }) {
     const userProfile = portfolioData.userProfile as unknown as UserProfile;
 
-    const roles = useMemo(() => [...HERO_ROLES], []);
+    // Roles & bio langsung dari JSON — single source of truth
+    const roles = useMemo(
+      () => [userProfile.title, "Frontend & Backend", "Next.js & React Developer", "REST API & Database"],
+      [userProfile.title],
+    );
+    const heroBio = userProfile.shortBio;
+    const availabilityText = userProfile.workPreference;
 
     /** Strip statistik singkat dengan ikon berkarakter */
     const stats = useMemo(
@@ -95,7 +101,7 @@ export const IntroSection = memo<HeroPageProps & { onOpenCV: () => void }>(
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
                 </span>
-                <span>{AVAILABILITY_TEXT}</span>
+                <span>{availabilityText}</span>
               </div>
 
             <div className="space-y-1">
@@ -117,7 +123,7 @@ export const IntroSection = memo<HeroPageProps & { onOpenCV: () => void }>(
             </div>
 
             <TextGenerateEffect
-              words={HERO_BIO}
+              words={heroBio}
               className="text-black dark:text-slate-300 text-base sm:text-lg max-w-4xl font-medium"
               wordClassName="text-black dark:text-slate-300 font-medium"
               duration={0.4}

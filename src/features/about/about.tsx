@@ -20,8 +20,8 @@ import {
   SkillCategory,
 } from "../../types";
 import { Certificate } from "../portfolio/certificate";
-import { Detail } from "../modal/detail";
-import { CardPreviewModal } from "../modal/card-preview-modal";
+import { Detail } from "../../components/modal/detail";
+import { CardPreviewModal } from "../../components/modal/card-preview-modal";
 import { AnimatedTabs } from "../../design/components/animated-tabs";
 import { TracingBeam } from "../../design/components/tracing-beam";
 import { CardSpotlight } from "../../design/components/card-spotlight";

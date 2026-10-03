@@ -1,23 +1,24 @@
 import { AnimatePresence, motion } from "motion/react";
 import { memo, useState } from "react";
-import { About } from "./components/about/about";
-import { Contact } from "./components/contact/contact";
-import { Hero } from "./components/hero";
+import { About } from "./features/about/about";
+import { Contact } from "./features/contact/contact";
+import { Hero } from "./features/hero/hero";
 import { Footer } from "./components/layout/footer";
 import { Navbar } from "./components/layout/navbar";
-import { Cv } from "./components/modal/cv";
-import { MarkdownEditor } from "./components/modal/markdown-editor";
-import { Portfolio } from "./components/portfolio/portfolio";
 import { useModal, useProjects, useTheme } from "./hooks";
 import { PageId } from "./types";
+import { lazy, Suspense } from "react";
 
-// Halaman di-memo: perubahan state modal/tema di App TIDAK me-render ulang
-// isi halaman (Hero/Portfolio/About/Contact beserta puluhan card di dalamnya).
+// Initial visible components are kept static for fast LCP
 const HeroPage = memo(Hero);
-const PortfolioPage = memo(Portfolio);
-const AboutPage = memo(About);
-const ContactPage = memo(Contact);
 const FooterPage = memo(Footer);
+
+// Lazy load non-critical sections and modals
+const PortfolioPage = memo(lazy(() => import("./features/portfolio/portfolio").then(m => ({ default: m.Portfolio }))));
+const AboutPage = memo(lazy(() => import("./features/about/about").then(m => ({ default: m.About }))));
+const ContactPage = memo(lazy(() => import("./features/contact/contact").then(m => ({ default: m.Contact }))));
+const Cv = lazy(() => import("./components/modal/cv").then(m => ({ default: m.Cv })));
+const MarkdownEditor = lazy(() => import("./components/modal/markdown-editor").then(m => ({ default: m.MarkdownEditor })));
 
 export default function App({
   initialPage = "home",
@@ -70,28 +71,30 @@ export default function App({
             transition={{ duration: 0.26, ease: [0.22, 1, 0.36, 1] }}
             className="w-full"
           >
-            {/* 1. Beranda (Home) */}
-            {activePage === "home" && (
-              <HeroPage
-                setActivePage={setActivePage}
-                featuredProjects={featuredProjects}
-                onOpenCV={openCV}
-              />
-            )}
+            <Suspense fallback={<div className="min-h-[50vh] flex items-center justify-center text-slate-500 animate-pulse">Memuat...</div>}>
+              {/* 1. Beranda (Home) */}
+              {activePage === "home" && (
+                <HeroPage
+                  setActivePage={setActivePage}
+                  featuredProjects={featuredProjects}
+                  onOpenCV={openCV}
+                />
+              )}
 
-            {/* 2. Portofolio (Portfolio) */}
-            {activePage === "portfolio" && (
-              <PortfolioPage
-                projects={projects}
-                onOpenCreateModal={openCreateModal}
-              />
-            )}
+              {/* 2. Portofolio (Portfolio) */}
+              {activePage === "portfolio" && (
+                <PortfolioPage
+                  projects={projects}
+                  onOpenCreateModal={openCreateModal}
+                />
+              )}
 
-            {/* 3. Tentang Saya (About Me) */}
-            {activePage === "about" && <AboutPage onOpenCV={openCV} />}
+              {/* 3. Tentang Saya (About Me) */}
+              {activePage === "about" && <AboutPage onOpenCV={openCV} />}
 
-            {/* 4. Kontak (Contact Form & Details) */}
-            {activePage === "contact" && <Contact />}
+              {/* 4. Kontak (Contact Form & Details) */}
+              {activePage === "contact" && <ContactPage />}
+            </Suspense>
           </motion.div>
         </AnimatePresence>
       </main>
@@ -101,15 +104,17 @@ export default function App({
         <FooterPage setActivePage={setActivePage} onOpenCV={openCV} />
       </div>
 
-      {/* Markdown Editor & Project Authoring Modal */}
-      <MarkdownEditor
-        isOpen={isCreateModalOpen}
-        onClose={closeCreateModal}
-        onSaveProject={saveProject}
-      />
+      <Suspense fallback={null}>
+        {/* Markdown Editor & Project Authoring Modal */}
+        <MarkdownEditor
+          isOpen={isCreateModalOpen}
+          onClose={closeCreateModal}
+          onSaveProject={saveProject}
+        />
 
-      {/* Printable / Preview CV Modal */}
-      <Cv isOpen={isCVOpen} onClose={closeCV} />
+        {/* Printable / Preview CV Modal */}
+        <Cv isOpen={isCVOpen} onClose={closeCV} />
+      </Suspense>
     </div>
   );
 }

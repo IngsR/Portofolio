@@ -18,6 +18,7 @@ import {
   Zap,
 } from "lucide-react";
 import React, { useState } from "react";
+import { useSmoothScroll } from "../../hooks";
 import type { ProjectItem } from "../../types";
 
 const getMetricTheme = (
@@ -79,7 +80,7 @@ const getMetricTheme = (
         "bg-emerald-50 text-emerald-600 border-emerald-200/70 dark:bg-emerald-500/15 dark:text-emerald-400 dark:border-emerald-500/30",
     },
   ];
-  return palettes[idx % palettes.length];
+  return palettes[idx % palettes.length] || palettes[0]!;
 };
 
 interface ProjectDetailViewProps {

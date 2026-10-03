@@ -13,15 +13,38 @@ import {
   ExternalLink,
   Github,
   Layers,
+  Moon,
   Share2,
   ShieldCheck,
+  Sun,
   Tag,
   Target,
   User,
   Zap,
 } from "lucide-react";
 import React, { useState } from "react";
+import { useTheme } from "../../hooks/use-theme";
 import type { CertificationItem, ProjectItem } from "../../types";
+
+const ThemeToggle = () => {
+  const { isDark, toggleTheme } = useTheme();
+  return (
+    <button
+      type="button"
+      onClick={toggleTheme}
+      aria-label={isDark ? "Beralih ke Mode Terang" : "Beralih ke Mode Gelap"}
+      title={isDark ? "Beralih ke Mode Terang" : "Beralih ke Mode Gelap"}
+      className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white/90 dark:bg-white/[0.06] border border-slate-200/90 dark:border-white/10 text-slate-600 transition-all hover:bg-slate-100 hover:text-slate-950 active:scale-90 dark:text-slate-300 dark:hover:bg-white/10 dark:hover:text-white shadow-xs"
+    >
+      {isDark ? (
+        <Sun className="h-4 w-4 text-amber-400" />
+      ) : (
+        <Moon className="h-4 w-4 text-slate-700" />
+      )}
+    </button>
+  );
+};
+
 
 const getMetricTheme = (
   label: string,
@@ -103,7 +126,7 @@ const getMetricTheme = (
         "bg-emerald-50 text-emerald-600 border-emerald-200/70 dark:bg-emerald-500/15 dark:text-emerald-400 dark:border-emerald-500/30",
     },
   ];
-  return palettes[idx % palettes.length];
+  return palettes[idx % palettes.length] || palettes[0]!;
 };
 
 export interface UniversalDetailViewProps {
@@ -232,6 +255,8 @@ export const UniversalDetailView: React.FC<UniversalDetailViewProps> = ({
           )}
 
           <div className="flex items-center gap-2">
+            <ThemeToggle />
+
             <button
               type="button"
               onClick={handleShare}
