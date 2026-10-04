@@ -17,8 +17,7 @@ export const ContactSection = memo(function ContactSection() {
           Ada peluang yang ingin dibicarakan?
         </h2>
         <p className="text-sm leading-relaxed text-slate-700 dark:text-slate-300">
-          Saya terbuka untuk percakapan tentang peran Junior Web Developer,
-          kolaborasi, dan proyek digital.
+          Saya terbuka untuk peluang sebagai Junior Web Developer dengan fokus pada Next.js dan React.js, serta memahami pengembangan full-stack hingga deployment.
         </p>
       </div>
 

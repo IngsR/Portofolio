@@ -12,7 +12,12 @@ import {
   Terminal,
 } from "lucide-react";
 import React, { useState } from "react";
+import { CardPreviewModal } from "../../components/modal/card-preview-modal";
+import { Detail } from "../../components/modal/detail";
 import portfolioData from "../../data/portfolio.json";
+import { AnimatedTabs } from "../../design/components/animated-tabs";
+import { CardSpotlight } from "../../design/components/card-spotlight";
+import { TracingBeam } from "../../design/components/tracing-beam";
 import {
   CertificationItem,
   EducationItem,
@@ -20,11 +25,6 @@ import {
   SkillCategory,
 } from "../../types";
 import { Certificate } from "../portfolio/certificate";
-import { Detail } from "../../components/modal/detail";
-import { CardPreviewModal } from "../../components/modal/card-preview-modal";
-import { AnimatedTabs } from "../../design/components/animated-tabs";
-import { TracingBeam } from "../../design/components/tracing-beam";
-import { CardSpotlight } from "../../design/components/card-spotlight";
 
 const {
   userProfile,
@@ -204,9 +204,9 @@ export const About: React.FC<AboutSectionProps> = ({ onOpenCV }) => {
                 S1 Teknik Informatika
               </h4>
               <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-400">
-                Fresh Graduate S1 TI UPI &ldquo;YPTK&rdquo; Padang, konsentrasi
-                Data Science — RPL, DSA, basis data relasional, arsitektur
-                sistem web, dan Deep Learning.
+                Lulusan S1 TI UPI &ldquo;YPTK&rdquo; Padang dengan fondasi RPL,
+                DSA, basis data relasional, dan arsitektur sistem web.
+                Konsentrasi Data Science menjadi bekal akademik tambahan.
               </p>
             </div>
 

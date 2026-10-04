@@ -29,15 +29,15 @@ export const AboutSection = memo(function AboutSection() {
             , lulusan S1 Teknik Informatika Universitas Putra Indonesia
             &ldquo;YPTK&rdquo; Padang.{" "}
             <strong className="text-slate-950 dark:text-white font-bold">
-              Fokus karir saya adalah web development
+              Fokus profesional saya adalah software engineering
             </strong>{" "}
-            dari antarmuka, REST API, database, hingga deployment. Konsentrasi
-            Data Science di perkuliahan saya jadikan{" "}
+            , terutama membangun aplikasi dari frontend hingga backend, REST
+            API, database, pengujian, dan deployment. Konsentrasi Data Science
+            menjadi{" "}
             <strong className="text-slate-950 dark:text-white font-bold">
-              latar akademik pelengkap
+              bekal akademik pelengkap
             </strong>{" "}
-            yang melatih cara berpikir analitis dan bagaimana cara melakukan
-            eksperiment
+            untuk memahami pengolahan dan analisis data.
           </p>
           <p>
             Bagi saya, development bukan sekadar membuat sesuatu berjalan,
