@@ -170,7 +170,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 />
                 <span
                   className="absolute -bottom-0.5 -right-0.5 h-2.5 w-2.5 rounded-full bg-emerald-500 ring-2 ring-white dark:ring-black animate-pulse"
-                  title="Terbuka untuk On-Site / Remote"
+                  title="Terbuka untuk On-Site / Hybrid"
                 />
               </div>
 
