@@ -25,6 +25,12 @@ export const IntroSection = memo<HeroPageProps & { onOpenCV: () => void }>(
 
     const heroBio = userProfile.shortBio;
     const availabilityText = userProfile.workPreference;
+    const roles = [
+      userProfile.title,
+      "Frontend & Backend",
+      "Next.js & React Developer",
+      "REST API & Database",
+    ];
 
     /** Strip statistik singkat dengan ikon berkarakter */
     const stats = useMemo(
@@ -74,12 +80,24 @@ export const IntroSection = memo<HeroPageProps & { onOpenCV: () => void }>(
               <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight text-slate-950 dark:text-white leading-[1.08]">
                 {userProfile.name}
               </h1>
-              <p className="text-lg sm:text-2xl font-bold text-[#426b82] dark:text-[#8caec2]">
-                {userProfile.title}
-              </p>
+              <div
+                className="hero-role-cycle text-lg font-bold text-[#426b82] dark:text-[#8caec2] sm:text-2xl"
+                aria-label={roles.join(", ")}
+              >
+                {roles.map((role, index) => (
+                  <span
+                    key={role}
+                    aria-hidden="true"
+                    className="hero-role"
+                    style={{ animationDelay: `${index * 2}s` }}
+                  >
+                    {role}
+                  </span>
+                ))}
+              </div>
             </div>
 
-            <p className="text-slate-800 dark:text-slate-300 text-base sm:text-lg max-w-4xl font-medium leading-relaxed">
+            <p className="hero-bio-write text-slate-800 dark:text-slate-300 text-base sm:text-lg max-w-4xl font-medium leading-relaxed">
               {heroBio}
             </p>
 
@@ -92,7 +110,7 @@ export const IntroSection = memo<HeroPageProps & { onOpenCV: () => void }>(
                     Kesiapan Kerja:
                   </span>
                   <span className="text-slate-600 dark:text-slate-400 text-[11px] sm:text-xs leading-relaxed block">
-                    On-Site (WFO) Seluruh Indonesia &amp; Remote
+                    Terbuka untuk kerja On-Site / WFO dan Hybrid
                   </span>
                 </div>
               </div>
