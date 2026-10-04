@@ -5,18 +5,18 @@
     "tagline": "Junior Web Developer yang membangun aplikasi web dari antarmuka hingga REST API, database, dan deployment, sambil terus memperdalam praktik software engineering melalui project nyata.",
     "shortBio": "Fresh graduate Teknik Informatika yang fokus di web development. Kemampuan saya tumbuh dari project mandiri, mencoba membangun antarmuka, menghubungkan API, dan memahami cara kerja sistem secara langsung. Sekarang siap masuk dunia kerja dan terus berkembang bersama tim.",
     "fullBio": [
-      "Saya Ikhwan Ramadhan, fresh graduate S1 Teknik Informatika Universitas Putra Indonesia \"YPTK\" Padang yang memposisikan diri sebagai Junior Web Developer.bidang ini adalah fokus profesional yang paling saya tekuni dan ingin kembangkan lebih jauh. Konsentrasi Data Science di perkuliahan saya pandang sebagai latar akademik pelengkap.",
+      "Saya Ikhwan Ramadhan, lulusan S1 Teknik Informatika Universitas Putra Indonesia \"YPTK\" Padang. Fokus profesional saya adalah software engineering, khususnya pengembangan aplikasi web dari frontend hingga backend. Konsentrasi Data Science menjadi bekal akademik tambahan yang melengkapi pemahaman saya tentang pengolahan dan analisis data.",
       "Sebagian besar kemampuan web saya tumbuh dari project nyata dan belajar mandiri, bukan hanya dari kelas. Dari mengerjakan portal sekolah, aplikasi properti, sampai website showroom mobil, saya belajar memahami kebutuhan pengguna, membangun fitur, lalu berhadapan langsung dengan masalah: bug yang sulit dilacak, integrasi API yang tidak sesuai dugaan, struktur database yang perlu dirapikan, authentication, sampai proses deployment. Di situlah saya belajar membaca error, melakukan debugging, mencoba pendekatan lain, menguji ulang, dan mengevaluasi apakah hasilnya benar-benar lebih baik.",
-      "Latar akademik Data Science dan AI/ML melengkapi cara saya bekerja. Skripsi saya membangun model LSTM untuk prediksi lintasan siklon tropis, yang saya uji melalui beberapa skenario konfigurasi, bandingkan hasilnya, dan evaluasi performanya sebelum memilih pendekatan terbaik. Kebiasaan bekerja eksperimental dan belajar dari hasil itu ikut memengaruhi cara saya menyusun, menguji, dan memperbaiki aplikasi web.",
+      "Bekal akademik tersebut saya terapkan dalam skripsi tentang prediksi lintasan siklon tropis menggunakan model LSTM. Saya menguji beberapa konfigurasi, membandingkan hasil, dan mengevaluasi performanya sebelum memilih pendekatan terbaik. Pengalaman riset ini melatih saya mengolah data dan memvalidasi hasil, lalu menerapkan model ke dalam aplikasi web. Fokus karier saya tetap pada software engineering.",
       "Saya tidak menganggap proses belajar saya selesai setelah lulus. Saya ingin terus memperdalam web development, membangun kebiasaan software engineering yang lebih baik, dan memperluas pemahaman teknis melalui project serta pengalaman kerja nyata."
     ],
     "location": "Indonesia",
-    "workPreference": "On-Site / WFO di Seluruh Indonesia (Siap Relokasi) & Hybrid / Remote",
+    "workPreference": "Terbuka untuk kesempatan kerja On-Site / WFO dan Hybrid",
     "email": "ikhwn.rdn@gmail.com",
     "phone": "+6282386473410",
     "whatsappUrl": "https://wa.me/6282386473410?text=Halo%20Ikhwan%2C%20saya%20melihat%20portofolio%20Anda%20dan%20tertarik%20untuk%20berdiskusi%20terkait%20peluang%20Junior%20Web%20Developer%20%2F%20proyek.",
     "avatarUrl": "/profile.png",
-    "statusText": "Terbuka untuk posisi Junior Web Developer — WFO, hybrid, atau remote",
+    "statusText": "Terbuka untuk posisi Junior Web Developer — On-Site / WFO dan Hybrid",
     "isAvailableForHire": true,
     "stats": {
       "projectsCompleted": 8,
@@ -477,9 +477,9 @@
       ]
     },
     {
-      "title": "Data Science & AI",
+      "title": "Bekal Akademik Data & AI",
       "iconName": "Cpu",
-      "description": "Latar belakang akademik yang melatih cara berpikir analitis dan eksplorasi machine learning.",
+      "description": "Konsentrasi kuliah dan skripsi yang melengkapi pekerjaan software engineering dengan dasar pengolahan data dan evaluasi model.",
       "coreStack": [
         "Python",
         "Data Preprocessing",
@@ -530,7 +530,7 @@
       "institution": "Universitas Putra Indonesia \"YPTK\" Padang",
       "period": "2022 - 2026",
       "gpa": "3.26 / 4.00",
-      "details": "Fresh graduate S1 Teknik Informatika dengan konsentrasi Data Science. Fondasi akademik saya mencakup Rekayasa Perangkat Lunak, Struktur Data & Algoritma, Basis Data Relasional, Pemrograman Web, dan Keamanan Sistem Informasi, ditambah skripsi berbasis Deep Learning (LSTM) untuk prediksi data deret waktu lintasan siklon tropis."
+      "details": "Konsentrasi Data Science memberi bekal akademik dalam pengolahan dan analisis data. Fondasi Teknik Informatika saya mencakup Rekayasa Perangkat Lunak, Struktur Data & Algoritma, Basis Data Relasional, Pemrograman Web, dan Keamanan Sistem Informasi. Skripsi saya menerapkan Deep Learning (LSTM) untuk memprediksi lintasan siklon tropis dan hasilnya diwujudkan dalam aplikasi web."
     }
   ],
   "certifications": [
@@ -551,7 +551,7 @@
         "Neural Networks",
         "Python for AI"
       ],
-      "description": "Sertifikasi ini jadi landasan saya memahami bagaimana machine learning dan neural network bekerja — dari supervised/unsupervised learning sampai arsitektur deep learning dasar. Materinya relevan dengan skripsi LSTM saya dan membantu saya berpikir lebih sistematis saat mengolah data untuk fitur prediktif di aplikasi web."
+      "description": "Sertifikasi ini melengkapi latar akademik saya dengan dasar machine learning dan neural network, mulai dari supervised learning hingga konsep deep learning. Materinya membantu saya memahami dan mengevaluasi model LSTM yang digunakan dalam skripsi, lalu mengintegrasikan hasilnya ke aplikasi web."
     },
     {
       "id": "cert-2",
@@ -570,7 +570,7 @@
         "Natural Language Processing",
         "AI Industry Applications"
       ],
-      "description": "Materi lanjutan yang membawa pemahaman AI ke skenario industri nyata: computer vision, NLP, dan bagaimana model AI dikonsumsi lewat API. Ini yang membantu saya merancang pipeline dari training model sampai deploy ONNX Runtime di browser untuk proyek prediksi siklon tropis."
+      "description": "Materi lanjutan tentang computer vision, NLP, dan integrasi model AI melalui API. Pengetahuan ini menjadi bekal pendukung saat saya mengemas model LSTM hasil skripsi ke format ONNX Runtime dan mengintegrasikannya ke aplikasi web prediksi siklon tropis."
     },
     {
       "id": "cert-3",
@@ -687,7 +687,7 @@
     },
     {
       "question": "Apa keahlian teknis utama yang Anda bawa untuk tim?",
-      "answer": "Saya membangun aplikasi web dari sisi frontend sampai backend, dengan Next.js dan TypeScript sebagai stack utamanya. Saya memiliki pengalaman menangani alur menyeluruh: menyusun antarmuka, merancang REST API, menghubungkan database, validasi data dengan Zod, pengujian, dasar keamanan OWASP Top 10, Git workflow, hingga deployment serverless. Selain itu, latar akademik Data Science membuat saya terbiasa bekerja secara analitis dan eksperimental."
+      "answer": "Fokus saya adalah software engineering, terutama membangun aplikasi dari frontend hingga backend dengan Next.js dan TypeScript. Saya menangani penyusunan antarmuka, REST API, database, validasi Zod, pengujian, dasar keamanan OWASP Top 10, Git workflow, dan deployment serverless. Konsentrasi Data Science menjadi bekal akademik tambahan untuk mengolah data dan mengevaluasi fitur secara analitis."
     }
   ]
 }
