@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 
 /**
- * useSmoothScroll — CSS-native smooth scroll, tanpa Lenis.
+ * useSmoothScroll - CSS-native smooth scroll, tanpa Lenis.
  *
  * Lenis menggunakan rAF loop yang berjalan setiap frame bahkan saat scroll diam,
  * dan di Firefox tidak bisa pipeline dengan native scroll compositor → jank.

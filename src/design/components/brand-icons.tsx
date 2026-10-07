@@ -5,13 +5,13 @@ interface BrandIconProps {
 }
 
 /**
- * SVG brand asli — tidak bergantung pada icon library, jadi tidak pernah blank.
+ * SVG brand asli - tidak bergantung pada icon library, jadi tidak pernah blank.
  *
  * FIX Bing/Edge (icon LinkedIn/Mail/WA/GitHub tidak muncul):
  * 1. JANGAN set atribut presentational `width`/`height` di sini. Atribut
  *    width/height + class Tailwind `w-* h-*` bertabrakan di layout engine
- *    Edge/Chromium — svg bisa collapse ke 0px atau ter-clip di dalam flex.
- * 2. JANGAN pakai inline style width/height — inline style mengalahkan class
+ *    Edge/Chromium - svg bisa collapse ke 0px atau ter-clip di dalam flex.
+ * 2. JANGAN pakai inline style width/height - inline style mengalahkan class
  *    Tailwind, sehingga ikon selalu terkunci 1em dan mengabaikan `w-5 h-5`.
  *    Sizing 100% diserahkan ke `className` (cara lucide-react yang terbukti
  *    selalu tampil), dengan class fallback `h-4 w-4` bila caller tidak

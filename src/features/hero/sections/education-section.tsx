@@ -4,7 +4,7 @@ import { memo } from "react";
 import { EducationItem } from "../../../types";
 
 /**
- * EducationSection — riwayat pendidikan S1 di Beranda.
+ * EducationSection - riwayat pendidikan S1 di Beranda.
  * Struktur kartu (badge periode + IPK) identik dengan tampilan sebelumnya.
  */
 export const EducationSection = memo<{ items: EducationItem[] }>(

@@ -62,13 +62,13 @@ export const Detail: React.FC<DetailModalProps> = ({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
-      {/* Backdrop overlay — entrance murni CSS (zero runtime JS) */}
+      {/* Backdrop overlay - entrance murni CSS (zero runtime JS) */}
       <div
         onClick={onClose}
         className="fixed inset-0 bg-slate-950/70 backdrop-blur-sm animate-modal-backdrop"
       />
 
-        {/* Modal Container — entrance murni CSS (compositor: opacity + translateY) */}
+        {/* Modal Container - entrance murni CSS (compositor: opacity + translateY) */}
         <div
           className="relative w-full max-w-3xl bg-white dark:bg-[#0f0f11] rounded-2xl sm:rounded-3xl border border-slate-200 dark:border-white/10 shadow-2xl overflow-hidden my-auto max-h-[90vh] flex flex-col z-10 animate-modal-card"
         >

@@ -20,7 +20,7 @@ export const Certificate = memo<CertificateCardProps>(function Certificate({
   certificate,
   onOpenDetail,
 }) {
-  // Baca nilai hover capability dari module-level singleton — tidak ada useState/useEffect
+  // Baca nilai hover capability dari module-level singleton - tidak ada useState/useEffect
   const hoverable = canHover();
 
   const cardClassName = `group flex flex-col justify-between bg-white/80 dark:bg-[#0f0f11]/75 backdrop-blur-md border border-slate-200/90 dark:border-white/10 rounded-2xl sm:rounded-3xl p-3 sm:p-4 lg:p-4 shadow-[0_2px_10px_-3px_rgba(15,23,42,0.06)] cursor-pointer${
@@ -97,7 +97,7 @@ const CertificateContent = memo<{
             referrerPolicy="no-referrer"
           />
 
-          {/* Badge backdrop-blur hanya di desktop — blur berlapis sangat mahal
+          {/* Badge backdrop-blur hanya di desktop - blur berlapis sangat mahal
               saat scroll di HP (memaksa repaint area blur tiap frame) */}
           <div className="hidden sm:flex absolute top-2 left-2 sm:top-3 sm:left-3 items-center gap-1 bg-black/75 backdrop-blur-md px-2 py-0.5 rounded-md sm:rounded-lg text-white text-[10px] font-semibold pointer-events-none shadow-xs">
             <Eye className="w-3 h-3 text-blue-400" />

@@ -6,7 +6,7 @@ import { Certificate } from "../../portfolio/certificate";
 import { CertificationsSectionProps } from "../types";
 
 /**
- * CertificationsSection — sertifikat pilihan di Beranda.
+ * CertificationsSection - sertifikat pilihan di Beranda.
  *
  * Grid dibungkus LazyMount (content-visibility), dan kartu
  * langsung membuka halaman detail sinematik saat diklik.

@@ -70,7 +70,7 @@ export const CardSpotlight = ({
         // will-change hanya diaktifkan selama hover → tidak ada layer GPU
         // permanen untuk puluhan card sekaligus (ini yang bikin scroll berat).
         if (tilt) {
-          // `perspective` harus lewat properti CSS valid — context 3D untuk tilt
+          // `perspective` harus lewat properti CSS valid - context 3D untuk tilt
           el.style.perspective = "1000px";
           el.style.willChange = "transform";
         }

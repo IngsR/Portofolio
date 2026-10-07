@@ -4,7 +4,7 @@ import { memo } from "react";
 import { SkillCategory } from "../../../types";
 
 /**
- * SkillCard — kartu satu kategori keahlian di Beranda.
+ * SkillCard - kartu satu kategori keahlian di Beranda.
  *
  * Hanya warna ikon yang di-mapping dari JSON (kelas Tailwind literal, jadi
  * tetap terdeteksi compiler), sedangkan elemen ikon dibuat di sini agar
@@ -51,7 +51,7 @@ export const SkillCard = memo<{ category: SkillCategory }>(function SkillCard({
     <div
       className={`relative overflow-hidden p-3.5 sm:p-4 lg:p-5 rounded-2xl sm:rounded-3xl border border-slate-200 dark:border-white/10 bg-white/80 dark:bg-[#0c0c0d]/75 backdrop-blur-md flex flex-col justify-between space-y-3 sm:space-y-4 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 ${borderAccent}`}
     >
-      {/* Garis aksen atas — identitas warna per kartu */}
+      {/* Garis aksen atas - identitas warna per kartu */}
       <span
         className={`absolute inset-x-0 top-0 h-0.5 bg-current opacity-70 ${accent}`}
       />

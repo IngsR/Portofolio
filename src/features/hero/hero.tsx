@@ -29,7 +29,7 @@ const {
 };
 
 /**
- * Hero — komposisi halaman Beranda.
+ * Hero - komposisi halaman Beranda.
  *
  * Berkas ini menyusun section: tiap unit punya file sendiri di `./hero/`.
  * Setiap kartu langsung bernavigasi ke halaman detail sinematik.
@@ -48,7 +48,7 @@ export const Hero: React.FC<HeroSectionProps> = ({
     [setActivePage],
   );
 
-  // Sertifikat pilihan di Beranda — Memoized
+  // Sertifikat pilihan di Beranda - Memoized
   const homeCertificates = useMemo(
     () =>
       [
@@ -64,7 +64,7 @@ export const Hero: React.FC<HeroSectionProps> = ({
     [],
   );
 
-  // Proyek pilihan di Beranda — Memoized
+  // Proyek pilihan di Beranda - Memoized
   const homeFeaturedProjects = useMemo(() => {
     const list = [...(featuredProjects || [])];
     const ingstore = (portfolioData.projects as ProjectItem[]).find(
@@ -76,7 +76,7 @@ export const Hero: React.FC<HeroSectionProps> = ({
     return list.filter((p) => p.featured || p.id === "proj-4").slice(0, 4);
   }, [featuredProjects]);
 
-  // Pendidikan Sarjana S1 — Memoized
+  // Pendidikan Sarjana S1 - Memoized
   const sarjanaEducation = useMemo(
     () =>
       educationData.filter(

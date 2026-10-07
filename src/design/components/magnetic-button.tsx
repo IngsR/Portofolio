@@ -9,7 +9,7 @@ interface MagneticButtonProps {
 }
 
 /**
- * MagneticButton — efek magnetik pure CSS transform, tanpa motion/react.
+ * MagneticButton - efek magnetik pure CSS transform, tanpa motion/react.
  *
  * Sebelumnya menggunakan useSpring dari Framer Motion yang membuat
  * JS animation loop berjalan setiap frame → jank di Firefox.

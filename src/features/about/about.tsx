@@ -158,7 +158,7 @@ export const About: React.FC<AboutSectionProps> = ({ onOpenCV }) => {
           </div>
         </div>
 
-        {/* Bio + Kartu Ringkasan — 2 kolom di desktop agar ruang kanan
+        {/* Bio + Kartu Ringkasan - 2 kolom di desktop agar ruang kanan
             narasi terpakai, bukan menyisakan area kosong */}
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-12 lg:gap-8 lg:items-start">
           {/* Bio */}

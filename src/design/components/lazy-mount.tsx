@@ -13,7 +13,7 @@ interface LazyMountProps {
  *   belum masuk viewport, sehingga scroll di HP tetap mulus.
  * - `contain-intrinsic-size` menjaga tinggi section tetap terestimasi
  *   (tidak ada layout jump) sebelum konten di-render.
- * Tanpa JS, tanpa state, tanpa IntersectionObserver — murni CSS containment,
+ * Tanpa JS, tanpa state, tanpa IntersectionObserver - murni CSS containment,
  * jadi tidak menambah biaya hydrate/render React sama sekali.
  */
 export const LazyMount: React.FC<LazyMountProps> = ({

@@ -7,7 +7,7 @@ import {
 } from "../hero.data";
 
 /**
- * AboutSection — ringkasan identitas singkat di Beranda.
+ * AboutSection - ringkasan identitas singkat di Beranda.
  * Dua kolom di desktop: narasi (8) + kartu fokus teknis (4).
  */
 export const AboutSection = memo(function AboutSection() {

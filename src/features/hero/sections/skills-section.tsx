@@ -4,7 +4,7 @@ import { SkillCategory } from "../../../types";
 import { SkillCard } from "../cards/skill-card";
 
 /**
- * SkillsSection — grid keahlian & stack teknis di Beranda.
+ * SkillsSection - grid keahlian & stack teknis di Beranda.
  * 4 kartu: 1 kolom di HP (nyaman dibaca), 2 kolom di tablet, 4 kolom di
  * desktop agar keempat kartu seimbang dan tidak ada yang "menggantung".
  */

@@ -27,7 +27,7 @@ export interface HeroPageProps {
   onNavigate?: (page: PageId) => void;
 }
 
-/** Props Hero (root) — lihat src/app.tsx */
+/** Props Hero (root) - lihat src/app.tsx */
 export interface HeroSectionProps {
   setActivePage: (page: PageId) => void;
   featuredProjects: ProjectItem[];

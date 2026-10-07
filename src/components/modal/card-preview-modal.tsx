@@ -65,13 +65,13 @@ export const CardPreviewModal: React.FC<CardPreviewModalProps> = ({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
-      {/* Backdrop — entrance murni CSS (zero runtime JS) */}
+      {/* Backdrop - entrance murni CSS (zero runtime JS) */}
       <div
         onClick={onClose}
         className="fixed inset-0 bg-slate-950/75 backdrop-blur-md animate-modal-backdrop"
       />
 
-      {/* Modal Card with Aceternity Depth — entrance murni CSS */}
+      {/* Modal Card with Aceternity Depth - entrance murni CSS */}
       <div className="relative w-full max-w-2xl bg-white dark:bg-[#0f0f12] rounded-3xl border border-slate-200/90 dark:border-white/10 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.3)] overflow-hidden my-auto z-10 flex flex-col animate-modal-card-scale">
         {/* Top Bar with Category & Close */}
         <div className="flex items-center justify-between px-5 py-3.5 border-b border-slate-100 dark:border-white/10 bg-slate-50/70 dark:bg-white/[0.02]">

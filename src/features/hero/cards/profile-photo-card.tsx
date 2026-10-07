@@ -11,7 +11,7 @@ import { UserProfile } from "../../../types";
 import { HeroContactLink } from "../types";
 
 /**
- * ProfilePhotoCard — foto profil + tautan kontak di kartu perkenalan.
+ * ProfilePhotoCard - foto profil + tautan kontak di kartu perkenalan.
  *
  * Rasio foto 640/786, fallback /profile.png lalu kartu inisial bila keduanya
  * gagal dimuat. Fallback kini React state (bukan manipulasi DOM manual),
@@ -97,7 +97,7 @@ const ContactRow = memo<{ link: HeroContactLink }>(function ContactRow({
   );
 });
 
-/** Kartu inisial — tampil hanya jika foto profil gagal dimuat seluruhnya */
+/** Kartu inisial - tampil hanya jika foto profil gagal dimuat seluruhnya */
 const AvatarFallback = memo<{ name: string; role: string }>(
   function AvatarFallback({ name, role }) {
     const initials = name
@@ -156,7 +156,7 @@ const ProfilePhoto = memo<{ userProfile: UserProfile }>(function ProfilePhoto({
         <AvatarFallback name={userProfile.name} role="Junior Web Developer" />
       )}
 
-      {/* Bar identitas di bawah foto — kontras tinggi di light & dark mode */}
+      {/* Bar identitas di bawah foto - kontras tinggi di light & dark mode */}
       <div className="absolute bottom-2.5 left-2.5 right-2.5 bg-slate-950/90 dark:bg-black/90 rounded-xl px-3 py-1.5 sm:py-2 text-white text-[10px] sm:text-[11px] flex items-center justify-between border border-white/15 shadow-md pointer-events-none z-10">
         <div className="flex items-center gap-1.5 min-w-0 flex-1">
           <span className="w-2 h-2 rounded-full bg-emerald-400 shrink-0 animate-pulse"></span>

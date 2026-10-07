@@ -6,7 +6,7 @@ import { HeroCard } from "../cards/hero-card";
 import { HeroPageProps } from "../types";
 
 /**
- * FeaturedProjectsSection — 4 proyek unggulan di Beranda.
+ * FeaturedProjectsSection - 4 proyek unggulan di Beranda.
  *
  * Grid 2 kolom di mobile & 4 kolom di desktop, tinggi kartu seragam
  * (rasio 16/10 + judul 1 baris) seperti sebelumnya.

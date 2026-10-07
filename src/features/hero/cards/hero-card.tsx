@@ -9,7 +9,7 @@ import {
 } from "../../../utils/format";
 
 /**
- * HeroCard — satu implementasi kartu untuk proyek & sertifikat di Beranda.
+ * HeroCard - satu implementasi kartu untuk proyek & sertifikat di Beranda.
  *
  * `variant` mengatur tata letak isi kartu, sedangkan shell (border, radius,
  * hover, spotlight/tilt) dibagi bersama. Semua animasi layout lama
@@ -141,7 +141,7 @@ const ProjectCardBody = memo<{
           )}
         </div>
 
-        {/* Screenshot — rasio dikunci agar grid tidak bergeser */}
+        {/* Screenshot - rasio dikunci agar grid tidak bergeser */}
         <div className="relative aspect-[16/10] w-full rounded-xl sm:rounded-2xl overflow-hidden shrink-0 bg-slate-900 border-slate-200/80 dark:border-white/10">
           <CardImage
             src={project.imageFull ?? project.image}
@@ -151,7 +151,7 @@ const ProjectCardBody = memo<{
           />
         </div>
 
-        {/* Judul — 1 baris (truncate) supaya tinggi kartu seragam */}
+        {/* Judul - 1 baris (truncate) supaya tinggi kartu seragam */}
         <h3
           className="font-bold text-xs sm:text-sm lg:text-[14px] text-slate-950 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors leading-tight truncate"
           title={project.title}
@@ -188,7 +188,7 @@ const ProjectCardBody = memo<{
         </div>
       </div>
 
-      {/* Footer aksi — ikon saja di mobile agar domain tidak meluber */}
+      {/* Footer aksi - ikon saja di mobile agar domain tidak meluber */}
       <div
         className="px-3 sm:px-4 lg:px-4 pb-3 sm:pb-4 pt-2 sm:pt-3 border-t border-slate-100 dark:border-white/10 flex items-center justify-between gap-1.5 min-w-0"
         onClick={(e) => e.stopPropagation()}
@@ -242,7 +242,7 @@ const CertificateCardBody = memo<{
   return (
     <>
       <div className="space-y-2 sm:space-y-3 p-3">
-        {/* Gambar sertifikat — rasio dikunci */}
+        {/* Gambar sertifikat - rasio dikunci */}
         <div className="relative w-full aspect-[16/11] rounded-xl sm:rounded-2xl overflow-hidden shrink-0 bg-slate-100 dark:bg-[#141416] p-1.5 sm:p-2 border-slate-200 dark:border-white/10 flex items-center justify-center">
           <CardImage
             src={certificate.image}

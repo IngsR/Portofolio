@@ -2,7 +2,7 @@
 
 /**
  * Deteksi kemampuan hover sekali per module (singleton), lalu dibagikan ke
- * seluruh card di halaman — tidak ada useState/useEffect/listener per card.
+ * seluruh card di halaman - tidak ada useState/useEffect/listener per card.
  *
  * - SSR / sebelum hydrate: `false` (aman, tanpa akses window)
  * - Setelah device berubah (mis. tablet mode), cache ikut diperbarui

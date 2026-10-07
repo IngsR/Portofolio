@@ -13,11 +13,11 @@ import portfolioData from "../../../data/portfolio.json";
 import { MagneticButton } from "../../../design/components/magnetic-button";
 import { UserProfile } from "../../../types";
 import { ProfilePhotoCard } from "../cards/profile-photo-card";
-// Konten diambil langsung dari portfolio.json — tidak ada duplikasi di hero.data.ts
+// Konten diambil langsung dari portfolio.json - tidak ada duplikasi di hero.data.ts
 import { HeroPageProps } from "../types";
 
 /**
- * IntroSection — ringkasan profil utama.
+ * IntroSection - ringkasan profil utama.
  */
 export const IntroSection = memo<HeroPageProps & { onOpenCV: () => void }>(
   function IntroSection({ onNavigate, onOpenCV }) {
@@ -128,7 +128,7 @@ export const IntroSection = memo<HeroPageProps & { onOpenCV: () => void }>(
               </div>
             </div>
 
-            {/* Strip statistik — grid 3 kolom, ritme angka nyata di bawah bio */}
+            {/* Strip statistik - grid 3 kolom, ritme angka nyata di bawah bio */}
             <div className="grid grid-cols-3 gap-2 sm:gap-3 pt-1">
               {stats.map((stat) => (
                 <div
@@ -149,7 +149,7 @@ export const IntroSection = memo<HeroPageProps & { onOpenCV: () => void }>(
               ))}
             </div>
 
-            {/* CTA — layout seimbang & proporsional */}
+            {/* CTA - layout seimbang & proporsional */}
             <div className="flex flex-col sm:flex-row items-center gap-2.5 sm:gap-3 pt-2">
               {/* Baris 1 mobile: Portofolio hitam & WhatsApp berdampingan seimbang 50:50 */}
               <div className="grid grid-cols-2 gap-2.5 w-full sm:w-auto sm:flex sm:items-center sm:gap-3">

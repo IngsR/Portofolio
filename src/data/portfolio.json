@@ -16,7 +16,7 @@
     "phone": "+6282386473410",
     "whatsappUrl": "https://wa.me/6282386473410?text=Halo%20Ikhwan%2C%20saya%20melihat%20portofolio%20Anda%20dan%20tertarik%20untuk%20berdiskusi%20terkait%20peluang%20Junior%20Web%20Developer%20%2F%20proyek.",
     "avatarUrl": "/profile.png",
-    "statusText": "Terbuka untuk posisi Junior Web Developer — On-Site / WFO dan Hybrid",
+    "statusText": "Terbuka untuk posisi Junior Web Developer - On-Site / WFO dan Hybrid",
     "isAvailableForHire": true,
     "stats": {
       "projectsCompleted": 8,
@@ -60,7 +60,7 @@
       "id": "proj-1",
       "slug": "website-smp-negeri-24-padang",
       "title": "Website SMP Negeri 24 Padang",
-      "shortDescription": "Website sekolah SMP Negeri 24 Padang yang saya bangun dari nol saat magang. Sebelumnya, sekolah belum punya portal digital yang layak — saya rancang arsitektur Next.js App Router dengan rendering SSR/SSG, validasi form Zod, dan SEO terstruktur supaya halaman cepat terindeks dan mudah dikelola staf.",
+      "shortDescription": "Website sekolah SMP Negeri 24 Padang yang saya bangun dari nol saat magang. Sebelumnya, sekolah belum punya portal digital yang layak saya rancang arsitektur Next.js App Router dengan rendering SSR/SSG, validasi form Zod, dan SEO terstruktur supaya halaman cepat terindeks dan mudah dikelola staf.",
       "category": "Next.js & Performance",
       "tags": [
         "Next.js",
@@ -97,13 +97,13 @@
           "value": "Mobile Optimized & Fast Indexing"
         }
       ],
-      "markdownContent": "---\ntitle: \"Website SMP Negeri 24 Padang\"\ndescription: \"Portal resmi sekolah berbasis Next.js App Router, SSR/SSG caching, dan validasi form Zod.\"\ndate: \"2025-12-01\"\ncategory: \"Next.js & Performance\"\ntags:\n  - Next.js\n  - React\n  - TypeScript\n  - REST API\n  - SSR / SSG\n  - Zod\n  - Tailwind CSS\n  - shadcn/ui\ngithub: \"https://github.com/Informatics-2025/Website-SMPN24padang\"\ndemo: \"https://smpn24padang.sch.id\"\nfeatured: true\n---\n\n# Website SMP Negeri 24 Padang\n\n## 📌 Latar Belakang & Kebutuhan Sistem\nSaat magang di SMP Negeri 24 Padang, sekolah belum memiliki website resmi yang layak. Informasi akademik dan pengumuman masih tersebar secara manual, halaman lambat saat dibuka dari koneksi seluler wali murid, dan data form kegiatan rentan rusak karena tidak ada validasi skema.\n\n> **Peran & Tanggung Jawab**: Bertindak sebagai **Fullstack Web Developer (Magang)** — merancang arsitektur aplikasi dari nol menggunakan Next.js App Router, menyusun skema validasi form, mengoptimasi Core Web Vitals, dan mendeploy ke domain produksi `smpn24padang.sch.id`.\n\n---\n\n## 🛠️ Keputusan Rekayasa & Solusi Teknis\n1. **Hybrid Rendering (SSG + SSR Revalidasi)**: Halaman profil dan struktur organisasi di-generate statis (SSG) agar TTFB instan (<100ms). Halaman pengumuman dan berita menggunakan SSR dengan revalidasi berkala (ISR) agar konten selalu segar tanpa membebani server database.\n2. **Validasi Skema Form Zod**: Semua input pengumuman dan upload media divalidasi ketat di sisi klien dan server menggunakan Zod, mencegah payload kosong atau tipe file tidak sesuai.\n3. **SEO & Web Performance**: Mengimplementasikan Dynamic Open Graph metadata, sitemap XML otomatis, dan optimasi gambar WebP responsif. Skor performa Lighthouse mobile mencapai 95+.\n4. **Desain Komponen Modular**: Menggunakan Tailwind CSS dan komponen berbasis shadcn/ui yang ringan tanpa runtime CSS overhead."
+      "markdownContent": "---\ntitle: \"Website SMP Negeri 24 Padang\"\ndescription: \"Portal resmi sekolah berbasis Next.js App Router, SSR/SSG caching, dan validasi form Zod.\"\ndate: \"2025-12-01\"\ncategory: \"Next.js & Performance\"\ntags:\n  - Next.js\n  - React\n  - TypeScript\n  - REST API\n  - SSR / SSG\n  - Zod\n  - Tailwind CSS\n  - shadcn/ui\ngithub: \"https://github.com/Informatics-2025/Website-SMPN24padang\"\ndemo: \"https://smpn24padang.sch.id\"\nfeatured: true\n---\n\n# Website SMP Negeri 24 Padang\n\n## 📌 Latar Belakang & Kebutuhan Sistem\nSaat magang di SMP Negeri 24 Padang, sekolah belum memiliki website resmi yang layak. Informasi akademik dan pengumuman masih tersebar secara manual, halaman lambat saat dibuka dari koneksi seluler wali murid, dan data form kegiatan rentan rusak karena tidak ada validasi skema.\n\n> **Peran & Tanggung Jawab**: Bertindak sebagai **Fullstack Web Developer (Magang)** - merancang arsitektur aplikasi dari nol menggunakan Next.js App Router, menyusun skema validasi form, mengoptimasi Core Web Vitals, dan mendeploy ke domain produksi `smpn24padang.sch.id`.\n\n---\n\n## 🛠️ Keputusan Rekayasa & Solusi Teknis\n1. **Hybrid Rendering (SSG + SSR Revalidasi)**: Halaman profil dan struktur organisasi di-generate statis (SSG) agar TTFB instan (<100ms). Halaman pengumuman dan berita menggunakan SSR dengan revalidasi berkala (ISR) agar konten selalu segar tanpa membebani server database.\n2. **Validasi Skema Form Zod**: Semua input pengumuman dan upload media divalidasi ketat di sisi klien dan server menggunakan Zod, mencegah payload kosong atau tipe file tidak sesuai.\n3. **SEO & Web Performance**: Mengimplementasikan Dynamic Open Graph metadata, sitemap XML otomatis, dan optimasi gambar WebP responsif. Skor performa Lighthouse mobile mencapai 95+.\n4. **Desain Komponen Modular**: Menggunakan Tailwind CSS dan komponen berbasis shadcn/ui yang ringan tanpa runtime CSS overhead."
     },
     {
       "id": "proj-2",
       "slug": "angular-property-platform",
       "title": "HouseING - Project Angular",
-      "shortDescription": "Aplikasi web pencarian properti yang saya bangun pakai Angular Standalone Components murni TypeScript. Fitur utamanya: komparasi 2 properti secara side-by-side, denah arsitektur 2D bertingkat yang bisa di-zoom, dan simulator cicilan KPR pakai formula anuitas Bank Indonesia — semuanya reaktif lewat Angular Signals tanpa library state management tambahan.",
+      "shortDescription": "Aplikasi web pencarian properti yang saya bangun pakai Angular Standalone Components murni TypeScript. Fitur utamanya: komparasi 2 properti secara side-by-side, denah arsitektur 2D bertingkat yang bisa di-zoom, dan simulator cicilan KPR pakai formula anuitas Bank Indonesia - semuanya reaktif lewat Angular Signals tanpa library state management tambahan.",
       "category": "Angular & Reactive Architecture",
       "tags": [
         "Angular",
@@ -144,7 +144,7 @@
       "id": "proj-3",
       "slug": "tropical-cyclone-track-prediction",
       "title": "Prediksi Siklon Tropis (LSTM & Astro UI)",
-      "shortDescription": "Ini proyek skripsi S1 saya: membuktikan LSTM bisa prediksi lintasan siklon tropis dengan akurat. Saya uji 12 skenario eksperimen (3 basin × 4 variasi timesteps), dan hasilnya window 8-16 paling bagus — rata-rata error cuma 14,2 km dengan R² 0,999. Modelnya saya konversi ke ONNX supaya bisa jalan langsung di browser, frontend pakai Astro Island Architecture.",
+      "shortDescription": "Ini proyek skripsi S1 saya: membuktikan LSTM bisa prediksi lintasan siklon tropis dengan akurat. Saya uji 12 skenario eksperimen (3 basin × 4 variasi timesteps), dan hasilnya window 8-16 paling bagus - rata-rata error cuma 14,2 km dengan R² 0,999. Modelnya saya konversi ke ONNX supaya bisa jalan langsung di browser, frontend pakai Astro Island Architecture.",
       "category": "Web Application",
       "tags": [
         "Astro",
@@ -206,7 +206,7 @@
       "demoUrl": "https://cars.ikhwann.my.id",
       "githubUrl": "https://github.com/IngsR/web_store",
       "problem": "Katalog otomotif modern membutuhkan antarmuka eksplorasi unit yang interaktif dengan fasilitas simulasi pembiayaan dinamis. Pengguna membutuhkan kalkulasi uang muka (DP) dan tenor kredit yang responsif tanpa reload halaman, sementara pengelola membutuhkan struktur data inventaris yang siap diintegrasikan dengan headless CMS.",
-      "solution": "Mengembangkan platform web Next.js dengan kalkulator kredit reaktif berbasis React state—perubahan slider DP dan tenor langsung memperbarui estimasi angsuran secara instan. Filter spesifikasi multi-kriteria berjalan di sisi klien, didukung arsitektur data CMS-ready untuk kemudahan pengelolaan stok unit.",
+      "solution": "Mengembangkan platform web Next.js dengan kalkulator kredit reaktif berbasis React state-perubahan slider DP dan tenor langsung memperbarui estimasi angsuran secara instan. Filter spesifikasi multi-kriteria berjalan di sisi klien, didukung arsitektur data CMS-ready untuk kemudahan pengelolaan stok unit.",
       "metrics": [
         {
           "label": "Frontend Engine",
@@ -221,12 +221,12 @@
           "value": "CMS-Ready Catalog"
         }
       ],
-      "markdownContent": "---\ntitle: \"Ingstore — Website Penjual Mobil Berbasis CMS\"\ndescription: \"Website showroom mobil dengan kalkulator simulasi kredit interaktif, filter spesifikasi kendaraan, dan katalog responsif.\"\ndate: \"2025-07-23\"\ncategory: \"React & Next.js UI\"\ntags:\n  - Next.js\n  - React\n  - TypeScript\n  - Tailwind CSS\n  - Interactive UI\n  - State Management\n  - CMS\ngithub: \"https://github.com/IngsR/web_store\"\ndemo: \"https://cars.ikhwann.my.id\"\nfeatured: true\n---\n\n# Ingstore — Website Showroom Mobil Berbasis CMS\n\n## 📌 Latar Belakang & Kebutuhan Sistem\nShowroom mobil konvensional kesulitan memberikan estimasi pembiayaan instan kepada calon pembeli yang mengeksplorasi unit secara daring. Pengunjung sering harus menghubungi sales berulang kali hanya untuk simulasi DP dan tenor. Di sisi pengelola, penambahan unit baru membutuhkan struktur data yang rapi dan mudah dioperasikan.\n\n---\n\n## 🛠️ Keputusan Rekayasa & Solusi Teknis\n1. **Kalkulator Kredit Interaktif Real-Time**: Perhitungan simulasi angsuran bulanan diperbarui secara instan saat pengguna menggeser slider persentase DP atau memilih tenor pinjaman (1–5 tahun).\n2. **Filter Instan Sisi Klien**: Memungkinkan penyaringan multi-parameter (transmisi matik/manual, tipe bodi SUV/sedan, rentang harga) tanpa reload halaman.\n3. **Struktur Data Katalog CMS-Ready**: Skema data kendaraan distrukturkan secara terpisah dari lapisan tampilan, mempermudah integrasi ke headless CMS atau database inventory."
+      "markdownContent": "---\ntitle: \"Ingstore - Website Penjual Mobil Berbasis CMS\"\ndescription: \"Website showroom mobil dengan kalkulator simulasi kredit interaktif, filter spesifikasi kendaraan, dan katalog responsif.\"\ndate: \"2025-07-23\"\ncategory: \"React & Next.js UI\"\ntags:\n  - Next.js\n  - React\n  - TypeScript\n  - Tailwind CSS\n  - Interactive UI\n  - State Management\n  - CMS\ngithub: \"https://github.com/IngsR/web_store\"\ndemo: \"https://cars.ikhwann.my.id\"\nfeatured: true\n---\n\n# Ingstore - Website Showroom Mobil Berbasis CMS\n\n## 📌 Latar Belakang & Kebutuhan Sistem\nShowroom mobil konvensional kesulitan memberikan estimasi pembiayaan instan kepada calon pembeli yang mengeksplorasi unit secara daring. Pengunjung sering harus menghubungi sales berulang kali hanya untuk simulasi DP dan tenor. Di sisi pengelola, penambahan unit baru membutuhkan struktur data yang rapi dan mudah dioperasikan.\n\n---\n\n## 🛠️ Keputusan Rekayasa & Solusi Teknis\n1. **Kalkulator Kredit Interaktif Real-Time**: Perhitungan simulasi angsuran bulanan diperbarui secara instan saat pengguna menggeser slider persentase DP atau memilih tenor pinjaman (1–5 tahun).\n2. **Filter Instan Sisi Klien**: Memungkinkan penyaringan multi-parameter (transmisi matik/manual, tipe bodi SUV/sedan, rentang harga) tanpa reload halaman.\n3. **Struktur Data Katalog CMS-Ready**: Skema data kendaraan distrukturkan secara terpisah dari lapisan tampilan, mempermudah integrasi ke headless CMS atau database inventory."
     },
     {
       "id": "proj-5",
       "slug": "fullstack-crm-erp-monorepo",
-      "title": "Enterprise Monorepo UI — CRM/ERP Design System",
+      "title": "Enterprise Monorepo UI - CRM/ERP Design System",
       "shortDescription": "Eksperimen arsitektur monorepo menggunakan Turborepo untuk mengelola beberapa aplikasi Next.js 15 dalam satu workspace. Fokus utamanya: bikin paket UI bersama yang bisa di-share lintas aplikasi, dan pastikan tipe data tetap sinkron antara frontend dan API layer.",
       "category": "Design System & Monorepo",
       "tags": [
@@ -259,7 +259,7 @@
           "value": "Strict Type Contracts"
         }
       ],
-      "markdownContent": "---\ntitle: \"Enterprise Monorepo UI — CRM & ERP Design System\"\ndescription: \"Arsitektur monorepo Turborepo, Next.js 15, dan React 19 dengan shared component library dan kontrak TypeScript terpadu.\"\ndate: \"2025-11-30\"\ncategory: \"Design System & Monorepo\"\ntags:\n  - Next.js 15\n  - React 19\n  - TypeScript\n  - Tailwind CSS\n  - Turborepo\n  - Design System\n  - Type Safety\ngithub: \"https://github.com/IngsR/Monorepo-CRM\"\ndemo: \"\"\nfeatured: false\n---\n\n# Enterprise Monorepo UI — CRM & ERP Platform\n\n## 📌 Latar Belakang & Kebutuhan Sistem\nPada ekosistem internal perusahaan dengan banyak sub-aplikasi (seperti modul CRM pelanggan dan modul ERP logistik), menjaga konsistensi desain dan keselarasan tipe data antarmuka-ke-layanan adalah tantangan klasik. Jika dikelola dalam repositori terpisah, sinkronisasi type interface sering rusak (*type drift*) dan perubahan komponen UI harus diduplikasi manual.\n\n---\n\n## 🛠️ Keputusan Rekayasa & Solusi Teknis\n1. **Workspace Turborepo**: Mengorganisasi aplikasi (`apps/crm`, `apps/erp`) dan pustaka bersama (`packages/ui`, `packages/types`, `packages/config`) dalam satu workspace monorepo dengan pipeline build terisolasi dan task caching cerdas.\n2. **Next.js 15 & React 19 Core**: Menggunakan React Server Components untuk mengurangi payload JavaScript ke klien pada halaman data tabular padat.\n3. **Shared UI & Strict Type Contracts**: Paket UI bersama diekstrak dengan styling Tailwind CSS terstandar, dan tipe response API didefinisikan sebagai single source of truth untuk semua aplikasi konsumen.",
+      "markdownContent": "---\ntitle: \"Enterprise Monorepo UI - CRM & ERP Design System\"\ndescription: \"Arsitektur monorepo Turborepo, Next.js 15, dan React 19 dengan shared component library dan kontrak TypeScript terpadu.\"\ndate: \"2025-11-30\"\ncategory: \"Design System & Monorepo\"\ntags:\n  - Next.js 15\n  - React 19\n  - TypeScript\n  - Tailwind CSS\n  - Turborepo\n  - Design System\n  - Type Safety\ngithub: \"https://github.com/IngsR/Monorepo-CRM\"\ndemo: \"\"\nfeatured: false\n---\n\n# Enterprise Monorepo UI - CRM & ERP Platform\n\n## 📌 Latar Belakang & Kebutuhan Sistem\nPada ekosistem internal perusahaan dengan banyak sub-aplikasi (seperti modul CRM pelanggan dan modul ERP logistik), menjaga konsistensi desain dan keselarasan tipe data antarmuka-ke-layanan adalah tantangan klasik. Jika dikelola dalam repositori terpisah, sinkronisasi type interface sering rusak (*type drift*) dan perubahan komponen UI harus diduplikasi manual.\n\n---\n\n## 🛠️ Keputusan Rekayasa & Solusi Teknis\n1. **Workspace Turborepo**: Mengorganisasi aplikasi (`apps/crm`, `apps/erp`) dan pustaka bersama (`packages/ui`, `packages/types`, `packages/config`) dalam satu workspace monorepo dengan pipeline build terisolasi dan task caching cerdas.\n2. **Next.js 15 & React 19 Core**: Menggunakan React Server Components untuk mengurangi payload JavaScript ke klien pada halaman data tabular padat.\n3. **Shared UI & Strict Type Contracts**: Paket UI bersama diekstrak dengan styling Tailwind CSS terstandar, dan tipe response API didefinisikan sebagai single source of truth untuk semua aplikasi konsumen.",
       "problem": "Pengembangan aplikasi internal perusahaan (modul CRM dan ERP) dalam repositori terpisah sering memicu duplikasi komponen antarmuka, desinkronisasi kontrak tipe data API (type drift), dan overhead pemeliharaan design system yang tinggi saat terjadi standardisasi tampilan.",
       "solution": "Menerapkan arsitektur monorepo berbasis Turborepo yang mengkonsolidasikan aplikasi Next.js 15 dan paket bersama internal (packages/ui, packages/types). Pola ini menjamin kontrak tipe data API selalu sinkron antarmuka-ke-layanan, standardisasi token Tailwind CSS terpusat, serta proses build yang cepat berkat remote caching."
     },
@@ -267,7 +267,7 @@
       "id": "proj-6",
       "slug": "inventory-management-system",
       "title": "Inventory Logistics Dashboard UI",
-      "shortDescription": "Dashboard stok gudang yang saya buat supaya operator bisa melihat status persediaan, mencatat barang masuk/keluar/retur, dan filter berdasarkan status stok — semuanya responsif dan berjalan instan tanpa reload halaman.",
+      "shortDescription": "Dashboard stok gudang yang saya buat supaya operator bisa melihat status persediaan, mencatat barang masuk/keluar/retur, dan filter berdasarkan status stok - semuanya responsif dan berjalan instan tanpa reload halaman.",
       "category": "Dashboard & Data Grid",
       "tags": [
         "Next.js",
@@ -307,8 +307,8 @@
     {
       "id": "proj-7",
       "slug": "dockrank-tf-idf-document-search",
-      "title": "DockRank — Information Retrieval Search UI",
-      "shortDescription": "Aplikasi pencarian dokumen yang menampilkan cara kerja algoritma TF-IDF secara transparan — pengguna bisa lihat skor bobot setiap kata kunci, perankingan relevansi dokumen, dan highlight term yang cocok. Dibangun supaya proses information retrieval bisa dipahami secara visual.",
+      "title": "DockRank - Information Retrieval Search UI",
+      "shortDescription": "Aplikasi pencarian dokumen yang menampilkan cara kerja algoritma TF-IDF secara transparan - pengguna bisa lihat skor bobot setiap kata kunci, perankingan relevansi dokumen, dan highlight term yang cocok. Dibangun supaya proses information retrieval bisa dipahami secara visual.",
       "category": "Search UI & Web App",
       "tags": [
         "Next.js",
@@ -340,7 +340,7 @@
           "value": "Next.js & React"
         }
       ],
-      "markdownContent": "---\ntitle: \"DockRank — Information Retrieval Search UI\"\ndescription: \"Antarmuka temu balik informasi berbasis web dengan visualisasi transparan kalkulasi bobot TF-IDF dan skor perankingan.\"\ndate: \"2025-07-07\"\ncategory: \"Search UI & Web App\"\ntags:\n  - Next.js\n  - React\n  - TypeScript\n  - Search UI\ngithub: \"https://github.com/IngsR/DockRank_TF-IDF\"\ndemo: \"https://tfidf.vercel.app\"\nfeatured: false\n---\n\n# DockRank — Information Retrieval Search UI\n\n## 📌 Latar Belakang & Kebutuhan Sistem\nAlgoritma Term Frequency - Inverse Document Frequency (TF-IDF) merupakan konsep fundamental dalam temu balik informasi dan pemrosesan teks. Namun, proses pembobotan kata sering terasa abstrak tanpa alat yang memperlihatkan dekomposisi perhitungannya secara visual.\n\n---\n\n## 🛠️ Keputusan Rekayasa & Solusi Teknis\n1. **Pipeline Pemrosesan Teks Transparan**: Teks dokumen melalui tahap tokenisasi, filtering stop words, dan kalkulasi frekuensi istilah (TF) serta bobot invers dokumen (IDF) yang disajikan langsung dalam tabel data interaktif.\n2. **Visualisasi Skor Relevansi**: Pengguna dapat melihat kontribusi bobot setiap term dalam query terhadap skor total dokumen, lengkap dengan penandaan (*highlight*) kata kunci yang cocok pada teks dokumen.\n3. **Eksplorasi Responsif**: Dibangun dengan Next.js dan React state management sehingga penambahan dokumen atau perubahan kata kunci pencarian langsung memperbarui kalkulasi matriks secara instan.",
+      "markdownContent": "---\ntitle: \"DockRank - Information Retrieval Search UI\"\ndescription: \"Antarmuka temu balik informasi berbasis web dengan visualisasi transparan kalkulasi bobot TF-IDF dan skor perankingan.\"\ndate: \"2025-07-07\"\ncategory: \"Search UI & Web App\"\ntags:\n  - Next.js\n  - React\n  - TypeScript\n  - Search UI\ngithub: \"https://github.com/IngsR/DockRank_TF-IDF\"\ndemo: \"https://tfidf.vercel.app\"\nfeatured: false\n---\n\n# DockRank - Information Retrieval Search UI\n\n## 📌 Latar Belakang & Kebutuhan Sistem\nAlgoritma Term Frequency - Inverse Document Frequency (TF-IDF) merupakan konsep fundamental dalam temu balik informasi dan pemrosesan teks. Namun, proses pembobotan kata sering terasa abstrak tanpa alat yang memperlihatkan dekomposisi perhitungannya secara visual.\n\n---\n\n## 🛠️ Keputusan Rekayasa & Solusi Teknis\n1. **Pipeline Pemrosesan Teks Transparan**: Teks dokumen melalui tahap tokenisasi, filtering stop words, dan kalkulasi frekuensi istilah (TF) serta bobot invers dokumen (IDF) yang disajikan langsung dalam tabel data interaktif.\n2. **Visualisasi Skor Relevansi**: Pengguna dapat melihat kontribusi bobot setiap term dalam query terhadap skor total dokumen, lengkap dengan penandaan (*highlight*) kata kunci yang cocok pada teks dokumen.\n3. **Eksplorasi Responsif**: Dibangun dengan Next.js dan React state management sehingga penambahan dokumen atau perubahan kata kunci pencarian langsung memperbarui kalkulasi matriks secara instan.",
       "problem": "Pemahaman terhadap konsep Information Retrieval sering terhambat oleh sifat perhitungan algoritma TF-IDF dan Vector Space Model yang abstrak. Diperlukan instrumen interaktif yang mampu mendemonstrasikan tahapan pemrosesan teks, bobot frekuensi kata, dan perankingan relevansi secara transparan dan terukur.",
       "solution": "Membangun antarmuka pencarian dokumen interaktif berbasis Next.js dan React. Sistem melakukan tokenisasi teks, kalkulasi Term Frequency (TF), Inverse Document Frequency (IDF), dan cosine similarity secara langsung, menyajikan tabel breakdown skor bobot kata serta penandaan kata kunci yang cocok pada teks dokumen."
     },
@@ -608,7 +608,7 @@
         "Logic",
         "Competitive Programming"
       ],
-      "description": "Lulus tes problem solving HackerRank level Basic — artinya bisa menyelesaikan soal-soal algoritma dan struktur data fundamental dalam batas waktu tertentu. Ini melatih kebiasaan saya berpikir terstruktur sebelum ngoding: pecah masalah jadi langkah-langkah kecil, baru implementasi."
+      "description": "Lulus tes problem solving HackerRank level Basic - artinya bisa menyelesaikan soal-soal algoritma dan struktur data fundamental dalam batas waktu tertentu. Ini melatih kebiasaan saya berpikir terstruktur sebelum ngoding: pecah masalah jadi langkah-langkah kecil, baru implementasi."
     },
     {
       "id": "cert-5",
@@ -626,13 +626,13 @@
         "Algorithmic Optimization",
         "Performance Tuning"
       ],
-      "description": "Level Intermediate ini menguji kemampuan menangani soal algoritma yang lebih kompleks — optimasi waktu eksekusi, pemilihan struktur data yang tepat untuk kasus tertentu, dan penanganan edge case. Saya ambil ini karena ingin memastikan fondasi berpikir algoritmis saya cukup kuat, bukan cuma bisa bikin UI."
+      "description": "Level Intermediate ini menguji kemampuan menangani soal algoritma yang lebih kompleks - optimasi waktu eksekusi, pemilihan struktur data yang tepat untuk kasus tertentu, dan penanganan edge case. Saya ambil ini karena ingin memastikan fondasi berpikir algoritmis saya cukup kuat, bukan cuma bisa bikin UI."
     }
   ],
   "engineeringMindsetSkills": [
     {
       "id": "fullstack-nextjs-arch",
-      "category": "01 — Arsitektur Fullstack & Next.js",
+      "category": "01 - Arsitektur Fullstack & Next.js",
       "title": "Next.js App Router, SSR/SSG & Server Actions",
       "narrative": "Next.js adalah framework yang paling sering saya gunakan. Saya belajar menyusun struktur proyek yang jelas, membedakan Server Components dan Client Components, serta memanfaatkan Server Actions untuk mutasi data tanpa boilerplate berlebih. Pilihan rendering (SSR, SSG, atau revalidasi berkala) saya sesuaikan dengan kebutuhan data di lapangan agar halaman cepat dimuat dan beban server tetap hemat.",
       "technologies": [
@@ -647,9 +647,9 @@
     },
     {
       "id": "rest-api-backend",
-      "category": "02 — REST API & Database",
+      "category": "02 - REST API & Database",
       "title": "Route Handlers, Validasi Skema & Integrasi Database",
-      "narrative": "Saya merancang Route Handlers dengan struktur endpoint yang jelas, status HTTP yang tepat, dan validasi input ketat menggunakan Zod. Saya menghubungkan backend ke database relasional lewat Prisma atau Supabase, memastikan relasi data konsisten dan query efisien. Error handling dirancang agar responnya informatif — tidak hanya 500 generik.",
+      "narrative": "Saya merancang Route Handlers dengan struktur endpoint yang jelas, status HTTP yang tepat, dan validasi input ketat menggunakan Zod. Saya menghubungkan backend ke database relasional lewat Prisma atau Supabase, memastikan relasi data konsisten dan query efisien. Error handling dirancang agar responnya informatif - tidak hanya 500 generik.",
       "technologies": [
         "REST API",
         "Next.js Route Handlers",
@@ -662,7 +662,7 @@
     },
     {
       "id": "git-cicd-delivery",
-      "category": "03 — Git Workflow & Deployment",
+      "category": "03 - Git Workflow & Deployment",
       "title": "Branch, Pull Request, CI/CD & Serverless Deploy",
       "narrative": "Saya terbiasa bekerja dengan Git standar tim: membuat branch fitur yang terpisah, menulis pesan commit yang jelas, mengajukan Pull Request untuk review, dan menangani merge conflict dengan hati-hati. Saya juga paham langkah mitigasi seperti git reset dan revert jika terjadi masalah di rilis produksi, serta memanfaatkan pipeline CI/CD dan deployment ke Vercel.",
       "technologies": [

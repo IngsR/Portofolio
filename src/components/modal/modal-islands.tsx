@@ -1,6 +1,6 @@
 "use client";
 /**
- * Modal Islands — komponen modal terisolasi (island architecture).
+ * Modal Islands - komponen modal terisolasi (island architecture).
  *
  * Komponen ini sendiri yang subscribe ke global store modal, sehingga
  * membuka/menutup modal TIDAK me-render ulang halaman (Hero/Portfolio)

@@ -10,7 +10,7 @@ interface SparklesProps {
 }
 
 /**
- * Angka pseudo-acak deterministik dari seed — nilai sama di server & client,
+ * Angka pseudo-acak deterministik dari seed - nilai sama di server & client,
  * jadi markup SSR identik dengan render pertama client (tidak ada hydration
  * mismatch) tanpa perlu menunggu useEffect.
  */
@@ -33,7 +33,7 @@ const generateSparkle = (seed: number, colors: string[]) => ({
 });
 
 /**
- * Sparkles — animasi pure CSS (keyframes), bukan motion.js per span.
+ * Sparkles - animasi pure CSS (keyframes), bukan motion.js per span.
  * - Posisi/ukuran deterministik → SSR & client identik (tanpa hydration error)
  * - IntersectionObserver: animasi PAUSE saat tidak di viewport
  * - Zero JS per frame, zero rAF, zero motion dependency

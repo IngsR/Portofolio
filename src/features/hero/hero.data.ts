@@ -1,7 +1,7 @@
 import type { HeroSectionId, HeroSummaryCard, HeroSummaryTextClasses } from "./types";
 
 /**
- * hero.data.ts — UI config saja.
+ * hero.data.ts - UI config saja.
  *
  * Konten teks profil (bio, roles, availability) diambil langsung dari
  * `data/portfolio.json` di masing-masing section yang membutuhkannya.
@@ -36,7 +36,7 @@ export const HERO_SUMMARY_CARDS: HeroSummaryCard[] = [
 
 /**
  * iconName (dari JSON) → kelas warna ikon di kartu Keahlian.
- * Ikonnya sendiri dirender oleh SkillCard — file ini bebas JSX.
+ * Ikonnya sendiri dirender oleh SkillCard - file ini bebas JSX.
  */
 export const SKILL_CATEGORY_ICONS: Record<string, string> = {
   Layout: "text-sky-600 dark:text-sky-400",

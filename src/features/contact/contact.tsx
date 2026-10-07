@@ -489,7 +489,7 @@ export const Contact: React.FC = () => {
                   />
                 </button>
                 {/* Zero-runtime: accordion murni CSS. Grid 0fr→1fr
-                    menganimasikan tinggi ke "auto" tanpa JS runtime —
+                    menganimasikan tinggi ke "auto" tanpa JS runtime -
                     isi selalu ada di DOM (masih terbaca screen reader),
                     animasi jalan di compositor. */}
                 <div
