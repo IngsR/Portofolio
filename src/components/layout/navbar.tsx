@@ -12,6 +12,7 @@ import {
 import React from "react";
 import portfolioData from "../../data/portfolio.json";
 import { PageId } from "../../types";
+import { useAppStore } from "../../store/useAppStore";
 
 const { userProfile } = portfolioData;
 
@@ -39,14 +40,20 @@ const WhatsAppIcon = ({ className = "" }: { className?: string }) => (
 import { useScrollDirection, useTheme } from "../../hooks";
 
 export const Navbar: React.FC<NavbarProps> = ({
-  activePage,
-  setActivePage,
+  activePage: propActivePage,
+  setActivePage: propSetActivePage,
   isDark: propIsDark,
   setIsDark: propSetIsDark,
   onOpenCV,
   nativeNavigation = false,
 }) => {
+  const storeActivePage = useAppStore((state) => state.activePage);
+  const storeSetActivePage = useAppStore((state) => state.setActivePage);
   const { isDark: themeIsDark, toggleTheme } = useTheme();
+  
+  const activePage = propActivePage !== undefined ? propActivePage : storeActivePage;
+  const setActivePage = propSetActivePage !== undefined ? propSetActivePage : storeSetActivePage;
+  
   const isDark = propIsDark !== undefined ? propIsDark : themeIsDark;
   const handleToggleTheme = () => {
     if (propSetIsDark) {
@@ -128,8 +135,10 @@ export const Navbar: React.FC<NavbarProps> = ({
               transition-all
               dark:border-[#41494f]
               dark:bg-[#2b3034]
-              sm:gap-3
-              sm:px-5
+              sm:gap-2
+              md:gap-3
+              sm:px-4
+              md:px-5
               sm:py-2.5
             "
           >
@@ -231,7 +240,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                       duration-200
                       ${
                         isActive
-                          ? "bg-white text-slate-950 shadow-sm dark:bg-white dark:text-slate-950"
+                          ? "bg-slate-950 text-white shadow-md shadow-slate-900/20 dark:bg-white dark:text-slate-950 dark:shadow-white/20 scale-105"
                           : "text-slate-600 hover:text-slate-950 dark:text-slate-400 dark:hover:text-white hover:bg-white/60 dark:hover:bg-white/5"
                       }
                     `}
@@ -246,7 +255,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             </nav>
 
             {/* Actions: Clean & Accessible */}
-            <div className="flex items-center justify-end gap-1.5 sm:gap-2">
+            <div className="flex items-center justify-end gap-1.5 shrink-0">
               {/* WhatsApp Direct Link */}
               <a
                 href={userProfile.whatsappUrl}
@@ -423,14 +432,14 @@ export const Navbar: React.FC<NavbarProps> = ({
             gap-1.5
             p-2
             rounded-2xl
-            bg-white
-            dark:bg-[#111113]
+            bg-white/95
+            dark:bg-[#111113]/95
             border
             border-slate-300
             dark:border-white/20
-            shadow-[0_16px_40px_-4px_rgba(15,23,42,0.25)]
+            shadow-[0_8px_30px_rgb(0,0,0,0.12)]
             dark:shadow-[0_16px_40px_-4px_rgba(0,0,0,0.8)]
-            backdrop-blur-2xl
+            backdrop-blur-xl
           "
         >
           {navItems.map((item) => {
@@ -460,7 +469,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                   active:scale-95
                   ${
                     isActive
-                      ? "flex-1 bg-slate-950 text-white dark:bg-slate-100 dark:text-slate-950 shadow-sm px-4"
+                      ? "flex-1 bg-slate-950 text-white shadow-md shadow-slate-900/20 dark:bg-white dark:text-slate-950 dark:shadow-white/20 scale-105 px-4 z-10"
                       : "px-4 text-slate-600 hover:text-slate-950 dark:text-slate-200 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/8"
                   }
                 `}
