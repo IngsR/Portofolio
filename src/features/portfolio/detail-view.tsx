@@ -665,32 +665,58 @@ export const DetailView: React.FC<DetailViewProps> = ({
               </a>
             </div>
 
-            <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
-              {relatedProjects.slice(0, 3).map((rel) => (
-                <a
-                  key={rel.id}
-                  href={`/project/${rel.slug}`}
-                  className="group block p-3 sm:p-4 rounded-2xl bg-white/90 dark:bg-[#0c0c0e]/80 border border-slate-200/90 dark:border-white/10 hover:border-slate-400 dark:hover:border-white/30 transition-all hover:-translate-y-1 shadow-xs hover:shadow-md"
-                >
-                  <div className="aspect-[16/10] rounded-xl overflow-hidden mb-2.5 bg-slate-900">
-                    <img
-                      src={rel.image}
-                      alt={rel.title}
-                      loading="lazy"
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                    />
-                  </div>
-                  <span className="text-[9px] sm:text-[10px] font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">
-                    {rel.category}
-                  </span>
-                  <h4 className="text-[11px] sm:text-sm font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors line-clamp-2 mt-0.5 leading-snug">
-                    {rel.title}
-                  </h4>
-                  <p className="text-[10px] sm:text-xs text-slate-500 dark:text-slate-400 line-clamp-2 mt-1 leading-snug">
-                    {rel.shortDescription}
-                  </p>
-                </a>
-              ))}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
+              {relatedProjects.slice(0, 4).map((rel) => {
+                const year = rel.publishedDate?.match(/\b(20\d{2})\b/)?.[0] || rel.period?.match(/\b(20\d{2})\b/)?.[0] || "";
+
+                return (
+                  <a
+                    key={rel.id}
+                    href={`/project/${rel.slug}`}
+                    className="group block p-4 rounded-3xl bg-white/90 dark:bg-[#0c0c0e]/80 border border-slate-200/90 dark:border-white/10 hover:border-slate-400 dark:hover:border-white/30 transition-all duration-300 hover:-translate-y-1.5 shadow-xs hover:shadow-xl dark:shadow-none"
+                  >
+                    <div className="relative aspect-[16/10] rounded-2xl overflow-hidden mb-4 bg-slate-900 border border-slate-200/50 dark:border-white/5">
+                      <img
+                        src={rel.image}
+                        alt={rel.title}
+                        loading="lazy"
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+                    </div>
+                    
+                    <div className="flex items-center justify-between mb-2.5">
+                      <div className="flex items-center gap-1.5 flex-wrap">
+                        {rel.tags?.slice(0, 2).map((tag, i) => (
+                          <span key={i} className="px-2 py-0.5 rounded-md bg-indigo-50 dark:bg-indigo-500/10 text-[9px] sm:text-[10px] font-bold text-indigo-600 dark:text-indigo-400 transition-colors group-hover:bg-indigo-100 dark:group-hover:bg-indigo-500/20">
+                            {tag}
+                          </span>
+                        ))}
+                        {rel.tags && rel.tags.length > 2 && (
+                          <span className="px-2 py-0.5 rounded-md bg-slate-100 dark:bg-white/10 text-[9px] sm:text-[10px] font-bold text-slate-600 dark:text-slate-400">
+                            +{rel.tags.length - 2}
+                          </span>
+                        )}
+                      </div>
+                      {year && (
+                        <span className="text-[10px] sm:text-[11px] font-black text-slate-400 dark:text-slate-500 shrink-0">
+                          {year}
+                        </span>
+                      )}
+                    </div>
+
+                    <span className="text-[9px] sm:text-[10px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 block mb-1">
+                      {rel.category}
+                    </span>
+                    <h4 className="text-[13px] sm:text-sm font-extrabold text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors line-clamp-2 leading-snug">
+                      {rel.title}
+                    </h4>
+                    <p className="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400 line-clamp-2 mt-1.5 leading-relaxed transition-colors group-hover:text-slate-700 dark:group-hover:text-slate-300">
+                      {rel.shortDescription}
+                    </p>
+                  </a>
+                );
+              })}
             </div>
           </div>
         )}
