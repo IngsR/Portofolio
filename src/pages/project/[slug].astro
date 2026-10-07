@@ -1,7 +1,7 @@
 ---
 import portfolioDataJson from "../../data/portfolio.json";
 import SiteLayout from "../../layouts/site.astro";
-import { UniversalDetailView } from "../../features/portfolio/universal-detail-view";
+import { DetailView } from "../../features/portfolio/detail-view";
 import type { ProjectItem } from "../../types";
 
 export const prerender = true;
@@ -32,7 +32,7 @@ const canonicalUrl = `${siteUrl}/project/${project.slug}`;
   description={project.shortDescription}
   canonicalPath={`/project/${project.slug}`}
 >
-  <UniversalDetailView
+  <DetailView
     client:idle
     project={project}
     relatedProjects={relatedProjects}
