@@ -1,50 +1,20 @@
-import { useCallback, useEffect, useMemo } from "react";
-import { isDarkStore } from "../store/portfolio";
-import { useStore } from "../utils/store";
+import { useEffect } from "react";
+import { useAppStore } from "../store/useAppStore";
 
 let isThemeInitialized = false;
 
 export function useTheme() {
-  const isDark = useStore(isDarkStore);
+  const isDark = useAppStore((state) => state.isDark);
+  const setTheme = useAppStore((state) => state.setDark);
+  const toggleTheme = useAppStore((state) => state.toggleTheme);
+  const initTheme = useAppStore((state) => state.initTheme);
 
   // Inisialisasi tema saat hidrasi client
   useEffect(() => {
     if (typeof window === "undefined" || isThemeInitialized) return;
-    try {
-      const savedTheme = localStorage.getItem("portfolio_theme");
-      const shouldBeDark = savedTheme === "dark";
-      isDarkStore.set(shouldBeDark);
-      if (shouldBeDark) {
-        document.documentElement.classList.add("dark");
-      } else {
-        document.documentElement.classList.remove("dark");
-      }
-    } catch {
-      // Abaikan bila storage dicegah oleh izin browser
-    } finally {
-      isThemeInitialized = true;
-    }
-  }, []);
-
-  const setTheme = useCallback((dark: boolean) => {
-    isDarkStore.set(dark);
-    try {
-      const root = document.documentElement;
-      if (dark) {
-        root.classList.add("dark");
-        localStorage.setItem("portfolio_theme", "dark");
-      } else {
-        root.classList.remove("dark");
-        localStorage.setItem("portfolio_theme", "light");
-      }
-    } catch (e) {
-      console.warn("Could not save theme preference to localStorage", e);
-    }
-  }, []);
-
-  const toggleTheme = useCallback(() => {
-    setTheme(!isDarkStore.get());
-  }, [setTheme]);
+    initTheme();
+    isThemeInitialized = true;
+  }, [initTheme]);
 
   return {
     isDark,
