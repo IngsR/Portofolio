@@ -68,12 +68,16 @@ export const TextScramble: React.FC<TextScrambleProps> = ({
   }, [text, duration, delay]);
 
   return (
-    <span className={className} style={{ whiteSpace: "pre-wrap" }}>
-      {displayText}
-      {/* Jika belum selesai, bisa tambahkan kursor berkedip */}
-      {!isDone && displayText.length > 0 && (
-        <span className="opacity-50 animate-pulse inline-block w-[3px] h-[1em] bg-current align-text-bottom ml-1" />
-      )}
+    <span className={`relative inline-block w-full ${className || ""}`} style={{ whiteSpace: "pre-wrap" }}>
+      <span className="invisible opacity-0 select-none pointer-events-none" aria-hidden="true">
+        {text}
+      </span>
+      <span className="absolute inset-0 left-0 top-0 h-full w-full">
+        {displayText}
+        {!isDone && displayText.length > 0 && (
+          <span className="opacity-50 animate-pulse inline-block w-[3px] h-[1em] bg-current align-text-bottom ml-1" />
+        )}
+      </span>
     </span>
   );
 };
