@@ -11,6 +11,7 @@ import {
 import { memo, useMemo } from "react";
 import portfolioData from "../../../data/portfolio.json";
 import { MagneticButton } from "../../../design/components/magnetic-button";
+import { TextScramble } from "../../../design/components/text-scramble";
 import { UserProfile } from "../../../types";
 import { ProfilePhotoCard } from "../cards/profile-photo-card";
 // Konten diambil langsung dari portfolio.json - tidak ada duplikasi di hero.data.ts
@@ -97,8 +98,8 @@ export const IntroSection = memo<HeroPageProps & { onOpenCV: () => void }>(
               </div>
             </div>
 
-            <p className="hero-bio-write text-slate-800 dark:text-slate-300 text-base sm:text-lg max-w-4xl font-medium leading-relaxed">
-              {heroBio}
+            <p className="text-slate-800 dark:text-slate-300 text-base sm:text-lg max-w-4xl font-medium leading-relaxed min-h-[4.5rem]">
+              <TextScramble text={heroBio} duration={2000} delay={800} />
             </p>
 
             {/* Highlight singkat */}
