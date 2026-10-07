@@ -99,7 +99,7 @@ export const IntroSection = memo<HeroPageProps & { onOpenCV: () => void }>(
             </div>
 
             <p className="text-slate-800 dark:text-slate-300 text-base sm:text-lg max-w-4xl font-medium leading-relaxed min-h-[4.5rem]">
-              <TextScramble text={heroBio} duration={2000} delay={800} />
+              <TextScramble text={heroBio} duration={1200} delay={400} />
             </p>
 
             {/* Highlight singkat */}
