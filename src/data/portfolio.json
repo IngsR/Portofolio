@@ -57,62 +57,6 @@
   },
   "projects": [
     {
-      "id": "proj-9",
-      "slug": "enterprise-monorepo-ui",
-      "title": "Enterprise Monorepo UI - CRM/ERP Design System",
-      "shortDescription": "Eksperimen arsitektur monorepo menggunakan Turborepo untuk mengelola beberapa aplikasi Next.js 15 dalam satu workspace. Fokus utamanya: bikin paket UI bersama yang bisa di-share lintas aplikasi, dan pastikan tipe data tetap sinkron antara frontend dan API layer.",
-      "category": "Monorepo & Architecture",
-      "tags": [
-        "Next.js 15",
-        "React 19",
-        "Turborepo",
-        "TypeScript",
-        "Tailwind CSS",
-        "shadcn/ui",
-        "Zod"
-      ],
-      "image": "/projects/monorepo.webp",
-      "imageFull": "/projects/monorepo@full.webp",
-      "featured": true,
-      "publishedDate": "2025-01-10",
-      "period": "2025",
-      "role": "Junior Web Developer",
-      "demoUrl": "https://cars.ikhwann.my.id/",
-      "githubUrl": "https://github.com/IngsR",
-      "problem": "Mengelola beberapa aplikasi dashboard CRM/ERP yang memiliki kebutuhan UI serupa namun kode tersebar, menyebabkan inkonsistensi desain dan duplikasi usaha pemeliharaan.",
-      "solution": "Menerapkan arsitektur monorepo menggunakan Turborepo dengan paket UI bersama berbasis shadcn/ui dan sinkronisasi tipe data end-to-end.",
-      "metrics": [],
-      "markdownContent": "Konten detail untuk Enterprise Monorepo UI."
-    },
-    {
-      "id": "proj-10",
-      "slug": "inventory-logistics-dashboard",
-      "title": "Inventory Logistics Dashboard UI",
-      "shortDescription": "Dashboard stok gudang yang saya buat supaya operator bisa melihat status persediaan, mencatat barang masuk/keluar/retur, dan filter berdasarkan status stok - semuanya responsif dan berjalan instan tanpa reload halaman.",
-      "category": "Web Application",
-      "tags": [
-        "Next.js",
-        "React",
-        "TypeScript",
-        "Tailwind CSS",
-        "Zustand",
-        "React Query",
-        "Supabase"
-      ],
-      "image": "/projects/inventory.webp",
-      "imageFull": "/projects/inventory@full.webp",
-      "featured": true,
-      "publishedDate": "2025-01-15",
-      "period": "2025",
-      "role": "Junior Web Developer",
-      "demoUrl": "https://kelola-barang.vercel.app/",
-      "githubUrl": "https://github.com/IngsR",
-      "problem": "Operator gudang membutuhkan sistem yang cepat untuk melacak mutasi stok tanpa harus memuat ulang halaman setiap kali ada perubahan data.",
-      "solution": "Membangun dashboard logistik interaktif berbasis Next.js dengan state management lokal untuk memberikan umpan balik instan pada setiap aksi pencatatan.",
-      "metrics": [],
-      "markdownContent": "Konten detail untuk Inventory Logistics Dashboard UI."
-    },
-    {
       "id": "proj-1",
       "slug": "website-smp-negeri-24-padang",
       "title": "Website SMP Negeri 24 Padang",
@@ -156,50 +100,9 @@
       "markdownContent": "---\ntitle: \"Website SMP Negeri 24 Padang\"\ndescription: \"Portal resmi sekolah berbasis Next.js App Router, SSR/SSG caching, dan validasi form Zod.\"\ndate: \"2025-12-01\"\ncategory: \"Next.js & Performance\"\ntags:\n  - Next.js\n  - React\n  - TypeScript\n  - REST API\n  - SSR / SSG\n  - Zod\n  - Tailwind CSS\n  - shadcn/ui\ngithub: \"https://github.com/Informatics-2025/Website-SMPN24padang\"\ndemo: \"https://smpn24padang.sch.id\"\nfeatured: true\n---\n\n# Website SMP Negeri 24 Padang\n\n## 📌 Latar Belakang & Kebutuhan Sistem\nSaat magang di SMP Negeri 24 Padang, sekolah belum memiliki website resmi yang layak. Informasi akademik dan pengumuman masih tersebar secara manual, halaman lambat saat dibuka dari koneksi seluler wali murid, dan data form kegiatan rentan rusak karena tidak ada validasi skema.\n\n> **Peran & Tanggung Jawab**: Bertindak sebagai **Fullstack Web Developer (Magang)** - merancang arsitektur aplikasi dari nol menggunakan Next.js App Router, menyusun skema validasi form, mengoptimasi Core Web Vitals, dan mendeploy ke domain produksi `smpn24padang.sch.id`.\n\n---\n\n## 🛠️ Keputusan Rekayasa & Solusi Teknis\n1. **Hybrid Rendering (SSG + SSR Revalidasi)**: Halaman profil dan struktur organisasi di-generate statis (SSG) agar TTFB instan (<100ms). Halaman pengumuman dan berita menggunakan SSR dengan revalidasi berkala (ISR) agar konten selalu segar tanpa membebani server database.\n2. **Validasi Skema Form Zod**: Semua input pengumuman dan upload media divalidasi ketat di sisi klien dan server menggunakan Zod, mencegah payload kosong atau tipe file tidak sesuai.\n3. **SEO & Web Performance**: Mengimplementasikan Dynamic Open Graph metadata, sitemap XML otomatis, dan optimasi gambar WebP responsif. Skor performa Lighthouse mobile mencapai 95+.\n4. **Desain Komponen Modular**: Menggunakan Tailwind CSS dan komponen berbasis shadcn/ui yang ringan tanpa runtime CSS overhead."
     },
     {
-      "id": "proj-2",
-      "slug": "angular-property-platform",
-      "title": "HouseING - Project Angular",
-      "shortDescription": "Aplikasi web pencarian properti yang saya bangun pakai Angular Standalone Components murni TypeScript. Fitur utamanya: komparasi 2 properti secara side-by-side, denah arsitektur 2D bertingkat yang bisa di-zoom, dan simulator cicilan KPR pakai formula anuitas Bank Indonesia - semuanya reaktif lewat Angular Signals tanpa library state management tambahan.",
-      "category": "Angular & Reactive Architecture",
-      "tags": [
-        "Angular",
-        "TypeScript",
-        "Angular Signals",
-        "Tailwind CSS v4",
-        "Standalone Components",
-        "Reactive State",
-        "KPR Simulator"
-      ],
-      "image": "/projects/property.webp",
-      "imageFull": "/projects/property@full.webp",
-      "featured": true,
-      "publishedDate": "2026-03-01",
-      "period": "2026 (Proyek Unggulan)",
-      "role": "Junior Frontend Engineer",
-      "demoUrl": "https://angular.ikhwann.my.id",
-      "githubUrl": "https://github.com/IngsR/Angular-Property",
-      "problem": "Pengambilan keputusan pembelian hunian memerlukan analisis komparasi parameter teknis (legalitas, luas bangunan, daya listrik) dan simulasi finansial yang akurat. Sistem dituntut menyediakan perbandingan multi-properti secara simultan serta kalkulasi angsuran KPR berbasis formula anuitas perbankan riil, bukan estimasi kasar.",
-      "solution": "Membangun aplikasi web berbasis Angular Standalone Components dengan state reaktif murni menggunakan Angular Signals (signal, computed, effect) tanpa dependensi store pihak ketiga. Dilengkapi fitur komparasi dua unit side-by-side, visualisasi denah arsitektur 2D interaktif, dan kalkulator simulasi angsuran anuitas standar perbankan.",
-      "metrics": [
-        {
-          "label": "Reactivity",
-          "value": "Angular Signals Core"
-        },
-        {
-          "label": "Architecture",
-          "value": "Clean Domain-Driven"
-        },
-        {
-          "label": "Tooling",
-          "value": "Bun & Tailwind v4"
-        }
-      ],
-      "markdownContent": "---\ntitle: \"HouseING Property - Platform Pencarian & Keputusan Properti\"\ndescription: \"Aplikasi web modern berbasis Angular Standalone Components murni TypeScript untuk komparasi hunian dan simulasi KPR realistis.\"\ndate: \"2026-03-01\"\ncategory: \"Angular & Reactive Architecture\"\ntags:\n  - Angular\n  - TypeScript\n  - Angular Signals\n  - Tailwind CSS v4\n  - Standalone Components\n  - Reactive State\n  - KPR Simulator\ngithub: \"https://github.com/IngsR/Angular-Property\"\ndemo: \"https://angular.ikhwann.my.id\"\nfeatured: true\n---\n\n# 🏡 HouseING Property - Platform Pencarian & Keputusan Properti\n\nAplikasi web eksplorasi properti dan simulasi finansial yang dibangun menggunakan **Angular Standalone Components (murni TypeScript)** tanpa dependensi NgModule lama.\n\n---\n\n## 📌 Latar Belakang & Kebutuhan Sistem\nMembeli rumah melibatkan dua masalah utama: membandingkan spesifikasi beberapa unit secara objektif dan menghitung cicilan KPR yang realistis. Banyak aplikasi properti menyajikan data terpencar dan kalkulator cicilan dengan estimasi kasar tanpa formula anuitas perbankan standar.\n\n---\n\n## 🛠️ Keputusan Rekayasa & Solusi Teknis\n1. **Reaktivitas Murni Angular Signals**: State aplikasi dikelola langsung menggunakan `signal()`, `computed()`, dan `effect()`. Tidak membutuhkan NgRx atau library state pihak ketiga, sehingga ukuran bundle tetap ramping dan render pipeline sangat prediktif.\n2. **Kalkulator KPR Berbasis Formula Anuitas**: Menghitung angsuran bulanan riil menggunakan formula suku bunga anuitas, lengkap dengan batas aman rasio utang (Debt Service Ratio ≤ 33%) terhadap pendapatan.\n3. **Komparasi 2 Properti Side-by-Side**: State sinkron membandingkan harga per meter persegi, status sertifikat (SHM/PPJB), jumlah lantai, dan daya listrik dalam satu tampilan matriks.\n4. **Denah Arsitektur Interaktif**: SVG blueprint 2D bertingkat dengan fitur zoom, pan, dan switcher lantai untuk visualisasi denah ruangan."
-    },
-    {
       "id": "proj-3",
       "slug": "tropical-cyclone-track-prediction",
-      "title": "Prediksi Siklon Tropis (LSTM & Astro UI)",
+      "title": "Prediksi Siklon Tropis (Data IBTrACS)",
       "shortDescription": "Ini proyek skripsi S1 saya: membuktikan LSTM bisa prediksi lintasan siklon tropis dengan akurat. Saya uji 12 skenario eksperimen (3 basin × 4 variasi timesteps), dan hasilnya window 8-16 paling bagus - rata-rata error cuma 14,2 km dengan R² 0,999. Modelnya saya konversi ke ONNX supaya bisa jalan langsung di browser, frontend pakai Astro Island Architecture.",
       "category": "Web Application",
       "tags": [
@@ -278,6 +181,103 @@
         }
       ],
       "markdownContent": "---\ntitle: \"Ingstore - Website Penjual Mobil Berbasis CMS\"\ndescription: \"Website showroom mobil dengan kalkulator simulasi kredit interaktif, filter spesifikasi kendaraan, dan katalog responsif.\"\ndate: \"2025-07-23\"\ncategory: \"React & Next.js UI\"\ntags:\n  - Next.js\n  - React\n  - TypeScript\n  - Tailwind CSS\n  - Interactive UI\n  - State Management\n  - CMS\ngithub: \"https://github.com/IngsR/web_store\"\ndemo: \"https://cars.ikhwann.my.id\"\nfeatured: true\n---\n\n# Ingstore - Website Showroom Mobil Berbasis CMS\n\n## 📌 Latar Belakang & Kebutuhan Sistem\nShowroom mobil konvensional kesulitan memberikan estimasi pembiayaan instan kepada calon pembeli yang mengeksplorasi unit secara daring. Pengunjung sering harus menghubungi sales berulang kali hanya untuk simulasi DP dan tenor. Di sisi pengelola, penambahan unit baru membutuhkan struktur data yang rapi dan mudah dioperasikan.\n\n---\n\n## 🛠️ Keputusan Rekayasa & Solusi Teknis\n1. **Kalkulator Kredit Interaktif Real-Time**: Perhitungan simulasi angsuran bulanan diperbarui secara instan saat pengguna menggeser slider persentase DP atau memilih tenor pinjaman (1–5 tahun).\n2. **Filter Instan Sisi Klien**: Memungkinkan penyaringan multi-parameter (transmisi matik/manual, tipe bodi SUV/sedan, rentang harga) tanpa reload halaman.\n3. **Struktur Data Katalog CMS-Ready**: Skema data kendaraan distrukturkan secara terpisah dari lapisan tampilan, mempermudah integrasi ke headless CMS atau database inventory."
+    },
+    {
+      "id": "proj-2",
+      "slug": "angular-property-platform",
+      "title": "Website Penjualan Rumah",
+      "shortDescription": "Aplikasi web pencarian properti yang saya bangun pakai Angular Standalone Components murni TypeScript. Fitur utamanya: komparasi 2 properti secara side-by-side, denah arsitektur 2D bertingkat yang bisa di-zoom, dan simulator cicilan KPR pakai formula anuitas Bank Indonesia - semuanya reaktif lewat Angular Signals tanpa library state management tambahan.",
+      "category": "Angular & Reactive Architecture",
+      "tags": [
+        "Angular",
+        "TypeScript",
+        "Angular Signals",
+        "Tailwind CSS v4",
+        "Standalone Components",
+        "Reactive State",
+        "KPR Simulator"
+      ],
+      "image": "/projects/property.webp",
+      "imageFull": "/projects/property@full.webp",
+      "featured": true,
+      "publishedDate": "2026-03-01",
+      "period": "2026 (Proyek Unggulan)",
+      "role": "Junior Frontend Engineer",
+      "demoUrl": "https://angular.ikhwann.my.id",
+      "githubUrl": "https://github.com/IngsR/Angular-Property",
+      "problem": "Pengambilan keputusan pembelian hunian memerlukan analisis komparasi parameter teknis (legalitas, luas bangunan, daya listrik) dan simulasi finansial yang akurat. Sistem dituntut menyediakan perbandingan multi-properti secara simultan serta kalkulasi angsuran KPR berbasis formula anuitas perbankan riil, bukan estimasi kasar.",
+      "solution": "Membangun aplikasi web berbasis Angular Standalone Components dengan state reaktif murni menggunakan Angular Signals (signal, computed, effect) tanpa dependensi store pihak ketiga. Dilengkapi fitur komparasi dua unit side-by-side, visualisasi denah arsitektur 2D interaktif, dan kalkulator simulasi angsuran anuitas standar perbankan.",
+      "metrics": [
+        {
+          "label": "Reactivity",
+          "value": "Angular Signals Core"
+        },
+        {
+          "label": "Architecture",
+          "value": "Clean Domain-Driven"
+        },
+        {
+          "label": "Tooling",
+          "value": "Bun & Tailwind v4"
+        }
+      ],
+      "markdownContent": "---\ntitle: \"HouseING Property - Platform Pencarian & Keputusan Properti\"\ndescription: \"Aplikasi web modern berbasis Angular Standalone Components murni TypeScript untuk komparasi hunian dan simulasi KPR realistis.\"\ndate: \"2026-03-01\"\ncategory: \"Angular & Reactive Architecture\"\ntags:\n  - Angular\n  - TypeScript\n  - Angular Signals\n  - Tailwind CSS v4\n  - Standalone Components\n  - Reactive State\n  - KPR Simulator\ngithub: \"https://github.com/IngsR/Angular-Property\"\ndemo: \"https://angular.ikhwann.my.id\"\nfeatured: true\n---\n\n# 🏡 HouseING Property - Platform Pencarian & Keputusan Properti\n\nAplikasi web eksplorasi properti dan simulasi finansial yang dibangun menggunakan **Angular Standalone Components (murni TypeScript)** tanpa dependensi NgModule lama.\n\n---\n\n## 📌 Latar Belakang & Kebutuhan Sistem\nMembeli rumah melibatkan dua masalah utama: membandingkan spesifikasi beberapa unit secara objektif dan menghitung cicilan KPR yang realistis. Banyak aplikasi properti menyajikan data terpencar dan kalkulator cicilan dengan estimasi kasar tanpa formula anuitas perbankan standar.\n\n---\n\n## 🛠️ Keputusan Rekayasa & Solusi Teknis\n1. **Reaktivitas Murni Angular Signals**: State aplikasi dikelola langsung menggunakan `signal()`, `computed()`, dan `effect()`. Tidak membutuhkan NgRx atau library state pihak ketiga, sehingga ukuran bundle tetap ramping dan render pipeline sangat prediktif.\n2. **Kalkulator KPR Berbasis Formula Anuitas**: Menghitung angsuran bulanan riil menggunakan formula suku bunga anuitas, lengkap dengan batas aman rasio utang (Debt Service Ratio ≤ 33%) terhadap pendapatan.\n3. **Komparasi 2 Properti Side-by-Side**: State sinkron membandingkan harga per meter persegi, status sertifikat (SHM/PPJB), jumlah lantai, dan daya listrik dalam satu tampilan matriks.\n4. **Denah Arsitektur Interaktif**: SVG blueprint 2D bertingkat dengan fitur zoom, pan, dan switcher lantai untuk visualisasi denah ruangan."
+    },
+    {
+      "id": "proj-10",
+      "slug": "inventory-logistics-dashboard",
+      "title": "Inventory Logistics Dashboard UI",
+      "shortDescription": "Dashboard stok gudang yang saya buat supaya operator bisa melihat status persediaan, mencatat barang masuk/keluar/retur, dan filter berdasarkan status stok - semuanya responsif dan berjalan instan tanpa reload halaman.",
+      "category": "Web Application",
+      "tags": [
+        "Next.js",
+        "React",
+        "TypeScript",
+        "Tailwind CSS",
+        "Zustand",
+        "React Query",
+        "Supabase"
+      ],
+      "image": "/projects/inventory.webp",
+      "imageFull": "/projects/inventory@full.webp",
+      "featured": false,
+      "publishedDate": "2025-01-15",
+      "period": "2025",
+      "role": "Junior Web Developer",
+      "demoUrl": "https://kelola-barang.vercel.app/",
+      "githubUrl": "https://github.com/IngsR",
+      "problem": "Operator gudang membutuhkan sistem yang cepat untuk melacak mutasi stok tanpa harus memuat ulang halaman setiap kali ada perubahan data.",
+      "solution": "Membangun dashboard logistik interaktif berbasis Next.js dengan state management lokal untuk memberikan umpan balik instan pada setiap aksi pencatatan.",
+      "metrics": [],
+      "markdownContent": "Konten detail untuk Inventory Logistics Dashboard UI."
+    },
+    {
+      "id": "proj-9",
+      "slug": "enterprise-monorepo-ui",
+      "title": "Enterprise Monorepo UI - CRM/ERP Design System",
+      "shortDescription": "Eksperimen arsitektur monorepo menggunakan Turborepo untuk mengelola beberapa aplikasi Next.js 15 dalam satu workspace. Fokus utamanya: bikin paket UI bersama yang bisa di-share lintas aplikasi, dan pastikan tipe data tetap sinkron antara frontend dan API layer.",
+      "category": "Monorepo & Architecture",
+      "tags": [
+        "Next.js 15",
+        "React 19",
+        "Turborepo",
+        "TypeScript",
+        "Tailwind CSS",
+        "shadcn/ui",
+        "Zod"
+      ],
+      "image": "/projects/inventory.webp",
+      "imageFull": "/projects/monorepo@full.webp",
+      "featured": false,
+      "publishedDate": "2025-01-10",
+      "period": "2025",
+      "role": "Junior Web Developer",
+      "demoUrl": "https://cars.ikhwann.my.id/",
+      "githubUrl": "https://github.com/IngsR",
+      "problem": "Mengelola beberapa aplikasi dashboard CRM/ERP yang memiliki kebutuhan UI serupa namun kode tersebar, menyebabkan inkonsistensi desain dan duplikasi usaha pemeliharaan.",
+      "solution": "Menerapkan arsitektur monorepo menggunakan Turborepo dengan paket UI bersama berbasis shadcn/ui dan sinkronisasi tipe data end-to-end.",
+      "metrics": [],
+      "markdownContent": "Konten detail untuk Enterprise Monorepo UI."
     },
     {
       "id": "proj-5",

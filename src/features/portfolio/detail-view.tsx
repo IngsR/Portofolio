@@ -665,7 +665,7 @@ export const DetailView: React.FC<DetailViewProps> = ({
               </a>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
               {relatedProjects.slice(0, 4).map((rel) => {
                 const year = rel.publishedDate?.match(/\b(20\d{2})\b/)?.[0] || rel.period?.match(/\b(20\d{2})\b/)?.[0] || "";
 

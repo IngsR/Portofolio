@@ -240,7 +240,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                       duration-200
                       ${
                         isActive
-                          ? "bg-slate-950 text-white shadow-md shadow-slate-900/20 dark:bg-gray-100 dark:text-slate-950 dark:shadow-gray-100/20 scale-105"
+                          ? "bg-slate-950 text-white shadow-lg shadow-slate-900/30 dark:bg-gray-100 dark:text-slate-950 dark:shadow-gray-100/30 scale-110 ring-2 ring-slate-950/20 dark:ring-white/20"
                           : "text-slate-600 hover:text-slate-950 dark:text-slate-400 dark:hover:text-white hover:bg-white/60 dark:hover:bg-white/5"
                       }
                     `}
@@ -469,7 +469,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                   active:scale-95
                   ${
                     isActive
-                      ? "flex-1 bg-slate-950 text-white shadow-md shadow-slate-900/20 dark:bg-gray-100 dark:text-slate-950 dark:shadow-gray-100/20 scale-105 px-4 z-10"
+                      ? "flex-1 bg-slate-950 text-white shadow-lg shadow-slate-900/30 dark:bg-gray-100 dark:text-slate-950 dark:shadow-gray-100/30 scale-110 ring-2 ring-slate-950/20 dark:ring-white/20 px-4 z-10"
                       : "px-4 text-slate-600 hover:text-slate-950 dark:text-slate-200 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/8"
                   }
                 `}
