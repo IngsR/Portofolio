@@ -17,6 +17,13 @@ import { FeaturedProjectsSection } from "./sections/featured-projects-section";
 import { IntroSection } from "./sections/intro-section";
 import { SkillsSection } from "./sections/skills-section";
 import type { HeroSectionProps } from "./types";
+import { useTranslations } from "../../i18n";
+import {
+  getLocalizedCertification,
+  getLocalizedEducation,
+  getLocalizedProject,
+  getLocalizedSkillCategory,
+} from "../../utils/format";
 
 const {
   education: educationData,
@@ -39,6 +46,17 @@ export const Hero: React.FC<HeroSectionProps> = ({
   featuredProjects,
   onOpenCV,
 }) => {
+  const { locale } = useTranslations();
+  const localizedCertifications = useMemo(
+    () =>
+      certificationsData.map((item) => getLocalizedCertification(item, locale)),
+    [locale],
+  );
+  const localizedSkills = useMemo(
+    () =>
+      skillCategories.map((item) => getLocalizedSkillCategory(item, locale)),
+    [locale],
+  );
   /** Navigasi halaman + scroll instan ke atas */
   const handleNavigate = useCallback(
     (page: PageId) => {
@@ -52,16 +70,16 @@ export const Hero: React.FC<HeroSectionProps> = ({
   const homeCertificates = useMemo(
     () =>
       [
-        certificationsData.find((c) => c.id === "cert-5") ||
-          certificationsData[4]!,
-        certificationsData.find((c) => c.id === "cert-2") ||
-          certificationsData[1]!,
-        certificationsData.find((c) => c.id === "cert-3") ||
-          certificationsData[2]!,
-        certificationsData.find((c) => c.id === "cert-4") ||
-          certificationsData[3]!,
+        localizedCertifications.find((c) => c.id === "cert-5") ||
+          localizedCertifications[4]!,
+        localizedCertifications.find((c) => c.id === "cert-2") ||
+          localizedCertifications[1]!,
+        localizedCertifications.find((c) => c.id === "cert-3") ||
+          localizedCertifications[2]!,
+        localizedCertifications.find((c) => c.id === "cert-4") ||
+          localizedCertifications[3]!,
       ].filter(Boolean) as CertificationItem[],
-    [],
+    [localizedCertifications],
   );
 
   // Proyek pilihan di Beranda - Memoized
@@ -71,10 +89,10 @@ export const Hero: React.FC<HeroSectionProps> = ({
       (p) => p.id === "proj-4",
     );
     if (ingstore && !list.some((p) => p.id === "proj-4")) {
-      list.push(ingstore);
+      list.push(getLocalizedProject(ingstore, locale));
     }
     return list.filter((p) => p.featured || p.id === "proj-4").slice(0, 4);
-  }, [featuredProjects]);
+  }, [featuredProjects, locale]);
 
   // Pendidikan Sarjana S1 - Memoized
   const sarjanaEducation = useMemo(
@@ -83,7 +101,7 @@ export const Hero: React.FC<HeroSectionProps> = ({
         (edu) =>
           edu.id === "edu-1" || edu.degree.toLowerCase().includes("sarjana"),
       ),
-    [],
+    [locale],
   );
 
   return (
@@ -95,7 +113,11 @@ export const Hero: React.FC<HeroSectionProps> = ({
 
       {/* 2. Pendidikan (Sarjana S1) */}
       {isHeroSectionVisible("education") && (
-        <EducationSection items={sarjanaEducation} />
+        <EducationSection
+          items={sarjanaEducation.map((item) =>
+            getLocalizedEducation(item, locale),
+          )}
+        />
       )}
 
       {/* 3. Proyek unggulan */}
@@ -120,7 +142,7 @@ export const Hero: React.FC<HeroSectionProps> = ({
 
       {/* 6. Keahlian & stack teknis */}
       {isHeroSectionVisible("skills") && (
-        <SkillsSection categories={skillCategories} />
+        <SkillsSection categories={localizedSkills} />
       )}
 
       {/* 7. Ajakan kontak penutup */}

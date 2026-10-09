@@ -14,6 +14,9 @@ import { MagneticButton } from "../../../design/components/magnetic-button";
 import { TextScramble } from "../../../design/components/text-scramble";
 import { UserProfile } from "../../../types";
 import { ProfilePhotoCard } from "../cards/profile-photo-card";
+import { useTranslations } from "../../../i18n";
+import { getDictionary } from "../../../data/locales";
+import { getLocalizedUserProfile } from "../../../utils/format";
 // Konten diambil langsung dari portfolio.json - tidak ada duplikasi di hero.data.ts
 import { HeroPageProps } from "../types";
 
@@ -22,38 +25,38 @@ import { HeroPageProps } from "../types";
  */
 export const IntroSection = memo<HeroPageProps & { onOpenCV: () => void }>(
   function IntroSection({ onNavigate, onOpenCV }) {
-    const userProfile = portfolioData.userProfile as unknown as UserProfile;
+    const { locale } = useTranslations();
+    const copy = getDictionary(locale).hero.intro;
+    const userProfile = getLocalizedUserProfile(
+      portfolioData.userProfile as unknown as UserProfile,
+      locale,
+    );
 
     const heroBio = userProfile.shortBio;
     const availabilityText = userProfile.workPreference;
-    const roles = [
-      userProfile.title,
-      "Frontend & Backend",
-      "Next.js & React Developer",
-      "REST API & Database",
-    ];
+    const roles = [userProfile.title, ...copy.roles];
 
     /** Strip statistik singkat dengan ikon berkarakter */
     const stats = useMemo(
       () => [
         {
-          label: "Proyek Selesai",
-          shortLabel: "Proyek",
+          label: copy.stats.projects,
+          shortLabel: copy.stats.projectsShort,
           value: `${userProfile.stats.projectsCompleted}+`,
           icon: (
             <CheckCircle2 className="w-3.5 h-3.5 text-indigo-600 dark:text-indigo-400 shrink-0" />
           ),
         },
         {
-          label: "Pengalaman Kerja",
-          shortLabel: "Pengalaman",
-          value: `${userProfile.stats.yearsExperience} Bulan`,
+          label: copy.stats.experience,
+          shortLabel: copy.stats.experienceShort,
+          value: `${userProfile.stats.yearsExperience} ${locale === "en" ? "months" : "Bulan"}`,
           icon: (
             <Briefcase className="w-3.5 h-3.5 text-sky-600 dark:text-sky-400 shrink-0" />
           ),
         },
         {
-          label: "Commit per Tahun",
+          label: copy.stats.commits,
           shortLabel: "Commit",
           value: userProfile.stats.codeCommits,
           icon: (
@@ -61,7 +64,7 @@ export const IntroSection = memo<HeroPageProps & { onOpenCV: () => void }>(
           ),
         },
       ],
-      [userProfile.stats],
+      [copy.stats, locale, userProfile.stats],
     );
 
     return (
@@ -74,7 +77,9 @@ export const IntroSection = memo<HeroPageProps & { onOpenCV: () => void }>(
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
               </span>
-              <span>{availabilityText}</span>
+              <span>
+                {locale === "en" ? copy.availability : availabilityText}
+              </span>
             </div>
 
             <div className="space-y-1">
@@ -108,10 +113,10 @@ export const IntroSection = memo<HeroPageProps & { onOpenCV: () => void }>(
                 <MapPin className="w-4 h-4 text-indigo-500 dark:text-indigo-400 mt-0.5 shrink-0" />
                 <div className="min-w-0">
                   <span className="font-bold block text-slate-900 dark:text-white text-xs sm:text-sm">
-                    Kesiapan Kerja:
+                    {copy.workLabel}
                   </span>
                   <span className="text-slate-600 dark:text-slate-400 text-[11px] sm:text-xs leading-relaxed block">
-                    Terbuka untuk kerja On-Site / WFO dan Hybrid
+                    {copy.workValue}
                   </span>
                 </div>
               </div>
@@ -120,10 +125,10 @@ export const IntroSection = memo<HeroPageProps & { onOpenCV: () => void }>(
                 <GraduationCap className="w-4 h-4 text-sky-500 dark:text-sky-400 mt-0.5 shrink-0" />
                 <div className="min-w-0">
                   <span className="font-bold block text-slate-900 dark:text-white text-xs sm:text-sm">
-                    Pendidikan Akademis:
+                    {copy.educationLabel}
                   </span>
                   <span className="text-slate-600 dark:text-slate-400 text-[11px] sm:text-xs leading-relaxed block">
-                    S1 Teknik Informatika - UPI &ldquo;YPTK&rdquo; (IPK 3.26)
+                    {copy.educationValue}
                   </span>
                 </div>
               </div>
@@ -158,14 +163,14 @@ export const IntroSection = memo<HeroPageProps & { onOpenCV: () => void }>(
                 <MagneticButton strength={0.25} className="w-full sm:w-auto">
                   <a
                     id="hero-view-portfolio-btn"
-                    href="/portfolio"
+                    href={locale === "en" ? "/en/portfolio" : "/portfolio"}
                     onClick={(e) => {
                       e.preventDefault();
                       onNavigate?.("portfolio");
                     }}
                     className="w-full sm:w-auto px-4 sm:px-6 py-2.5 sm:py-3 rounded-full text-xs font-bold bg-slate-950 text-white dark:bg-white dark:text-slate-950 hover:bg-slate-800 dark:hover:bg-slate-100 transition-colors flex items-center justify-center gap-1.5 shadow-sm"
                   >
-                    <span>Portofolio</span>
+                    <span>{copy.portfolioButton}</span>
                     <ArrowRight className="w-3.5 h-3.5 shrink-0" />
                   </a>
                 </MagneticButton>
@@ -194,7 +199,7 @@ export const IntroSection = memo<HeroPageProps & { onOpenCV: () => void }>(
                     className="px-4 sm:px-5 py-2.5 sm:py-3 rounded-full border border-slate-300 bg-[#faf7f0] text-slate-800 text-xs font-bold flex items-center justify-center gap-2 shadow-xs transition-colors hover:bg-[#f0e9dd] dark:border-[#59666e] dark:bg-[#363e43] dark:text-slate-100 dark:hover:bg-[#3d464c]"
                   >
                     <FileText className="w-3.5 h-3.5 shrink-0" />
-                    <span>Curriculum Vitae</span>
+                    <span>{copy.cvButton}</span>
                   </button>
                 </MagneticButton>
               </div>

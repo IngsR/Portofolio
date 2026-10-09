@@ -8,6 +8,7 @@ import {
   WhatsAppBrandIcon,
 } from "../../../design/components/brand-icons";
 import { UserProfile } from "../../../types";
+import { useTranslations } from "../../../i18n";
 import { HeroContactLink } from "../types";
 
 /**
@@ -175,6 +176,7 @@ const ProfilePhoto = memo<{ userProfile: UserProfile }>(function ProfilePhoto({
 export const ProfilePhotoCard = memo<{ userProfile: UserProfile }>(
   function ProfilePhotoCard({ userProfile }) {
     const contactLinks = buildContactLinks(userProfile);
+    const { locale } = useTranslations();
 
     return (
       <div className="w-full sm:max-w-sm rounded-2xl sm:rounded-3xl border border-slate-200/90 dark:border-white/10 bg-[#faf7f0] dark:bg-[#2b3034] p-4 sm:p-5 space-y-4 shadow-sm">
@@ -183,10 +185,12 @@ export const ProfilePhotoCard = memo<{ userProfile: UserProfile }>(
         <div className="space-y-3 pt-1">
           <div className="flex items-center justify-between px-1">
             <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400">
-              Tautan Kontak Profil:
+              {locale === "en"
+                ? "Profile contact links:"
+                : "Tautan Kontak Profil:"}
             </span>
             <span className="text-[10px] font-semibold text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/40 px-2.5 py-0.5 rounded-full">
-              Resmi &amp; Aktif
+              {locale === "en" ? "Official & active" : "Resmi & Aktif"}
             </span>
           </div>
 

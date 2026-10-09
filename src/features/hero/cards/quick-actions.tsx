@@ -7,6 +7,8 @@ import {
   LinkedInBrandIcon,
   WhatsAppBrandIcon,
 } from "../../../design/components/brand-icons";
+import { useTranslations } from "../../../i18n";
+import { getDictionary } from "../../../data/locales";
 import { UserProfile } from "../../../types";
 
 /**
@@ -22,49 +24,55 @@ interface QuickAction {
   icon: React.ReactNode;
 }
 
-const buildQuickActions = (userProfile: UserProfile): QuickAction[] => [
-  {
-    id: "cv",
-    label: "Curriculum Vitae",
-    hint: "Lihat CV PDF, lalu cetak langsung dari browser bila diperlukan",
-    cardClass:
-      "bg-[#faf7f0] text-slate-950 hover:bg-[#f0e9dd] dark:bg-[#363e43] dark:text-slate-100 dark:hover:bg-[#3d464c] sm:col-span-2",
-    icon: <FileText className="w-5 h-5 text-slate-950 dark:text-slate-100" />,
-  },
-  {
-    id: "linkedin",
-    label: "LinkedIn Profile",
-    hint: "linkedin.com/in/ikhwn-rdn",
-    href: "https://www.linkedin.com/in/ikhwn-rdn",
-    cardClass: "bg-blue-700/90 text-white hover:bg-blue-600/90",
-    icon: <LinkedInBrandIcon className="w-5 h-5" />,
-  },
-  {
-    id: "whatsapp",
-    label: "WhatsApp & Fast Response",
-    hint: userProfile.phone,
-    href: userProfile.whatsappUrl,
-    cardClass: "bg-emerald-700/90 text-white hover:bg-emerald-600/90",
-    icon: <WhatsAppBrandIcon className="w-5 h-5" />,
-  },
-  {
-    id: "email",
-    label: "Kirim Pesan Email Resmi",
-    hint: userProfile.email,
-    href: `mailto:${userProfile.email}`,
-    cardClass: "bg-rose-700/90 text-white hover:bg-rose-600/90",
-    icon: <GmailBrandIcon className="w-5 h-5" />,
-  },
-  {
-    id: "github",
-    label: "Repositori Portofolio GitHub",
-    hint: "github.com/IngsR",
-    href: "https://github.com/IngsR",
-    cardClass:
-      "bg-slate-900/90 border-white/15 text-white hover:bg-slate-800/90",
-    icon: <GithubBrandIcon className="w-5 h-5" />,
-  },
-];
+const buildQuickActions = (
+  userProfile: UserProfile,
+  locale: "id" | "en",
+): QuickAction[] => {
+  const labels = getDictionary(locale).hero.quickActions;
+  return [
+    {
+      id: "cv",
+      label: labels.cv.label,
+      hint: labels.cv.hint,
+      cardClass:
+        "bg-[#faf7f0] text-slate-950 hover:bg-[#f0e9dd] dark:bg-[#363e43] dark:text-slate-100 dark:hover:bg-[#3d464c] sm:col-span-2",
+      icon: <FileText className="w-5 h-5 text-slate-950 dark:text-slate-100" />,
+    },
+    {
+      id: "linkedin",
+      label: labels.linkedin.label,
+      hint: "linkedin.com/in/ikhwn-rdn",
+      href: "https://www.linkedin.com/in/ikhwn-rdn",
+      cardClass: "bg-blue-700/90 text-white hover:bg-blue-600/90",
+      icon: <LinkedInBrandIcon className="w-5 h-5" />,
+    },
+    {
+      id: "whatsapp",
+      label: labels.whatsapp.label,
+      hint: userProfile.phone,
+      href: userProfile.whatsappUrl,
+      cardClass: "bg-emerald-700/90 text-white hover:bg-emerald-600/90",
+      icon: <WhatsAppBrandIcon className="w-5 h-5" />,
+    },
+    {
+      id: "email",
+      label: labels.email.label,
+      hint: userProfile.email,
+      href: `mailto:${userProfile.email}`,
+      cardClass: "bg-rose-700/90 text-white hover:bg-rose-600/90",
+      icon: <GmailBrandIcon className="w-5 h-5" />,
+    },
+    {
+      id: "github",
+      label: labels.github.label,
+      hint: "github.com/IngsR",
+      href: "https://github.com/IngsR",
+      cardClass:
+        "bg-slate-900/90 border-white/15 text-white hover:bg-slate-800/90",
+      icon: <GithubBrandIcon className="w-5 h-5" />,
+    },
+  ];
+};
 
 const QuickActionCard = memo<{
   action: QuickAction;
@@ -120,7 +128,8 @@ export const QuickActions = memo<{
   userProfile: UserProfile;
   onOpenCV: () => void;
 }>(function QuickActions({ userProfile, onOpenCV }) {
-  const actions = buildQuickActions(userProfile);
+  const { locale } = useTranslations();
+  const actions = buildQuickActions(userProfile, locale);
 
   return (
     <div className="lg:col-span-7 grid-cols-1 sm:grid-cols-2 gap-3 min-w-0">

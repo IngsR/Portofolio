@@ -2,6 +2,8 @@
 import { GraduationCap } from "lucide-react";
 import { memo } from "react";
 import { EducationItem } from "../../../types";
+import { useTranslations } from "../../../i18n";
+import { getDictionary } from "../../../data/locales";
 
 /**
  * EducationSection - riwayat pendidikan S1 di Beranda.
@@ -9,13 +11,14 @@ import { EducationItem } from "../../../types";
  */
 export const EducationSection = memo<{ items: EducationItem[] }>(
   function EducationSection({ items }) {
+    const { locale } = useTranslations();
     if (items.length === 0) return null;
 
     return (
       <section className="rounded-3xl border border-slate-200/80 dark:border-white/10 bg-white/80 dark:bg-[#0c0c0d]/75 backdrop-blur-md p-6 sm:p-10 shadow-sm space-y-6">
         <div className="space-y-2 border-b border-slate-200 dark:border-white/10 pb-4">
           <h2 className="ornament-underline text-xl sm:text-3xl font-black tracking-tight text-slate-950 dark:text-white">
-            Pendidikan Perguruan Tinggi (S1)
+            {getDictionary(locale).hero.sections.education}
           </h2>
         </div>
 
@@ -46,7 +49,7 @@ export const EducationSection = memo<{ items: EducationItem[] }>(
                   </span>
                   {edu.gpa && (
                     <span className="inline-flex items-center px-3.5 py-1 rounded-full text-xs font-bold bg-emerald-50 text-emerald-700 dark:bg-emerald-950/40 dark:text-emerald-300 w-fit">
-                      IPK {edu.gpa}
+                      {locale === "en" ? "GPA" : "IPK"} {edu.gpa}
                     </span>
                   )}
                 </div>

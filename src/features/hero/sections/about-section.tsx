@@ -1,58 +1,33 @@
 "use client";
 import { memo } from "react";
-import {
-  HERO_SUMMARY_CARDS,
-  SUMMARY_CARD_CLASSES,
-  SUMMARY_TEXT_CLASSES,
-} from "../hero.data";
+import { SUMMARY_CARD_CLASSES, SUMMARY_TEXT_CLASSES } from "../hero.data";
+import { useTranslations } from "../../../i18n";
+import { getDictionary } from "../../../data/locales";
 
 /**
  * AboutSection - ringkasan identitas singkat di Beranda.
  * Dua kolom di desktop: narasi (8) + kartu fokus teknis (4).
  */
 export const AboutSection = memo(function AboutSection() {
+  const { locale } = useTranslations();
+  const copy = getDictionary(locale).hero.aboutSummary;
+  const labels = getDictionary(locale).hero.sections;
   return (
     <section className="rounded-3xl border border-slate-200/80 dark:border-white/10 bg-white/80 dark:bg-[#0c0c0d]/75 backdrop-blur-md p-6 sm:p-10 shadow-sm space-y-6">
       <div className="space-y-2 border-b border-slate-200 dark:border-white/10 pb-4">
         <h2 className="ornament-underline text-2xl sm:text-3xl font-black tracking-tight text-slate-950 dark:text-white">
-          Tentang Saya
+          {labels.about}
         </h2>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         <div className="lg:col-span-8 space-y-4 text-black dark:text-slate-300 text-[15px] sm:text-base leading-relaxed font-medium">
-          <p>
-            Saya{" "}
-            <strong className="text-slate-950 dark:text-white font-bold">
-              Ikhwan Ramadhan
-            </strong>
-            , lulusan S1 Teknik Informatika Universitas Putra Indonesia
-            &ldquo;YPTK&rdquo; Padang.{" "}
-            <strong className="text-slate-950 dark:text-white font-bold">
-              Fokus profesional saya adalah software engineering
-            </strong>{" "}
-            , terutama membangun aplikasi dari frontend hingga backend, REST
-            API, database, pengujian, dan deployment. Konsentrasi Data Science
-            menjadi{" "}
-            <strong className="text-slate-950 dark:text-white font-bold">
-              bekal akademik pelengkap
-            </strong>{" "}
-            untuk memahami pengolahan dan analisis data.
-          </p>
-          <p>
-            Bagi saya, development bukan sekadar membuat sesuatu berjalan,
-            tetapi juga memahami{" "}
-            <strong className="text-slate-950 dark:text-white font-bold">
-              mengapa sesuatu tidak berjalan
-            </strong>
-            , mencari penyebabnya, dan menemukan cara yang lebih baik untuk
-            menyelesaikannya. Karena itu, saya terus mengeksplorasi teknologi
-            dan pendekatan baru melalui berbagai project yang saya kerjakan.
-          </p>
+          <p>{copy.paragraphOne}</p>
+          <p>{copy.paragraphTwo}</p>
         </div>
 
         <div className="lg:col-span-4 grid grid-cols-2 gap-3 text-xs">
-          {HERO_SUMMARY_CARDS.map((card, index) => {
+          {copy.cards.map((card, index) => {
             const cardClass = SUMMARY_CARD_CLASSES[index] ?? "";
             const textClass =
               SUMMARY_TEXT_CLASSES[index] ?? SUMMARY_TEXT_CLASSES[0];

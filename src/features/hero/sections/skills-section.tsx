@@ -2,6 +2,8 @@
 import { memo } from "react";
 import { SkillCategory } from "../../../types";
 import { SkillCard } from "../cards/skill-card";
+import { useTranslations } from "../../../i18n";
+import { getDictionary } from "../../../data/locales";
 
 /**
  * SkillsSection - grid keahlian & stack teknis di Beranda.
@@ -10,13 +12,14 @@ import { SkillCard } from "../cards/skill-card";
  */
 export const SkillsSection = memo<{ categories: SkillCategory[] }>(
   function SkillsSection({ categories }) {
+    const { locale } = useTranslations();
     if (categories.length === 0) return null;
 
     return (
       <section className="space-y-6">
         <div className="space-y-1.5 sm:space-y-2 border-b border-slate-200 dark:border-white/10 pb-3 sm:pb-4">
           <h2 className="ornament-underline text-xl sm:text-2xl lg:text-3xl font-black tracking-tight text-slate-950 dark:text-white">
-            Keahlian
+            {getDictionary(locale).hero.sections.skills}
           </h2>
         </div>
 
