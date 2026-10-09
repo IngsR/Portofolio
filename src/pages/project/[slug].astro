@@ -23,7 +23,8 @@ interface Props {
 }
 
 const { project, relatedProjects } = Astro.props;
-const siteUrl = Astro.site?.toString().replace(/\/$/, "") ?? "https://ikhwann.my.id";
+const siteUrl =
+  Astro.site?.toString().replace(/\/$/, "") ?? "https://ikhwann.my.id";
 const canonicalUrl = `${siteUrl}/project/${project.slug}`;
 ---
 
@@ -36,5 +37,6 @@ const canonicalUrl = `${siteUrl}/project/${project.slug}`;
     client:idle
     project={project}
     relatedProjects={relatedProjects}
+    currentPath={Astro.url.pathname}
   />
 </SiteLayout>

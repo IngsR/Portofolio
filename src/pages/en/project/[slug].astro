@@ -1,0 +1,45 @@
+---
+import portfolioDataJson from "../../../data/portfolio.json";
+import SiteLayout from "../../../layouts/site.astro";
+import { DetailView } from "../../../features/portfolio/detail-view";
+import { getLocalizedProject } from "../../../utils/format";
+import type { ProjectItem } from "../../../types";
+
+export const prerender = true;
+
+export function getStaticPaths() {
+  const projects = portfolioDataJson.projects as ProjectItem[];
+  return projects.map((project) => ({
+    params: { slug: project.slug },
+    props: {
+      project: getLocalizedProject(project, "en"),
+      relatedProjects: projects
+        .filter((item) => item.id !== project.id)
+        .map((item) => getLocalizedProject(item, "en")),
+    },
+  }));
+}
+
+interface Props {
+  project: ProjectItem;
+  relatedProjects: ProjectItem[];
+}
+
+const { project, relatedProjects } = Astro.props;
+const canonicalPath = `/en/project/${project.slug}`;
+---
+
+<SiteLayout
+  locale="en"
+  title={`${project.title} | Web Developer Case Study`}
+  description={project.shortDescription}
+  canonicalPath={canonicalPath}
+>
+  <DetailView
+    client:idle
+    project={project}
+    relatedProjects={relatedProjects}
+    locale="en"
+    currentPath={Astro.url.pathname}
+  />
+</SiteLayout>

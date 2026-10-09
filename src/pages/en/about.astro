@@ -1,0 +1,14 @@
+---
+import App from "../../app";
+import SiteLayout from "../../layouts/site.astro";
+
+export const prerender = true;
+---
+
+<SiteLayout
+  locale="en"
+  title="About Ikhwan Ramadhan | Junior Web Developer"
+  description="Profile of Ikhwan Ramadhan, a junior web developer."
+>
+  <App client:idle initialPage="about" locale="en" />
+</SiteLayout>

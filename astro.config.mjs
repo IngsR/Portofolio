@@ -22,6 +22,16 @@ export default defineConfig({
   site: "https://ikhwann.my.id",
   output: "static",
   trailingSlash: "never",
+  i18n: {
+    // English adalah bahasa default; halaman Indonesia memakai prefix /id
+    // secara opsional melalui pilihan pengunjung (lihat utils/locale.ts).
+    defaultLocale: "en",
+    locales: ["en", "id"],
+    routing: {
+      prefixDefaultLocale: true,
+      redirectToDefaultLocale: false,
+    },
+  },
   integrations: [
     react(),
     sitemap({

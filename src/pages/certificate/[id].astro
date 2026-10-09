@@ -27,7 +27,10 @@ const { certificate, relatedCertificates } = Astro.props;
 
 <SiteLayout
   title={`${certificate.title} | Kredensial & Sertifikasi Ikhwan Ramadhan`}
-  description={certificate.description || `Sertifikasi resmi ${certificate.title} dari ${certificate.issuer}`}
+  description={
+    certificate.description ||
+    `Sertifikasi resmi ${certificate.title} dari ${certificate.issuer}`
+  }
   canonicalPath={`/certificate/${certificate.id}`}
 >
   <DetailView
@@ -36,5 +39,6 @@ const { certificate, relatedCertificates } = Astro.props;
     relatedCertificates={relatedCertificates}
     backHref="/portfolio"
     backLabel="Kembali ke Portofolio"
+    currentPath={Astro.url.pathname}
   />
 </SiteLayout>

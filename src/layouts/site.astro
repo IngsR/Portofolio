@@ -9,17 +9,33 @@ interface Props {
   title?: string;
   description?: string;
   canonicalPath?: string;
+  locale?: "id" | "en";
 }
 
 const {
   title = "Ikhwan Ramadhan | Junior Web Developer",
   description = "Portofolio Ikhwan Ramadhan di bidang software engineering dengan pengalaman membangun aplikasi frontend dan backend. Konsentrasi Data Science menjadi bekal akademik tambahan.",
   canonicalPath = Astro.url.pathname,
+  locale = "id",
 } = Astro.props;
 const siteUrl =
   Astro.site?.toString().replace(/\/$/, "") ?? "https://ikhwann.my.id";
 const canonicalUrl = new URL(canonicalPath, Astro.site ?? Astro.url).toString();
 const ogImageUrl = `${siteUrl}/og.png`;
+const englishPath =
+  locale === "en"
+    ? canonicalPath
+    : canonicalPath === "/"
+      ? "/en"
+      : `/en${canonicalPath}`;
+const indonesianPath =
+  locale === "en"
+    ? canonicalPath.replace(/^\/en(?=\/|$)/, "") || "/"
+    : canonicalPath;
+const languagePaths = {
+  id: new URL(indonesianPath, siteUrl).toString(),
+  en: new URL(englishPath, siteUrl).toString(),
+};
 
 // ── JSON-LD: Person Schema ──
 const personSchema = {
@@ -73,7 +89,7 @@ const websiteSchema = {
   url: `${siteUrl}/`,
   description,
   publisher: { "@type": "Person", name: "Ikhwan Ramadhan" },
-  inLanguage: "id-ID",
+  inLanguage: locale === "en" ? "en" : "id-ID",
 };
 
 // ── JSON-LD: WebPage Schema (per-page) ──
@@ -88,7 +104,7 @@ const webPageSchema = {
     name: "Profile Ikhwan Ramadhan",
     url: `${siteUrl}/`,
   },
-  inLanguage: "id-ID",
+  inLanguage: locale === "en" ? "en" : "id-ID",
   author: { "@type": "Person", name: "Ikhwan Ramadhan" },
   dateModified: new Date().toISOString(),
 };
@@ -122,7 +138,7 @@ const breadcrumbSchema = {
 ---
 
 <!doctype html>
-<html lang="id">
+<html lang={locale}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -141,6 +157,8 @@ const breadcrumbSchema = {
     <script is:inline>
       const applyPortfolioTheme = () => {
         try {
+          // Default terang untuk kunjungan pertama; hanya gelap bila
+          // pengunjung sebelumnya sudah memilih tema gelap.
           document.documentElement.classList.toggle(
             "dark",
             localStorage.getItem("portfolio_theme") === "dark",
@@ -152,9 +170,42 @@ const breadcrumbSchema = {
       applyPortfolioTheme();
       document.addEventListener("astro:after-swap", applyPortfolioTheme);
     </script>
+    <!-- Language Preference Initializer (Default: English) -->
+    <script is:inline>
+      // Hanya route halaman utama yang dialihkan; halaman detail proyek dan
+      // sertifikat mempertahankan URL-nya agar pratinjau tautan tetap utuh.
+      (() => {
+        try {
+          const preferred =
+            localStorage.getItem("portfolio_locale") === "id" ? "id" : "en";
+          const path = window.location.pathname.replace(/\/+$/, "") || "/";
+          const isEnglish = path === "/en" || path.startsWith("/en/");
+          const current = isEnglish ? "en" : "id";
+          if (current === preferred) return;
+
+          const bare =
+            path === "/en" ? "/" : path.replace(/^\/en(?=\/)/, "");
+          const isMainRoute =
+            bare === "/" ||
+            ["/portfolio", "/about", "/contact"].includes(bare);
+          if (!isMainRoute) return;
+
+          const target =
+            preferred === "en"
+              ? bare === "/"
+                ? "/en"
+                : `/en${bare}`
+              : bare;
+          window.location.replace(target + window.location.search);
+        } catch {
+          // Bila localStorage diblokir, biarkan path apa adanya.
+        }
+      })();
+    </script>
     <!-- Language Alternate -->
-    <link rel="alternate" hreflang="id" href={canonicalUrl} />
-    <link rel="alternate" hreflang="x-default" href={canonicalUrl} />
+    <link rel="alternate" hreflang="id" href={languagePaths.id} />
+    <link rel="alternate" hreflang="en" href={languagePaths.en} />
+    <link rel="alternate" hreflang="x-default" href={languagePaths.en} />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
@@ -168,7 +219,7 @@ const breadcrumbSchema = {
       property="og:image:alt"
       content="Ikhwan Ramadhan - Junior Web Developer"
     />
-    <meta property="og:locale" content="id_ID" />
+    <meta property="og:locale" content={locale === "en" ? "en_US" : "id_ID"} />
     <meta property="og:site_name" content="Ikhwan Ramadhan" />
 
     <!-- Twitter Card -->

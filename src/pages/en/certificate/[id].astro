@@ -1,0 +1,49 @@
+---
+import portfolioDataJson from "../../../data/portfolio.json";
+import SiteLayout from "../../../layouts/site.astro";
+import { DetailView } from "../../../features/portfolio/detail-view";
+import { getLocalizedCertification } from "../../../utils/format";
+import type { CertificationItem } from "../../../types";
+
+export const prerender = true;
+
+export function getStaticPaths() {
+  const certificates = portfolioDataJson.certifications as CertificationItem[];
+  return certificates.map((certificate) => ({
+    params: { id: certificate.id },
+    props: {
+      certificate: getLocalizedCertification(certificate, "en"),
+      relatedCertificates: certificates
+        .filter((item) => item.id !== certificate.id)
+        .map((item) => getLocalizedCertification(item, "en")),
+    },
+  }));
+}
+
+interface Props {
+  certificate: CertificationItem;
+  relatedCertificates: CertificationItem[];
+}
+
+const { certificate, relatedCertificates } = Astro.props;
+const canonicalPath = `/en/certificate/${certificate.id}`;
+---
+
+<SiteLayout
+  locale="en"
+  title={`${certificate.title} | Ikhwan Ramadhan`}
+  description={
+    certificate.description || `${certificate.title} by ${certificate.issuer}`
+  }
+  canonicalPath={canonicalPath}
+>
+  <DetailView
+    client:idle
+    certificate={certificate}
+    relatedCertificates={relatedCertificates}
+    backHref="/en/portfolio"
+    backLabel="Back to Portfolio"
+    locale="en"
+    currentPath={Astro.url.pathname}
+  />
+</SiteLayout>
