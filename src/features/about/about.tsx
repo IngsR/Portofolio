@@ -25,6 +25,15 @@ import {
   SkillCategory,
 } from "../../types";
 import { Certificate } from "../portfolio/certificate";
+import { useTranslations } from "../../i18n";
+import { getDictionary } from "../../data/locales";
+import {
+  getLocalizedCertification,
+  getLocalizedEducation,
+  getLocalizedExperience,
+  getLocalizedSkillCategory,
+  getLocalizedUserProfile,
+} from "../../utils/format";
 
 const {
   userProfile,
@@ -45,6 +54,21 @@ interface AboutSectionProps {
 }
 
 export const About: React.FC<AboutSectionProps> = ({ onOpenCV }) => {
+  const { locale } = useTranslations();
+  const copy = getDictionary(locale).about;
+  const localizedProfile = getLocalizedUserProfile(userProfile, locale);
+  const localizedExperience = experienceData.map((item) =>
+    getLocalizedExperience(item, locale),
+  );
+  const localizedEducation = educationData.map((item) =>
+    getLocalizedEducation(item, locale),
+  );
+  const localizedCertifications = certificationsData.map((item) =>
+    getLocalizedCertification(item, locale),
+  );
+  const localizedSkills = skillCategories.map((item) =>
+    getLocalizedSkillCategory(item, locale),
+  );
   const [activeTab, setActiveTab] = useState<
     "experience" | "skills" | "education"
   >("experience");
@@ -113,13 +137,13 @@ export const About: React.FC<AboutSectionProps> = ({ onOpenCV }) => {
 
             <div className="space-y-1">
               <span className="text-[10px] font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500">
-                Profil Profesional
+                {copy.profileLabel}
               </span>
               <h1 className="text-2xl sm:text-3xl lg:text-4xl tracking-tight text-slate-950 dark:text-white font-caveat font-bold">
-                {userProfile.name}
+                {localizedProfile.name}
               </h1>
               <p className="text-sm sm:text-base font-script text-slate-700 dark:text-slate-300">
-                {userProfile.title}
+                {localizedProfile.title}
               </p>
             </div>
           </div>
@@ -133,12 +157,12 @@ export const About: React.FC<AboutSectionProps> = ({ onOpenCV }) => {
               className="inline-flex items-center justify-center gap-2 rounded-full bg-slate-950 px-4 py-2.5 text-xs font-bold text-white shadow-sm transition-all hover:bg-slate-800 dark:bg-white dark:text-slate-950 dark:hover:bg-slate-100 sm:px-5"
             >
               <FileText className="h-4 w-4" />
-              <span>Lihat CV Lengkap</span>
+              <span>{copy.cv}</span>
             </button>
 
             {/* WhatsApp */}
             <a
-              href={userProfile.whatsappUrl}
+              href={localizedProfile.whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 rounded-full border border-emerald-500/40 bg-emerald-500/10 px-4 py-2.5 text-xs font-bold text-emerald-700 transition-all hover:bg-emerald-500/20 dark:border-emerald-400/30 dark:bg-emerald-400/10 dark:text-emerald-300 dark:hover:bg-emerald-400/20 sm:px-5"
@@ -149,7 +173,7 @@ export const About: React.FC<AboutSectionProps> = ({ onOpenCV }) => {
 
             {/* Email */}
             <a
-              href={`mailto:${userProfile.email}`}
+              href={`mailto:${localizedProfile.email}`}
               className="inline-flex items-center justify-center gap-2 rounded-full border border-slate-300 bg-white px-4 py-2.5 text-xs font-semibold text-slate-800 transition-all hover:bg-slate-100 dark:border-white/15 dark:bg-white/[0.04] dark:text-slate-200 dark:hover:bg-white/[0.08]"
             >
               <Mail className="h-4 w-4" />
@@ -163,7 +187,7 @@ export const About: React.FC<AboutSectionProps> = ({ onOpenCV }) => {
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-12 lg:gap-8 lg:items-start">
           {/* Bio */}
           <div className="space-y-3.5 text-base leading-relaxed text-slate-600 dark:text-slate-400 sm:space-y-4 sm:text-lg sm:leading-[1.75] lg:col-span-7">
-            {userProfile.fullBio.map((paragraph, index) => (
+            {localizedProfile.fullBio.map((paragraph, index) => (
               <p key={index} className="text-pretty">
                 {paragraph}
               </p>
@@ -180,15 +204,14 @@ export const About: React.FC<AboutSectionProps> = ({ onOpenCV }) => {
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
                 </span>
                 <span className="text-[10.5px] font-bold font-mono uppercase tracking-wider text-emerald-700 dark:text-emerald-400">
-                  Kesiapan Kerja
+                  {copy.availability}
                 </span>
               </div>
               <h4 className="text-sm sm:text-base font-bold text-slate-950 dark:text-white">
-                On-Site / WFO &amp; Remote
+                {copy.availabilityTitle}
               </h4>
               <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-400">
-                Siap bekerja on-site / WFO di seluruh Indonesia, serta sistem
-                kerja Hybrid / Remote.
+                {copy.availabilityDescription}
               </p>
             </div>
 
@@ -197,16 +220,14 @@ export const About: React.FC<AboutSectionProps> = ({ onOpenCV }) => {
               <div className="flex items-center gap-2">
                 <GraduationCap className="h-3.5 w-3.5 text-blue-600 dark:text-blue-400 shrink-0" />
                 <span className="text-[10.5px] font-bold font-mono uppercase tracking-wider text-blue-700 dark:text-blue-400">
-                  Pendidikan Terakhir
+                  {copy.education}
                 </span>
               </div>
               <h4 className="text-sm sm:text-base font-bold text-slate-950 dark:text-white">
-                S1 Teknik Informatika
+                {copy.highlights.educationTitle}
               </h4>
               <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-400">
-                Lulusan S1 TI UPI &ldquo;YPTK&rdquo; Padang dengan fondasi RPL,
-                DSA, basis data relasional, dan arsitektur sistem web.
-                Konsentrasi Data Science menjadi bekal akademik tambahan.
+                {copy.highlights.educationDescription}
               </p>
             </div>
 
@@ -215,16 +236,14 @@ export const About: React.FC<AboutSectionProps> = ({ onOpenCV }) => {
               <div className="flex items-center gap-2">
                 <Cpu className="h-3.5 w-3.5 text-purple-600 dark:text-purple-400 shrink-0" />
                 <span className="text-[10.5px] font-bold font-mono uppercase tracking-wider text-purple-700 dark:text-purple-400">
-                  Fokus Keahlian
+                  {copy.expertise}
                 </span>
               </div>
               <h4 className="text-sm sm:text-base font-bold text-slate-950 dark:text-white">
-                Junior Web Developer
+                {copy.highlights.expertiseTitle}
               </h4>
               <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-400">
-                Frontend dan backend dengan Next.js (App Router), REST API, Zod,
-                testing, OWASP Top 10, Git workflow, CI/CD, dan deployment
-                serverless.
+                {copy.highlights.expertiseDescription}
               </p>
             </div>
           </div>
@@ -242,17 +261,17 @@ export const About: React.FC<AboutSectionProps> = ({ onOpenCV }) => {
           tabs={[
             {
               id: "experience",
-              label: "Pengalaman Kerja",
+              label: copy.tabs.experience,
               icon: <Briefcase className="h-3.5 w-3.5 shrink-0" />,
             },
             {
               id: "skills",
-              label: "Keahlian Teknis",
+              label: copy.tabs.skills,
               icon: <Cpu className="h-3.5 w-3.5 shrink-0" />,
             },
             {
               id: "education",
-              label: "Pendidikan & Sertifikasi",
+              label: copy.tabs.education,
               icon: <GraduationCap className="h-3.5 w-3.5 shrink-0" />,
             },
           ]}
@@ -265,7 +284,7 @@ export const About: React.FC<AboutSectionProps> = ({ onOpenCV }) => {
       {activeTab === "experience" && (
         <TracingBeam className="px-0 sm:px-4">
           <div className="space-y-6">
-            {experienceData.map((exp) => (
+            {localizedExperience.map((exp) => (
               <div key={exp.id} className="relative space-y-3">
                 <div className="space-y-4 rounded-3xl border border-slate-200/80 bg-white/80 dark:bg-[#0c0c0d]/75 backdrop-blur-md p-5 shadow-sm dark:border-white/10 sm:p-8">
                   <div className="flex flex-col justify-between gap-3 border-b border-slate-100 pb-4 dark:border-white/10 sm:flex-row sm:items-center">
@@ -296,7 +315,7 @@ export const About: React.FC<AboutSectionProps> = ({ onOpenCV }) => {
 
                   <div className="space-y-2 pt-1">
                     <h4 className="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
-                      Pencapaian Utama
+                      {copy.achievements}
                     </h4>
 
                     <ul className="space-y-2 text-[15px] leading-relaxed text-slate-700 dark:text-slate-300 sm:text-base">
@@ -333,17 +352,16 @@ export const About: React.FC<AboutSectionProps> = ({ onOpenCV }) => {
         <div className="space-y-6">
           <div className="space-y-1">
             <h2 className="ornament-underline text-2xl font-black tracking-tight text-slate-950 dark:text-white sm:text-3xl">
-              Teknologi yang Saya Gunakan
+              {copy.skillsTitle}
             </h2>
 
             <p className="text-sm text-slate-600 dark:text-slate-400">
-              Stack yang paling sering saya gunakan, beserta tools yang
-              digunakan sesuai kebutuhan project.
+              {copy.skillsDescription}
             </p>
           </div>
 
           <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
-            {skillCategories.map((category) => (
+            {localizedSkills.map((category) => (
               <CardSpotlight
                 key={category.title}
                 tilt={true}
@@ -369,7 +387,7 @@ export const About: React.FC<AboutSectionProps> = ({ onOpenCV }) => {
                 <div className="space-y-4">
                   <div className="space-y-2">
                     <h4 className="text-[10px] font-bold tracking-[0.16em] text-emerald-700 dark:text-emerald-400">
-                      CORE STACK
+                      {copy.coreStack}
                     </h4>
 
                     <div className="flex flex-wrap gap-2">
@@ -386,7 +404,7 @@ export const About: React.FC<AboutSectionProps> = ({ onOpenCV }) => {
 
                   <div className="space-y-2">
                     <h4 className="text-[10px] font-bold tracking-[0.16em] text-slate-500 dark:text-slate-400">
-                      {category.alsoUsedLabel || "ALSO USED"}
+                      {category.alsoUsedLabel || copy.alsoUsed}
                     </h4>
 
                     <div className="flex flex-wrap gap-2">
@@ -417,10 +435,10 @@ export const About: React.FC<AboutSectionProps> = ({ onOpenCV }) => {
             <div className="flex items-center gap-2 border-b border-slate-200 pb-2 text-lg font-bold text-slate-950 dark:border-white/10 dark:text-white">
               <GraduationCap className="h-5 w-5" />
 
-              <h2 className="ornament-underline">Riwayat Pendidikan</h2>
+              <h2 className="ornament-underline">{copy.educationHistory}</h2>
             </div>
 
-            {educationData.map((education) => (
+            {localizedEducation.map((education) => (
               <div
                 key={education.id}
                 className="space-y-2.5 rounded-3xl border border-slate-200/80 bg-white/80 dark:bg-[#0c0c0d]/75 backdrop-blur-md p-5 shadow-sm dark:border-white/10 sm:p-6"
@@ -456,14 +474,12 @@ export const About: React.FC<AboutSectionProps> = ({ onOpenCV }) => {
           <div className="space-y-4">
             <div className="flex items-center gap-2 border-b border-slate-200 pb-2 text-lg font-bold text-slate-950 dark:border-white/10 dark:text-white">
               <Award className="h-5 w-5" />
-              <h2 className="ornament-underline">
-                Sertifikasi &amp; Kredensial
-              </h2>
+              <h2 className="ornament-underline">{copy.certificationsTitle}</h2>
             </div>
 
             {/* Grid 2 kolom sejak mobile agar kartu sertifikasi rapi 2 baris */}
             <div className="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-2 lg:grid-cols-3 lg:gap-6">
-              {certificationsData.map((cert) => (
+              {localizedCertifications.map((cert) => (
                 <Certificate
                   key={cert.id}
                   certificate={cert}

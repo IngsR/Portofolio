@@ -22,7 +22,10 @@ import {
 } from "lucide-react";
 import React, { useState } from "react";
 import { Navbar } from "../../components/layout/navbar";
-import type { CertificationItem, ProjectItem } from "../../types";
+import type { CertificationItem, Locale, ProjectItem } from "../../types";
+import { getLocalePath } from "../../utils/locale";
+import { getDictionary } from "../../data/locales";
+import { formatShortDate } from "../../utils/format";
 
 const getMetricTheme = (
   label: string,
@@ -115,6 +118,8 @@ export interface DetailViewProps {
   backHref?: string;
   backLabel?: string;
   onBack?: () => void;
+  locale?: Locale;
+  currentPath?: string;
 }
 
 /**
@@ -129,7 +134,10 @@ export const DetailView: React.FC<DetailViewProps> = ({
   backHref,
   backLabel,
   onBack,
+  locale = "id",
+  currentPath,
 }) => {
+  const copy = getDictionary(locale).portfolio.detail;
   const isProject = !!project;
   const item = project || certificate;
 
@@ -139,7 +147,9 @@ export const DetailView: React.FC<DetailViewProps> = ({
     return (
       <div className="min-h-[50vh] flex items-center justify-center p-8 text-center">
         <p className="text-slate-500 dark:text-slate-400">
-          Data detail tidak ditemukan.
+          {locale === "en"
+            ? "Detail not found."
+            : "Data detail tidak ditemukan."}
         </p>
       </div>
     );
@@ -156,43 +166,58 @@ export const DetailView: React.FC<DetailViewProps> = ({
   const title = isProject ? project!.title : certificate!.title;
   const category = isProject
     ? project!.category
-    : certificate!.category || "Sertifikasi Resmi";
+    : certificate!.category ||
+      (locale === "en" ? "Official Certification" : "Sertifikasi Resmi");
   const period = isProject
-    ? project!.period || project!.publishedDate
-    : certificate!.period || certificate!.issueDate;
+    ? formatShortDate(project!.period || project!.publishedDate, locale)
+    : certificate!.period || formatShortDate(certificate!.issueDate, locale);
   const description = isProject
     ? project!.shortDescription
     : certificate!.description ||
-      `Kredensial sertifikasi profesional resmi yang diterbitkan oleh ${certificate!.issuer}.`;
+      `${copy.issuerDescription} ${certificate!.issuer}.`;
   const image = isProject
     ? project!.imageFull || project!.image
     : certificate!.image;
   const fallbackImage = isProject
     ? project!.fallbackImage
     : certificate!.fallbackImage;
+  const problemDescription =
+    project?.problem && project.problem !== project.shortDescription
+      ? project.problem
+      : copy.problemFallback;
+  const solutionDescription =
+    project?.solution && project.solution !== project.shortDescription
+      ? project.solution
+      : copy.solutionFallback;
 
   // Resolved back navigation
   const resolvedBackHref = backHref || (isProject ? "/" : "/portfolio");
   const resolvedBackLabel =
-    backLabel || (isProject ? "Kembali ke Beranda" : "Kembali ke Portofolio");
+    backLabel || (isProject ? copy.backHome : copy.backPortfolio);
 
   // Certificate metrics helper
   const certificateMetrics =
     !isProject && certificate
       ? [
           {
-            label: "Penerbit Kredensial",
+            label:
+              locale === "en" ? "Credential Issuer" : "Penerbit Kredensial",
             value: certificate.issuer,
             icon: <Building2 className="w-5 h-5" />,
           },
           {
-            label: "Nomor / ID Kredensial",
-            value: certificate.badgeCode || "Terverifikasi",
+            label:
+              locale === "en"
+                ? "Credential Number / ID"
+                : "Nomor / ID Kredensial",
+            value: certificate.badgeCode || copy.verified,
             icon: <ShieldCheck className="w-5 h-5 text-indigo-500" />,
           },
           {
-            label: "Masa Berlaku",
-            value: certificate.period || "Aktif / Seumur Hidup",
+            label: locale === "en" ? "Validity" : "Masa Berlaku",
+            value:
+              certificate.period ||
+              (locale === "en" ? "Active / Lifetime" : "Aktif / Seumur Hidup"),
             icon: <CheckCircle2 className="w-5 h-5 text-emerald-500" />,
           },
         ]
@@ -200,10 +225,18 @@ export const DetailView: React.FC<DetailViewProps> = ({
 
   return (
     <div className="min-h-screen text-slate-900 dark:text-slate-100 transition-colors duration-200">
-      <Navbar nativeNavigation activePage="portfolio" />
+      <Navbar
+        nativeNavigation
+        activePage="portfolio"
+        locale={locale}
+        {...(currentPath ? { currentPath } : {})}
+      />
       <div className="relative z-10 max-w-6xl 2xl:max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 sm:pt-28 pb-24">
         {/* Navigation & Breadcrumbs Bar */}
-        <div className="flex items-center justify-between gap-3 pb-6 mb-8 border-b border-slate-200/80 dark:border-white/10 w-full overflow-x-auto hide-scrollbar" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+        <div
+          className="flex items-center justify-between gap-3 pb-6 mb-8 border-b border-slate-200/80 dark:border-white/10 w-full overflow-x-auto hide-scrollbar"
+          style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+        >
           {onBack ? (
             <button
               type="button"
@@ -213,17 +246,17 @@ export const DetailView: React.FC<DetailViewProps> = ({
             >
               <ArrowLeft className="w-3.5 h-3.5 sm:w-4 sm:h-4 transition-transform group-hover:-translate-x-1 text-slate-700 dark:text-slate-300" />
               <span className="hidden sm:inline">{resolvedBackLabel}</span>
-              <span className="sm:hidden">Kembali</span>
+              <span className="sm:hidden">{copy.back}</span>
             </button>
           ) : (
             <a
-              href={resolvedBackHref}
+              href={getLocalePath(resolvedBackHref, locale)}
               className="group inline-flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-white/95 dark:bg-white/[0.06] border border-slate-200/90 dark:border-white/10 text-[11px] sm:text-xs font-bold text-slate-800 dark:text-slate-100 hover:border-slate-400 dark:hover:border-white/30 backdrop-blur-md transition-all duration-200 shadow-xs hover:shadow-sm shrink-0"
               title={resolvedBackLabel}
             >
               <ArrowLeft className="w-3.5 h-3.5 sm:w-4 sm:h-4 transition-transform group-hover:-translate-x-1 text-slate-700 dark:text-slate-300" />
               <span className="hidden sm:inline">{resolvedBackLabel}</span>
-              <span className="sm:hidden">Kembali</span>
+              <span className="sm:hidden">{copy.back}</span>
             </a>
           )}
 
@@ -232,10 +265,12 @@ export const DetailView: React.FC<DetailViewProps> = ({
               type="button"
               onClick={handleShare}
               className="inline-flex items-center gap-1.5 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-full bg-white/90 dark:bg-white/[0.06] border border-slate-200/90 dark:border-white/10 text-[11px] sm:text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-white/10 transition-colors shadow-xs shrink-0"
-              title="Salin tautan"
+              title={copy.copyLink}
             >
               <Share2 className="w-3.5 h-3.5" />
-              <span className="hidden sm:inline">{copied ? "Tautan Disalin! ✓" : "Bagikan"}</span>
+              <span className="hidden sm:inline">
+                {copied ? copy.copied : copy.share}
+              </span>
             </button>
 
             {isProject && project?.githubUrl && (
@@ -270,7 +305,7 @@ export const DetailView: React.FC<DetailViewProps> = ({
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-1.5 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-slate-950 text-white dark:bg-white dark:text-slate-950 text-[11px] sm:text-xs font-bold hover:bg-slate-800 dark:hover:bg-slate-100 transition-all shadow-md active:scale-95 shrink-0"
               >
-                <span>Verifikasi</span>
+                <span>{copy.verify}</span>
                 <ExternalLink className="w-3.5 h-3.5" />
               </a>
             )}
@@ -288,7 +323,7 @@ export const DetailView: React.FC<DetailViewProps> = ({
               </span>
             )}
             <span className="text-xs text-slate-500 dark:text-slate-400 font-medium">
-              {isProject ? category : certificate?.category || "Sertifikasi"}
+              {isProject ? category : certificate?.category || copy.certificate}
             </span>
           </div>
 
@@ -311,7 +346,7 @@ export const DetailView: React.FC<DetailViewProps> = ({
                 ) : (
                   <Building2 className="w-3.5 h-3.5 text-indigo-500" />
                 )}
-                <span>{isProject ? "Peran" : "Penerbit"}</span>
+                <span>{isProject ? copy.role : copy.issuer}</span>
               </div>
               <p className="text-xs sm:text-sm font-bold text-slate-900 dark:text-white truncate">
                 {isProject
@@ -323,10 +358,10 @@ export const DetailView: React.FC<DetailViewProps> = ({
             <div className="p-4 rounded-2xl bg-white/95 dark:bg-white/[0.03] border border-slate-200/80 dark:border-white/10 shadow-xs">
               <div className="flex items-center gap-1.5 text-slate-500 dark:text-slate-400 text-[11px] font-semibold uppercase tracking-wider mb-1">
                 <Calendar className="w-3.5 h-3.5 text-sky-500" />
-                <span>{isProject ? "Tanggal Rilis" : "Tanggal Terbit"}</span>
+                <span>{isProject ? copy.releaseDate : copy.issueDate}</span>
               </div>
               <p className="text-xs sm:text-sm font-bold text-slate-900 dark:text-white truncate">
-                {isProject ? project?.publishedDate : certificate?.issueDate}
+                {period}
               </p>
             </div>
 
@@ -337,24 +372,24 @@ export const DetailView: React.FC<DetailViewProps> = ({
                 ) : (
                   <ShieldCheck className="w-3.5 h-3.5 text-purple-500" />
                 )}
-                <span>{isProject ? "Kategori" : "ID Kredensial"}</span>
+                <span>{isProject ? copy.category : copy.credentialId}</span>
               </div>
               <p className="text-xs sm:text-sm font-bold text-slate-900 dark:text-white truncate font-mono">
                 {isProject
                   ? project?.category
-                  : certificate?.badgeCode || "TERVERIFIKASI"}
+                  : certificate?.badgeCode || copy.verified.toUpperCase()}
               </p>
             </div>
 
             <div className="p-4 rounded-2xl bg-white/95 dark:bg-white/[0.03] border border-slate-200/80 dark:border-white/10 shadow-xs">
               <div className="flex items-center gap-1.5 text-slate-500 dark:text-slate-400 text-[11px] font-semibold uppercase tracking-wider mb-1">
                 <Layers className="w-3.5 h-3.5 text-emerald-500" />
-                <span>Status</span>
+                <span>{copy.status}</span>
               </div>
               <div className="flex items-center gap-1.5 text-xs sm:text-sm font-bold text-emerald-600 dark:text-emerald-400">
                 <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
                 <span>
-                  {isProject ? "Terverifikasi Produksi" : "Resmi & Berlaku"}
+                  {isProject ? copy.productionVerified : copy.officialActive}
                 </span>
               </div>
             </div>
@@ -400,7 +435,7 @@ export const DetailView: React.FC<DetailViewProps> = ({
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 px-4 py-2 sm:px-5 sm:py-2.5 rounded-full bg-white/95 text-slate-950 font-bold text-xs sm:text-sm shadow-xl hover:bg-white backdrop-blur-md transition-all hover:scale-105"
                   >
-                    <span>Kunjungi Situs Langsung</span>
+                    <span>{copy.liveSite}</span>
                     <ExternalLink className="w-4 h-4" />
                   </a>
                 </div>
@@ -414,7 +449,7 @@ export const DetailView: React.FC<DetailViewProps> = ({
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 px-4 py-2 sm:px-5 sm:py-2.5 rounded-full bg-slate-950 text-white dark:bg-white dark:text-slate-950 font-bold text-xs sm:text-sm shadow-xl hover:opacity-90 backdrop-blur-md transition-all hover:scale-105"
                   >
-                    <span>Verifikasi Kredensial Asli</span>
+                    <span>{copy.verifyCredential}</span>
                     <ExternalLink className="w-4 h-4" />
                   </a>
                 </div>
@@ -495,28 +530,26 @@ export const DetailView: React.FC<DetailViewProps> = ({
                 <div className="p-6 sm:p-8 rounded-3xl bg-white/90 dark:bg-white/[0.02] border border-slate-200/90 dark:border-white/10 shadow-sm space-y-3">
                   <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 text-xs font-bold">
                     <Target className="w-3.5 h-3.5" />
-                    <span>Latar Belakang &amp; Kebutuhan</span>
+                    <span>{copy.background}</span>
                   </div>
                   <h3 className="text-xl sm:text-2xl font-bold text-slate-950 dark:text-white">
-                    Konteks &amp; Kebutuhan Sistem
+                    {copy.systemContext}
                   </h3>
                   <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed">
-                    {project?.problem ||
-                      "Setiap sistem dirancang untuk memenuhi spesifikasi kebutuhan fungsional dan teknis yang jelas - mulai dari efisiensi alur data, responsivitas antarmuka, hingga kemudahan pemeliharaan jangka panjang."}
+                    {problemDescription}
                   </p>
                 </div>
 
                 <div className="p-6 sm:p-8 rounded-3xl bg-white/90 dark:bg-white/[0.02] border border-slate-200/90 dark:border-white/10 shadow-sm space-y-3">
                   <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 text-xs font-bold">
                     <CheckCircle2 className="w-3.5 h-3.5" />
-                    <span>Keputusan Rekayasa</span>
+                    <span>{copy.engineeringDecision}</span>
                   </div>
                   <h3 className="text-xl sm:text-2xl font-bold text-slate-950 dark:text-white">
-                    Pendekatan &amp; Solusi Teknis
+                    {copy.technicalApproach}
                   </h3>
                   <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed">
-                    {project?.solution ||
-                      "Pendekatan teknis disesuaikan dengan karakteristik arsitektur sistem: pemilihan strategi rendering, modularitas komponen, validasi data tipe-ketat, serta integrasi deployment yang andal."}
+                    {solutionDescription}
                   </p>
                 </div>
               </div>
@@ -527,7 +560,7 @@ export const DetailView: React.FC<DetailViewProps> = ({
                   <div className="flex items-center gap-2">
                     <Code2 className="w-5 h-5 text-indigo-500" />
                     <h3 className="text-lg sm:text-xl font-bold text-slate-950 dark:text-white">
-                      Teknologi &amp; Stack Rekayasa
+                      {copy.technologyStack}
                     </h3>
                   </div>
                   <div className="flex flex-wrap gap-2 pt-1">
@@ -551,32 +584,31 @@ export const DetailView: React.FC<DetailViewProps> = ({
                 <div className="p-6 sm:p-8 rounded-3xl bg-white/90 dark:bg-white/[0.02] border border-slate-200/90 dark:border-white/10 shadow-sm space-y-3">
                   <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 text-xs font-bold">
                     <Award className="w-3.5 h-3.5" />
-                    <span>Standar Kurikulum</span>
+                    <span>{copy.curriculum}</span>
                   </div>
                   <h3 className="text-xl sm:text-2xl font-bold text-slate-950 dark:text-white">
-                    Deskripsi &amp; Cakupan Materi
+                    {copy.descriptionCoverage}
                   </h3>
                   <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed">
                     {certificate?.description ||
-                      "Sertifikasi ini mencakup materi teknis yang diuji secara terstruktur - bukan sekadar menonton video, tapi memahami konsep dan bisa menerapkannya di konteks nyata."}
+                      copy.certificateDescriptionFallback}
                   </p>
                 </div>
 
                 <div className="p-6 sm:p-8 rounded-3xl bg-white/90 dark:bg-white/[0.02] border border-slate-200/90 dark:border-white/10 shadow-sm space-y-3">
                   <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 text-xs font-bold">
                     <CheckCircle2 className="w-3.5 h-3.5" />
-                    <span>Kredibilitas Penerbit</span>
+                    <span>{copy.issuerCredibility}</span>
                   </div>
                   <h3 className="text-xl sm:text-2xl font-bold text-slate-950 dark:text-white">
                     {certificate?.issuer}
                   </h3>
                   <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed">
-                    Diterbitkan secara resmi dengan identitas kredensial{" "}
+                    {copy.issuerDescription}{" "}
                     <span className="font-mono font-bold text-slate-900 dark:text-white">
-                      {certificate?.badgeCode || "Terverifikasi"}
+                      {certificate?.badgeCode || copy.verified}
                     </span>
-                    . Sertifikasi ini menjadi bukti kompetensi teknis yang dapat
-                    diverifikasi oleh HRD dan tim engineering.
+                    {copy.certificateProof}
                   </p>
                 </div>
               </div>
@@ -587,7 +619,7 @@ export const DetailView: React.FC<DetailViewProps> = ({
                   <div className="flex items-center gap-2">
                     <ShieldCheck className="w-5 h-5 text-indigo-500" />
                     <h3 className="text-lg sm:text-xl font-bold text-slate-950 dark:text-white">
-                      Keahlian &amp; Topik yang Dikuasai
+                      {copy.skillsTopics}
                     </h3>
                   </div>
                   <div className="flex flex-wrap gap-2 pt-1">
@@ -609,11 +641,10 @@ export const DetailView: React.FC<DetailViewProps> = ({
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 dark:border-white/10 pb-5">
                   <div>
                     <h3 className="text-xl font-bold text-slate-950 dark:text-white">
-                      Verifikasi Resmi &amp; Bukti Sertifikat
+                      {copy.officialVerification}
                     </h3>
                     <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400">
-                      Kredensial dapat divalidasi langsung melalui portal resmi
-                      penerbit
+                      {copy.credentialVerification}
                     </p>
                   </div>
 
@@ -624,7 +655,7 @@ export const DetailView: React.FC<DetailViewProps> = ({
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-slate-950 text-white dark:bg-white dark:text-slate-950 text-xs font-bold hover:bg-slate-800 dark:hover:bg-slate-100 transition-all shadow-md shrink-0"
                     >
-                      <span>Buka Halaman Verifikasi</span>
+                      <span>{copy.openVerification}</span>
                       <ExternalLink className="w-3.5 h-3.5" />
                     </a>
                   )}
@@ -650,29 +681,32 @@ export const DetailView: React.FC<DetailViewProps> = ({
             <div className="flex items-center justify-between">
               <div>
                 <h3 className="text-xl sm:text-2xl font-black tracking-tight text-slate-950 dark:text-white">
-                  Jelajahi Proyek Lainnya
+                  {copy.moreProjects}
                 </h3>
                 <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400">
-                  Proyek-proyek lain yang mungkin menarik buat kamu lihat
+                  {copy.moreProjectsDescription}
                 </p>
               </div>
               <a
-                href="/portfolio"
+                href={getLocalePath("/portfolio", locale)}
                 className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-slate-900 dark:text-white hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
               >
-                <span>Lihat Semua</span>
+                <span>{copy.viewAll}</span>
                 <ArrowRight className="w-4 h-4" />
               </a>
             </div>
 
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
               {relatedProjects.slice(0, 4).map((rel) => {
-                const year = rel.publishedDate?.match(/\b(20\d{2})\b/)?.[0] || rel.period?.match(/\b(20\d{2})\b/)?.[0] || "";
+                const year =
+                  rel.publishedDate?.match(/\b(20\d{2})\b/)?.[0] ||
+                  rel.period?.match(/\b(20\d{2})\b/)?.[0] ||
+                  "";
 
                 return (
                   <a
                     key={rel.id}
-                    href={`/project/${rel.slug}`}
+                    href={getLocalePath(`/project/${rel.slug}`, locale)}
                     className="group block p-4 rounded-3xl bg-white/90 dark:bg-[#0c0c0e]/80 border border-slate-200/90 dark:border-white/10 hover:border-slate-400 dark:hover:border-white/30 transition-all duration-300 hover:-translate-y-1.5 shadow-xs hover:shadow-xl dark:shadow-none"
                   >
                     <div className="relative aspect-[16/10] rounded-2xl overflow-hidden mb-4 bg-slate-900 border border-slate-200/50 dark:border-white/5">
@@ -684,11 +718,14 @@ export const DetailView: React.FC<DetailViewProps> = ({
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
                     </div>
-                    
+
                     <div className="flex items-center justify-between mb-2.5">
                       <div className="flex items-center gap-1.5 flex-wrap">
                         {rel.tags?.slice(0, 2).map((tag, i) => (
-                          <span key={i} className="px-2 py-0.5 rounded-md bg-indigo-50 dark:bg-indigo-500/10 text-[9px] sm:text-[10px] font-bold text-indigo-600 dark:text-indigo-400 transition-colors group-hover:bg-indigo-100 dark:group-hover:bg-indigo-500/20">
+                          <span
+                            key={i}
+                            className="px-2 py-0.5 rounded-md bg-indigo-50 dark:bg-indigo-500/10 text-[9px] sm:text-[10px] font-bold text-indigo-600 dark:text-indigo-400 transition-colors group-hover:bg-indigo-100 dark:group-hover:bg-indigo-500/20"
+                          >
                             {tag}
                           </span>
                         ))}
@@ -726,17 +763,17 @@ export const DetailView: React.FC<DetailViewProps> = ({
             <div className="flex items-center justify-between">
               <div>
                 <h3 className="text-xl sm:text-2xl font-black tracking-tight text-slate-950 dark:text-white">
-                  Sertifikasi &amp; Kredensial Lainnya
+                  {copy.moreCertificates}
                 </h3>
                 <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400">
-                  Sertifikat dan pencapaian lainnya yang pernah saya selesaikan
+                  {copy.moreCertificatesDescription}
                 </p>
               </div>
               <a
-                href="/portfolio"
+                href={getLocalePath("/portfolio", locale)}
                 className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-slate-900 dark:text-white hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
               >
-                <span>Lihat Semua</span>
+                <span>{copy.viewAll}</span>
                 <ArrowRight className="w-4 h-4" />
               </a>
             </div>
@@ -745,7 +782,7 @@ export const DetailView: React.FC<DetailViewProps> = ({
               {relatedCertificates.slice(0, 3).map((rel) => (
                 <a
                   key={rel.id}
-                  href={`/certificate/${rel.id}`}
+                  href={getLocalePath(`/certificate/${rel.id}`, locale)}
                   className="group block p-3 sm:p-4 rounded-2xl bg-white/90 dark:bg-[#0c0c0e]/80 border border-slate-200/90 dark:border-white/10 hover:border-slate-400 dark:hover:border-white/30 transition-all hover:-translate-y-1 shadow-xs hover:shadow-md"
                 >
                   <div className="aspect-[16/11] rounded-xl overflow-hidden mb-2.5 bg-white border border-slate-200/80 dark:border-white/10 p-1.5 sm:p-2 flex items-center justify-center">

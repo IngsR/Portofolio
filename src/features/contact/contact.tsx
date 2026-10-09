@@ -21,10 +21,17 @@ import { CardSpotlight } from "../../design/components/card-spotlight";
 import { MagneticButton } from "../../design/components/magnetic-button";
 import { ContactMessage } from "../../types";
 import { isContactCategory, isContactMessage } from "../../utils/guard";
+import { useTranslations } from "../../i18n";
+import { getDictionary } from "../../data/locales";
+import { getLocalizedUserProfile } from "../../utils/format";
 
 const { userProfile, contactFaq } = portfolioData;
 
 export const Contact: React.FC = () => {
+  const { locale } = useTranslations();
+  const copy = getDictionary(locale).contact;
+  const localizedProfile = getLocalizedUserProfile(userProfile, locale);
+  const localizedFaq = locale === "en" ? copy.faq : contactFaq;
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [subject, setSubject] = useState("");
@@ -90,16 +97,19 @@ export const Contact: React.FC = () => {
         id: `msg-${Date.now()}`,
         name: name.trim(),
         email: email.trim(),
-        subject: subject.trim() || "Peluang Kerja / Proyek",
+        subject: subject.trim() || copy.workMessage,
         category,
         message: message.trim(),
-        createdAt: new Date().toLocaleDateString("id-ID", {
-          day: "numeric",
-          month: "short",
-          year: "numeric",
-          hour: "2-digit",
-          minute: "2-digit",
-        }),
+        createdAt: new Date().toLocaleDateString(
+          locale === "en" ? "en-US" : "id-ID",
+          {
+            day: "numeric",
+            month: "short",
+            year: "numeric",
+            hour: "2-digit",
+            minute: "2-digit",
+          },
+        ),
       };
 
       setSavedMessages((currentMessages) => {
@@ -142,14 +152,13 @@ export const Contact: React.FC = () => {
       {/* Header */}
       <div className="space-y-2.5 pb-6 border-b border-slate-200/90 dark:border-white/10">
         <span className="text-[11px] font-bold uppercase tracking-widest text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-800/40 px-2.5 py-1 rounded-full inline-block">
-          Kontak &amp; Informasi Terhubung
+          {copy.eyebrow}
         </span>
         <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-slate-950 dark:text-white font-display">
-          Mari Berkolaborasi
+          {copy.title}
         </h1>
         <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400 max-w-none font-light">
-          Terbuka untuk peluang full-time, WFO, relokasi, kolaborasi, dan
-          project web development.
+          {copy.intro}
         </p>
       </div>
 
@@ -170,27 +179,28 @@ export const Contact: React.FC = () => {
               </div>
               <div>
                 <h3 className="font-bold text-base text-slate-950 dark:text-white">
-                  WhatsApp Langsung
+                  {copy.whatsappTitle}
                 </h3>
                 <p className="text-xs text-emerald-700 dark:text-emerald-300 font-medium">
-                  Respon cepat & santai
+                  {copy.whatsappSubtitle}
                 </p>
               </div>
             </div>
 
             <p className="text-xs text-slate-700 dark:text-slate-300 leading-relaxed font-light">
-              Ingin berdiskusi cepat mengenai tawaran pekerjaan, interview, atau
-              penawaran proyek? Klik tautan di bawah untuk chat langsung.
+              {copy.whatsappDescription}
             </p>
 
             <a
-              href={userProfile.whatsappUrl}
+              href={localizedProfile.whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="w-full flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold tracking-wider transition-all shadow-md shadow-emerald-600/20"
             >
               <MessageCircle className="w-4 h-4" />
-              <span>Chat WhatsApp ({userProfile.phone})</span>
+              <span>
+                {copy.whatsappAction} ({localizedProfile.phone})
+              </span>
             </a>
           </CardSpotlight>
 
@@ -206,10 +216,10 @@ export const Contact: React.FC = () => {
               </div>
               <div>
                 <h3 className="font-bold text-base text-slate-950 dark:text-white">
-                  Email Resmi
+                  {copy.emailTitle}
                 </h3>
                 <p className="text-xs text-slate-500 dark:text-slate-400">
-                  Untuk undangan kerja & surat resmi
+                  {copy.emailSubtitle}
                 </p>
               </div>
             </div>
@@ -223,20 +233,20 @@ export const Contact: React.FC = () => {
                 <button
                   onClick={handleCopyEmail}
                   className="px-2.5 py-1 text-xs rounded-lg border border-slate-200 dark:border-white/10 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-white/10 transition-all font-medium"
-                  title="Salin Email"
+                  title={copy.copyEmail}
                 >
                   {emailCopied ? (
                     <Check className="w-3.5 h-3.5 inline text-emerald-500 mr-1" />
                   ) : (
                     <Copy className="w-3.5 h-3.5 inline mr-1" />
                   )}
-                  <span>{emailCopied ? "Tersalin" : "Salin"}</span>
+                  <span>{emailCopied ? copy.copied : copy.copy}</span>
                 </button>
 
                 <a
                   href={`mailto:${userProfile.email}`}
                   className="p-1.5 rounded-lg border border-slate-200 dark:border-white/10 hover:bg-slate-200 dark:hover:bg-white/10 transition-all text-slate-800 dark:text-slate-200"
-                  title="Buka Email"
+                  title={copy.openEmail}
                 >
                   <ArrowUpRight className="w-3.5 h-3.5" />
                 </a>
@@ -252,7 +262,7 @@ export const Contact: React.FC = () => {
           >
             <h3 className="font-bold text-base text-slate-950 dark:text-white flex items-center gap-2">
               <Briefcase className="w-4 h-4 text-blue-600 dark:text-blue-400" />
-              <span>Kesiapan & Lokasi</span>
+              <span>{copy.availabilityTitle}</span>
             </h3>
 
             <div className="space-y-3 text-xs">
@@ -260,10 +270,10 @@ export const Contact: React.FC = () => {
                 <MapPin className="w-4 h-4 mt-0.5 text-blue-500 shrink-0" />
                 <div>
                   <strong className="text-slate-900 dark:text-white block">
-                    Status Kerja & Lokasi:
+                    {copy.locationLabel}
                   </strong>
                   <span className="text-slate-600 dark:text-slate-400">
-                    Siap On-Site / WFO di Seluruh Indonesia & Hybrid / Remote
+                    {copy.locationValue}
                   </span>
                 </div>
               </div>
@@ -272,10 +282,10 @@ export const Contact: React.FC = () => {
                 <Clock className="w-4 h-4 mt-0.5 text-emerald-500 shrink-0" />
                 <div>
                   <strong className="text-slate-900 dark:text-white block">
-                    Waktu Respon:
+                    {copy.responseLabel}
                   </strong>
                   <span className="text-slate-600 dark:text-slate-400">
-                    Biasanya merespon dalam hitungan jam (08:00 - 21:00 WIB)
+                    {copy.responseValue}
                   </span>
                 </div>
               </div>
@@ -289,7 +299,7 @@ export const Contact: React.FC = () => {
             className="p-6 rounded-2xl bg-white dark:bg-[#0d0d0f] border border-slate-200/90 dark:border-white/10 space-y-3 shadow-[0_2px_10px_-2px_rgba(15,23,42,0.06)]"
           >
             <h3 className="font-bold text-base text-slate-950 dark:text-white">
-              Tautan Profesional
+              {copy.socialTitle}
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
               {userProfile.socials.map((social) => (
@@ -323,10 +333,10 @@ export const Contact: React.FC = () => {
             <div className="border-b border-slate-100 dark:border-white/10 pb-4">
               <h2 className="font-bold text-xl text-slate-950 dark:text-white flex items-center gap-2">
                 <Mail className="w-5 h-5 text-blue-600 dark:text-blue-400" />
-                <span>Kirim Pesan Langsung</span>
+                <span>{copy.formTitle}</span>
               </h2>
               <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
-                Tinggalkan detail pesan atau pertanyaan Anda di bawah ini
+                {copy.formDescription}
               </p>
             </div>
 
@@ -334,17 +344,16 @@ export const Contact: React.FC = () => {
               <div className="p-5 rounded-2xl bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-500/30 text-slate-950 dark:text-white space-y-2">
                 <div className="flex items-center gap-2 font-bold text-sm text-emerald-800 dark:text-emerald-300">
                   <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
-                  <span>Pesan Berhasil Terkirim!</span>
+                  <span>{copy.successTitle}</span>
                 </div>
                 <p className="text-xs text-slate-600 dark:text-emerald-200/80 leading-relaxed font-light">
-                  Terima kasih telah menghubungi. Pesan Anda telah tersimpan dan
-                  saya akan segera merespon via email Anda.
+                  {copy.successDescription}
                 </p>
                 <button
                   onClick={() => setSubmitted(false)}
                   className="text-xs font-semibold text-emerald-700 dark:text-emerald-300 underline mt-1 block"
                 >
-                  Kirim Pesan Lain
+                  {copy.sendAnother}
                 </button>
               </div>
             )}
@@ -356,12 +365,12 @@ export const Contact: React.FC = () => {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="space-y-1">
                   <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300">
-                    Nama Lengkap / Instansi *
+                    {copy.nameLabel}
                   </label>
                   <input
                     type="text"
                     required
-                    placeholder="Contoh: Budi Santoso / PT Maju Jaya"
+                    placeholder={copy.namePlaceholder}
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     className="w-full px-4 py-2.5 rounded-xl bg-slate-50/80 dark:bg-white/[0.04] border border-slate-200/90 dark:border-white/10 text-slate-950 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 text-xs focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 transition-all"
@@ -370,12 +379,12 @@ export const Contact: React.FC = () => {
 
                 <div className="space-y-1">
                   <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300">
-                    Alamat Email *
+                    {copy.emailLabel}
                   </label>
                   <input
                     type="email"
                     required
-                    placeholder="nama@perusahaan.com"
+                    placeholder={copy.emailPlaceholder}
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     className="w-full px-4 py-2.5 rounded-xl bg-slate-50/80 dark:bg-white/[0.04] border border-slate-200/90 dark:border-white/10 text-slate-950 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 text-xs focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 transition-all"
@@ -386,7 +395,7 @@ export const Contact: React.FC = () => {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="space-y-1">
                   <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300">
-                    Kategori Keperluan
+                    {copy.categoryLabel}
                   </label>
                   <select
                     value={category}
@@ -398,26 +407,24 @@ export const Contact: React.FC = () => {
                     }}
                     className="w-full px-4 py-2.5 rounded-xl bg-slate-50/80 dark:bg-white/[0.04] border border-slate-200/90 dark:border-white/10 text-slate-950 dark:text-white text-xs focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 transition-all cursor-pointer"
                   >
-                    <option value="Kerja Sama">
-                      Peluang Kerja Junior Web Developer (WFO / Hybrid / Remote)
-                    </option>
+                    <option value="Kerja Sama">{copy.categories.work}</option>
                     <option value="Web Development">
-                      Pengembangan Web End-to-End (Next.js &amp; REST API)
+                      {copy.categories.development}
                     </option>
                     <option value="Konsultasi">
-                      Diskusi Teknis / Arsitektur Web &amp; Deployment
+                      {copy.categories.consultation}
                     </option>
-                    <option value="Lainnya">Keperluan Lainnya</option>
+                    <option value="Lainnya">{copy.categories.other}</option>
                   </select>
                 </div>
 
                 <div className="space-y-1">
                   <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300">
-                    Subjek
+                    {copy.subjectLabel}
                   </label>
                   <input
                     type="text"
-                    placeholder="Contoh: Diskusi Lowongan Software Engineer"
+                    placeholder={copy.subjectPlaceholder}
                     value={subject}
                     onChange={(e) => setSubject(e.target.value)}
                     className="w-full px-4 py-2.5 rounded-xl bg-slate-50/80 dark:bg-white/[0.04] border border-slate-200/90 dark:border-white/10 text-slate-950 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 text-xs focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 transition-all"
@@ -427,12 +434,12 @@ export const Contact: React.FC = () => {
 
               <div className="space-y-1 lg:flex lg:flex-1 lg:flex-col">
                 <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300">
-                  Isi Pesan *
+                  {copy.messageLabel}
                 </label>
                 <textarea
                   required
                   rows={5}
-                  placeholder="Tuliskan pesan, rincian tawaran, atau kebutuhan proyek Anda..."
+                  placeholder={copy.messagePlaceholder}
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
                   className="w-full min-h-[160px] lg:flex-1 px-4 py-2.5 rounded-xl bg-slate-50/80 dark:bg-white/[0.04] border border-slate-200/90 dark:border-white/10 text-slate-950 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 text-xs focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 transition-all leading-relaxed resize-y"
@@ -448,9 +455,7 @@ export const Contact: React.FC = () => {
                     className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full bg-slate-950 text-white dark:bg-white dark:text-slate-950 disabled:opacity-50 text-xs font-bold uppercase tracking-wider hover:bg-slate-800 dark:hover:bg-slate-100 transition-all shadow-md"
                   >
                     <Send className="w-4 h-4" />
-                    <span>
-                      {isSubmitting ? "Mengirim Pesan..." : "Kirim Pesan"}
-                    </span>
+                    <span>{isSubmitting ? copy.sending : copy.submit}</span>
                   </button>
                 </MagneticButton>
               </div>
@@ -463,15 +468,15 @@ export const Contact: React.FC = () => {
       <section className="p-6 sm:p-8 bg-white dark:bg-[#0c0c0e] border border-slate-200/90 dark:border-white/10 rounded-3xl space-y-6 shadow-[0_2px_12px_-2px_rgba(15,23,42,0.05)]">
         <div className="space-y-1 pb-4 border-b border-slate-100 dark:border-white/10">
           <span className="text-[11px] font-bold uppercase tracking-widest text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-white/5 px-2.5 py-1 rounded-full inline-block">
-            Tanya Jawab
+            {copy.faqEyebrow}
           </span>
           <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-slate-950 dark:text-white pt-1">
-            Pertanyaan yang Sering Diajukan
+            {copy.faqTitle}
           </h2>
         </div>
 
         <div className="space-y-2 divide-y divide-slate-100 dark:divide-white/10">
-          {contactFaq.map((faq, index) => {
+          {localizedFaq.map((faq, index) => {
             const isOpen = openFaqIndex === index;
             return (
               <div key={index} className={index !== 0 ? "pt-3.5" : ""}>

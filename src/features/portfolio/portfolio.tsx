@@ -12,6 +12,9 @@ import { AnimatedTabs } from "../../design/components/animated-tabs";
 import { LazyMount } from "../../design/components/lazy-mount";
 import { Certificate } from "./certificate";
 import { Project } from "./project";
+import { useTranslations } from "../../i18n";
+import { getDictionary } from "../../data/locales";
+import { getLocalizedCertification } from "../../utils/format";
 
 const { certifications: certificationsData } = portfolioData as {
   certifications: CertificationItem[];
@@ -35,7 +38,7 @@ const FILTER_KEYWORDS = [
   "Tailwind CSS",
 ] as const;
 
-const FILTER_CATEGORIES = [
+const FILTER_CATEGORIES: string[] = [
   "Semua",
   "Fullstack Web App",
   "Web Platform",
@@ -46,17 +49,20 @@ const FILTER_CATEGORIES = [
 ] as const;
 
 const isListedCategory = (category: string) =>
-  FILTER_CATEGORIES.some(
-    (filterCategory) =>
-      filterCategory !== "Semua" &&
-      filterCategory !== "Lainnya" &&
-      filterCategory === category,
-  );
+  FILTER_CATEGORIES.slice(1, -1).includes(category);
 
 export const Portfolio: React.FC<PortfolioSectionProps> = ({
   projects,
   onOpenCreateModal,
 }) => {
+  const { locale } = useTranslations();
+  const copy = getDictionary(locale).portfolio.page;
+  const categoryLabels = copy.categories;
+  const certifications = useMemo(
+    () =>
+      certificationsData.map((item) => getLocalizedCertification(item, locale)),
+    [locale],
+  );
   // Main view filter: 'all' (Tampilkan Semua), 'projects' (Project), 'certificates' (Sertifikasi & Lisensi)
   const [filterType, setFilterType] = useState<PortfolioFilterType>("all");
   const [selectedCategories, setSelectedCategories] = useState<string[]>([
@@ -70,7 +76,7 @@ export const Portfolio: React.FC<PortfolioSectionProps> = ({
 
   const deferredSearchQuery = useDeferredValue(searchQuery);
 
-  // Categories based on active filter
+  // Keep filter keys language-independent; only the visible labels are translated.
   const allCategories = FILTER_CATEGORIES;
 
   const keywordGroups = useMemo(() => {
@@ -205,7 +211,7 @@ export const Portfolio: React.FC<PortfolioSectionProps> = ({
     const q = deferredSearchQuery.toLowerCase().trim();
     const tokens = q.split(/\s+/).filter(Boolean);
 
-    const matches = certificationsData.filter((cert) => {
+    const matches = certifications.filter((cert) => {
       const certificateCategory = cert.category || "Sertifikasi";
       const matchCategory =
         selectedCategories.includes("Semua") ||
@@ -234,7 +240,7 @@ export const Portfolio: React.FC<PortfolioSectionProps> = ({
     });
 
     return matches;
-  }, [filterType, selectedCategories, deferredSearchQuery]);
+  }, [certifications, filterType, selectedCategories, deferredSearchQuery]);
 
   const totalItemsCount = filteredProjects.length + filteredCerts.length;
 
@@ -262,14 +268,13 @@ export const Portfolio: React.FC<PortfolioSectionProps> = ({
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-6 border-b border-slate-200 dark:border-white/[0.08]">
         <div className="space-y-2">
           <span className="text-[10px] font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500">
-            Karya Teknis
+            {copy.eyebrow}
           </span>
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-slate-950 dark:text-white">
-            Portofolio
+            {getDictionary(locale).portfolio.navigation.portfolio}
           </h1>
           <p className="text-sm text-slate-500 dark:text-slate-400 max-w-xl leading-relaxed">
-            Rekayasa antarmuka web modern, arsitektur Next.js &amp; Angular,
-            Technical SEO &amp; sistem produksi yang saya rancang dan bangun.
+            {copy.description}
           </p>
         </div>
       </div>
@@ -286,17 +291,17 @@ export const Portfolio: React.FC<PortfolioSectionProps> = ({
         tabs={[
           {
             id: "all",
-            label: `Semua (${projects.length + certificationsData.length})`,
+            label: `${copy.all} (${projects.length + certifications.length})`,
             icon: <Grid className="w-3 h-3" />,
           },
           {
             id: "projects",
-            label: `Project (${projects.length})`,
+            label: `${copy.projects} (${projects.length})`,
             icon: <Layers className="w-3 h-3" />,
           },
           {
             id: "certificates",
-            label: `Sertifikasi (${certificationsData.length})`,
+            label: `${copy.certificates} (${certifications.length})`,
             icon: <Award className="w-3 h-3" />,
           },
         ]}
@@ -314,7 +319,7 @@ export const Portfolio: React.FC<PortfolioSectionProps> = ({
             ref={searchInputRef}
             id="portfolio-search-input"
             type="text"
-            placeholder="Cari judul, tech stack, atau sertifikasi..."
+            placeholder={copy.search}
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="w-full pl-11 pr-10 py-2.5 rounded-xl bg-white dark:bg-[#0d0d0f] border border-slate-200 dark:border-white/10 text-slate-950 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-600 text-sm focus:outline-none focus:border-slate-400 dark:focus:border-white/25 transition-all"
@@ -327,8 +332,8 @@ export const Portfolio: React.FC<PortfolioSectionProps> = ({
                 searchInputRef.current?.focus();
               }}
               className="absolute right-3 top-1/2 -translate-y-1/2 p-1 text-slate-400 hover:text-slate-950 dark:hover:text-white transition-colors"
-              title="Hapus pencarian"
-              aria-label="Hapus pencarian"
+              title={copy.clearSearch}
+              aria-label={copy.clearSearch}
             >
               <X className="w-3.5 h-3.5" />
             </button>
@@ -338,7 +343,7 @@ export const Portfolio: React.FC<PortfolioSectionProps> = ({
         {/* Keyword Tags */}
         <div className="flex flex-wrap items-center gap-1.5">
           <span className="text-[10px] font-medium text-slate-400 dark:text-slate-600 uppercase tracking-wider mr-0.5">
-            Filter:
+            {copy.filter}
           </span>
           {visibleKeywords.map((kw) => {
             const isActive = selectedKeywords.includes(kw);
@@ -362,7 +367,7 @@ export const Portfolio: React.FC<PortfolioSectionProps> = ({
               onClick={() => setShowAllKeywords((v) => !v)}
               className="inline-flex px-2.5 py-1 text-[11px] rounded-full border border-dashed border-slate-300 dark:border-white/10 text-slate-500 dark:text-slate-500 hover:text-slate-950 dark:hover:text-white transition-all"
             >
-              {showAllKeywords ? "Sembunyikan" : "Lainnya"}
+              {showAllKeywords ? copy.hide : copy.more}
             </button>
           )}
         </div>
@@ -370,7 +375,7 @@ export const Portfolio: React.FC<PortfolioSectionProps> = ({
         {/* Category Pills & Sort */}
         <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-3">
           <div className="flex flex-1 min-w-0 flex-wrap items-center gap-1.5">
-            {allCategories.map((category) => {
+            {allCategories.map((category, index) => {
               const isSelected = selectedCategories.includes(category);
               return (
                 <button
@@ -396,7 +401,7 @@ export const Portfolio: React.FC<PortfolioSectionProps> = ({
                       : "border-slate-200 dark:border-white/10 text-slate-600 dark:text-slate-400 hover:border-slate-400 dark:hover:border-white/25 hover:text-slate-950 dark:hover:text-white bg-white dark:bg-transparent"
                   }`}
                 >
-                  {category}
+                  {categoryLabels[index]}
                 </button>
               );
             })}
@@ -405,7 +410,7 @@ export const Portfolio: React.FC<PortfolioSectionProps> = ({
           <div className="flex items-center gap-2 self-start shrink-0">
             <span className="text-[10px] text-slate-400 dark:text-slate-600 uppercase tracking-wider flex items-center gap-1">
               <ArrowUpDown className="w-3 h-3" />
-              Urut:
+              {copy.sort}
             </span>
             <select
               value={sortBy}
@@ -420,9 +425,9 @@ export const Portfolio: React.FC<PortfolioSectionProps> = ({
               }}
               className="px-3 py-1.5 rounded-lg bg-white dark:bg-[#0d0d0f] border border-slate-200 dark:border-white/10 text-slate-900 dark:text-white text-xs focus:outline-none focus:border-slate-400 cursor-pointer"
             >
-              <option value="relevance">Relevansi</option>
-              <option value="date">Terbaru</option>
-              <option value="title">Judul (A-Z)</option>
+              <option value="relevance">{copy.relevance}</option>
+              <option value="date">{copy.newest}</option>
+              <option value="title">{copy.titleSort}</option>
             </select>
           </div>
         </div>
@@ -432,13 +437,13 @@ export const Portfolio: React.FC<PortfolioSectionProps> = ({
       <div className="flex flex-wrap items-center justify-between gap-3 text-xs text-slate-500 dark:text-slate-400 px-1 py-2 border-y border-slate-100 dark:border-white/5">
         <div>
           <span>
-            Menampilkan{" "}
+            {copy.showing}{" "}
             <strong className="text-slate-950 dark:text-white">
               {totalItemsCount}
             </strong>{" "}
-            karya & sertifikat
+            {copy.items}
             {filterType === "all" &&
-              ` (${filteredProjects.length} project, ${filteredCerts.length} sertifikat)`}
+              ` (${filteredProjects.length} ${copy.projectCount}, ${filteredCerts.length} ${copy.certificateCount})`}
           </span>
         </div>
 
@@ -451,7 +456,7 @@ export const Portfolio: React.FC<PortfolioSectionProps> = ({
             onClick={handleResetFilters}
             className="text-slate-950 dark:text-white hover:underline font-semibold text-xs"
           >
-            Reset Semua Filter
+            {copy.reset}
           </button>
         )}
       </div>
@@ -461,11 +466,10 @@ export const Portfolio: React.FC<PortfolioSectionProps> = ({
         <div className="py-16 text-center rounded-2xl border border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-white/[0.02] space-y-4">
           <div className="space-y-1">
             <h3 className="text-base font-bold text-slate-950 dark:text-white">
-              Tidak ada hasil yang sesuai
+              {copy.noResults}
             </h3>
             <p className="text-xs text-slate-500 max-w-md mx-auto">
-              Tidak ditemukan item dengan kriteria pencarian atau kategori yang
-              dipilih.
+              {copy.noResultsDescription}
             </p>
           </div>
 
@@ -474,7 +478,7 @@ export const Portfolio: React.FC<PortfolioSectionProps> = ({
               onClick={handleResetFilters}
               className="px-5 py-2.5 rounded-xl bg-slate-950 text-white dark:bg-white dark:text-slate-950 text-xs font-bold hover:opacity-90 transition-all shadow-sm"
             >
-              Reset Filter
+              {copy.resetFilter}
             </button>
           </div>
         </div>
@@ -488,11 +492,11 @@ export const Portfolio: React.FC<PortfolioSectionProps> = ({
                   <div className="flex items-center gap-2">
                     <Layers className="w-4 h-4 text-blue-600 dark:text-blue-400" />
                     <h2 className="text-lg font-bold text-slate-950 dark:text-white">
-                      Project ({filteredProjects.length})
+                      {copy.projects} ({filteredProjects.length})
                     </h2>
                   </div>
                   <span className="text-xs text-slate-500 dark:text-slate-400">
-                    Aplikasi Web & Studi Kasus Fullstack
+                    {copy.caseStudies}
                   </span>
                 </div>
               )}
@@ -500,10 +504,7 @@ export const Portfolio: React.FC<PortfolioSectionProps> = ({
               <LazyMount estimatedHeight={filteredProjects.length * 460}>
                 <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-5 lg:gap-6">
                   {filteredProjects.map((project) => (
-                    <Project
-                      key={project.id}
-                      project={project}
-                    />
+                    <Project key={project.id} project={project} />
                   ))}
                 </div>
               </LazyMount>
@@ -519,21 +520,18 @@ export const Portfolio: React.FC<PortfolioSectionProps> = ({
                     <div className="flex items-center gap-2">
                       <Award className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
                       <h2 className="text-lg font-bold text-slate-950 dark:text-white">
-                        Sertifikasi({filteredCerts.length})
+                        {copy.certificates} ({filteredCerts.length})
                       </h2>
                     </div>
                     <span className="text-xs text-slate-500 dark:text-slate-400">
-                      Validasi Kompetensi Teknis
+                      {copy.certificationSubtitle}
                     </span>
                   </div>
                 )}
 
                 <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-5 lg:gap-6">
                   {filteredCerts.map((cert) => (
-                    <Certificate
-                      key={cert.id}
-                      certificate={cert}
-                    />
+                    <Certificate key={cert.id} certificate={cert} />
                   ))}
                 </div>
               </div>

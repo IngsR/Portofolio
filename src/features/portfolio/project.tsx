@@ -4,6 +4,8 @@ import { ProjectItem } from "../../types";
 import { formatDomainName, formatShortDomain } from "../../utils/format";
 import { canHover } from "../../utils/hover";
 import { CardSpotlight } from "../../design/components/card-spotlight";
+import { useTranslations } from "../../i18n";
+import { getLocalePath } from "../../utils/locale";
 
 interface ProjectCardProps {
   project: ProjectItem;
@@ -19,6 +21,7 @@ export const Project = memo<ProjectCardProps>(function Project({
   project,
   onOpenDetail,
 }) {
+  const { locale } = useTranslations();
   const domain = formatDomainName(project.demoUrl);
   const shortDomain = formatShortDomain(project.demoUrl);
   const hoverable = canHover();
@@ -43,7 +46,6 @@ export const Project = memo<ProjectCardProps>(function Project({
           className="w-full h-full object-cover sm:object-contain object-center rounded-lg sm:rounded-xl bg-white dark:bg-black/20 select-none group-hover:scale-[1.02] transition-transform duration-300"
           referrerPolicy="no-referrer"
         />
-
 
         {/* Live Domain Indicator if available */}
         {domain && (
@@ -132,9 +134,11 @@ export const Project = memo<ProjectCardProps>(function Project({
           onClick={(e) => e.stopPropagation()} // Prevent card double triggering
         >
           <a
-            href={`/project/${project.slug}`}
+            href={getLocalePath(`/project/${project.slug}`, locale)}
             className="flex items-center justify-center gap-1.5 p-1.5 sm:px-3.5 sm:py-1.5 rounded-full border border-slate-200 dark:border-white/10 text-slate-800 dark:text-slate-200 hover:bg-slate-950 hover:text-white dark:hover:bg-white dark:hover:text-slate-950 text-[10px] sm:text-xs font-semibold transition-all shrink-0 shadow-xs"
-            title="Buka Halaman Detail Mewah"
+            title={
+              locale === "en" ? "Open project details" : "Buka detail proyek"
+            }
           >
             <FileText className="w-3.5 h-3.5" />
             <span className="hidden sm:inline">Detail</span>
@@ -147,7 +151,11 @@ export const Project = memo<ProjectCardProps>(function Project({
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={`Repositori GitHub ${project.title}`}
-                title="Buka Repositori GitHub"
+                title={
+                  locale === "en"
+                    ? "Open GitHub repository"
+                    : "Buka repositori GitHub"
+                }
                 className="flex items-center justify-center gap-1.5 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full border border-slate-300 dark:border-white/20 bg-slate-100/90 dark:bg-white/[0.08] text-slate-800 dark:text-slate-200 hover:text-slate-950 dark:hover:text-white hover:bg-slate-200/90 dark:hover:bg-white/[0.16] hover:border-slate-400 dark:hover:border-white/30 text-[10px] sm:text-xs font-semibold transition-all shadow-xs shrink-0 active:scale-95"
               >
                 <Github className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0 text-slate-900 dark:text-white" />
@@ -180,9 +188,14 @@ export const Project = memo<ProjectCardProps>(function Project({
     if (project?.slug) {
       if (typeof window !== "undefined") {
         import("astro:transitions/client")
-          .then(({ navigate }) => navigate(`/project/${project.slug}`))
+          .then(({ navigate }) =>
+            navigate(getLocalePath(`/project/${project.slug}`, locale)),
+          )
           .catch(() => {
-            window.location.href = `/project/${project.slug}`;
+            window.location.href = getLocalePath(
+              `/project/${project.slug}`,
+              locale,
+            );
           });
       }
       return;

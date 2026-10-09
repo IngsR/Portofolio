@@ -10,6 +10,9 @@ import React, { memo } from "react";
 import { CertificationItem } from "../../types";
 import { canHover } from "../../utils/hover";
 import { CardSpotlight } from "../../design/components/card-spotlight";
+import { useTranslations } from "../../i18n";
+import { getLocalePath } from "../../utils/locale";
+import { formatShortDate } from "../../utils/format";
 
 interface CertificateCardProps {
   certificate: CertificationItem;
@@ -20,6 +23,7 @@ export const Certificate = memo<CertificateCardProps>(function Certificate({
   certificate,
   onOpenDetail,
 }) {
+  const { locale } = useTranslations();
   // Baca nilai hover capability dari module-level singleton - tidak ada useState/useEffect
   const hoverable = canHover();
 
@@ -34,9 +38,14 @@ export const Certificate = memo<CertificateCardProps>(function Certificate({
     if (certificate?.id) {
       if (typeof window !== "undefined") {
         import("astro:transitions/client")
-          .then(({ navigate }) => navigate(`/certificate/${certificate.id}`))
+          .then(({ navigate }) =>
+            navigate(getLocalePath(`/certificate/${certificate.id}`, locale)),
+          )
           .catch(() => {
-            window.location.href = `/certificate/${certificate.id}`;
+            window.location.href = getLocalePath(
+              `/certificate/${certificate.id}`,
+              locale,
+            );
           });
       }
       return;
@@ -53,6 +62,7 @@ export const Certificate = memo<CertificateCardProps>(function Certificate({
     >
       <CertificateContent
         certificate={certificate}
+        locale={locale}
         onOpenDetail={onOpenDetail}
       />
     </CardSpotlight>
@@ -60,6 +70,7 @@ export const Certificate = memo<CertificateCardProps>(function Certificate({
     <div className={cardClassName} onClick={handleCardClick}>
       <CertificateContent
         certificate={certificate}
+        locale={locale}
         onOpenDetail={onOpenDetail}
       />
     </div>
@@ -70,8 +81,9 @@ export const Certificate = memo<CertificateCardProps>(function Certificate({
 
 const CertificateContent = memo<{
   certificate: CertificationItem;
-  onOpenDetail?: (cert: CertificationItem) => void;
-}>(function CertificateContent({ certificate, onOpenDetail }) {
+  locale: "id" | "en";
+  onOpenDetail: ((cert: CertificationItem) => void) | undefined;
+}>(function CertificateContent({ certificate, locale }) {
   return (
     <>
       <div className="space-y-2.5 sm:space-y-3">
@@ -79,7 +91,7 @@ const CertificateContent = memo<{
         <div className="relative w-full aspect-[16/11] rounded-xl sm:rounded-2xl overflow-hidden shrink-0 bg-slate-100 dark:bg-[#141416] p-1.5 sm:p-3 border border-slate-200 dark:border-white/10 flex items-center justify-center group-hover:border-slate-400 dark:group-hover:border-white/30 transition-all">
           <img
             src={certificate.image}
-            alt={`Sertifikat ${certificate.title}`}
+            alt={`${locale === "en" ? "Certificate" : "Sertifikat"} ${certificate.title}`}
             width={640}
             height={440}
             loading="lazy"
@@ -101,13 +113,15 @@ const CertificateContent = memo<{
               saat scroll di HP (memaksa repaint area blur tiap frame) */}
           <div className="hidden sm:flex absolute top-2 left-2 sm:top-3 sm:left-3 items-center gap-1 bg-black/75 backdrop-blur-md px-2 py-0.5 rounded-md sm:rounded-lg text-white text-[10px] font-semibold pointer-events-none shadow-xs">
             <Eye className="w-3 h-3 text-blue-400" />
-            <span className="truncate">Kredensial Asli</span>
+            <span className="truncate">
+              {locale === "en" ? "Original credential" : "Kredensial Asli"}
+            </span>
           </div>
 
           <div className="hidden sm:block absolute top-2 right-2 sm:top-3 sm:right-3 pointer-events-none">
             <span className="inline-flex items-center gap-1 text-[10px] font-bold text-emerald-300 bg-emerald-950/85 backdrop-blur-md border border-emerald-500/30 px-2 py-0.5 rounded-full shadow-xs">
               <ShieldCheck className="w-3 h-3" />
-              <span>Resmi</span>
+              <span>{locale === "en" ? "Official" : "Resmi"}</span>
             </span>
           </div>
 
@@ -118,7 +132,7 @@ const CertificateContent = memo<{
             </span>
             <span className="flex items-center gap-1 text-[9.5px] font-medium opacity-90 group-hover:opacity-100 bg-slate-900/90 sm:bg-slate-900/80 sm:backdrop-blur-md px-1.5 py-0.5 rounded shrink-0">
               <Maximize2 className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
-              <span>Perbesar</span>
+              <span>{locale === "en" ? "Enlarge" : "Perbesar"}</span>
             </span>
           </div>
         </div>
@@ -126,11 +140,17 @@ const CertificateContent = memo<{
         {/* Category & Badge Header */}
         <div className="flex items-center justify-between gap-1.5 pt-0.5">
           <span className="text-[9.5px] sm:text-[11px] font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400 truncate max-w-[60%]">
-            {certificate.category || "Sertifikasi"}
+            {certificate.category ||
+              (locale === "en" ? "Certification" : "Sertifikasi")}
           </span>
           <div className="flex items-center gap-1 text-[9.5px] sm:text-[11px] text-slate-600 dark:text-slate-400 font-medium shrink-0">
             <Calendar className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-slate-400" />
-            <span>{certificate.period || certificate.issueDate}</span>
+            <span>
+              {formatShortDate(
+                certificate.period || certificate.issueDate,
+                locale,
+              )}
+            </span>
           </div>
         </div>
 
@@ -144,7 +164,9 @@ const CertificateContent = memo<{
 
         {/* Issuer */}
         <div className="text-[10px] sm:text-xs text-slate-700 dark:text-slate-300 font-medium truncate">
-          <span className="text-slate-500 dark:text-slate-400">Penerbit: </span>
+          <span className="text-slate-500 dark:text-slate-400">
+            {locale === "en" ? "Issuer: " : "Penerbit: "}
+          </span>
           <span className="font-semibold text-slate-900 dark:text-white">
             {certificate.issuer}
           </span>
@@ -203,9 +225,13 @@ const CertificateContent = memo<{
         onClick={(e) => e.stopPropagation()}
       >
         <a
-          href={`/certificate/${certificate.id}`}
+          href={getLocalePath(`/certificate/${certificate.id}`, locale)}
           className="flex items-center justify-center gap-1.5 p-1.5 sm:px-4 sm:py-2 rounded-full border border-slate-300 dark:border-white/10 text-slate-900 dark:text-white hover:bg-slate-950 hover:text-white dark:hover:bg-white dark:hover:text-slate-950 text-[10px] sm:text-xs font-bold transition-all shrink-0 shadow-xs"
-          title="Lihat Detail Sertifikasi Sinematik"
+          title={
+            locale === "en"
+              ? "View certificate details"
+              : "Lihat detail sertifikat"
+          }
         >
           <FileText className="w-3.5 h-3.5" />
           <span>Detail</span>
@@ -218,7 +244,7 @@ const CertificateContent = memo<{
             rel="noopener noreferrer"
             className="flex items-center gap-1 px-2.5 sm:px-4 py-1.5 sm:py-2 rounded-full bg-slate-950 text-white dark:bg-white dark:text-slate-950 text-[10px] sm:text-xs font-bold hover:bg-slate-800 dark:hover:bg-slate-100 transition-all shadow-sm shrink-0"
           >
-            <span>Verifikasi</span>
+            <span>{locale === "en" ? "Verify" : "Verifikasi"}</span>
             <ExternalLink className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
           </a>
         )}
