@@ -61,6 +61,16 @@
       "slug": "website-smp-negeri-24-padang",
       "title": "Website SMP Negeri 24 Padang",
       "shortDescription": "Website sekolah SMP Negeri 24 Padang yang saya bangun dari nol saat magang. Sebelumnya, sekolah belum punya portal digital yang layak saya rancang arsitektur Next.js App Router dengan rendering SSR/SSG, validasi form Zod, dan SEO terstruktur supaya halaman cepat terindeks dan mudah dikelola staf.",
+      "translations": {
+        "en": {
+          "title": "SMP Negeri 24 Padang School Website",
+          "shortDescription": "A school website I built from scratch during my internship, introducing a digital portal with Next.js App Router, SSR/SSG rendering, Zod form validation, and structured SEO.",
+          "period": "2025 (Production Project)",
+          "role": "Full-Stack Web Developer (Intern)",
+          "problem": "SMP Negeri 24 Padang needed a fast public information portal that worked well on mobile, was easy for Google to index, and allowed staff to update academic content without inconsistent data.",
+          "solution": "Built a hybrid Next.js App Router application: static pages use SSG for fast delivery, while announcements use SSR with periodic ISR revalidation. Zod validates form schemas to protect data integrity."
+        }
+      },
       "category": "Next.js & Performance",
       "tags": [
         "Next.js",
@@ -104,6 +114,15 @@
       "slug": "tropical-cyclone-track-prediction",
       "title": "Prediksi Siklon Tropis (Data IBTrACS)",
       "shortDescription": "Ini proyek skripsi S1 saya: membuktikan LSTM bisa prediksi lintasan siklon tropis dengan akurat. Saya uji 12 skenario eksperimen (3 basin × 4 variasi timesteps), dan hasilnya window 8-16 paling bagus - rata-rata error cuma 14,2 km dengan R² 0,999. Modelnya saya konversi ke ONNX supaya bisa jalan langsung di browser, frontend pakai Astro Island Architecture.",
+      "translations": {
+        "en": {
+          "title": "Tropical Cyclone Track Prediction (IBTrACS)",
+          "shortDescription": "My undergraduate thesis project evaluating LSTM for tropical cyclone track prediction. Across 12 experiments (3 basins × 4 timestep variations), the 8–16 window achieved a 14.2 km average error and R² of 0.999. The model was converted to ONNX to run in the browser with an Astro island-based frontend.",
+          "period": "2026 (Thesis Research & Web Application)",
+          "role": "Web Developer & Thesis Researcher",
+          "metrics": [{ "label": "Model Accuracy" }]
+        }
+      },
       "category": "Web Application",
       "tags": [
         "Astro",
@@ -146,6 +165,14 @@
       "slug": "ing-store-automotive-ecommerce",
       "title": "Ingstore - Website Penjual Mobil Berbasis CMS",
       "shortDescription": "Website showroom mobil yang saya buat supaya calon pembeli bisa eksplor unit, filter berdasarkan spesifikasi, dan langsung hitung simulasi kredit DP dan cicilan bulanan secara real-time. Penjual bisa kelola stok unit lewat struktur CMS yang rapi.",
+      "translations": {
+        "en": {
+          "title": "Ingstore - CMS-Powered Car Dealership Website",
+          "shortDescription": "A car showroom website where buyers can explore vehicles, filter by specifications, and calculate down payments and monthly installments in real time. Dealers can manage inventory through a structured CMS.",
+          "period": "2025",
+          "role": "Full-Stack Web Developer"
+        }
+      },
       "category": "React & Next.js UI",
       "tags": [
         "Next.js",
@@ -187,6 +214,14 @@
       "slug": "angular-property-platform",
       "title": "Website Penjualan Rumah",
       "shortDescription": "Aplikasi web pencarian properti yang saya bangun pakai Angular Standalone Components murni TypeScript. Fitur utamanya: komparasi 2 properti secara side-by-side, denah arsitektur 2D bertingkat yang bisa di-zoom, dan simulator cicilan KPR pakai formula anuitas Bank Indonesia - semuanya reaktif lewat Angular Signals tanpa library state management tambahan.",
+      "translations": {
+        "en": {
+          "title": "Property Search & Comparison Platform",
+          "shortDescription": "A property search application built with Angular Standalone Components and TypeScript. It features side-by-side comparison, zoomable multi-level 2D floor plans, and a mortgage simulator using Bank Indonesia's annuity formula, powered by Angular Signals.",
+          "period": "2025",
+          "role": "Frontend Web Developer"
+        }
+      },
       "category": "Angular & Reactive Architecture",
       "tags": [
         "Angular",
@@ -228,6 +263,14 @@
       "slug": "inventory-logistics-dashboard",
       "title": "Inventory Logistics Dashboard UI",
       "shortDescription": "Dashboard stok gudang yang saya buat supaya operator bisa melihat status persediaan, mencatat barang masuk/keluar/retur, dan filter berdasarkan status stok - semuanya responsif dan berjalan instan tanpa reload halaman.",
+      "translations": {
+        "en": {
+          "title": "Inventory Logistics Dashboard UI",
+          "shortDescription": "A responsive warehouse dashboard for operators to monitor inventory, record incoming, outgoing, and returned goods, and filter stock status without reloading the page.",
+          "period": "2025",
+          "role": "Frontend Web Developer"
+        }
+      },
       "category": "Web Application",
       "tags": [
         "Next.js",
@@ -256,6 +299,16 @@
       "slug": "enterprise-monorepo-ui",
       "title": "Enterprise Monorepo UI - CRM/ERP Design System",
       "shortDescription": "Eksperimen arsitektur monorepo menggunakan Turborepo untuk mengelola beberapa aplikasi Next.js 15 dalam satu workspace. Fokus utamanya: bikin paket UI bersama yang bisa di-share lintas aplikasi, dan pastikan tipe data tetap sinkron antara frontend dan API layer.",
+      "translations": {
+        "en": {
+          "title": "Enterprise Monorepo UI - CRM/ERP Design System",
+          "shortDescription": "A Turborepo monorepo experiment managing multiple Next.js 15 applications in one workspace. It focuses on a shared UI package and keeping types consistent between the frontend and API layers.",
+          "period": "2025",
+          "role": "Frontend Web Developer",
+          "problem": "Several CRM/ERP dashboard applications shared similar UI needs but their code was scattered, causing design inconsistencies and duplicated maintenance effort.",
+          "solution": "Adopted a Turborepo monorepo architecture with a shared shadcn/ui-based UI package and end-to-end type synchronization."
+        }
+      },
       "category": "Monorepo & Architecture",
       "tags": [
         "Next.js 15",
@@ -284,6 +337,13 @@
       "slug": "fullstack-crm-erp-monorepo",
       "title": "Enterprise Monorepo UI - CRM/ERP Design System",
       "shortDescription": "Eksperimen arsitektur monorepo menggunakan Turborepo untuk mengelola beberapa aplikasi Next.js 15 dalam satu workspace. Fokus utamanya: bikin paket UI bersama yang bisa di-share lintas aplikasi, dan pastikan tipe data tetap sinkron antara frontend dan API layer.",
+      "translations": {
+        "en": {
+          "shortDescription": "A Turborepo monorepo experiment managing multiple Next.js 15 applications in one workspace. It focuses on a shared UI package and keeping types consistent between the frontend and API layers.",
+          "period": "2025",
+          "role": "Full-Stack Web Developer"
+        }
+      },
       "category": "Design System & Monorepo",
       "tags": [
         "Next.js 15",
@@ -324,6 +384,13 @@
       "slug": "inventory-management-system",
       "title": "Inventory Logistics Dashboard UI",
       "shortDescription": "Dashboard stok gudang yang saya buat supaya operator bisa melihat status persediaan, mencatat barang masuk/keluar/retur, dan filter berdasarkan status stok - semuanya responsif dan berjalan instan tanpa reload halaman.",
+      "translations": {
+        "en": {
+          "shortDescription": "A responsive warehouse dashboard for operators to monitor inventory, record incoming, outgoing, and returned goods, and filter stock status without reloading the page.",
+          "period": "2025",
+          "role": "Frontend Web Developer"
+        }
+      },
       "category": "Dashboard & Data Grid",
       "tags": [
         "Next.js",
@@ -365,6 +432,13 @@
       "slug": "dockrank-tf-idf-document-search",
       "title": "DockRank - Information Retrieval Search UI",
       "shortDescription": "Aplikasi pencarian dokumen yang menampilkan cara kerja algoritma TF-IDF secara transparan - pengguna bisa lihat skor bobot setiap kata kunci, perankingan relevansi dokumen, dan highlight term yang cocok. Dibangun supaya proses information retrieval bisa dipahami secara visual.",
+      "translations": {
+        "en": {
+          "shortDescription": "A document search application that visualizes TF-IDF, showing keyword weights, document relevance rankings, and matching terms so information retrieval is easy to understand.",
+          "period": "2025",
+          "role": "Frontend Web Developer"
+        }
+      },
       "category": "Search UI & Web App",
       "tags": [
         "Next.js",
@@ -405,6 +479,13 @@
       "slug": "admin-blog-platform",
       "title": "Content Publishing Platform & Live Editor",
       "shortDescription": "Platform menulis dan mempublikasikan artikel dengan editor Markdown yang punya preview langsung di sebelahnya. Artikel yang diterbitkan otomatis punya halaman sendiri dengan URL bersih, metadata SEO terstruktur, dan rendering SSR.",
+      "translations": {
+        "en": {
+          "shortDescription": "An article publishing platform with a Markdown editor and live side-by-side preview. Published articles receive dedicated pages with clean URLs, structured SEO metadata, and server-side rendering.",
+          "period": "2026",
+          "role": "Full-Stack Web Developer"
+        }
+      },
       "category": "Content & Publishing UI",
       "tags": [
         "Next.js",
@@ -445,6 +526,13 @@
       "slug": "react-native-ecommerce",
       "title": "React Native E-Commerce Mobile UI",
       "shortDescription": "Aplikasi e-commerce mobile cross-platform yang saya bangun pakai React Native dan Expo. Fokusnya di navigasi layar yang mulus, katalog produk yang interaktif, dan penanganan state asinkron untuk loading/error saat fetch data.",
+      "translations": {
+        "en": {
+          "shortDescription": "A cross-platform mobile commerce application built with React Native and Expo, focused on smooth screen navigation, an interactive product catalog, and reliable loading and error states during data fetching.",
+          "period": "2025",
+          "role": "Full-Stack Web & Mobile Developer"
+        }
+      },
       "category": "Mobile Frontend",
       "tags": [
         "React Native",
@@ -477,7 +565,17 @@
       ],
       "markdownContent": "---\ntitle: \"React Native E-Commerce Mobile UI\"\ndescription: \"Antarmuka belanja daring cross-platform berbasis React Native dan Expo dengan fokus transisi layar mulus dan async state handal.\"\ndate: \"2025-06-06\"\ncategory: \"Mobile Frontend\"\ntags:\n  - React Native\n  - Expo\n  - TypeScript\n  - Mobile UI\ngithub: \"https://github.com/IngsR/ReactExpo-Mobile-Ecomerce\"\ndemo: \"\"\nfeatured: false\n---\n\n# React Native E-Commerce Mobile UI\n\n## 📌 Latar Belakang & Kebutuhan Sistem\nAplikasi mobile belanja daring membutuhkan interaksi sentuh yang responsif dan navigasi bebas *jank* (patah-patah), terutama saat katalog memuat banyak gambar produk dan user sering berpindah antara tab pencarian, detail barang, dan keranjang belanja.\n\n---\n\n## 🛠️ Keputusan Rekayasa & Solusi Teknis\n1. **Navigasi Layar 60 FPS**: Memanfaatkan React Navigation stack dan tab navigator yang dioptimasi agar pergantian konteks layar terasa mulus di perangkat iOS maupun Android.\n2. **State Management Keranjang**: Mengelola penambahan, pengurangan kuantitas, dan kalkulasi subtotal barang secara terpusat tanpa glitch re-render pada komponen kartu produk.\n3. **Penanganan Status Asinkron**: Mengimplementasikan skeleton loading saat pemuatan data katalog produk, error boundary penanganan kegagalan fetch, serta feedback visual instan saat pengguna menekan tombol aksi.",
       "problem": "Antarmuka aplikasi belanja seluler dituntut menjaga kestabilan frame rate 60 FPS saat navigasi antar-katalog, konsistensi state keranjang belanja lintas layar, serta ketahanan penanganan status asinkron (loading, error, empty state) pada jaringan seluler yang berfluktuasi.",
-      "solution": "Membangun aplikasi mobile cross-platform menggunakan React Native dan Expo. Mengoptimalkan stack navigation untuk transisi layar yang halus, mengisolasi manajemen state keranjang belanja guna mencegah jank rendering, serta mengimplementasikan skeleton loading dan error boundary untuk penanganan async data fetching yang andal."
+      "solution": "Membangun aplikasi mobile cross-platform menggunakan React Native dan Expo. Mengoptimalkan stack navigation untuk transisi layar yang halus, mengisolasi manajemen state keranjang belanja guna mencegah jank rendering, serta mengimplementasikan skeleton loading dan error boundary untuk penanganan async data fetching yang andal.",
+      "translations": {
+        "en": {
+          "title": "React Native E-Commerce Mobile UI",
+          "shortDescription": "A cross-platform mobile shopping app built with React Native and Expo, focused on smooth screen transitions, an interactive product catalog, and reliable async state handling for loading and error states while fetching data.",
+          "period": "2025",
+          "role": "Mobile Frontend Developer",
+          "problem": "A mobile shopping interface must hold a stable 60 FPS during catalog navigation, keep cart state consistent across screens, and handle asynchronous states (loading, error, empty) resiliently on fluctuating mobile networks.",
+          "solution": "Built a cross-platform mobile app with React Native and Expo. Optimized the navigation stack for smooth screen transitions, isolated cart state management to prevent render jank, and implemented skeleton loading plus error boundaries for dependable async data fetching."
+        }
+      }
     }
   ],
   "skillCategories": [
@@ -485,6 +583,12 @@
       "title": "Fullstack & Next.js",
       "iconName": "Layout",
       "description": "Fokus utama saya dalam membangun aplikasi web modern, responsif, dan terstruktur rapi.",
+      "translations": {
+        "en": {
+          "title": "Full-Stack & Next.js",
+          "description": "My primary focus is building modern, responsive, and well-structured web applications."
+        }
+      },
       "coreStack": [
         "Next.js (App Router)",
         "React.js",
@@ -502,6 +606,12 @@
       "title": "REST API & Database",
       "iconName": "Server",
       "description": "Pembuatan endpoint RESTful yang efisien, validasi data, dan integrasi database relasional.",
+      "translations": {
+        "en": {
+          "title": "REST APIs & Databases",
+          "description": "Building efficient REST endpoints, validating data, and integrating relational databases."
+        }
+      },
       "coreStack": [
         "REST API",
         "Route Handlers",
@@ -519,6 +629,12 @@
       "title": "Git, Testing & Deployment",
       "iconName": "Shield",
       "description": "Workflow pengembangan teratur dengan Git, pengujian fungsional, dan proses rilis CI/CD.",
+      "translations": {
+        "en": {
+          "title": "Git, Testing & Deployment",
+          "description": "Structured development workflows using Git, functional testing, and CI/CD releases."
+        }
+      },
       "coreStack": [
         "Git & GitHub Workflow",
         "Unit & Integration Testing",
@@ -536,6 +652,12 @@
       "title": "Bekal Akademik Data & AI",
       "iconName": "Cpu",
       "description": "Konsentrasi kuliah dan skripsi yang melengkapi pekerjaan software engineering dengan dasar pengolahan data dan evaluasi model.",
+      "translations": {
+        "en": {
+          "title": "Academic Background in Data & AI",
+          "description": "My academic concentration and thesis complement software engineering with foundations in data processing and model evaluation."
+        }
+      },
       "coreStack": [
         "Python",
         "Data Preprocessing",
@@ -555,6 +677,20 @@
     {
       "id": "exp-1",
       "role": "Fullstack Web Developer (Magang)",
+      "translations": {
+        "en": {
+          "role": "Full-Stack Web Developer (Intern)",
+          "period": "August - September 2025",
+          "type": "Internship",
+          "description": "Completed a two-month internship building SMP Negeri 24 Padang's information system and school website end to end: gathering requirements, designing the interface architecture, implementing news and announcement flows, resolving integration issues, and deploying to production.",
+          "achievements": [
+            "Built a school web application with Next.js App Router and TypeScript, working directly with school staff to define the public portal and content-management requirements.",
+            "Designed data flows and Zod form validation after identifying inconsistent inputs during testing, keeping stored data reliable.",
+            "Applied SSR and SSG with revalidation caching, then audited the results with Lighthouse to reach a performance score of 99/100 and improve search indexing.",
+            "Prepared the production deployment to smpn24padang.sch.id and resolved release issues until content updates were stable."
+          ]
+        }
+      },
       "company": "SMP Negeri 24 Padang",
       "location": "Padang, Indonesia",
       "period": "Agustus - September 2025",
@@ -583,6 +719,12 @@
     {
       "id": "edu-1",
       "degree": "Sarjana Komputer (S.Kom) - S1 Teknik Informatika (Konsentrasi Data Science)",
+      "translations": {
+        "en": {
+          "degree": "Bachelor of Computer Science - Informatics Engineering (Data Science)",
+          "details": "My Data Science concentration provided an academic foundation in data processing and analysis. My Informatics Engineering studies covered software engineering, data structures and algorithms, relational databases, web programming, and information systems security. My thesis applied an LSTM deep-learning model to tropical cyclone track prediction and delivered the results as a web application."
+        }
+      },
       "institution": "Universitas Putra Indonesia \"YPTK\" Padang",
       "period": "2022 - 2026",
       "gpa": "3.26 / 4.00",
@@ -607,7 +749,12 @@
         "Neural Networks",
         "Python for AI"
       ],
-      "description": "Sertifikasi ini melengkapi latar akademik saya dengan dasar machine learning dan neural network, mulai dari supervised learning hingga konsep deep learning. Materinya membantu saya memahami dan mengevaluasi model LSTM yang digunakan dalam skripsi, lalu mengintegrasikan hasilnya ke aplikasi web."
+      "description": "Sertifikasi ini melengkapi latar akademik saya dengan dasar machine learning dan neural network, mulai dari supervised learning hingga konsep deep learning. Materinya membantu saya memahami dan mengevaluasi model LSTM yang digunakan dalam skripsi, lalu mengintegrasikan hasilnya ke aplikasi web.",
+      "translations": {
+        "en": {
+          "description": "This certification complemented my academic background with machine learning and neural network fundamentals, from supervised learning to deep learning concepts. The material helped me understand and evaluate the LSTM model used in my thesis and integrate it into a web application."
+        }
+      }
     },
     {
       "id": "cert-2",
@@ -626,7 +773,12 @@
         "Natural Language Processing",
         "AI Industry Applications"
       ],
-      "description": "Materi lanjutan tentang computer vision, NLP, dan integrasi model AI melalui API. Pengetahuan ini menjadi bekal pendukung saat saya mengemas model LSTM hasil skripsi ke format ONNX Runtime dan mengintegrasikannya ke aplikasi web prediksi siklon tropis."
+      "description": "Materi lanjutan tentang computer vision, NLP, dan integrasi model AI melalui API. Pengetahuan ini menjadi bekal pendukung saat saya mengemas model LSTM hasil skripsi ke format ONNX Runtime dan mengintegrasikannya ke aplikasi web prediksi siklon tropis.",
+      "translations": {
+        "en": {
+          "description": "Advanced topics in computer vision, NLP, and integrating AI models through APIs. This knowledge supported packaging my thesis LSTM model with ONNX Runtime and integrating it into a tropical cyclone prediction web application."
+        }
+      }
     },
     {
       "id": "cert-3",
@@ -645,7 +797,12 @@
         "VLAN & STP",
         "Enterprise Network Security"
       ],
-      "description": "Meskipun fokus utama saya web development, memahami dasar jaringan dan komunikasi data itu penting. Sertifikasi ini membantu saya mengerti alur request client-server, kenapa latency terjadi, bagaimana DNS dan routing bekerja, dan cara troubleshoot saat deployment aplikasi bermasalah di jaringan."
+      "description": "Meskipun fokus utama saya web development, memahami dasar jaringan dan komunikasi data itu penting. Sertifikasi ini membantu saya mengerti alur request client-server, kenapa latency terjadi, bagaimana DNS dan routing bekerja, dan cara troubleshoot saat deployment aplikasi bermasalah di jaringan.",
+      "translations": {
+        "en": {
+          "description": "Although my primary focus is web development, understanding networking and data communications is important. This certification helped me understand client-server requests, latency, DNS and routing, and how to troubleshoot network issues during deployment."
+        }
+      }
     },
     {
       "id": "cert-4",
@@ -664,7 +821,13 @@
         "Logic",
         "Competitive Programming"
       ],
-      "description": "Lulus tes problem solving HackerRank level Basic - artinya bisa menyelesaikan soal-soal algoritma dan struktur data fundamental dalam batas waktu tertentu. Ini melatih kebiasaan saya berpikir terstruktur sebelum ngoding: pecah masalah jadi langkah-langkah kecil, baru implementasi."
+      "description": "Lulus tes problem solving HackerRank level Basic - artinya bisa menyelesaikan soal-soal algoritma dan struktur data fundamental dalam batas waktu tertentu. Ini melatih kebiasaan saya berpikir terstruktur sebelum ngoding: pecah masalah jadi langkah-langkah kecil, baru implementasi.",
+      "translations": {
+        "en": {
+          "issueDate": "May 2025",
+          "description": "Passed HackerRank's Basic problem-solving assessment, demonstrating the ability to solve fundamental algorithms and data-structure challenges within a time limit. It reinforced my habit of breaking problems into structured steps before coding."
+        }
+      }
     },
     {
       "id": "cert-5",
@@ -682,7 +845,13 @@
         "Algorithmic Optimization",
         "Performance Tuning"
       ],
-      "description": "Level Intermediate ini menguji kemampuan menangani soal algoritma yang lebih kompleks - optimasi waktu eksekusi, pemilihan struktur data yang tepat untuk kasus tertentu, dan penanganan edge case. Saya ambil ini karena ingin memastikan fondasi berpikir algoritmis saya cukup kuat, bukan cuma bisa bikin UI."
+      "description": "Level Intermediate ini menguji kemampuan menangani soal algoritma yang lebih kompleks - optimasi waktu eksekusi, pemilihan struktur data yang tepat untuk kasus tertentu, dan penanganan edge case. Saya ambil ini karena ingin memastikan fondasi berpikir algoritmis saya cukup kuat, bukan cuma bisa bikin UI.",
+      "translations": {
+        "en": {
+          "issueDate": "June 2025",
+          "description": "This intermediate assessment tested more complex algorithmic problem-solving, including runtime optimization, choosing suitable data structures, and handling edge cases. I took it to strengthen my algorithmic foundations beyond building user interfaces."
+        }
+      }
     }
   ],
   "engineeringMindsetSkills": [

@@ -1,9 +1,5 @@
-import { create } from 'zustand';
-import type { PageId } from '../types';
-
+import { create } from "zustand";
 interface AppState {
-  activePage: PageId;
-  setActivePage: (page: PageId) => void;
   isDark: boolean;
   setDark: (dark: boolean) => void;
   toggleTheme: () => void;
@@ -11,22 +7,20 @@ interface AppState {
 }
 
 export const useAppStore = create<AppState>((set, get) => ({
-  activePage: 'home',
-  setActivePage: (page) => set({ activePage: page }),
   isDark: false,
   setDark: (dark) => {
     set({ isDark: dark });
     try {
       const root = document.documentElement;
       if (dark) {
-        root.classList.add('dark');
-        localStorage.setItem('portfolio_theme', 'dark');
+        root.classList.add("dark");
+        localStorage.setItem("portfolio_theme", "dark");
       } else {
-        root.classList.remove('dark');
-        localStorage.setItem('portfolio_theme', 'light');
+        root.classList.remove("dark");
+        localStorage.setItem("portfolio_theme", "light");
       }
     } catch (e) {
-      console.warn('Could not save theme preference to localStorage', e);
+      console.warn("Could not save theme preference to localStorage", e);
     }
   },
   toggleTheme: () => {
@@ -34,13 +28,16 @@ export const useAppStore = create<AppState>((set, get) => ({
     state.setDark(!state.isDark);
   },
   initTheme: () => {
-    if (typeof window === 'undefined') return;
+    if (typeof window === "undefined") return;
     try {
-      const savedTheme = localStorage.getItem('portfolio_theme');
-      const shouldBeDark = savedTheme === 'dark';
+      const savedTheme = localStorage.getItem("portfolio_theme");
+      // Light adalah default untuk kunjungan pertama; preferensi pengunjung
+      // hanya dipakai bila sebelumnya sudah memilih tema secara eksplisit.
+      const shouldBeDark = savedTheme === "dark";
       get().setDark(shouldBeDark);
     } catch {
-      // Ignore if blocked by browser
+      // Bila localStorage diblokir, tetap paksa tampilan terang default.
+      get().setDark(false);
     }
   },
 }));
