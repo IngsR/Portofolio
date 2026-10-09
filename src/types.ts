@@ -1,4 +1,46 @@
 export type PageId = "home" | "portfolio" | "about" | "contact";
+export type Locale = "id" | "en";
+
+export interface ProjectTranslations {
+  title?: string;
+  shortDescription?: string;
+  category?: string;
+  period?: string;
+  role?: string;
+  problem?: string;
+  solution?: string;
+  metrics?: { label?: string; value?: string }[];
+  markdownContent?: string;
+}
+
+export interface CertificationTranslations {
+  title?: string;
+  issuer?: string;
+  issueDate?: string;
+  period?: string;
+  category?: string;
+  description?: string;
+}
+
+export interface ExperienceTranslations {
+  role?: string;
+  period?: string;
+  type?: string;
+  description?: string;
+  achievements?: string[];
+}
+
+export interface EducationTranslations {
+  degree?: string;
+  period?: string;
+  details?: string;
+}
+
+export interface SkillCategoryTranslations {
+  title?: string;
+  description?: string;
+  alsoUsedLabel?: string;
+}
 
 export type ProjectCategory = string;
 
@@ -22,6 +64,7 @@ export interface ProjectItem {
   solution?: string;
   metrics?: { label: string; value: string }[];
   markdownContent: string;
+  translations?: Partial<Record<Locale, ProjectTranslations>>;
 }
 
 export interface SkillCategory {
@@ -31,6 +74,7 @@ export interface SkillCategory {
   coreStack: string[];
   alsoUsed: string[];
   alsoUsedLabel?: string;
+  translations?: Partial<Record<Locale, SkillCategoryTranslations>>;
 }
 
 export interface ExperienceItem {
@@ -43,6 +87,7 @@ export interface ExperienceItem {
   description?: string;
   achievements: string[];
   techStack: string[];
+  translations?: Partial<Record<Locale, ExperienceTranslations>>;
 }
 
 export interface EducationItem {
@@ -52,6 +97,7 @@ export interface EducationItem {
   period: string;
   gpa?: string;
   details?: string;
+  translations?: Partial<Record<Locale, EducationTranslations>>;
 }
 
 export interface CertificationItem {
@@ -67,6 +113,7 @@ export interface CertificationItem {
   description?: string;
   image?: string;
   fallbackImage?: string;
+  translations?: Partial<Record<Locale, CertificationTranslations>>;
 }
 
 export interface SocialLink {
