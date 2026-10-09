@@ -2,6 +2,10 @@ import { ArrowUp, ExternalLink, FileText } from "lucide-react";
 import React from "react";
 import portfolioData from "../../data/portfolio.json";
 import { PageId } from "../../types";
+import { useTranslations } from "../../i18n";
+import { getDictionary } from "../../data/locales";
+import { getLocalizedUserProfile } from "../../utils/format";
+import { getLocalePath } from "../../utils/locale";
 
 const { userProfile } = portfolioData;
 
@@ -11,15 +15,31 @@ interface FooterProps {
 }
 
 export const Footer: React.FC<FooterProps> = ({ setActivePage, onOpenCV }) => {
+  const { locale } = useTranslations();
+  const dictionary = getDictionary(locale);
+  const localizedProfile = getLocalizedUserProfile(userProfile, locale);
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "auto" });
   };
 
   const navigationItems: [PageId, string, string][] = [
-    ["home", "Beranda", "/"],
-    ["portfolio", "Portofolio", "/portfolio"],
-    ["about", "Tentang Saya", "/about"],
-    ["contact", "Kontak", "/contact"],
+    ["home", dictionary.portfolio.navigation.home, getLocalePath("/", locale)],
+    [
+      "portfolio",
+      dictionary.portfolio.navigation.portfolio,
+      getLocalePath("/portfolio", locale),
+    ],
+    [
+      "about",
+      dictionary.portfolio.navigation.about,
+      getLocalePath("/about", locale),
+    ],
+    [
+      "contact",
+      dictionary.portfolio.navigation.contact,
+      getLocalePath("/contact", locale),
+    ],
   ];
 
   return (
@@ -50,7 +70,7 @@ export const Footer: React.FC<FooterProps> = ({ setActivePage, onOpenCV }) => {
             </div>
 
             <p className="max-w-sm text-[13px] leading-relaxed text-slate-600 dark:text-slate-400">
-              {userProfile.tagline}
+              {localizedProfile.tagline}
             </p>
 
             {/* Social Links */}
@@ -73,7 +93,7 @@ export const Footer: React.FC<FooterProps> = ({ setActivePage, onOpenCV }) => {
           {/* Nav Column */}
           <div className="space-y-4 lg:col-span-3">
             <h4 className="text-[10px] font-bold uppercase tracking-[0.14em] text-slate-400 dark:text-slate-500">
-              Navigasi
+              {locale === "en" ? "Navigation" : "Navigasi"}
             </h4>
             <div className="flex flex-col gap-1.5">
               {navigationItems.map(([page, label, path]) => (
@@ -96,7 +116,7 @@ export const Footer: React.FC<FooterProps> = ({ setActivePage, onOpenCV }) => {
           {/* Contact Column */}
           <div className="space-y-4 lg:col-span-4">
             <h4 className="text-[10px] font-bold uppercase tracking-[0.14em] text-slate-400 dark:text-slate-500">
-              Kontak Cepat
+              {locale === "en" ? "Quick Contact" : "Kontak Cepat"}
             </h4>
             <div className="space-y-3">
               <div>
@@ -131,7 +151,7 @@ export const Footer: React.FC<FooterProps> = ({ setActivePage, onOpenCV }) => {
                 className="mt-1 inline-flex items-center gap-2 rounded-full border border-slate-200 dark:border-white/10 bg-white dark:bg-white/[0.03] px-4 py-2 text-xs font-semibold text-slate-900 dark:text-white shadow-xs transition-all hover:border-slate-300 dark:hover:border-white/20 hover:bg-slate-50 dark:hover:bg-white/[0.06]"
               >
                 <FileText className="h-3.5 w-3.5 shrink-0" />
-                <span>Curriculum Vitae</span>
+                <span>{locale === "en" ? "Open CV" : "Buka CV"}</span>
               </button>
             </div>
           </div>
@@ -149,7 +169,7 @@ export const Footer: React.FC<FooterProps> = ({ setActivePage, onOpenCV }) => {
             onClick={scrollToTop}
             className="inline-flex items-center gap-1.5 text-[11px] font-medium text-slate-500 dark:text-slate-400 transition-colors hover:text-slate-900 dark:hover:text-white"
           >
-            <span>Kembali ke atas</span>
+            <span>{locale === "en" ? "Back to top" : "Kembali ke atas"}</span>
             <ArrowUp className="h-3 w-3 shrink-0" />
           </button>
         </div>

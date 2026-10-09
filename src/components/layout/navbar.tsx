@@ -4,6 +4,7 @@ import {
   FileText,
   Github,
   House,
+  Languages,
   Mail,
   Moon,
   Sun,
@@ -12,7 +13,11 @@ import {
 import React from "react";
 import portfolioData from "../../data/portfolio.json";
 import { PageId } from "../../types";
-import { useAppStore } from "../../store/useAppStore";
+import { useTranslations } from "../../i18n";
+import { getDictionary } from "../../data/locales";
+import { getLanguageSwitchPath, getLocalePath, setStoredLocale } from "../../utils/locale";
+import type { Locale } from "../../types";
+import { getLocalizedUserProfile } from "../../utils/format";
 
 const { userProfile } = portfolioData;
 
@@ -23,6 +28,8 @@ interface NavbarProps {
   setIsDark?: (dark: boolean) => void;
   onOpenCV?: () => void;
   nativeNavigation?: boolean;
+  currentPath?: string;
+  locale?: Locale;
 }
 
 /* WhatsApp Icon */
@@ -46,14 +53,18 @@ export const Navbar: React.FC<NavbarProps> = ({
   setIsDark: propSetIsDark,
   onOpenCV,
   nativeNavigation = false,
+  currentPath,
+  locale: propLocale,
 }) => {
-  const storeActivePage = useAppStore((state) => state.activePage);
-  const storeSetActivePage = useAppStore((state) => state.setActivePage);
   const { isDark: themeIsDark, toggleTheme } = useTheme();
-  
-  const activePage = propActivePage !== undefined ? propActivePage : storeActivePage;
-  const setActivePage = propSetActivePage !== undefined ? propSetActivePage : storeSetActivePage;
-  
+  const { locale: contextLocale } = useTranslations();
+  const locale = propLocale ?? contextLocale;
+  const dictionary = getDictionary(locale);
+  const localizedProfile = getLocalizedUserProfile(userProfile, locale);
+
+  const activePage = propActivePage ?? "home";
+  const setActivePage = propSetActivePage;
+
   const isDark = propIsDark !== undefined ? propIsDark : themeIsDark;
   const handleToggleTheme = () => {
     if (propSetIsDark) {
@@ -74,26 +85,26 @@ export const Navbar: React.FC<NavbarProps> = ({
   }[] = [
     {
       id: "home",
-      label: "Beranda",
-      href: "/",
+      label: dictionary.portfolio.navigation.home,
+      href: getLocalePath("/", locale),
       icon: <House className="h-4 w-4" />,
     },
     {
       id: "portfolio",
-      label: "Portofolio",
-      href: "/portfolio",
+      label: dictionary.portfolio.navigation.portfolio,
+      href: getLocalePath("/portfolio", locale),
       icon: <BriefcaseBusiness className="h-4 w-4" />,
     },
     {
       id: "about",
-      label: "Tentang",
-      href: "/about",
+      label: dictionary.portfolio.navigation.about,
+      href: getLocalePath("/about", locale),
       icon: <UserRound className="h-4 w-4" />,
     },
     {
       id: "contact",
-      label: "Kontak",
-      href: "/contact",
+      label: dictionary.portfolio.navigation.contact,
+      href: getLocalePath("/contact", locale),
       icon: <Mail className="h-4 w-4" />,
     },
   ];
@@ -144,14 +155,14 @@ export const Navbar: React.FC<NavbarProps> = ({
           >
             {/* Brand Logo & Name */}
             <a
-              href="/"
+              href={getLocalePath("/", locale)}
               onClick={(e) => {
                 if (!nativeNavigation) {
                   e.preventDefault();
                   handleNavClick("home");
                 }
               }}
-              aria-label="Kembali ke Beranda"
+              aria-label={dictionary.portfolio.navigation.home}
               className="group flex shrink-0 items-center gap-2.5 text-left focus:outline-none"
             >
               <div className="relative">
@@ -179,7 +190,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 />
                 <span
                   className="absolute -bottom-0.5 -right-0.5 h-2.5 w-2.5 rounded-full bg-emerald-500 ring-2 ring-white dark:ring-black animate-pulse"
-                  title="Terbuka untuk On-Site / Hybrid"
+                  title={localizedProfile.statusText}
                 />
               </div>
 
@@ -191,7 +202,9 @@ export const Navbar: React.FC<NavbarProps> = ({
                   {userProfile.title}
                 </p>
                 <span className="sm:hidden text-[9px] font-mono font-medium text-emerald-600 dark:text-emerald-400 block leading-none">
-                  Siap Kerja WFO/Hybrid
+                  {locale === "en"
+                    ? "Available on-site / hybrid"
+                    : "Siap Kerja WFO/Hybrid"}
                 </span>
               </div>
             </a>
@@ -209,9 +222,11 @@ export const Navbar: React.FC<NavbarProps> = ({
                 p-1
                 dark:border-white/10
                 dark:bg-white/[0.04]
-                md:flex
+                lg:flex
               "
-              aria-label="Navigasi utama desktop"
+              aria-label={
+                locale === "en" ? "Main navigation" : "Navigasi utama"
+              }
             >
               {navItems.map((item) => {
                 const isActive = activePage === item.id;
@@ -247,7 +262,11 @@ export const Navbar: React.FC<NavbarProps> = ({
                   >
                     {item.icon}
                     <span>
-                      {item.label === "Tentang" ? "Tentang Saya" : item.label}
+                      {item.label === dictionary.portfolio.navigation.about
+                        ? locale === "en"
+                          ? "About Me"
+                          : "Tentang Saya"
+                        : item.label}
                     </span>
                   </a>
                 );
@@ -256,13 +275,31 @@ export const Navbar: React.FC<NavbarProps> = ({
 
             {/* Actions: Clean & Accessible */}
             <div className="flex items-center justify-end gap-1.5 shrink-0">
+              <a
+                href={getLanguageSwitchPath(
+                  currentPath ?? "/",
+                  locale,
+                  activePage,
+                )}
+                onClick={() => {
+                  // Simpan pilihan pengunjung agar bertahan pada kunjungan berikutnya.
+                  setStoredLocale(locale === "id" ? "en" : "id");
+                }}
+                aria-label={dictionary.portfolio.language.switchTo}
+                title={dictionary.portfolio.language.switchTo}
+                className="flex h-9 shrink-0 items-center justify-center gap-1 rounded-full border border-slate-200 px-2 text-xs font-bold text-slate-700 transition-colors hover:bg-slate-100 dark:border-white/10 dark:text-slate-200 dark:hover:bg-white/10"
+              >
+                <Languages className="h-4 w-4" />
+                <span>{locale === "id" ? "EN" : "ID"}</span>
+              </a>
+
               {/* WhatsApp Direct Link */}
               <a
                 href={userProfile.whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="Hubungi via WhatsApp"
-                title="Hubungi via WhatsApp"
+                aria-label={dictionary.contact.whatsappAction}
+                title={dictionary.contact.whatsappAction}
                 className="
                   flex
                   shrink-0
@@ -297,8 +334,14 @@ export const Navbar: React.FC<NavbarProps> = ({
                 }
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="Profil GitHub"
-                title="Lihat Profil GitHub"
+                aria-label={
+                  locale === "en" ? "GitHub profile" : "Profil GitHub"
+                }
+                title={
+                  locale === "en"
+                    ? "View GitHub profile"
+                    : "Lihat Profil GitHub"
+                }
                 className="
                   hidden
                   sm:flex
@@ -331,8 +374,8 @@ export const Navbar: React.FC<NavbarProps> = ({
                 <button
                   type="button"
                   onClick={onOpenCV}
-                  aria-label="Buka CV"
-                  title="Buka Curriculum Vitae"
+                  aria-label={dictionary.hero.quickActions.cv.label}
+                  title={dictionary.hero.quickActions.cv.label}
                   className="
                   flex
                   shrink-0
@@ -418,11 +461,11 @@ export const Navbar: React.FC<NavbarProps> = ({
           z-50
           w-[calc(100%-2rem)]
           max-w-sm
-          md:hidden
+          lg:hidden
           transition-all
           duration-300
         "
-        aria-label="Navigasi mobile floating dock"
+        aria-label="Navigasi bawah"
       >
         <div
           className="
