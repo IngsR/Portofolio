@@ -70,7 +70,69 @@ Build Command: npm run build
 Output Directory: dist
 ```
 
-Data portfolio dikelola pada `src/data/portfolioData.ts`. Asset personal dan screenshot project tersedia di folder `public/`.
+Data portfolio dikelola pada `src/data/portfolio.json`. Asset personal dan screenshot project tersedia di folder `public/`.
+
+## Internationalization (i18n)
+
+Astro menjadi sumber locale dan routing: URL Indonesia tetap tanpa prefix (`/`),
+sedangkan halaman Inggris memakai `/en/...`. Konfigurasi `i18n` sudah tersedia
+di `astro.config.mjs`; setiap route berbahasa Inggris dibuat di `src/pages/en/`.
+Astro tidak otomatis menggandakan halaman, jadi route padanan perlu ditambahkan
+ketika route baru dibuat.
+
+Tidak ada package i18n tambahan yang diperlukan untuk dua bahasa statis.
+`@astrojs/i18n` bukan integration resmi yang dibutuhkan di sini, dan
+`i18next/react-i18next` baru layak ditambahkan jika diperlukan pluralization,
+interpolation kompleks, lazy-load katalog, atau locale yang dikelola runtime.
+Untuk saat ini, React context pada `src/i18n.tsx` hanya meneruskan locale Astro
+ke interactive islands; jangan menyimpan locale kedua kalinya di Zustand.
+
+Kamus dipecah per fitur dalam `src/data/locales/{id,en}/`. Tambahkan key dengan
+bentuk dan nama yang sama di kedua bahasa, lalu daftarkan import modulnya di
+`src/data/locales/index.ts`. Komponen mengambil locale dari `useTranslations()`
+dan teks melalui dictionary fitur terkait. Contoh implementasi tersedia pada
+`quick-actions.tsx` dan `navbar.tsx`.
+
+Untuk data portofolio, gunakan `translations` per locale dan pertahankan nilai
+lama sebagai fallback:
+
+```json
+{
+  "id": "proj-1",
+  "title": "Website SMP Negeri 24 Padang",
+  "shortDescription": "Deskripsi Bahasa Indonesia",
+  "translations": {
+    "en": {
+      "title": "SMP Negeri 24 Padang School Website",
+      "shortDescription": "English project description"
+    }
+  }
+}
+```
+
+Untuk sertifikat, gunakan skema sepadan:
+
+```json
+{
+  "id": "cert-1",
+  "title": "Artificial Intelligence Fundamentals",
+  "issuer": "IBM SkillsBuild",
+  "translations": {
+    "en": {
+      "title": "Artificial Intelligence Fundamentals",
+      "issuer": "IBM SkillsBuild",
+      "description": "An introduction to core artificial intelligence concepts."
+    }
+  }
+}
+```
+
+Field sertifikat yang dapat diterjemahkan meliputi `title`, `issuer`, `period`,
+`category`, dan `description`. Gunakan `getLocalizedProject()` atau
+`getLocalizedCertification()` dari `src/utils/format.ts`; field yang belum
+diterjemahkan otomatis mempertahankan nilai dasar. Tambahkan seluruh copy UI
+lain ke kamus per fitur agar cakupan halaman Inggris bertambah tanpa mengubah
+skema data atau state navigasi.
 
 ## License
 
