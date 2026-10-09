@@ -1,0 +1,87 @@
+{
+  "profile": {
+    "tagline": "Junior Web Developer yang membangun aplikasi web dari antarmuka hingga REST API, database, dan deployment, sambil terus memperdalam praktik software engineering melalui project nyata.",
+    "shortBio": "Fresh graduate Teknik Informatika yang fokus di web development. Kemampuan saya tumbuh dari project mandiri, mencoba membangun antarmuka, menghubungkan API, dan memahami cara kerja sistem secara langsung. Sekarang siap masuk dunia kerja dan terus berkembang bersama tim.",
+    "fullBio": [
+      "Saya Ikhwan Ramadhan, lulusan S1 Teknik Informatika Universitas Putra Indonesia “YPTK” Padang. Fokus profesional saya adalah software engineering, khususnya pengembangan aplikasi web dari frontend hingga backend. Konsentrasi Data Science menjadi bekal akademik tambahan yang melengkapi pemahaman saya tentang pengolahan dan analisis data.",
+      "Sebagian besar kemampuan web saya tumbuh dari project nyata dan belajar mandiri, bukan hanya dari kelas. Dari mengerjakan portal sekolah, aplikasi properti, sampai website showroom mobil, saya belajar memahami kebutuhan pengguna, membangun fitur, lalu berhadapan langsung dengan masalah seperti bug, integrasi API, struktur database, authentication, dan deployment.",
+      "Bekal akademik tersebut saya terapkan dalam skripsi tentang prediksi lintasan siklon tropis menggunakan model LSTM. Saya menguji beberapa konfigurasi, membandingkan hasil, dan mengevaluasi performanya sebelum memilih pendekatan terbaik. Fokus karier saya tetap pada software engineering.",
+      "Saya ingin terus memperdalam web development, membangun kebiasaan software engineering yang lebih baik, dan memperluas pemahaman teknis melalui project serta pengalaman kerja nyata."
+    ],
+    "workPreference": "Terbuka untuk kesempatan kerja On-Site / WFO dan Hybrid",
+    "statusText": "Terbuka untuk posisi Junior Web Developer - On-Site / WFO dan Hybrid"
+  },
+  "intro": {
+    "availability": "Terbuka untuk kesempatan Junior Web Developer",
+    "bio": "Fresh graduate Teknik Informatika yang fokus di web development. Kemampuan saya tumbuh dari project mandiri, mencoba membangun antarmuka, menghubungkan API, dan memahami cara kerja sistem secara langsung. Sekarang siap masuk dunia kerja dan terus berkembang bersama tim.",
+    "roles": [
+      "Frontend & Backend",
+      "Next.js & React Developer",
+      "REST API & Database"
+    ],
+    "workLabel": "Kesiapan Kerja:",
+    "workValue": "Terbuka untuk kerja On-Site / WFO dan Hybrid",
+    "educationLabel": "Pendidikan Akademis:",
+    "educationValue": "S1 Teknik Informatika - UPI “YPTK” (IPK 3.26)",
+    "stats": {
+      "projects": "Proyek Selesai",
+      "projectsShort": "Proyek",
+      "experience": "Pengalaman Kerja",
+      "experienceShort": "Pengalaman",
+      "commits": "Commit per Tahun"
+    },
+    "portfolioButton": "Portofolio",
+    "cvButton": "Curriculum Vitae"
+  },
+  "sections": {
+    "education": "Pendidikan Perguruan Tinggi (S1)",
+    "portfolio": "Portofolio",
+    "featuredProjects": "Lihat Semua Proyek",
+    "about": "Tentang Saya",
+    "certifications": "Sertifikasi",
+    "allCertificates": "Lihat Semua Sertifikat",
+    "skills": "Keahlian",
+    "nextStep": "LANGKAH BERIKUTNYA",
+    "contactHeading": "Ada peluang yang ingin dibicarakan?",
+    "contactDescription": "Saya terbuka untuk peluang sebagai Junior Web Developer dengan fokus pada Next.js dan React.js, serta memahami pengembangan full-stack hingga deployment.",
+    "contactWhatsapp": "Hubungi via WhatsApp",
+    "contactEmail": "Kirim email"
+  },
+  "aboutSummary": {
+    "paragraphOne": "Saya Ikhwan Ramadhan, lulusan S1 Teknik Informatika Universitas Putra Indonesia “YPTK” Padang. Fokus profesional saya adalah software engineering, terutama membangun aplikasi dari frontend hingga backend, REST API, database, pengujian, dan deployment. Konsentrasi Data Science menjadi bekal akademik pelengkap untuk memahami pengolahan dan analisis data.",
+    "paragraphTwo": "Bagi saya, development bukan sekadar membuat sesuatu berjalan, tetapi juga memahami mengapa sesuatu tidak berjalan, mencari penyebabnya, dan menemukan cara yang lebih baik untuk menyelesaikannya. Karena itu, saya terus mengeksplorasi teknologi dan pendekatan baru melalui berbagai project yang saya kerjakan.",
+    "cards": [
+      {
+        "title": "Next.js",
+        "subtitle": "App Router, SSR, SSG, Server Actions"
+      },
+      {
+        "title": "React & TypeScript",
+        "subtitle": "Komponen, hooks, type-safe"
+      },
+      {
+        "title": "REST API & Database",
+        "subtitle": "Route Handlers, Zod, Prisma"
+      },
+      { "title": "Git & Deployment", "subtitle": "Branch, PR, Vercel, CI/CD" }
+    ]
+  },
+  "quickActions": {
+    "cv": {
+      "label": "Curriculum Vitae",
+      "hint": "Lihat CV PDF, lalu cetak langsung dari browser bila diperlukan"
+    },
+    "linkedin": {
+      "label": "Profil LinkedIn"
+    },
+    "whatsapp": {
+      "label": "WhatsApp & Respons Cepat"
+    },
+    "email": {
+      "label": "Kirim Email Resmi"
+    },
+    "github": {
+      "label": "Repositori Portofolio GitHub"
+    }
+  }
+}

@@ -1,0 +1,90 @@
+{
+  "profile": {
+    "tagline": "Junior Web Developer building web applications from user interfaces to REST APIs, databases, and deployment while continuing to strengthen software engineering practices through real projects.",
+    "shortBio": "A Computer Science graduate focused on web development. I have built practical skills through independent projects, creating interfaces, connecting APIs, and learning how systems work end to end. I am ready to begin my career and keep growing with a team.",
+    "fullBio": [
+      "I am Ikhwan Ramadhan, a Computer Science graduate from Universitas Putra Indonesia “YPTK” Padang. My professional focus is software engineering, especially building web applications from frontend to backend. My Data Science concentration complements my academic background in data processing and analysis.",
+      "Most of my web development skills come from real projects and independent learning. By building a school portal, a property application, and a car showroom website, I learned to understand user needs, deliver features, and solve practical problems involving bugs, API integrations, database design, authentication, and deployment.",
+      "I applied my academic background to my thesis on tropical cyclone track prediction using an LSTM model. I tested multiple configurations, compared results, and evaluated performance before selecting an approach. My career focus remains software engineering.",
+      "I want to keep improving my web development skills, build stronger software engineering habits, and expand my technical knowledge through projects and hands-on work experience."
+    ],
+    "workPreference": "Open to on-site and hybrid opportunities",
+    "statusText": "Open to Junior Web Developer roles - on-site and hybrid"
+  },
+  "intro": {
+    "availability": "Open to Junior Web Developer opportunities",
+    "bio": "A Computer Science graduate focused on web development. I have built practical skills through independent projects, creating interfaces, connecting APIs, and learning how systems work end to end. I am ready to begin my career and keep growing with a team.",
+    "roles": [
+      "Frontend & Backend",
+      "Next.js & React Developer",
+      "REST API & Database"
+    ],
+    "workLabel": "Work preference:",
+    "workValue": "Open to on-site and hybrid work",
+    "educationLabel": "Education:",
+    "educationValue": "B.Sc. in Informatics Engineering - UPI “YPTK” (GPA 3.26)",
+    "stats": {
+      "projects": "Projects Completed",
+      "projectsShort": "Projects",
+      "experience": "Work Experience",
+      "experienceShort": "Experience",
+      "commits": "Commits per Year"
+    },
+    "portfolioButton": "Portfolio",
+    "cvButton": "Curriculum Vitae"
+  },
+  "sections": {
+    "education": "Undergraduate Education",
+    "portfolio": "Portfolio",
+    "featuredProjects": "View All Projects",
+    "about": "About Me",
+    "certifications": "Certifications",
+    "allCertificates": "View All Certificates",
+    "skills": "Skills",
+    "nextStep": "NEXT STEP",
+    "contactHeading": "Have an opportunity to discuss?",
+    "contactDescription": "I am open to Junior Web Developer opportunities focused on Next.js and React.js, with full-stack and deployment experience.",
+    "contactWhatsapp": "Contact via WhatsApp",
+    "contactEmail": "Send an email"
+  },
+  "aboutSummary": {
+    "paragraphOne": "I am Ikhwan Ramadhan, a Computer Science graduate from Universitas Putra Indonesia “YPTK” Padang. My professional focus is software engineering: building applications from frontend to backend, including REST APIs, databases, testing, and deployment. Data Science is a complementary part of my academic background.",
+    "paragraphTwo": "For me, development is not only about making something work. It is also about understanding why it fails, finding the cause, and improving the solution. I keep exploring technologies and approaches through the projects I build.",
+    "cards": [
+      {
+        "title": "Next.js",
+        "subtitle": "App Router, SSR, SSG, Server Actions"
+      },
+      {
+        "title": "React & TypeScript",
+        "subtitle": "Components, hooks, type-safe code"
+      },
+      {
+        "title": "REST API & Database",
+        "subtitle": "Route Handlers, Zod, Prisma"
+      },
+      {
+        "title": "Git & Deployment",
+        "subtitle": "Branches, PRs, Vercel, CI/CD"
+      }
+    ]
+  },
+  "quickActions": {
+    "cv": {
+      "label": "Curriculum Vitae",
+      "hint": "View the PDF CV and print it from your browser if needed"
+    },
+    "linkedin": {
+      "label": "LinkedIn Profile"
+    },
+    "whatsapp": {
+      "label": "WhatsApp & Quick Response"
+    },
+    "email": {
+      "label": "Send a Professional Email"
+    },
+    "github": {
+      "label": "Portfolio GitHub Repository"
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "profileLabel": "Profil Profesional",
+  "cv": "Lihat CV Lengkap",
+  "availability": "Kesiapan Kerja",
+  "availabilityTitle": "On-Site / WFO & Remote",
+  "availabilityDescription": "Siap bekerja on-site / WFO di seluruh Indonesia, serta sistem kerja Hybrid / Remote.",
+  "education": "Pendidikan Terakhir",
+  "expertise": "Fokus Keahlian",
+  "highlights": {
+    "educationTitle": "S1 Teknik Informatika",
+    "educationDescription": "Lulusan S1 TI UPI “YPTK” Padang dengan fondasi rekayasa perangkat lunak, struktur data dan algoritma, basis data relasional, serta arsitektur sistem web. Konsentrasi Data Science menjadi bekal akademik tambahan.",
+    "expertiseTitle": "Junior Web Developer",
+    "expertiseDescription": "Pengembangan frontend dan backend dengan Next.js (App Router), REST API, Zod, pengujian, OWASP Top 10, Git workflow, CI/CD, dan deployment serverless."
+  },
+  "achievements": "Pencapaian Utama",
+  "skillsTitle": "Teknologi yang Saya Gunakan",
+  "skillsDescription": "Stack yang paling sering saya gunakan, beserta tools yang digunakan sesuai kebutuhan project.",
+  "educationHistory": "Riwayat Pendidikan",
+  "certificationsTitle": "Sertifikasi & Kredensial",
+  "coreStack": "CORE STACK",
+  "alsoUsed": "ALSO USED",
+  "tabs": {
+    "experience": "Pengalaman Kerja",
+    "skills": "Keahlian Teknis",
+    "education": "Pendidikan & Sertifikasi"
+  }
+}

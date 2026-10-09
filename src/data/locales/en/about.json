@@ -1,0 +1,27 @@
+{
+  "profileLabel": "Professional Profile",
+  "cv": "View Full CV",
+  "availability": "Work Availability",
+  "availabilityTitle": "On-Site / Office & Remote",
+  "availabilityDescription": "Available for on-site work across Indonesia, as well as hybrid or remote arrangements.",
+  "education": "Education",
+  "expertise": "Areas of Expertise",
+  "highlights": {
+    "educationTitle": "B.Sc. in Informatics Engineering",
+    "educationDescription": "Graduate of UPI “YPTK” Padang with a foundation in software engineering, data structures and algorithms, relational databases, and web system architecture. My Data Science concentration adds further academic depth.",
+    "expertiseTitle": "Junior Web Developer",
+    "expertiseDescription": "Frontend and backend development with Next.js (App Router), REST APIs, Zod, testing, OWASP Top 10, Git workflows, CI/CD, and serverless deployment."
+  },
+  "achievements": "Key Achievements",
+  "skillsTitle": "Technologies I Use",
+  "skillsDescription": "My most frequently used stack, along with tools selected to fit each project.",
+  "educationHistory": "Education History",
+  "certificationsTitle": "Certifications & Credentials",
+  "coreStack": "CORE STACK",
+  "alsoUsed": "ALSO USED",
+  "tabs": {
+    "experience": "Experience",
+    "skills": "Technical Skills",
+    "education": "Education & Certifications"
+  }
+}

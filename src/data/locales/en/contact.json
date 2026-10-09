@@ -1,0 +1,62 @@
+{
+  "eyebrow": "CONTACT & CONNECT",
+  "title": "Let's Work Together",
+  "intro": "Open to full-time, on-site, relocation, collaboration, and web development opportunities.",
+  "workMessage": "Job Opportunity / Project",
+  "whatsappTitle": "Direct WhatsApp",
+  "whatsappSubtitle": "Quick and friendly response",
+  "whatsappDescription": "Want to discuss a job opportunity, interview, or project? Use the link below to start a direct chat.",
+  "whatsappAction": "Chat on WhatsApp",
+  "whatsappDirect": "Chat on WhatsApp",
+  "emailLabel": "Email Address *",
+  "emailTitle": "Professional Email",
+  "emailSubtitle": "For job invitations and formal correspondence",
+  "copyEmail": "Copy email",
+  "copied": "Copied",
+  "copy": "Copy",
+  "openEmail": "Open email",
+  "availabilityTitle": "Availability & Location",
+  "locationLabel": "Work status & location:",
+  "locationValue": "Available for on-site work across Indonesia and hybrid or remote work",
+  "responseLabel": "Response time:",
+  "responseValue": "Usually within a few hours (08:00–21:00 WIB)",
+  "socialTitle": "Professional Links",
+  "formTitle": "Send a Direct Message",
+  "formDescription": "Leave your message or question below",
+  "successTitle": "Message Sent Successfully!",
+  "successDescription": "Thank you for reaching out. Your message has been saved, and I will reply to your email soon.",
+  "sendAnother": "Send Another Message",
+  "nameLabel": "Full Name / Organization *",
+  "namePlaceholder": "e.g. Alex Smith / Acme Inc.",
+  "emailLabel": "Email Address *",
+  "emailPlaceholder": "name@company.com",
+  "subjectLabel": "Subject",
+  "subjectPlaceholder": "e.g. Software Engineer Opportunity",
+  "categoryLabel": "Inquiry Type",
+  "categories": {
+    "work": "Junior Web Developer opportunity (on-site / hybrid / remote)",
+    "development": "End-to-end web development (Next.js & REST API)",
+    "consultation": "Technical discussion / web architecture & deployment",
+    "other": "Other inquiry"
+  },
+  "messageLabel": "Message *",
+  "messagePlaceholder": "Write your message, offer details, or project requirements...",
+  "sending": "Sending...",
+  "faqEyebrow": "FAQ",
+  "faqTitle": "Frequently Asked Questions",
+  "faq": [
+    {
+      "question": "How can I contact Ikhwan Ramadhan about a Junior Web Developer opportunity?",
+      "answer": "Contact me directly on WhatsApp at +62 823-8647-3410, by email at ikhwn.rdn@gmail.com, or through the message form on this site. I respond promptly to interview requests and technical discussions."
+    },
+    {
+      "question": "Are you available for on-site work or relocation?",
+      "answer": "Yes. I am open to on-site positions throughout Indonesia and relocation, as well as hybrid and remote work."
+    },
+    {
+      "question": "What technical skills would you bring to a team?",
+      "answer": "My focus is software engineering, especially building frontend-to-backend applications with Next.js and TypeScript. I work with user interfaces, REST APIs, databases, Zod validation, testing, security fundamentals, Git workflows, and serverless deployment."
+    }
+  ],
+  "submit": "Send Message"
+}
