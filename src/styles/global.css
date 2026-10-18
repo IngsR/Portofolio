@@ -1,32 +1,37 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
 @variant dark (&:where(.dark, .dark *));
 
 @layer base {
   :root {
     color-scheme: light;
-    --page-bg: #f0ebe1;
-    --surface: #f7f2e9;
-    --surface-raised: #eae2d5;
-    --surface-overlay: #f8f4ec;
-    --border: #d4c8b8;
-    --text-primary: #302c27;
-    --text-secondary: #675f55;
-    --accent: #607777;
-    --surface-shadow: 0 2px 8px rgba(32, 38, 43, 0.06);
+    --page-bg: #f3ede6;
+    --surface: transparent;
+    --surface-raised: transparent;
+    --surface-overlay: transparent;
+    --border: rgba(54, 69, 79, 0.14);
+    --text-primary: #141f26;
+    --text-body: #24333d;
+    --text-secondary: #354551;
+    --text-muted: #485966;
+    --accent: #273641;
+    --surface-shadow: none;
   }
 
   html.dark {
     color-scheme: dark;
     --page-bg: #24282b;
-    --surface: #2b3034;
-    --surface-raised: #33393e;
-    --surface-overlay: #30363a;
-    --border: #41494f;
-    --text-primary: #e4e8eb;
-    --text-secondary: #aab3b9;
+    --surface: transparent;
+    --surface-raised: transparent;
+    --surface-overlay: transparent;
+    --border: rgba(255, 255, 255, 0.10);
+    --text-primary: #ffffff;
+    --text-body: #f8fafc;
+    --text-secondary: #e2e8f0;
+    --text-muted: #cbd5e1;
     --accent: #8caec2;
-    --surface-shadow: 0 2px 8px rgba(0, 0, 0, 0.16);
+    --surface-shadow: none;
   }
 
   html {
@@ -62,68 +67,418 @@
     color: inherit;
   }
 
+  /* =========================================================================
+     STANDARISASI TEKS 1 PINTU (LIGHT & DARK THEME)
+     ========================================================================= */
+
+  /* 1 Pintu - LIGHT THEME */
   html:not(.dark) {
     --color-surface: var(--surface);
     --color-surface-raised: var(--surface-raised);
     --color-surface-overlay: var(--surface-overlay);
     --color-border: var(--border);
+    color: var(--text-body);
+    text-rendering: optimizeLegibility;
   }
 
-  html:not(.dark) .bg-white,
-  html:not(.dark) [class*="bg-white/70"],
-  html:not(.dark) [class*="bg-white/80"],
-  html:not(.dark) [class*="bg-white/90"],
-  html:not(.dark) [class*="bg-white/95"] {
-    background-color: var(--surface) !important;
+  html:not(.dark) :is(h1, h2, h3, h4, h5, h6) {
+    color: var(--text-primary) !important;
+    letter-spacing: -0.018em;
   }
 
-  html:not(.dark) .bg-slate-50,
-  html:not(.dark) .bg-slate-100 {
-    background-color: var(--surface-raised) !important;
+  html:not(.dark) :is(p, li, dd, dt, blockquote) {
+    color: var(--text-body);
+    line-height: 1.62;
   }
 
-  html.dark [class*="dark:bg-[#"] {
-    background-color: var(--surface) !important;
+  /* Standarisasi semua link 1 pintu di Light Theme */
+  html:not(.dark) a:not([class*="bg-[#273641]"]):not([class*="bg-slate-950"]):not([class*="bg-emerald"]):not([class*="bg-blue"]):not([class*="bg-rose"]):not([class*="btn"]):not([id*="btn"]) {
+    color: var(--text-primary);
+    transition: color 0.15s ease;
+  }
+  html:not(.dark) a:not([class*="bg-[#273641]"]):not([class*="bg-slate-950"]):not([class*="bg-emerald"]):not([class*="bg-blue"]):not([class*="bg-rose"]):not([class*="btn"]):not([id*="btn"]):hover {
+    color: #1a252d;
   }
 
-  html.dark [class*="dark:bg-white/"] {
-    background-color: var(--surface-raised) !important;
+  /* Standarisasi utilitas warna teks Tailwind di Light Theme (1 pintu) */
+  html:not(.dark) :is(.text-slate-950, .text-slate-900, .text-black, .text-gray-900, .text-neutral-900) {
+    color: var(--text-primary) !important;
   }
 
-  html.dark [class*="dark:border-white/"] {
-    border-color: var(--border) !important;
+  html:not(.dark) :is(.text-slate-800, .text-gray-800, .text-neutral-800) {
+    color: var(--text-body) !important;
   }
 
-  html:not(.dark) body :is(
-    [class*="rounded-xl"][class*="bg-white"],
-    [class*="rounded-2xl"][class*="bg-white"],
-    [class*="rounded-3xl"][class*="bg-white"],
-    [class*="rounded-xl"][class*="bg-[#"],
-    [class*="rounded-2xl"][class*="bg-[#"],
-    [class*="rounded-3xl"][class*="bg-[#"],
-    [class*="rounded-xl"][class*="bg-slate-50"],
-    [class*="rounded-xl"][class*="bg-slate-100"],
-    [class*="rounded-2xl"][class*="bg-slate-50"],
-    [class*="rounded-2xl"][class*="bg-slate-100"],
-    [class*="rounded-3xl"][class*="bg-slate-50"],
-    [class*="rounded-3xl"][class*="bg-slate-100"]
+  html:not(.dark) :is(.text-slate-700, .text-slate-600, .text-gray-700, .text-gray-600) {
+    color: var(--text-secondary) !important;
+  }
+
+  html:not(.dark) :is(.text-slate-500, .text-slate-400, .text-gray-500, .text-gray-400) {
+    color: var(--text-muted) !important;
+  }
+
+  /* 1 Pintu - DARK THEME: Semua teks di Dark Mode WAJIB putih terang / light slate */
+  html.dark,
+  html.dark body {
+    color: #f8fafc !important;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* 1. Seluruh Judul di Dark Theme: Putih Murni */
+  html.dark :is(h1, h2, h3, h4, h5, h6) {
+    color: #ffffff !important;
+  }
+
+  /* 2. Seluruh Paragraf, List, Label & Deskripsi di Dark Theme: Putih Bersih */
+  html.dark :is(p, li, dd, dt, blockquote, label) {
+    color: #f1f5f9 !important;
+  }
+
+  /* 3. Netralkan SEMUA utilitas warna teks gelap di Dark Theme menjadi Putih Terang */
+  html.dark :is(
+    .text-slate-950, .text-slate-900, .text-slate-800, .text-slate-700,
+    .text-gray-950, .text-gray-900, .text-gray-800, .text-gray-700,
+    .text-neutral-950, .text-neutral-900, .text-neutral-800, .text-neutral-700,
+    .text-zinc-950, .text-zinc-900, .text-zinc-800, .text-zinc-700,
+    .text-black,
+    [class*="text-[#141f26]"],
+    [class*="text-[#24333d]"],
+    [class*="text-[#354551]"],
+    [class*="text-[#273641]"],
+    [class*="text-[#1c2932]"],
+    [class*="text-[#10191f]"]
+  ):not(#hero-view-portfolio-btn):not(#hero-view-portfolio-btn *) {
+    color: #ffffff !important;
+  }
+
+  /* 4. Teks Terang Tailwind di Dark Theme */
+  html.dark :is(.text-slate-100, .text-slate-200, .text-white, .text-gray-100, .text-gray-200):not(#hero-view-portfolio-btn):not(#hero-view-portfolio-btn *) {
+    color: #f8fafc !important;
+  }
+
+  /* 5. Teks Muted / Subtitle di Dark Theme: Light Slate Terang */
+  html.dark :is(
+    .text-slate-500, .text-slate-400, .text-slate-300,
+    .text-gray-500, .text-gray-400, .text-gray-300,
+    .text-neutral-500, .text-neutral-400, .text-neutral-300,
+    [class*="text-[#485966]"],
+    [class*="text-[#4a5c68]"]
+  ):not(.nav-item-active):not(.nav-item-active *):not(#hero-view-portfolio-btn):not(#hero-view-portfolio-btn *) {
+    color: #cbd5e1 !important;
+  }
+
+  /* 6. Seluruh Tautan di Dark Theme */
+  html.dark a:not(#hero-view-portfolio-btn):not(#hero-view-portfolio-btn *):not([class*="bg-emerald"]):not([class*="bg-blue"]):not([class*="bg-rose"]):not([class*="bg-white"]):not([class*="bg-slate-100"]) {
+    color: #ffffff;
+    transition: color 0.15s ease;
+  }
+  html.dark a:not(#hero-view-portfolio-btn):not(#hero-view-portfolio-btn *):not([class*="bg-emerald"]):not([class*="bg-blue"]):not([class*="bg-rose"]):not([class*="bg-white"]):not([class*="bg-slate-100"]):hover {
+    color: #cbd5e1;
+  }
+
+  /* 7. Tombol navigasi aktif di Dark Mode: Teks & ikon WAJIB putih terang */
+  html.dark .nav-item-active,
+  html.dark .nav-item-active :is(span, svg) {
+    color: #ffffff !important;
+    fill: currentColor !important;
+  }
+
+  /* =========================================================================
+     STANDARISASI TOMBOL 1 PINTU (LIGHT & DARK THEME)
+     ========================================================================= */
+
+  /* Tombol Utama di Light Mode: Ganti hitam pekat ke Velvet Charcoal */
+  html:not(.dark) :is(
+    [class*="bg-slate-950"],
+    [class*="bg-black"],
+    #hero-view-portfolio-btn
   ) {
-    background-color: color-mix(in srgb, var(--surface) 85%, transparent) !important;
+    background-color: #273641 !important;
+    color: #ffffff !important;
+    border-color: transparent !important;
   }
 
-  html.dark body :is(
-    [class*="rounded-xl"][class*="bg-white"],
-    [class*="rounded-2xl"][class*="bg-white"],
-    [class*="rounded-3xl"][class*="bg-white"],
-    [class*="rounded-xl"][class*="dark:bg-[#"],
-    [class*="rounded-2xl"][class*="dark:bg-[#"],
-    [class*="rounded-3xl"][class*="dark:bg-[#"],
-    [class*="rounded-xl"][class*="dark:bg-white/"],
-    [class*="rounded-2xl"][class*="dark:bg-white/"],
-    [class*="rounded-3xl"][class*="dark:bg-white/"]
-  ) {
-    background-color: color-mix(in srgb, var(--surface) 85%, transparent) !important;
+  html:not(.dark) :is(
+    [class*="bg-slate-950"],
+    [class*="bg-black"],
+    #hero-view-portfolio-btn
+  ):hover {
+    background-color: #1a252d !important;
+    color: #ffffff !important;
   }
+
+  /* Tombol Utama di Dark Mode: Portofolio CTA dengan pill putih solid */
+  html.dark #hero-view-portfolio-btn {
+    background-color: #f1f5f9 !important;
+    color: #0f172a !important;
+    border-color: transparent !important;
+  }
+
+  html.dark #hero-view-portfolio-btn :is(span, svg) {
+    color: #0f172a !important;
+  }
+
+  html.dark #hero-view-portfolio-btn:hover {
+    background-color: #ffffff !important;
+    color: #020617 !important;
+  }
+
+  /* Cegah tombol CV / aksi warna putih di Light Mode -> Transparan dengan garis tipis */
+  html:not(.dark) :is(
+    button[class*="rounded-full"],
+    button[class*="rounded-2xl"],
+    button[class*="rounded-xl"],
+    a[class*="rounded-full"],
+    a[class*="rounded-2xl"],
+    a[class*="rounded-xl"]
+  ):is(
+    [class*="bg-[#faf7f0]"],
+    [class*="bg-white"],
+    [class*="bg-[#faf6f0]"]
+  ):not(#hero-view-portfolio-btn):not([class*="bg-slate-950"]):not([class*="bg-[#273641]"]) {
+    background: transparent !important;
+    background-color: transparent !important;
+    border: 1px solid rgba(54, 69, 79, 0.22) !important;
+    color: #141f26 !important;
+  }
+
+  html:not(.dark) :is(
+    button[class*="rounded-full"],
+    button[class*="rounded-2xl"],
+    button[class*="rounded-xl"],
+    a[class*="rounded-full"],
+    a[class*="rounded-2xl"],
+    a[class*="rounded-xl"]
+  ):is(
+    [class*="bg-[#faf7f0]"],
+    [class*="bg-white"],
+    [class*="bg-[#faf6f0]"]
+  ):not(#hero-view-portfolio-btn):not([class*="bg-slate-950"]):not([class*="bg-[#273641]"]):hover {
+    background-color: rgba(54, 69, 79, 0.05) !important;
+    border-color: rgba(54, 69, 79, 0.40) !important;
+    color: #10191f !important;
+  }
+
+  /* Tombol CV / sekunder di Dark Mode */
+  html.dark :is(
+    button[class*="rounded-full"],
+    button[class*="rounded-2xl"],
+    button[class*="rounded-xl"],
+    a[class*="rounded-full"],
+    a[class*="rounded-2xl"],
+    a[class*="rounded-xl"]
+  ):is(
+    [class*="bg-[#faf7f0]"],
+    [class*="bg-white"],
+    [class*="bg-[#faf6f0]"]
+  ):not(#hero-view-portfolio-btn):not([class*="bg-slate-950"]) {
+    background: transparent !important;
+    background-color: transparent !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    color: #ffffff !important;
+  }
+
+  html.dark :is(
+    button[class*="rounded-full"],
+    button[class*="rounded-2xl"],
+    button[class*="rounded-xl"],
+    a[class*="rounded-full"],
+    a[class*="rounded-2xl"],
+    a[class*="rounded-xl"]
+  ):is(
+    [class*="bg-[#faf7f0]"],
+    [class*="bg-white"],
+    [class*="bg-[#faf6f0]"]
+  ):not(#hero-view-portfolio-btn):not([class*="bg-slate-950"]):hover {
+    background-color: rgba(255, 255, 255, 0.08) !important;
+    border-color: rgba(255, 255, 255, 0.30) !important;
+    color: #ffffff !important;
+  }
+
+  /* =========================================================================
+     EDITORIAL ATELIER SYSTEM: TONAL DEPTH, FOLIO & NATURAL FRAME MOTION
+     ========================================================================= */
+
+  /* Surface Tonal Lift - Kertas bernapas dengan kedalaman artistik (bukan card kaku) */
+  .atelier-surface {
+    background: rgba(255, 252, 247, 0.96);
+    border: 1px solid rgba(54, 69, 79, 0.12);
+    box-shadow: 0 4px 20px -8px rgba(44, 34, 24, 0.05);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+  }
+
+  .atelier-surface:hover {
+    background: #ffffff;
+    border-color: rgba(54, 69, 79, 0.22);
+    box-shadow: 0 12px 32px -10px rgba(44, 34, 24, 0.08);
+  }
+
+  html.dark .atelier-surface {
+    background: rgba(31, 35, 38, 0.96);
+    border-color: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 8px 30px -8px rgba(0, 0, 0, 0.4);
+  }
+
+  html.dark .atelier-surface:hover {
+    background: rgba(43, 48, 52, 0.98);
+    border-color: rgba(255, 255, 255, 0.16);
+    box-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.6);
+  }
+
+  /* Gallery Passe-Partout Matting for Photo & Credentials */
+  .passe-partout {
+    position: relative;
+    padding: 0.65rem;
+    background: rgba(255, 253, 250, 0.95);
+    border: 1px solid rgba(54, 69, 79, 0.15);
+    box-shadow:
+      0 1px 3px rgba(44, 34, 24, 0.04),
+      0 16px 36px -12px rgba(44, 34, 24, 0.09);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .passe-partout:hover {
+    border-color: rgba(54, 69, 79, 0.3);
+    box-shadow:
+      0 2px 6px rgba(44, 34, 24, 0.06),
+      0 24px 48px -12px rgba(44, 34, 24, 0.14);
+  }
+
+  html.dark .passe-partout {
+    background: rgba(30, 34, 37, 0.95);
+    border-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 16px 40px -12px rgba(0, 0, 0, 0.7);
+  }
+
+  /* Natural Frame Motion Physics */
+  .frame-motion {
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                border-color 0.25s ease,
+                background-color 0.25s ease;
+  }
+
+  .frame-motion:hover {
+    transform: translateY(-3px);
+  }
+
+  /* Corner Bracket Registration Marks - Aksentuasi Seni & Presisi Grafis */
+  .corner-bracket {
+    position: relative;
+  }
+
+  .corner-bracket::before,
+  .corner-bracket::after {
+    content: "";
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    pointer-events: none;
+    z-index: 20;
+    opacity: 0.4;
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .corner-bracket::before {
+    top: 12px;
+    left: 12px;
+    border-top: 2px solid #273641;
+    border-left: 2px solid #273641;
+  }
+
+  .corner-bracket::after {
+    bottom: 12px;
+    right: 12px;
+    border-bottom: 2px solid #273641;
+    border-right: 2px solid #273641;
+  }
+
+  .corner-bracket:hover::before,
+  .corner-bracket:hover::after {
+    opacity: 0.9;
+  }
+
+  .corner-bracket:hover::before {
+    transform: translate(-2px, -2px);
+  }
+
+  .corner-bracket:hover::after {
+    transform: translate(2px, 2px);
+  }
+
+  html.dark .corner-bracket::before,
+  html.dark .corner-bracket::after {
+    border-color: #8caec2;
+  }
+
+  /* Folio Section Header - Tipografi Editorial dengan Skala Kontras */
+  .folio-num {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #485966;
+  }
+
+  html.dark .folio-num {
+    color: #cbd5e1;
+  }
+
+  /* Stat Monolith: Angka Terukir Bernapas */
+  .stat-monolith {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    padding: 0.25rem 0.5rem;
+  }
+
+  .stat-monolith-val {
+    font-family: "Instrument Sans", sans-serif;
+    font-size: 1.85rem;
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -0.03em;
+    color: #141f26;
+  }
+
+  html.dark .stat-monolith-val {
+    color: #ffffff;
+  }
+}
+
+/* =========================================================================
+   DARK THEME TEXT ENFORCEMENT (UNLAYERED SUPREME SPECIFICITY)
+   Menjamin 100% visibilitas teks di Dark Mode bebas dari override utilitas
+   ========================================================================= */
+html.dark :is(h1, h2, h3, h4, h5, h6) {
+  color: #ffffff !important;
+}
+
+html.dark :is(p, li, dd, dt, blockquote, label) {
+  color: #f1f5f9 !important;
+}
+
+html.dark :is(
+  .text-slate-950, .text-slate-900, .text-slate-800, .text-slate-700,
+  .text-gray-950, .text-gray-900, .text-gray-800, .text-gray-700,
+  .text-neutral-950, .text-neutral-900, .text-neutral-800, .text-neutral-700,
+  .text-black,
+  [class*="text-[#141f26]"],
+  [class*="text-[#24333d]"],
+  [class*="text-[#354551]"],
+  [class*="text-[#273641]"],
+  [class*="text-[#1c2932]"],
+  [class*="text-[#10191f]"]
+):not(#hero-view-portfolio-btn):not(#hero-view-portfolio-btn *) {
+  color: #ffffff !important;
+}
+
+/* Tombol navigasi aktif di Dark Mode */
+html.dark .nav-item-active,
+html.dark .nav-item-active :is(span, svg) {
+  color: #ffffff !important;
+  fill: currentColor !important;
 }
 
 .paper-texture-background {
@@ -134,12 +489,17 @@
   width: 100vw !important;
   height: 100vh !important;
   contain: strict;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  will-change: opacity;
   opacity: 0.22;
 }
 
 .paper-texture-background canvas {
   width: 100%;
   height: 100%;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
 }
 
 .hero-role-cycle {
@@ -201,8 +561,7 @@
 }
 
 html.dark .paper-texture-background {
-  opacity: 0.16;
-  filter: brightness(0.42) saturate(0.7);
+  opacity: 0.12;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -607,22 +966,22 @@ p {
    ============================================================ */
 
 @supports (content-visibility: auto) {
-  /* PENTING: JANGAN pasang `content-visibility: auto` secara blanket ke
-     SEMUA `main section`. Section hero/portfolio tingginya jauh berbeda-beda,
-     dan `contain-intrinsic-size: 520px` (nilai tetap) membuat browser terus
-     memperkirakan ulang tinggi tiap section saat di-scroll → inilah sumber
-     utama scroll terasa "patah-patah" & layout shift.
+  /* content-visibility hanya diaktifkan lewat komponen <LazyMount>
+     yang menyertakan estimasi tinggi akurat per-konten. */
 
-     Sebagai gantinya, content-visibility hanya diaktifkan lewat komponen
-     <LazyMount> yang menyertakan estimasi tinggi akurat per-konten
-     (lihat src/design/components/lazy-mount.tsx). */
-
-  /* Grid card besar: batasi reflow agar tidak menyebar keluar grid.
-     Hanya `layout` + `style` (TANPA `paint`) supaya efek spotlight/absolute
-     yang menjulur keluar card tetap bisa dilukis dengan benar. */
+  /* Grid card: batasi reflow agar tidak cascade keluar grid.
+     Hanya `layout` + `style` (TANPA `paint`) supaya absolute yang
+     menjulur keluar card tetap bisa dilukis benar. */
   main [class*="grid-cols"] {
     contain: layout style;
   }
+}
+
+/* Section-level isolation: tiap section hero punya independent layout context
+   agar reflow satu section tidak mempengaruhi section lain di bawahnya. */
+main > div > section {
+  contain: layout style;
+  isolation: isolate;
 }
 
 /* Hover card: animasi via compositor (translateZ + scale) */
@@ -633,49 +992,56 @@ p {
   }
 }
 
-/* Backdrop-blur: hindari transform: translateZ(0) pada setiap elemen blur
-   karena memicu pembuatan layer composited terpisah per-elemen (layer explosion)
-   yang membuat scrolling di Firefox tersendat-sendat (jank). */
+/* Backdrop-blur: kurangi radius agar tidak membuat layer explosion.
+   Navbar dan modal butuh blur — section card sudah dihapus backdrop-blur-nya.
+   Firefox: matikan sepenuhnya karena WebRender tidak efisien untuk blur banyak. */
 @supports (backdrop-filter: blur(1px)) {
-  .backdrop-blur-sm {
-    backdrop-filter: blur(2px) !important;
-  }
-  .backdrop-blur-md {
-    backdrop-filter: blur(4px) !important;
-  }
-  .backdrop-blur-xl {
-    backdrop-filter: blur(8px) !important;
-  }
-  .backdrop-blur-2xl {
-    backdrop-filter: blur(12px) !important;
-  }
+  /* Hanya navbar & modal yang boleh blur — elemen kartu section tidak */
+  .backdrop-blur-sm  { backdrop-filter: blur(2px); }
+  .backdrop-blur-md  { backdrop-filter: blur(4px); }
+  .backdrop-blur-xl  { backdrop-filter: blur(8px); }
+  .backdrop-blur-2xl { backdrop-filter: blur(12px); }
 }
 
-/* Firefox WebRender Optimization:
-   Di Firefox, backdrop-filter berulang kali pada elemen kartu yang banyak
-   dapat menyebabkan frame drop saat scrolling. Matikan kalkulasi blur CPU
-   tanpa menimpa warna background elemen (agar elemen gelap tetap berkontras tinggi). */
+/* Firefox: matikan backdrop-filter secara total — WebRender blur
+   sangat mahal saat banyak elemen, menyebabkan scroll jank. */
 @supports (-moz-appearance: none) {
-  .backdrop-blur-sm,
-  .backdrop-blur-md,
-  .backdrop-blur-lg,
-  .backdrop-blur-xl,
-  .backdrop-blur-2xl {
+  :where(.backdrop-blur-sm, .backdrop-blur-md, .backdrop-blur-lg,
+          .backdrop-blur-xl, .backdrop-blur-2xl, .aceternity-card,
+          .atelier-surface, .passe-partout) {
     backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
   }
-  .aceternity-card {
-    backdrop-filter: none !important;
+
+  /* Firefox hardware scroll hints */
+  html {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(54, 69, 79, 0.3) transparent;
+  }
+
+  html.dark {
+    scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
   }
 }
 
 /* Hindari scrollbar-gutter pada universal selector (*) agar tidak ada bar hitam vertikal di sisi kanan */
 html {
   scrollbar-gutter: auto;
+  /* Scroll berbasis compositor — tidak blok main thread, smooth 60-120fps */
+  overscroll-behavior-y: contain;
+  -webkit-overflow-scrolling: touch;
 }
 
-html {
-  /* Scroll berbasis compositor — tidak blok main thread */
-  overscroll-behavior-y: none;
+body {
+  /* Hint browser agar alokasikan scroll compositor layer lebih awal */
+  overflow-anchor: auto;
+}
+
+/* GPU acceleration helper for zero-runtime high FPS scrolling */
+.gpu-accelerate {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
 }
 
 /* Smooth scroll hanya saat diminta (mis. navigasi halaman), bukan default:
@@ -814,26 +1180,8 @@ html {
   }
 }
 
-/* Shared refinements for legacy utility classes. */
-[class*="backdrop-blur"] {
-  backdrop-filter: none !important;
-  -webkit-backdrop-filter: none !important;
-}
-
-[class*="shadow-xl"],
-[class*="shadow-2xl"],
-[class*="shadow-["] {
-  box-shadow: var(--surface-shadow) !important;
-}
-
-[class*="rounded-3xl"] {
-  border-radius: 0.875rem !important;
-}
-
-[class*="rounded-2xl"] {
-  border-radius: 0.75rem !important;
-}
-
-[class*="rounded-xl"] {
-  border-radius: 0.625rem !important;
+/* Shadow override — hanya untuk card konten (bukan navbar/modal) */
+main [class*="shadow-xl"],
+main [class*="shadow-2xl"] {
+  box-shadow: var(--surface-shadow);
 }
