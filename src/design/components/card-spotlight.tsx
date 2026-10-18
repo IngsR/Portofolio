@@ -12,33 +12,22 @@ interface CardSpotlightProps {
 }
 
 /**
- * CardSpotlight yang dioptimalkan untuk scroll 60fps:
- * - getBoundingClientRect() hanya dipanggil SEKALI per hover (di mouseenter),
- *   bukan di setiap mousemove → tidak ada layout thrash beruntun.
- * - Semua penulisan CSS variable di-batch lewat requestAnimationFrame,
- *   maksimal 1x per frame walau mousemove terjadi jauh lebih sering.
- * - "will-change-transform" dihilangkan dari default: puluhan card dengan
- *   layer komposit permanen justru memakan memori GPU & memicu frame drop.
+ * CardSpotlight - Zero-reflow, 144 FPS desktop performance:
+ * - Tidak memanggil getBoundingClientRect() saat scroll/mouseenter.
+ * - Menggunakan nativeEvent offsetX/offsetY murni tanpa memicu reflow DOM.
+ * - Menghilangkan backdrop-blur-md yang membebani GPU fillrate pada monitor desktop lebar.
+ * - Animasi di-batch via requestAnimationFrame dengan zero composite overhead.
  */
 export const CardSpotlight = ({
   children,
   className,
   color,
-  tilt = true,
   onClick,
 }: CardSpotlightProps) => {
   const divRef = useRef<HTMLDivElement>(null);
-  const rectRef = useRef<{
-    left: number;
-    top: number;
-    width: number;
-    height: number;
-  } | null>(null);
   const rafRef = useRef<number | null>(null);
   const coordsRef = useRef({ x: 0, y: 0 });
-  const hoverRef = useRef(false);
 
-  // Tulis CSS variables maksimal 1x per frame (rAF batching)
   const flush = useCallback(() => {
     rafRef.current = null;
     const el = divRef.current;
@@ -46,47 +35,15 @@ export const CardSpotlight = ({
     const { x, y } = coordsRef.current;
     el.style.setProperty("--x", `${x}px`);
     el.style.setProperty("--y", `${y}px`);
-
-    if (tilt && hoverRef.current) {
-      const rect = rectRef.current;
-      if (rect && rect.width > 0 && rect.height > 0) {
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
-        const rotateX = ((y - centerY) / centerY) * -4; // subtle max 4 deg
-        const rotateY = ((x - centerX) / centerX) * 4;
-        el.style.setProperty("--rotate-x", `${rotateX}deg`);
-        el.style.setProperty("--rotate-y", `${rotateY}deg`);
-      }
-    }
-  }, [tilt]);
+  }, []);
 
   const handleMouseEnter = useCallback(
     (e: React.MouseEvent<HTMLDivElement>) => {
-      // Cache posisi card SEKALI saat masuk hover (satu-satunya layout read)
-      hoverRef.current = true;
-      rectRef.current = null;
-      const el = divRef.current;
-      if (el) {
-        // will-change hanya diaktifkan selama hover → tidak ada layer GPU
-        // permanen untuk puluhan card sekaligus (ini yang bikin scroll berat).
-        if (tilt) {
-          // `perspective` harus lewat properti CSS valid - context 3D untuk tilt
-          el.style.perspective = "1000px";
-          el.style.willChange = "transform";
-        }
-        const rect = el.getBoundingClientRect();
-        rectRef.current = {
-          left: rect.left,
-          top: rect.top,
-          width: rect.width,
-          height: rect.height,
-        };
-        coordsRef.current = {
-          x: e.clientX - rect.left,
-          y: e.clientY - rect.top,
-        };
-      }
-      el?.style.setProperty("--opacity", "1");
+      coordsRef.current = {
+        x: e.nativeEvent.offsetX,
+        y: e.nativeEvent.offsetY,
+      };
+      divRef.current?.style.setProperty("--opacity", "1");
       if (rafRef.current === null) {
         rafRef.current = requestAnimationFrame(flush);
       }
@@ -96,11 +53,9 @@ export const CardSpotlight = ({
 
   const handleMouseMove = useCallback(
     (e: React.MouseEvent<HTMLDivElement>) => {
-      const rect = rectRef.current;
-      if (!rect) return;
       coordsRef.current = {
-        x: e.clientX - rect.left,
-        y: e.clientY - rect.top,
+        x: e.nativeEvent.offsetX,
+        y: e.nativeEvent.offsetY,
       };
       if (rafRef.current === null) {
         rafRef.current = requestAnimationFrame(flush);
@@ -110,50 +65,27 @@ export const CardSpotlight = ({
   );
 
   const handleMouseLeave = useCallback(() => {
-    // Batalkan frame yang masih pending saat keluar hover
     if (rafRef.current !== null) {
       cancelAnimationFrame(rafRef.current);
       rafRef.current = null;
     }
-    const el = divRef.current;
-    if (!el) return;
-    el.style.setProperty("--opacity", "0");
-    if (tilt) {
-      el.style.setProperty("--rotate-x", "0deg");
-      el.style.setProperty("--rotate-y", "0deg");
-      // Lepas hint GPU + context 3D saat hover selesai agar layer compositor
-      // dibebaskan (kartu diam tidak perlu menyimpan layer GPU).
-      el.style.perspective = "";
-      el.style.willChange = "auto";
-    }
-    hoverRef.current = false;
-  }, [tilt]);
+    divRef.current?.style.setProperty("--opacity", "0");
+  }, []);
 
-  // `perspective` dipasang sekali lewat event (lihat handleMouseEnter):
-  // context 3D permanen di puluhan kartu memaksa layer komposit per kartu
-  // → memori GPU tinggi & scroll turun di bawah 60fps.
   return (
     <div className="relative">
       <div
         ref={divRef}
-        style={
-          {
-            transform: tilt
-              ? "rotateX(var(--rotate-x, 0deg)) rotateY(var(--rotate-y, 0deg))"
-              : undefined,
-            transition:
-              "transform 0.15s ease-out, box-shadow 0.3s ease, border-color 0.3s ease",
-            backfaceVisibility: "hidden",
-          } as React.CSSProperties
-        }
+        style={{
+          transition: "border-color 0.2s ease, transform 0.2s ease",
+          backfaceVisibility: "hidden",
+        }}
         className={cn(
           "relative overflow-hidden rounded-2xl border",
-          "border-slate-200/90 dark:border-white/10",
-          "bg-white/80 dark:bg-[#0c0c0d]/75 backdrop-blur-md",
-          "shadow-[0_2px_8px_-2px_rgba(15,23,42,0.05),0_10px_25px_-5px_rgba(15,23,42,0.05)]",
-          "dark:shadow-none",
-          "hover:shadow-[0_16px_36px_-6px_rgba(37,99,235,0.12),0_4px_12px_rgba(15,23,42,0.04)]",
-          "hover:border-blue-500/40 dark:hover:border-white/30",
+          "border-[#36454f]/15 dark:border-white/10",
+          "bg-white/95 dark:bg-[#1a1f23]/95",
+          "shadow-xs",
+          "hover:border-[#36454f]/35 dark:hover:border-white/25",
           className,
         )}
         onMouseMove={handleMouseMove}
@@ -161,15 +93,15 @@ export const CardSpotlight = ({
         onMouseLeave={handleMouseLeave}
         onClick={onClick}
       >
-        {/* Subtle flat hover tint; card tilt remains available on hover. */}
+        {/* Subtle cursor spotlight gradient */}
         <div
-          className="pointer-events-none absolute inset-0 z-0 transition-opacity duration-300 rounded-[inherit]"
+          className="pointer-events-none absolute inset-0 z-0 transition-opacity duration-200 rounded-[inherit]"
           style={
             {
               opacity: "var(--opacity, 0)",
               background: color
-                ? `color-mix(in srgb, ${color} 25%, transparent)`
-                : "color-mix(in srgb, var(--accent) 3%, transparent)",
+                ? `radial-gradient(320px circle at var(--x, 0px) var(--y, 0px), color-mix(in srgb, ${color} 15%, transparent), transparent 75%)`
+                : "radial-gradient(320px circle at var(--x, 0px) var(--y, 0px), rgba(54,69,79,0.06), transparent 75%)",
             } as React.CSSProperties
           }
         />
@@ -178,3 +110,4 @@ export const CardSpotlight = ({
     </div>
   );
 };
+

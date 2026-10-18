@@ -15,7 +15,7 @@ interface ProjectCardProps {
 const CARD_BASE =
   "atelier-surface frame-motion corner-bracket group flex flex-col rounded-2xl sm:rounded-3xl overflow-hidden cursor-pointer relative shadow-xs border border-[#36454f]/15 dark:border-white/10";
 const CARD_HOVER =
-  " hover:border-[#36454f]/40 dark:hover:border-white/30 hover:-translate-y-1 transition-all duration-200";
+  " hover:border-[#36454f]/40 dark:hover:border-white/30 hover:-translate-y-1 transition-transform transition-colors duration-200";
 
 export const Project = memo<ProjectCardProps>(function Project({
   project,

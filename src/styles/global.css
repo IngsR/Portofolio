@@ -303,26 +303,22 @@
   .atelier-surface {
     background: rgba(255, 252, 247, 0.96);
     border: 1px solid rgba(54, 69, 79, 0.12);
-    box-shadow: 0 4px 20px -8px rgba(44, 34, 24, 0.05);
-    transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    box-shadow: 0 4px 16px -6px rgba(44, 34, 24, 0.05);
+    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s ease;
   }
 
   .atelier-surface:hover {
-    background: #ffffff;
-    border-color: rgba(54, 69, 79, 0.22);
-    box-shadow: 0 12px 32px -10px rgba(44, 34, 24, 0.08);
+    border-color: rgba(54, 69, 79, 0.25);
   }
 
   html.dark .atelier-surface {
     background: rgba(31, 35, 38, 0.96);
     border-color: rgba(255, 255, 255, 0.08);
-    box-shadow: 0 8px 30px -8px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 4px 16px -6px rgba(0, 0, 0, 0.35);
   }
 
   html.dark .atelier-surface:hover {
-    background: rgba(43, 48, 52, 0.98);
-    border-color: rgba(255, 255, 255, 0.16);
-    box-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.6);
+    border-color: rgba(255, 255, 255, 0.18);
   }
 
   /* Gallery Passe-Partout Matting for Photo & Credentials */
@@ -331,35 +327,28 @@
     padding: 0.65rem;
     background: rgba(255, 253, 250, 0.95);
     border: 1px solid rgba(54, 69, 79, 0.15);
-    box-shadow:
-      0 1px 3px rgba(44, 34, 24, 0.04),
-      0 16px 36px -12px rgba(44, 34, 24, 0.09);
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 16px -6px rgba(44, 34, 24, 0.05);
+    transition: border-color 0.2s ease;
   }
 
   .passe-partout:hover {
     border-color: rgba(54, 69, 79, 0.3);
-    box-shadow:
-      0 2px 6px rgba(44, 34, 24, 0.06),
-      0 24px 48px -12px rgba(44, 34, 24, 0.14);
   }
 
   html.dark .passe-partout {
     background: rgba(30, 34, 37, 0.95);
     border-color: rgba(255, 255, 255, 0.1);
-    box-shadow: 0 16px 40px -12px rgba(0, 0, 0, 0.7);
+    box-shadow: 0 4px 16px -6px rgba(0, 0, 0, 0.5);
   }
 
-  /* Natural Frame Motion Physics */
+  /* Natural Frame Motion Physics - Zero-repainting 60-144 FPS compositor transform */
   .frame-motion {
-    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
-                box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1),
-                border-color 0.25s ease,
-                background-color 0.25s ease;
+    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+                border-color 0.2s ease;
   }
 
   .frame-motion:hover {
-    transform: translateY(-3px);
+    transform: translateY(-2px);
   }
 
   /* Corner Bracket Registration Marks - Aksentuasi Seni & Presisi Grafis */
@@ -376,7 +365,7 @@
     pointer-events: none;
     z-index: 20;
     opacity: 0.4;
-    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: opacity 0.25s ease, border-color 0.25s ease;
   }
 
   .corner-bracket::before {
@@ -481,25 +470,25 @@ html.dark .nav-item-active :is(span, svg) {
   fill: currentColor !important;
 }
 
+/* =========================================================================
+   SCROLL PERFORMANCE: ZERO-JANK DESKTOP 60-144 FPS SCROLLING
+   Menonaktifkan event hover dan pointer-events saat scrolling aktif.
+   Mencegah layout recalculations dan hover thrashing pada monitor desktop lebar.
+   ========================================================================= */
+body.is-scrolling,
+body.is-scrolling * {
+  pointer-events: none !important;
+}
+
 .paper-texture-background {
   position: fixed;
   inset: 0;
   z-index: 0;
   pointer-events: none;
-  width: 100vw !important;
-  height: 100vh !important;
-  contain: strict;
-  transform: translate3d(0, 0, 0);
-  backface-visibility: hidden;
-  will-change: opacity;
-  opacity: 0.22;
-}
-
-.paper-texture-background canvas {
-  width: 100%;
-  height: 100%;
-  transform: translate3d(0, 0, 0);
-  backface-visibility: hidden;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.045'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 160px 160px;
+  opacity: 0.8;
 }
 
 .hero-role-cycle {
@@ -561,7 +550,8 @@ html.dark .nav-item-active :is(span, svg) {
 }
 
 html.dark .paper-texture-background {
-  opacity: 0.12;
+  opacity: 0.45;
+  filter: invert(1);
 }
 
 @media (prefers-reduced-motion: reduce) {

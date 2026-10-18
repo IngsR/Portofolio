@@ -286,5 +286,27 @@ const breadcrumbSchema = {
     </div>
     <Analytics />
     <SpeedInsights />
+
+    <!-- Desktop High-FPS Smooth Scroll: Suppress hover layout thrashing during active wheel scroll -->
+    <script is:inline>
+      (() => {
+        let timer = null;
+        const body = document.body;
+        const onScroll = () => {
+          if (!body.classList.contains("is-scrolling")) {
+            body.classList.add("is-scrolling");
+          }
+          if (timer !== null) clearTimeout(timer);
+          timer = setTimeout(() => {
+            body.classList.remove("is-scrolling");
+            timer = null;
+          }, 100);
+        };
+        window.addEventListener("scroll", onScroll, { passive: true });
+        document.addEventListener("astro:after-swap", () => {
+          body.classList.remove("is-scrolling");
+        });
+      })();
+    </script>
   </body>
 </html>

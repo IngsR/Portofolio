@@ -29,7 +29,7 @@ export const Certificate = memo<CertificateCardProps>(function Certificate({
 
   const cardClassName = `atelier-surface frame-motion group flex flex-col justify-between rounded-2xl sm:rounded-3xl p-3 sm:p-4 lg:p-4.5 cursor-pointer relative${
     hoverable
-      ? " hover:border-[#36454f]/40 dark:hover:border-white/30 hover:-translate-y-1 transition-all duration-200"
+      ? " hover:border-[#36454f]/40 dark:hover:border-white/30 hover:-translate-y-1 transition-transform transition-colors duration-200"
       : ""
   }`;
 
