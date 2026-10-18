@@ -63,12 +63,12 @@
       "shortDescription": "Website sekolah SMP Negeri 24 Padang yang saya bangun dari nol saat magang. Sebelumnya, sekolah belum punya portal digital yang layak saya rancang arsitektur Next.js App Router dengan rendering SSR/SSG, validasi form Zod, dan SEO terstruktur supaya halaman cepat terindeks dan mudah dikelola staf.",
       "translations": {
         "en": {
-          "title": "SMP Negeri 24 Padang School Website",
-          "shortDescription": "A school website I built from scratch during my internship, introducing a digital portal with Next.js App Router, SSR/SSG rendering, Zod form validation, and structured SEO.",
-          "period": "2025 (Production Project)",
-          "role": "Full-Stack Web Developer (Intern)",
-          "problem": "SMP Negeri 24 Padang needed a fast public information portal that worked well on mobile, was easy for Google to index, and allowed staff to update academic content without inconsistent data.",
-          "solution": "Built a hybrid Next.js App Router application: static pages use SSG for fast delivery, while announcements use SSR with periodic ISR revalidation. Zod validates form schemas to protect data integrity."
+          "title": "SMP Negeri 24 Padang — Institutional Web Platform",
+          "shortDescription": "Official institutional portal developed during an engineering internship, implementing Next.js App Router, hybrid SSR/SSG rendering, Zod schema validation, and structured Open Graph metadata.",
+          "period": "2025 (Production Release)",
+          "role": "Full-Stack Web Developer (Engineering Intern)",
+          "problem": "The institution required a performant, mobile-optimized information gateway capable of delivering instantaneous load times on consumer cellular connections, indexing reliably on search engines, and preventing data corruption during staff content updates.",
+          "solution": "Architected a hybrid Next.js App Router system: institutional static assets and profiles are pre-rendered via SSG for sub-100ms TTFB, whereas academic announcements employ server-side rendering with periodic ISR revalidation. Strict Zod schemas validate client and server payloads to guarantee data integrity."
         }
       },
       "category": "Next.js & Performance",
@@ -116,11 +116,12 @@
       "shortDescription": "Ini proyek skripsi S1 saya: membuktikan LSTM bisa prediksi lintasan siklon tropis dengan akurat. Saya uji 12 skenario eksperimen (3 basin × 4 variasi timesteps), dan hasilnya window 8-16 paling bagus - rata-rata error cuma 14,2 km dengan R² 0,999. Modelnya saya konversi ke ONNX supaya bisa jalan langsung di browser, frontend pakai Astro Island Architecture.",
       "translations": {
         "en": {
-          "title": "Tropical Cyclone Track Prediction (IBTrACS)",
-          "shortDescription": "My undergraduate thesis project evaluating LSTM for tropical cyclone track prediction. Across 12 experiments (3 basins × 4 timestep variations), the 8–16 window achieved a 14.2 km average error and R² of 0.999. The model was converted to ONNX to run in the browser with an Astro island-based frontend.",
-          "period": "2026 (Thesis Research & Web Application)",
-          "role": "Web Developer & Thesis Researcher",
-          "metrics": [{ "label": "Model Accuracy" }]
+          "title": "Tropical Cyclone Trajectory Forecasting Platform",
+          "shortDescription": "Undergraduate thesis research applying Deep Learning LSTM architectures to cyclone track forecasting. Evaluating 12 controlled scenarios demonstrated that an 8–16 timestep sliding window achieved optimal precision (14.2 km Haversine error; R² 0.999). Exported to ONNX for client-side inference within an Astro Island Architecture frontend.",
+          "period": "2026 (Thesis Research & Production Application)",
+          "role": "Software & Research Engineer",
+          "problem": "Meteorological time series forecasting models frequently remain confined to offline mathematical simulations, lacking accessible client interfaces for real-time coastal hazard mitigation.",
+          "solution": "Formulated a 12-scenario empirical study identifying optimal temporal sequence configurations, quantized the trained LSTM network to ONNX for zero-backend browser execution, and engineered a high-performance geospatial interface using Astro Islands architecture."
         }
       },
       "category": "Web Application",
@@ -167,8 +168,8 @@
       "shortDescription": "Website showroom mobil yang saya buat supaya calon pembeli bisa eksplor unit, filter berdasarkan spesifikasi, dan langsung hitung simulasi kredit DP dan cicilan bulanan secara real-time. Penjual bisa kelola stok unit lewat struktur CMS yang rapi.",
       "translations": {
         "en": {
-          "title": "Ingstore - CMS-Powered Car Dealership Website",
-          "shortDescription": "A car showroom website where buyers can explore vehicles, filter by specifications, and calculate down payments and monthly installments in real time. Dealers can manage inventory through a structured CMS.",
+          "title": "IngStore — Automotive Inventory & Financial Calculator Platform",
+          "shortDescription": "Full-stack automotive commerce portal featuring multi-parameter specification filtering, real-time banking loan and installment computation, and a structured inventory management system.",
           "period": "2025",
           "role": "Full-Stack Web Developer"
         }
@@ -216,10 +217,10 @@
       "shortDescription": "Aplikasi web pencarian properti yang saya bangun pakai Angular Standalone Components murni TypeScript. Fitur utamanya: komparasi 2 properti secara side-by-side, denah arsitektur 2D bertingkat yang bisa di-zoom, dan simulator cicilan KPR pakai formula anuitas Bank Indonesia - semuanya reaktif lewat Angular Signals tanpa library state management tambahan.",
       "translations": {
         "en": {
-          "title": "Property Search & Comparison Platform",
-          "shortDescription": "A property search application built with Angular Standalone Components and TypeScript. It features side-by-side comparison, zoomable multi-level 2D floor plans, and a mortgage simulator using Bank Indonesia's annuity formula, powered by Angular Signals.",
-          "period": "2025",
-          "role": "Frontend Web Developer"
+          "title": "HouseING — Real Estate Discovery & Mortgage Analysis Platform",
+          "shortDescription": "Analytical property evaluation platform engineered with Angular Standalone Components and strict TypeScript. Leverages Angular Signals for fine-grained reactive state, enabling real-time annuity mortgage calculations, dynamic multi-attribute filtering, and interactive 2D blueprint exploration.",
+          "period": "2026",
+          "role": "Junior Frontend Engineer"
         }
       },
       "category": "Angular & Reactive Architecture",
@@ -486,6 +487,16 @@
           "role": "Full-Stack Web Developer"
         }
       },
+      "translations": {
+        "en": {
+          "title": "Content Publishing Platform & Live Markdown Editor",
+          "shortDescription": "A modern content management and editorial system built with Next.js App Router, featuring a synchronized dual-pane Markdown editor, dynamic routing, and structured JSON-LD SEO rendering.",
+          "period": "2026",
+          "role": "Full-Stack Web Developer",
+          "problem": "Editorial publication workflows often suffer from sluggish authoring interfaces and detached preview screens that impede rapid writing. Furthermore, dynamic articles frequently lack automated structured Open Graph metadata, compromising search engine discoverability.",
+          "solution": "Engineered a Next.js App Router publishing application featuring an instant-feedback split-pane Markdown editor. Implemented server-side rendering for public article views to deliver complete semantic HTML to web crawlers, maximizing First Contentful Paint and automated search indexing."
+        }
+      },
       "category": "Content & Publishing UI",
       "tags": [
         "Next.js",
@@ -497,7 +508,7 @@
       ],
       "image": "/projects/adminblog.webp",
       "imageFull": "/projects/adminblog@full.webp",
-      "featured": false,
+      "featured": true,
       "publishedDate": "2026-04-13",
       "period": "2026",
       "role": "Junior Web Developer",

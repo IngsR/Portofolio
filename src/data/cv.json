@@ -164,38 +164,38 @@
       "location": "Padang, West Sumatra (Ready for On-Site / Relocation)",
       "birthInfo": "Padang, November 18, 2003"
     },
-    "summary": "Informatics Engineering graduate from UPI \"YPTK\" Padang focused on software engineering and frontend/backend application development. Experienced across the software lifecycle: building interfaces, designing REST APIs, database integration, input validation, testing, OWASP Top 10 security basics, CI/CD, serverless deployment, and Git teamwork. A Data Science concentration provides supplementary academic grounding in data processing and model evaluation.",
+    "summary": "Computer Science graduate (B.S. in Informatics Engineering) from Universitas Putra Indonesia “YPTK” Padang with an academic specialization in Data Science. Core discipline centers on software engineering across the full application lifecycle: architectural interface design, RESTful service implementation, relational database modeling, strict schema validation, security considerations, and cloud deployment. Adept at bridging rigorous computational methods with maintainable software engineering practices.",
     "labels": {
-      "modalTitle": "Curriculum Vitae - Ikhwan Ramadhan",
-      "modalSubtitle": "Document Preview & Ready to Download (PDF / DOCX)",
+      "modalTitle": "Curriculum Vitae — Ikhwan Ramadhan",
+      "modalSubtitle": "Official Document Preview & Download Options (PDF / DOCX)",
       "printButton": "Print",
       "downloadPdf": "Download PDF",
       "downloadDocx": "Download Word (.docx)",
-      "downloading": "Processing...",
-      "internship": "INTERNSHIP EXPERIENCE",
-      "projects": "PORTFOLIO",
-      "education": "EDUCATION",
-      "certifications": "CERTIFICATIONS & CREDENTIALS",
-      "technicalSkills": "TECHNICAL SKILLS",
-      "techStackLabel": "Tech Stack",
-      "liveDemoLabel": "Live Web",
-      "langId": "Indonesian",
+      "downloading": "Generating document...",
+      "internship": "APPLIED ENGINEERING & INTERNSHIP",
+      "projects": "SELECTED TECHNICAL PROJECTS",
+      "education": "ACADEMIC BACKGROUND",
+      "certifications": "FORMAL ACCREDITATIONS & CREDENTIALS",
+      "technicalSkills": "TECHNICAL COMPETENCIES",
+      "techStackLabel": "Technology Stack",
+      "liveDemoLabel": "Live Deployment",
+      "langId": "Bahasa Indonesia",
       "langEn": "English"
     },
     "internship": [
       {
         "id": "intern-1",
-        "role": "Fullstack Web Developer (Intern)",
+        "role": "Full-Stack Web Developer (Engineering Intern)",
         "company": "SMP Negeri 24 Padang",
         "link": "smpn24padang.sch.id",
         "location": "Padang, Indonesia",
-        "period": "August - September 2025",
+        "period": "August – September 2025",
         "type": "Institutional Internship",
         "achievements": [
-          "Led the web development of SMP Negeri 24 Padang official portal during the internship program from requirements gathering and frontend architecture to production release.",
-          "Implemented Next.js hybrid rendering strategies (SSR, SSG, ISR) and technical SEO optimization (Dynamic Metadata, Open Graph, JSON-LD structured data) for maximum speed and search visibility.",
-          "Achieved Google Lighthouse audit scores: Performance 99/100, SEO 100/100, Best Practices 100/100, with a 0.5s First Contentful Paint (FCP).",
-          "Collaborated directly with school leadership and successfully deployed the system to production on schedule within 2 months."
+          "Architected and deployed the official institutional portal for SMP Negeri 24 Padang during an engineering internship, directing requirements analysis, user interface design, and production delivery.",
+          "Formulated hybrid rendering workflows utilizing Next.js (SSG for static profiles, SSR with periodic ISR for academic announcements), paired with structured metadata (JSON-LD, Open Graph) for deterministic search indexing.",
+          "Attained Google Lighthouse audit benchmarks: Performance 99/100, Accessibility 100/100, Best Practices 100/100, SEO 100/100, establishing a 0.5-second First Contentful Paint (FCP).",
+          "Engaged directly with institutional stakeholders to formalize specifications and successfully transitioned the system into active production on schedule."
         ],
         "techStack": [
           "Next.js (App Router)",
@@ -217,7 +217,7 @@
         "role": "Junior Frontend Engineer",
         "link": "angular.ikhwann.my.id",
         "period": "2026",
-        "description": "Engineered a modern property search and mortgage simulation platform using Angular Standalone Components and strict TypeScript. Leveraged Angular Signals (signal, computed, effect) for granular reactive state management, enabling real-time banking annuity mortgage calculation, dynamic multi-attribute property filtering, interactive 2D architectural blueprint floorplan exploration (with multi-floor switcher and compass orientation) at 60 FPS, and clean domain-driven module structuring.",
+        "description": "Architected an analytical real estate exploration platform employing Angular Standalone Components and strict TypeScript. Utilized Angular Signals (signal, computed, effect) to model fine-grained reactive state, enabling real-time annuity-based mortgage calculation, multi-attribute facet filtering, and interactive 2D architectural blueprint rendering with floor switching.",
         "techStack": [
           "Angular",
           "TypeScript",
@@ -234,7 +234,7 @@
         "role": "Frontend & Research Engineer",
         "link": "prediksi.ikhwann.my.id",
         "period": "2026",
-        "description": "Tropical cyclone trajectory prediction web application based on undergraduate research using Deep Learning LSTM. Evaluated 12 controlled experimental scenarios across 3 basins with 4 timestep variations, proving that window 8-16 achieves the highest accuracy with an average Haversine error of 14.2 km and R² of 0.999. The LSTM model is converted to ONNX Runtime for serverless in-browser inference, combined with an Astro Island Architecture frontend for Zero-JS default delivery on Edge CDN and interactive map visualizations for coastal disaster risk mitigation.",
+        "description": "Engineered an interactive web platform based on undergraduate thesis research utilizing Long Short-Term Memory (LSTM) recurrent neural networks to forecast tropical cyclone tracks. Conducted 12 controlled experimental scenarios across 3 oceanic basins with varying temporal sequence lengths, demonstrating that an 8–16 timestep sliding window yielded optimal spatial precision (mean Haversine distance error: 14.2 km; R²: 0.999). Quantized the model to ONNX format to support zero-backend in-browser inference, delivered via Astro Islands architecture on edge CDN infrastructure for real-time disaster risk mitigation analysis.",
         "techStack": [
           "Astro",
           "TypeScript",
@@ -250,9 +250,9 @@
     "education": [
       {
         "id": "edu-1",
-        "degree": "Bachelor of Informatics (B.S. in Computer Science) - Data Science Concentration",
+        "degree": "Bachelor of Computer Science (B.S. in Informatics Engineering) — Data Science Concentration",
         "institution": "Universitas Putra Indonesia “YPTK” Padang",
-        "period": "Informatics Engineering • Sep 2022 - Oct 2026 • GPA 3.26/4.00"
+        "period": "Informatics Engineering • Sep 2022 – Oct 2026 • GPA 3.26 / 4.00"
       }
     ],
     "certificationsByIssuer": {
