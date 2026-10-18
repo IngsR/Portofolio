@@ -75,7 +75,7 @@ export const Detail: React.FC<DetailModalProps> = ({
           {/* Header Bar */}
           <div className="flex items-center justify-between gap-3 p-4 sm:p-6 border-b border-slate-100 dark:border-white/10 bg-slate-50/50 dark:bg-white/[0.02]">
             <div className="flex items-center gap-2.5 min-w-0">
-              <span className="p-2 rounded-xl bg-slate-900 text-white dark:bg-white dark:text-slate-950 shrink-0">
+              <span className="p-2 rounded-xl bg-[#273641] text-white dark:bg-slate-100 dark:text-slate-900 shrink-0">
                 {isProject ? (
                   <Layers className="w-4 h-4" />
                 ) : (
@@ -326,7 +326,7 @@ export const Detail: React.FC<DetailModalProps> = ({
                     onClose();
                     onOpenMarkdown(project);
                   }}
-                  className="w-full sm:w-auto px-4 py-2.5 rounded-xl border border-slate-300 dark:border-white/15 text-slate-900 dark:text-white hover:bg-slate-200/50 dark:hover:bg-white/10 text-xs font-semibold flex items-center justify-center gap-1.5 transition-colors"
+                  className="w-full sm:w-auto px-4 py-2.5 rounded-xl border border-[#36454f]/25 dark:border-white/15 text-[#1c2932] dark:text-white hover:bg-[#36454f]/5 dark:hover:bg-white/10 text-xs font-semibold flex items-center justify-center gap-1.5 transition-colors"
                 >
                   <BookOpen className="w-4 h-4 shrink-0" />
                   <span className="truncate">Buka Dokumentasi Penuh (.md)</span>
@@ -340,7 +340,7 @@ export const Detail: React.FC<DetailModalProps> = ({
                   href={project.githubUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex-1 sm:flex-none px-4 py-2.5 rounded-xl border border-slate-300 dark:border-white/15 text-slate-900 dark:text-white hover:bg-slate-100 dark:hover:bg-white/10 text-xs font-semibold flex items-center justify-center gap-1.5 transition-colors"
+                  className="flex-1 sm:flex-none px-4 py-2.5 rounded-xl border border-[#36454f]/25 dark:border-white/15 text-[#1c2932] dark:text-white hover:bg-[#36454f]/5 dark:hover:bg-white/10 text-xs font-semibold flex items-center justify-center gap-1.5 transition-colors"
                 >
                   <Github className="w-4 h-4 shrink-0" />
                   <span>GitHub</span>
@@ -352,7 +352,7 @@ export const Detail: React.FC<DetailModalProps> = ({
                   href={project.demoUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex-1 sm:flex-none min-w-0 px-4 sm:px-5 py-2.5 rounded-xl bg-slate-950 text-white dark:bg-white dark:text-slate-950 hover:bg-slate-800 dark:hover:bg-slate-100 text-xs font-bold flex items-center justify-center gap-1.5 transition-all shadow-sm"
+                  className="flex-1 sm:flex-none min-w-0 px-4 sm:px-5 py-2.5 rounded-xl bg-[#273641] text-white dark:bg-slate-100 dark:text-slate-900 hover:bg-[#1a252d] dark:hover:bg-white text-xs font-bold flex items-center justify-center gap-1.5 transition-all shadow-sm"
                   title={`Buka ${formatDomainName(project.demoUrl)}`}
                 >
                   <span className="truncate font-mono">
@@ -367,7 +367,7 @@ export const Detail: React.FC<DetailModalProps> = ({
                   href={certificate.credentialUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full sm:w-auto min-w-0 px-4 sm:px-5 py-2.5 rounded-xl bg-slate-950 text-white dark:bg-white dark:text-slate-950 hover:bg-slate-800 dark:hover:bg-slate-100 text-xs font-bold flex items-center justify-center gap-1.5 transition-all shadow-sm"
+                  className="w-full sm:w-auto min-w-0 px-4 sm:px-5 py-2.5 rounded-xl bg-[#273641] text-white dark:bg-slate-100 dark:text-slate-900 hover:bg-[#1a252d] dark:hover:bg-white text-xs font-bold flex items-center justify-center gap-1.5 transition-all shadow-sm"
                   title="Buka kredensial terverifikasi"
                 >
                   <span className="truncate">

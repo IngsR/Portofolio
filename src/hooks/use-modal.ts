@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo } from "react";
+import { useCallback, useEffect } from "react";
 import {
   isCreateModalOpenStore,
   isCVModalOpenStore,
@@ -16,6 +16,9 @@ import { useStore } from "../utils/store";
 /**
  * Hook untuk mengelola modal Detail & Preview secara terisolasi tanpa memicu re-render
  * pada parent/komponen list halaman.
+ *
+ * ESC handler dipasang sekali saat ada modal terbuka; membaca state store langsung
+ * (tanpa reaktif) untuk menghindari registrasi ulang listener tiap render.
  */
 export function useModal() {
   const isDetailOpen = useStore(isDetailOpenStore);
@@ -81,46 +84,38 @@ export function useModal() {
     isCreateModalOpenStore.set(false);
   }, []);
 
-  // Global ESC key handler helper
+  // hasAnyModalOpen dihitung dari nilai reaktif saat ini
+  const hasAnyModalOpen =
+    isDetailOpen ||
+    isPreviewOpen ||
+    isCVOpen ||
+    !!selectedMarkdownProject ||
+    isCreateModalOpen;
+
+  // Global ESC handler: dipasang hanya saat ada modal terbuka.
+  // Membaca store langsung di dalam handler (bukan via closure capture)
+  // agar listener tidak perlu didaftarkan ulang tiap state berubah.
   useEffect(() => {
+    if (!hasAnyModalOpen) return;
+
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
-        if (isDetailOpen) closeDetail();
-        if (isPreviewOpen) closePreview();
-        if (isCVOpen) closeCV();
-        if (selectedMarkdownProject) closeMarkdown();
-        if (isCreateModalOpen) closeCreateModal();
-      }
+      if (e.key !== "Escape") return;
+      // Baca store snapshot langsung — zero re-render cost
+      if (isDetailOpenStore.get()) { isDetailOpenStore.set(false); return; }
+      if (isPreviewOpenStore.get()) { isPreviewOpenStore.set(false); return; }
+      if (isCVModalOpenStore.get()) { isCVModalOpenStore.set(false); return; }
+      if (selectedProjectForMarkdownStore.get()) { selectedProjectForMarkdownStore.set(null); return; }
+      if (isCreateModalOpenStore.get()) { isCreateModalOpenStore.set(false); return; }
     };
 
-    const hasAnyModalOpen =
-      isDetailOpen ||
-      isPreviewOpen ||
-      isCVOpen ||
-      !!selectedMarkdownProject ||
-      isCreateModalOpen;
-
-    if (hasAnyModalOpen) {
-      window.addEventListener("keydown", handleKeyDown);
-      document.body.style.overflow = "hidden";
-    }
+    window.addEventListener("keydown", handleKeyDown);
+    document.body.style.overflow = "hidden";
 
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
-      document.body.style.overflow = "unset";
+      document.body.style.overflow = "";
     };
-  }, [
-    isDetailOpen,
-    isPreviewOpen,
-    isCVOpen,
-    selectedMarkdownProject,
-    isCreateModalOpen,
-    closeDetail,
-    closePreview,
-    closeCV,
-    closeMarkdown,
-    closeCreateModal,
-  ]);
+  }, [hasAnyModalOpen]);
 
   return {
     isDetailOpen,

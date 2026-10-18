@@ -118,12 +118,12 @@ export const About: React.FC<AboutSectionProps> = ({ onOpenCV }) => {
   return (
     <div className="about-page space-y-10 py-4 sm:space-y-12 sm:py-6">
       {/* HEADER PROFILE */}
-      <section className="space-y-6 rounded-3xl border border-slate-200/80 dark:border-white/[0.08] bg-white/80 dark:bg-[#0c0c0d]/75 backdrop-blur-md p-5 shadow-sm sm:p-8 lg:p-10">
+      <section className="atelier-surface frame-motion corner-bracket space-y-6 rounded-2xl sm:rounded-3xl border border-[#36454f]/15 dark:border-white/[0.08] p-6 sm:p-8 lg:p-10 relative overflow-hidden shadow-xs">
         {/* Profile Header */}
-        <div className="flex flex-col items-start justify-between gap-6 border-b border-slate-100 dark:border-white/[0.08] pb-6 lg:flex-row lg:items-center">
+        <div className="flex flex-col items-start justify-between gap-6 border-b border-[#36454f]/10 dark:border-white/[0.08] pb-6 lg:flex-row lg:items-center">
           {/* Identity */}
           <div className="flex items-center gap-4 sm:gap-5">
-            <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-2xl border border-slate-200 bg-slate-900 dark:border-white/10 sm:h-20 sm:w-20 lg:h-24 lg:w-24">
+            <div className="passe-partout relative h-16 w-16 shrink-0 overflow-hidden rounded-2xl border border-[#36454f]/15 bg-slate-900 dark:border-white/10 sm:h-20 sm:w-20 lg:h-24 lg:w-24">
               <img
                 src="/logo.webp"
                 alt="Logo Ikhwan Ramadhan"
@@ -136,13 +136,13 @@ export const About: React.FC<AboutSectionProps> = ({ onOpenCV }) => {
             </div>
 
             <div className="space-y-1">
-              <span className="text-[10px] font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500">
+              <span className="folio-num">
                 {copy.profileLabel}
               </span>
-              <h1 className="text-2xl sm:text-3xl lg:text-4xl tracking-tight text-slate-950 dark:text-white font-caveat font-bold">
+              <h1 className="text-2xl sm:text-3xl lg:text-4xl tracking-tight text-[#141f26] dark:text-white font-serif font-black">
                 {localizedProfile.name}
               </h1>
-              <p className="text-sm sm:text-base font-script text-slate-700 dark:text-slate-300">
+              <p className="text-sm sm:text-base font-medium text-[#273641] dark:text-slate-300">
                 {localizedProfile.title}
               </p>
             </div>
@@ -154,7 +154,7 @@ export const About: React.FC<AboutSectionProps> = ({ onOpenCV }) => {
             <button
               type="button"
               onClick={onOpenCV}
-              className="inline-flex items-center justify-center gap-2 rounded-full bg-slate-950 px-4 py-2.5 text-xs font-bold text-white shadow-sm transition-all hover:bg-slate-800 dark:bg-white dark:text-slate-950 dark:hover:bg-slate-100 sm:px-5"
+              className="inline-flex items-center justify-center gap-2 rounded-full border border-[#36454f]/25 dark:border-white/20 bg-white/70 dark:bg-white/5 px-4 py-2 text-xs font-bold text-[#141f26] dark:text-white transition-all hover:bg-[#273641] hover:text-white dark:hover:bg-white dark:hover:text-slate-950 sm:px-5 shadow-xs"
             >
               <FileText className="h-4 w-4" />
               <span>{copy.cv}</span>
@@ -165,7 +165,7 @@ export const About: React.FC<AboutSectionProps> = ({ onOpenCV }) => {
               href={localizedProfile.whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 rounded-full border border-emerald-500/40 bg-emerald-500/10 px-4 py-2.5 text-xs font-bold text-emerald-700 transition-all hover:bg-emerald-500/20 dark:border-emerald-400/30 dark:bg-emerald-400/10 dark:text-emerald-300 dark:hover:bg-emerald-400/20 sm:px-5"
+              className="inline-flex items-center justify-center gap-2 rounded-full bg-emerald-700 hover:bg-emerald-800 text-white px-4 py-2 text-xs font-bold transition-all sm:px-5 shadow-xs"
             >
               <MessageCircle className="h-4 w-4" />
               <span>WhatsApp</span>
@@ -174,7 +174,7 @@ export const About: React.FC<AboutSectionProps> = ({ onOpenCV }) => {
             {/* Email */}
             <a
               href={`mailto:${localizedProfile.email}`}
-              className="inline-flex items-center justify-center gap-2 rounded-full border border-slate-300 bg-white px-4 py-2.5 text-xs font-semibold text-slate-800 transition-all hover:bg-slate-100 dark:border-white/15 dark:bg-white/[0.04] dark:text-slate-200 dark:hover:bg-white/[0.08]"
+              className="inline-flex items-center justify-center gap-2 rounded-full border border-[#36454f]/25 dark:border-white/20 bg-white/70 dark:bg-white/5 px-4 py-2 text-xs font-bold text-[#141f26] dark:text-white hover:bg-[#273641] hover:text-white dark:hover:bg-white dark:hover:text-slate-950 transition-all sm:px-5 shadow-xs"
             >
               <Mail className="h-4 w-4" />
               <span>Email</span>
@@ -182,11 +182,10 @@ export const About: React.FC<AboutSectionProps> = ({ onOpenCV }) => {
           </div>
         </div>
 
-        {/* Bio + Kartu Ringkasan - 2 kolom di desktop agar ruang kanan
-            narasi terpakai, bukan menyisakan area kosong */}
+        {/* Bio + Bento Highlights */}
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-12 lg:gap-8 lg:items-start">
           {/* Bio */}
-          <div className="space-y-3.5 text-base leading-relaxed text-slate-600 dark:text-slate-400 sm:space-y-4 sm:text-lg sm:leading-[1.75] lg:col-span-7">
+          <div className="space-y-4 text-base leading-relaxed text-[#24333d] dark:text-slate-200 sm:text-lg sm:leading-[1.75] lg:col-span-7">
             {localizedProfile.fullBio.map((paragraph, index) => (
               <p key={index} className="text-pretty">
                 {paragraph}
@@ -194,55 +193,55 @@ export const About: React.FC<AboutSectionProps> = ({ onOpenCV }) => {
             ))}
           </div>
 
-          {/* Summary Highlights (Mobile-First Bento Cards) */}
+          {/* Summary Highlights */}
           <div className="grid grid-cols-1 gap-3.5 sm:gap-4 md:grid-cols-3 lg:col-span-5 lg:grid-cols-1">
             {/* 1. Kesiapan Kerja */}
-            <div className="rounded-2xl sm:rounded-3xl border border-slate-200/90 dark:border-white/10 bg-white dark:bg-[#0f0f12] p-4 sm:p-5 shadow-[0_2px_8px_-2px_rgba(15,23,42,0.06)] hover:shadow-md hover:border-emerald-500/40 active:scale-[0.99] transition-all flex flex-col justify-between space-y-2.5">
+            <div className="atelier-surface rounded-2xl border border-[#36454f]/15 dark:border-white/10 p-4 sm:p-5 flex flex-col justify-between space-y-2 hover:-translate-y-0.5 transition-all shadow-xs">
               <div className="flex items-center gap-2">
                 <span className="relative flex h-2 w-2">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
                 </span>
-                <span className="text-[10.5px] font-bold font-mono uppercase tracking-wider text-emerald-700 dark:text-emerald-400">
+                <span className="text-[10px] font-bold font-mono uppercase tracking-wider text-emerald-800 dark:text-emerald-400">
                   {copy.availability}
                 </span>
               </div>
-              <h4 className="text-sm sm:text-base font-bold text-slate-950 dark:text-white">
+              <h4 className="text-sm sm:text-base font-bold text-[#141f26] dark:text-white">
                 {copy.availabilityTitle}
               </h4>
-              <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+              <p className="text-xs sm:text-sm leading-relaxed text-[#24333d] dark:text-slate-300">
                 {copy.availabilityDescription}
               </p>
             </div>
 
             {/* 2. Pendidikan Terakhir */}
-            <div className="rounded-2xl sm:rounded-3xl border border-slate-200/90 dark:border-white/10 bg-white dark:bg-[#0f0f12] p-4 sm:p-5 shadow-[0_2px_8px_-2px_rgba(15,23,42,0.06)] hover:shadow-md hover:border-blue-500/40 active:scale-[0.99] transition-all flex flex-col justify-between space-y-2.5">
+            <div className="atelier-surface rounded-2xl border border-[#36454f]/15 dark:border-white/10 p-4 sm:p-5 flex flex-col justify-between space-y-2 hover:-translate-y-0.5 transition-all shadow-xs">
               <div className="flex items-center gap-2">
                 <GraduationCap className="h-3.5 w-3.5 text-blue-600 dark:text-blue-400 shrink-0" />
-                <span className="text-[10.5px] font-bold font-mono uppercase tracking-wider text-blue-700 dark:text-blue-400">
+                <span className="text-[10px] font-bold font-mono uppercase tracking-wider text-[#273641] dark:text-blue-400">
                   {copy.education}
                 </span>
               </div>
-              <h4 className="text-sm sm:text-base font-bold text-slate-950 dark:text-white">
+              <h4 className="text-sm sm:text-base font-bold text-[#141f26] dark:text-white">
                 {copy.highlights.educationTitle}
               </h4>
-              <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+              <p className="text-xs sm:text-sm leading-relaxed text-[#24333d] dark:text-slate-300">
                 {copy.highlights.educationDescription}
               </p>
             </div>
 
             {/* 3. Fokus Keahlian */}
-            <div className="rounded-2xl sm:rounded-3xl border border-slate-200/90 dark:border-white/10 bg-white dark:bg-[#0f0f12] p-4 sm:p-5 shadow-[0_2px_8px_-2px_rgba(15,23,42,0.06)] hover:shadow-md hover:border-purple-500/40 active:scale-[0.99] transition-all flex flex-col justify-between space-y-2.5">
+            <div className="atelier-surface rounded-2xl border border-[#36454f]/15 dark:border-white/10 p-4 sm:p-5 flex flex-col justify-between space-y-2 hover:-translate-y-0.5 transition-all shadow-xs">
               <div className="flex items-center gap-2">
                 <Cpu className="h-3.5 w-3.5 text-purple-600 dark:text-purple-400 shrink-0" />
-                <span className="text-[10.5px] font-bold font-mono uppercase tracking-wider text-purple-700 dark:text-purple-400">
+                <span className="text-[10px] font-bold font-mono uppercase tracking-wider text-[#273641] dark:text-purple-400">
                   {copy.expertise}
                 </span>
               </div>
-              <h4 className="text-sm sm:text-base font-bold text-slate-950 dark:text-white">
+              <h4 className="text-sm sm:text-base font-bold text-[#141f26] dark:text-white">
                 {copy.highlights.expertiseTitle}
               </h4>
-              <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+              <p className="text-xs sm:text-sm leading-relaxed text-[#24333d] dark:text-slate-300">
                 {copy.highlights.expertiseDescription}
               </p>
             </div>
@@ -286,42 +285,42 @@ export const About: React.FC<AboutSectionProps> = ({ onOpenCV }) => {
           <div className="space-y-6">
             {localizedExperience.map((exp) => (
               <div key={exp.id} className="relative space-y-3">
-                <div className="space-y-4 rounded-3xl border border-slate-200/80 bg-white/80 dark:bg-[#0c0c0d]/75 backdrop-blur-md p-5 shadow-sm dark:border-white/10 sm:p-8">
-                  <div className="flex flex-col justify-between gap-3 border-b border-slate-100 pb-4 dark:border-white/10 sm:flex-row sm:items-center">
+                <div className="atelier-surface corner-bracket space-y-4 rounded-2xl border border-[#36454f]/15 p-5 sm:p-8 dark:border-white/10 shadow-xs relative overflow-hidden">
+                  <div className="flex flex-col justify-between gap-3 border-b border-[#36454f]/10 pb-4 dark:border-white/10 sm:flex-row sm:items-center">
                     <div>
-                      <h3 className="text-lg font-bold text-slate-950 dark:text-white">
+                      <h3 className="text-lg sm:text-xl font-bold text-[#141f26] dark:text-white font-serif">
                         {exp.role}
                       </h3>
 
-                      <p className="text-xs font-medium text-slate-600 dark:text-slate-400">
+                      <p className="text-xs sm:text-sm font-semibold text-[#354551] dark:text-slate-300">
                         {exp.company} • {exp.location}
                       </p>
                     </div>
 
                     <div className="flex items-center gap-2 self-start text-xs">
-                      <span className="rounded-full bg-slate-100 px-3 py-1 font-medium text-slate-800 dark:bg-white/10 dark:text-slate-200">
+                      <span className="rounded-full bg-[#f3ede6]/80 px-3 py-1 font-mono text-xs font-semibold text-[#141f26] dark:bg-white/10 dark:text-slate-200 border border-[#36454f]/15 dark:border-white/10">
                         {exp.period}
                       </span>
 
-                      <span className="rounded-full border border-slate-200 px-3 py-1 font-semibold text-slate-900 dark:border-white/10 dark:text-white">
+                      <span className="rounded-full border border-[#36454f]/25 px-3 py-1 font-mono text-xs font-bold text-[#273641] dark:border-white/20 dark:text-white bg-white/70 dark:bg-white/5">
                         {exp.type}
                       </span>
                     </div>
                   </div>
 
-                  <p className="text-[15px] leading-relaxed text-slate-700 dark:text-slate-300 sm:text-base lg:text-[17px] lg:leading-[1.75]">
+                  <p className="text-[15px] leading-relaxed text-[#24333d] dark:text-slate-200 sm:text-base lg:text-[17px] lg:leading-[1.75]">
                     {exp.description}
                   </p>
 
                   <div className="space-y-2 pt-1">
-                    <h4 className="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+                    <h4 className="text-xs font-bold uppercase tracking-wider text-[#485966] dark:text-slate-400">
                       {copy.achievements}
                     </h4>
 
-                    <ul className="space-y-2 text-[15px] leading-relaxed text-slate-700 dark:text-slate-300 sm:text-base">
+                    <ul className="space-y-2 text-[15px] leading-relaxed text-[#24333d] dark:text-slate-200 sm:text-base">
                       {exp.achievements.map((achievement, index) => (
                         <li key={index} className="flex items-start gap-2">
-                          <span className="font-bold text-emerald-500">✓</span>
+                          <span className="font-bold text-emerald-600 dark:text-emerald-400">✓</span>
                           <span>{achievement}</span>
                         </li>
                       ))}
@@ -332,7 +331,7 @@ export const About: React.FC<AboutSectionProps> = ({ onOpenCV }) => {
                     {exp.techStack.map((tech) => (
                       <span
                         key={tech}
-                        className="rounded-full border border-slate-200/60 bg-slate-100 px-2.5 py-1 text-[10px] font-medium text-slate-700 dark:border-white/5 dark:bg-white/5 dark:text-slate-300"
+                        className="rounded-full border border-[#36454f]/15 bg-[#f3ede6]/80 px-2.5 py-1 text-[10.5px] font-mono font-medium text-[#141f26] dark:border-white/10 dark:bg-white/5 dark:text-slate-200"
                       >
                         {tech}
                       </span>
@@ -351,11 +350,11 @@ export const About: React.FC<AboutSectionProps> = ({ onOpenCV }) => {
       {activeTab === "skills" && (
         <div className="space-y-6">
           <div className="space-y-1">
-            <h2 className="ornament-underline text-2xl font-black tracking-tight text-slate-950 dark:text-white sm:text-3xl">
+            <h2 className="ornament-underline text-2xl font-black tracking-tight text-[#141f26] dark:text-white sm:text-3xl font-serif">
               {copy.skillsTitle}
             </h2>
 
-            <p className="text-sm text-slate-600 dark:text-slate-400">
+            <p className="text-sm text-[#354551] dark:text-slate-300">
               {copy.skillsDescription}
             </p>
           </div>
@@ -366,19 +365,19 @@ export const About: React.FC<AboutSectionProps> = ({ onOpenCV }) => {
                 key={category.title}
                 tilt={true}
                 radius={280}
-                className="space-y-5 rounded-3xl border border-slate-200/90 bg-white/80 dark:bg-[#0c0c0d]/75 backdrop-blur-md p-5 shadow-[0_2px_10px_-2px_rgba(15,23,42,0.06)] dark:border-white/10 sm:p-6 hover:border-blue-500/40"
+                className="atelier-surface corner-bracket space-y-5 rounded-2xl border border-[#36454f]/15 p-5 sm:p-6 shadow-xs relative overflow-hidden dark:border-white/10 hover:border-[#36454f]/35 dark:hover:border-white/30"
               >
-                <div className="flex items-start gap-3 border-b border-slate-100 pb-4 dark:border-white/10">
-                  <div className="shrink-0 rounded-2xl border border-slate-200/60 bg-slate-100 p-2.5 dark:border-white/5 dark:bg-white/5">
+                <div className="flex items-start gap-3 border-b border-[#36454f]/10 pb-4 dark:border-white/10">
+                  <div className="shrink-0 rounded-2xl border border-[#36454f]/15 bg-[#f3ede6]/80 p-2.5 dark:border-white/10 dark:bg-white/5">
                     {getCategoryIcon(category.iconName)}
                   </div>
 
                   <div>
-                    <h3 className="text-sm font-bold tracking-wide text-slate-950 dark:text-white">
+                    <h3 className="text-sm sm:text-base font-bold tracking-wide text-[#141f26] dark:text-white">
                       {category.title}
                     </h3>
 
-                    <p className="mt-1.5 text-sm leading-relaxed text-slate-500 dark:text-slate-400">
+                    <p className="mt-1 text-xs sm:text-sm leading-relaxed text-[#354551] dark:text-slate-300">
                       {category.description}
                     </p>
                   </div>
@@ -386,7 +385,7 @@ export const About: React.FC<AboutSectionProps> = ({ onOpenCV }) => {
 
                 <div className="space-y-4">
                   <div className="space-y-2">
-                    <h4 className="text-[10px] font-bold tracking-[0.16em] text-emerald-700 dark:text-emerald-400">
+                    <h4 className="text-[10px] font-bold tracking-[0.16em] uppercase text-emerald-800 dark:text-emerald-400">
                       {copy.coreStack}
                     </h4>
 
@@ -394,7 +393,7 @@ export const About: React.FC<AboutSectionProps> = ({ onOpenCV }) => {
                       {category.coreStack.map((technology) => (
                         <span
                           key={technology}
-                          className="rounded-full border border-emerald-600/30 bg-emerald-500/10 px-2.5 py-1 text-xs font-semibold text-emerald-800 dark:text-emerald-300"
+                          className="rounded-full border border-emerald-600/30 bg-emerald-500/10 px-2.5 py-1 text-xs font-mono font-semibold text-emerald-800 dark:text-emerald-300"
                         >
                           {technology}
                         </span>
@@ -403,7 +402,7 @@ export const About: React.FC<AboutSectionProps> = ({ onOpenCV }) => {
                   </div>
 
                   <div className="space-y-2">
-                    <h4 className="text-[10px] font-bold tracking-[0.16em] text-slate-500 dark:text-slate-400">
+                    <h4 className="text-[10px] font-bold tracking-[0.16em] uppercase text-[#485966] dark:text-slate-400">
                       {category.alsoUsedLabel || copy.alsoUsed}
                     </h4>
 
@@ -411,7 +410,7 @@ export const About: React.FC<AboutSectionProps> = ({ onOpenCV }) => {
                       {category.alsoUsed.map((technology) => (
                         <span
                           key={technology}
-                          className="rounded-full border border-slate-300 bg-slate-50 px-2.5 py-1 text-xs font-medium text-slate-700 dark:border-white/10 dark:bg-white/[0.03] dark:text-slate-300"
+                          className="rounded-full border border-[#36454f]/15 bg-[#f3ede6]/80 px-2.5 py-1 text-xs font-mono font-medium text-[#24333d] dark:border-white/10 dark:bg-white/[0.05] dark:text-slate-300"
                         >
                           {technology}
                         </span>
@@ -432,38 +431,38 @@ export const About: React.FC<AboutSectionProps> = ({ onOpenCV }) => {
         <div className="space-y-8">
           {/* Education */}
           <div className="space-y-4">
-            <div className="flex items-center gap-2 border-b border-slate-200 pb-2 text-lg font-bold text-slate-950 dark:border-white/10 dark:text-white">
+            <div className="flex items-center gap-2 border-b border-[#36454f]/15 pb-2 text-lg font-bold text-[#141f26] dark:border-white/10 dark:text-white">
               <GraduationCap className="h-5 w-5" />
 
-              <h2 className="ornament-underline">{copy.educationHistory}</h2>
+              <h2 className="ornament-underline font-serif">{copy.educationHistory}</h2>
             </div>
 
             {localizedEducation.map((education) => (
               <div
                 key={education.id}
-                className="space-y-2.5 rounded-3xl border border-slate-200/80 bg-white/80 dark:bg-[#0c0c0d]/75 backdrop-blur-md p-5 shadow-sm dark:border-white/10 sm:p-6"
+                className="atelier-surface corner-bracket space-y-2.5 rounded-2xl border border-[#36454f]/15 p-5 sm:p-6 shadow-xs relative overflow-hidden dark:border-white/10"
               >
                 <div className="flex items-center justify-between gap-2">
-                  <h3 className="text-base font-bold text-slate-950 dark:text-white">
+                  <h3 className="text-base sm:text-lg font-bold text-[#141f26] dark:text-white font-serif">
                     {education.degree}
                   </h3>
 
-                  <span className="rounded-full bg-slate-100 px-2.5 py-1 text-xs font-semibold text-slate-800 dark:bg-white/10 dark:text-slate-200 shrink-0">
+                  <span className="rounded-full bg-[#f3ede6]/80 px-3 py-1 font-mono text-xs font-semibold text-[#141f26] dark:bg-white/10 dark:text-slate-200 border border-[#36454f]/15 dark:border-white/10 shrink-0">
                     {education.period}
                   </span>
                 </div>
 
-                <p className="text-xs font-semibold text-slate-700 dark:text-slate-300">
+                <p className="text-xs sm:text-sm font-semibold text-[#273641] dark:text-slate-300">
                   {education.institution}
                 </p>
 
                 {education.gpa && (
-                  <span className="inline-flex items-center rounded-full bg-blue-50 px-2.5 py-1 text-[11px] font-semibold text-blue-700 dark:bg-blue-950/40 dark:text-blue-300">
+                  <span className="inline-flex items-center rounded-full bg-emerald-500/15 border border-emerald-500/30 px-3 py-0.5 text-xs font-mono font-bold text-emerald-800 dark:text-emerald-300">
                     IPK {education.gpa}
                   </span>
                 )}
 
-                <p className="pt-1.5 text-[15px] leading-relaxed text-slate-600 dark:text-slate-400 sm:text-base">
+                <p className="pt-1.5 text-[15px] sm:text-base leading-relaxed text-[#24333d] dark:text-slate-300">
                   {education.details}
                 </p>
               </div>
@@ -472,9 +471,9 @@ export const About: React.FC<AboutSectionProps> = ({ onOpenCV }) => {
 
           {/* Certifications */}
           <div className="space-y-4">
-            <div className="flex items-center gap-2 border-b border-slate-200 pb-2 text-lg font-bold text-slate-950 dark:border-white/10 dark:text-white">
+            <div className="flex items-center gap-2 border-b border-[#36454f]/15 pb-2 text-lg font-bold text-[#141f26] dark:border-white/10 dark:text-white">
               <Award className="h-5 w-5" />
-              <h2 className="ornament-underline">{copy.certificationsTitle}</h2>
+              <h2 className="ornament-underline font-serif">{copy.certificationsTitle}</h2>
             </div>
 
             {/* Grid 2 kolom sejak mobile agar kartu sertifikasi rapi 2 baris */}

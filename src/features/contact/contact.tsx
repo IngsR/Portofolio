@@ -171,7 +171,7 @@ export const Contact: React.FC = () => {
             tilt={true}
             radius={280}
             color="rgba(16, 185, 129, 0.12)"
-            className="p-6 rounded-2xl bg-white dark:bg-[#2b3034] border border-slate-200 dark:border-[#41494f] text-slate-900 dark:text-slate-100 space-y-4 shadow-sm hover:border-slate-400 dark:hover:border-[#64727b] transition-colors"
+            className="p-6 rounded-2xl bg-transparent border border-[#36454f]/15 dark:border-white/10 text-slate-900 dark:text-slate-100 space-y-4 hover:border-slate-400 dark:hover:border-[#64727b] transition-colors"
           >
             <div className="flex items-center gap-3">
               <div className="p-2.5 rounded-xl bg-emerald-600 text-white shadow-sm">
@@ -208,7 +208,7 @@ export const Contact: React.FC = () => {
           <CardSpotlight
             tilt={true}
             radius={280}
-            className="p-6 rounded-2xl bg-white dark:bg-[#0d0d0f] border border-slate-200/90 dark:border-white/10 space-y-4 shadow-[0_2px_10px_-2px_rgba(15,23,42,0.06)] hover:border-blue-500/40 hover:shadow-xl transition-all"
+            className="p-6 rounded-2xl bg-transparent border border-[#36454f]/15 dark:border-white/10 space-y-4 hover:border-blue-500/40 transition-all"
           >
             <div className="flex items-center gap-3">
               <div className="p-2.5 rounded-xl bg-blue-50 text-blue-600 dark:bg-white/5 dark:text-white border border-blue-200/60 dark:border-white/10">
@@ -258,7 +258,7 @@ export const Contact: React.FC = () => {
           <CardSpotlight
             tilt={true}
             radius={280}
-            className="p-6 rounded-2xl bg-white dark:bg-[#0d0d0f] border border-slate-200/90 dark:border-white/10 space-y-4 shadow-[0_2px_10px_-2px_rgba(15,23,42,0.06)] hover:border-slate-400 dark:hover:border-white/20 transition-all"
+            className="p-6 rounded-2xl bg-transparent border border-[#36454f]/15 dark:border-white/10 space-y-4 hover:border-slate-400 dark:hover:border-white/20 transition-all"
           >
             <h3 className="font-bold text-base text-slate-950 dark:text-white flex items-center gap-2">
               <Briefcase className="w-4 h-4 text-blue-600 dark:text-blue-400" />
@@ -296,7 +296,7 @@ export const Contact: React.FC = () => {
           <CardSpotlight
             tilt={true}
             radius={280}
-            className="p-6 rounded-2xl bg-white dark:bg-[#0d0d0f] border border-slate-200/90 dark:border-white/10 space-y-3 shadow-[0_2px_10px_-2px_rgba(15,23,42,0.06)]"
+            className="p-6 rounded-2xl bg-transparent border border-[#36454f]/15 dark:border-white/10 space-y-3"
           >
             <h3 className="font-bold text-base text-slate-950 dark:text-white">
               {copy.socialTitle}
@@ -329,7 +329,7 @@ export const Contact: React.FC = () => {
 
         {/* Form Container (7 cols) */}
         <div className="lg:col-span-7 h-full">
-          <div className="h-full p-6 sm:p-8 bg-white dark:bg-[#0c0c0e] border border-slate-200/90 dark:border-white/10 rounded-3xl space-y-6 shadow-[0_4px_24px_-4px_rgba(15,23,42,0.06)] flex flex-col">
+          <div className="h-full p-6 sm:p-8 bg-transparent border border-[#36454f]/15 dark:border-white/10 rounded-3xl space-y-6 flex flex-col">
             <div className="border-b border-slate-100 dark:border-white/10 pb-4">
               <h2 className="font-bold text-xl text-slate-950 dark:text-white flex items-center gap-2">
                 <Mail className="w-5 h-5 text-blue-600 dark:text-blue-400" />
@@ -452,7 +452,7 @@ export const Contact: React.FC = () => {
                     id="contact-submit-button"
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full bg-slate-950 text-white dark:bg-white dark:text-slate-950 disabled:opacity-50 text-xs font-bold uppercase tracking-wider hover:bg-slate-800 dark:hover:bg-slate-100 transition-all shadow-md"
+                    className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full bg-[#273641] text-white dark:bg-slate-100 dark:text-slate-900 disabled:opacity-50 text-xs font-bold uppercase tracking-wider hover:bg-[#1a252d] dark:hover:bg-white transition-all shadow-md"
                   >
                     <Send className="w-4 h-4" />
                     <span>{isSubmitting ? copy.sending : copy.submit}</span>
@@ -465,7 +465,7 @@ export const Contact: React.FC = () => {
       </div>
 
       {/* FAQ Section with Smooth Animated Expansion */}
-      <section className="p-6 sm:p-8 bg-white dark:bg-[#0c0c0e] border border-slate-200/90 dark:border-white/10 rounded-3xl space-y-6 shadow-[0_2px_12px_-2px_rgba(15,23,42,0.05)]">
+      <section className="p-6 sm:p-8 bg-transparent border border-[#36454f]/15 dark:border-white/10 rounded-3xl space-y-6">
         <div className="space-y-1 pb-4 border-b border-slate-100 dark:border-white/10">
           <span className="text-[11px] font-bold uppercase tracking-widest text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-white/5 px-2.5 py-1 rounded-full inline-block">
             {copy.faqEyebrow}

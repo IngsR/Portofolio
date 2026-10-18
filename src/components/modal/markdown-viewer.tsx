@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { ProjectItem } from "../../types";
+import { getProjectLiveButtonLabel } from "../../utils/format";
+import { useTranslations } from "../../i18n";
 import {
   X,
   Copy,
@@ -23,6 +25,7 @@ export const MarkdownViewer: React.FC<MarkdownViewerModalProps> = ({
   project,
   onClose,
 }) => {
+  const { locale } = useTranslations();
   const [activeTab, setActiveTab] = useState<"rendered" | "raw">("rendered");
   const [copied, setCopied] = useState(false);
 
@@ -166,7 +169,7 @@ export const MarkdownViewer: React.FC<MarkdownViewerModalProps> = ({
                 rel="noopener noreferrer"
                 className="flex items-center gap-1 px-3 py-1 bg-black text-white dark:bg-white dark:text-black font-bold uppercase tracking-wider text-[10px]"
               >
-                <span>LIVE DEMO</span>
+                <span>{getProjectLiveButtonLabel(project, locale).toUpperCase()}</span>
                 <ArrowUpRight className="w-3.5 h-3.5" />
               </a>
             )}

@@ -2,7 +2,7 @@
 import "../styles/global.css";
 import Analytics from "@vercel/analytics/astro";
 import SpeedInsights from "@vercel/speed-insights/astro";
-import { PaperTexture } from "@paper-design/shaders-react";
+import { ThemedPaperTexture } from "../components/layout/themed-paper-texture";
 import { ClientRouter } from "astro:transitions";
 
 interface Props {
@@ -279,27 +279,8 @@ const breadcrumbSchema = {
       />
     </noscript>
   </head>
-  <body class="min-h-screen bg-[#f0ebe1] dark:bg-[#24282b] text-slate-950 dark:text-slate-100 transition-colors duration-200 relative overflow-x-hidden antialiased">
-    <PaperTexture
-      client:idle
-      className="paper-texture-background"
-      aria-hidden="true"
-      maxPixelCount={700000}
-      speed={0}
-      colorBack="#e9e0d2"
-      colorPaper="#f7f2e9"
-      colorShadow="#786953"
-      roughness={0.8}
-      roughnessSize={0.72}
-      fiber={0.62}
-      fiberSize={0.7}
-      folds={0}
-      wrinkles={0.95}
-      wrinkleSize={0.82}
-      crumples={0.24}
-      crumpleCount={7}
-      drops={0}
-    />
+  <body class="min-h-screen bg-[#f3ede6] dark:bg-[#24282b] text-slate-950 dark:text-slate-100 relative overflow-x-hidden antialiased">
+    <ThemedPaperTexture client:idle />
     <div class="relative z-10">
       <slot />
     </div>
