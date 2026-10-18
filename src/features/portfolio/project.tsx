@@ -58,16 +58,16 @@ export const Project = memo<ProjectCardProps>(function Project({
 
       {/* Content Body */}
       <div className="p-4 sm:p-5 lg:p-6 flex-1 flex flex-col justify-between space-y-3 sm:space-y-4">
-        <div className="space-y-2">
-          <div className="flex items-center justify-between text-[10px] sm:text-xs text-[#485966] dark:text-slate-400">
-            <span className="font-medium flex items-center gap-1">
-              <Calendar className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-[#485966]" />
-              {project.period || project.publishedDate}
-            </span>
-            <span className="text-[10px] sm:text-[11px] font-semibold text-[#273641] dark:text-slate-300">
-              {project.role || "Junior Web Developer"}
-            </span>
-          </div>
+      <div className="space-y-2">
+        <div className="flex items-center justify-between gap-2 text-[10px] sm:text-xs text-[#485966] dark:text-slate-400">
+          <span className="font-medium flex items-center gap-1 min-w-0">
+            <Calendar className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-[#485966] shrink-0" />
+            <span className="truncate">{project.period || project.publishedDate}</span>
+          </span>
+          <span className="text-[10px] sm:text-[11px] font-semibold text-[#273641] dark:text-slate-300 truncate text-right min-w-0">
+            {project.role || "Junior Web Developer"}
+          </span>
+        </div>
 
           <h3
             className="font-bold text-sm sm:text-base lg:text-[16px] text-[#141f26] dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 tracking-tight leading-snug transition-colors line-clamp-1"
@@ -83,7 +83,7 @@ export const Project = memo<ProjectCardProps>(function Project({
 
         {/* Metrics Highlight */}
         {project.metrics && project.metrics.length > 0 && (
-          <div className="hidden sm:grid grid-cols-3 gap-1 sm:gap-2 py-2 px-2.5 rounded-xl bg-[#f3ede6]/50 dark:bg-white/[0.03] border border-[#36454f]/10 dark:border-white/5 text-center">
+          <div className="hidden sm:grid grid-cols-3 gap-1 sm:gap-2 py-2 px-2.5 rounded-xl bg-[#E7EAEF]/50 dark:bg-white/[0.03] border border-[#36454f]/10 dark:border-white/5 text-center">
             {project.metrics.map((metric, i) => (
               <div key={i} className="flex flex-col">
                 <span className="text-[10px] sm:text-xs font-bold text-[#141f26] dark:text-white truncate">
@@ -105,7 +105,7 @@ export const Project = memo<ProjectCardProps>(function Project({
             .map((tag) => (
               <span
                 key={tag}
-                className="px-2.5 py-0.5 text-[9.5px] sm:text-[10px] font-mono font-medium rounded-full text-[#141f26] dark:text-slate-200 bg-[#f3ede6]/80 dark:bg-white/5 border border-[#36454f]/10 dark:border-white/5"
+                className="px-2.5 py-0.5 text-[9.5px] sm:text-[10px] font-mono font-medium rounded-full text-[#141f26] dark:text-slate-200 bg-[#E7EAEF]/80 dark:bg-white/5 border border-[#36454f]/10 dark:border-white/5"
               >
                 {tag}
               </span>
@@ -116,13 +116,13 @@ export const Project = memo<ProjectCardProps>(function Project({
             .map((tag) => (
               <span
                 key={tag}
-                className="hidden sm:inline-flex px-2.5 py-0.5 text-[10px] font-mono font-medium rounded-full text-[#141f26] dark:text-slate-200 bg-[#f3ede6]/80 dark:bg-white/5 border border-[#36454f]/10 dark:border-white/5"
+                className="hidden sm:inline-flex px-2.5 py-0.5 text-[10px] font-mono font-medium rounded-full text-[#141f26] dark:text-slate-200 bg-[#E7EAEF]/80 dark:bg-white/5 border border-[#36454f]/10 dark:border-white/5"
               >
                 {tag}
               </span>
             ))}
           {project.tags.filter((tag) => tag.trim()).length > 2 && (
-            <span className="sm:hidden px-1.5 py-0.5 text-[9px] font-mono text-[#485966] dark:text-slate-400 font-semibold rounded-full bg-[#f3ede6]/80 dark:bg-white/5">
+            <span className="sm:hidden px-1.5 py-0.5 text-[9px] font-mono text-[#485966] dark:text-slate-400 font-semibold rounded-full bg-[#E7EAEF]/80 dark:bg-white/5">
               +{project.tags.filter((tag) => tag.trim()).length - 2}
             </span>
           )}
@@ -222,3 +222,4 @@ export const Project = memo<ProjectCardProps>(function Project({
     </div>
   );
 });
+

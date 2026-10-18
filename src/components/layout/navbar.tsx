@@ -119,7 +119,7 @@ export const Navbar: React.FC<NavbarProps> = ({
       {/* TOP HEADER BAR (Clean, spacious, no squished buttons on mobile) */}
       <header
         className={`
-          fixed z-50 w-full px-3 transition-all duration-300 ease-in-out sm:px-6 lg:px-12
+          fixed z-50 w-full max-w-[100vw] px-3 transition-all duration-300 ease-in-out sm:px-6 lg:px-12
           top-2.5 sm:top-4 lg:top-5
           ${
             isVisible
@@ -139,7 +139,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               rounded-xl
               sm:rounded-full
               border border-[#36454f]/15
-              bg-[#f3ede6]/85
+              bg-[#E7EAEF]/85
               backdrop-blur-md
               px-3
               py-2.5
@@ -476,7 +476,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             gap-1.5
             p-2
             rounded-2xl
-            bg-[#f3ede6]/95
+            bg-[#E7EAEF]/95
             dark:bg-[#24282b]/95
             border
             border-[#36454f]/20
