@@ -1,7 +1,7 @@
 import { ArrowUpRight, Calendar, FileText, Github } from "lucide-react";
 import React, { memo } from "react";
 import { ProjectItem } from "../../types";
-import { formatDomainName, formatShortDomain } from "../../utils/format";
+import { formatDomainName, formatShortDomain, getProjectLiveButtonLabel } from "../../utils/format";
 import { canHover } from "../../utils/hover";
 import { CardSpotlight } from "../../design/components/card-spotlight";
 import { useTranslations } from "../../i18n";
@@ -13,9 +13,9 @@ interface ProjectCardProps {
 }
 
 const CARD_BASE =
-  "group flex flex-col bg-white/80 dark:bg-[#0f0f11]/75 backdrop-blur-md border border-slate-200/90 dark:border-white/10 rounded-2xl sm:rounded-3xl overflow-hidden shadow-[0_2px_10px_-3px_rgba(15,23,42,0.06)] cursor-pointer";
+  "atelier-surface frame-motion corner-bracket group flex flex-col rounded-2xl sm:rounded-3xl overflow-hidden cursor-pointer relative shadow-xs border border-[#36454f]/15 dark:border-white/10";
 const CARD_HOVER =
-  " hover:border-blue-500/40 dark:hover:border-white/30 hover:shadow-xl transition-[border-color,box-shadow] duration-300";
+  " hover:border-[#36454f]/40 dark:hover:border-white/30 hover:-translate-y-1 transition-all duration-200";
 
 export const Project = memo<ProjectCardProps>(function Project({
   project,
@@ -29,7 +29,7 @@ export const Project = memo<ProjectCardProps>(function Project({
 
   const content = (
     <>
-      <div className="relative aspect-[16/10] w-full overflow-hidden shrink-0 bg-slate-100 dark:bg-[#141416] p-1.5 sm:p-2.5 flex items-center justify-center border-b border-slate-100 dark:border-white/10">
+      <div className="passe-partout relative aspect-[16/10] w-full overflow-hidden shrink-0 bg-slate-900/10 dark:bg-slate-900 p-1.5 sm:p-2.5 flex items-center justify-center border-b border-[#36454f]/15 dark:border-white/10">
         <img
           src={project.image}
           alt={project.title}
@@ -43,13 +43,13 @@ export const Project = memo<ProjectCardProps>(function Project({
               target.src = project.fallbackImage;
             }
           }}
-          className="w-full h-full object-cover sm:object-contain object-center rounded-lg sm:rounded-xl bg-white dark:bg-black/20 select-none group-hover:scale-[1.02] transition-transform duration-300"
+          className="w-full h-full object-cover sm:object-contain object-center rounded-lg sm:rounded-xl select-none group-hover:scale-[1.02] transition-transform duration-300"
           referrerPolicy="no-referrer"
         />
 
         {/* Live Domain Indicator if available */}
         {domain && (
-          <div className="absolute top-2 right-2 sm:top-3 sm:right-3 flex items-center gap-1 px-2 py-0.5 sm:px-2.5 sm:py-1 text-[8px] sm:text-[10px] font-mono font-medium rounded-md sm:rounded-lg bg-emerald-700/90 text-white backdrop-blur-md shadow-xs pointer-events-none max-w-[45%] truncate">
+          <div className="absolute top-2 right-2 sm:top-3 sm:right-3 flex items-center gap-1.5 px-2.5 py-1 text-[9px] sm:text-[10px] font-mono font-bold rounded-full bg-emerald-800/95 text-white shadow-xs pointer-events-none max-w-[45%] truncate border border-emerald-500/30">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-300 animate-pulse shrink-0" />
             <span className="truncate">{domain}</span>
           </div>
@@ -57,39 +57,39 @@ export const Project = memo<ProjectCardProps>(function Project({
       </div>
 
       {/* Content Body */}
-      <div className="p-3.5 sm:p-5 lg:p-6 flex-1 flex flex-col justify-between space-y-3 sm:space-y-4">
-        <div className="space-y-1.5 sm:space-y-2.5">
-          <div className="flex items-center justify-between text-[10px] sm:text-xs text-slate-500 dark:text-slate-400">
+      <div className="p-4 sm:p-5 lg:p-6 flex-1 flex flex-col justify-between space-y-3 sm:space-y-4">
+        <div className="space-y-2">
+          <div className="flex items-center justify-between text-[10px] sm:text-xs text-[#485966] dark:text-slate-400">
             <span className="font-medium flex items-center gap-1">
-              <Calendar className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
+              <Calendar className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-[#485966]" />
               {project.period || project.publishedDate}
             </span>
-            <span className="text-[10px] sm:text-[11px] font-medium text-slate-600 dark:text-slate-300">
+            <span className="text-[10px] sm:text-[11px] font-semibold text-[#273641] dark:text-slate-300">
               {project.role || "Junior Web Developer"}
             </span>
           </div>
 
           <h3
-            className="font-bold text-xs sm:text-base lg:text-[16px] text-slate-950 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 tracking-tight leading-snug transition-colors line-clamp-1 truncate"
+            className="font-bold text-sm sm:text-base lg:text-[16px] text-[#141f26] dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 tracking-tight leading-snug transition-colors line-clamp-1"
             title={project.title}
           >
             {project.title}
           </h3>
 
-          <p className="text-[10px] sm:text-xs text-slate-600 dark:text-slate-400 line-clamp-2 leading-relaxed">
+          <p className="text-xs text-[#24333d] dark:text-slate-300 line-clamp-2 leading-relaxed">
             {project.shortDescription}
           </p>
         </div>
 
-        {/* Metrics Highlight - desktop only to prevent mobile card from stretching */}
+        {/* Metrics Highlight */}
         {project.metrics && project.metrics.length > 0 && (
-          <div className="hidden sm:grid grid-cols-3 gap-1 sm:gap-2 py-1.5 sm:py-2 px-1.5 sm:px-2.5 rounded-xl bg-slate-50 dark:bg-white/[0.03] border border-slate-200/60 dark:border-white/5 text-center">
+          <div className="hidden sm:grid grid-cols-3 gap-1 sm:gap-2 py-2 px-2.5 rounded-xl bg-[#f3ede6]/50 dark:bg-white/[0.03] border border-[#36454f]/10 dark:border-white/5 text-center">
             {project.metrics.map((metric, i) => (
               <div key={i} className="flex flex-col">
-                <span className="text-[10px] sm:text-xs font-bold text-slate-900 dark:text-white truncate">
+                <span className="text-[10px] sm:text-xs font-bold text-[#141f26] dark:text-white truncate">
                   {metric.value}
                 </span>
-                <span className="text-[8px] sm:text-[10px] text-slate-500 dark:text-slate-400 truncate">
+                <span className="text-[8.5px] sm:text-[9.5px] text-[#485966] dark:text-slate-400 truncate">
                   {metric.label}
                 </span>
               </div>
@@ -105,7 +105,7 @@ export const Project = memo<ProjectCardProps>(function Project({
             .map((tag) => (
               <span
                 key={tag}
-                className="px-2 py-0.5 text-[9px] sm:text-[10px] rounded-full text-slate-700 dark:text-slate-300 bg-slate-100 dark:bg-white/5 border border-slate-200/60 dark:border-white/5 font-medium"
+                className="px-2.5 py-0.5 text-[9.5px] sm:text-[10px] font-mono font-medium rounded-full text-[#141f26] dark:text-slate-200 bg-[#f3ede6]/80 dark:bg-white/5 border border-[#36454f]/10 dark:border-white/5"
               >
                 {tag}
               </span>
@@ -116,26 +116,26 @@ export const Project = memo<ProjectCardProps>(function Project({
             .map((tag) => (
               <span
                 key={tag}
-                className="hidden sm:inline-flex px-2 py-0.5 text-[10px] rounded-full text-slate-700 dark:text-slate-300 bg-slate-100 dark:bg-white/5 border border-slate-200/60 dark:border-white/5 font-medium"
+                className="hidden sm:inline-flex px-2.5 py-0.5 text-[10px] font-mono font-medium rounded-full text-[#141f26] dark:text-slate-200 bg-[#f3ede6]/80 dark:bg-white/5 border border-[#36454f]/10 dark:border-white/5"
               >
                 {tag}
               </span>
             ))}
           {project.tags.filter((tag) => tag.trim()).length > 2 && (
-            <span className="sm:hidden px-1.5 py-0.5 text-[9px] text-slate-400 font-medium rounded-full bg-slate-100 dark:bg-white/5">
+            <span className="sm:hidden px-1.5 py-0.5 text-[9px] font-mono text-[#485966] dark:text-slate-400 font-semibold rounded-full bg-[#f3ede6]/80 dark:bg-white/5">
               +{project.tags.filter((tag) => tag.trim()).length - 2}
             </span>
           )}
         </div>
 
-        {/* Action Buttons Row - Detail icon only on mobile to prevent domain overflow */}
+        {/* Action Buttons Row */}
         <div
-          className="pt-2.5 sm:pt-4 border-t border-slate-100 dark:border-white/10 flex items-center justify-between gap-1.5 min-w-0"
-          onClick={(e) => e.stopPropagation()} // Prevent card double triggering
+          className="pt-2.5 sm:pt-4 border-t border-[#36454f]/10 dark:border-white/10 flex items-center justify-between gap-1.5 min-w-0"
+          onClick={(e) => e.stopPropagation()}
         >
           <a
             href={getLocalePath(`/project/${project.slug}`, locale)}
-            className="flex items-center justify-center gap-1.5 p-1.5 sm:px-3.5 sm:py-1.5 rounded-full border border-slate-200 dark:border-white/10 text-slate-800 dark:text-slate-200 hover:bg-slate-950 hover:text-white dark:hover:bg-white dark:hover:text-slate-950 text-[10px] sm:text-xs font-semibold transition-all shrink-0 shadow-xs"
+            className="flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-full border border-[#36454f]/25 dark:border-white/20 bg-white/70 dark:bg-white/5 text-[#141f26] dark:text-white hover:bg-[#273641] hover:text-white dark:hover:bg-white dark:hover:text-slate-950 text-xs font-bold transition-all shrink-0 shadow-xs"
             title={
               locale === "en" ? "Open project details" : "Buka detail proyek"
             }
@@ -156,9 +156,9 @@ export const Project = memo<ProjectCardProps>(function Project({
                     ? "Open GitHub repository"
                     : "Buka repositori GitHub"
                 }
-                className="flex items-center justify-center gap-1.5 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full border border-slate-300 dark:border-white/20 bg-slate-100/90 dark:bg-white/[0.08] text-slate-800 dark:text-slate-200 hover:text-slate-950 dark:hover:text-white hover:bg-slate-200/90 dark:hover:bg-white/[0.16] hover:border-slate-400 dark:hover:border-white/30 text-[10px] sm:text-xs font-semibold transition-all shadow-xs shrink-0 active:scale-95"
+                className="flex items-center justify-center gap-1.5 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full border border-[#36454f]/20 dark:border-white/20 bg-transparent text-[#24333d] dark:text-slate-200 hover:text-[#141f26] dark:hover:text-white hover:bg-[#36454f]/10 dark:hover:bg-white/10 text-[10px] sm:text-xs font-semibold transition-all shadow-xs shrink-0 active:scale-95"
               >
-                <Github className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0 text-slate-900 dark:text-white" />
+                <Github className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0 text-[#141f26] dark:text-white" />
                 <span className="hidden sm:inline font-medium">GitHub</span>
               </a>
             )}
@@ -168,13 +168,13 @@ export const Project = memo<ProjectCardProps>(function Project({
                 href={project.demoUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-2 sm:px-3 py-1 sm:py-1.5 rounded-full bg-slate-950 text-white dark:bg-white dark:text-slate-950 text-[9px] sm:text-xs font-semibold hover:bg-slate-800 dark:hover:bg-slate-100 transition-all shadow-sm min-w-0 shrink overflow-hidden flex items-center gap-1"
-                title={`Buka ${domain}`}
+                className="px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full bg-[#273641] text-white dark:bg-slate-100 dark:text-slate-900 text-[9.5px] sm:text-xs font-semibold hover:bg-[#141f26] dark:hover:bg-white transition-all shadow-sm min-w-0 shrink overflow-hidden flex items-center gap-1"
+                title={getProjectLiveButtonLabel(project, locale)}
               >
-                <span className="truncate text-[8.5px] sm:text-[11px] font-mono leading-none">
+                <span className="truncate text-[9px] sm:text-[11px] font-mono leading-none">
                   {shortDomain}
                 </span>
-                <ArrowUpRight className="w-2.5 h-2.5 sm:w-3.5 sm:h-3.5 shrink-0" />
+                <ArrowUpRight className="w-3 h-3 sm:w-3.5 sm:h-3.5 shrink-0" />
               </a>
             )}
           </div>

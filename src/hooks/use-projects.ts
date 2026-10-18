@@ -36,7 +36,9 @@ export function useProjects() {
   }, []);
 
   const featuredProjects = useMemo(() => {
-    return projects.filter((p) => p.featured || p.id === "proj-4").slice(0, 4);
+    return projects
+      .filter((p) => p.featured || p.id === "proj-4" || p.id === "proj-8")
+      .slice(0, 5);
   }, [projects]);
 
   const saveProject = useCallback((newProject: ProjectItem) => {

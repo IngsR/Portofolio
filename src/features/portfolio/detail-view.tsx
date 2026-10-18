@@ -25,7 +25,7 @@ import { Navbar } from "../../components/layout/navbar";
 import type { CertificationItem, Locale, ProjectItem } from "../../types";
 import { getLocalePath } from "../../utils/locale";
 import { getDictionary } from "../../data/locales";
-import { formatShortDate } from "../../utils/format";
+import { formatShortDate, getProjectLiveButtonLabel } from "../../utils/format";
 
 const getMetricTheme = (
   label: string,
@@ -241,20 +241,20 @@ export const DetailView: React.FC<DetailViewProps> = ({
             <button
               type="button"
               onClick={onBack}
-              className="group inline-flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-white/95 dark:bg-white/[0.06] border border-slate-200/90 dark:border-white/10 text-[11px] sm:text-xs font-bold text-slate-800 dark:text-slate-100 hover:border-slate-400 dark:hover:border-white/30 backdrop-blur-md transition-all duration-200 shadow-xs hover:shadow-sm shrink-0"
+              className="group inline-flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-transparent border border-[#36454f]/20 dark:border-white/10 text-[11px] sm:text-xs font-bold text-[#1c2932] dark:text-slate-100 hover:border-[#36454f]/40 dark:hover:border-white/30 backdrop-blur-md transition-all duration-200 shadow-xs hover:shadow-sm shrink-0"
               title={resolvedBackLabel}
             >
-              <ArrowLeft className="w-3.5 h-3.5 sm:w-4 sm:h-4 transition-transform group-hover:-translate-x-1 text-slate-700 dark:text-slate-300" />
+              <ArrowLeft className="w-3.5 h-3.5 sm:w-4 sm:h-4 transition-transform group-hover:-translate-x-1 text-[#36454f] dark:text-slate-300" />
               <span className="hidden sm:inline">{resolvedBackLabel}</span>
               <span className="sm:hidden">{copy.back}</span>
             </button>
           ) : (
             <a
               href={getLocalePath(resolvedBackHref, locale)}
-              className="group inline-flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-white/95 dark:bg-white/[0.06] border border-slate-200/90 dark:border-white/10 text-[11px] sm:text-xs font-bold text-slate-800 dark:text-slate-100 hover:border-slate-400 dark:hover:border-white/30 backdrop-blur-md transition-all duration-200 shadow-xs hover:shadow-sm shrink-0"
+              className="group inline-flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-transparent border border-[#36454f]/20 dark:border-white/10 text-[11px] sm:text-xs font-bold text-[#1c2932] dark:text-slate-100 hover:border-[#36454f]/40 dark:hover:border-white/30 backdrop-blur-md transition-all duration-200 shadow-xs hover:shadow-sm shrink-0"
               title={resolvedBackLabel}
             >
-              <ArrowLeft className="w-3.5 h-3.5 sm:w-4 sm:h-4 transition-transform group-hover:-translate-x-1 text-slate-700 dark:text-slate-300" />
+              <ArrowLeft className="w-3.5 h-3.5 sm:w-4 sm:h-4 transition-transform group-hover:-translate-x-1 text-[#36454f] dark:text-slate-300" />
               <span className="hidden sm:inline">{resolvedBackLabel}</span>
               <span className="sm:hidden">{copy.back}</span>
             </a>
@@ -264,7 +264,7 @@ export const DetailView: React.FC<DetailViewProps> = ({
             <button
               type="button"
               onClick={handleShare}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-full bg-white/90 dark:bg-white/[0.06] border border-slate-200/90 dark:border-white/10 text-[11px] sm:text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-white/10 transition-colors shadow-xs shrink-0"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-full bg-transparent border border-[#36454f]/20 dark:border-white/10 text-[11px] sm:text-xs font-semibold text-[#2c3c46] dark:text-slate-200 hover:bg-[#36454f]/5 dark:hover:bg-white/10 transition-colors shadow-xs shrink-0"
               title={copy.copyLink}
             >
               <Share2 className="w-3.5 h-3.5" />
@@ -279,7 +279,7 @@ export const DetailView: React.FC<DetailViewProps> = ({
                 target="_blank"
                 rel="noopener noreferrer"
                 title="Source Code"
-                className="inline-flex items-center justify-center p-1.5 sm:px-3.5 sm:py-2 rounded-full bg-white/90 dark:bg-white/[0.06] border border-slate-200/90 dark:border-white/10 text-[11px] sm:text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-white/10 transition-colors shadow-xs shrink-0"
+                className="inline-flex items-center justify-center p-1.5 sm:px-3.5 sm:py-2 rounded-full bg-transparent border border-[#36454f]/20 dark:border-white/10 text-[11px] sm:text-xs font-semibold text-[#2c3c46] dark:text-slate-200 hover:bg-[#36454f]/5 dark:hover:bg-white/10 transition-colors shadow-xs shrink-0"
               >
                 <Github className="w-4 h-4 sm:w-3.5 sm:h-3.5" />
                 <span className="hidden sm:inline ml-1.5">Source Code</span>
@@ -291,9 +291,9 @@ export const DetailView: React.FC<DetailViewProps> = ({
                 href={project.demoUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-slate-950 text-white dark:bg-white dark:text-slate-950 text-[11px] sm:text-xs font-bold hover:bg-slate-800 dark:hover:bg-slate-100 transition-all shadow-md active:scale-95 shrink-0"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-[#273641] text-white dark:bg-slate-100 dark:text-slate-900 text-[11px] sm:text-xs font-bold hover:bg-[#1a252d] dark:hover:bg-white transition-all shadow-md active:scale-95 shrink-0"
               >
-                <span>Live Demo</span>
+                <span>{getProjectLiveButtonLabel(project, locale)}</span>
                 <ArrowUpRight className="w-3.5 h-3.5" />
               </a>
             )}
@@ -303,7 +303,7 @@ export const DetailView: React.FC<DetailViewProps> = ({
                 href={certificate.credentialUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-slate-950 text-white dark:bg-white dark:text-slate-950 text-[11px] sm:text-xs font-bold hover:bg-slate-800 dark:hover:bg-slate-100 transition-all shadow-md active:scale-95 shrink-0"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-[#273641] text-white dark:bg-slate-100 dark:text-slate-900 text-[11px] sm:text-xs font-bold hover:bg-[#1a252d] dark:hover:bg-white transition-all shadow-md active:scale-95 shrink-0"
               >
                 <span>{copy.verify}</span>
                 <ExternalLink className="w-3.5 h-3.5" />
@@ -317,7 +317,7 @@ export const DetailView: React.FC<DetailViewProps> = ({
           {/* Period & Category */}
           <div className="flex flex-wrap items-center gap-2">
             {period && (
-              <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/90 dark:bg-white/[0.05] border border-slate-200/80 dark:border-white/10 text-slate-600 dark:text-slate-300 text-xs font-medium">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-transparent border border-[#36454f]/15 dark:border-white/10 text-[#2c3c46] dark:text-slate-300 text-xs font-medium">
                 <Calendar className="w-3 h-3 text-slate-400" />
                 <span>{period}</span>
               </span>
@@ -339,7 +339,7 @@ export const DetailView: React.FC<DetailViewProps> = ({
 
           {/* Meta Information Grid (4 Cards) */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 pt-2">
-            <div className="p-4 rounded-2xl bg-white/95 dark:bg-white/[0.03] border border-slate-200/80 dark:border-white/10 shadow-xs">
+            <div className="p-4 rounded-2xl bg-transparent border border-[#36454f]/15 dark:border-white/10">
               <div className="flex items-center gap-1.5 text-slate-500 dark:text-slate-400 text-[11px] font-semibold uppercase tracking-wider mb-1">
                 {isProject ? (
                   <User className="w-3.5 h-3.5 text-indigo-500" />
@@ -355,7 +355,7 @@ export const DetailView: React.FC<DetailViewProps> = ({
               </p>
             </div>
 
-            <div className="p-4 rounded-2xl bg-white/95 dark:bg-white/[0.03] border border-slate-200/80 dark:border-white/10 shadow-xs">
+            <div className="p-4 rounded-2xl bg-transparent border border-[#36454f]/15 dark:border-white/10">
               <div className="flex items-center gap-1.5 text-slate-500 dark:text-slate-400 text-[11px] font-semibold uppercase tracking-wider mb-1">
                 <Calendar className="w-3.5 h-3.5 text-sky-500" />
                 <span>{isProject ? copy.releaseDate : copy.issueDate}</span>
@@ -365,7 +365,7 @@ export const DetailView: React.FC<DetailViewProps> = ({
               </p>
             </div>
 
-            <div className="p-4 rounded-2xl bg-white/95 dark:bg-white/[0.03] border border-slate-200/80 dark:border-white/10 shadow-xs">
+            <div className="p-4 rounded-2xl bg-transparent border border-[#36454f]/15 dark:border-white/10">
               <div className="flex items-center gap-1.5 text-slate-500 dark:text-slate-400 text-[11px] font-semibold uppercase tracking-wider mb-1">
                 {isProject ? (
                   <Tag className="w-3.5 h-3.5 text-purple-500" />
@@ -381,7 +381,7 @@ export const DetailView: React.FC<DetailViewProps> = ({
               </p>
             </div>
 
-            <div className="p-4 rounded-2xl bg-white/95 dark:bg-white/[0.03] border border-slate-200/80 dark:border-white/10 shadow-xs">
+            <div className="p-4 rounded-2xl bg-transparent border border-[#36454f]/15 dark:border-white/10">
               <div className="flex items-center gap-1.5 text-slate-500 dark:text-slate-400 text-[11px] font-semibold uppercase tracking-wider mb-1">
                 <Layers className="w-3.5 h-3.5 text-emerald-500" />
                 <span>{copy.status}</span>
@@ -398,12 +398,12 @@ export const DetailView: React.FC<DetailViewProps> = ({
 
         {/* Media Showcase Frame */}
         {image && (
-          <div className="mt-10 relative group rounded-3xl overflow-hidden border border-slate-300/80 dark:border-white/15 bg-slate-950 shadow-2xl shadow-slate-950/20 dark:shadow-black/70">
+          <div className="mt-10 relative group rounded-3xl overflow-hidden border border-[#36454f]/15 dark:border-white/15 bg-transparent">
             <div
               className={`relative w-full overflow-hidden ${
                 isProject
                   ? "aspect-[16/9] sm:aspect-[21/10]"
-                  : "aspect-[16/11] sm:aspect-[16/10] bg-white flex items-center justify-center p-3 sm:p-6"
+                  : "aspect-[16/11] sm:aspect-[16/10] bg-transparent flex items-center justify-center p-3 sm:p-6"
               }`}
             >
               <img
@@ -433,9 +433,9 @@ export const DetailView: React.FC<DetailViewProps> = ({
                     href={project.demoUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-4 py-2 sm:px-5 sm:py-2.5 rounded-full bg-white/95 text-slate-950 font-bold text-xs sm:text-sm shadow-xl hover:bg-white backdrop-blur-md transition-all hover:scale-105"
+                    className="inline-flex items-center gap-2 px-4 py-2 sm:px-5 sm:py-2.5 rounded-full bg-[#273641] text-white dark:bg-slate-100 dark:text-slate-900 font-bold text-xs sm:text-sm shadow-xl hover:bg-[#1a252d] dark:hover:bg-white transition-all hover:scale-105 active:scale-95"
                   >
-                    <span>{copy.liveSite}</span>
+                    <span>{getProjectLiveButtonLabel(project, locale)}</span>
                     <ExternalLink className="w-4 h-4" />
                   </a>
                 </div>
@@ -447,7 +447,7 @@ export const DetailView: React.FC<DetailViewProps> = ({
                     href={certificate.credentialUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-4 py-2 sm:px-5 sm:py-2.5 rounded-full bg-slate-950 text-white dark:bg-white dark:text-slate-950 font-bold text-xs sm:text-sm shadow-xl hover:opacity-90 backdrop-blur-md transition-all hover:scale-105"
+                    className="inline-flex items-center gap-2 px-4 py-2 sm:px-5 sm:py-2.5 rounded-full bg-[#273641] text-white dark:bg-slate-100 dark:text-slate-900 font-bold text-xs sm:text-sm shadow-xl hover:bg-[#1a252d] dark:hover:bg-white transition-all hover:scale-105 active:scale-95"
                   >
                     <span>{copy.verifyCredential}</span>
                     <ExternalLink className="w-4 h-4" />
@@ -466,7 +466,7 @@ export const DetailView: React.FC<DetailViewProps> = ({
               return (
                 <div
                   key={idx}
-                  className="p-5 rounded-2xl bg-white/95 dark:bg-[#111116] border border-slate-200/90 dark:border-white/10 shadow-[0_2px_12px_-3px_rgba(15,23,42,0.06)] dark:shadow-[0_4px_24px_-4px_rgba(0,0,0,0.5)] flex items-center gap-4 transition-all duration-200 hover:border-slate-300 dark:hover:border-white/20"
+                  className="p-5 rounded-2xl bg-transparent border border-[#36454f]/15 dark:border-white/10 flex items-center gap-4 transition-all duration-200 hover:border-slate-300 dark:hover:border-white/20"
                 >
                   <div
                     className={`p-3 rounded-xl border shrink-0 ${theme.badge}`}
@@ -497,7 +497,7 @@ export const DetailView: React.FC<DetailViewProps> = ({
               return (
                 <div
                   key={idx}
-                  className="p-5 rounded-2xl bg-white/95 dark:bg-[#111116] border border-slate-200/90 dark:border-white/10 shadow-[0_2px_12px_-3px_rgba(15,23,42,0.06)] dark:shadow-[0_4px_24px_-4px_rgba(0,0,0,0.5)] flex items-center gap-4 transition-all duration-200 hover:border-slate-300 dark:hover:border-white/20"
+                  className="p-5 rounded-2xl bg-transparent border border-[#36454f]/15 dark:border-white/10 flex items-center gap-4 transition-all duration-200 hover:border-slate-300 dark:hover:border-white/20"
                 >
                   <div
                     className={`p-3 rounded-xl border shrink-0 ${theme.badge}`}
@@ -527,7 +527,7 @@ export const DetailView: React.FC<DetailViewProps> = ({
             <>
               {/* Problem & Solution for Projects */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="p-6 sm:p-8 rounded-3xl bg-white/90 dark:bg-white/[0.02] border border-slate-200/90 dark:border-white/10 shadow-sm space-y-3">
+                <div className="p-6 sm:p-8 rounded-3xl bg-transparent border border-[#36454f]/15 dark:border-white/10 space-y-3">
                   <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 text-xs font-bold">
                     <Target className="w-3.5 h-3.5" />
                     <span>{copy.background}</span>
@@ -540,7 +540,7 @@ export const DetailView: React.FC<DetailViewProps> = ({
                   </p>
                 </div>
 
-                <div className="p-6 sm:p-8 rounded-3xl bg-white/90 dark:bg-white/[0.02] border border-slate-200/90 dark:border-white/10 shadow-sm space-y-3">
+                <div className="p-6 sm:p-8 rounded-3xl bg-transparent border border-[#36454f]/15 dark:border-white/10 space-y-3">
                   <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 text-xs font-bold">
                     <CheckCircle2 className="w-3.5 h-3.5" />
                     <span>{copy.engineeringDecision}</span>
@@ -556,7 +556,7 @@ export const DetailView: React.FC<DetailViewProps> = ({
 
               {/* Tech Stack tags */}
               {project?.tags && (
-                <div className="p-6 sm:p-8 rounded-3xl bg-white/90 dark:bg-white/[0.02] border border-slate-200/90 dark:border-white/10 shadow-sm space-y-4">
+                <div className="p-6 sm:p-8 rounded-3xl bg-transparent border border-[#36454f]/15 dark:border-white/10 space-y-4">
                   <div className="flex items-center gap-2">
                     <Code2 className="w-5 h-5 text-indigo-500" />
                     <h3 className="text-lg sm:text-xl font-bold text-slate-950 dark:text-white">
@@ -581,8 +581,7 @@ export const DetailView: React.FC<DetailViewProps> = ({
             <>
               {/* Certificate Curriculum & Competency breakdown */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="p-6 sm:p-8 rounded-3xl bg-white/90 dark:bg-white/[0.02] border border-slate-200/90 dark:border-white/10 shadow-sm space-y-3">
-                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 text-xs font-bold">
+                <div className="p-6 sm:p-8 rounded-3xl bg-transparent border border-[#36454f]/15 dark:border-white/10 space-y-3">                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 text-xs font-bold">
                     <Award className="w-3.5 h-3.5" />
                     <span>{copy.curriculum}</span>
                   </div>
@@ -595,7 +594,7 @@ export const DetailView: React.FC<DetailViewProps> = ({
                   </p>
                 </div>
 
-                <div className="p-6 sm:p-8 rounded-3xl bg-white/90 dark:bg-white/[0.02] border border-slate-200/90 dark:border-white/10 shadow-sm space-y-3">
+                <div className="p-6 sm:p-8 rounded-3xl bg-transparent border border-[#36454f]/15 dark:border-white/10 space-y-3">
                   <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 text-xs font-bold">
                     <CheckCircle2 className="w-3.5 h-3.5" />
                     <span>{copy.issuerCredibility}</span>
@@ -615,7 +614,7 @@ export const DetailView: React.FC<DetailViewProps> = ({
 
               {/* Skills tags for certificate */}
               {certificate?.skills && certificate.skills.length > 0 && (
-                <div className="p-6 sm:p-8 rounded-3xl bg-white/90 dark:bg-white/[0.02] border border-slate-200/90 dark:border-white/10 shadow-sm space-y-4">
+                <div className="p-6 sm:p-8 rounded-3xl bg-transparent border border-[#36454f]/15 dark:border-white/10 space-y-4">
                   <div className="flex items-center gap-2">
                     <ShieldCheck className="w-5 h-5 text-indigo-500" />
                     <h3 className="text-lg sm:text-xl font-bold text-slate-950 dark:text-white">
@@ -637,7 +636,7 @@ export const DetailView: React.FC<DetailViewProps> = ({
               )}
 
               {/* Verification & Official Document Preview directly visible */}
-              <div className="p-6 sm:p-10 rounded-3xl bg-white/95 dark:bg-[#0c0c0e] border border-slate-200/90 dark:border-white/10 shadow-sm space-y-6">
+              <div className="p-6 sm:p-10 rounded-3xl bg-transparent border border-[#36454f]/15 dark:border-white/10 space-y-6">
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 dark:border-white/10 pb-5">
                   <div>
                     <h3 className="text-xl font-bold text-slate-950 dark:text-white">
@@ -653,7 +652,7 @@ export const DetailView: React.FC<DetailViewProps> = ({
                       href={certificate.credentialUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-slate-950 text-white dark:bg-white dark:text-slate-950 text-xs font-bold hover:bg-slate-800 dark:hover:bg-slate-100 transition-all shadow-md shrink-0"
+                      className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#273641] text-white dark:bg-slate-100 dark:text-slate-900 text-xs font-bold hover:bg-[#1a252d] dark:hover:bg-white transition-all shadow-md shrink-0"
                     >
                       <span>{copy.openVerification}</span>
                       <ExternalLink className="w-3.5 h-3.5" />
@@ -662,7 +661,7 @@ export const DetailView: React.FC<DetailViewProps> = ({
                 </div>
 
                 {certificate?.image && (
-                  <div className="rounded-2xl overflow-hidden border border-slate-200 dark:border-white/10 bg-white p-2 sm:p-4 flex items-center justify-center">
+                  <div className="rounded-2xl overflow-hidden border border-[#36454f]/15 dark:border-white/10 bg-transparent p-2 sm:p-4 flex items-center justify-center">
                     <img
                       src={certificate.image}
                       alt={title}
@@ -707,7 +706,7 @@ export const DetailView: React.FC<DetailViewProps> = ({
                   <a
                     key={rel.id}
                     href={getLocalePath(`/project/${rel.slug}`, locale)}
-                    className="group block p-4 rounded-3xl bg-white/90 dark:bg-[#0c0c0e]/80 border border-slate-200/90 dark:border-white/10 hover:border-slate-400 dark:hover:border-white/30 transition-all duration-300 hover:-translate-y-1.5 shadow-xs hover:shadow-xl dark:shadow-none"
+                    className="group block p-4 rounded-3xl bg-transparent border border-[#36454f]/15 dark:border-white/10 hover:border-slate-400 dark:hover:border-white/30 transition-all duration-300 hover:-translate-y-1.5 shadow-xs"
                   >
                     <div className="relative aspect-[16/10] rounded-2xl overflow-hidden mb-4 bg-slate-900 border border-slate-200/50 dark:border-white/5">
                       <img
@@ -783,9 +782,9 @@ export const DetailView: React.FC<DetailViewProps> = ({
                 <a
                   key={rel.id}
                   href={getLocalePath(`/certificate/${rel.id}`, locale)}
-                  className="group block p-3 sm:p-4 rounded-2xl bg-white/90 dark:bg-[#0c0c0e]/80 border border-slate-200/90 dark:border-white/10 hover:border-slate-400 dark:hover:border-white/30 transition-all hover:-translate-y-1 shadow-xs hover:shadow-md"
+                  className="group block p-3 sm:p-4 rounded-2xl bg-transparent border border-[#36454f]/15 dark:border-white/10 hover:border-slate-400 dark:hover:border-white/30 transition-all hover:-translate-y-1 shadow-xs"
                 >
-                  <div className="aspect-[16/11] rounded-xl overflow-hidden mb-2.5 bg-white border border-slate-200/80 dark:border-white/10 p-1.5 sm:p-2 flex items-center justify-center">
+                  <div className="aspect-[16/11] rounded-xl overflow-hidden mb-2.5 bg-transparent border border-[#36454f]/15 dark:border-white/10 p-1.5 sm:p-2 flex items-center justify-center">
                     <img
                       src={rel.image}
                       alt={rel.title}

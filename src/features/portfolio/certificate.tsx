@@ -27,9 +27,9 @@ export const Certificate = memo<CertificateCardProps>(function Certificate({
   // Baca nilai hover capability dari module-level singleton - tidak ada useState/useEffect
   const hoverable = canHover();
 
-  const cardClassName = `group flex flex-col justify-between bg-white/80 dark:bg-[#0f0f11]/75 backdrop-blur-md border border-slate-200/90 dark:border-white/10 rounded-2xl sm:rounded-3xl p-3 sm:p-4 lg:p-4 shadow-[0_2px_10px_-3px_rgba(15,23,42,0.06)] cursor-pointer${
+  const cardClassName = `atelier-surface frame-motion group flex flex-col justify-between rounded-2xl sm:rounded-3xl p-3 sm:p-4 lg:p-4.5 cursor-pointer relative${
     hoverable
-      ? " hover:border-emerald-500/40 dark:hover:border-white/30 hover:shadow-xl hover:-translate-y-1 transition-[border-color,box-shadow,transform] duration-300"
+      ? " hover:border-[#36454f]/40 dark:hover:border-white/30 hover:-translate-y-1 transition-all duration-200"
       : ""
   }`;
 
@@ -87,8 +87,8 @@ const CertificateContent = memo<{
   return (
     <>
       <div className="space-y-2.5 sm:space-y-3">
-        {/* Certificate Screenshot Preview Box - LOCKED ASPECT RATIO */}
-        <div className="relative w-full aspect-[16/11] rounded-xl sm:rounded-2xl overflow-hidden shrink-0 bg-slate-100 dark:bg-[#141416] p-1.5 sm:p-3 border border-slate-200 dark:border-white/10 flex items-center justify-center group-hover:border-slate-400 dark:group-hover:border-white/30 transition-all">
+        {/* Certificate Screenshot Preview Box with passe-partout */}
+        <div className="passe-partout relative w-full aspect-[16/11] rounded-xl sm:rounded-2xl overflow-hidden shrink-0 bg-white/50 dark:bg-black/30 p-2 sm:p-3 border border-[#36454f]/15 dark:border-white/10 flex items-center justify-center">
           <img
             src={certificate.image}
             alt={`${locale === "en" ? "Certificate" : "Sertifikat"} ${certificate.title}`}
@@ -105,13 +105,11 @@ const CertificateContent = memo<{
                 target.src = certificate.fallbackImage;
               }
             }}
-            className="w-full h-full object-contain object-center rounded-lg bg-white shadow-xs select-none group-hover:brightness-95 transition-[filter] duration-200"
+            className="w-full h-full object-contain object-center rounded-lg select-none group-hover:scale-[1.02] transition-transform duration-300"
             referrerPolicy="no-referrer"
           />
 
-          {/* Badge backdrop-blur hanya di desktop - blur berlapis sangat mahal
-              saat scroll di HP (memaksa repaint area blur tiap frame) */}
-          <div className="hidden sm:flex absolute top-2 left-2 sm:top-3 sm:left-3 items-center gap-1 bg-black/75 backdrop-blur-md px-2 py-0.5 rounded-md sm:rounded-lg text-white text-[10px] font-semibold pointer-events-none shadow-xs">
+          <div className="hidden sm:flex absolute top-2 left-2 sm:top-3 sm:left-3 items-center gap-1 bg-black/90 px-2 py-0.5 rounded-md sm:rounded-lg text-white text-[10px] font-semibold pointer-events-none shadow-xs border border-white/10">
             <Eye className="w-3 h-3 text-blue-400" />
             <span className="truncate">
               {locale === "en" ? "Original credential" : "Kredensial Asli"}
@@ -119,7 +117,7 @@ const CertificateContent = memo<{
           </div>
 
           <div className="hidden sm:block absolute top-2 right-2 sm:top-3 sm:right-3 pointer-events-none">
-            <span className="inline-flex items-center gap-1 text-[10px] font-bold text-emerald-300 bg-emerald-950/85 backdrop-blur-md border border-emerald-500/30 px-2 py-0.5 rounded-full shadow-xs">
+            <span className="inline-flex items-center gap-1 text-[10px] font-bold text-emerald-300 bg-emerald-950/95 border border-emerald-500/30 px-2 py-0.5 rounded-full shadow-xs">
               <ShieldCheck className="w-3 h-3" />
               <span>{locale === "en" ? "Official" : "Resmi"}</span>
             </span>
@@ -127,10 +125,10 @@ const CertificateContent = memo<{
 
           {/* Bottom Badge Bar */}
           <div className="absolute bottom-2 left-2 right-2 sm:bottom-3 sm:left-3 sm:right-3 flex items-center justify-between text-white text-[8.5px] sm:text-[10px] pointer-events-none">
-            <span className="font-mono text-[9.5px] bg-black/80 sm:bg-black/70 sm:backdrop-blur-md px-1.5 py-0.5 rounded text-slate-200 truncate max-w-[60%]">
+            <span className="font-mono text-[9.5px] bg-black/90 px-2 py-0.5 rounded text-slate-200 truncate max-w-[60%] border border-white/10">
               {certificate.badgeCode || "VERIFIED"}
             </span>
-            <span className="flex items-center gap-1 text-[9.5px] font-medium opacity-90 group-hover:opacity-100 bg-slate-900/90 sm:bg-slate-900/80 sm:backdrop-blur-md px-1.5 py-0.5 rounded shrink-0">
+            <span className="flex items-center gap-1 text-[9.5px] font-medium opacity-90 group-hover:opacity-100 bg-slate-900/95 px-2 py-0.5 rounded shrink-0 border border-white/10">
               <Maximize2 className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
               <span>{locale === "en" ? "Enlarge" : "Perbesar"}</span>
             </span>
@@ -139,12 +137,12 @@ const CertificateContent = memo<{
 
         {/* Category & Badge Header */}
         <div className="flex items-center justify-between gap-1.5 pt-0.5">
-          <span className="text-[9.5px] sm:text-[11px] font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400 truncate max-w-[60%]">
+          <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-[#273641] dark:text-blue-400 truncate max-w-[60%]">
             {certificate.category ||
               (locale === "en" ? "Certification" : "Sertifikasi")}
           </span>
-          <div className="flex items-center gap-1 text-[9.5px] sm:text-[11px] text-slate-600 dark:text-slate-400 font-medium shrink-0">
-            <Calendar className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-slate-400" />
+          <div className="flex items-center gap-1 text-[10px] sm:text-[11px] text-[#485966] dark:text-slate-400 font-medium shrink-0">
+            <Calendar className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-[#485966]" />
             <span>
               {formatShortDate(
                 certificate.period || certificate.issueDate,
@@ -154,64 +152,60 @@ const CertificateContent = memo<{
           </div>
         </div>
 
-        {/* Certificate Title - 1 Baris (truncate) untuk Estetika Sempurna */}
+        {/* Certificate Title */}
         <h3
-          className="font-bold text-xs sm:text-sm lg:text-[14px] text-slate-950 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 leading-tight transition-colors truncate"
+          className="font-bold text-xs sm:text-sm lg:text-[14px] text-[#141f26] dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 leading-snug transition-colors line-clamp-1"
           title={certificate.title}
         >
           {certificate.title}
         </h3>
 
         {/* Issuer */}
-        <div className="text-[10px] sm:text-xs text-slate-700 dark:text-slate-300 font-medium truncate">
-          <span className="text-slate-500 dark:text-slate-400">
+        <div className="text-[11px] sm:text-xs text-[#354551] dark:text-slate-300 font-medium truncate">
+          <span className="text-[#485966] dark:text-slate-400">
             {locale === "en" ? "Issuer: " : "Penerbit: "}
           </span>
-          <span className="font-semibold text-slate-900 dark:text-white">
+          <span className="font-semibold text-[#141f26] dark:text-white">
             {certificate.issuer}
           </span>
         </div>
 
         {/* Description snippet */}
         {certificate.description && (
-          <p className="text-[10px] sm:text-[11px] text-slate-600 dark:text-slate-400 line-clamp-2 leading-relaxed">
+          <p className="text-[11px] sm:text-xs text-[#24333d] dark:text-slate-300 line-clamp-2 leading-relaxed bg-[#f3ede6]/40 dark:bg-white/[0.03] p-2 rounded-lg border border-[#36454f]/10 dark:border-white/5">
             {certificate.description}
           </p>
         )}
 
-        {/* Verified Skills tags - 1 tag di mobile, 2 tag di desktop */}
+        {/* Verified Skills tags */}
         {certificate.skills && certificate.skills.length > 0 && (
           <div className="flex flex-wrap items-center gap-1 pt-0.5">
-            {/* Tag pertama: tampil di semua layar */}
             {certificate.skills[0] && (
               <span
-                className="px-2 py-0.5 text-[8.5px] sm:text-[9.5px] font-medium rounded-full bg-slate-100 dark:bg-white/5 text-slate-700 dark:text-slate-300 border border-slate-200/60 dark:border-white/5 truncate max-w-[110px] sm:max-w-[125px]"
+                className="px-2 py-0.5 text-[9px] sm:text-[10px] font-medium rounded-full bg-[#f3ede6]/80 dark:bg-white/5 text-[#24333d] dark:text-slate-200 border border-[#36454f]/10 dark:border-white/5 truncate max-w-[110px] sm:max-w-[125px]"
                 title={certificate.skills[0]}
               >
                 {certificate.skills[0]}
               </span>
             )}
 
-            {/* Tag kedua: hanya tampil di desktop (sm ke atas) */}
             {certificate.skills[1] && (
               <span
-                className="hidden sm:inline-flex px-2 py-0.5 text-[9.5px] font-medium rounded-full bg-slate-100 dark:bg-white/5 text-slate-700 dark:text-slate-300 border border-slate-200/60 dark:border-white/5 truncate max-w-[125px]"
+                className="hidden sm:inline-flex px-2 py-0.5 text-[9.5px] font-medium rounded-full bg-[#f3ede6]/80 dark:bg-white/5 text-[#24333d] dark:text-slate-200 border border-[#36454f]/10 dark:border-white/5 truncate max-w-[125px]"
                 title={certificate.skills[1]}
               >
                 {certificate.skills[1]}
               </span>
             )}
 
-            {/* Badge sisa tag untuk Mobile (jika > 1) */}
             {certificate.skills.length > 1 && (
-              <span className="sm:hidden px-1.5 py-0.5 text-[8.5px] font-semibold rounded-full bg-slate-100 dark:bg-white/5 text-slate-500 dark:text-slate-400 shrink-0">
+              <span className="sm:hidden px-1.5 py-0.5 text-[9px] font-semibold rounded-full bg-[#f3ede6]/80 dark:bg-white/5 text-[#354551] dark:text-slate-300 shrink-0">
                 +{certificate.skills.length - 1}
               </span>
             )}
 
-            {/* Badge sisa tag untuk Desktop (jika > 2) */}
             {certificate.skills.length > 2 && (
-              <span className="hidden sm:inline-flex px-1.5 py-0.5 text-[9px] font-semibold rounded-full bg-slate-100 dark:bg-white/5 text-slate-500 dark:text-slate-400 shrink-0">
+              <span className="hidden sm:inline-flex px-1.5 py-0.5 text-[9px] font-semibold rounded-full bg-[#f3ede6]/80 dark:bg-white/5 text-[#354551] dark:text-slate-300 shrink-0">
                 +{certificate.skills.length - 2}
               </span>
             )}
@@ -221,12 +215,12 @@ const CertificateContent = memo<{
 
       {/* Footer Action */}
       <div
-        className="pt-3 sm:pt-4 mt-3 sm:mt-4 border-t border-slate-200/80 dark:border-white/10 flex items-center justify-between gap-1.5 sm:gap-2"
+        className="pt-3 sm:pt-4 mt-3 sm:mt-4 border-t border-[#36454f]/10 dark:border-white/10 flex items-center justify-between gap-1.5 sm:gap-2"
         onClick={(e) => e.stopPropagation()}
       >
         <a
           href={getLocalePath(`/certificate/${certificate.id}`, locale)}
-          className="flex items-center justify-center gap-1.5 p-1.5 sm:px-4 sm:py-2 rounded-full border border-slate-300 dark:border-white/10 text-slate-900 dark:text-white hover:bg-slate-950 hover:text-white dark:hover:bg-white dark:hover:text-slate-950 text-[10px] sm:text-xs font-bold transition-all shrink-0 shadow-xs"
+          className="flex items-center justify-center gap-1.5 px-3.5 py-1.5 rounded-full border border-[#36454f]/25 dark:border-white/20 bg-white/70 dark:bg-white/5 text-[#141f26] dark:text-white hover:bg-[#273641] hover:text-white dark:hover:bg-white dark:hover:text-slate-950 text-xs font-bold transition-all shrink-0 shadow-xs"
           title={
             locale === "en"
               ? "View certificate details"
@@ -242,7 +236,7 @@ const CertificateContent = memo<{
             href={certificate.credentialUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-1 px-2.5 sm:px-4 py-1.5 sm:py-2 rounded-full bg-slate-950 text-white dark:bg-white dark:text-slate-950 text-[10px] sm:text-xs font-bold hover:bg-slate-800 dark:hover:bg-slate-100 transition-all shadow-sm shrink-0"
+            className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#273641] text-white dark:bg-slate-100 dark:text-slate-900 text-xs font-bold hover:bg-[#141f26] dark:hover:bg-white transition-all shadow-sm shrink-0"
           >
             <span>{locale === "en" ? "Verify" : "Verifikasi"}</span>
             <ExternalLink className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
