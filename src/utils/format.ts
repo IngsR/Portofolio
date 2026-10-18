@@ -49,6 +49,32 @@ export function formatShortDomain(url?: string): string {
 }
 
 /**
+ * Menghasilkan label tombol live untuk proyek.
+ * Khusus SMPN 24 Padang (smpn24padang.sch.id) yang sudah resmi digunakan oleh pihak sekolah,
+ * labelnya adalah "Website Resmi" (ID) / "Official Website" (EN) alih-alih "Live Demo".
+ */
+export function getProjectLiveButtonLabel(
+  project?: { demoUrl?: string; slug?: string; title?: string },
+  locale: Locale = "id",
+): string {
+  const url = project?.demoUrl || "";
+  const slug = project?.slug || "";
+  const title = (project?.title || "").toLowerCase();
+
+  const isOfficialSchool =
+    url.includes("smpn24padang.sch.id") ||
+    slug.includes("smp-negeri-24-padang") ||
+    slug.includes("smpn24") ||
+    title.includes("smp negeri 24");
+
+  if (isOfficialSchool) {
+    return locale === "en" ? "Official Website" : "Website Resmi";
+  }
+
+  return locale === "en" ? "Live Demo" : "Demo Langsung";
+}
+
+/**
  * Tanggal ringkas ala kartu proyek/sertifikat.
  * E.g. "2024-03-11" -> "11 Mar 2024" (tetap aman untuk format bebas selain itu).
  */
