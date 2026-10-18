@@ -35,8 +35,8 @@ const buildQuickActions = (
       label: labels.cv.label,
       hint: labels.cv.hint,
       cardClass:
-        "bg-[#faf7f0] text-slate-950 hover:bg-[#f0e9dd] dark:bg-[#363e43] dark:text-slate-100 dark:hover:bg-[#3d464c] sm:col-span-2",
-      icon: <FileText className="w-5 h-5 text-slate-950 dark:text-slate-100" />,
+        "bg-transparent border border-[#36454f]/20 text-[#1c2932] hover:border-[#36454f]/40 hover:bg-[#36454f]/5 dark:border-white/10 dark:text-white dark:hover:bg-white/5 sm:col-span-2",
+      icon: <FileText className="w-5 h-5 text-[#1c2932] dark:text-white" />,
     },
     {
       id: "linkedin",
@@ -68,7 +68,7 @@ const buildQuickActions = (
       hint: "github.com/IngsR",
       href: "https://github.com/IngsR",
       cardClass:
-        "bg-slate-900/90 border-white/15 text-white hover:bg-slate-800/90",
+        "bg-[#273641] text-white hover:bg-[#1a252d] dark:bg-white/10 dark:hover:bg-white/15",
       icon: <GithubBrandIcon className="w-5 h-5" />,
     },
   ];
@@ -82,7 +82,13 @@ const QuickActionCard = memo<{
   const inner = (
     <>
       <div className="flex items-center gap-3 min-w-0">
-        <div className="p-2.5 rounded-xl shrink-0 bg-white/15">
+        <div
+          className={`p-2.5 rounded-xl shrink-0 ${
+            action.id === "cv"
+              ? "bg-[#36454f]/10 dark:bg-white/10"
+              : "bg-white/15"
+          }`}
+        >
           {action.icon}
         </div>
         <div className="min-w-0 flex-1">

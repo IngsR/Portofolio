@@ -50,7 +50,7 @@ const buildContactLinks = (userProfile: UserProfile): HeroContactLink[] => [
     value: "github.com/IngsR",
     href: "https://github.com/IngsR",
     icon: <GithubBrandIcon className="w-3.5 h-3.5" />,
-    iconClass: "bg-slate-900 text-white",
+    iconClass: "bg-[#273641] text-white dark:bg-slate-100 dark:text-slate-900",
     hoverClass:
       "hover:border-slate-500/50 hover:bg-slate-100 dark:hover:bg-white/10",
     valueClass:
@@ -78,7 +78,7 @@ const ContactRow = memo<{ link: HeroContactLink }>(function ContactRow({
     <a
       href={link.href}
       {...(isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-      className={`flex items-center justify-between px-3 py-1.5 sm:px-3.5 sm:py-2.5 rounded-full bg-white/95 dark:bg-white/5 border border-slate-200/80 dark:border-white/10 text-slate-800 dark:text-slate-200 transition-all group/link shadow-[0_1px_3px_rgba(15,23,42,0.04)] hover:shadow-sm ${link.hoverClass}`}
+      className={`flex items-center justify-between px-3 py-1.5 sm:px-3.5 sm:py-2.5 rounded-full bg-transparent border border-[#36454f]/15 dark:border-white/10 text-[#1c2932] dark:text-slate-200 transition-all group/link hover:shadow-xs ${link.hoverClass}`}
     >
       <div className="flex items-center gap-2.5 truncate">
         <div
@@ -131,43 +131,48 @@ const ProfilePhoto = memo<{ userProfile: UserProfile }>(function ProfilePhoto({
   const source = step === "failed" ? null : sources[step === "primary" ? 0 : 1];
 
   return (
-    <div
-      className="relative w-full rounded-2xl overflow-hidden bg-white dark:bg-[#0d0d10] border-slate-200/80 dark:border-white/10"
-      style={{ aspectRatio: "640/786" }}
-    >
-      {source ? (
-        <img
-          key={source}
-          src={source}
-          alt={userProfile.name}
-          width={640}
-          height={786}
-          loading="eager"
-          decoding="async"
-          fetchPriority="high"
-          onError={() =>
-            setStep((current) =>
-              current === "primary" ? "fallback" : "failed",
-            )
-          }
-          className="absolute inset-0 w-full h-full object-cover object-center select-none"
-          draggable={false}
-        />
-      ) : (
-        <AvatarFallback name={userProfile.name} role="Junior Web Developer" />
-      )}
+    <div className="passe-partout corner-bracket rounded-2xl w-full">
+      <div
+        className="relative w-full rounded-xl overflow-hidden bg-slate-900/10 dark:bg-black/40"
+        style={{ aspectRatio: "640/786" }}
+      >
+        {source ? (
+          <img
+            key={source}
+            src={source}
+            alt={userProfile.name}
+            width={640}
+            height={786}
+            loading="eager"
+            decoding="async"
+            fetchPriority="high"
+            onError={() =>
+              setStep((current) =>
+                current === "primary" ? "fallback" : "failed",
+              )
+            }
+            className="absolute inset-0 w-full h-full object-cover object-center select-none transition-transform duration-700 ease-out hover:scale-[1.02]"
+            draggable={false}
+          />
+        ) : (
+          <AvatarFallback name={userProfile.name} role="Junior Web Developer" />
+        )}
 
-      {/* Bar identitas di bawah foto - kontras tinggi di light & dark mode */}
-      <div className="absolute bottom-2.5 left-2.5 right-2.5 bg-slate-950/90 dark:bg-black/90 rounded-xl px-3 py-1.5 sm:py-2 text-white text-[10px] sm:text-[11px] flex items-center justify-between border border-white/15 shadow-md pointer-events-none z-10">
-        <div className="flex items-center gap-1.5 min-w-0 flex-1">
-          <span className="w-2 h-2 rounded-full bg-emerald-400 shrink-0 animate-pulse"></span>
-          <span className="font-semibold text-white truncate">
-            {userProfile.name}
+        {/* Plakat Identitas Studio Terukir di Bawah Foto */}
+        <div className="absolute bottom-3 left-3 right-3 bg-[#273641]/95 dark:bg-[#1a252d]/95 rounded-xl px-3.5 py-2 text-white flex items-center justify-between border border-white/15 shadow-lg pointer-events-none z-10">
+          <div className="flex items-center gap-2 min-w-0 flex-1">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400"></span>
+            </span>
+            <span className="font-bold text-xs text-white truncate tracking-tight">
+              {userProfile.name}
+            </span>
+          </div>
+          <span className="text-[10px] font-mono font-medium text-slate-300 dark:text-slate-300 shrink-0 ml-2 uppercase tracking-wider">
+            Web Developer
           </span>
         </div>
-        <span className="text-slate-200 text-[9px] sm:text-[10px] shrink-0 font-medium ml-2">
-          Web Developer
-        </span>
       </div>
     </div>
   );
@@ -179,22 +184,23 @@ export const ProfilePhotoCard = memo<{ userProfile: UserProfile }>(
     const { locale } = useTranslations();
 
     return (
-      <div className="w-full sm:max-w-sm rounded-2xl sm:rounded-3xl border border-slate-200/90 dark:border-white/10 bg-[#faf7f0] dark:bg-[#2b3034] p-4 sm:p-5 space-y-4 shadow-sm">
+      <div className="w-full sm:max-w-sm space-y-4">
+        {/* Gallery Passe-Partout Frame */}
         <ProfilePhoto userProfile={userProfile} />
 
-        <div className="space-y-3 pt-1">
+        {/* Atelier Contact Ledger */}
+        <div className="atelier-surface rounded-2xl p-3.5 space-y-2.5">
           <div className="flex items-center justify-between px-1">
-            <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400">
-              {locale === "en"
-                ? "Profile contact links:"
-                : "Tautan Kontak Profil:"}
+            <span className="folio-num">
+              {locale === "en" ? "00 / Direct Channels" : "00 / Saluran Kontak"}
             </span>
-            <span className="text-[10px] font-semibold text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/40 px-2.5 py-0.5 rounded-full">
-              {locale === "en" ? "Official & active" : "Resmi & Aktif"}
+            <span className="inline-flex items-center gap-1.5 text-[9.5px] font-bold text-emerald-700 dark:text-emerald-300 uppercase tracking-wider">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+              {locale === "en" ? "Active" : "Aktif"}
             </span>
           </div>
 
-          <div className="grid grid-cols-1 gap-2 text-xs">
+          <div className="space-y-1.5 text-xs">
             {contactLinks.map((link) => (
               <ContactRow key={link.id} link={link} />
             ))}

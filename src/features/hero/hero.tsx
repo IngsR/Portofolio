@@ -82,16 +82,24 @@ export const Hero: React.FC<HeroSectionProps> = ({
     [localizedCertifications],
   );
 
-  // Proyek pilihan di Beranda - Memoized
+  // Proyek pilihan di Beranda - Memoized: 1 Flagship (SMPN 24) + 4 Gallery (genap 2 baris di mobile)
   const homeFeaturedProjects = useMemo(() => {
     const list = [...(featuredProjects || [])];
+    const adminBlog = (portfolioData.projects as ProjectItem[]).find(
+      (p) => p.id === "proj-8",
+    );
+    if (adminBlog && !list.some((p) => p.id === "proj-8")) {
+      list.push(getLocalizedProject(adminBlog, locale));
+    }
     const ingstore = (portfolioData.projects as ProjectItem[]).find(
       (p) => p.id === "proj-4",
     );
     if (ingstore && !list.some((p) => p.id === "proj-4")) {
       list.push(getLocalizedProject(ingstore, locale));
     }
-    return list.filter((p) => p.featured || p.id === "proj-4").slice(0, 4);
+    return list
+      .filter((p) => p.featured || p.id === "proj-4" || p.id === "proj-8")
+      .slice(0, 5);
   }, [featuredProjects, locale]);
 
   // Pendidikan Sarjana S1 - Memoized
@@ -105,7 +113,7 @@ export const Hero: React.FC<HeroSectionProps> = ({
   );
 
   return (
-    <div className="space-y-16 py-6 sm:py-8">
+    <div className="space-y-16 sm:space-y-24 py-6 sm:py-10">
       {/* 1. Perkenalan singkat + kartu foto profil */}
       {isHeroSectionVisible("intro") && (
         <IntroSection onNavigate={handleNavigate} onOpenCV={onOpenCV} />

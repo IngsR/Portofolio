@@ -19,9 +19,14 @@ export const CertificationsSection = memo<CertificationsSectionProps>(
     const copy = getDictionary(locale).hero.sections;
     return (
       <section className="space-y-6">
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-slate-200 dark:border-white/10 pb-4">
-          <div>
-            <h2 className="ornament-underline text-2xl sm:text-3xl font-black tracking-tight text-slate-950 dark:text-white mt-1">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-[#36454f]/15 dark:border-white/10 pb-4">
+          <div className="space-y-1">
+            <span className="folio-num">
+              {locale === "en"
+                ? "05 / Certifications & Formal Accreditations"
+                : "05 / Sertifikasi & Kredensial Resmi"}
+            </span>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight text-[#141f26] dark:text-white font-serif">
               {copy.certifications}
             </h2>
           </div>
@@ -32,12 +37,12 @@ export const CertificationsSection = memo<CertificationsSectionProps>(
               e.preventDefault();
               onNavigate?.("about");
             }}
-            className="text-xs font-bold uppercase tracking-wider text-slate-900 dark:text-white hover:opacity-80 flex items-center gap-1.5 px-4 py-2 rounded-full border-slate-200 dark:border-white/10"
+            className="text-xs font-mono font-bold uppercase tracking-wider text-[#141f26] dark:text-white hover:text-blue-600 dark:hover:text-blue-400 flex items-center gap-2 px-4 py-2 rounded-full border border-[#36454f]/20 dark:border-white/15 bg-white/60 dark:bg-white/5 transition-all shadow-xs shrink-0 self-start sm:self-auto"
           >
             <span>
               {copy.allCertificates} ({certificates.length})
             </span>
-            <ArrowRight className="w-4 h-4" />
+            <ArrowRight className="w-3.5 h-3.5" />
           </a>
         </div>
 

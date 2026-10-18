@@ -17,10 +17,20 @@ export const SkillsSection = memo<{ categories: SkillCategory[] }>(
 
     return (
       <section className="space-y-6">
-        <div className="space-y-1.5 sm:space-y-2 border-b border-slate-200 dark:border-white/10 pb-3 sm:pb-4">
-          <h2 className="ornament-underline text-xl sm:text-2xl lg:text-3xl font-black tracking-tight text-slate-950 dark:text-white">
-            {getDictionary(locale).hero.sections.skills}
-          </h2>
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 border-b border-[#36454f]/15 dark:border-white/10 pb-4">
+          <div className="space-y-1">
+            <span className="folio-num">
+              {locale === "en"
+                ? "06 / Technical Skills & Competencies"
+                : "06 / Keterampilan Teknis & Kompetensi"}
+            </span>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight text-[#141f26] dark:text-white font-serif">
+              {getDictionary(locale).hero.sections.skills}
+            </h2>
+          </div>
+          <span className="text-xs font-mono font-medium text-[#485966] dark:text-slate-400">
+            {locale === "en" ? "Primary Software Stacks" : "Teknologi & Stack Utama"}
+          </span>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-3 sm:gap-4 lg:gap-5">

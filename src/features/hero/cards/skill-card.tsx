@@ -49,40 +49,39 @@ export const SkillCard = memo<{ category: SkillCategory }>(function SkillCard({
 
   return (
     <div
-      className={`relative overflow-hidden p-3.5 sm:p-4 lg:p-5 rounded-2xl sm:rounded-3xl border border-slate-200 dark:border-white/10 bg-white/80 dark:bg-[#0c0c0d]/75 backdrop-blur-md flex flex-col justify-between space-y-3 sm:space-y-4 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 ${borderAccent}`}
+      className={`atelier-surface frame-motion corner-bracket relative overflow-hidden p-4 sm:p-5 lg:p-5.5 rounded-2xl sm:rounded-3xl border border-[#36454f]/15 dark:border-white/10 flex flex-col justify-between space-y-4 hover:-translate-y-1 transition-all duration-200 shadow-xs ${borderAccent}`}
     >
       {/* Garis aksen atas - identitas warna per kartu */}
       <span
-        className={`absolute inset-x-0 top-0 h-0.5 bg-current opacity-70 ${accent}`}
+        className={`absolute inset-x-0 top-0 h-1 bg-current opacity-80 ${accent}`}
       />
 
-      <div className="space-y-2 sm:space-y-2.5">
-        <div className="flex items-start justify-between gap-2">
-          {/* Judul: teks natural tanpa uppercase berlebihan */}
+      <div className="space-y-2.5">
+        <div className="flex items-start justify-between gap-2 pt-1">
           <h3
-            className={`text-xs sm:text-sm font-bold tracking-tight leading-snug break-words min-w-0 ${accent}`}
+            className="text-sm sm:text-base font-bold tracking-tight text-[#141f26] dark:text-white leading-snug break-words min-w-0"
           >
             {category.title}
           </h3>
-          <div className="p-1.5 sm:p-2 rounded-xl bg-slate-100 dark:bg-white/5 shrink-0">
+          <div className="p-2 rounded-xl bg-[#f3ede6]/80 dark:bg-white/5 border border-[#36454f]/15 dark:border-white/10 shrink-0">
             <Icon className={`w-4 h-4 sm:w-5 sm:h-5 ${accent}`} />
           </div>
         </div>
 
-        <p className="text-[10.5px] sm:text-xs text-slate-600 dark:text-slate-400 leading-relaxed line-clamp-3">
+        <p className="text-xs text-[#24333d] dark:text-slate-300 leading-relaxed line-clamp-3">
           {category.description}
         </p>
       </div>
 
-      <div className="space-y-1.5 sm:space-y-2 pt-2 border-t border-slate-100 dark:border-white/5">
-        <span className="text-[9px] sm:text-[10px] font-bold text-slate-400 uppercase tracking-wider block">
+      <div className="space-y-2 pt-3 border-t border-[#36454f]/10 dark:border-white/10">
+        <span className="text-[9.5px] sm:text-[10px] font-mono font-bold text-[#485966] dark:text-slate-400 uppercase tracking-wider block">
           Core Stack:
         </span>
-        <div className="flex flex-wrap gap-1 sm:gap-1.5">
+        <div className="flex flex-wrap gap-1.5">
           {category.coreStack.map((tech) => (
             <span
               key={tech}
-              className="px-2 py-0.5 sm:px-2.5 sm:py-1 text-[8.5px] sm:text-[10px] lg:text-[11px] font-semibold rounded-full bg-slate-100 dark:bg-white/5 text-slate-800 dark:text-slate-200 border border-slate-200/60 dark:border-white/5 hover:border-current transition-colors"
+              className="px-2.5 py-1 text-[9.5px] sm:text-[10.5px] font-mono font-semibold rounded-full bg-[#f3ede6]/80 dark:bg-white/5 text-[#141f26] dark:text-slate-200 border border-[#36454f]/15 dark:border-white/10 hover:border-[#141f26] dark:hover:border-white transition-colors"
               title={tech}
             >
               {tech}

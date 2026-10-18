@@ -1,11 +1,13 @@
 "use client";
-import { ExternalLink, Github } from "lucide-react";
+import { ExternalLink } from "lucide-react";
 import React, { memo } from "react";
+import { GithubBrandIcon } from "../../../design/components/brand-icons";
 import { CertificationItem, ProjectItem } from "../../../types";
 import {
   formatDomainName,
   formatShortDate,
   formatShortDomain,
+  getProjectLiveButtonLabel,
 } from "../../../utils/format";
 import { useTranslations } from "../../../i18n";
 import { getLocalePath } from "../../../utils/locale";
@@ -28,13 +30,13 @@ interface HeroCardProps {
 }
 
 const BASE_CLASS =
-  "group flex-col justify-between bg-[#faf7f0] dark:bg-[#2b3034] border border-slate-300 dark:border-[#41494f] rounded-2xl sm:rounded-3xl overflow-hidden cursor-pointer";
+  "atelier-surface frame-motion group flex flex-col justify-between rounded-xl sm:rounded-3xl overflow-hidden cursor-pointer relative";
 
 const PROJECT_HOVER =
-  " hover:border-slate-400 dark:hover:border-[#64727b] transition-colors duration-200";
+  " hover:border-[#36454f]/40 dark:hover:border-white/30 hover:-translate-y-1";
 
 const CERT_HOVER =
-  " hover:border-slate-400 dark:hover:border-[#64727b] transition-colors duration-200";
+  " hover:border-[#36454f]/40 dark:hover:border-white/30 hover:-translate-y-1";
 
 /** Gambar dengan nilai fallback (dipakai proyek & sertifikat) */
 const CardImage: React.FC<{
@@ -139,14 +141,14 @@ const ProjectCardBody = memo<{
 }>(function ProjectCardBody({ project, locale }) {
   return (
     <>
-      <div className="space-y-2 sm:space-y-3 p-3 sm:p-4 lg:p-4">
+      <div className="space-y-2 sm:space-y-3 p-2.5 sm:p-4 lg:p-4">
         {/* Kategori + indikator domain live */}
-        <div className="flex items-center justify-between gap-1.5">
-          <span className="text-[10px] sm:text-[11px] font-bold text-slate-800 dark:text-slate-200 px-2 py-0.5 rounded-full bg-slate-100 dark:bg-white/5 border-slate-200/60 dark:border-white/5 truncate max-w-[55%]">
+        <div className="flex items-center justify-between gap-1">
+          <span className="text-[9px] sm:text-[11px] font-bold text-[#141f26] dark:text-slate-100 px-1.5 sm:px-2.5 py-0.5 rounded-full bg-[#f3ede6]/80 dark:bg-white/10 border border-[#36454f]/15 dark:border-white/10 truncate max-w-[52%]">
             {project.category}
           </span>
           {project.demoUrl && (
-            <span className="inline-flex items-center gap-1 text-[9px] sm:text-[10px] text-emerald-800 dark:text-emerald-200 font-mono font-semibold bg-emerald-50 dark:bg-emerald-950/40 border-emerald-500/20 px-1.5 py-0.5 rounded-full max-w-[45%] truncate">
+            <span className="inline-flex items-center gap-1 text-[8px] sm:text-[10px] text-emerald-800 dark:text-emerald-200 font-mono font-semibold bg-emerald-500/10 dark:bg-emerald-950/40 border border-emerald-500/25 px-1.5 sm:px-2 py-0.5 rounded-full max-w-[48%] truncate">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse shrink-0"></span>
               <span className="truncate">
                 {formatShortDomain(project.demoUrl)}
@@ -155,30 +157,30 @@ const ProjectCardBody = memo<{
           )}
         </div>
 
-        {/* Screenshot - rasio dikunci agar grid tidak bergeser */}
-        <div className="relative aspect-[16/10] w-full rounded-xl sm:rounded-2xl overflow-hidden shrink-0 bg-slate-900 border-slate-200/80 dark:border-white/10">
+        {/* Screenshot dengan passe-partout */}
+        <div className="passe-partout relative aspect-[16/10] w-full rounded-lg sm:rounded-2xl overflow-hidden shrink-0 bg-slate-900/10 dark:bg-slate-900 border border-[#36454f]/15 dark:border-white/10">
           <CardImage
             src={project.imageFull ?? project.image}
             fallbackSrc={project.fallbackImage}
             alt={project.title}
-            className="w-full h-full object-cover group-hover:brightness-90 transition-[filter] duration-150 select-none"
+            className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-300 select-none"
           />
         </div>
 
-        {/* Judul - 1 baris (truncate) supaya tinggi kartu seragam */}
+        {/* Judul */}
         <h3
-          className="font-bold text-xs sm:text-sm lg:text-[14px] text-slate-950 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors leading-tight truncate"
+          className="font-bold text-[11.5px] sm:text-sm lg:text-[14px] text-[#141f26] dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors leading-snug line-clamp-1"
           title={project.title}
         >
           {project.title}
         </h3>
 
         {/* Ringkasan solusi */}
-        <div className="text-xs bg-slate-50 dark:bg-white/[0.03] p-2 sm:p-2.5 rounded-xl border-slate-200/60 dark:border-white/5">
-          <span className="font-bold text-[11px] sm:text-xs text-emerald-700 dark:text-emerald-300 flex items-center gap-1 mb-0.5">
+        <div className="bg-[#f3ede6]/40 dark:bg-white/[0.03] p-1.5 sm:p-2.5 rounded-lg sm:rounded-xl border border-[#36454f]/10 dark:border-white/5">
+          <span className="font-bold text-[9.5px] sm:text-[11.5px] text-emerald-800 dark:text-emerald-300 flex items-center gap-1 mb-0.5">
             💡 {locale === "en" ? "Solution:" : "Solusi:"}
           </span>
-          <p className="text-[11px] sm:text-xs leading-relaxed text-slate-800 dark:text-slate-200 line-clamp-2">
+          <p className="text-[10px] sm:text-xs leading-relaxed text-[#24333d] dark:text-slate-200 line-clamp-2">
             {project.solution || project.shortDescription}
           </p>
         </div>
@@ -188,28 +190,28 @@ const ProjectCardBody = memo<{
           {project.tags.slice(0, 2).map((tag) => (
             <span
               key={tag}
-              className="px-2 py-0.5 text-[9px] sm:text-[10px] font-medium rounded-full bg-slate-100 dark:bg-white/5 text-slate-800 dark:text-slate-200 border-slate-200/60 dark:border-white/5 truncate max-w-[120px]"
+              className="px-1.5 sm:px-2 py-0.5 text-[8.5px] sm:text-[10px] font-mono font-medium rounded-full bg-[#f3ede6]/80 dark:bg-white/5 text-[#24333d] dark:text-slate-200 border border-[#36454f]/10 dark:border-white/5 truncate max-w-[85px] sm:max-w-[120px]"
               title={tag}
             >
               {tag}
             </span>
           ))}
           {project.tags.length > 2 && (
-            <span className="px-1.5 py-0.5 text-[9px] sm:text-[10px] font-semibold rounded-full bg-slate-100 dark:bg-white/5 text-slate-700 dark:text-slate-300 shrink-0">
+            <span className="px-1 sm:px-1.5 py-0.5 text-[8px] sm:text-[10px] font-semibold rounded-full bg-[#f3ede6]/80 dark:bg-white/5 text-[#354551] dark:text-slate-300 shrink-0">
               +{project.tags.length - 2}
             </span>
           )}
         </div>
       </div>
 
-      {/* Footer aksi - ikon saja di mobile agar domain tidak meluber */}
+      {/* Footer aksi */}
       <div
-        className="px-3 sm:px-4 lg:px-4 pb-3 sm:pb-4 pt-2 sm:pt-3 border-t border-slate-100 dark:border-white/10 flex items-center justify-between gap-1.5 min-w-0"
+        className="px-2 sm:px-4 lg:px-4 pb-2.5 sm:pb-4 pt-2 sm:pt-3 border-t border-[#36454f]/10 dark:border-white/10 flex items-center justify-between gap-1 min-w-0"
         onClick={(e) => e.stopPropagation()}
       >
         <a
           href={getLocalePath(`/project/${project.slug}`, locale)}
-          className="flex items-center justify-center gap-1.5 px-2.5 sm:px-3 py-1 rounded-full border border-slate-200 dark:border-white/15 bg-slate-100/90 dark:bg-white/[0.06] text-slate-900 dark:text-white font-bold hover:bg-slate-950 hover:text-white dark:hover:bg-white dark:hover:text-slate-950 text-[10px] sm:text-xs transition-all shrink-0 shadow-xs"
+          className="flex items-center justify-center gap-1 px-2 py-1 sm:px-3 sm:py-1.5 rounded-full border border-[#36454f]/25 dark:border-white/20 bg-white/70 dark:bg-white/5 text-[#141f26] dark:text-white font-bold hover:bg-[#273641] hover:text-white dark:hover:bg-white dark:hover:text-slate-950 text-[9.5px] sm:text-xs transition-all shrink-0 shadow-xs"
           title={
             locale === "en" ? "Open project details" : "Buka detail proyek"
           }
@@ -218,7 +220,7 @@ const ProjectCardBody = memo<{
           <span>Detail</span>
         </a>
 
-        <div className="flex items-center gap-1 sm:gap-1.5 min-w-0 shrink">
+        <div className="flex items-center gap-1 min-w-0 shrink">
           {project.githubUrl && (
             <a
               href={project.githubUrl}
@@ -230,9 +232,9 @@ const ProjectCardBody = memo<{
                   ? "Open GitHub repository"
                   : "Buka repositori GitHub"
               }
-              className="flex items-center justify-center gap-1.5 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full border border-slate-300 dark:border-white/20 bg-slate-100/90 dark:bg-white/[0.08] text-slate-800 dark:text-slate-200 hover:text-slate-950 dark:hover:text-white hover:bg-slate-200/90 dark:hover:bg-white/[0.16] hover:border-slate-400 dark:hover:border-white/30 text-[10px] sm:text-xs font-semibold transition-all shadow-xs shrink-0 active:scale-95"
+              className="flex items-center justify-center p-1 sm:px-2.5 sm:py-1.5 rounded-full border border-[#36454f]/20 dark:border-white/20 bg-transparent text-[#24333d] dark:text-slate-200 hover:text-[#141f26] dark:hover:text-white hover:bg-[#36454f]/10 dark:hover:bg-white/10 text-[9.5px] sm:text-xs font-semibold transition-all shadow-xs shrink-0 active:scale-95"
             >
-              <Github className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0 text-slate-900 dark:text-white" />
+              <GithubBrandIcon className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0 text-[#141f26] dark:text-white" />
               <span className="hidden sm:inline font-medium">GitHub</span>
             </a>
           )}
@@ -241,10 +243,10 @@ const ProjectCardBody = memo<{
               href={project.demoUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="px-2 sm:px-2.5 py-1 sm:py-1.5 rounded-full bg-slate-950 text-white dark:bg-white dark:text-slate-950 text-[9px] sm:text-[10px] font-semibold hover:bg-slate-800 dark:hover:bg-slate-100 transition-colors flex items-center gap-1 shadow-sm min-w-0 shrink overflow-hidden"
-              title={`Buka ${formatDomainName(project.demoUrl)}`}
+              className="px-1.5 sm:px-2.5 py-1 sm:py-1.5 rounded-full bg-[#273641] text-white dark:bg-slate-100 dark:text-slate-900 text-[8.5px] sm:text-[10px] font-semibold hover:bg-[#141f26] dark:hover:bg-white transition-colors flex items-center gap-0.5 sm:gap-1 shadow-sm min-w-0 shrink overflow-hidden"
+              title={getProjectLiveButtonLabel(project, locale)}
             >
-              <span className="truncate text-[8.5px] sm:text-[9.5px] font-mono leading-none">
+              <span className="truncate text-[8.5px] sm:text-[10px] font-mono leading-none">
                 {formatShortDomain(project.demoUrl)}
               </span>
               <ExternalLink className="w-2.5 h-2.5 sm:w-3 sm:h-3 shrink-0" />
@@ -262,23 +264,23 @@ const CertificateCardBody = memo<{
 }>(function CertificateCardBody({ certificate, locale }) {
   return (
     <>
-      <div className="space-y-2 sm:space-y-3 p-3">
-        {/* Gambar sertifikat - rasio dikunci */}
-        <div className="relative w-full aspect-[16/11] rounded-xl sm:rounded-2xl overflow-hidden shrink-0 bg-slate-100 dark:bg-[#141416] p-1.5 sm:p-2 border-slate-200 dark:border-white/10 flex items-center justify-center">
+      <div className="space-y-2.5 sm:space-y-3 p-3.5 sm:p-4">
+        {/* Gambar sertifikat dengan passe-partout */}
+        <div className="passe-partout relative w-full aspect-[16/11] rounded-xl sm:rounded-2xl overflow-hidden shrink-0 bg-white/40 dark:bg-black/20 p-2 sm:p-2.5 border border-[#36454f]/15 dark:border-white/10 flex items-center justify-center">
           <CardImage
             src={certificate.image}
             fallbackSrc={certificate.fallbackImage}
             alt={`${locale === "en" ? "Certificate" : "Sertifikat"} ${certificate.title}`}
-            className="w-full h-full object-contain object-center rounded-lg bg-white shadow-xs select-none group-hover:brightness-95 transition-[filter] duration-200"
+            className="w-full h-full object-contain object-center rounded-lg select-none group-hover:scale-[1.02] transition-transform duration-300"
           />
         </div>
 
         <div className="flex items-center justify-between gap-1.5">
-          <span className="text-[9.5px] sm:text-[11px] font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400 truncate max-w-[60%]">
+          <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-[#273641] dark:text-blue-400 truncate max-w-[60%]">
             {certificate.category ||
               (locale === "en" ? "Certification" : "Sertifikasi")}
           </span>
-          <span className="text-[9.5px] sm:text-[11px] text-slate-600 dark:text-slate-400 font-medium shrink-0">
+          <span className="text-[10px] sm:text-[11px] text-[#485966] dark:text-slate-400 font-medium shrink-0">
             {formatShortDate(
               certificate.period || certificate.issueDate,
               locale,
@@ -287,29 +289,29 @@ const CertificateCardBody = memo<{
         </div>
 
         <h3
-          className="font-bold text-xs sm:text-sm lg:text-[14px] text-slate-950 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 leading-tight transition-colors truncate"
+          className="font-bold text-xs sm:text-sm lg:text-[14px] text-[#141f26] dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 leading-snug transition-colors line-clamp-1"
           title={certificate.title}
         >
           {certificate.title}
         </h3>
 
-        <div className="text-[10px] sm:text-xs text-slate-700 dark:text-slate-300 font-medium truncate">
-          <span className="text-slate-500 dark:text-slate-400">
+        <div className="text-[11px] sm:text-xs text-[#354551] dark:text-slate-300 font-medium truncate">
+          <span className="text-[#485966] dark:text-slate-400">
             {locale === "en" ? "Issuer: " : "Penerbit: "}
           </span>
-          <span className="font-semibold text-slate-900 dark:text-white">
+          <span className="font-semibold text-[#141f26] dark:text-white">
             {certificate.issuer}
           </span>
         </div>
       </div>
 
       <div
-        className="px-3 pb-3 pt-2 border-t border-slate-100 dark:border-white/10 flex items-center justify-between gap-1.5"
+        className="px-3 sm:px-4 pb-3 sm:pb-4 pt-2.5 sm:pt-3 border-t border-[#36454f]/10 dark:border-white/10 flex items-center justify-between gap-1.5"
         onClick={(e) => e.stopPropagation()}
       >
         <a
           href={getLocalePath(`/certificate/${certificate.id}`, locale)}
-          className="flex items-center justify-center gap-1.5 p-1.5 sm:px-3 sm:py-1 rounded-full border border-slate-200 dark:border-white/10 text-slate-900 dark:text-white font-bold hover:bg-slate-950 hover:text-white dark:hover:bg-white dark:hover:text-slate-950 text-[10px] sm:text-xs transition-all shrink-0 shadow-xs"
+          className="flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-full border border-[#36454f]/25 dark:border-white/20 bg-white/70 dark:bg-white/5 text-[#141f26] dark:text-white font-bold hover:bg-[#273641] hover:text-white dark:hover:bg-white dark:hover:text-slate-950 text-[10.5px] sm:text-xs transition-all shrink-0 shadow-xs"
           title={
             locale === "en"
               ? "View certificate details"
@@ -325,7 +327,7 @@ const CertificateCardBody = memo<{
             href={certificate.credentialUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="px-2.5 py-1 rounded-full bg-slate-950 text-white dark:bg-white dark:text-slate-950 text-[10px] sm:text-xs font-semibold hover:bg-slate-800 dark:hover:bg-slate-100 transition-colors flex items-center gap-1 shadow-sm shrink-0"
+            className="px-3 py-1.5 rounded-full bg-[#273641] text-white dark:bg-slate-100 dark:text-slate-900 text-[10px] sm:text-xs font-semibold hover:bg-[#141f26] dark:hover:bg-white transition-colors flex items-center gap-1.5 shadow-sm shrink-0"
           >
             <span>{locale === "en" ? "Verify" : "Verifikasi"}</span>
             <ExternalLink className="w-3 h-3 shrink-0" />
