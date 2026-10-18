@@ -1,14 +1,17 @@
 "use client";
-import { ArrowRight, ExternalLink, Sparkles } from "lucide-react";
+import { ArrowRight, ExternalLink } from "lucide-react";
 import { memo } from "react";
+import { getDictionary } from "../../../data/locales";
 import { GithubBrandIcon } from "../../../design/components/brand-icons";
+import { useTranslations } from "../../../i18n";
 import { ProjectItem } from "../../../types";
+import {
+  formatShortDomain,
+  getProjectLiveButtonLabel,
+} from "../../../utils/format";
+import { getLocalePath } from "../../../utils/locale";
 import { HeroCard } from "../cards/hero-card";
 import { HeroPageProps } from "../types";
-import { useTranslations } from "../../../i18n";
-import { getDictionary } from "../../../data/locales";
-import { getLocalePath } from "../../../utils/locale";
-import { formatDomainName, formatShortDomain, getProjectLiveButtonLabel } from "../../../utils/format";
 
 /**
  * FeaturedProjectsSection - Karya Rekayasa Pilihan di Beranda.
@@ -77,10 +80,6 @@ export const FeaturedProjectsSection = memo<
                   className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 select-none"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity pointer-events-none" />
-                <div className="absolute top-2.5 left-2.5 sm:top-3 sm:left-3 bg-[#273641]/95 px-2.5 py-1 sm:px-3 rounded-full text-white text-[9.5px] sm:text-[10px] font-mono font-bold uppercase tracking-wider flex items-center gap-1.5 shadow-sm border border-white/10">
-                  <Sparkles className="w-3 h-3 text-amber-400" />
-                  <span>Flagship 01</span>
-                </div>
                 {flagship.demoUrl && (
                   <div className="absolute bottom-2.5 right-2.5 sm:bottom-3 sm:right-3 bg-emerald-950/95 text-emerald-300 border border-emerald-500/30 px-2.5 py-1 sm:px-3 rounded-full text-[9px] sm:text-[10px] font-mono font-bold flex items-center gap-1.5 shadow-sm">
                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
@@ -106,9 +105,12 @@ export const FeaturedProjectsSection = memo<
                 </h3>
               </div>
 
-              <div className="p-3 sm:p-3.5 rounded-xl border border-[#36454f]/10 dark:border-white/10 bg-[#f3ede6]/50 dark:bg-white/[0.03]">
+              <div className="p-3 sm:p-3.5 rounded-xl border border-[#36454f]/10 dark:border-white/10 bg-[#E7EAEF]/50 dark:bg-white/[0.03]">
                 <span className="text-[10.5px] sm:text-[11px] font-bold text-emerald-800 dark:text-emerald-400 uppercase tracking-wide block mb-1">
-                  💡 {locale === "en" ? "Engineering Solution:" : "Solusi Rekayasa:"}
+                  💡{" "}
+                  {locale === "en"
+                    ? "Engineering Solution:"
+                    : "Solusi Rekayasa:"}
                 </span>
                 <p className="text-xs sm:text-sm text-[#24333d] dark:text-slate-200 leading-relaxed font-medium">
                   {flagship.solution || flagship.shortDescription}
@@ -120,7 +122,7 @@ export const FeaturedProjectsSection = memo<
                 {flagship.tags?.slice(0, 4).map((tag) => (
                   <span
                     key={tag}
-                    className="px-2.5 py-0.5 sm:py-1 text-[10px] sm:text-[10.5px] font-mono font-semibold rounded-full bg-[#f3ede6]/80 dark:bg-white/5 border border-[#36454f]/15 dark:border-white/10 text-[#141f26] dark:text-slate-200"
+                    className="px-2.5 py-0.5 sm:py-1 text-[10px] sm:text-[10.5px] font-mono font-semibold rounded-full bg-[#E7EAEF]/80 dark:bg-white/5 border border-[#36454f]/15 dark:border-white/10 text-[#141f26] dark:text-slate-200"
                   >
                     {tag}
                   </span>
@@ -133,7 +135,11 @@ export const FeaturedProjectsSection = memo<
                   href={getLocalePath(`/project/${flagship.slug}`, locale)}
                   className="inline-flex items-center gap-1.5 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full bg-[#273641] text-white dark:bg-slate-100 dark:text-slate-900 text-xs font-bold hover:bg-[#141f26] dark:hover:bg-white transition-all shadow-sm"
                 >
-                  <span>{locale === "en" ? "Explore Case Study" : "Buka Studi Kasus"}</span>
+                  <span>
+                    {locale === "en"
+                      ? "Explore Case Study"
+                      : "Buka Studi Kasus"}
+                  </span>
                   <ArrowRight className="w-3.5 h-3.5" />
                 </a>
 

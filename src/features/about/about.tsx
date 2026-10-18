@@ -298,7 +298,7 @@ export const About: React.FC<AboutSectionProps> = ({ onOpenCV }) => {
                     </div>
 
                     <div className="flex items-center gap-2 self-start text-xs">
-                      <span className="rounded-full bg-[#f3ede6]/80 px-3 py-1 font-mono text-xs font-semibold text-[#141f26] dark:bg-white/10 dark:text-slate-200 border border-[#36454f]/15 dark:border-white/10">
+                      <span className="rounded-full bg-[#E7EAEF]/80 px-3 py-1 font-mono text-xs font-semibold text-[#141f26] dark:bg-white/10 dark:text-slate-200 border border-[#36454f]/15 dark:border-white/10">
                         {exp.period}
                       </span>
 
@@ -331,7 +331,7 @@ export const About: React.FC<AboutSectionProps> = ({ onOpenCV }) => {
                     {exp.techStack.map((tech) => (
                       <span
                         key={tech}
-                        className="rounded-full border border-[#36454f]/15 bg-[#f3ede6]/80 px-2.5 py-1 text-[10.5px] font-mono font-medium text-[#141f26] dark:border-white/10 dark:bg-white/5 dark:text-slate-200"
+                        className="rounded-full border border-[#36454f]/15 bg-[#E7EAEF]/80 px-2.5 py-1 text-[10.5px] font-mono font-medium text-[#141f26] dark:border-white/10 dark:bg-white/5 dark:text-slate-200"
                       >
                         {tech}
                       </span>
@@ -368,7 +368,7 @@ export const About: React.FC<AboutSectionProps> = ({ onOpenCV }) => {
                 className="atelier-surface corner-bracket space-y-5 rounded-2xl border border-[#36454f]/15 p-5 sm:p-6 shadow-xs relative overflow-hidden dark:border-white/10 hover:border-[#36454f]/35 dark:hover:border-white/30"
               >
                 <div className="flex items-start gap-3 border-b border-[#36454f]/10 pb-4 dark:border-white/10">
-                  <div className="shrink-0 rounded-2xl border border-[#36454f]/15 bg-[#f3ede6]/80 p-2.5 dark:border-white/10 dark:bg-white/5">
+                  <div className="shrink-0 rounded-2xl border border-[#36454f]/15 bg-[#E7EAEF]/80 p-2.5 dark:border-white/10 dark:bg-white/5">
                     {getCategoryIcon(category.iconName)}
                   </div>
 
@@ -410,7 +410,7 @@ export const About: React.FC<AboutSectionProps> = ({ onOpenCV }) => {
                       {category.alsoUsed.map((technology) => (
                         <span
                           key={technology}
-                          className="rounded-full border border-[#36454f]/15 bg-[#f3ede6]/80 px-2.5 py-1 text-xs font-mono font-medium text-[#24333d] dark:border-white/10 dark:bg-white/[0.05] dark:text-slate-300"
+                          className="rounded-full border border-[#36454f]/15 bg-[#E7EAEF]/80 px-2.5 py-1 text-xs font-mono font-medium text-[#24333d] dark:border-white/10 dark:bg-white/[0.05] dark:text-slate-300"
                         >
                           {technology}
                         </span>
@@ -447,7 +447,7 @@ export const About: React.FC<AboutSectionProps> = ({ onOpenCV }) => {
                     {education.degree}
                   </h3>
 
-                  <span className="rounded-full bg-[#f3ede6]/80 px-3 py-1 font-mono text-xs font-semibold text-[#141f26] dark:bg-white/10 dark:text-slate-200 border border-[#36454f]/15 dark:border-white/10 shrink-0">
+                  <span className="rounded-full bg-[#E7EAEF]/80 px-3 py-1 font-mono text-xs font-semibold text-[#141f26] dark:bg-white/10 dark:text-slate-200 border border-[#36454f]/15 dark:border-white/10 shrink-0">
                     {education.period}
                   </span>
                 </div>

@@ -144,7 +144,7 @@ const ProjectCardBody = memo<{
       <div className="space-y-2 sm:space-y-3 p-2.5 sm:p-4 lg:p-4">
         {/* Kategori + indikator domain live */}
         <div className="flex items-center justify-between gap-1">
-          <span className="text-[9px] sm:text-[11px] font-bold text-[#141f26] dark:text-slate-100 px-1.5 sm:px-2.5 py-0.5 rounded-full bg-[#f3ede6]/80 dark:bg-white/10 border border-[#36454f]/15 dark:border-white/10 truncate max-w-[52%]">
+          <span className="text-[9px] sm:text-[11px] font-bold text-[#141f26] dark:text-slate-100 px-1.5 sm:px-2.5 py-0.5 rounded-full bg-[#E7EAEF]/80 dark:bg-white/10 border border-[#36454f]/15 dark:border-white/10 truncate max-w-[52%]">
             {project.category}
           </span>
           {project.demoUrl && (
@@ -176,7 +176,7 @@ const ProjectCardBody = memo<{
         </h3>
 
         {/* Ringkasan solusi */}
-        <div className="bg-[#f3ede6]/40 dark:bg-white/[0.03] p-1.5 sm:p-2.5 rounded-lg sm:rounded-xl border border-[#36454f]/10 dark:border-white/5">
+        <div className="bg-[#E7EAEF]/40 dark:bg-white/[0.03] p-1.5 sm:p-2.5 rounded-lg sm:rounded-xl border border-[#36454f]/10 dark:border-white/5">
           <span className="font-bold text-[9.5px] sm:text-[11.5px] text-emerald-800 dark:text-emerald-300 flex items-center gap-1 mb-0.5">
             💡 {locale === "en" ? "Solution:" : "Solusi:"}
           </span>
@@ -190,14 +190,14 @@ const ProjectCardBody = memo<{
           {project.tags.slice(0, 2).map((tag) => (
             <span
               key={tag}
-              className="px-1.5 sm:px-2 py-0.5 text-[8.5px] sm:text-[10px] font-mono font-medium rounded-full bg-[#f3ede6]/80 dark:bg-white/5 text-[#24333d] dark:text-slate-200 border border-[#36454f]/10 dark:border-white/5 truncate max-w-[85px] sm:max-w-[120px]"
+              className="px-1.5 sm:px-2 py-0.5 text-[8.5px] sm:text-[10px] font-mono font-medium rounded-full bg-[#E7EAEF]/80 dark:bg-white/5 text-[#24333d] dark:text-slate-200 border border-[#36454f]/10 dark:border-white/5 truncate max-w-[85px] sm:max-w-[120px]"
               title={tag}
             >
               {tag}
             </span>
           ))}
           {project.tags.length > 2 && (
-            <span className="px-1 sm:px-1.5 py-0.5 text-[8px] sm:text-[10px] font-semibold rounded-full bg-[#f3ede6]/80 dark:bg-white/5 text-[#354551] dark:text-slate-300 shrink-0">
+            <span className="px-1 sm:px-1.5 py-0.5 text-[8px] sm:text-[10px] font-semibold rounded-full bg-[#E7EAEF]/80 dark:bg-white/5 text-[#354551] dark:text-slate-300 shrink-0">
               +{project.tags.length - 2}
             </span>
           )}
@@ -266,7 +266,7 @@ const CertificateCardBody = memo<{
     <>
       <div className="space-y-2.5 sm:space-y-3 p-3.5 sm:p-4">
         {/* Gambar sertifikat dengan passe-partout */}
-        <div className="passe-partout relative w-full aspect-[16/11] rounded-xl sm:rounded-2xl overflow-hidden shrink-0 bg-white/40 dark:bg-black/20 p-2 sm:p-2.5 border border-[#36454f]/15 dark:border-white/10 flex items-center justify-center">
+        <div className="passe-partout relative w-full aspect-[16/11] rounded-xl sm:rounded-2xl overflow-hidden shrink-0 bg-transparent dark:bg-black/20 p-2 sm:p-2.5 border border-[#36454f]/15 dark:border-white/10 flex items-center justify-center">
           <CardImage
             src={certificate.image}
             fallbackSrc={certificate.fallbackImage}

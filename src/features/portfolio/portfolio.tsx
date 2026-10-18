@@ -501,7 +501,7 @@ export const Portfolio: React.FC<PortfolioSectionProps> = ({
                         className={`inline-flex items-center gap-1 px-2.5 py-1 text-[11px] font-mono rounded-full transition-all border font-medium active:scale-95 ${
                           isActive
                             ? "bg-[#273641] text-white dark:bg-white/15 dark:text-white dark:border-white/25 font-bold border-transparent shadow-xs"
-                            : "bg-[#f3ede6]/80 dark:bg-white/5 border-[#36454f]/15 dark:border-white/10 text-[#24333d] dark:text-slate-300 hover:border-[#141f26] dark:hover:border-white hover:text-[#141f26] dark:hover:text-white"
+                            : "bg-[#E7EAEF]/80 dark:bg-white/5 border-[#36454f]/15 dark:border-white/10 text-[#24333d] dark:text-slate-300 hover:border-[#141f26] dark:hover:border-white hover:text-[#141f26] dark:hover:text-white"
                         }`}
                       >
                         {isActive && <Check className="w-3 h-3 stroke-[3]" />}
@@ -695,3 +695,4 @@ export const Portfolio: React.FC<PortfolioSectionProps> = ({
     </div>
   );
 };
+

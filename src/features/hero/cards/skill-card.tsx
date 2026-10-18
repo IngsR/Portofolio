@@ -63,7 +63,7 @@ export const SkillCard = memo<{ category: SkillCategory }>(function SkillCard({
           >
             {category.title}
           </h3>
-          <div className="p-2 rounded-xl bg-[#f3ede6]/80 dark:bg-white/5 border border-[#36454f]/15 dark:border-white/10 shrink-0">
+          <div className="p-2 rounded-xl bg-[#E7EAEF]/80 dark:bg-white/5 border border-[#36454f]/15 dark:border-white/10 shrink-0">
             <Icon className={`w-4 h-4 sm:w-5 sm:h-5 ${accent}`} />
           </div>
         </div>
@@ -81,7 +81,7 @@ export const SkillCard = memo<{ category: SkillCategory }>(function SkillCard({
           {category.coreStack.map((tech) => (
             <span
               key={tech}
-              className="px-2.5 py-1 text-[9.5px] sm:text-[10.5px] font-mono font-semibold rounded-full bg-[#f3ede6]/80 dark:bg-white/5 text-[#141f26] dark:text-slate-200 border border-[#36454f]/15 dark:border-white/10 hover:border-[#141f26] dark:hover:border-white transition-colors"
+              className="px-2.5 py-1 text-[9.5px] sm:text-[10.5px] font-mono font-semibold rounded-full bg-[#E7EAEF]/80 dark:bg-white/5 text-[#141f26] dark:text-slate-200 border border-[#36454f]/15 dark:border-white/10 hover:border-[#141f26] dark:hover:border-white transition-colors"
               title={tech}
             >
               {tech}

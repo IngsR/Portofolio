@@ -88,7 +88,7 @@ const CertificateContent = memo<{
     <>
       <div className="space-y-2.5 sm:space-y-3">
         {/* Certificate Screenshot Preview Box with passe-partout */}
-        <div className="passe-partout relative w-full aspect-[16/11] rounded-xl sm:rounded-2xl overflow-hidden shrink-0 bg-white/50 dark:bg-black/30 p-2 sm:p-3 border border-[#36454f]/15 dark:border-white/10 flex items-center justify-center">
+        <div className="passe-partout relative w-full aspect-[16/11] rounded-xl sm:rounded-2xl overflow-hidden shrink-0 bg-transparent dark:bg-black/30 p-2 sm:p-3 border border-[#36454f]/15 dark:border-white/10 flex items-center justify-center">
           <img
             src={certificate.image}
             alt={`${locale === "en" ? "Certificate" : "Sertifikat"} ${certificate.title}`}
@@ -172,7 +172,7 @@ const CertificateContent = memo<{
 
         {/* Description snippet */}
         {certificate.description && (
-          <p className="text-[11px] sm:text-xs text-[#24333d] dark:text-slate-300 line-clamp-2 leading-relaxed bg-[#f3ede6]/40 dark:bg-white/[0.03] p-2 rounded-lg border border-[#36454f]/10 dark:border-white/5">
+          <p className="text-[11px] sm:text-xs text-[#24333d] dark:text-slate-300 line-clamp-2 leading-relaxed bg-[#E7EAEF]/40 dark:bg-white/[0.03] p-2 rounded-lg border border-[#36454f]/10 dark:border-white/5">
             {certificate.description}
           </p>
         )}
@@ -182,7 +182,7 @@ const CertificateContent = memo<{
           <div className="flex flex-wrap items-center gap-1 pt-0.5">
             {certificate.skills[0] && (
               <span
-                className="px-2 py-0.5 text-[9px] sm:text-[10px] font-medium rounded-full bg-[#f3ede6]/80 dark:bg-white/5 text-[#24333d] dark:text-slate-200 border border-[#36454f]/10 dark:border-white/5 truncate max-w-[110px] sm:max-w-[125px]"
+                className="px-2 py-0.5 text-[9px] sm:text-[10px] font-medium rounded-full bg-[#E7EAEF]/80 dark:bg-white/5 text-[#24333d] dark:text-slate-200 border border-[#36454f]/10 dark:border-white/5 truncate max-w-[110px] sm:max-w-[125px]"
                 title={certificate.skills[0]}
               >
                 {certificate.skills[0]}
@@ -191,7 +191,7 @@ const CertificateContent = memo<{
 
             {certificate.skills[1] && (
               <span
-                className="hidden sm:inline-flex px-2 py-0.5 text-[9.5px] font-medium rounded-full bg-[#f3ede6]/80 dark:bg-white/5 text-[#24333d] dark:text-slate-200 border border-[#36454f]/10 dark:border-white/5 truncate max-w-[125px]"
+                className="hidden sm:inline-flex px-2 py-0.5 text-[9.5px] font-medium rounded-full bg-[#E7EAEF]/80 dark:bg-white/5 text-[#24333d] dark:text-slate-200 border border-[#36454f]/10 dark:border-white/5 truncate max-w-[125px]"
                 title={certificate.skills[1]}
               >
                 {certificate.skills[1]}
@@ -199,13 +199,13 @@ const CertificateContent = memo<{
             )}
 
             {certificate.skills.length > 1 && (
-              <span className="sm:hidden px-1.5 py-0.5 text-[9px] font-semibold rounded-full bg-[#f3ede6]/80 dark:bg-white/5 text-[#354551] dark:text-slate-300 shrink-0">
+              <span className="sm:hidden px-1.5 py-0.5 text-[9px] font-semibold rounded-full bg-[#E7EAEF]/80 dark:bg-white/5 text-[#354551] dark:text-slate-300 shrink-0">
                 +{certificate.skills.length - 1}
               </span>
             )}
 
             {certificate.skills.length > 2 && (
-              <span className="hidden sm:inline-flex px-1.5 py-0.5 text-[9px] font-semibold rounded-full bg-[#f3ede6]/80 dark:bg-white/5 text-[#354551] dark:text-slate-300 shrink-0">
+              <span className="hidden sm:inline-flex px-1.5 py-0.5 text-[9px] font-semibold rounded-full bg-[#E7EAEF]/80 dark:bg-white/5 text-[#354551] dark:text-slate-300 shrink-0">
                 +{certificate.skills.length - 2}
               </span>
             )}
@@ -246,3 +246,4 @@ const CertificateContent = memo<{
     </>
   );
 });
+
