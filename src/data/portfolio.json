@@ -63,7 +63,7 @@
       "shortDescription": "Website sekolah SMP Negeri 24 Padang yang saya bangun dari nol saat magang. Sebelumnya, sekolah belum punya portal digital yang layak saya rancang arsitektur Next.js App Router dengan rendering SSR/SSG, validasi form Zod, dan SEO terstruktur supaya halaman cepat terindeks dan mudah dikelola staf.",
       "translations": {
         "en": {
-          "title": "SMP Negeri 24 Padang — Institutional Web Platform",
+          "title": "SMP Negeri 24 Padang | Portal Web Platform",
           "shortDescription": "Official institutional portal developed during an engineering internship, implementing Next.js App Router, hybrid SSR/SSG rendering, Zod schema validation, and structured Open Graph metadata.",
           "period": "2025 (Production Release)",
           "role": "Full-Stack Web Developer (Engineering Intern)",
