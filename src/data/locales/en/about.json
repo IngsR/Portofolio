@@ -1,27 +1,27 @@
 {
-  "profileLabel": "Professional Profile",
-  "cv": "View Full CV",
-  "availability": "Work Availability",
-  "availabilityTitle": "On-Site / Office & Remote",
-  "availabilityDescription": "Available for on-site work across Indonesia, as well as hybrid or remote arrangements.",
-  "education": "Education",
-  "expertise": "Areas of Expertise",
+  "profileLabel": "Academic & Professional Profile",
+  "cv": "Curriculum Vitae (PDF)",
+  "availability": "Professional Availability",
+  "availabilityTitle": "On-Site, Hybrid, & Relocation",
+  "availabilityDescription": "Available for full-time on-site appointments nationwide across Indonesia, as well as hybrid or distributed team arrangements.",
+  "education": "Academic Background",
+  "expertise": "Core Technical Disciplines",
   "highlights": {
-    "educationTitle": "B.Sc. in Informatics Engineering",
-    "educationDescription": "Graduate of UPI “YPTK” Padang with a foundation in software engineering, data structures and algorithms, relational databases, and web system architecture. My Data Science concentration adds further academic depth.",
-    "expertiseTitle": "Junior Web Developer",
-    "expertiseDescription": "Frontend and backend development with Next.js (App Router), REST APIs, Zod, testing, OWASP Top 10, Git workflows, CI/CD, and serverless deployment."
+    "educationTitle": "B.S. in Informatics Engineering",
+    "educationDescription": "Graduate of Universitas Putra Indonesia “YPTK” Padang with formal coursework in software engineering, data structures, algorithm analysis, relational database systems, and web architecture. Academic concentration in Data Science provided specialized training in statistical analysis and predictive modeling.",
+    "expertiseTitle": "Full-Stack Web Engineering",
+    "expertiseDescription": "Comprehensive full-stack development employing Next.js (App Router), TypeScript, RESTful API design, schema validation with Zod, database modeling, secure authentication practices, CI/CD pipelines, and cloud edge deployment."
   },
-  "achievements": "Key Achievements",
-  "skillsTitle": "Technologies I Use",
-  "skillsDescription": "My most frequently used stack, along with tools selected to fit each project.",
-  "educationHistory": "Education History",
-  "certificationsTitle": "Certifications & Credentials",
-  "coreStack": "CORE STACK",
-  "alsoUsed": "ALSO USED",
+  "achievements": "Notable Milestones & Impact",
+  "skillsTitle": "Technical Competencies & Toolchain",
+  "skillsDescription": "Primary technologies, frameworks, and engineering utilities utilized in production and academic environments.",
+  "educationHistory": "Academic Qualifications",
+  "certificationsTitle": "Certifications & Formal Accreditations",
+  "coreStack": "PRIMARY PROFICIENCIES",
+  "alsoUsed": "COMPLEMENTARY TOOLS",
   "tabs": {
-    "experience": "Experience",
-    "skills": "Technical Skills",
-    "education": "Education & Certifications"
+    "experience": "Professional Experience",
+    "skills": "Technical Competencies",
+    "education": "Education & Accreditations"
   }
 }
