@@ -43,7 +43,7 @@ export const Footer: React.FC<FooterProps> = ({ setActivePage, onOpenCV }) => {
   ];
 
   return (
-    <footer className="relative mt-12 border-t border-slate-200 dark:border-white/[0.06] bg-white dark:bg-[#080809] text-slate-800 dark:text-slate-200 transition-colors duration-200 sm:mt-16">
+    <footer className="relative mt-12 border-t border-[#36454f]/15 dark:border-white/[0.08] bg-transparent text-[#24333d] dark:text-slate-200 transition-colors duration-200 sm:mt-16">
       <div className="mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-10 xl:px-12">
         {/* Main Footer Grid */}
         <div className="grid grid-cols-1 gap-10 py-10 sm:py-12 lg:grid-cols-12 lg:gap-x-12">
@@ -60,16 +60,16 @@ export const Footer: React.FC<FooterProps> = ({ setActivePage, onOpenCV }) => {
                 className="h-9 w-9 shrink-0 rounded-xl object-cover border border-slate-200/80 dark:border-white/10"
               />
               <div className="min-w-0">
-                <h3 className="truncate text-sm font-bold leading-tight text-slate-950 dark:text-white">
+                <h3 className="truncate text-sm font-bold leading-tight text-[#141f26] dark:text-white">
                   {userProfile.name}
                 </h3>
-                <p className="mt-0.5 text-[11px] font-mono text-slate-500 dark:text-slate-400">
+                <p className="mt-0.5 text-[11px] font-mono text-[#485966] dark:text-slate-400">
                   {userProfile.title}
                 </p>
               </div>
             </div>
 
-            <p className="max-w-sm text-[13px] leading-relaxed text-slate-600 dark:text-slate-400">
+            <p className="max-w-sm text-[13px] leading-relaxed text-[#24333d] dark:text-slate-300">
               {localizedProfile.tagline}
             </p>
 
@@ -81,7 +81,7 @@ export const Footer: React.FC<FooterProps> = ({ setActivePage, onOpenCV }) => {
                   href={social.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 text-xs font-medium text-slate-500 dark:text-slate-400 transition-colors hover:text-slate-900 dark:hover:text-white"
+                  className="inline-flex items-center gap-1 text-xs font-medium text-[#485966] dark:text-slate-400 transition-colors hover:text-[#141f26] dark:hover:text-white"
                 >
                   <span>{social.name}</span>
                   <ExternalLink className="h-2.5 w-2.5 opacity-60" />
@@ -92,7 +92,7 @@ export const Footer: React.FC<FooterProps> = ({ setActivePage, onOpenCV }) => {
 
           {/* Nav Column */}
           <div className="space-y-4 lg:col-span-3">
-            <h4 className="text-[10px] font-bold uppercase tracking-[0.14em] text-slate-400 dark:text-slate-500">
+            <h4 className="text-[10px] font-bold uppercase tracking-[0.14em] text-[#485966] dark:text-slate-500 font-mono">
               {locale === "en" ? "Navigation" : "Navigasi"}
             </h4>
             <div className="flex flex-col gap-1.5">
@@ -105,7 +105,7 @@ export const Footer: React.FC<FooterProps> = ({ setActivePage, onOpenCV }) => {
                     setActivePage(page);
                     scrollToTop();
                   }}
-                  className="text-left text-sm font-medium text-slate-700 dark:text-slate-300 transition-colors hover:text-slate-950 dark:hover:text-white w-fit"
+                  className="text-left text-sm font-medium text-[#24333d] dark:text-slate-300 transition-colors hover:text-[#141f26] dark:hover:text-white w-fit"
                 >
                   {label}
                 </a>
@@ -115,31 +115,31 @@ export const Footer: React.FC<FooterProps> = ({ setActivePage, onOpenCV }) => {
 
           {/* Contact Column */}
           <div className="space-y-4 lg:col-span-4">
-            <h4 className="text-[10px] font-bold uppercase tracking-[0.14em] text-slate-400 dark:text-slate-500">
-              {locale === "en" ? "Quick Contact" : "Kontak Cepat"}
+            <h4 className="text-[10px] font-bold uppercase tracking-[0.14em] text-[#485966] dark:text-slate-500 font-mono">
+              {locale === "en" ? "Direct Contact" : "Kontak Langsung"}
             </h4>
             <div className="space-y-3">
               <div>
-                <p className="text-[10px] font-medium text-slate-400 dark:text-slate-500 uppercase tracking-wider mb-0.5">
+                <p className="text-[10px] font-mono font-medium text-[#485966] dark:text-slate-500 uppercase tracking-wider mb-0.5">
                   Email
                 </p>
                 <a
                   href={`mailto:${userProfile.email}`}
-                  className="text-sm font-semibold text-slate-900 dark:text-white transition-colors hover:text-slate-600 dark:hover:text-slate-300"
+                  className="text-sm font-bold text-[#141f26] dark:text-white transition-colors hover:text-blue-600 dark:hover:text-blue-400"
                 >
                   {userProfile.email}
                 </a>
               </div>
 
               <div>
-                <p className="text-[10px] font-medium text-slate-400 dark:text-slate-500 uppercase tracking-wider mb-0.5">
+                <p className="text-[10px] font-mono font-medium text-[#485966] dark:text-slate-500 uppercase tracking-wider mb-0.5">
                   WhatsApp
                 </p>
                 <a
                   href={userProfile.whatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-sm font-semibold text-emerald-700 dark:text-emerald-400 transition-colors hover:underline"
+                  className="text-sm font-bold text-emerald-800 dark:text-emerald-400 transition-colors hover:underline"
                 >
                   {userProfile.phone}
                 </a>
@@ -148,17 +148,17 @@ export const Footer: React.FC<FooterProps> = ({ setActivePage, onOpenCV }) => {
               <button
                 type="button"
                 onClick={onOpenCV}
-                className="mt-1 inline-flex items-center gap-2 rounded-full border border-slate-200 dark:border-white/10 bg-white dark:bg-white/[0.03] px-4 py-2 text-xs font-semibold text-slate-900 dark:text-white shadow-xs transition-all hover:border-slate-300 dark:hover:border-white/20 hover:bg-slate-50 dark:hover:bg-white/[0.06]"
+                className="mt-1 inline-flex items-center gap-2 rounded-full border border-[#36454f]/25 dark:border-white/15 bg-white/70 dark:bg-white/5 px-4 py-2 text-xs font-bold text-[#141f26] dark:text-white transition-all hover:bg-[#273641] hover:text-white dark:hover:bg-white dark:hover:text-slate-950 shadow-xs"
               >
                 <FileText className="h-3.5 w-3.5 shrink-0" />
-                <span>{locale === "en" ? "Open CV" : "Buka CV"}</span>
+                <span>{locale === "en" ? "Curriculum Vitae" : "Buka CV"}</span>
               </button>
             </div>
           </div>
         </div>
 
         {/* Bottom Bar */}
-        <div className="flex flex-col items-start gap-3 border-t border-slate-200 dark:border-white/[0.06] py-5 sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex flex-col items-start gap-3 border-t border-[#36454f]/15 dark:border-white/[0.08] py-5 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-[11px] text-slate-500 dark:text-slate-500">
             © {new Date().getFullYear()} {userProfile.name}. All rights
             reserved.

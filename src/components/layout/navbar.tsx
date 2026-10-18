@@ -138,14 +138,15 @@ export const Navbar: React.FC<NavbarProps> = ({
               gap-2
               rounded-xl
               sm:rounded-full
-              border border-slate-200
-              bg-white
+              border border-[#36454f]/15
+              bg-[#f3ede6]/85
+              backdrop-blur-md
               px-3
               py-2.5
-              shadow-sm
+              shadow-xs
               transition-all
-              dark:border-[#41494f]
-              dark:bg-[#2b3034]
+              dark:border-white/10
+              dark:bg-[#24282b]/90
               sm:gap-2
               md:gap-3
               sm:px-4
@@ -255,8 +256,8 @@ export const Navbar: React.FC<NavbarProps> = ({
                       duration-200
                       ${
                         isActive
-                          ? "bg-slate-950 text-white shadow-lg shadow-slate-900/30 dark:bg-gray-100 dark:text-slate-950 dark:shadow-gray-100/30 scale-110 ring-2 ring-slate-950/20 dark:ring-white/20"
-                          : "text-slate-600 hover:text-slate-950 dark:text-slate-400 dark:hover:text-white hover:bg-white/60 dark:hover:bg-white/5"
+                          ? "nav-item-active bg-[#273641] text-white shadow-md shadow-[#273641]/20 dark:bg-white/15 dark:text-white dark:border dark:border-white/25 dark:shadow-sm scale-105 ring-1 ring-[#273641]/20 dark:ring-white/15 font-bold [&>svg]:text-white dark:[&>svg]:text-white"
+                          : "text-[#4a5c68] hover:text-[#1c2932] dark:text-slate-400 dark:hover:text-white hover:bg-[#36454f]/5 dark:hover:bg-white/5"
                       }
                     `}
                   >
@@ -382,7 +383,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                   items-center
                   gap-1.5
                   rounded-full
-                  bg-slate-950
+                  bg-[#273641]
                   text-white
                   px-3
                   py-1.5
@@ -390,11 +391,11 @@ export const Navbar: React.FC<NavbarProps> = ({
                   font-bold
                   shadow-sm
                   transition-all
-                  hover:bg-slate-800
+                  hover:bg-[#1a252d]
                   active:scale-95
-                  dark:bg-white
-                  dark:text-slate-950
-                  dark:hover:bg-slate-100
+                  dark:bg-slate-100
+                  dark:text-slate-900
+                  dark:hover:bg-white
                   "
                 >
                   <FileText className="h-3.5 w-3.5" />
@@ -475,10 +476,10 @@ export const Navbar: React.FC<NavbarProps> = ({
             gap-1.5
             p-2
             rounded-2xl
-            bg-white/95
-            dark:bg-[#111113]/95
+            bg-[#f3ede6]/95
+            dark:bg-[#24282b]/95
             border
-            border-slate-300
+            border-[#36454f]/20
             dark:border-white/20
             shadow-[0_8px_30px_rgb(0,0,0,0.12)]
             dark:shadow-[0_16px_40px_-4px_rgba(0,0,0,0.8)]
@@ -512,8 +513,8 @@ export const Navbar: React.FC<NavbarProps> = ({
                   active:scale-95
                   ${
                     isActive
-                      ? "flex-1 bg-slate-950 text-white shadow-lg shadow-slate-900/30 dark:bg-gray-100 dark:text-slate-950 dark:shadow-gray-100/30 scale-110 ring-2 ring-slate-950/20 dark:ring-white/20 px-4 z-10"
-                      : "px-4 text-slate-600 hover:text-slate-950 dark:text-slate-200 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/8"
+                      ? "nav-item-active flex-1 bg-[#273641] text-white shadow-md shadow-[#273641]/20 dark:bg-white/15 dark:text-white dark:border dark:border-white/25 dark:shadow-sm scale-105 ring-1 ring-[#273641]/20 dark:ring-white/15 px-4 z-10 font-bold [&>span>span>svg]:text-white dark:[&>span>span>svg]:text-white"
+                      : "px-4 text-[#4a5c68] hover:text-[#1c2932] dark:text-slate-200 dark:hover:text-white hover:bg-[#36454f]/5 dark:hover:bg-white/8"
                   }
                 `}
               >
