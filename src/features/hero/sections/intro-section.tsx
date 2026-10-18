@@ -10,8 +10,6 @@ import {
 } from "lucide-react";
 import { memo, useMemo } from "react";
 import portfolioData from "../../../data/portfolio.json";
-import { MagneticButton } from "../../../design/components/magnetic-button";
-import { TextScramble } from "../../../design/components/text-scramble";
 import { UserProfile } from "../../../types";
 import { ProfilePhotoCard } from "../cards/profile-photo-card";
 import { useTranslations } from "../../../i18n";
@@ -108,8 +106,8 @@ export const IntroSection = memo<HeroPageProps & { onOpenCV: () => void }>(
               </div>
             </div>
 
-            <p className="text-[#24333d] dark:text-slate-200 text-base sm:text-lg max-w-2xl font-medium leading-[1.7] min-h-[4rem]">
-              <TextScramble text={heroBio} duration={1200} delay={400} />
+            <p className="text-[#24333d] dark:text-slate-200 text-base sm:text-lg max-w-2xl font-medium leading-[1.7]">
+              {heroBio}
             </p>
 
             {/* Highlight singkat — open row list dengan kontras tinggi */}
@@ -161,48 +159,42 @@ export const IntroSection = memo<HeroPageProps & { onOpenCV: () => void }>(
               {/* Baris 1 mobile: Portofolio hitam & WhatsApp berdampingan seimbang 50:50 */}
               <div className="grid grid-cols-2 gap-2.5 w-full sm:w-auto sm:flex sm:items-center sm:gap-3">
                 {/* Portofolio */}
-                <MagneticButton strength={0.25} className="w-full sm:w-auto">
-                  <a
-                    id="hero-view-portfolio-btn"
-                    href={locale === "en" ? "/en/portfolio" : "/portfolio"}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      onNavigate?.("portfolio");
-                    }}
-                    className="w-full sm:w-auto px-4 sm:px-6 py-2.5 sm:py-3 rounded-full text-xs font-bold bg-[#273641] text-white dark:bg-slate-100 dark:text-slate-900 hover:bg-[#1a252d] dark:hover:bg-white transition-colors flex items-center justify-center gap-1.5 shadow-sm"
-                  >
-                    <span>{copy.portfolioButton}</span>
-                    <ArrowRight className="w-3.5 h-3.5 shrink-0" />
-                  </a>
-                </MagneticButton>
+                <a
+                  id="hero-view-portfolio-btn"
+                  href={locale === "en" ? "/en/portfolio" : "/portfolio"}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onNavigate?.("portfolio");
+                  }}
+                  className="w-full sm:w-auto px-4 sm:px-6 py-2.5 sm:py-3 rounded-full text-xs font-bold bg-[#273641] text-white dark:bg-slate-100 dark:text-slate-900 hover:bg-[#1a252d] dark:hover:bg-white transition-all hover:scale-[1.02] active:scale-95 flex items-center justify-center gap-1.5 shadow-sm"
+                >
+                  <span>{copy.portfolioButton}</span>
+                  <ArrowRight className="w-3.5 h-3.5 shrink-0" />
+                </a>
 
                 {/* WhatsApp */}
-                <MagneticButton strength={0.25} className="w-full sm:w-auto">
-                  <a
-                    id="hero-whatsapp-btn"
-                    href={userProfile.whatsappUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-full sm:w-auto px-3.5 sm:px-5 py-2.5 sm:py-3 rounded-full border border-emerald-600/30 bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-700 dark:text-emerald-300 text-xs font-bold transition-colors flex items-center justify-center gap-1.5 shadow-xs"
-                  >
-                    <MessageCircle className="w-3.5 h-3.5 shrink-0" />
-                    <span>WhatsApp</span>
-                  </a>
-                </MagneticButton>
+                <a
+                  id="hero-whatsapp-btn"
+                  href={userProfile.whatsappUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full sm:w-auto px-3.5 sm:px-5 py-2.5 sm:py-3 rounded-full border border-emerald-600/30 bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-700 dark:text-emerald-300 text-xs font-bold transition-all hover:scale-[1.02] active:scale-95 flex items-center justify-center gap-1.5 shadow-xs"
+                >
+                  <MessageCircle className="w-3.5 h-3.5 shrink-0" />
+                  <span>WhatsApp</span>
+                </a>
               </div>
 
-              {/* CV action shares the same restrained magnetic interaction as the other hero actions. */}
+              {/* CV action */}
               <div className="w-full flex justify-center sm:w-auto">
-                <MagneticButton strength={0.25} className="w-fit">
-                  <button
-                    type="button"
-                    onClick={onOpenCV}
-                    className="px-4 sm:px-5 py-2.5 sm:py-3 rounded-full border border-[#36454f]/25 bg-transparent text-[#1c2932] text-xs font-bold flex items-center justify-center gap-2 transition-colors hover:border-[#36454f]/45 hover:bg-[#36454f]/[0.05] dark:border-white/15 dark:bg-transparent dark:text-white dark:hover:bg-white/10"
-                  >
-                    <FileText className="w-3.5 h-3.5 shrink-0" />
-                    <span>{copy.cvButton}</span>
-                  </button>
-                </MagneticButton>
+                <button
+                  type="button"
+                  onClick={onOpenCV}
+                  className="px-4 sm:px-5 py-2.5 sm:py-3 rounded-full border border-[#36454f]/25 bg-transparent text-[#1c2932] text-xs font-bold flex items-center justify-center gap-2 transition-all hover:scale-[1.02] active:scale-95 hover:border-[#36454f]/45 hover:bg-[#36454f]/[0.05] dark:border-white/15 dark:bg-transparent dark:text-white dark:hover:bg-white/10"
+                >
+                  <FileText className="w-3.5 h-3.5 shrink-0" />
+                  <span>{copy.cvButton}</span>
+                </button>
               </div>
             </div>
           </div>

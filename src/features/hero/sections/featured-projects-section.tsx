@@ -72,7 +72,8 @@ export const FeaturedProjectsSection = memo<
                 <img
                   src={flagship.imageFull || flagship.image}
                   alt={flagship.title}
-                  loading="lazy"
+                  loading="eager"
+                  decoding="async"
                   className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 select-none"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity pointer-events-none" />

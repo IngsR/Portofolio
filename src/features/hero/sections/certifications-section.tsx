@@ -46,7 +46,7 @@ export const CertificationsSection = memo<CertificationsSectionProps>(
           </a>
         </div>
 
-        <LazyMount estimatedHeight={certificates.length * 460}>
+        <LazyMount estimatedHeight={420}>
           <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-4.5">
             {certificates.map((cert) => (
               <Certificate key={cert.id} certificate={cert} />
