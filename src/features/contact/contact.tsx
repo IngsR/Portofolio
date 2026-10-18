@@ -171,7 +171,7 @@ export const Contact: React.FC = () => {
             tilt={true}
             radius={280}
             color="rgba(16, 185, 129, 0.12)"
-            className="p-6 rounded-2xl bg-transparent border border-[#36454f]/15 dark:border-white/10 text-slate-900 dark:text-slate-100 space-y-4 hover:border-slate-400 dark:hover:border-[#64727b] transition-colors"
+            className="p-6 rounded-2xl atelier-surface border border-[#36454f]/15 dark:border-white/10 text-slate-900 dark:text-slate-100 space-y-4 hover:border-slate-400 dark:hover:border-[#64727b] transition-colors"
           >
             <div className="flex items-center gap-3">
               <div className="p-2.5 rounded-xl bg-emerald-600 text-white shadow-sm">
@@ -208,7 +208,7 @@ export const Contact: React.FC = () => {
           <CardSpotlight
             tilt={true}
             radius={280}
-            className="p-6 rounded-2xl bg-transparent border border-[#36454f]/15 dark:border-white/10 space-y-4 hover:border-blue-500/40 transition-all"
+            className="p-6 rounded-2xl atelier-surface border border-[#36454f]/15 dark:border-white/10 space-y-4 hover:border-blue-500/40 transition-all"
           >
             <div className="flex items-center gap-3">
               <div className="p-2.5 rounded-xl bg-blue-50 text-blue-600 dark:bg-white/5 dark:text-white border border-blue-200/60 dark:border-white/10">
@@ -258,7 +258,7 @@ export const Contact: React.FC = () => {
           <CardSpotlight
             tilt={true}
             radius={280}
-            className="p-6 rounded-2xl bg-transparent border border-[#36454f]/15 dark:border-white/10 space-y-4 hover:border-slate-400 dark:hover:border-white/20 transition-all"
+            className="p-6 rounded-2xl atelier-surface border border-[#36454f]/15 dark:border-white/10 space-y-4 hover:border-slate-400 dark:hover:border-white/20 transition-all"
           >
             <h3 className="font-bold text-base text-slate-950 dark:text-white flex items-center gap-2">
               <Briefcase className="w-4 h-4 text-blue-600 dark:text-blue-400" />
@@ -296,7 +296,7 @@ export const Contact: React.FC = () => {
           <CardSpotlight
             tilt={true}
             radius={280}
-            className="p-6 rounded-2xl bg-transparent border border-[#36454f]/15 dark:border-white/10 space-y-3"
+            className="p-6 rounded-2xl atelier-surface border border-[#36454f]/15 dark:border-white/10 space-y-3"
           >
             <h3 className="font-bold text-base text-slate-950 dark:text-white">
               {copy.socialTitle}
@@ -329,7 +329,7 @@ export const Contact: React.FC = () => {
 
         {/* Form Container (7 cols) */}
         <div className="lg:col-span-7 h-full">
-          <div className="h-full p-6 sm:p-8 bg-transparent border border-[#36454f]/15 dark:border-white/10 rounded-3xl space-y-6 flex flex-col">
+          <div className="h-full p-6 sm:p-8 atelier-surface border border-[#36454f]/15 dark:border-white/10 rounded-3xl space-y-6 flex flex-col">
             <div className="border-b border-slate-100 dark:border-white/10 pb-4">
               <h2 className="font-bold text-xl text-slate-950 dark:text-white flex items-center gap-2">
                 <Mail className="w-5 h-5 text-blue-600 dark:text-blue-400" />
@@ -465,7 +465,7 @@ export const Contact: React.FC = () => {
       </div>
 
       {/* FAQ Section with Smooth Animated Expansion */}
-      <section className="p-6 sm:p-8 bg-transparent border border-[#36454f]/15 dark:border-white/10 rounded-3xl space-y-6">
+      <section className="p-6 sm:p-8 atelier-surface border border-[#36454f]/15 dark:border-white/10 rounded-3xl space-y-6">
         <div className="space-y-1 pb-4 border-b border-slate-100 dark:border-white/10">
           <span className="text-[11px] font-bold uppercase tracking-widest text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-white/5 px-2.5 py-1 rounded-full inline-block">
             {copy.faqEyebrow}

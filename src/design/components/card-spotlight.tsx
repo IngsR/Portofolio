@@ -83,7 +83,7 @@ export const CardSpotlight = ({
         className={cn(
           "relative overflow-hidden rounded-2xl border",
           "border-[#36454f]/15 dark:border-white/10",
-          "bg-white/95 dark:bg-[#1a1f23]/95",
+          "bg-[#EBF8FF] dark:bg-[#1a1f23]/95",
           "shadow-xs",
           "hover:border-[#36454f]/35 dark:hover:border-white/25",
           className,

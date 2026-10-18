@@ -6,7 +6,7 @@
 @layer base {
   :root {
     color-scheme: light;
-    --page-bg: #f3ede6;
+    --page-bg: #E7EAEF;
     --surface: transparent;
     --surface-raised: transparent;
     --surface-overlay: transparent;
@@ -40,6 +40,7 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
+    overflow-x: hidden;
   }
 
   body {
@@ -301,7 +302,7 @@
 
   /* Surface Tonal Lift - Kertas bernapas dengan kedalaman artistik (bukan card kaku) */
   .atelier-surface {
-    background: rgba(255, 252, 247, 0.96);
+    background: #EBF8FF;
     border: 1px solid rgba(54, 69, 79, 0.12);
     box-shadow: 0 4px 16px -6px rgba(44, 34, 24, 0.05);
     transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s ease;
@@ -325,7 +326,7 @@
   .passe-partout {
     position: relative;
     padding: 0.65rem;
-    background: rgba(255, 253, 250, 0.95);
+    background: #EBF8FF;
     border: 1px solid rgba(54, 69, 79, 0.15);
     box-shadow: 0 4px 16px -6px rgba(44, 34, 24, 0.05);
     transition: border-color 0.2s ease;
