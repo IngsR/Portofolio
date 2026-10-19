@@ -81,7 +81,7 @@
         "role": "Frontend & Research Engineer",
         "link": "prediksi.ikhwann.my.id",
         "period": "2026",
-        "description": "Aplikasi web prediksi lintasan siklon tropis berbasis riset skripsi dengan model Deep Learning LSTM. Mengevaluasi 12 skenario eksperimen terkontrol pada 2 Data Perairan Samudra Hindia dengan 4 variasi timesteps, membuktikan window 8-16 menghasilkan akurasi terbaik dengan rata-rata error Haversine 14,2 km dan R² 0,999. Model LSTM dikonversi ke ONNX Runtime untuk inferensi serverless langsung di browser, dipadukan dengan frontend Astro Island Architecture untuk performa Zero-JS default di Edge CDN dan visualisasi peta interaktif untuk mitigasi risiko bencana di pesisir Sumatera Barat.",
+        "description": "Aplikasi web prediksi lintasan siklon tropis berbasis riset skripsi dengan arsitektur Deep Learning LSTM menggunakan data IBTrACS (1980–2025). Menguji 12 skenario eksperimen komparatif pada 3 domain perairan (North Indian, South Indian, Gabungan) dengan 4 variasi sliding window (8, 16, 24, 32 timesteps). Konfigurasi GAB-8 mencapai akurasi tertinggi dengan MAE 0,127405°, RMSE 0,144091°, dan Mean Haversine Distance 15,885 km, diintegrasikan ke dalam visualisasi geospasial interaktif sebagai sistem pendukung keputusan mitigasi bencana di pesisir Sumatera Barat.",
         "techStack": [
           "Astro",
           "TypeScript",
@@ -234,7 +234,7 @@
         "role": "Frontend & Research Engineer",
         "link": "prediksi.ikhwann.my.id",
         "period": "2026",
-        "description": "Engineered an interactive web platform based on undergraduate thesis research utilizing Long Short-Term Memory (LSTM) recurrent neural networks to forecast tropical cyclone tracks. Conducted 12 controlled experimental scenarios across 3 oceanic basins with varying temporal sequence lengths, demonstrating that an 8–16 timestep sliding window yielded optimal spatial precision (mean Haversine distance error: 14.2 km; R²: 0.999). Quantized the model to ONNX format to support zero-backend in-browser inference, delivered via Astro Islands architecture on edge CDN infrastructure for real-time disaster risk mitigation analysis.",
+        "description": "Engineered an interactive geospatial web platform based on undergraduate thesis research utilizing Long Short-Term Memory (LSTM) recurrent neural networks for tropical cyclone track forecasting with IBTrACS data (1980–2025). Evaluated 12 empirical scenarios across 3 oceanic domains (NI, SI, Combined) and 4 sliding window configurations (8, 16, 24, 32 timesteps), establishing that the Combined 8-timestep model (GAB-8) achieved optimal trajectory fidelity (MAE: 0.127405°, RMSE: 0.144091°, Mean Haversine Distance: 15.885 km) to support early warning and disaster risk mitigation in West Sumatra.",
         "techStack": [
           "Astro",
           "TypeScript",

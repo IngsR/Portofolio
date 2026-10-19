@@ -113,15 +113,15 @@
       "id": "proj-3",
       "slug": "tropical-cyclone-track-prediction",
       "title": "Prediksi Siklon Tropis (Data IBTrACS)",
-      "shortDescription": "Ini proyek skripsi S1 saya: membuktikan LSTM bisa prediksi lintasan siklon tropis dengan akurat. Saya uji 12 skenario eksperimen (3 basin × 4 variasi timesteps), dan hasilnya window 8-16 paling bagus - rata-rata error cuma 14,2 km dengan R² 0,999. Modelnya saya konversi ke ONNX supaya bisa jalan langsung di browser, frontend pakai Astro Island Architecture.",
+      "shortDescription": "Riset skripsi pemodelan peramalan lintasan siklon tropis berbasis Deep Learning LSTM menggunakan data IBTrACS (1980–2025). Menguji 12 skenario empiris (3 basin × 4 variasi sliding window), membuktikan model Gabungan dengan window 8 timesteps (GAB-8) mencapai akurasi tertinggi dengan MAE 0,127405°, RMSE 0,144091°, dan Mean Haversine Distance 15,885 km, diimplementasikan ke dalam platform visualisasi geospasial untuk mitigasi bencana di pesisir barat Sumatra.",
       "translations": {
         "en": {
           "title": "Tropical Cyclone Trajectory Forecasting Platform",
-          "shortDescription": "Undergraduate thesis research applying Deep Learning LSTM architectures to cyclone track forecasting. Evaluating 12 controlled scenarios demonstrated that an 8–16 timestep sliding window achieved optimal precision (14.2 km Haversine error; R² 0.999). Exported to ONNX for client-side inference within an Astro Island Architecture frontend.",
+          "shortDescription": "Undergraduate thesis research developing a Deep Learning LSTM framework for tropical cyclone trajectory forecasting using IBTrACS data (1980–2025). Evaluating 12 empirical scenarios (3 basins × 4 temporal sliding windows) demonstrated that the Combined 8-timestep model (GAB-8) attained peak predictive accuracy (MAE: 0.127405°, RMSE: 0.144091°, Mean Haversine Distance: 15.885 km), deployed into an interactive geospatial visualization interface for coastal disaster risk reduction in West Sumatra.",
           "period": "2026 (Thesis Research & Production Application)",
           "role": "Software & Research Engineer",
           "problem": "Meteorological time series forecasting models frequently remain confined to offline mathematical simulations, lacking accessible client interfaces for real-time coastal hazard mitigation.",
-          "solution": "Formulated a 12-scenario empirical study identifying optimal temporal sequence configurations, quantized the trained LSTM network to ONNX for zero-backend browser execution, and engineered a high-performance geospatial interface using Astro Islands architecture."
+          "solution": "Formulated a 12-scenario empirical study analyzing inter-basin atmospheric dynamics and temporal sliding window resolutions, proving that model GAB-8 minimizes geodesic trajectory error (MAE 0.127405°, RMSE 0.144091°, Haversine 15.885 km), integrated with an interactive geospatial dashboard for coastal risk mitigation."
         }
       },
       "category": "Web Application",
@@ -143,23 +143,27 @@
       "role": "Web Developer & Penelitian Skripsi",
       "demoUrl": "https://prediksi.ikhwann.my.id",
       "githubUrl": "https://github.com/IngsR/PrediksiSIklon-LSTM",
-      "problem": "Penelitian prediksi lintasan siklon tropis umumnya berhenti pada laporan metrik teoritis tanpa ketersediaan sistem siap pakai untuk publik. Padahal, pemodelan deret waktu spasial (time series) lintasan badai sangat penting sebagai instrumen mitigasi risiko bencana di wilayah pesisir Samudra Hindia.",
-      "solution": "Merancang 12 skenario eksperimen terkontrol membandingkan variasi basin dan timesteps, menemukan konfigurasi window 8–16 paling optimal (Haversine error 14,2 km, R² 0,999). Model diekspor ke format ONNX agar inferensi dapat dieksekusi langsung di peramban pengguna tanpa beban backend, disajikan via Astro Island Architecture untuk performa Zero-JS pada halaman presentasi.",
+      "problem": "Penelitian prediksi lintasan siklon tropis umumnya berhenti pada laporan metrik teoritis tanpa ketersediaan sistem siap pakai untuk publik. Padahal, pemodelan deret waktu spasial (spatiotemporal time series) lintasan badai sangat krusial sebagai instrumen mitigasi risiko bencana di wilayah pesisir Samudra Hindia dan barat Sumatra.",
+      "solution": "Merancang 12 skenario eksperimen komparatif pada 3 domain perairan (North Indian, South Indian, Gabungan) dengan variasi temporal sliding window (8, 16, 24, 32 timesteps). Menemukan konfigurasi GAB-8 paling optimal dengan MAE 0,127405°, RMSE 0,144091°, dan Mean Haversine Distance 15,885 km, meminimalkan error accumulation dan fenomena over-smoothing untuk visualisasi geospasial mitigasi bencana.",
       "metrics": [
         {
-          "label": "Model Akurasi",
-          "value": "Haversine 14,2 km | R² 0,999"
+          "label": "Akurasi Geodetik (GAB-8)",
+          "value": "Haversine 15,885 km"
+        },
+        {
+          "label": "Evaluasi Koordinat Spasial",
+          "value": "MAE 0,127405° | RMSE 0,144091°"
         },
         {
           "label": "Frontend Engine",
           "value": "Astro Island Architecture"
         },
         {
-          "label": "Inference",
+          "label": "Inference Engine",
           "value": "Serverless ONNX Runtime"
         }
       ],
-      "markdownContent": "---\ntitle: \"Prediksi Lintasan Siklon Tropis dengan LSTM\"\ndescription: \"Aplikasi web interaktif prediksi lintasan siklon tropis berbasis riset skripsi Deep Learning LSTM dengan Astro Island Architecture dan ONNX Runtime serverless.\"\ndate: \"2026-08-10\"\ncategory: \"Web Application\"\ntags:\n  - Astro\n  - TypeScript\n  - ONNX Runtime\n  - LSTM Time Series\n  - Island Architecture\n  - Geospatial UI\n  - SSG / Edge CDN\n  - Tailwind CSS\ngithub: \"https://github.com/IngsR/PrediksiSIklon-LSTM\"\ndemo: \"https://prediksi.ikhwann.my.id\"\nfeatured: true\n---\n\n# 🌪️ Prediksi Lintasan Siklon Tropis dengan LSTM\n\n## 📌 Konteks Riset & Objektif Sistem\nPenelitian skripsi ini membuktikan bahwa model **Long Short-Term Memory (LSTM)** mampu memprediksi lintasan siklon tropis di Samudra Hindia dengan akurasi sangat tinggi.\n\nSaya merancang **12 skenario eksperimen terkontrol**, membagi data observasi ke dalam **3 basin** (North Indian, South Indian, dan Gabungan) dengan **4 variasi timesteps** (8, 16, 24, 32). Temuan riset menunjukkan bahwa sliding window **8-16** memberikan error terendah, sedangkan window 32 mengalami overfitting. Model terbaik (**GAB-8**) mencapai **rata-rata error jarak Haversine 14,2 km** dengan **R² 0,999**.\n\n---\n\n## 🚀 Dari Riset ke Aplikasi Siap Pakai\nHasil riset ini diwujudkan menjadi aplikasi web interaktif publik pada domain **prediksi.ikhwann.my.id**:\n1. **Astro Island Architecture**: Landing page disajikan secara Zero-JS default dengan FCP instan di Edge CDN, mengisolasi hidrasi JavaScript hanya pada kanvas peta interaktif.\n2. **Serverless ONNX Runtime Inference**: Model LSTM dikonversi ke format ONNX sehingga proses inferensi berjalan langsung di peramban pengguna tanpa beban backend server.\n3. **Mitigasi Bencana Nyata**: Memungkinkan pengguna memasukkan koordinat dan kecepatan angin siklon untuk memprediksi lintasannya secara real-time demi mendukung mitigasi risiko bencana di pesisir Sumatera Barat."
+      "markdownContent": "---\ntitle: \"Prediksi Lintasan Siklon Tropis dengan LSTM\"\ndescription: \"Aplikasi web interaktif prediksi lintasan siklon tropis berbasis riset skripsi Deep Learning LSTM dengan Astro Island Architecture dan ONNX Runtime serverless.\"\ndate: \"2026-08-10\"\ncategory: \"Web Application\"\ntags:\n  - Astro\n  - TypeScript\n  - ONNX Runtime\n  - LSTM Time Series\n  - Island Architecture\n  - Geospatial UI\n  - SSG / Edge CDN\n  - Tailwind CSS\ngithub: \"https://github.com/IngsR/PrediksiSIklon-LSTM\"\ndemo: \"https://prediksi.ikhwann.my.id\"\nfeatured: true\n---\n\n# 🌪️ Prediksi Lintasan Siklon Tropis dengan LSTM\n\n## 📌 Konteks Riset & Urgensi Mitigasi Bencana\nEstimasi lintasan siklon tropis merepresentasikan tantangan kritis dalam mitigasi bencana hidrometeorologis akibat dinamika atmosferik spasio-temporal yang sangat non-linier. Penelitian skripsi ini berfokus pada perancangan arsitektur **Long Short-Term Memory (LSTM)** untuk memodelkan ketergantungan temporal lintasan siklon tropis di kawasan Samudra Hindia menggunakan data **IBTrACS (1980–2025)**.\n\nEksperimen dirancang secara komparatif melalui **12 skenario terkontrol**, membagi domain perairan ke dalam **3 basin** (*North Indian*, *South Indian*, dan *Gabungan*) dengan **4 variasi sliding window temporal** (8, 16, 24, dan 32 timesteps). Hasil empiris menunjukkan bahwa model **GAB-8** menghasilkan akurasi optimal dengan:\n- **Mean Absolute Error (MAE)**: 0,127405°\n- **Root Mean Square Error (RMSE)**: 0,144091°\n- **Mean Haversine Distance**: 15,885 km\n\nAnalisis riset membuktikan bahwa variasi sliding window yang lebih ringkas (8 timesteps) efektif mempertahankan inersia pergerakan lokal badai sekaligus mencegah akumulasi galat (*error accumulation*) dan fenomena *over-smoothing* yang kerap terjadi pada window panjang (24–32 timesteps).\n\n---\n\n## 🚀 Implementasi Sistem Visualisasi Geospasial\nHasil model prediksi ini diintegrasikan ke dalam aplikasi web interaktif publik pada domain **prediksi.ikhwann.my.id**:\n1. **Astro Island Architecture**: Landing page disajikan secara Zero-JS default dengan FCP instan di Edge CDN, mengisolasi hidrasi JavaScript hanya pada kanvas peta interaktif.\n2. **Serverless ONNX Runtime Inference**: Model LSTM hasil riset dikonversi ke format ONNX agar proses inferensi dapat dieksekusi secara instan langsung di peramban pengguna tanpa membebani server backend.\n3. **Instrumen Mitigasi Nyata**: Memfasilitasi simulasi koordinat dan kecepatan angin siklon untuk memproyeksikan lintasan secara real-time, memperkuat sistem mitigasi bencana hidrometeorologis di pesisir Sumatera Barat."
     },
     {
       "id": "proj-4",

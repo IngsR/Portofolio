@@ -1,0 +1,111 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 320" width="100%" height="100%">
+  <defs>
+    <linearGradient id="astroGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e1b4b"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+    <linearGradient id="reactGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#082f49"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+    <linearGradient id="edgeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#14532d"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background Canvas -->
+  <rect width="960" height="320" rx="12" fill="#030712" stroke="#1e293b" stroke-width="1.5"/>
+
+  <!-- Title bar -->
+  <rect x="0" y="0" width="960" height="46" rx="12" fill="#0b1120"/>
+  <text x="24" y="28" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-weight="700" font-size="14" fill="#38bdf8">SOFTWARE ARCHITECTURE: ASTRO ISLANDS &amp; SERVERLESS EDGE ECOSYSTEM</text>
+  <text x="740" y="28" font-family="monospace" font-size="11" fill="#64748b">SSR/SSG Hybrid • Zero-JS Core</text>
+
+  <!-- Flow Block 1: Edge CDN & Routing -->
+  <g transform="translate(24, 66)">
+    <rect width="210" height="230" rx="10" fill="url(#edgeGrad)" stroke="#16a34a" stroke-width="1.2"/>
+    <text x="16" y="28" font-family="sans-serif" font-weight="700" font-size="13" fill="#86efac">1. EDGE &amp; ROUTING</text>
+    <text x="16" y="46" font-family="sans-serif" font-size="11" fill="#94a3b8">Vercel Edge Network</text>
+
+    <line x1="16" y1="60" x2="194" y2="60" stroke="#1e293b"/>
+
+    <rect x="16" y="74" width="178" height="38" rx="6" fill="#142e1d" stroke="#22c55e" stroke-width="0.8"/>
+    <text x="26" y="92" font-family="sans-serif" font-size="11" font-weight="700" fill="#f0fdf4">SSG Shell (`/`)</text>
+    <text x="26" y="105" font-family="monospace" font-size="9.5" fill="#86efac">Prerendered • Instant TTFB</text>
+
+    <rect x="16" y="122" width="178" height="38" rx="6" fill="#142e1d" stroke="#22c55e" stroke-width="0.8"/>
+    <text x="26" y="140" font-family="sans-serif" font-size="11" font-weight="700" fill="#f0fdf4">SSR / ISR (`/portfolio`)</text>
+    <text x="26" y="153" font-family="monospace" font-size="9.5" fill="#86efac">1-Hour Edge Cache Window</text>
+
+    <rect x="16" y="170" width="178" height="38" rx="6" fill="#142e1d" stroke="#22c55e" stroke-width="0.8"/>
+    <text x="26" y="188" font-family="sans-serif" font-size="11" font-weight="700" fill="#f0fdf4">i18n Dual Routing</text>
+    <text x="26" y="201" font-family="monospace" font-size="9.5" fill="#86efac">`/` (ID) &amp; `/en/` (EN)</text>
+  </g>
+
+  <!-- Flow Block 2: Astro Presentation Tier -->
+  <g transform="translate(258, 66)">
+    <rect width="260" height="230" rx="10" fill="url(#astroGrad)" stroke="#6366f1" stroke-width="1.2"/>
+    <text x="16" y="28" font-family="sans-serif" font-weight="700" font-size="13" fill="#c7d2fe">2. ZERO-JS ASTRO SHELL</text>
+    <text x="16" y="46" font-family="sans-serif" font-size="11" fill="#94a3b8">Static HTML Output Engine</text>
+
+    <line x1="16" y1="60" x2="244" y2="60" stroke="#1e293b"/>
+
+    <g transform="translate(16, 74)">
+      <rect width="228" height="30" rx="4" fill="#1e1b4b"/>
+      <text x="12" y="20" font-family="monospace" font-size="10.5" fill="#a5b4fc">SEO Meta &amp; OpenGraph Gen</text>
+    </g>
+
+    <g transform="translate(16, 114)">
+      <rect width="228" height="30" rx="4" fill="#1e1b4b"/>
+      <text x="12" y="20" font-family="monospace" font-size="10.5" fill="#a5b4fc">Tailwind CSS v4 Engine</text>
+    </g>
+
+    <g transform="translate(16, 154)">
+      <rect width="228" height="30" rx="4" fill="#1e1b4b"/>
+      <text x="12" y="20" font-family="monospace" font-size="10.5" fill="#a5b4fc">Semantic Article &amp; CV Layout</text>
+    </g>
+
+    <text x="16" y="214" font-family="sans-serif" font-size="10" fill="#818cf8">Result: Pure HTML/CSS without client JS bloat</text>
+  </g>
+
+  <!-- Flow Block 3: Isolated Interactive React Islands -->
+  <g transform="translate(542, 66)">
+    <rect width="394" height="230" rx="10" fill="url(#reactGrad)" stroke="#38bdf8" stroke-width="1.5"/>
+    <text x="16" y="28" font-family="sans-serif" font-weight="700" font-size="13" fill="#bae6fd">3. INTERACTIVE REACT 19 ISLANDS</text>
+    <text x="16" y="46" font-family="sans-serif" font-size="11" fill="#94a3b8">Hydrated only when in viewport (`client:visible / client:load`)</text>
+
+    <line x1="16" y1="60" x2="378" y2="60" stroke="#1e293b"/>
+
+    <!-- 4 Island Boxes Grid -->
+    <g transform="translate(16, 74)">
+      <rect width="172" height="60" rx="6" fill="#0b1d30" stroke="#0284c7" stroke-width="0.8"/>
+      <text x="10" y="20" font-family="sans-serif" font-size="11" font-weight="700" fill="#e0f2fe">Geospatial Cyclone Map</text>
+      <text x="10" y="36" font-family="monospace" font-size="9" fill="#38bdf8">ONNX Runtime Web</text>
+      <text x="10" y="48" font-family="sans-serif" font-size="8.5" fill="#94a3b8">In-browser neural inference</text>
+    </g>
+
+    <g transform="translate(198, 74)">
+      <rect width="172" height="60" rx="6" fill="#0b1d30" stroke="#0284c7" stroke-width="0.8"/>
+      <text x="10" y="20" font-family="sans-serif" font-size="11" font-weight="700" fill="#e0f2fe">Dynamic CV Generator</text>
+      <text x="10" y="36" font-family="monospace" font-size="9" fill="#38bdf8">jsPDF + docx Engine</text>
+      <text x="10" y="48" font-family="sans-serif" font-size="8.5" fill="#94a3b8">Instant ATS resume export</text>
+    </g>
+
+    <g transform="translate(16, 144)">
+      <rect width="172" height="60" rx="6" fill="#0b1d30" stroke="#0284c7" stroke-width="0.8"/>
+      <text x="10" y="20" font-family="sans-serif" font-size="11" font-weight="700" fill="#e0f2fe">Shader Backgrounds</text>
+      <text x="10" y="36" font-family="monospace" font-size="9" fill="#38bdf8">@paper-design/shaders</text>
+      <text x="10" y="48" font-family="sans-serif" font-size="8.5" fill="#94a3b8">GPU-accelerated canvas</text>
+    </g>
+
+    <g transform="translate(198, 144)">
+      <rect width="172" height="60" rx="6" fill="#0b1d30" stroke="#0284c7" stroke-width="0.8"/>
+      <text x="10" y="20" font-family="sans-serif" font-size="11" font-weight="700" fill="#e0f2fe">Filter &amp; Quick Actions</text>
+      <text x="10" y="36" font-family="monospace" font-size="9" fill="#38bdf8">Zustand + Motion</text>
+      <text x="10" y="48" font-family="sans-serif" font-size="8.5" fill="#94a3b8">Zero re-render penalty</text>
+    </g>
+
+    <text x="16" y="218" font-family="sans-serif" font-size="10" fill="#38bdf8">Only active islands load JavaScript into the DOM.</text>
+  </g>
+</svg>
