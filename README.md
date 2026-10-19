@@ -58,6 +58,10 @@ Visitors and recruiters can preview and export professional resumes on the fly d
 - **PDF Export**: Pixel-perfect printable document rendering powered by `jspdf` and `html2canvas`.
 - **Native DOCX Export**: Clean, semantically structured Microsoft Word documents compiled with `docx` for maximum ATS scanner compatibility.
 
+<div align="center">
+  <img src="./public/assets/ats-engine-architecture.svg" alt="In-Browser ATS Document Generation Architecture" width="100%" />
+</div>
+
 ### 💼 Interactive Project Showcase & Deep-Dive Modals
 - Real-time keyword search and reactive tag filtering.
 - Rich modal case studies complete with problem statements, architectural solutions, tech badges, live demo previews, and GitHub repository links.

@@ -58,6 +58,10 @@ Pengunjung dan recruiter dapat melihat preview serta mengunduh resume profesiona
 - **Ekspor PDF**: Hasil cetak dokumen berpresisi tinggi menggunakan kombinasi `jspdf` dan `html2canvas`.
 - **Ekspor DOCX Asli**: Berkas Microsoft Word biner yang terstruktur secara semantik menggunakan pustaka `docx` agar ramah parser ATS.
 
+<div align="center">
+  <img src="./public/assets/ats-engine-architecture.svg" alt="Diagram Arsitektur In-Browser ATS Document Generation" width="100%" />
+</div>
+
 ### 💼 Showcase Proyek Interaktif & Modal Detail
 - Pencarian kata kunci real-time dan filter kategori berbasis tag.
 - Modal studi kasus lengkap dengan ringkasan solusi teknis, badge teknologi, demo live, dan tautan GitHub.

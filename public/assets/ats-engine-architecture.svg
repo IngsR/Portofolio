@@ -1,0 +1,199 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 360" width="100%" height="100%">
+  <defs>
+    <linearGradient id="cardGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#090d16"/>
+    </linearGradient>
+
+    <linearGradient id="dataGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e1b4b"/>
+      <stop offset="100%" stop-color="#0b1120"/>
+    </linearGradient>
+
+    <linearGradient id="reactGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#082f49"/>
+      <stop offset="100%" stop-color="#0b1120"/>
+    </linearGradient>
+
+    <linearGradient id="docxGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e3a8a"/>
+      <stop offset="100%" stop-color="#0b1120"/>
+    </linearGradient>
+
+    <linearGradient id="pdfGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#831843"/>
+      <stop offset="100%" stop-color="#0b1120"/>
+    </linearGradient>
+
+    <linearGradient id="deliverGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#14532d"/>
+      <stop offset="100%" stop-color="#0b1120"/>
+    </linearGradient>
+
+    <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#38bdf8"/>
+    </marker>
+  </defs>
+
+  <style>
+    .title-text { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-weight: 700; font-size: 13.5px; }
+    .sub-text { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-weight: 500; font-size: 11px; fill: #94a3b8; }
+    .badge { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-weight: 700; font-size: 10px; text-transform: uppercase; }
+    .code-pill { font-family: monospace; font-size: 10px; fill: #e2e8f0; }
+    .item-desc { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 9.5px; fill: #94a3b8; }
+  </style>
+
+  <!-- Background Canvas -->
+  <rect width="960" height="360" rx="12" fill="#030712" stroke="#1e293b" stroke-width="1.5"/>
+
+  <!-- Top Title Bar -->
+  <rect x="0" y="0" width="960" height="46" rx="12" fill="#0b1120"/>
+  <text x="24" y="28" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-weight="700" font-size="13.5" fill="#38bdf8">ATS RESUME ENGINE: IN-BROWSER DUAL COMPILER PIPELINE</text>
+  <text x="690" y="28" font-family="monospace" font-size="11" fill="#64748b">100% Client-Side • Zero-Server • DOCX &amp; PDF</text>
+
+  <!-- Flow Block 1: Structured Data Tier -->
+  <g transform="translate(24, 64)">
+    <rect width="202" height="274" rx="10" fill="url(#dataGrad)" stroke="#6366f1" stroke-width="1.2"/>
+    <rect x="14" y="14" width="76" height="20" rx="4" fill="#6366f1" fill-opacity="0.25"/>
+    <text x="52" y="28" text-anchor="middle" class="badge" fill="#a5b4fc">1. DATA TIER</text>
+
+    <text x="14" y="56" class="title-text" fill="#e0e7ff">cv.json Schema</text>
+    <text x="14" y="72" class="sub-text">Typed Structured Source</text>
+
+    <line x1="14" y1="84" x2="188" y2="84" stroke="#1e293b"/>
+
+    <g transform="translate(14, 94)">
+      <rect width="174" height="38" rx="6" fill="#1e1b4b" stroke="#4338ca" stroke-width="0.8"/>
+      <text x="10" y="17" class="code-pill" font-weight="700" fill="#c7d2fe">src/data/cv.json</text>
+      <text x="10" y="30" class="item-desc">Profile, Skills, Experience</text>
+    </g>
+
+    <g transform="translate(14, 140)">
+      <rect width="174" height="38" rx="6" fill="#1e1b4b" stroke="#4338ca" stroke-width="0.8"/>
+      <text x="10" y="17" class="code-pill" font-weight="700" fill="#c7d2fe">CVContent Interface</text>
+      <text x="10" y="30" class="item-desc">Strict TypeScript validation</text>
+    </g>
+
+    <g transform="translate(14, 186)">
+      <rect width="174" height="38" rx="6" fill="#1e1b4b" stroke="#4338ca" stroke-width="0.8"/>
+      <text x="10" y="17" class="code-pill" font-weight="700" fill="#c7d2fe">i18n Locale Switcher</text>
+      <text x="10" y="30" class="item-desc">ID (Bahasa) &amp; EN (English)</text>
+    </g>
+
+    <text x="14" y="250" font-family="monospace" font-size="9" fill="#818cf8">✓ Static JSON payload</text>
+    <text x="14" y="262" font-family="monospace" font-size="9" fill="#818cf8">✓ Zero database query</text>
+  </g>
+
+  <!-- Arrow 1 -> 2 -->
+  <line x1="228" y1="201" x2="246" y2="201" stroke="#38bdf8" stroke-width="1.8" marker-end="url(#arrow)"/>
+
+  <!-- Flow Block 2: Interactive Island & Preview -->
+  <g transform="translate(252, 64)">
+    <rect width="206" height="274" rx="10" fill="url(#reactGrad)" stroke="#0284c7" stroke-width="1.2"/>
+    <rect x="14" y="14" width="76" height="20" rx="4" fill="#0284c7" fill-opacity="0.25"/>
+    <text x="52" y="28" text-anchor="middle" class="badge" fill="#7dd3fc">2. UI ISLAND</text>
+
+    <text x="14" y="56" class="title-text" fill="#e0f2fe">CvModal Island</text>
+    <text x="14" y="72" class="sub-text">React 19 Dynamic Client</text>
+
+    <line x1="14" y1="84" x2="192" y2="84" stroke="#1e293b"/>
+
+    <g transform="translate(14, 94)">
+      <rect width="178" height="38" rx="6" fill="#0b2447" stroke="#0369a1" stroke-width="0.8"/>
+      <text x="10" y="17" class="code-pill" font-weight="700" fill="#bae6fd">Live Document Preview</text>
+      <text x="10" y="30" class="item-desc">Real-time ATS layout view</text>
+    </g>
+
+    <g transform="translate(14, 140)">
+      <rect width="178" height="38" rx="6" fill="#0b2447" stroke="#0369a1" stroke-width="0.8"/>
+      <text x="10" y="17" class="code-pill" font-weight="700" fill="#bae6fd">State Management</text>
+      <text x="10" y="30" class="item-desc">Zustand reactive store</text>
+    </g>
+
+    <g transform="translate(14, 186)">
+      <rect width="178" height="38" rx="6" fill="#0b2447" stroke="#0369a1" stroke-width="0.8"/>
+      <text x="10" y="17" class="code-pill" font-weight="700" fill="#bae6fd">ATS Format Guard</text>
+      <text x="10" y="30" class="item-desc">Standard fonts &amp; typography</text>
+    </g>
+
+    <text x="14" y="250" font-family="monospace" font-size="9" fill="#38bdf8">✓ Hydrated client:idle</text>
+    <text x="14" y="262" font-family="monospace" font-size="9" fill="#38bdf8">✓ Fast responsive modal</text>
+  </g>
+
+  <!-- Arrow 2 -> 3 -->
+  <line x1="460" y1="201" x2="478" y2="201" stroke="#38bdf8" stroke-width="1.8" marker-end="url(#arrow)"/>
+
+  <!-- Flow Block 3: Dual Compilation Engines -->
+  <g transform="translate(484, 64)">
+    <rect width="254" height="274" rx="10" fill="url(#cardGrad)" stroke="#334155" stroke-width="1.2"/>
+    <rect x="14" y="14" width="100" height="20" rx="4" fill="#334155" fill-opacity="0.5"/>
+    <text x="64" y="28" text-anchor="middle" class="badge" fill="#cbd5e1">3. DUAL ENGINES</text>
+
+    <text x="14" y="56" class="title-text" fill="#f8fafc">In-Memory Compilers</text>
+    <text x="14" y="72" class="sub-text">src/utils/cv.ts Generators</text>
+
+    <line x1="14" y1="84" x2="240" y2="84" stroke="#1e293b"/>
+
+    <!-- Engine A: docx -->
+    <g transform="translate(14, 94)">
+      <rect width="226" height="74" rx="8" fill="url(#docxGrad)" stroke="#2563eb" stroke-width="1"/>
+      <rect x="10" y="10" width="82" height="18" rx="4" fill="#1d4ed8"/>
+      <text x="51" y="22" text-anchor="middle" font-family="monospace" font-size="9.5" font-weight="700" fill="#eff6ff">DOCX ENGINE</text>
+      <text x="102" y="22" font-family="monospace" font-size="9.5" fill="#93c5fd">library: docx.js</text>
+
+      <text x="10" y="44" font-family="sans-serif" font-size="10" font-weight="600" fill="#dbeafe">AST Programmatic Builder</text>
+      <text x="10" y="58" class="item-desc">Document → Paragraph → TextRun</text>
+      <text x="10" y="68" font-family="monospace" font-size="8.5" fill="#60a5fa">Packer.toBlob() → Word 2016+ standard</text>
+    </g>
+
+    <!-- Engine B: jspdf + html2canvas -->
+    <g transform="translate(14, 178)">
+      <rect width="226" height="74" rx="8" fill="url(#pdfGrad)" stroke="#db2777" stroke-width="1"/>
+      <rect x="10" y="10" width="74" height="18" rx="4" fill="#be185d"/>
+      <text x="47" y="22" text-anchor="middle" font-family="monospace" font-size="9.5" font-weight="700" fill="#fff1f2">PDF ENGINE</text>
+      <text x="94" y="22" font-family="monospace" font-size="9.5" fill="#fbcfe8">jspdf + canvas</text>
+
+      <text x="10" y="44" font-family="sans-serif" font-size="10" font-weight="600" fill="#fce7f3">Vector &amp; High-DPI Canvas</text>
+      <text x="10" y="58" class="item-desc">A4 Coordinate layout &amp; paging</text>
+      <text x="10" y="68" font-family="monospace" font-size="8.5" fill="#f472b6">doc.save() → Pixel-perfect printable</text>
+    </g>
+
+    <text x="14" y="262" font-family="monospace" font-size="9" fill="#94a3b8">⚡ 100% Client-side execution in ms</text>
+  </g>
+
+  <!-- Arrow 3 -> 4 -->
+  <line x1="740" y1="201" x2="758" y2="201" stroke="#38bdf8" stroke-width="1.8" marker-end="url(#arrow)"/>
+
+  <!-- Flow Block 4: Output & Delivery -->
+  <g transform="translate(764, 64)">
+    <rect width="172" height="274" rx="10" fill="url(#deliverGrad)" stroke="#16a34a" stroke-width="1.2"/>
+    <rect x="14" y="14" width="76" height="20" rx="4" fill="#16a34a" fill-opacity="0.25"/>
+    <text x="52" y="28" text-anchor="middle" class="badge" fill="#86efac">4. OUTPUT</text>
+
+    <text x="14" y="56" class="title-text" fill="#f0fdf4">Instant Blob</text>
+    <text x="14" y="72" class="sub-text">Direct Client Download</text>
+
+    <line x1="14" y1="84" x2="158" y2="84" stroke="#1e293b"/>
+
+    <g transform="translate(14, 94)">
+      <rect width="144" height="40" rx="6" fill="#143e21" stroke="#22c55e" stroke-width="0.8"/>
+      <text x="8" y="18" class="code-pill" font-weight="700" fill="#bbf7d0">.docx (Word)</text>
+      <text x="8" y="32" class="item-desc">Native ATS Readable</text>
+    </g>
+
+    <g transform="translate(14, 142)">
+      <rect width="144" height="40" rx="6" fill="#143e21" stroke="#22c55e" stroke-width="0.8"/>
+      <text x="8" y="18" class="code-pill" font-weight="700" fill="#bbf7d0">.pdf (Vector)</text>
+      <text x="8" y="32" class="item-desc">Print-Ready Format</text>
+    </g>
+
+    <g transform="translate(14, 192)">
+      <rect width="144" height="34" rx="4" fill="#0d2815"/>
+      <text x="8" y="15" font-family="sans-serif" font-size="9" font-weight="700" fill="#4ade80">URL.createObjectURL</text>
+      <text x="8" y="27" font-family="monospace" font-size="8.5" fill="#86efac">Zero Network Overhead</text>
+    </g>
+
+    <text x="14" y="250" font-family="monospace" font-size="9" fill="#4ade80">★ Privacy First</text>
+    <text x="14" y="262" font-family="monospace" font-size="9" fill="#4ade80">★ 100% Free &amp; Offline</text>
+  </g>
+</svg>

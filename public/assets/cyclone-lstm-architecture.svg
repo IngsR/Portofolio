@@ -1,13 +1,33 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 380" width="100%" height="100%">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 360" width="100%" height="100%">
   <defs>
     <linearGradient id="cardGrad" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#0f172a"/>
       <stop offset="100%" stop-color="#090d16"/>
     </linearGradient>
 
-    <linearGradient id="headerGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#0284c7"/>
-      <stop offset="100%" stop-color="#6366f1"/>
+    <linearGradient id="dataGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e1b4b"/>
+      <stop offset="100%" stop-color="#0b1120"/>
+    </linearGradient>
+
+    <linearGradient id="reactGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#082f49"/>
+      <stop offset="100%" stop-color="#0b1120"/>
+    </linearGradient>
+
+    <linearGradient id="docxGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e3a8a"/>
+      <stop offset="100%" stop-color="#0b1120"/>
+    </linearGradient>
+
+    <linearGradient id="pdfGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#831843"/>
+      <stop offset="100%" stop-color="#0b1120"/>
+    </linearGradient>
+
+    <linearGradient id="deliverGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#14532d"/>
+      <stop offset="100%" stop-color="#0b1120"/>
     </linearGradient>
 
     <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
@@ -16,159 +36,164 @@
   </defs>
 
   <style>
-    .step-title { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-weight: 700; font-size: 13px; fill: #f1f5f9; }
-    .step-sub { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-weight: 500; font-size: 11px; fill: #94a3b8; }
-    .step-badge { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-weight: 700; font-size: 10px; fill: #38bdf8; text-transform: uppercase; }
-    .code-pill { font-family: monospace; font-size: 10.5px; fill: #e2e8f0; }
+    .title-text { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-weight: 700; font-size: 13.5px; }
+    .sub-text { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-weight: 500; font-size: 11px; fill: #94a3b8; }
+    .badge { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-weight: 700; font-size: 10px; text-transform: uppercase; }
+    .code-pill { font-family: monospace; font-size: 10px; fill: #e2e8f0; }
+    .item-desc { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 9.5px; fill: #94a3b8; }
   </style>
 
   <!-- Background Canvas -->
-  <rect width="960" height="380" rx="12" fill="#030712" stroke="#1e293b" stroke-width="1.5"/>
+  <rect width="960" height="360" rx="12" fill="#030712" stroke="#1e293b" stroke-width="1.5"/>
 
   <!-- Top Title Bar -->
-  <rect x="0" y="0" width="960" height="48" rx="12" fill="#090e1a"/>
-  <text x="24" y="30" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-weight="700" font-size="14" fill="#38bdf8">RESEARCH ARCHITECTURE: TROPICAL CYCLONE TRAJECTORY FORECASTING</text>
-  <text x="760" y="30" font-family="monospace" font-size="11" fill="#64748b">IBTrACS 1980–2025 • LSTM (GAB-8)</text>
+  <rect x="0" y="0" width="960" height="46" rx="12" fill="#0b1120"/>
+  <text x="24" y="28" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-weight="700" font-size="13.5" fill="#38bdf8">ATS RESUME ENGINE: IN-BROWSER DUAL COMPILER PIPELINE</text>
+  <text x="690" y="28" font-family="monospace" font-size="11" fill="#64748b">100% Client-Side • Zero-Server • DOCX &amp; PDF</text>
 
-  <!-- Pipeline Steps -->
+  <!-- Flow Block 1: Structured Data Tier -->
+  <g transform="translate(24, 64)">
+    <rect width="202" height="274" rx="10" fill="url(#dataGrad)" stroke="#6366f1" stroke-width="1.2"/>
+    <rect x="14" y="14" width="76" height="20" rx="4" fill="#6366f1" fill-opacity="0.25"/>
+    <text x="52" y="28" text-anchor="middle" class="badge" fill="#a5b4fc">1. DATA TIER</text>
 
-  <!-- STEP 1: Raw Data & Basin Partitioning -->
-  <g transform="translate(24, 72)">
-    <rect width="168" height="270" rx="10" fill="url(#cardGrad)" stroke="#334155" stroke-width="1.2"/>
-    <rect x="14" y="14" width="80" height="20" rx="4" fill="#0284c7" fill-opacity="0.2"/>
-    <text x="54" y="28" text-anchor="middle" class="step-badge">1. DATASET</text>
+    <text x="14" y="56" class="title-text" fill="#e0e7ff">cv.json Schema</text>
+    <text x="14" y="72" class="sub-text">Typed Structured Source</text>
 
-    <text x="14" y="58" class="step-title">IBTrACS Archive</text>
-    <text x="14" y="76" class="step-sub">Historical storm tracks</text>
-    <text x="14" y="92" class="step-sub">Period: 1980–2025</text>
+    <line x1="14" y1="84" x2="188" y2="84" stroke="#1e293b"/>
 
-    <line x1="14" y1="108" x2="154" y2="108" stroke="#1e293b"/>
-
-    <text x="14" y="130" font-family="sans-serif" font-size="11" font-weight="600" fill="#cbd5e1">Basin Scenarios:</text>
-    <rect x="14" y="142" width="140" height="24" rx="4" fill="#1e293b"/>
-    <text x="22" y="158" class="code-pill">North Indian (NI)</text>
-
-    <rect x="14" y="172" width="140" height="24" rx="4" fill="#1e293b"/>
-    <text x="22" y="188" class="code-pill">South Indian (SI)</text>
-
-    <rect x="14" y="202" width="140" height="24" rx="4" fill="#0369a1" fill-opacity="0.4" stroke="#0284c7" stroke-width="0.8"/>
-    <text x="22" y="218" class="code-pill" font-weight="700">Combined (GAB) ★</text>
-
-    <text x="14" y="252" font-family="sans-serif" font-size="10" fill="#64748b">Cross-hemisphere dynamics</text>
-  </g>
-
-  <!-- Connection Arrow 1 -->
-  <line x1="194" y1="207" x2="216" y2="207" stroke="#38bdf8" stroke-width="2" marker-end="url(#arrow)"/>
-
-  <!-- STEP 2: Temporal Sliding Window -->
-  <g transform="translate(224, 72)">
-    <rect width="168" height="270" rx="10" fill="url(#cardGrad)" stroke="#334155" stroke-width="1.2"/>
-    <rect x="14" y="14" width="102" height="20" rx="4" fill="#4f46e5" fill-opacity="0.2"/>
-    <text x="65" y="28" text-anchor="middle" class="step-badge" fill="#818cf8">2. SEQUENCING</text>
-
-    <text x="14" y="58" class="step-title">Sliding Window</text>
-    <text x="14" y="76" class="step-sub">Temporal segmentation</text>
-    <text x="14" y="92" class="step-sub">Feature formulation</text>
-
-    <line x1="14" y1="108" x2="154" y2="108" stroke="#1e293b"/>
-
-    <text x="14" y="130" font-family="sans-serif" font-size="11" font-weight="600" fill="#cbd5e1">Timestep Variations:</text>
-    <rect x="14" y="142" width="140" height="24" rx="4" fill="#4338ca" fill-opacity="0.4" stroke="#818cf8" stroke-width="0.8"/>
-    <text x="22" y="158" class="code-pill" font-weight="700">8 Timesteps (Optimal) ★</text>
-
-    <rect x="14" y="172" width="140" height="24" rx="4" fill="#1e293b"/>
-    <text x="22" y="188" class="code-pill">16 Timesteps</text>
-
-    <rect x="14" y="202" width="140" height="24" rx="4" fill="#1e293b"/>
-    <text x="22" y="218" class="code-pill">24 &amp; 32 Timesteps</text>
-
-    <text x="14" y="252" font-family="sans-serif" font-size="10" fill="#94a3b8">Prevents over-smoothing</text>
-  </g>
-
-  <!-- Connection Arrow 2 -->
-  <line x1="394" y1="207" x2="416" y2="207" stroke="#38bdf8" stroke-width="2" marker-end="url(#arrow)"/>
-
-  <!-- STEP 3: Deep Learning LSTM Engine -->
-  <g transform="translate(424, 72)">
-    <rect width="180" height="270" rx="10" fill="url(#cardGrad)" stroke="#818cf8" stroke-width="1.5"/>
-    <rect x="14" y="14" width="80" height="20" rx="4" fill="#7c3aed" fill-opacity="0.2"/>
-    <text x="54" y="28" text-anchor="middle" class="step-badge" fill="#c084fc">3. MODELING</text>
-
-    <text x="14" y="58" class="step-title">LSTM Network</text>
-    <text x="14" y="76" class="step-sub">Recurrent Gated Cells</text>
-    <text x="14" y="92" class="step-sub">Vanishing gradient resistant</text>
-
-    <line x1="14" y1="108" x2="166" y2="108" stroke="#1e293b"/>
-
-    <g transform="translate(14, 122)">
-      <rect width="152" height="46" rx="6" fill="#1e293b"/>
-      <text x="10" y="20" font-family="monospace" font-size="10" fill="#a78bfa">Forget / Input Gates</text>
-      <text x="10" y="36" font-family="sans-serif" font-size="9.5" fill="#94a3b8">Retains storm trajectory memory</text>
+    <g transform="translate(14, 94)">
+      <rect width="174" height="38" rx="6" fill="#1e1b4b" stroke="#4338ca" stroke-width="0.8"/>
+      <text x="10" y="17" class="code-pill" font-weight="700" fill="#c7d2fe">src/data/cv.json</text>
+      <text x="10" y="30" class="item-desc">Profile, Skills, Experience</text>
     </g>
 
+    <g transform="translate(14, 140)">
+      <rect width="174" height="38" rx="6" fill="#1e1b4b" stroke="#4338ca" stroke-width="0.8"/>
+      <text x="10" y="17" class="code-pill" font-weight="700" fill="#c7d2fe">CVContent Interface</text>
+      <text x="10" y="30" class="item-desc">Strict TypeScript validation</text>
+    </g>
+
+    <g transform="translate(14, 186)">
+      <rect width="174" height="38" rx="6" fill="#1e1b4b" stroke="#4338ca" stroke-width="0.8"/>
+      <text x="10" y="17" class="code-pill" font-weight="700" fill="#c7d2fe">i18n Locale Switcher</text>
+      <text x="10" y="30" class="item-desc">ID (Bahasa) &amp; EN (English)</text>
+    </g>
+
+    <text x="14" y="250" font-family="monospace" font-size="9" fill="#818cf8">✓ Static JSON payload</text>
+    <text x="14" y="262" font-family="monospace" font-size="9" fill="#818cf8">✓ Zero database query</text>
+  </g>
+
+  <!-- Arrow 1 -> 2 -->
+  <line x1="228" y1="201" x2="246" y2="201" stroke="#38bdf8" stroke-width="1.8" marker-end="url(#arrow)"/>
+
+  <!-- Flow Block 2: Interactive Island & Preview -->
+  <g transform="translate(252, 64)">
+    <rect width="206" height="274" rx="10" fill="url(#reactGrad)" stroke="#0284c7" stroke-width="1.2"/>
+    <rect x="14" y="14" width="76" height="20" rx="4" fill="#0284c7" fill-opacity="0.25"/>
+    <text x="52" y="28" text-anchor="middle" class="badge" fill="#7dd3fc">2. UI ISLAND</text>
+
+    <text x="14" y="56" class="title-text" fill="#e0f2fe">CvModal Island</text>
+    <text x="14" y="72" class="sub-text">React 19 Dynamic Client</text>
+
+    <line x1="14" y1="84" x2="192" y2="84" stroke="#1e293b"/>
+
+    <g transform="translate(14, 94)">
+      <rect width="178" height="38" rx="6" fill="#0b2447" stroke="#0369a1" stroke-width="0.8"/>
+      <text x="10" y="17" class="code-pill" font-weight="700" fill="#bae6fd">Live Document Preview</text>
+      <text x="10" y="30" class="item-desc">Real-time ATS layout view</text>
+    </g>
+
+    <g transform="translate(14, 140)">
+      <rect width="178" height="38" rx="6" fill="#0b2447" stroke="#0369a1" stroke-width="0.8"/>
+      <text x="10" y="17" class="code-pill" font-weight="700" fill="#bae6fd">State Management</text>
+      <text x="10" y="30" class="item-desc">Zustand reactive store</text>
+    </g>
+
+    <g transform="translate(14, 186)">
+      <rect width="178" height="38" rx="6" fill="#0b2447" stroke="#0369a1" stroke-width="0.8"/>
+      <text x="10" y="17" class="code-pill" font-weight="700" fill="#bae6fd">ATS Format Guard</text>
+      <text x="10" y="30" class="item-desc">Standard fonts &amp; typography</text>
+    </g>
+
+    <text x="14" y="250" font-family="monospace" font-size="9" fill="#38bdf8">✓ Hydrated client:idle</text>
+    <text x="14" y="262" font-family="monospace" font-size="9" fill="#38bdf8">✓ Fast responsive modal</text>
+  </g>
+
+  <!-- Arrow 2 -> 3 -->
+  <line x1="460" y1="201" x2="478" y2="201" stroke="#38bdf8" stroke-width="1.8" marker-end="url(#arrow)"/>
+
+  <!-- Flow Block 3: Dual Compilation Engines -->
+  <g transform="translate(484, 64)">
+    <rect width="254" height="274" rx="10" fill="url(#cardGrad)" stroke="#334155" stroke-width="1.2"/>
+    <rect x="14" y="14" width="100" height="20" rx="4" fill="#334155" fill-opacity="0.5"/>
+    <text x="64" y="28" text-anchor="middle" class="badge" fill="#cbd5e1">3. DUAL ENGINES</text>
+
+    <text x="14" y="56" class="title-text" fill="#f8fafc">In-Memory Compilers</text>
+    <text x="14" y="72" class="sub-text">src/utils/cv.ts Generators</text>
+
+    <line x1="14" y1="84" x2="240" y2="84" stroke="#1e293b"/>
+
+    <!-- Engine A: docx -->
+    <g transform="translate(14, 94)">
+      <rect width="226" height="74" rx="8" fill="url(#docxGrad)" stroke="#2563eb" stroke-width="1"/>
+      <rect x="10" y="10" width="82" height="18" rx="4" fill="#1d4ed8"/>
+      <text x="51" y="22" text-anchor="middle" font-family="monospace" font-size="9.5" font-weight="700" fill="#eff6ff">DOCX ENGINE</text>
+      <text x="102" y="22" font-family="monospace" font-size="9.5" fill="#93c5fd">library: docx.js</text>
+
+      <text x="10" y="44" font-family="sans-serif" font-size="10" font-weight="600" fill="#dbeafe">AST Programmatic Builder</text>
+      <text x="10" y="58" class="item-desc">Document → Paragraph → TextRun</text>
+      <text x="10" y="68" font-family="monospace" font-size="8.5" fill="#60a5fa">Packer.toBlob() → Word 2016+ standard</text>
+    </g>
+
+    <!-- Engine B: jspdf + html2canvas -->
     <g transform="translate(14, 178)">
-      <rect width="152" height="46" rx="6" fill="#1e293b"/>
-      <text x="10" y="20" font-family="monospace" font-size="10" fill="#38bdf8">Hidden State [h_t]</text>
-      <text x="10" y="36" font-family="sans-serif" font-size="9.5" fill="#94a3b8">Projects next Lat/Lon coord</text>
+      <rect width="226" height="74" rx="8" fill="url(#pdfGrad)" stroke="#db2777" stroke-width="1"/>
+      <rect x="10" y="10" width="74" height="18" rx="4" fill="#be185d"/>
+      <text x="47" y="22" text-anchor="middle" font-family="monospace" font-size="9.5" font-weight="700" fill="#fff1f2">PDF ENGINE</text>
+      <text x="94" y="22" font-family="monospace" font-size="9.5" fill="#fbcfe8">jspdf + canvas</text>
+
+      <text x="10" y="44" font-family="sans-serif" font-size="10" font-weight="600" fill="#fce7f3">Vector &amp; High-DPI Canvas</text>
+      <text x="10" y="58" class="item-desc">A4 Coordinate layout &amp; paging</text>
+      <text x="10" y="68" font-family="monospace" font-size="8.5" fill="#f472b6">doc.save() → Pixel-perfect printable</text>
     </g>
 
-    <text x="14" y="252" font-family="sans-serif" font-size="10" fill="#10b981">Trained across 12 Scenarios</text>
+    <text x="14" y="262" font-family="monospace" font-size="9" fill="#94a3b8">⚡ 100% Client-side execution in ms</text>
   </g>
 
-  <!-- Connection Arrow 3 -->
-  <line x1="606" y1="207" x2="628" y2="207" stroke="#38bdf8" stroke-width="2" marker-end="url(#arrow)"/>
+  <!-- Arrow 3 -> 4 -->
+  <line x1="740" y1="201" x2="758" y2="201" stroke="#38bdf8" stroke-width="1.8" marker-end="url(#arrow)"/>
 
-  <!-- STEP 4: Evaluation & Geodesic Validation -->
-  <g transform="translate(636, 72)">
-    <rect width="144" height="270" rx="10" fill="url(#cardGrad)" stroke="#334155" stroke-width="1.2"/>
-    <rect x="14" y="14" width="86" height="20" rx="4" fill="#059669" fill-opacity="0.2"/>
-    <text x="57" y="28" text-anchor="middle" class="step-badge" fill="#34d399">4. METRICS</text>
+  <!-- Flow Block 4: Output & Delivery -->
+  <g transform="translate(764, 64)">
+    <rect width="172" height="274" rx="10" fill="url(#deliverGrad)" stroke="#16a34a" stroke-width="1.2"/>
+    <rect x="14" y="14" width="76" height="20" rx="4" fill="#16a34a" fill-opacity="0.25"/>
+    <text x="52" y="28" text-anchor="middle" class="badge" fill="#86efac">4. OUTPUT</text>
 
-    <text x="14" y="58" class="step-title">Model Evaluation</text>
-    <text x="14" y="76" class="step-sub">Geodesic precision</text>
-    <text x="14" y="92" class="step-sub">Spatial coordinates</text>
+    <text x="14" y="56" class="title-text" fill="#f0fdf4">Instant Blob</text>
+    <text x="14" y="72" class="sub-text">Direct Client Download</text>
 
-    <line x1="14" y1="108" x2="130" y2="108" stroke="#1e293b"/>
+    <line x1="14" y1="84" x2="158" y2="84" stroke="#1e293b"/>
 
-    <rect x="14" y="122" width="116" height="34" rx="4" fill="#1e293b"/>
-    <text x="20" y="136" font-family="sans-serif" font-size="9" fill="#94a3b8">MAE (Degrees)</text>
-    <text x="20" y="150" class="code-pill" font-weight="700" fill="#38bdf8">0.127405°</text>
+    <g transform="translate(14, 94)">
+      <rect width="144" height="40" rx="6" fill="#143e21" stroke="#22c55e" stroke-width="0.8"/>
+      <text x="8" y="18" class="code-pill" font-weight="700" fill="#bbf7d0">.docx (Word)</text>
+      <text x="8" y="32" class="item-desc">Native ATS Readable</text>
+    </g>
 
-    <rect x="14" y="164" width="116" height="34" rx="4" fill="#1e293b"/>
-    <text x="20" y="178" font-family="sans-serif" font-size="9" fill="#94a3b8">RMSE (Degrees)</text>
-    <text x="20" y="192" class="code-pill" font-weight="700" fill="#818cf8">0.144091°</text>
+    <g transform="translate(14, 142)">
+      <rect width="144" height="40" rx="6" fill="#143e21" stroke="#22c55e" stroke-width="0.8"/>
+      <text x="8" y="18" class="code-pill" font-weight="700" fill="#bbf7d0">.pdf (Vector)</text>
+      <text x="8" y="32" class="item-desc">Print-Ready Format</text>
+    </g>
 
-    <rect x="14" y="206" width="116" height="34" rx="4" fill="#065f46" fill-opacity="0.4" stroke="#10b981" stroke-width="0.8"/>
-    <text x="20" y="220" font-family="sans-serif" font-size="9" fill="#a7f3d0">Haversine (km)</text>
-    <text x="20" y="234" class="code-pill" font-weight="700" fill="#34d399">15.885 km ★</text>
-  </g>
+    <g transform="translate(14, 192)">
+      <rect width="144" height="34" rx="4" fill="#0d2815"/>
+      <text x="8" y="15" font-family="sans-serif" font-size="9" font-weight="700" fill="#4ade80">URL.createObjectURL</text>
+      <text x="8" y="27" font-family="monospace" font-size="8.5" fill="#86efac">Zero Network Overhead</text>
+    </g>
 
-  <!-- Connection Arrow 4 -->
-  <line x1="782" y1="207" x2="804" y2="207" stroke="#38bdf8" stroke-width="2" marker-end="url(#arrow)"/>
-
-  <!-- STEP 5: Deployment & Disaster Mitigation -->
-  <g transform="translate(812, 72)">
-    <rect width="124" height="270" rx="10" fill="url(#cardGrad)" stroke="#38bdf8" stroke-width="1.2"/>
-    <rect x="10" y="14" width="94" height="20" rx="4" fill="#0284c7" fill-opacity="0.2"/>
-    <text x="57" y="28" text-anchor="middle" class="step-badge">5. DEPLOY</text>
-
-    <text x="10" y="58" font-family="sans-serif" font-size="12" font-weight="700" fill="#f1f5f9">Streamlit UI</text>
-    <text x="10" y="74" class="step-sub">&amp; Web App</text>
-
-    <line x1="10" y1="92" x2="114" y2="92" stroke="#1e293b"/>
-
-    <text x="10" y="112" font-family="sans-serif" font-size="10" font-weight="600" fill="#cbd5e1">Target Area:</text>
-    <text x="10" y="128" font-family="sans-serif" font-size="10" fill="#38bdf8">West Sumatra</text>
-    <text x="10" y="142" font-family="sans-serif" font-size="9.5" fill="#94a3b8">Coastline Zone</text>
-
-    <line x1="10" y1="160" x2="114" y2="160" stroke="#1e293b"/>
-
-    <text x="10" y="180" font-family="sans-serif" font-size="10" font-weight="600" fill="#cbd5e1">Objective:</text>
-    <text x="10" y="196" font-family="sans-serif" font-size="9.5" fill="#e2e8f0">Early Warning</text>
-    <text x="10" y="210" font-family="sans-serif" font-size="9" fill="#94a3b8">Disaster Risk</text>
-    <text x="10" y="224" font-family="sans-serif" font-size="9" fill="#94a3b8">Reduction (DRR)</text>
-
-    <rect x="10" y="240" width="104" height="20" rx="4" fill="#0284c7"/>
-    <text x="62" y="254" text-anchor="middle" font-family="sans-serif" font-size="9" font-weight="700" fill="#ffffff">Decision Support</text>
+    <text x="14" y="250" font-family="monospace" font-size="9" fill="#4ade80">★ Privacy First</text>
+    <text x="14" y="262" font-family="monospace" font-size="9" fill="#4ade80">★ 100% Free &amp; Offline</text>
   </g>
 </svg>
