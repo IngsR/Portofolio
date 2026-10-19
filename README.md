@@ -1,344 +1,358 @@
 <div align="center">
 
-<img src="./public/assets/banner.svg" alt="Ikhwan Ramadhan - Portfolio &amp; Research Ecosystem Banner" width="100%" />
+<img src="./public/assets/banner.svg" alt="Ikhwan Ramadhan - Modern Developer Portfolio & Showcase Banner" width="100%" />
+
+<br/>
+<br/>
+
+# ✨ Modern Developer Portfolio & Showcase
+
+**A blazing-fast, aesthetic, and production-ready developer portfolio web application.**  
+Engineered with **Astro 7**, **React 19**, **TypeScript**, and **Tailwind CSS v4**.
 
 <br/>
 
 [![Live Production](https://img.shields.io/badge/Live_Site-ikhwann.my.id-0284c7?style=for-the-badge&logo=google-chrome&logoColor=white)](https://ikhwann.my.id)
-[![Cyclone Predictor](https://img.shields.io/badge/Cyclone_App-prediksi.ikhwann.my.id-059669?style=for-the-badge&logo=streamlit&logoColor=white)](https://prediksi.ikhwann.my.id)
 [![Astro Version](https://img.shields.io/badge/Astro-v7.2-bc52ee?style=for-the-badge&logo=astro&logoColor=white)](https://astro.build)
 [![React 19](https://img.shields.io/badge/React-v19.0-20232a?style=for-the-badge&logo=react&logoColor=61dafb)](https://react.dev)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.8-3178c6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-v4.1-38b2ac?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com)
-[![ONNX Runtime](https://img.shields.io/badge/ONNX_Runtime-Web_Inference-005ced?style=for-the-badge&logo=onnx&logoColor=white)](https://onnxruntime.ai)
 [![Vercel Edge](https://img.shields.io/badge/Deployed_on-Vercel_Edge-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://vercel.com)
+[![License: MIT](https://img.shields.io/badge/License-MIT-emerald.svg?style=for-the-badge)](LICENSE)
 
-<p align="center">
-  <strong>Ekosistem Rekayasa Perangkat Lunak Personal &amp; Riset Skripsi Deep Learning Terapan</strong><br/>
-  Dibangun dengan <em>Astro Island Architecture</em>, inferensi <em>serverless neural network</em> berbasis <em>ONNX Runtime</em>, dan permodelan deret waktu geospasial <em>Long Short-Term Memory (LSTM)</em>.
-</p>
+<br/>
 
-[Jelajahi Portofolio](https://ikhwann.my.id) • [Coba Prediksi Siklon](https://prediksi.ikhwann.my.id) • [Repositori Prediksi Siklon](https://github.com/IngsR/PrediksiSIklon-LSTM) • [Dokumentasi Riset](#-flagship-research-prediksi-lintasan-siklon-tropis-lstm)
+**[ 🇺🇸 English ](README.md)** • **[ 🇮🇩 Bahasa Indonesia ](README.id.md)**
+
+<br/>
+
+[🚀 Live Demo](https://ikhwann.my.id) • [✨ Key Features](#-key-features) • [🏗️ System Architecture](#️-system-architecture) • [🛠️ Tech Stack](#️-tech-stack) • [⚡ Quick Start](#-quick-start) • [🎨 Customization Guide](#-customization-guide)
 
 </div>
 
 ---
 
-## 📑 Daftar Isi
+## 🌟 Overview
 
-- [🌟 Sekilas Proyek (Overview)](#-sekilas-proyek-overview)
-- [🌪️ Flagship Research: Prediksi Lintasan Siklon Tropis LSTM](#️-flagship-research-prediksi-lintasan-siklon-tropis-lstm)
-  - [Konteks Saintifik &amp; Urgensi Mitigasi Bencana](#konteks-saintifik--urgensi-mitigasi-bencana)
-  - [Abstrak Akademik Resmi (Bahasa Indonesia)](#abstrak-akademik-resmi-bahasa-indonesia)
-  - [Official Academic Abstract (English)](#official-academic-abstract-english)
-  - [Benchmark &amp; Evaluasi Empiris (12 Skenario Eksperimen)](#benchmark--evaluasi-empiris-12-skenario-eksperimen)
-- [🏗️ Arsitektur Sistem &amp; Paradigma Astro Islands](#️-arsitektur-sistem--paradigma-astro-islands)
-- [⚡ Fitur Unggulan Rekayasa Web](#-fitur-unggulan-rekayasa-web)
-- [💼 Katalog Proyek Terpilih](#-katalog-proyek-terpilih)
-- [🛠️ Tech Stack &amp; Tooling](#️-tech-stack--tooling)
-- [📂 Struktur Repositori](#-struktur-repositori)
-- [💻 Panduan Penginstalan &amp; Pengembangan Lokal](#-panduan-penginstalan--pengembangan-lokal)
-- [🌐 Arsitektur Internasionalisasi (i18n)](#-arsitektur-internasionalisasi-i18n)
-- [📄 Lisensi &amp; Kontak](#-lisensi--kontak)
+Welcome to the official repository for **Ikhwan Ramadhan's Developer Portfolio** ([ikhwann.my.id](https://ikhwann.my.id)).
+
+Unlike standard static portfolios or heavy Single Page Applications (SPAs), this project is engineered using **Astro's Island Architecture** combined with **React 19**. It delivers the speed of pre-rendered static HTML with the power of selective client-side interactivity, achieving near-perfect Lighthouse scores while offering advanced client-side features like an **in-browser ATS resume generator (PDF & DOCX)**, **instant case-study modals**, **multilingual localization (i18n)**, and **smooth physics-based inertial scrolling**.
+
+### ⚡ Highlights at a Glance
+- 🚀 **Sub-300ms First Contentful Paint (FCP)** via zero-JS static HTML shell.
+- ⚛️ **Partial Hydration**: React 19 JavaScript is shipped *only* to interactive components.
+- 📄 **In-Browser ATS Document Engine**: Export resumes to both **PDF** and native **DOCX** client-side.
+- 🎨 **Next-Gen Design System**: Tailwind CSS v4 with dark mode and buttery-smooth animations.
+- 🌐 **First-Class i18n**: Built-in Indonesian (`/`) and English (`/en/`) localized routing.
+- 🎛️ **100% Data-Driven**: Easily customizable via central JSON schemas (`portfolio.json` & `cv.json`).
 
 ---
 
-## 🌟 Sekilas Proyek (Overview)
+## ✨ Key Features
 
-Repositori ini merupakan **proyek personal unggulan Ikhwan Ramadhan** (*Full-Stack Software Engineer &amp; Data Science Graduate* dari Universitas Putra Indonesia "YPTK" Padang). 
+### ⚡ Zero-JS Core & Astro Island Architecture
+Pages are pre-rendered statically at build time. Text content, layout scaffolding, and SEO tags ship as pristine, zero-JavaScript HTML. JavaScript is only downloaded and executed when a visitor interacts with an island.
 
-Aplikasi web ini bukan sekadar halaman portofolio statis konvensional, melainkan **platform showcase rekayasa modern** yang mengintegrasikan:
-1. **Zero-JS Default Performance**: Memanfaatkan arsitektur *Astro Islands* untuk menyajikan konten presentasi dalam format static HTML secepat kilat (*First Contentful Paint* &lt; 300ms) di jaringan Edge CDN Vercel.
-2. **Selective React 19 Hydration**: Komponen interaktif kompleks (seperti kanvas peta geospasial, generator CV dinamis ke format PDF &amp; DOCX, visualisasi partikel *canvas confetti*, dan *WebGL shader*) diisolasi ke dalam pulau-pulau interaktif (*island*) yang hanya dihidrasi ketika dibutuhkan.
-3. **Diseminasi Riset Skripsi Deep Learning**: Mengintegrasikan model *Machine Learning* peramalan lintasan badai siklon tropis hasil riset skripsi langsung ke peramban pengguna melalui *ONNX Runtime* tanpa beban komputasi backend server.
+### 📄 In-Browser Dual-Engine ATS CV Generator
+Visitors and recruiters can preview and export professional resumes on the fly directly in the browser:
+- **PDF Export**: Pixel-perfect printable document rendering powered by `jspdf` and `html2canvas`.
+- **Native DOCX Export**: Clean, semantically structured Microsoft Word documents compiled with `docx` for maximum ATS scanner compatibility.
+
+### 💼 Interactive Project Showcase & Deep-Dive Modals
+- Real-time keyword search and reactive tag filtering.
+- Rich modal case studies complete with problem statements, architectural solutions, tech badges, live demo previews, and GitHub repository links.
+- Backed by a lightweight **Zustand store** for instant, jitter-free state transitions.
+
+### 📝 Markdown Case-Study Viewer
+Integrated Markdown viewer with **GitHub Flavored Markdown (GFM)** support (`react-markdown` + `remark-gfm`), formatted code blocks, and styled tables.
+
+### 🎨 Tailwind CSS v4 & Modern Micro-Interactions
+- Built using the latest **Tailwind CSS v4** engine with CSS-first configuration.
+- Fluid micro-animations powered by **Motion (Framer Motion v12)**.
+- Buttery smooth inertial scrolling powered by **Lenis**.
+- Subtle canvas confetti celebratory triggers (`canvas-confetti`).
+
+### 🌓 Zero-Flicker Dark / Light Mode
+Persistent theme switching synchronized with system color preferences (`prefers-color-scheme`) and `localStorage`, rendered without Flash of Unstyled Content (FOUC).
+
+### 🌐 Native Multilingual Support (i18n)
+- Clean, SEO-friendly dual-path routing:
+  - Indonesian: `/`, `/portfolio`, `/about`, `/contact`
+  - English: `/en/`, `/en/portfolio`, `/en/about`, `/en/contact`
+- Fully typed localization dictionaries with seamless fallbacks.
+
+### 🔍 Comprehensive SEO & Open Graph Automation
+- Complete **JSON-LD Structured Data** (`Person`, `WebSite`, `WebPage`, `BreadcrumbList`).
+- Dynamic Open Graph image generation (`scripts/generate-og.mjs`).
+- Auto-generated `sitemap-index.xml` via `@astrojs/sitemap`.
 
 ---
 
-## 🌪️ Flagship Research: Prediksi Lintasan Siklon Tropis LSTM
+## 🏗️ System Architecture
+
+The project follows a modern three-tier frontend architecture designed for optimal performance and maintainability:
 
 <div align="center">
-  <img src="./public/assets/cyclone-lstm-architecture.svg" alt="Diagram Alir Arsitektur Riset Prediksi Lintasan Siklon Tropis LSTM" width="100%" />
+  <img src="./public/assets/system-architecture.svg" alt="Astro Islands & Client Architecture Diagram" width="100%" />
 </div>
 
-### Konteks Saintifik & Urgensi Mitigasi Bencana
+### 1. Edge & Routing Tier (Vercel Edge Network)
+- Static files distributed globally on Vercel CDN for minimal Time to First Byte (TTFB).
+- URL-level language routing (`/` vs `/en/`) with proper canonical and hreflang tags.
 
-Siklon tropis di kawasan Samudra Hindia (*Indian Ocean*) merupakan salah satu ancaman bencana hidrometeorologi paling destruktif bagi wilayah pesisir barat Indonesia, khususnya Provinsi Sumatera Barat. Pergerakan siklon tropis memiliki sifat **dinamika non-linier dan spasio-temporal yang sangat kompleks** karena dipengaruhi gaya Coriolis lintas hemisfer, tekanan udara sentral, suhu permukaan laut (*sea surface temperature*), dan vortisitas atmosferik.
+### 2. Static Shell Tier (Astro SSG Engine)
+- Pre-renders static layouts, semantic typography, navigation shells, and metadata schemas.
+- Delivers instantaneous rendering with zero client-side JavaScript execution.
 
-Dalam riset skripsi ini, arsitektur **Long Short-Term Memory (LSTM)** dimanfaatkan untuk memodelkan deret waktu trajektori badai. Mekanisme gerbang (*gating mechanism: forget gate, input gate, output gate*) pada sel LSTM terbukti mampu mengatasi masalah *vanishing gradient* yang kerap melumpuhkan RNN tradisional dalam mempelajari dependensi sekuensial jangka panjang.
-
-Riset ini menguji **12 skenario eksperimen terkontrol komparatif** yang mengombinasikan **3 domain basin perairan** dengan **4 variasi sliding window temporal**:
-- **Dataset**: *International Best Track Archive for Climate Stewardship* (IBTrACS) periode **1980–2025**.
-- **Domain Basin**:
-  1. *North Indian Ocean* (NI) — belahan bumi utara dengan sirkulasi siklonik berlawanan arah jarum jam.
-  2. *South Indian Ocean* (SI) — belahan bumi selatan dengan sirkulasi siklonik searah jarum jam.
-  3. *Gabungan* (GAB) — penggabungan lintas basin untuk memperkaya keragaman fitur spasio-temporal.
-- **Variasi Temporal Sliding Window**: 8, 16, 24, dan 32 timesteps.
-- **Validasi Metrik Geodetik Fisik**: *Mean Absolute Error* (MAE), *Root Mean Square Error* (RMSE), serta *Haversine Distance Formula* untuk mengukur deviasi jarak lengkung fisik di permukaan bumi (km).
-
----
-
-### Abstrak Akademik Resmi (Bahasa Indonesia)
-
-> [!NOTE]
-> **Format Standar Publikasi Jurnal Terakreditasi & Skripsi Sarjana Komputer**
-
-```text
-ABSTRAK
-
-Estimasi lintasan siklon tropis merepresentasikan tantangan kritis dalam mitigasi bencana 
-hidrometeorologis akibat dinamika atmosferik spasio-temporal yang sangat non-linier dan 
-kompleks. Penelitian ini bertujuan untuk mengembangkan dan mengevaluasi model peramalan 
-lintasan siklon tropis berbasis arsitektur Long Short-Term Memory (LSTM), sekaligus 
-mengintegrasikannya ke dalam platform visualisasi geospasial interaktif berbasis Streamlit 
-sebagai instrumen pendukung keputusan mitigasi bencana, khususnya di kawasan pesisir barat 
-Sumatra. Penelitian ini memanfaatkan data historis International Best Track Archive for Climate 
-Stewardship (IBTrACS) periode 1980–2025 yang dievaluasi ke dalam tiga skenario domain perairan, 
-yaitu North Indian Ocean (NI), South Indian Ocean (SI), dan Gabungan (GAB). Eksperimen dirancang 
-secara komparatif dengan menguji variasi konfigurasi sliding window temporal sebesar 8, 16, 24, 
-dan 32 timesteps. Evaluasi performa model dilakukan secara komprehensif menggunakan metrik Mean 
-Absolute Error (MAE), Root Mean Square Error (RMSE), serta Haversine Distance untuk mengukur 
-deviasi jarak geodetik fisik di permukaan bumi. Hasil penelitian menunjukkan bahwa model GAB 
-dengan konfigurasi sliding window 8 timesteps (GAB-8) mencapai performa optimal dengan nilai 
-MAE sebesar 0,127405 derajat, RMSE sebesar 0,144091 derajat, dan Mean Haversine Distance sebesar 
-15,885 km. Temuan empiris ini mengindikasikan bahwa karakteristik variabilitas geomorfologi basin 
-dan resolusi sliding window berpengaruh signifikan terhadap kapasitas generalisasi jaringan LSTM; 
-konfigurasi temporal yang lebih ringkas terbukti efektif meminimalisasi akumulasi galat (error 
-accumulation) dan mencegah fenomena over-smoothing. Luaran riset ini berhasil diimplementasikan 
-ke dalam antarmuka berbasis web untuk memfasilitasi pemantauan trajektori siklon tropis secara 
-terperinci, memperkuat sistem peringatan dini, serta menjadi landasan referensi bagi pengembangan 
-model prediksi atmosferik berbasis pembelajaran mendalam di masa mendatang.
-
-Kata Kunci: Siklon Tropis, Prediksi Lintasan, Long Short-Term Memory (LSTM), IBTrACS, Haversine Distance, Mitigasi Bencana Hidrometeorologi.
-```
+### 3. Interactive Island Tier (React 19)
+- Islands hydrate independently (`client:load` or `client:visible`):
+  - `ProjectShowcase`: Filter, search, and reactive portfolio catalog.
+  - `CvModal`: Dynamic in-browser PDF & DOCX resume compiler.
+  - `MarkdownModal`: Project technical documentation viewer.
+  - `Navbar & ThemeToggle`: Theme switcher and responsive navigation drawer.
 
 ---
 
-### Official Academic Abstract (English)
-
-> [!NOTE]
-> **International Academic Register / IEEE & ScienceDirect Indexed Standard**
-
-```text
-ABSTRACT
-
-Tropical cyclone track forecasting poses a fundamental challenge in hydrometeorological disaster 
-risk reduction owing to the highly non-linear, chaotic spatiotemporal atmospheric dynamics 
-governing cyclogenesis and storm propagation. This study aims to develop and rigorously evaluate 
-a recurrent deep learning framework utilizing Long Short-Term Memory (LSTM) neural networks for 
-cyclone trajectory forecasting, followed by its deployment into an interactive Streamlit-based 
-geospatial visualization platform to enhance disaster mitigation decision support systems, 
-specifically across the coastal territory of West Sumatra. The empirical modeling employs the 
-International Best Track Archive for Climate Stewardship (IBTrACS) dataset spanning 1980 to 2025, 
-partitioned into three geographical domain scenarios: North Indian Ocean (NI), South Indian Ocean 
-(SI), and Combined (GAB). A comparative experimental scheme was established across varying temporal 
-sliding window lengths of 8, 16, 24, and 32 timesteps. Model evaluation was conducted using spatial 
-coordinate metrics, namely Mean Absolute Error (MAE) and Root Mean Square Error (RMSE), complemented 
-by the Haversine Distance formula to quantify physical geodesic deviations across the Earth's surface. 
-Empirical findings reveal that the GAB configuration configured with an 8-timestep sliding window 
-(GAB-8) demonstrated superior predictive fidelity, yielding an MAE of 0.127405 degrees, an RMSE of 
-0.144091 degrees, and a Mean Haversine Distance of 15.885 km. The findings substantiate that 
-inter-basin morphological variance and temporal window resolution critically dictate the recurrent 
-model's generalization capabilities, wherein localized sequence lengths mitigate cumulative error 
-propagation and prevent over-smoothing phenomena. The resulting predictive model provides an 
-actionable geospatial tracking utility for early warning systems and establishes an empirical 
-benchmark for subsequent research in computational atmospheric sequence modeling.
-
-Keywords: Tropical Cyclone, Track Forecasting, Long Short-Term Memory (LSTM), IBTrACS, Haversine Distance, Hydrometeorological Disaster Mitigation.
-```
-
----
-
-### Benchmark & Evaluasi Empiris (12 Skenario Eksperimen)
-
-Riset membuktikan secara empiris relasi antara panjang temporal sliding window dan kapasitas generalisasi model LSTM:
-
-| Skenario Domain Basin | Sliding Window | Koordinat MAE ($\text{deg}^\circ$) | Koordinat RMSE ($\text{deg}^\circ$) | Mean Haversine Distance (km) | Status / Analisis Saintifik |
-| :--- | :---: | :---: | :---: | :---: | :--- |
-| **Combined Basin (GAB)** | **8 Timesteps** | **0,127405** | **0,144091** | **15,885 km** | 🏆 **Model Terbaik Terpilih (GAB-8)** |
-| Combined Basin (GAB) | 16 Timesteps | 0,141203 | 0,162180 | 18,240 km | Performa stabil, inersia mulai melebar |
-| Combined Basin (GAB) | 24 Timesteps | 0,189421 | 0,210540 | 24,115 km | Akumulasi galat temporal bertahap |
-| Combined Basin (GAB) | 32 Timesteps | 0,264109 | 0,298412 | 33,650 km | *Over-smoothing* akibat window terlalu panjang |
-| South Indian Ocean (SI)| 8 Timesteps | 0,138210 | 0,158911 | 17,420 km | Akurasi lokal basin selatan tinggi |
-| South Indian Ocean (SI)| 16 Timesteps | 0,159040 | 0,181230 | 20,130 km | Konvergen pada pola sirkulasi siklonik BBS |
-| South Indian Ocean (SI)| 24 Timesteps | 0,210450 | 0,235800 | 26,780 km | Terjadi dispersi trajektori badai |
-| South Indian Ocean (SI)| 32 Timesteps | 0,289120 | 0,324100 | 36,910 km | Akumulasi galat lintasan geodetik tinggi |
-| North Indian Ocean (NI)| 8 Timesteps | 0,149830 | 0,172150 | 18,920 km | Responsif terhadap badai Laut Arab & Teluk Benggala |
-| North Indian Ocean (NI)| 16 Timesteps | 0,174510 | 0,198420 | 22,340 km | Kepadatan sampel historis lebih moderat |
-| North Indian Ocean (NI)| 24 Timesteps | 0,234120 | 0,261900 | 29,850 km | Gangguan derau lintasan non-stasioner |
-| North Indian Ocean (NI)| 32 Timesteps | 0,312450 | 0,351200 | 39,810 km | Penurunan generalisasi prediksi |
-
-> [!TIP]
-> **Kesimpulan Riset Utama**: Sliding window 8 timesteps (setara dengan interval inersia temporal pendek) terbukti paling presisi dalam menangkap vektor akselerasi siklon tanpa terdistorsi akumulasi derau historis. Menggabungkan data lintas basin (GAB) memberikan diversitas fitur spasial yang membuat model lebih tangguh memproyeksikan badai yang mendekati perairan barat Indonesia.
-
----
-
-## 🏗️ Arsitektur Sistem & Paradigma Astro Islands
-
-<div align="center">
-  <img src="./public/assets/system-architecture.svg" alt="Diagram Arsitektur Perangkat Lunak Astro Islands dan Ekosistem Client" width="100%" />
-</div>
-
-Aplikasi ini mengadopsi prinsip **Modern Island Architecture**:
-
-1. **Rendering Model Hibrida**:
-   - `/`: Di-render secara statis (**SSG**) saat proses *build* (`prerender = true`), menjamin HTML instan disajikan langsung oleh Edge CDN tanpa dependensi runtime server.
-   - `/portfolio`: Memanfaatkan **SSR on-demand** (`prerender = false`) dengan mekanisme *Incremental Static Regeneration* (ISR) Vercel cache selama 1 jam. Request pertama dibuat di server, kemudian disimpan di cache edge global.
-2. **Zero-JS by Default**: Komponen teks, layout profil, sertifikat, dan artikel disajikan murni dalam format HTML dan CSS. Pengguna tidak perlu mengunduh bundel JavaScript besar hanya untuk membaca portofolio.
-3. **Isolasi Hidrasi Reaktif**:
-   - Komponen React 19 dimuat hanya saat terlihat di layar menggunakan directive `client:visible` atau saat interaksi langsung `client:load`.
-   - Mengurangi *Total Blocking Time* (TBT) hingga mendekati 0ms.
-
----
-
-## ⚡ Fitur Unggulan Rekayasa Web
-
-- 🧠 **Serverless On-Device ML Inference**: Model deep learning hasil konversi ONNX dieksekusi secara instan langsung di WebAssembly/WebGL browser pengguna via ONNX Runtime Web.
-- 📄 **Dual-Engine In-Browser CV Generator**: Ekspor resume profesional langsung dari browser ke format **PDF** (via `jspdf` & `html2canvas`) dan **DOCX** (via `docx`) sesuai standar ramah ATS.
-- 🌐 **First-Class Dual-Language (i18n)**: URL berbahasa Indonesia tanpa prefix (`/`), sedangkan bahasa Inggris berada di sub-jalur `/en/`. State context bahasa diselaraskan tanpa membebani state store runtime ganda.
-- 🎨 **Visual Shader Canvas**: Mengintegrasikan visual artistik interaktif menggunakan `@paper-design/shaders-react` dan akselerasi GPU.
-- 📱 **Fluid Typography & Responsive Design**: Menggunakan Tailwind CSS v4 dengan sistem token desain modern, dark mode native, dan micro-interaction berbasis Framer Motion (`motion`).
-
----
-
-## 💼 Katalog Proyek Terpilih
-
-| Proyek | Kategori | Inti Teknologi | Demo / Link |
-| :--- | :--- | :--- | :---: |
-| **Prediksi Siklon Tropis (IBTrACS)** | Deep Learning & Geospatial | Astro, LSTM, ONNX Runtime, Leaflet, Tailwind CSS | [Live Demo](https://prediksi.ikhwann.my.id) • [Repo](https://github.com/IngsR/PrediksiSIklon-LSTM) |
-| **Website Resmi SMPN 24 Padang** | Fullstack Web Portal | Next.js App Router, React, TypeScript, Zod, ISR, SSR | [Live Demo](https://smpn24padang.sch.id) • [Repo](https://github.com/Informatics-2025/Website-SMPN24padang) |
-| **IngStore Automotive E-Commerce** | Automotive Inventory CMS | Next.js, React, Tailwind CSS, Financial Calculator | [Live Demo](https://ingstore.my.id) |
-| **DockRank Analytics** | Developer Utilities | React 19, TypeScript, Docker Hub API, Tailwind CSS | [Repositori](https://github.com/IngsR) |
-
----
-
-## 🛠️ Tech Stack & Tooling
+## 🛠️ Tech Stack
 
 <table>
-  <tr>
-    <td align="center" width="20%"><strong>Frontend &amp; Island Shell</strong></td>
-    <td>Astro v7.2, React 19, TypeScript 5.8, Tailwind CSS v4, Motion (Framer Motion), Lucide Icons</td>
-  </tr>
-  <tr>
-    <td align="center"><strong>Machine Learning &amp; AI</strong></td>
-    <td>LSTM Recurrent Networks, Python (TensorFlow / Keras), ONNX Runtime Web, IBTrACS Dataset</td>
-  </tr>
-  <tr>
-    <td align="center"><strong>Geospatial &amp; Graphics</strong></td>
-    <td>Leaflet Geospatial Map, WebGL Shaders (@paper-design/shaders-react), Canvas Confetti</td>
-  </tr>
-  <tr>
-    <td align="center"><strong>Document Generation</strong></td>
-    <td>jsPDF, html2canvas, docx (Multi-Format Resume Builder)</td>
-  </tr>
-  <tr>
-    <td align="center"><strong>State &amp; Content</strong></td>
-    <td>Zustand v5, React Markdown, Remark GFM, Lenis Smooth Scroll</td>
-  </tr>
-  <tr>
-    <td align="center"><strong>Infrastructure &amp; CI/CD</strong></td>
-    <td>Vercel Edge Network (SSR/ISR), Git, Bun / Node.js Engine</td>
-  </tr>
+  <thead>
+    <tr>
+      <th width="24%">Layer</th>
+      <th>Technologies &amp; Libraries</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Core Framework</strong></td>
+      <td>
+        <a href="https://astro.build"><img src="https://img.shields.io/badge/Astro_v7.2-bc52ee?style=flat-square&logo=astro&logoColor=white" alt="Astro" /></a>
+        <a href="https://react.dev"><img src="https://img.shields.io/badge/React_v19-20232a?style=flat-square&logo=react&logoColor=61dafb" alt="React" /></a>
+        <a href="https://www.typescriptlang.org"><img src="https://img.shields.io/badge/TypeScript_5.8-3178c6?style=flat-square&logo=typescript&logoColor=white" alt="TypeScript" /></a>
+      </td>
+    </tr>
+    <tr>
+      <td><strong>Styling &amp; UI</strong></td>
+      <td>
+        <a href="https://tailwindcss.com"><img src="https://img.shields.io/badge/Tailwind_CSS_v4.1-38b2ac?style=flat-square&logo=tailwind-css&logoColor=white" alt="Tailwind CSS" /></a>
+        <a href="https://lucide.dev"><img src="https://img.shields.io/badge/Lucide_Icons-f97316?style=flat-square" alt="Lucide Icons" /></a>
+      </td>
+    </tr>
+    <tr>
+      <td><strong>Animation &amp; Scroll</strong></td>
+      <td>
+        <img src="https://img.shields.io/badge/Motion_(Framer)-black?style=flat-square&logo=framer&logoColor=white" alt="Motion" />
+        <img src="https://img.shields.io/badge/Lenis_Scroll-gray?style=flat-square" alt="Lenis" />
+        <img src="https://img.shields.io/badge/Canvas_Confetti-ff69b4?style=flat-square" alt="Confetti" />
+      </td>
+    </tr>
+    <tr>
+      <td><strong>Document Engines</strong></td>
+      <td>
+        <img src="https://img.shields.io/badge/jsPDF-e11d48?style=flat-square" alt="jsPDF" />
+        <img src="https://img.shields.io/badge/html2canvas-4f46e5?style=flat-square" alt="html2canvas" />
+        <img src="https://img.shields.io/badge/docx_(Word_Binary)-2563eb?style=flat-square" alt="docx" />
+      </td>
+    </tr>
+    <tr>
+      <td><strong>State &amp; Content</strong></td>
+      <td>
+        <img src="https://img.shields.io/badge/Zustand_v5-443e38?style=flat-square" alt="Zustand" />
+        <img src="https://img.shields.io/badge/React_Markdown_v10-0284c7?style=flat-square&logo=markdown&logoColor=white" alt="Markdown" />
+        <img src="https://img.shields.io/badge/Remark_GFM-10b981?style=flat-square" alt="Remark" />
+      </td>
+    </tr>
+    <tr>
+      <td><strong>Build &amp; Bundling</strong></td>
+      <td>
+        <a href="https://vitejs.dev"><img src="https://img.shields.io/badge/Vite_6-646cff?style=flat-square&logo=vite&logoColor=white" alt="Vite" /></a>
+        <img src="https://img.shields.io/badge/@astrojs/sitemap-bc52ee?style=flat-square" alt="Astro Sitemap" />
+        <img src="https://img.shields.io/badge/Prettier-f8b500?style=flat-square&logo=prettier&logoColor=white" alt="Prettier" />
+      </td>
+    </tr>
+    <tr>
+      <td><strong>Deployment &amp; Edge</strong></td>
+      <td>
+        <a href="https://vercel.com"><img src="https://img.shields.io/badge/Vercel_Edge_Network-000000?style=flat-square&logo=vercel&logoColor=white" alt="Vercel" /></a>
+        <img src="https://img.shields.io/badge/Vercel_Analytics-000000?style=flat-square" alt="Analytics" />
+      </td>
+    </tr>
+  </tbody>
 </table>
 
 ---
 
-## 📂 Struktur Repositori
+## 📂 Project Structure
+
+This project follows a clean, domain-driven structure adhering to strict `kebab-case` naming conventions:
 
 ```text
 .
 ├── public/
-│   ├── assets/                # Asset SVG kustom (banner, arsitektur sistem, diagram riset)
-│   ├── certificates/          # Salinan kredensial sertifikasi profesional
-│   ├── CV/                    # Dokumen cetak CV ATS
-│   ├── projects/              # Screenshot representatif & WebP thumbnail proyek
-│   └── upi-yptk.svg           # Logo universitas
+│   ├── assets/                # SVG banners & system architecture diagrams
+│   ├── certificates/          # Credential copies and certification images
+│   ├── CV/                    # Static CV files
+│   ├── projects/              # Optimized WebP thumbnails for portfolio case studies
+│   └── og.png                 # Default social share card
+├── scripts/
+│   └── generate-og.mjs        # Automated script to generate Open Graph image
 ├── src/
-│   ├── components/            # Komponen reaktif React (kebab-case) & Astro islands
-│   │   ├── hero.tsx           # Hero section interaktif dengan status ketersediaan
-│   │   ├── projects.tsx       # Filter grid proyek & modal detail studi kasus
-│   │   ├── cv-modal.tsx       # Generator CV interaktif (ekspor PDF/DOCX)
-│   │   ├── navbar.tsx         # Navigasi responsif & alih bahasa (i18n)
-│   │   └── footer.tsx         # Kanal kontak profesional
+│   ├── components/            # Reusable UI components & modal islands
+│   │   ├── layout/            # Navbar, Footer, and Canvas effects
+│   │   └── modal/             # CV Modal, Markdown Editor, and Detail dialogs
 │   ├── data/
-│   │   ├── locales/           # Kamus translasi i18n terstruktur (id/ & en/)
-│   │   ├── cv.json            # Data terpusat rekam jejak profesional & pendidikan
-│   │   └── portfolio.json     # Metadata komprehensif seluruh studi kasus proyek
+│   │   ├── locales/           # i18n translation dictionaries (id/ and en/)
+│   │   ├── cv.json            # Centralized resume, education, and career data
+│   │   └── portfolio.json     # Comprehensive portfolio project data
+│   ├── design/                # Design tokens and styling constants
+│   ├── features/              # Feature modules grouped by domain
+│   │   ├── hero/              # Hero banner, availability badge, CTA buttons
+│   │   ├── portfolio/         # Project grid, category filter, case study modals
+│   │   ├── about/             # Bio, timeline, skills, and background
+│   │   └── contact/           # Contact form and social communication channels
+│   ├── hooks/                 # Custom React hooks (useProjects, useModal, useTheme)
 │   ├── layouts/
-│   │   └── site.astro         # Shell dokumen HTML, OpenGraph, font, & metadata SEO
+│   │   └── site.astro         # Master HTML shell, SEO meta, JSON-LD Schema
 │   ├── pages/
-│   │   ├── index.astro        # Beranda utama (SSG, Bahasa Indonesia)
-│   │   ├── portfolio.astro    # Halaman katalog proyek lengkap (SSR / ISR Vercel)
-│   │   └── en/                # Halaman route internasional bahasa Inggris
+│   │   ├── index.astro        # Home page (Indonesian, SSG)
+│   │   ├── about.astro        # About Me page
+│   │   ├── portfolio.astro    # Portfolio showcase page
+│   │   ├── contact.astro      # Contact page
+│   │   ├── project/[slug].astro      # Static dynamic route for case studies
+│   │   ├── certificate/[id].astro    # Static dynamic route for certificates
+│   │   └── en/                # English localized routes (/en/...)
+│   ├── store/                 # Lightweight global state with Zustand
 │   ├── styles/
-│   │   └── global.css         # Import Tailwind CSS v4 & custom keyframes
-│   ├── utils/
-│   │   ├── format.ts          # Helper pemformatan tanggal, nama, & i18n getter
-│   │   └── cv-pdf.ts          # Logika komputasi pembuatan dokumen PDF/DOCX
-│   ├── app.tsx                # Client root provider & global modal state
-│   └── types.ts               # Interface TypeScript terpusat
-├── astro.config.mjs           # Konfigurasi Astro, adapter Vercel, & integrasi React
-├── package.json               # Manifest dependensi & skrip NPM
-└── tsconfig.json              # Konfigurasi compiler TypeScript
+│   │   └── global.css         # Tailwind CSS v4 directives & keyframe styles
+│   ├── utils/                 # Formatting utilities, date helpers, and i18n
+│   ├── app.tsx                # Client application root & island orchestrator
+│   └── types.ts               # Centralized TypeScript interface definitions
+├── astro.config.mjs           # Astro configuration & React plugin
+├── package.json               # Project dependencies and NPM scripts
+├── tsconfig.json              # TypeScript compiler configuration
+└── README.md                  # Project documentation
 ```
 
 ---
 
-## 💻 Panduan Penginstalan & Pengembangan Lokal
+## ⚡ Quick Start
 
-### Prasyarat
-- **Node.js**: Versi `>= 20.0.0`
-- **Package Manager**: `npm`, `pnpm`, atau `bun`
+### Prerequisites
+- **Node.js**: `v20.0.0` or higher
+- **Package Manager**: `npm`, `pnpm`, or `bun`
 
-### Langkah Instalasi
+### Installation Steps
 
-1. **Clone Repositori**:
+1. **Clone the Repository**:
    ```bash
    git clone https://github.com/IngsR/Portofolio.git
    cd Portofolio
    ```
 
-2. **Pasang Dependensi**:
+2. **Install Dependencies**:
    ```bash
    npm install
    ```
 
-3. **Jalankan Development Server**:
+3. **Configure Environment Variables (Optional)**:
+   ```bash
+   cp .env.example .env
+   ```
+
+4. **Start Local Development Server**:
    ```bash
    npm run dev
    ```
-   Aplikasi lokal akan berjalan pada `http://localhost:3000`.
+   Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-4. **Daftar Perintah yang Tersedia**:
+5. **Build for Production**:
    ```bash
-   npm run dev          # Menjalankan development server lokal dengan hot reload
-   npm run lint         # Memvalidasi konsistensi tipe TypeScript (tsc --noEmit)
-   npm run build        # Membuat bundel build produksi Astro
-   npm run preview      # Menguji jalannya build produksi secara lokal
-   npm run format:check # Memeriksa format penulisan kode dengan Prettier
+   npm run build
    ```
+   The optimized production bundle will be generated in the `dist/` directory.
 
 ---
 
-## 🌐 Arsitektur Internasionalisasi (i18n)
+## 🎛️ Customization Guide
 
-Astro berfungsi sebagai pengendali utama routing multibahasa:
-- Rute utama bahasa Indonesia: `/` dan `/portfolio`.
-- Rute padanan bahasa Inggris: `/en/` dan `/en/portfolio/`.
+You can easily adapt this repository to showcase your own projects and experience:
 
-Kamus data teks dikelola secara terstruktur di `src/data/locales/{id,en}/`. Data proyek di `portfolio.json` dan CV di `cv.json` dilengkapi objek translasi `translations.en`. Helper `getLocalizedProject()` secara otomatis mengembalikan teks bahasa Inggris jika tersedia, atau beralih ke teks dasar bahasa Indonesia sebagai *fallback*.
+### 1. Update Profile & Resume Data (`src/data/cv.json`)
+Replace the biographical information, work experience, education, skills, and contact links with your own details. The in-browser ATS CV generator automatically reads from this file to compile both PDF and DOCX documents.
+
+### 2. Add Your Projects (`src/data/portfolio.json`)
+Add your projects under the `projects` array. Each entry supports:
+- `title`, `slug`, `category`, `description`
+- `tags` (technology stack badges)
+- `links` (`demo`, `github`, `docs`)
+- `markdown` (detailed case study content rendered inside the modal)
+- `translations.en` (English translations for seamless bilingual display)
+
+### 3. Customize Domain & SEO Metadata
+- In [`astro.config.mjs`](file:///d:/Project/Portofolio/astro.config.mjs): update `site: "https://yourdomain.com"`
+- In [`src/layouts/site.astro`](file:///d:/Project/Portofolio/src/layouts/site.astro): update default titles, metadata, and JSON-LD schema info.
+
+### 4. Update Images & Assets
+Place your project screenshots in `public/projects/` and your certification images in `public/certificates/`.
 
 ---
 
-## 📄 Lisensi & Kontak
+## 📜 Available Scripts
 
-Seluruh konten portofolio, data riset, dokumen CV, desain aset grafis, dan kode aplikasi merupakan karya orisinal **Ikhwan Ramadhan**.
+| Script | Command | Description |
+| :--- | :--- | :--- |
+| `dev` | `npm run dev` | Runs the Astro local development server on `port 3000` with hot-reload |
+| `build` | `npm run build` | Compiles optimized static production assets to `dist/` |
+| `preview` | `npm run preview` | Locally serves and previews the built production bundle |
+| `lint` | `npm run lint` | Runs TypeScript type checking across all files (`tsc --noEmit`) |
+| `format` | `npm run format` | Automatically formats the entire codebase using Prettier |
+| `format:check` | `npm run format:check` | Verifies code formatting compliance without modifying files |
+| `og:generate` | `npm run og:generate` | Automatically generates the Open Graph social preview banner |
+| `clean` | `npm run clean` | Cleans up the `dist/` build directory and build caches |
 
-- **Email**: [ikhwan.ramadhan@example.com](mailto:ikhwan.ramadhan@example.com) *(atau melalui form kontak web)*
-- **GitHub**: [@IngsR](https://github.com/IngsR)
-- **LinkedIn**: [Ikhwan Ramadhan](https://linkedin.com)
-- **Live Portfolio**: [https://ikhwann.my.id](https://ikhwann.my.id)
+---
+
+## 🚀 Deployment
+
+The project is pre-configured for instant zero-configuration deployment to **Vercel**:
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FIngsR%2FPortofolio)
+
+### Manual Vercel Deployment
+1. Import this repository into your [Vercel Dashboard](https://vercel.com).
+2. Framework Preset: **Astro** (auto-detected).
+3. Build Command: `astro build` (default).
+4. Output Directory: `dist` (default).
+5. Deploy! Your portfolio will be served via Vercel's global Edge Network.
+
+---
+
+## 🤝 Contributing
+
+Contributions, issues, and feature requests are welcome!  
+Feel free to check out the [issues page](https://github.com/IngsR/Portofolio/issues).
+
+If you found this project helpful or inspiring, please consider giving it a **⭐️ Star**!
+
+---
+
+## 👨‍💻 Author
+
+**Ikhwan Ramadhan**
+
+- 🌐 Website: [https://ikhwann.my.id](https://ikhwann.my.id)
+- 🐙 GitHub: [@IngsR](https://github.com/IngsR)
+- 💼 LinkedIn: [Ikhwan Ramadhan](https://www.linkedin.com/in/ikhwn-rdn)
+- ✉️ Email: [ikhwn.rdn@gmail.com](mailto:ikhwn.rdn@gmail.com)
+
+---
+
+## 📄 License
+
+This project is licensed under the [MIT License](LICENSE).  
+Feel free to use this template to build your own developer portfolio!
 
 <div align="center">
   <br/>
-  <sub>Dirancang &amp; Dikembangkan dengan penuh dedikasi oleh <strong>Ikhwan Ramadhan</strong> • 2026</sub>
+  <sub>Crafted with passion & modern web technologies by <strong>Ikhwan Ramadhan</strong> • © 2026</sub>
 </div>

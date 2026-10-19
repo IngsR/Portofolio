@@ -66,36 +66,36 @@
   <!-- Left Content: Identity & Highlights -->
   <!-- Status Badge Pill -->
   <g transform="translate(60, 48)">
-    <rect width="260" height="32" rx="16" fill="#0f172a" stroke="url(#badgeBorder)" stroke-width="1.2"/>
+    <rect width="290" height="32" rx="16" fill="#0f172a" stroke="url(#badgeBorder)" stroke-width="1.2"/>
     <circle cx="16" cy="16" r="4.5" fill="#10b981">
       <animate attributeName="opacity" values="1;0.4;1" dur="2s" repeatCount="indefinite"/>
     </circle>
-    <text x="30" y="21" class="badge-text">PORTFOLIO &amp; RESEARCH ECOSYSTEM</text>
+    <text x="30" y="21" class="badge-text">MODERN DEVELOPER PORTFOLIO &amp; SHOWCASE</text>
   </g>
 
   <!-- Main Headline -->
   <text x="60" y="128" class="title">Ikhwan Ramadhan</text>
-  <text x="60" y="158" class="tagline">Full-Stack Software Engineer &amp; Data Science Researcher</text>
-  <text x="60" y="190" class="subtitle">Architecting high-performance web applications with Astro Islands &amp; advancing</text>
-  <text x="60" y="214" class="subtitle">spatiotemporal deep learning models for meteorological disaster mitigation.</text>
+  <text x="60" y="158" class="tagline">Full-Stack Web Developer • Modern Frontend Specialist</text>
+  <text x="60" y="190" class="subtitle">Ultra-fast developer portfolio powered by Astro 7 Island Architecture,</text>
+  <text x="60" y="214" class="subtitle">React 19, TypeScript, Tailwind CSS v4, and In-Browser ATS CV Generator.</text>
 
   <!-- Tech Pillars Pills -->
   <g transform="translate(60, 246)">
     <!-- Pill 1 -->
-    <rect x="0" y="0" width="160" height="34" rx="8" fill="#1e293b" fill-opacity="0.7" stroke="#334155"/>
-    <text x="14" y="22" class="badge-text">⚡ Astro Islands &amp; SSR</text>
+    <rect x="0" y="0" width="168" height="34" rx="8" fill="#1e293b" fill-opacity="0.7" stroke="#334155"/>
+    <text x="14" y="22" class="badge-text">⚡ Astro Islands &amp; SSG</text>
 
     <!-- Pill 2 -->
-    <rect x="172" y="0" width="182" height="34" rx="8" fill="#1e293b" fill-opacity="0.7" stroke="#334155"/>
-    <text x="186" y="22" class="badge-text">🌪️ LSTM Spatiotemporal</text>
+    <rect x="180" y="0" width="168" height="34" rx="8" fill="#1e293b" fill-opacity="0.7" stroke="#334155"/>
+    <text x="194" y="22" class="badge-text">⚛️ React 19 Islands</text>
 
     <!-- Pill 3 -->
-    <rect x="366" y="0" width="168" height="34" rx="8" fill="#1e293b" fill-opacity="0.7" stroke="#334155"/>
-    <text x="380" y="22" class="badge-text">⚡ ONNX Edge Inference</text>
+    <rect x="360" y="0" width="176" height="34" rx="8" fill="#1e293b" fill-opacity="0.7" stroke="#334155"/>
+    <text x="374" y="22" class="badge-text">📄 ATS CV Generator</text>
 
     <!-- Pill 4 -->
-    <rect x="546" y="0" width="156" height="34" rx="8" fill="#1e293b" fill-opacity="0.7" stroke="#334155"/>
-    <text x="560" y="22" class="badge-text">🎨 React 19 + Tailwind v4</text>
+    <rect x="548" y="0" width="156" height="34" rx="8" fill="#1e293b" fill-opacity="0.7" stroke="#334155"/>
+    <text x="562" y="22" class="badge-text">🎨 Tailwind CSS v4</text>
   </g>
 
   <!-- Bottom Metric Strip -->
@@ -103,18 +103,18 @@
     <line x1="0" y1="0" x2="640" y2="0" stroke="#334155" stroke-opacity="0.6"/>
 
     <g transform="translate(0, 18)">
-      <text x="0" y="24" class="stat-val">15.885 km</text>
-      <text x="0" y="42" class="stat-lbl">GAB-8 Haversine Distance</text>
+      <text x="0" y="24" class="stat-val">&lt; 300ms</text>
+      <text x="0" y="42" class="stat-lbl">First Contentful Paint</text>
     </g>
 
     <g transform="translate(190, 18)">
-      <text x="0" y="24" class="stat-val">0.1274°</text>
-      <text x="0" y="42" class="stat-lbl">Coordinate MAE (Spatial)</text>
+      <text x="0" y="24" class="stat-val">Zero-JS</text>
+      <text x="0" y="42" class="stat-lbl">Default Static Shell</text>
     </g>
 
     <g transform="translate(360, 18)">
-      <text x="0" y="24" class="stat-val">Zero-JS</text>
-      <text x="0" y="42" class="stat-lbl">Default Presentation Tier</text>
+      <text x="0" y="24" class="stat-val">100%</text>
+      <text x="0" y="42" class="stat-lbl">Strict TypeScript</text>
     </g>
 
     <g transform="translate(510, 18)">
@@ -123,7 +123,7 @@
     </g>
   </g>
 
-  <!-- Right Visual Card: Interactive Research Showcase -->
+  <!-- Right Visual Card: Interactive Web Engineering Showcase -->
   <g transform="translate(760, 52)">
     <!-- Glassmorphic Card Container -->
     <rect width="380" height="316" rx="14" fill="#0b1329" fill-opacity="0.85" stroke="url(#badgeBorder)" stroke-width="1.5"/>
@@ -133,44 +133,45 @@
     <circle cx="22" cy="22" r="5" fill="#ef4444"/>
     <circle cx="38" cy="22" r="5" fill="#f59e0b"/>
     <circle cx="54" cy="22" r="5" fill="#10b981"/>
-    <text x="76" y="27" font-family="monospace" font-size="12" fill="#94a3b8">tropical-cyclone-lstm.onnx</text>
+    <text x="76" y="27" font-family="monospace" font-size="12" fill="#94a3b8">ikhwan-ramadhan-portfolio</text>
 
     <!-- Card Body Content -->
     <g transform="translate(24, 68)">
-      <text x="0" y="0" class="card-title">UNDERGRADUATE THESIS SPOTLIGHT</text>
-      <text x="0" y="20" class="card-desc">Recurrent neural modeling for trajectory prediction</text>
-      <text x="0" y="36" class="card-desc">using IBTrACS (1980–2025) dataset benchmark.</text>
+      <text x="0" y="0" class="card-title">PORTFOLIO APP ARCHITECTURE</text>
+      <text x="0" y="20" class="card-desc">Modern frontend architecture engineered for speed,</text>
+      <text x="0" y="36" class="card-desc">flawless responsive UX, and ATS document export.</text>
 
       <!-- Mini Architecture Diagram inside Card -->
       <g transform="translate(0, 56)">
         <!-- Step 1 -->
         <rect x="0" y="0" width="94" height="48" rx="6" fill="#1e293b" stroke="#38bdf8" stroke-width="1"/>
-        <text x="47" y="20" text-anchor="middle" font-family="monospace" font-size="10" font-weight="700" fill="#38bdf8">IBTrACS</text>
-        <text x="47" y="36" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">1980-2025</text>
+        <text x="47" y="20" text-anchor="middle" font-family="monospace" font-size="10" font-weight="700" fill="#38bdf8">Astro SSG</text>
+        <text x="47" y="36" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">Zero-JS Core</text>
 
         <!-- Arrow 1 -->
         <path d="M 98 24 L 112 24" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
 
         <!-- Step 2 -->
         <rect x="116" y="0" width="102" height="48" rx="6" fill="#1e293b" stroke="#818cf8" stroke-width="1"/>
-        <text x="167" y="20" text-anchor="middle" font-family="monospace" font-size="10" font-weight="700" fill="#818cf8">GAB-8 LSTM</text>
-        <text x="167" y="36" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">Sliding Window</text>
+        <text x="167" y="20" text-anchor="middle" font-family="monospace" font-size="10" font-weight="700" fill="#818cf8">React 19</text>
+        <text x="167" y="36" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">Smart Islands</text>
 
         <!-- Arrow 2 -->
         <path d="M 222 24 L 236 24" stroke="#64748b" stroke-width="2"/>
 
         <!-- Step 3 -->
         <rect x="240" y="0" width="92" height="48" rx="6" fill="#1e293b" stroke="#10b981" stroke-width="1"/>
-        <text x="286" y="20" text-anchor="middle" font-family="monospace" font-size="10" font-weight="700" fill="#10b981">Streamlit</text>
-        <text x="286" y="36" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">Geospatial UI</text>
+        <text x="286" y="20" text-anchor="middle" font-family="monospace" font-size="10" font-weight="700" fill="#10b981">Vercel Edge</text>
+        <text x="286" y="36" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">Global CDN</text>
       </g>
 
-      <!-- Best Model Metric Box -->
+      <!-- Feature Highlight Box -->
       <g transform="translate(0, 122)">
         <rect x="0" y="0" width="332" height="58" rx="8" fill="#0f172a" stroke="#334155"/>
-        <text x="14" y="24" font-family="sans-serif" font-size="11" font-weight="700" fill="#e2e8f0">Optimal Scenario: Combined Basin (GAB-8)</text>
-        <text x="14" y="44" font-family="monospace" font-size="11" fill="#38bdf8">MAE: 0.127405° | RMSE: 0.144091°</text>
-        <text x="238" y="44" font-family="monospace" font-size="11" font-weight="700" fill="#10b981">15.885 km</text>
+        <text x="14" y="24" font-family="sans-serif" font-size="11" font-weight="700" fill="#e2e8f0">Dynamic ATS Resume Engine (PDF &amp; DOCX)</text>
+        <text x="14" y="44" font-family="monospace" font-size="10" fill="#38bdf8">i18n Multilingual</text>
+        <text x="135" y="44" font-family="monospace" font-size="10" fill="#94a3b8">• Dynamic SEO •</text>
+        <text x="245" y="44" font-family="monospace" font-size="10" font-weight="700" fill="#10b981">Dark Mode</text>
       </g>
     </g>
   </g>
