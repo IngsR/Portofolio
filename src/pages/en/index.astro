@@ -1,0 +1,14 @@
+---
+import App from "../../app";
+import SiteLayout from "../../layouts/site.astro";
+
+export const prerender = true;
+---
+
+<SiteLayout
+  locale="en"
+  title="Ikhwan Ramadhan | Software Engineer & Junior Web Developer"
+  description="Professional portfolio and engineering case studies of Ikhwan Ramadhan, Computer Science graduate specializing in full-stack web architectures, Next.js, React, and TypeScript."
+>
+  <App client:load locale="en" />
+</SiteLayout>

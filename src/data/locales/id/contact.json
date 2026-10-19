@@ -1,0 +1,62 @@
+{
+  "eyebrow": "Kontak & Informasi Terhubung",
+  "title": "Mari Berkolaborasi",
+  "intro": "Terbuka untuk peluang full-time, WFO, relokasi, kolaborasi, dan project web development.",
+  "workMessage": "Peluang Kerja / Proyek",
+  "whatsappTitle": "WhatsApp Langsung",
+  "whatsappSubtitle": "Respon cepat & santai",
+  "whatsappDescription": "Ingin berdiskusi cepat mengenai tawaran pekerjaan, interview, atau penawaran proyek? Klik tautan di bawah untuk chat langsung.",
+  "whatsappAction": "Chat WhatsApp",
+  "whatsappDirect": "Chat WhatsApp",
+  "emailLabel": "Alamat Email *",
+  "emailTitle": "Email Resmi",
+  "emailSubtitle": "Untuk undangan kerja & surat resmi",
+  "copyEmail": "Salin Email",
+  "copied": "Tersalin",
+  "copy": "Salin",
+  "openEmail": "Buka Email",
+  "availabilityTitle": "Kesiapan & Lokasi",
+  "locationLabel": "Status Kerja & Lokasi:",
+  "locationValue": "Siap On-Site / WFO di Seluruh Indonesia & Hybrid / Remote",
+  "responseLabel": "Waktu Respon:",
+  "responseValue": "Biasanya merespon dalam hitungan jam (08:00 - 21:00 WIB)",
+  "socialTitle": "Tautan Profesional",
+  "formTitle": "Kirim Pesan Langsung",
+  "formDescription": "Tinggalkan detail pesan atau pertanyaan Anda di bawah ini",
+  "successTitle": "Pesan Berhasil Terkirim!",
+  "successDescription": "Terima kasih telah menghubungi. Pesan Anda telah tersimpan dan saya akan segera merespon via email Anda.",
+  "sendAnother": "Kirim Pesan Lain",
+  "nameLabel": "Nama Lengkap / Instansi *",
+  "namePlaceholder": "Contoh: Budi Santoso / PT Maju Jaya",
+  "emailLabel": "Alamat Email *",
+  "emailPlaceholder": "nama@perusahaan.com",
+  "subjectLabel": "Subjek",
+  "subjectPlaceholder": "Contoh: Diskusi Lowongan Software Engineer",
+  "categoryLabel": "Kategori Keperluan",
+  "categories": {
+    "work": "Peluang Kerja Junior Web Developer (WFO / Hybrid / Remote)",
+    "development": "Pengembangan Web End-to-End (Next.js & REST API)",
+    "consultation": "Diskusi Teknis / Arsitektur Web & Deployment",
+    "other": "Keperluan Lainnya"
+  },
+  "messageLabel": "Pesan *",
+  "messagePlaceholder": "Tuliskan pesan, rincian tawaran, atau kebutuhan proyek Anda...",
+  "sending": "Mengirim Pesan...",
+  "faqEyebrow": "Tanya Jawab",
+  "faqTitle": "Pertanyaan yang Sering Diajukan",
+  "faq": [
+    {
+      "question": "Bagaimana cara menghubungi Ikhwan Ramadhan untuk peluang kerja Junior Web Developer?",
+      "answer": "Anda bisa menghubungi saya langsung melalui WhatsApp di +62 823-8647-3410, via email ke ikhwn.rdn@gmail.com, atau lewat form pesan di situs ini. Saya siap merespons dengan cepat untuk jadwal wawancara maupun diskusi teknis."
+    },
+    {
+      "question": "Apakah Anda siap bekerja On-Site (WFO) atau siap relokasi?",
+      "answer": "Ya, saya siap dan terbuka untuk penempatan On-Site (WFO) di seluruh wilayah Indonesia dan siap relokasi, begitu pula untuk sistem kerja Hybrid maupun Remote."
+    },
+    {
+      "question": "Apa keahlian teknis utama yang Anda bawa untuk tim?",
+      "answer": "Fokus saya adalah software engineering, terutama membangun aplikasi dari frontend hingga backend dengan Next.js dan TypeScript. Saya menangani antarmuka, REST API, database, validasi Zod, pengujian, keamanan dasar, Git workflow, dan deployment serverless."
+    }
+  ],
+  "submit": "Kirim Pesan"
+}

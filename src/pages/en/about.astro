@@ -1,0 +1,14 @@
+---
+import App from "../../app";
+import SiteLayout from "../../layouts/site.astro";
+
+export const prerender = true;
+---
+
+<SiteLayout
+  locale="en"
+  title="Academic & Professional Profile | Ikhwan Ramadhan"
+  description="Academic background, software engineering competencies, and professional credentials of Ikhwan Ramadhan (B.S. in Informatics Engineering)."
+>
+  <App client:idle initialPage="about" locale="en" />
+</SiteLayout>

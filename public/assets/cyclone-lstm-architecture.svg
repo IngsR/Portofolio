@@ -1,0 +1,174 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 380" width="100%" height="100%">
+  <defs>
+    <linearGradient id="cardGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#090d16"/>
+    </linearGradient>
+
+    <linearGradient id="headerGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0284c7"/>
+      <stop offset="100%" stop-color="#6366f1"/>
+    </linearGradient>
+
+    <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#38bdf8"/>
+    </marker>
+  </defs>
+
+  <style>
+    .step-title { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-weight: 700; font-size: 13px; fill: #f1f5f9; }
+    .step-sub { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-weight: 500; font-size: 11px; fill: #94a3b8; }
+    .step-badge { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-weight: 700; font-size: 10px; fill: #38bdf8; text-transform: uppercase; }
+    .code-pill { font-family: monospace; font-size: 10.5px; fill: #e2e8f0; }
+  </style>
+
+  <!-- Background Canvas -->
+  <rect width="960" height="380" rx="12" fill="#030712" stroke="#1e293b" stroke-width="1.5"/>
+
+  <!-- Top Title Bar -->
+  <rect x="0" y="0" width="960" height="48" rx="12" fill="#090e1a"/>
+  <text x="24" y="30" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-weight="700" font-size="14" fill="#38bdf8">RESEARCH ARCHITECTURE: TROPICAL CYCLONE TRAJECTORY FORECASTING</text>
+  <text x="760" y="30" font-family="monospace" font-size="11" fill="#64748b">IBTrACS 1980–2025 • LSTM (GAB-8)</text>
+
+  <!-- Pipeline Steps -->
+
+  <!-- STEP 1: Raw Data & Basin Partitioning -->
+  <g transform="translate(24, 72)">
+    <rect width="168" height="270" rx="10" fill="url(#cardGrad)" stroke="#334155" stroke-width="1.2"/>
+    <rect x="14" y="14" width="80" height="20" rx="4" fill="#0284c7" fill-opacity="0.2"/>
+    <text x="54" y="28" text-anchor="middle" class="step-badge">1. DATASET</text>
+
+    <text x="14" y="58" class="step-title">IBTrACS Archive</text>
+    <text x="14" y="76" class="step-sub">Historical storm tracks</text>
+    <text x="14" y="92" class="step-sub">Period: 1980–2025</text>
+
+    <line x1="14" y1="108" x2="154" y2="108" stroke="#1e293b"/>
+
+    <text x="14" y="130" font-family="sans-serif" font-size="11" font-weight="600" fill="#cbd5e1">Basin Scenarios:</text>
+    <rect x="14" y="142" width="140" height="24" rx="4" fill="#1e293b"/>
+    <text x="22" y="158" class="code-pill">North Indian (NI)</text>
+
+    <rect x="14" y="172" width="140" height="24" rx="4" fill="#1e293b"/>
+    <text x="22" y="188" class="code-pill">South Indian (SI)</text>
+
+    <rect x="14" y="202" width="140" height="24" rx="4" fill="#0369a1" fill-opacity="0.4" stroke="#0284c7" stroke-width="0.8"/>
+    <text x="22" y="218" class="code-pill" font-weight="700">Combined (GAB) ★</text>
+
+    <text x="14" y="252" font-family="sans-serif" font-size="10" fill="#64748b">Cross-hemisphere dynamics</text>
+  </g>
+
+  <!-- Connection Arrow 1 -->
+  <line x1="194" y1="207" x2="216" y2="207" stroke="#38bdf8" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- STEP 2: Temporal Sliding Window -->
+  <g transform="translate(224, 72)">
+    <rect width="168" height="270" rx="10" fill="url(#cardGrad)" stroke="#334155" stroke-width="1.2"/>
+    <rect x="14" y="14" width="102" height="20" rx="4" fill="#4f46e5" fill-opacity="0.2"/>
+    <text x="65" y="28" text-anchor="middle" class="step-badge" fill="#818cf8">2. SEQUENCING</text>
+
+    <text x="14" y="58" class="step-title">Sliding Window</text>
+    <text x="14" y="76" class="step-sub">Temporal segmentation</text>
+    <text x="14" y="92" class="step-sub">Feature formulation</text>
+
+    <line x1="14" y1="108" x2="154" y2="108" stroke="#1e293b"/>
+
+    <text x="14" y="130" font-family="sans-serif" font-size="11" font-weight="600" fill="#cbd5e1">Timestep Variations:</text>
+    <rect x="14" y="142" width="140" height="24" rx="4" fill="#4338ca" fill-opacity="0.4" stroke="#818cf8" stroke-width="0.8"/>
+    <text x="22" y="158" class="code-pill" font-weight="700">8 Timesteps (Optimal) ★</text>
+
+    <rect x="14" y="172" width="140" height="24" rx="4" fill="#1e293b"/>
+    <text x="22" y="188" class="code-pill">16 Timesteps</text>
+
+    <rect x="14" y="202" width="140" height="24" rx="4" fill="#1e293b"/>
+    <text x="22" y="218" class="code-pill">24 &amp; 32 Timesteps</text>
+
+    <text x="14" y="252" font-family="sans-serif" font-size="10" fill="#94a3b8">Prevents over-smoothing</text>
+  </g>
+
+  <!-- Connection Arrow 2 -->
+  <line x1="394" y1="207" x2="416" y2="207" stroke="#38bdf8" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- STEP 3: Deep Learning LSTM Engine -->
+  <g transform="translate(424, 72)">
+    <rect width="180" height="270" rx="10" fill="url(#cardGrad)" stroke="#818cf8" stroke-width="1.5"/>
+    <rect x="14" y="14" width="80" height="20" rx="4" fill="#7c3aed" fill-opacity="0.2"/>
+    <text x="54" y="28" text-anchor="middle" class="step-badge" fill="#c084fc">3. MODELING</text>
+
+    <text x="14" y="58" class="step-title">LSTM Network</text>
+    <text x="14" y="76" class="step-sub">Recurrent Gated Cells</text>
+    <text x="14" y="92" class="step-sub">Vanishing gradient resistant</text>
+
+    <line x1="14" y1="108" x2="166" y2="108" stroke="#1e293b"/>
+
+    <g transform="translate(14, 122)">
+      <rect width="152" height="46" rx="6" fill="#1e293b"/>
+      <text x="10" y="20" font-family="monospace" font-size="10" fill="#a78bfa">Forget / Input Gates</text>
+      <text x="10" y="36" font-family="sans-serif" font-size="9.5" fill="#94a3b8">Retains storm trajectory memory</text>
+    </g>
+
+    <g transform="translate(14, 178)">
+      <rect width="152" height="46" rx="6" fill="#1e293b"/>
+      <text x="10" y="20" font-family="monospace" font-size="10" fill="#38bdf8">Hidden State [h_t]</text>
+      <text x="10" y="36" font-family="sans-serif" font-size="9.5" fill="#94a3b8">Projects next Lat/Lon coord</text>
+    </g>
+
+    <text x="14" y="252" font-family="sans-serif" font-size="10" fill="#10b981">Trained across 12 Scenarios</text>
+  </g>
+
+  <!-- Connection Arrow 3 -->
+  <line x1="606" y1="207" x2="628" y2="207" stroke="#38bdf8" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- STEP 4: Evaluation & Geodesic Validation -->
+  <g transform="translate(636, 72)">
+    <rect width="144" height="270" rx="10" fill="url(#cardGrad)" stroke="#334155" stroke-width="1.2"/>
+    <rect x="14" y="14" width="86" height="20" rx="4" fill="#059669" fill-opacity="0.2"/>
+    <text x="57" y="28" text-anchor="middle" class="step-badge" fill="#34d399">4. METRICS</text>
+
+    <text x="14" y="58" class="step-title">Model Evaluation</text>
+    <text x="14" y="76" class="step-sub">Geodesic precision</text>
+    <text x="14" y="92" class="step-sub">Spatial coordinates</text>
+
+    <line x1="14" y1="108" x2="130" y2="108" stroke="#1e293b"/>
+
+    <rect x="14" y="122" width="116" height="34" rx="4" fill="#1e293b"/>
+    <text x="20" y="136" font-family="sans-serif" font-size="9" fill="#94a3b8">MAE (Degrees)</text>
+    <text x="20" y="150" class="code-pill" font-weight="700" fill="#38bdf8">0.127405°</text>
+
+    <rect x="14" y="164" width="116" height="34" rx="4" fill="#1e293b"/>
+    <text x="20" y="178" font-family="sans-serif" font-size="9" fill="#94a3b8">RMSE (Degrees)</text>
+    <text x="20" y="192" class="code-pill" font-weight="700" fill="#818cf8">0.144091°</text>
+
+    <rect x="14" y="206" width="116" height="34" rx="4" fill="#065f46" fill-opacity="0.4" stroke="#10b981" stroke-width="0.8"/>
+    <text x="20" y="220" font-family="sans-serif" font-size="9" fill="#a7f3d0">Haversine (km)</text>
+    <text x="20" y="234" class="code-pill" font-weight="700" fill="#34d399">15.885 km ★</text>
+  </g>
+
+  <!-- Connection Arrow 4 -->
+  <line x1="782" y1="207" x2="804" y2="207" stroke="#38bdf8" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- STEP 5: Deployment & Disaster Mitigation -->
+  <g transform="translate(812, 72)">
+    <rect width="124" height="270" rx="10" fill="url(#cardGrad)" stroke="#38bdf8" stroke-width="1.2"/>
+    <rect x="10" y="14" width="94" height="20" rx="4" fill="#0284c7" fill-opacity="0.2"/>
+    <text x="57" y="28" text-anchor="middle" class="step-badge">5. DEPLOY</text>
+
+    <text x="10" y="58" font-family="sans-serif" font-size="12" font-weight="700" fill="#f1f5f9">Streamlit UI</text>
+    <text x="10" y="74" class="step-sub">&amp; Web App</text>
+
+    <line x1="10" y1="92" x2="114" y2="92" stroke="#1e293b"/>
+
+    <text x="10" y="112" font-family="sans-serif" font-size="10" font-weight="600" fill="#cbd5e1">Target Area:</text>
+    <text x="10" y="128" font-family="sans-serif" font-size="10" fill="#38bdf8">West Sumatra</text>
+    <text x="10" y="142" font-family="sans-serif" font-size="9.5" fill="#94a3b8">Coastline Zone</text>
+
+    <line x1="10" y1="160" x2="114" y2="160" stroke="#1e293b"/>
+
+    <text x="10" y="180" font-family="sans-serif" font-size="10" font-weight="600" fill="#cbd5e1">Objective:</text>
+    <text x="10" y="196" font-family="sans-serif" font-size="9.5" fill="#e2e8f0">Early Warning</text>
+    <text x="10" y="210" font-family="sans-serif" font-size="9" fill="#94a3b8">Disaster Risk</text>
+    <text x="10" y="224" font-family="sans-serif" font-size="9" fill="#94a3b8">Reduction (DRR)</text>
+
+    <rect x="10" y="240" width="104" height="20" rx="4" fill="#0284c7"/>
+    <text x="62" y="254" text-anchor="middle" font-family="sans-serif" font-size="9" font-weight="700" fill="#ffffff">Decision Support</text>
+  </g>
+</svg>

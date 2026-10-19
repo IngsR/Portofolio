@@ -1,0 +1,91 @@
+{
+  "profile": {
+    "tagline": "Software engineer and Computer Science graduate specializing in full-stack web applications, interface architecture, and relational data systems, grounded in rigorous engineering principles.",
+    "shortBio": "Computer Science graduate with an emphasis on web systems engineering and data science. Experienced in designing resilient user interfaces, architecting RESTful services, and implementing end-to-end web applications. Committed to disciplined software development and collaborative problem solving.",
+    "fullBio": [
+      "I am Ikhwan Ramadhan, a Computer Science graduate (B.S. in Informatics Engineering) from Universitas Putra Indonesia “YPTK” Padang. My primary discipline centers on software engineering and full-stack web architectures, complemented by academic specialization in data science, predictive modeling, and statistical analysis.",
+      "My engineering competencies have been developed through applied software projects and deliberate technical practice. Developing institutional platforms, transactional web systems, and dynamic user interfaces has afforded me hands-on experience in database schema design, input validation, authentication workflows, API integration, and production deployment.",
+      "For my undergraduate thesis, I conducted empirical research applying Long Short-Term Memory (LSTM) recurrent networks to tropical cyclone trajectory forecasting. The project entailed rigorous hyperparameter tuning, validation across geospatial datasets, and packaging the trained computational model into an interactive client side web application.",
+      "I continuously cultivate foundational software engineering discipline, prioritizing code clarity, system reliability, and maintainable architecture as I contribute to professional engineering teams."
+    ],
+    "workPreference": "Available for on-site, hybrid, and relocation opportunities across Indonesia",
+    "statusText": "Available for Junior Web Developer positions — on-site and hybrid"
+  },
+  "intro": {
+    "availability": "Available for Junior Web Developer Roles",
+    "bio": "Computer Science graduate specializing in web engineering and distributed systems. Committed to building robust, accessible interfaces and scalable REST APIs with modern software methodologies.",
+    "roles": [
+      "Full-Stack Web Engineering",
+      "Next.js & React Architecture",
+      "RESTful APIs & Data Systems"
+    ],
+    "workLabel": "Work Modality:",
+    "workValue": "Available for On-Site, Hybrid, or Relocation",
+    "educationLabel": "Academic Degree:",
+    "educationValue": "B.S. in Informatics Engineering UPI “YPTK” Padang (GPA: 3.26/4.00)",
+    "stats": {
+      "projects": "Completed Projects",
+      "projectsShort": "Projects",
+      "experience": "Professional Experience",
+      "experienceShort": "Experience",
+      "commits": "Repository Commits",
+      "commitsShort": "Commits"
+    },
+    "portfolioButton": "Technical Portfolio",
+    "cvButton": "Curriculum Vitae"
+  },
+  "sections": {
+    "education": "Academic Background",
+    "portfolio": "Selected Projects",
+    "featuredProjects": "Browse All Projects",
+    "about": "Profile & Background",
+    "certifications": "Certifications & Accreditations",
+    "allCertificates": "View All Credentials",
+    "skills": "Technical Competencies",
+    "nextStep": "CORRESPONDENCE",
+    "contactHeading": "Initiate Professional Inquiries",
+    "contactDescription": "I welcome inquiries regarding Junior Web Developer roles, full-stack engineering opportunities, and technical collaborations.",
+    "contactWhatsapp": "Direct Message (WhatsApp)",
+    "contactEmail": "Send Inquiries via Email"
+  },
+  "aboutSummary": {
+    "paragraphOne": "I am Ikhwan Ramadhan, a Computer Science graduate from Universitas Putra Indonesia 'YPTK' Padang. My background is rooted in software engineering, with a focus on full-stack web architecture from building responsive user interfaces to designing RESTful APIs, relational databases, and automated CI/CD pipelines.",
+    "paragraphTwo": "In engineering practice, functional correctness is merely the baseline. I prioritize diagnosing system failures at their root cause, refining architectural trade-offs, and establishing deterministic, maintainable solutions across every codebase I develop.",
+    "cards": [
+      {
+        "title": "Next.js",
+        "subtitle": "App Router, SSR, SSG, Server Actions"
+      },
+      {
+        "title": "React & TypeScript",
+        "subtitle": "Component architecture, custom hooks, type safety"
+      },
+      {
+        "title": "REST APIs & Databases",
+        "subtitle": "Route Handlers, schema validation, Prisma"
+      },
+      {
+        "title": "Git & Deployment",
+        "subtitle": "Branch workflows, code review, Vercel, CI/CD"
+      }
+    ]
+  },
+  "quickActions": {
+    "cv": {
+      "label": "Curriculum Vitae",
+      "hint": "View or download the official PDF curriculum vitae"
+    },
+    "linkedin": {
+      "label": "LinkedIn Profile"
+    },
+    "whatsapp": {
+      "label": "Direct Messaging (WhatsApp)"
+    },
+    "email": {
+      "label": "Formal Email Correspondence"
+    },
+    "github": {
+      "label": "Source Code Repositories (GitHub)"
+    }
+  }
+}

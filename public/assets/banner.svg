@@ -1,0 +1,177 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 420" width="100%" height="100%">
+  <defs>
+    <!-- Background Gradients -->
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a0f1d"/>
+      <stop offset="50%" stop-color="#070a14"/>
+      <stop offset="100%" stop-color="#030712"/>
+    </linearGradient>
+
+    <!-- Glowing Accent Gradients -->
+    <linearGradient id="primaryGlow" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="50%" stop-color="#818cf8"/>
+      <stop offset="100%" stop-color="#c084fc"/>
+    </linearGradient>
+
+    <linearGradient id="cyanAccent" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#06b6d4" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#3b82f6" stop-opacity="0.9"/>
+    </linearGradient>
+
+    <linearGradient id="badgeBorder" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#818cf8" stop-opacity="0.1"/>
+    </linearGradient>
+
+    <!-- Radial Glows -->
+    <radialGradient id="radialCyan" cx="20%" cy="30%" r="50%">
+      <stop offset="0%" stop-color="#0284c7" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#0284c7" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="radialViolet" cx="80%" cy="70%" r="60%">
+      <stop offset="0%" stop-color="#7c3aed" stop-opacity="0.22"/>
+      <stop offset="100%" stop-color="#7c3aed" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Grid Pattern -->
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.75" stroke-opacity="0.45"/>
+      <circle cx="40" cy="40" r="1.5" fill="#38bdf8" fill-opacity="0.25"/>
+    </pattern>
+  </defs>
+
+  <style>
+    .title { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-weight: 800; font-size: 46px; fill: #ffffff; letter-spacing: -0.5px; }
+    .subtitle { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-weight: 500; font-size: 18px; fill: #94a3b8; }
+    .tagline { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-weight: 600; font-size: 20px; fill: #38bdf8; }
+    .badge-text { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-weight: 600; font-size: 13px; fill: #e2e8f0; }
+    .card-title { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-weight: 700; font-size: 14px; fill: #f8fafc; }
+    .card-desc { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-weight: 400; font-size: 12px; fill: #94a3b8; }
+    .stat-val { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-weight: 800; font-size: 22px; fill: #38bdf8; }
+    .stat-lbl { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-weight: 500; font-size: 11px; fill: #64748b; text-transform: uppercase; letter-spacing: 0.5px; }
+  </style>
+
+  <!-- Background Base -->
+  <rect width="1200" height="420" rx="16" fill="url(#bgGradient)"/>
+  <rect width="1200" height="420" rx="16" fill="url(#grid)"/>
+
+  <!-- Glowing Orbs -->
+  <rect width="1200" height="420" rx="16" fill="url(#radialCyan)"/>
+  <rect width="1200" height="420" rx="16" fill="url(#radialViolet)"/>
+
+  <!-- Subtle Border Outer -->
+  <rect x="1" y="1" width="1198" height="418" rx="15" fill="none" stroke="#334155" stroke-width="1.5" stroke-opacity="0.6"/>
+
+  <!-- Left Content: Identity & Highlights -->
+  <!-- Status Badge Pill -->
+  <g transform="translate(60, 48)">
+    <rect width="260" height="32" rx="16" fill="#0f172a" stroke="url(#badgeBorder)" stroke-width="1.2"/>
+    <circle cx="16" cy="16" r="4.5" fill="#10b981">
+      <animate attributeName="opacity" values="1;0.4;1" dur="2s" repeatCount="indefinite"/>
+    </circle>
+    <text x="30" y="21" class="badge-text">PORTFOLIO &amp; RESEARCH ECOSYSTEM</text>
+  </g>
+
+  <!-- Main Headline -->
+  <text x="60" y="128" class="title">Ikhwan Ramadhan</text>
+  <text x="60" y="158" class="tagline">Full-Stack Software Engineer &amp; Data Science Researcher</text>
+  <text x="60" y="190" class="subtitle">Architecting high-performance web applications with Astro Islands &amp; advancing</text>
+  <text x="60" y="214" class="subtitle">spatiotemporal deep learning models for meteorological disaster mitigation.</text>
+
+  <!-- Tech Pillars Pills -->
+  <g transform="translate(60, 246)">
+    <!-- Pill 1 -->
+    <rect x="0" y="0" width="160" height="34" rx="8" fill="#1e293b" fill-opacity="0.7" stroke="#334155"/>
+    <text x="14" y="22" class="badge-text">⚡ Astro Islands &amp; SSR</text>
+
+    <!-- Pill 2 -->
+    <rect x="172" y="0" width="182" height="34" rx="8" fill="#1e293b" fill-opacity="0.7" stroke="#334155"/>
+    <text x="186" y="22" class="badge-text">🌪️ LSTM Spatiotemporal</text>
+
+    <!-- Pill 3 -->
+    <rect x="366" y="0" width="168" height="34" rx="8" fill="#1e293b" fill-opacity="0.7" stroke="#334155"/>
+    <text x="380" y="22" class="badge-text">⚡ ONNX Edge Inference</text>
+
+    <!-- Pill 4 -->
+    <rect x="546" y="0" width="156" height="34" rx="8" fill="#1e293b" fill-opacity="0.7" stroke="#334155"/>
+    <text x="560" y="22" class="badge-text">🎨 React 19 + Tailwind v4</text>
+  </g>
+
+  <!-- Bottom Metric Strip -->
+  <g transform="translate(60, 316)">
+    <line x1="0" y1="0" x2="640" y2="0" stroke="#334155" stroke-opacity="0.6"/>
+
+    <g transform="translate(0, 18)">
+      <text x="0" y="24" class="stat-val">15.885 km</text>
+      <text x="0" y="42" class="stat-lbl">GAB-8 Haversine Distance</text>
+    </g>
+
+    <g transform="translate(190, 18)">
+      <text x="0" y="24" class="stat-val">0.1274°</text>
+      <text x="0" y="42" class="stat-lbl">Coordinate MAE (Spatial)</text>
+    </g>
+
+    <g transform="translate(360, 18)">
+      <text x="0" y="24" class="stat-val">Zero-JS</text>
+      <text x="0" y="42" class="stat-lbl">Default Presentation Tier</text>
+    </g>
+
+    <g transform="translate(510, 18)">
+      <text x="0" y="24" class="stat-val">98+</text>
+      <text x="0" y="42" class="stat-lbl">Lighthouse Core Vitals</text>
+    </g>
+  </g>
+
+  <!-- Right Visual Card: Interactive Research Showcase -->
+  <g transform="translate(760, 52)">
+    <!-- Glassmorphic Card Container -->
+    <rect width="380" height="316" rx="14" fill="#0b1329" fill-opacity="0.85" stroke="url(#badgeBorder)" stroke-width="1.5"/>
+
+    <!-- Header bar -->
+    <path d="M 0 14 C 0 6.268 6.268 0 14 0 L 366 0 C 373.732 0 380 6.268 380 14 L 380 44 L 0 44 Z" fill="#111c38"/>
+    <circle cx="22" cy="22" r="5" fill="#ef4444"/>
+    <circle cx="38" cy="22" r="5" fill="#f59e0b"/>
+    <circle cx="54" cy="22" r="5" fill="#10b981"/>
+    <text x="76" y="27" font-family="monospace" font-size="12" fill="#94a3b8">tropical-cyclone-lstm.onnx</text>
+
+    <!-- Card Body Content -->
+    <g transform="translate(24, 68)">
+      <text x="0" y="0" class="card-title">UNDERGRADUATE THESIS SPOTLIGHT</text>
+      <text x="0" y="20" class="card-desc">Recurrent neural modeling for trajectory prediction</text>
+      <text x="0" y="36" class="card-desc">using IBTrACS (1980–2025) dataset benchmark.</text>
+
+      <!-- Mini Architecture Diagram inside Card -->
+      <g transform="translate(0, 56)">
+        <!-- Step 1 -->
+        <rect x="0" y="0" width="94" height="48" rx="6" fill="#1e293b" stroke="#38bdf8" stroke-width="1"/>
+        <text x="47" y="20" text-anchor="middle" font-family="monospace" font-size="10" font-weight="700" fill="#38bdf8">IBTrACS</text>
+        <text x="47" y="36" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">1980-2025</text>
+
+        <!-- Arrow 1 -->
+        <path d="M 98 24 L 112 24" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+
+        <!-- Step 2 -->
+        <rect x="116" y="0" width="102" height="48" rx="6" fill="#1e293b" stroke="#818cf8" stroke-width="1"/>
+        <text x="167" y="20" text-anchor="middle" font-family="monospace" font-size="10" font-weight="700" fill="#818cf8">GAB-8 LSTM</text>
+        <text x="167" y="36" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">Sliding Window</text>
+
+        <!-- Arrow 2 -->
+        <path d="M 222 24 L 236 24" stroke="#64748b" stroke-width="2"/>
+
+        <!-- Step 3 -->
+        <rect x="240" y="0" width="92" height="48" rx="6" fill="#1e293b" stroke="#10b981" stroke-width="1"/>
+        <text x="286" y="20" text-anchor="middle" font-family="monospace" font-size="10" font-weight="700" fill="#10b981">Streamlit</text>
+        <text x="286" y="36" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94a3b8">Geospatial UI</text>
+      </g>
+
+      <!-- Best Model Metric Box -->
+      <g transform="translate(0, 122)">
+        <rect x="0" y="0" width="332" height="58" rx="8" fill="#0f172a" stroke="#334155"/>
+        <text x="14" y="24" font-family="sans-serif" font-size="11" font-weight="700" fill="#e2e8f0">Optimal Scenario: Combined Basin (GAB-8)</text>
+        <text x="14" y="44" font-family="monospace" font-size="11" fill="#38bdf8">MAE: 0.127405° | RMSE: 0.144091°</text>
+        <text x="238" y="44" font-family="monospace" font-size="11" font-weight="700" fill="#10b981">15.885 km</text>
+      </g>
+    </g>
+  </g>
+</svg>

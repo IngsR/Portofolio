@@ -1,0 +1,933 @@
+{
+  "userProfile": {
+    "name": "Ikhwan Ramadhan",
+    "title": "Junior Web Developer",
+    "tagline": "Junior Web Developer yang membangun aplikasi web dari antarmuka hingga REST API, database, dan deployment, sambil terus memperdalam praktik software engineering melalui project nyata.",
+    "shortBio": "Fresh graduate Teknik Informatika yang fokus di web development. Kemampuan saya tumbuh dari project mandiri, mencoba membangun antarmuka, menghubungkan API, dan memahami cara kerja sistem secara langsung. Sekarang siap masuk dunia kerja dan terus berkembang bersama tim.",
+    "fullBio": [
+      "Saya Ikhwan Ramadhan, lulusan S1 Teknik Informatika Universitas Putra Indonesia \"YPTK\" Padang. Fokus profesional saya adalah software engineering, khususnya pengembangan aplikasi web dari frontend hingga backend. Konsentrasi Data Science menjadi bekal akademik tambahan yang melengkapi pemahaman saya tentang pengolahan dan analisis data.",
+      "Sebagian besar kemampuan web saya tumbuh dari project nyata dan belajar mandiri, bukan hanya dari kelas. Dari mengerjakan portal sekolah, aplikasi properti, sampai website showroom mobil, saya belajar memahami kebutuhan pengguna, membangun fitur, lalu berhadapan langsung dengan masalah: bug yang sulit dilacak, integrasi API yang tidak sesuai dugaan, struktur database yang perlu dirapikan, authentication, sampai proses deployment. Di situlah saya belajar membaca error, melakukan debugging, mencoba pendekatan lain, menguji ulang, dan mengevaluasi apakah hasilnya benar-benar lebih baik.",
+      "Bekal akademik tersebut saya terapkan dalam skripsi tentang prediksi lintasan siklon tropis menggunakan model LSTM. Saya menguji beberapa konfigurasi, membandingkan hasil, dan mengevaluasi performanya sebelum memilih pendekatan terbaik. Pengalaman riset ini melatih saya mengolah data dan memvalidasi hasil, lalu menerapkan model ke dalam aplikasi web. Fokus karier saya tetap pada software engineering.",
+      "Saya tidak menganggap proses belajar saya selesai setelah lulus. Saya ingin terus memperdalam web development, membangun kebiasaan software engineering yang lebih baik, dan memperluas pemahaman teknis melalui project serta pengalaman kerja nyata."
+    ],
+    "location": "Indonesia",
+    "workPreference": "Terbuka untuk kesempatan kerja On-Site / WFO dan Hybrid",
+    "email": "ikhwn.rdn@gmail.com",
+    "phone": "+6282386473410",
+    "whatsappUrl": "https://wa.me/6282386473410?text=Halo%20Ikhwan%2C%20saya%20melihat%20portofolio%20Anda%20dan%20tertarik%20untuk%20berdiskusi%20terkait%20peluang%20Junior%20Web%20Developer%20%2F%20proyek.",
+    "avatarUrl": "/profile.png",
+    "statusText": "Terbuka untuk posisi Junior Web Developer - On-Site / WFO dan Hybrid",
+    "isAvailableForHire": true,
+    "stats": {
+      "projectsCompleted": 8,
+      "yearsExperience": 2,
+      "happyClients": 8,
+      "codeCommits": "1.200+"
+    },
+    "socials": [
+      {
+        "name": "GitHub",
+        "url": "https://github.com/IngsR",
+        "icon": "Github",
+        "username": "IngsR",
+        "colorClass": "hover:text-gray-900 dark:hover:text-white"
+      },
+      {
+        "name": "LinkedIn",
+        "url": "https://www.linkedin.com/in/ikhwn-rdn",
+        "icon": "Linkedin",
+        "username": "in/ikhwan-ramadhan",
+        "colorClass": "hover:text-blue-600 dark:hover:text-blue-400"
+      },
+      {
+        "name": "WhatsApp",
+        "url": "https://wa.me/6282386473410?text=Halo%20Ikhwan%2C%20saya%20melihat%20portofolio%20Anda%20dan%20tertarik%20untuk%20berdiskusi%20terkait%20peluang%20Junior%20Web%20Developer%20%2F%20proyek.",
+        "icon": "Phone",
+        "username": "+62 823-8647-3410",
+        "colorClass": "hover:text-emerald-600 dark:hover:text-emerald-400"
+      },
+      {
+        "name": "Email",
+        "url": "mailto:ikhwn.rdn@gmail.com",
+        "icon": "Mail",
+        "username": "ikhwn.rdn@gmail.com",
+        "colorClass": "hover:text-rose-600 dark:hover:text-rose-400"
+      }
+    ]
+  },
+  "projects": [
+    {
+      "id": "proj-1",
+      "slug": "website-smp-negeri-24-padang",
+      "title": "Website SMP Negeri 24 Padang",
+      "shortDescription": "Website sekolah SMP Negeri 24 Padang yang saya bangun dari nol saat magang. Sebelumnya, sekolah belum punya portal digital yang layak saya rancang arsitektur Next.js App Router dengan rendering SSR/SSG, validasi form Zod, dan SEO terstruktur supaya halaman cepat terindeks dan mudah dikelola staf.",
+      "translations": {
+        "en": {
+          "title": "SMP Negeri 24 Padang | Portal Web Platform",
+          "shortDescription": "Official institutional portal developed during an engineering internship, implementing Next.js App Router, hybrid SSR/SSG rendering, Zod schema validation, and structured Open Graph metadata.",
+          "period": "2025 (Production Release)",
+          "role": "Full-Stack Web Developer (Engineering Intern)",
+          "problem": "The institution required a performant, mobile-optimized information gateway capable of delivering instantaneous load times on consumer cellular connections, indexing reliably on search engines, and preventing data corruption during staff content updates.",
+          "solution": "Architected a hybrid Next.js App Router system: institutional static assets and profiles are pre-rendered via SSG for sub-100ms TTFB, whereas academic announcements employ server-side rendering with periodic ISR revalidation. Strict Zod schemas validate client and server payloads to guarantee data integrity."
+        }
+      },
+      "category": "Next.js & Performance",
+      "tags": [
+        "Next.js",
+        "React",
+        "TypeScript",
+        "Technical SEO",
+        "SSR / SSG",
+        "Open Graph",
+        "Tailwind CSS",
+        "shadcn/ui",
+        "Zod"
+      ],
+      "image": "/projects/smpn24.webp",
+      "imageFull": "/projects/smpn24@full.webp",
+      "featured": true,
+      "publishedDate": "2025-09-17",
+      "period": "2025 (Proyek Produksi)",
+      "role": "Fullstack Web Developer (Magang)",
+      "demoUrl": "https://smpn24padang.sch.id",
+      "githubUrl": "https://github.com/Informatics-2025/Website-SMPN24padang",
+      "problem": "SMP Negeri 24 Padang membutuhkan portal informasi publik yang dapat diakses cepat melalui perangkat seluler siswa dan wali murid, terindeks secara optimal oleh mesin pencari Google, serta menyediakan mekanisme pembaruan konten akademik yang mudah dioperasikan staf sekolah tanpa risiko inkonsistensi data.",
+      "solution": "Mengimplementasikan Next.js App Router dengan arsitektur hybrid: halaman statis di-generate melalui SSG untuk akses cepat, sementara kanal pengumuman menggunakan SSR dengan revalidasi berkala (ISR). Validasi skema formulir diterapkan menyeluruh menggunakan Zod guna menjamin integritas payload sebelum disimpan.",
+      "metrics": [
+        {
+          "label": "Rendering & SEO",
+          "value": "Next.js SSR + Dynamic OG"
+        },
+        {
+          "label": "Design System",
+          "value": "shadcn/ui + Tailwind CSS"
+        },
+        {
+          "label": "Web Vitals",
+          "value": "Mobile Optimized & Fast Indexing"
+        }
+      ],
+      "markdownContent": "---\ntitle: \"Website SMP Negeri 24 Padang\"\ndescription: \"Portal resmi sekolah berbasis Next.js App Router, SSR/SSG caching, dan validasi form Zod.\"\ndate: \"2025-12-01\"\ncategory: \"Next.js & Performance\"\ntags:\n  - Next.js\n  - React\n  - TypeScript\n  - REST API\n  - SSR / SSG\n  - Zod\n  - Tailwind CSS\n  - shadcn/ui\ngithub: \"https://github.com/Informatics-2025/Website-SMPN24padang\"\ndemo: \"https://smpn24padang.sch.id\"\nfeatured: true\n---\n\n# Website SMP Negeri 24 Padang\n\n## 📌 Latar Belakang & Kebutuhan Sistem\nSaat magang di SMP Negeri 24 Padang, sekolah belum memiliki website resmi yang layak. Informasi akademik dan pengumuman masih tersebar secara manual, halaman lambat saat dibuka dari koneksi seluler wali murid, dan data form kegiatan rentan rusak karena tidak ada validasi skema.\n\n> **Peran & Tanggung Jawab**: Bertindak sebagai **Fullstack Web Developer (Magang)** - merancang arsitektur aplikasi dari nol menggunakan Next.js App Router, menyusun skema validasi form, mengoptimasi Core Web Vitals, dan mendeploy ke domain produksi `smpn24padang.sch.id`.\n\n---\n\n## 🛠️ Keputusan Rekayasa & Solusi Teknis\n1. **Hybrid Rendering (SSG + SSR Revalidasi)**: Halaman profil dan struktur organisasi di-generate statis (SSG) agar TTFB instan (<100ms). Halaman pengumuman dan berita menggunakan SSR dengan revalidasi berkala (ISR) agar konten selalu segar tanpa membebani server database.\n2. **Validasi Skema Form Zod**: Semua input pengumuman dan upload media divalidasi ketat di sisi klien dan server menggunakan Zod, mencegah payload kosong atau tipe file tidak sesuai.\n3. **SEO & Web Performance**: Mengimplementasikan Dynamic Open Graph metadata, sitemap XML otomatis, dan optimasi gambar WebP responsif. Skor performa Lighthouse mobile mencapai 95+.\n4. **Desain Komponen Modular**: Menggunakan Tailwind CSS dan komponen berbasis shadcn/ui yang ringan tanpa runtime CSS overhead."
+    },
+    {
+      "id": "proj-3",
+      "slug": "tropical-cyclone-track-prediction",
+      "title": "Prediksi Siklon Tropis (Data IBTrACS)",
+      "shortDescription": "Riset skripsi pemodelan peramalan lintasan siklon tropis berbasis Deep Learning LSTM menggunakan data IBTrACS (1980–2025). Menguji 12 skenario empiris (3 basin × 4 variasi sliding window), membuktikan model Gabungan dengan window 8 timesteps (GAB-8) mencapai akurasi tertinggi dengan MAE 0,127405°, RMSE 0,144091°, dan Mean Haversine Distance 15,885 km, diimplementasikan ke dalam platform visualisasi geospasial untuk mitigasi bencana di pesisir barat Sumatra.",
+      "translations": {
+        "en": {
+          "title": "Tropical Cyclone Trajectory Forecasting Platform",
+          "shortDescription": "Undergraduate thesis research developing a Deep Learning LSTM framework for tropical cyclone trajectory forecasting using IBTrACS data (1980–2025). Evaluating 12 empirical scenarios (3 basins × 4 temporal sliding windows) demonstrated that the Combined 8-timestep model (GAB-8) attained peak predictive accuracy (MAE: 0.127405°, RMSE: 0.144091°, Mean Haversine Distance: 15.885 km), deployed into an interactive geospatial visualization interface for coastal disaster risk reduction in West Sumatra.",
+          "period": "2026 (Thesis Research & Production Application)",
+          "role": "Software & Research Engineer",
+          "problem": "Meteorological time series forecasting models frequently remain confined to offline mathematical simulations, lacking accessible client interfaces for real-time coastal hazard mitigation.",
+          "solution": "Formulated a 12-scenario empirical study analyzing inter-basin atmospheric dynamics and temporal sliding window resolutions, proving that model GAB-8 minimizes geodesic trajectory error (MAE 0.127405°, RMSE 0.144091°, Haversine 15.885 km), integrated with an interactive geospatial dashboard for coastal risk mitigation."
+        }
+      },
+      "category": "Web Application",
+      "tags": [
+        "Astro",
+        "TypeScript",
+        "ONNX Runtime",
+        "LSTM Time Series",
+        "Island Architecture",
+        "Geospatial UI",
+        "SSG / Edge CDN",
+        "Tailwind CSS"
+      ],
+      "image": "/projects/siklon.webp",
+      "imageFull": "/projects/siklon@full.webp",
+      "featured": true,
+      "publishedDate": "2026-08-10",
+      "period": "2026 (Riset Skripsi & Aplikasi Web)",
+      "role": "Web Developer & Penelitian Skripsi",
+      "demoUrl": "https://prediksi.ikhwann.my.id",
+      "githubUrl": "https://github.com/IngsR/PrediksiSIklon-LSTM",
+      "problem": "Penelitian prediksi lintasan siklon tropis umumnya berhenti pada laporan metrik teoritis tanpa ketersediaan sistem siap pakai untuk publik. Padahal, pemodelan deret waktu spasial (spatiotemporal time series) lintasan badai sangat krusial sebagai instrumen mitigasi risiko bencana di wilayah pesisir Samudra Hindia dan barat Sumatra.",
+      "solution": "Merancang 12 skenario eksperimen komparatif pada 3 domain perairan (North Indian, South Indian, Gabungan) dengan variasi temporal sliding window (8, 16, 24, 32 timesteps). Menemukan konfigurasi GAB-8 paling optimal dengan MAE 0,127405°, RMSE 0,144091°, dan Mean Haversine Distance 15,885 km, meminimalkan error accumulation dan fenomena over-smoothing untuk visualisasi geospasial mitigasi bencana.",
+      "metrics": [
+        {
+          "label": "Akurasi Geodetik (GAB-8)",
+          "value": "Haversine 15,885 km"
+        },
+        {
+          "label": "Evaluasi Koordinat Spasial",
+          "value": "MAE 0,127405° | RMSE 0,144091°"
+        },
+        {
+          "label": "Frontend Engine",
+          "value": "Astro Island Architecture"
+        },
+        {
+          "label": "Inference Engine",
+          "value": "Serverless ONNX Runtime"
+        }
+      ],
+      "markdownContent": "---\ntitle: \"Prediksi Lintasan Siklon Tropis dengan LSTM\"\ndescription: \"Aplikasi web interaktif prediksi lintasan siklon tropis berbasis riset skripsi Deep Learning LSTM dengan Astro Island Architecture dan ONNX Runtime serverless.\"\ndate: \"2026-08-10\"\ncategory: \"Web Application\"\ntags:\n  - Astro\n  - TypeScript\n  - ONNX Runtime\n  - LSTM Time Series\n  - Island Architecture\n  - Geospatial UI\n  - SSG / Edge CDN\n  - Tailwind CSS\ngithub: \"https://github.com/IngsR/PrediksiSIklon-LSTM\"\ndemo: \"https://prediksi.ikhwann.my.id\"\nfeatured: true\n---\n\n# 🌪️ Prediksi Lintasan Siklon Tropis dengan LSTM\n\n## 📌 Konteks Riset & Urgensi Mitigasi Bencana\nEstimasi lintasan siklon tropis merepresentasikan tantangan kritis dalam mitigasi bencana hidrometeorologis akibat dinamika atmosferik spasio-temporal yang sangat non-linier. Penelitian skripsi ini berfokus pada perancangan arsitektur **Long Short-Term Memory (LSTM)** untuk memodelkan ketergantungan temporal lintasan siklon tropis di kawasan Samudra Hindia menggunakan data **IBTrACS (1980–2025)**.\n\nEksperimen dirancang secara komparatif melalui **12 skenario terkontrol**, membagi domain perairan ke dalam **3 basin** (*North Indian*, *South Indian*, dan *Gabungan*) dengan **4 variasi sliding window temporal** (8, 16, 24, dan 32 timesteps). Hasil empiris menunjukkan bahwa model **GAB-8** menghasilkan akurasi optimal dengan:\n- **Mean Absolute Error (MAE)**: 0,127405°\n- **Root Mean Square Error (RMSE)**: 0,144091°\n- **Mean Haversine Distance**: 15,885 km\n\nAnalisis riset membuktikan bahwa variasi sliding window yang lebih ringkas (8 timesteps) efektif mempertahankan inersia pergerakan lokal badai sekaligus mencegah akumulasi galat (*error accumulation*) dan fenomena *over-smoothing* yang kerap terjadi pada window panjang (24–32 timesteps).\n\n---\n\n## 🚀 Implementasi Sistem Visualisasi Geospasial\nHasil model prediksi ini diintegrasikan ke dalam aplikasi web interaktif publik pada domain **prediksi.ikhwann.my.id**:\n1. **Astro Island Architecture**: Landing page disajikan secara Zero-JS default dengan FCP instan di Edge CDN, mengisolasi hidrasi JavaScript hanya pada kanvas peta interaktif.\n2. **Serverless ONNX Runtime Inference**: Model LSTM hasil riset dikonversi ke format ONNX agar proses inferensi dapat dieksekusi secara instan langsung di peramban pengguna tanpa membebani server backend.\n3. **Instrumen Mitigasi Nyata**: Memfasilitasi simulasi koordinat dan kecepatan angin siklon untuk memproyeksikan lintasan secara real-time, memperkuat sistem mitigasi bencana hidrometeorologis di pesisir Sumatera Barat."
+    },
+    {
+      "id": "proj-4",
+      "slug": "ing-store-automotive-ecommerce",
+      "title": "Ingstore - Website Penjual Mobil Berbasis CMS",
+      "shortDescription": "Website showroom mobil yang saya buat supaya calon pembeli bisa eksplor unit, filter berdasarkan spesifikasi, dan langsung hitung simulasi kredit DP dan cicilan bulanan secara real-time. Penjual bisa kelola stok unit lewat struktur CMS yang rapi.",
+      "translations": {
+        "en": {
+          "title": "IngStore — Automotive Inventory & Financial Calculator Platform",
+          "shortDescription": "Full-stack automotive commerce portal featuring multi-parameter specification filtering, real-time banking loan and installment computation, and a structured inventory management system.",
+          "period": "2025",
+          "role": "Full-Stack Web Developer"
+        }
+      },
+      "category": "React & Next.js UI",
+      "tags": [
+        "Next.js",
+        "React",
+        "TypeScript",
+        "Tailwind CSS",
+        "Interactive UI",
+        "State Management",
+        "CMS"
+      ],
+      "image": "/projects/ingstore.webp",
+      "imageFull": "/projects/ingstore@full.webp",
+      "featured": true,
+      "publishedDate": "2025-07-23",
+      "period": "2025",
+      "role": "Junior Web Developer",
+      "demoUrl": "https://cars.ikhwann.my.id",
+      "githubUrl": "https://github.com/IngsR/web_store",
+      "problem": "Katalog otomotif modern membutuhkan antarmuka eksplorasi unit yang interaktif dengan fasilitas simulasi pembiayaan dinamis. Pengguna membutuhkan kalkulasi uang muka (DP) dan tenor kredit yang responsif tanpa reload halaman, sementara pengelola membutuhkan struktur data inventaris yang siap diintegrasikan dengan headless CMS.",
+      "solution": "Mengembangkan platform web Next.js dengan kalkulator kredit reaktif berbasis React state-perubahan slider DP dan tenor langsung memperbarui estimasi angsuran secara instan. Filter spesifikasi multi-kriteria berjalan di sisi klien, didukung arsitektur data CMS-ready untuk kemudahan pengelolaan stok unit.",
+      "metrics": [
+        {
+          "label": "Frontend Engine",
+          "value": "Next.js + TypeScript"
+        },
+        {
+          "label": "Interactive UX",
+          "value": "Instant Dynamic Loan Calc"
+        },
+        {
+          "label": "CMS Architecture",
+          "value": "CMS-Ready Catalog"
+        }
+      ],
+      "markdownContent": "---\ntitle: \"Ingstore - Website Penjual Mobil Berbasis CMS\"\ndescription: \"Website showroom mobil dengan kalkulator simulasi kredit interaktif, filter spesifikasi kendaraan, dan katalog responsif.\"\ndate: \"2025-07-23\"\ncategory: \"React & Next.js UI\"\ntags:\n  - Next.js\n  - React\n  - TypeScript\n  - Tailwind CSS\n  - Interactive UI\n  - State Management\n  - CMS\ngithub: \"https://github.com/IngsR/web_store\"\ndemo: \"https://cars.ikhwann.my.id\"\nfeatured: true\n---\n\n# Ingstore - Website Showroom Mobil Berbasis CMS\n\n## 📌 Latar Belakang & Kebutuhan Sistem\nShowroom mobil konvensional kesulitan memberikan estimasi pembiayaan instan kepada calon pembeli yang mengeksplorasi unit secara daring. Pengunjung sering harus menghubungi sales berulang kali hanya untuk simulasi DP dan tenor. Di sisi pengelola, penambahan unit baru membutuhkan struktur data yang rapi dan mudah dioperasikan.\n\n---\n\n## 🛠️ Keputusan Rekayasa & Solusi Teknis\n1. **Kalkulator Kredit Interaktif Real-Time**: Perhitungan simulasi angsuran bulanan diperbarui secara instan saat pengguna menggeser slider persentase DP atau memilih tenor pinjaman (1–5 tahun).\n2. **Filter Instan Sisi Klien**: Memungkinkan penyaringan multi-parameter (transmisi matik/manual, tipe bodi SUV/sedan, rentang harga) tanpa reload halaman.\n3. **Struktur Data Katalog CMS-Ready**: Skema data kendaraan distrukturkan secara terpisah dari lapisan tampilan, mempermudah integrasi ke headless CMS atau database inventory."
+    },
+    {
+      "id": "proj-2",
+      "slug": "angular-property-platform",
+      "title": "Website Penjualan Rumah",
+      "shortDescription": "Aplikasi web pencarian properti yang saya bangun pakai Angular Standalone Components murni TypeScript. Fitur utamanya: komparasi 2 properti secara side-by-side, denah arsitektur 2D bertingkat yang bisa di-zoom, dan simulator cicilan KPR pakai formula anuitas Bank Indonesia - semuanya reaktif lewat Angular Signals tanpa library state management tambahan.",
+      "translations": {
+        "en": {
+          "title": "HouseING — Real Estate Discovery & Mortgage Analysis Platform",
+          "shortDescription": "Analytical property evaluation platform engineered with Angular Standalone Components and strict TypeScript. Leverages Angular Signals for fine-grained reactive state, enabling real-time annuity mortgage calculations, dynamic multi-attribute filtering, and interactive 2D blueprint exploration.",
+          "period": "2026",
+          "role": "Junior Frontend Engineer"
+        }
+      },
+      "category": "Angular & Reactive Architecture",
+      "tags": [
+        "Angular",
+        "TypeScript",
+        "Angular Signals",
+        "Tailwind CSS v4",
+        "Standalone Components",
+        "Reactive State",
+        "KPR Simulator"
+      ],
+      "image": "/projects/property.webp",
+      "imageFull": "/projects/property@full.webp",
+      "featured": true,
+      "publishedDate": "2026-03-01",
+      "period": "2026 (Proyek Unggulan)",
+      "role": "Junior Frontend Engineer",
+      "demoUrl": "https://angular.ikhwann.my.id",
+      "githubUrl": "https://github.com/IngsR/Angular-Property",
+      "problem": "Pengambilan keputusan pembelian hunian memerlukan analisis komparasi parameter teknis (legalitas, luas bangunan, daya listrik) dan simulasi finansial yang akurat. Sistem dituntut menyediakan perbandingan multi-properti secara simultan serta kalkulasi angsuran KPR berbasis formula anuitas perbankan riil, bukan estimasi kasar.",
+      "solution": "Membangun aplikasi web berbasis Angular Standalone Components dengan state reaktif murni menggunakan Angular Signals (signal, computed, effect) tanpa dependensi store pihak ketiga. Dilengkapi fitur komparasi dua unit side-by-side, visualisasi denah arsitektur 2D interaktif, dan kalkulator simulasi angsuran anuitas standar perbankan.",
+      "metrics": [
+        {
+          "label": "Reactivity",
+          "value": "Angular Signals Core"
+        },
+        {
+          "label": "Architecture",
+          "value": "Clean Domain-Driven"
+        },
+        {
+          "label": "Tooling",
+          "value": "Bun & Tailwind v4"
+        }
+      ],
+      "markdownContent": "---\ntitle: \"HouseING Property - Platform Pencarian & Keputusan Properti\"\ndescription: \"Aplikasi web modern berbasis Angular Standalone Components murni TypeScript untuk komparasi hunian dan simulasi KPR realistis.\"\ndate: \"2026-03-01\"\ncategory: \"Angular & Reactive Architecture\"\ntags:\n  - Angular\n  - TypeScript\n  - Angular Signals\n  - Tailwind CSS v4\n  - Standalone Components\n  - Reactive State\n  - KPR Simulator\ngithub: \"https://github.com/IngsR/Angular-Property\"\ndemo: \"https://angular.ikhwann.my.id\"\nfeatured: true\n---\n\n# 🏡 HouseING Property - Platform Pencarian & Keputusan Properti\n\nAplikasi web eksplorasi properti dan simulasi finansial yang dibangun menggunakan **Angular Standalone Components (murni TypeScript)** tanpa dependensi NgModule lama.\n\n---\n\n## 📌 Latar Belakang & Kebutuhan Sistem\nMembeli rumah melibatkan dua masalah utama: membandingkan spesifikasi beberapa unit secara objektif dan menghitung cicilan KPR yang realistis. Banyak aplikasi properti menyajikan data terpencar dan kalkulator cicilan dengan estimasi kasar tanpa formula anuitas perbankan standar.\n\n---\n\n## 🛠️ Keputusan Rekayasa & Solusi Teknis\n1. **Reaktivitas Murni Angular Signals**: State aplikasi dikelola langsung menggunakan `signal()`, `computed()`, dan `effect()`. Tidak membutuhkan NgRx atau library state pihak ketiga, sehingga ukuran bundle tetap ramping dan render pipeline sangat prediktif.\n2. **Kalkulator KPR Berbasis Formula Anuitas**: Menghitung angsuran bulanan riil menggunakan formula suku bunga anuitas, lengkap dengan batas aman rasio utang (Debt Service Ratio ≤ 33%) terhadap pendapatan.\n3. **Komparasi 2 Properti Side-by-Side**: State sinkron membandingkan harga per meter persegi, status sertifikat (SHM/PPJB), jumlah lantai, dan daya listrik dalam satu tampilan matriks.\n4. **Denah Arsitektur Interaktif**: SVG blueprint 2D bertingkat dengan fitur zoom, pan, dan switcher lantai untuk visualisasi denah ruangan."
+    },
+    {
+      "id": "proj-10",
+      "slug": "inventory-logistics-dashboard",
+      "title": "Inventory Logistics Dashboard UI",
+      "shortDescription": "Dashboard stok gudang yang saya buat supaya operator bisa melihat status persediaan, mencatat barang masuk/keluar/retur, dan filter berdasarkan status stok - semuanya responsif dan berjalan instan tanpa reload halaman.",
+      "translations": {
+        "en": {
+          "title": "Inventory Logistics Dashboard UI",
+          "shortDescription": "A responsive warehouse dashboard for operators to monitor inventory, record incoming, outgoing, and returned goods, and filter stock status without reloading the page.",
+          "period": "2025",
+          "role": "Frontend Web Developer"
+        }
+      },
+      "category": "Web Application",
+      "tags": [
+        "Next.js",
+        "React",
+        "TypeScript",
+        "Tailwind CSS",
+        "Zustand",
+        "React Query",
+        "Supabase"
+      ],
+      "image": "/projects/inventory.webp",
+      "imageFull": "/projects/inventory@full.webp",
+      "featured": false,
+      "publishedDate": "2025-01-15",
+      "period": "2025",
+      "role": "Junior Web Developer",
+      "demoUrl": "https://kelola-barang.vercel.app/",
+      "githubUrl": "https://github.com/IngsR",
+      "problem": "Operator gudang membutuhkan sistem yang cepat untuk melacak mutasi stok tanpa harus memuat ulang halaman setiap kali ada perubahan data.",
+      "solution": "Membangun dashboard logistik interaktif berbasis Next.js dengan state management lokal untuk memberikan umpan balik instan pada setiap aksi pencatatan.",
+      "metrics": [],
+      "markdownContent": "Konten detail untuk Inventory Logistics Dashboard UI."
+    },
+    {
+      "id": "proj-9",
+      "slug": "enterprise-monorepo-ui",
+      "title": "Enterprise Monorepo UI - CRM/ERP Design System",
+      "shortDescription": "Eksperimen arsitektur monorepo menggunakan Turborepo untuk mengelola beberapa aplikasi Next.js 15 dalam satu workspace. Fokus utamanya: bikin paket UI bersama yang bisa di-share lintas aplikasi, dan pastikan tipe data tetap sinkron antara frontend dan API layer.",
+      "translations": {
+        "en": {
+          "title": "Enterprise Monorepo UI - CRM/ERP Design System",
+          "shortDescription": "A Turborepo monorepo experiment managing multiple Next.js 15 applications in one workspace. It focuses on a shared UI package and keeping types consistent between the frontend and API layers.",
+          "period": "2025",
+          "role": "Frontend Web Developer",
+          "problem": "Several CRM/ERP dashboard applications shared similar UI needs but their code was scattered, causing design inconsistencies and duplicated maintenance effort.",
+          "solution": "Adopted a Turborepo monorepo architecture with a shared shadcn/ui-based UI package and end-to-end type synchronization."
+        }
+      },
+      "category": "Monorepo & Architecture",
+      "tags": [
+        "Next.js 15",
+        "React 19",
+        "Turborepo",
+        "TypeScript",
+        "Tailwind CSS",
+        "shadcn/ui",
+        "Zod"
+      ],
+      "image": "/projects/inventory.webp",
+      "imageFull": "/projects/monorepo@full.webp",
+      "featured": false,
+      "publishedDate": "2025-01-10",
+      "period": "2025",
+      "role": "Junior Web Developer",
+      "demoUrl": "https://cars.ikhwann.my.id/",
+      "githubUrl": "https://github.com/IngsR",
+      "problem": "Mengelola beberapa aplikasi dashboard CRM/ERP yang memiliki kebutuhan UI serupa namun kode tersebar, menyebabkan inkonsistensi desain dan duplikasi usaha pemeliharaan.",
+      "solution": "Menerapkan arsitektur monorepo menggunakan Turborepo dengan paket UI bersama berbasis shadcn/ui dan sinkronisasi tipe data end-to-end.",
+      "metrics": [],
+      "markdownContent": "Konten detail untuk Enterprise Monorepo UI."
+    },
+    {
+      "id": "proj-5",
+      "slug": "fullstack-crm-erp-monorepo",
+      "title": "Enterprise Monorepo UI - CRM/ERP Design System",
+      "shortDescription": "Eksperimen arsitektur monorepo menggunakan Turborepo untuk mengelola beberapa aplikasi Next.js 15 dalam satu workspace. Fokus utamanya: bikin paket UI bersama yang bisa di-share lintas aplikasi, dan pastikan tipe data tetap sinkron antara frontend dan API layer.",
+      "translations": {
+        "en": {
+          "shortDescription": "A Turborepo monorepo experiment managing multiple Next.js 15 applications in one workspace. It focuses on a shared UI package and keeping types consistent between the frontend and API layers.",
+          "period": "2025",
+          "role": "Full-Stack Web Developer"
+        }
+      },
+      "category": "Design System & Monorepo",
+      "tags": [
+        "Next.js 15",
+        "React 19",
+        "TypeScript",
+        "Tailwind CSS",
+        "Turborepo",
+        "Design System",
+        "Type Safety"
+      ],
+      "image": "/projects/monorepo.svg",
+      "featured": false,
+      "publishedDate": "2025-11-30",
+      "period": "2025",
+      "role": "Junior Web Developer",
+      "demoUrl": "",
+      "githubUrl": "https://github.com/IngsR/Monorepo-CRM",
+      "metrics": [
+        {
+          "label": "Frontend Core",
+          "value": "Next.js 15 + React 19"
+        },
+        {
+          "label": "Monorepo Build",
+          "value": "Turborepo Shared Packages"
+        },
+        {
+          "label": "Architecture",
+          "value": "Strict Type Contracts"
+        }
+      ],
+      "markdownContent": "---\ntitle: \"Enterprise Monorepo UI - CRM & ERP Design System\"\ndescription: \"Arsitektur monorepo Turborepo, Next.js 15, dan React 19 dengan shared component library dan kontrak TypeScript terpadu.\"\ndate: \"2025-11-30\"\ncategory: \"Design System & Monorepo\"\ntags:\n  - Next.js 15\n  - React 19\n  - TypeScript\n  - Tailwind CSS\n  - Turborepo\n  - Design System\n  - Type Safety\ngithub: \"https://github.com/IngsR/Monorepo-CRM\"\ndemo: \"\"\nfeatured: false\n---\n\n# Enterprise Monorepo UI - CRM & ERP Platform\n\n## 📌 Latar Belakang & Kebutuhan Sistem\nPada ekosistem internal perusahaan dengan banyak sub-aplikasi (seperti modul CRM pelanggan dan modul ERP logistik), menjaga konsistensi desain dan keselarasan tipe data antarmuka-ke-layanan adalah tantangan klasik. Jika dikelola dalam repositori terpisah, sinkronisasi type interface sering rusak (*type drift*) dan perubahan komponen UI harus diduplikasi manual.\n\n---\n\n## 🛠️ Keputusan Rekayasa & Solusi Teknis\n1. **Workspace Turborepo**: Mengorganisasi aplikasi (`apps/crm`, `apps/erp`) dan pustaka bersama (`packages/ui`, `packages/types`, `packages/config`) dalam satu workspace monorepo dengan pipeline build terisolasi dan task caching cerdas.\n2. **Next.js 15 & React 19 Core**: Menggunakan React Server Components untuk mengurangi payload JavaScript ke klien pada halaman data tabular padat.\n3. **Shared UI & Strict Type Contracts**: Paket UI bersama diekstrak dengan styling Tailwind CSS terstandar, dan tipe response API didefinisikan sebagai single source of truth untuk semua aplikasi konsumen.",
+      "problem": "Pengembangan aplikasi internal perusahaan (modul CRM dan ERP) dalam repositori terpisah sering memicu duplikasi komponen antarmuka, desinkronisasi kontrak tipe data API (type drift), dan overhead pemeliharaan design system yang tinggi saat terjadi standardisasi tampilan.",
+      "solution": "Menerapkan arsitektur monorepo berbasis Turborepo yang mengkonsolidasikan aplikasi Next.js 15 dan paket bersama internal (packages/ui, packages/types). Pola ini menjamin kontrak tipe data API selalu sinkron antarmuka-ke-layanan, standardisasi token Tailwind CSS terpusat, serta proses build yang cepat berkat remote caching."
+    },
+    {
+      "id": "proj-6",
+      "slug": "inventory-management-system",
+      "title": "Inventory Logistics Dashboard UI",
+      "shortDescription": "Dashboard stok gudang yang saya buat supaya operator bisa melihat status persediaan, mencatat barang masuk/keluar/retur, dan filter berdasarkan status stok - semuanya responsif dan berjalan instan tanpa reload halaman.",
+      "translations": {
+        "en": {
+          "shortDescription": "A responsive warehouse dashboard for operators to monitor inventory, record incoming, outgoing, and returned goods, and filter stock status without reloading the page.",
+          "period": "2025",
+          "role": "Frontend Web Developer"
+        }
+      },
+      "category": "Dashboard & Data Grid",
+      "tags": [
+        "Next.js",
+        "React",
+        "TypeScript",
+        "Tailwind CSS",
+        "Dashboard UI",
+        "Data Grid",
+        "State Management"
+      ],
+      "image": "/projects/inventory.webp",
+      "imageFull": "/projects/inventory@full.webp",
+      "featured": false,
+      "publishedDate": "2025-07-15",
+      "period": "2025",
+      "role": "Junior Web Developer",
+      "demoUrl": "https://kelola-barang.vercel.app",
+      "githubUrl": "https://github.com/IngsR/manajemen-iventory",
+      "metrics": [
+        {
+          "label": "Dashboard UX",
+          "value": "Realtime Filtering State"
+        },
+        {
+          "label": "Data Grid",
+          "value": "Dense Responsive Grid"
+        },
+        {
+          "label": "Validation",
+          "value": "Type-Safe Stock Forms"
+        }
+      ],
+      "markdownContent": "---\ntitle: \"Inventory Logistics Dashboard UI\"\ndescription: \"Dashboard kontrol persediaan gudang dengan data grid responsif, filter status stok instan, dan pelacakan mutasi barang.\"\ndate: \"2025-07-15\"\ncategory: \"Dashboard & Data Grid\"\ntags:\n  - Next.js\n  - React\n  - TypeScript\n  - Tailwind CSS\n  - Dashboard UI\ngithub: \"https://github.com/IngsR/manajemen-iventory\"\ndemo: \"https://kelola-barang.vercel.app\"\nfeatured: false\n---\n\n# Inventory Logistics Dashboard UI\n\n## 📌 Latar Belakang & Kebutuhan Sistem\nManajemen persediaan barang gudang menuntut kecepatan pencarian dan keakuratan pencatatan mutasi. Operator di lapangan sering bekerja dengan koneksi terbatas dan membutuhkan antarmuka data grid yang responsif tanpa harus menunggu reload halaman berulang kali.\n\n---\n\n## 🛠️ Keputusan Rekayasa & Solusi Teknis\n1. **Client-Side Filter State**: Menyaring baris inventaris berdasarkan kategori, status stok (aman, menipis, habis), dan lokasi rak secara instan di memori peramban tanpa query berulang ke server.\n2. **Validasi Mutasi Ketat**: Input barang masuk, keluar, dan retur divalidasi dengan logika bisnis preventif (misalnya stok keluar dilarang melebihi stok fisik tersedia).\n3. **Layout Ergonomis**: Penataan data grid padat (*dense data grid*) dengan kontras tinggi yang jelas dibaca di layar laptop maupun tablet operasional.",
+      "problem": "Operasional logistik pergudangan membutuhkan dashboard data persediaan yang mampu menyaring ribuan data mutasi secara instan, mencegah kesalahan input kuantitas negatif, serta memiliki tata letak ergonomis yang nyaman digunakan pada tablet staf operasional di gudang.",
+      "solution": "Merancang dashboard Next.js dengan data grid responsif yang memanfaatkan client-side state caching untuk filter status stok dan kategori tanpa server roundtrip berulang. Formulir mutasi barang masuk, keluar, dan retur dilengkapi validasi skema Zod untuk mencegah kuantitas minus dan memastikan konsistensi pencatatan."
+    },
+    {
+      "id": "proj-7",
+      "slug": "dockrank-tf-idf-document-search",
+      "title": "DockRank - Information Retrieval Search UI",
+      "shortDescription": "Aplikasi pencarian dokumen yang menampilkan cara kerja algoritma TF-IDF secara transparan - pengguna bisa lihat skor bobot setiap kata kunci, perankingan relevansi dokumen, dan highlight term yang cocok. Dibangun supaya proses information retrieval bisa dipahami secara visual.",
+      "translations": {
+        "en": {
+          "shortDescription": "A document search application that visualizes TF-IDF, showing keyword weights, document relevance rankings, and matching terms so information retrieval is easy to understand.",
+          "period": "2025",
+          "role": "Frontend Web Developer"
+        }
+      },
+      "category": "Search UI & Web App",
+      "tags": [
+        "Next.js",
+        "React",
+        "TypeScript",
+        "Tailwind CSS",
+        "Search UI",
+        "Data Visualization"
+      ],
+      "image": "/projects/dockrank.webp",
+      "imageFull": "/projects/dockrank@full.webp",
+      "featured": false,
+      "publishedDate": "2025-07-07",
+      "period": "2025",
+      "role": "Junior Web Developer",
+      "demoUrl": "https://tfidf.vercel.app",
+      "githubUrl": "https://github.com/IngsR/DockRank_TF-IDF",
+      "metrics": [
+        {
+          "label": "Search UI",
+          "value": "Instant Ranking View"
+        },
+        {
+          "label": "Visualization",
+          "value": "Term Weight Breakdown"
+        },
+        {
+          "label": "Frontend",
+          "value": "Next.js & React"
+        }
+      ],
+      "markdownContent": "---\ntitle: \"DockRank - Information Retrieval Search UI\"\ndescription: \"Antarmuka temu balik informasi berbasis web dengan visualisasi transparan kalkulasi bobot TF-IDF dan skor perankingan.\"\ndate: \"2025-07-07\"\ncategory: \"Search UI & Web App\"\ntags:\n  - Next.js\n  - React\n  - TypeScript\n  - Search UI\ngithub: \"https://github.com/IngsR/DockRank_TF-IDF\"\ndemo: \"https://tfidf.vercel.app\"\nfeatured: false\n---\n\n# DockRank - Information Retrieval Search UI\n\n## 📌 Latar Belakang & Kebutuhan Sistem\nAlgoritma Term Frequency - Inverse Document Frequency (TF-IDF) merupakan konsep fundamental dalam temu balik informasi dan pemrosesan teks. Namun, proses pembobotan kata sering terasa abstrak tanpa alat yang memperlihatkan dekomposisi perhitungannya secara visual.\n\n---\n\n## 🛠️ Keputusan Rekayasa & Solusi Teknis\n1. **Pipeline Pemrosesan Teks Transparan**: Teks dokumen melalui tahap tokenisasi, filtering stop words, dan kalkulasi frekuensi istilah (TF) serta bobot invers dokumen (IDF) yang disajikan langsung dalam tabel data interaktif.\n2. **Visualisasi Skor Relevansi**: Pengguna dapat melihat kontribusi bobot setiap term dalam query terhadap skor total dokumen, lengkap dengan penandaan (*highlight*) kata kunci yang cocok pada teks dokumen.\n3. **Eksplorasi Responsif**: Dibangun dengan Next.js dan React state management sehingga penambahan dokumen atau perubahan kata kunci pencarian langsung memperbarui kalkulasi matriks secara instan.",
+      "problem": "Pemahaman terhadap konsep Information Retrieval sering terhambat oleh sifat perhitungan algoritma TF-IDF dan Vector Space Model yang abstrak. Diperlukan instrumen interaktif yang mampu mendemonstrasikan tahapan pemrosesan teks, bobot frekuensi kata, dan perankingan relevansi secara transparan dan terukur.",
+      "solution": "Membangun antarmuka pencarian dokumen interaktif berbasis Next.js dan React. Sistem melakukan tokenisasi teks, kalkulasi Term Frequency (TF), Inverse Document Frequency (IDF), dan cosine similarity secara langsung, menyajikan tabel breakdown skor bobot kata serta penandaan kata kunci yang cocok pada teks dokumen."
+    },
+    {
+      "id": "proj-8",
+      "slug": "admin-blog-platform",
+      "title": "Content Publishing Platform & Live Editor",
+      "shortDescription": "Platform menulis dan mempublikasikan artikel dengan editor Markdown yang punya preview langsung di sebelahnya. Artikel yang diterbitkan otomatis punya halaman sendiri dengan URL bersih, metadata SEO terstruktur, dan rendering SSR.",
+      "translations": {
+        "en": {
+          "shortDescription": "An article publishing platform with a Markdown editor and live side-by-side preview. Published articles receive dedicated pages with clean URLs, structured SEO metadata, and server-side rendering.",
+          "period": "2026",
+          "role": "Full-Stack Web Developer"
+        }
+      },
+      "translations": {
+        "en": {
+          "title": "Content Publishing Platform & Live Markdown Editor",
+          "shortDescription": "A modern content management and editorial system built with Next.js App Router, featuring a synchronized dual-pane Markdown editor, dynamic routing, and structured JSON-LD SEO rendering.",
+          "period": "2026",
+          "role": "Full-Stack Web Developer",
+          "problem": "Editorial publication workflows often suffer from sluggish authoring interfaces and detached preview screens that impede rapid writing. Furthermore, dynamic articles frequently lack automated structured Open Graph metadata, compromising search engine discoverability.",
+          "solution": "Engineered a Next.js App Router publishing application featuring an instant-feedback split-pane Markdown editor. Implemented server-side rendering for public article views to deliver complete semantic HTML to web crawlers, maximizing First Contentful Paint and automated search indexing."
+        }
+      },
+      "category": "Content & Publishing UI",
+      "tags": [
+        "Next.js",
+        "React",
+        "TypeScript",
+        "Tailwind CSS",
+        "Markdown UI",
+        "Technical SEO"
+      ],
+      "image": "/projects/adminblog.webp",
+      "imageFull": "/projects/adminblog@full.webp",
+      "featured": true,
+      "publishedDate": "2026-04-13",
+      "period": "2026",
+      "role": "Junior Web Developer",
+      "demoUrl": "https://blogsing.vercel.app",
+      "githubUrl": "https://github.com/IngsR/AdminBlog_nextjs",
+      "metrics": [
+        {
+          "label": "Editor UX",
+          "value": "Dual-Pane Live Markdown"
+        },
+        {
+          "label": "SEO Strategy",
+          "value": "Dynamic Structured Metadata"
+        },
+        {
+          "label": "Rendering",
+          "value": "Next.js Hybrid SSG/SSR"
+        }
+      ],
+      "markdownContent": "---\ntitle: \"Content Publishing Platform & Live Editor\"\ndescription: \"Platform penerbitan artikel berbasis Next.js dengan dual-pane live markdown editor, dynamic routing, dan metadata SEO terstruktur.\"\ndate: \"2026-04-13\"\ncategory: \"Content & Publishing UI\"\ntags:\n  - Next.js\n  - React\n  - TypeScript\n  - Tailwind CSS\n  - Markdown UI\ngithub: \"https://github.com/IngsR/AdminBlog_nextjs\"\ndemo: \"https://blogsing.vercel.app\"\nfeatured: false\n---\n\n# Content Publishing Platform & Live Editor\n\n## 📌 Latar Belakang & Kebutuhan Sistem\nBanyak sistem CMS blog memiliki editor yang lambat atau memisahkan halaman penulisan dengan halaman pratinjau (*preview*), memaksa penulis bolak-balik klik tombol preview. Selain itu, artikel sering tidak memiliki metadata terstruktur yang ramah search engine.\n\n---\n\n## 🛠️ Keputusan Rekayasa & Solusi Teknis\n1. **Dual-Pane Live Editor**: Area pengetikan teks Markdown di sisi kiri tersinkronisasi langsung dengan parser HTML di sisi kanan, memberikan feedback visual instan saat formatting heading, tabel, atau blok kode.\n2. **Dynamic Route & Hybrid Rendering**: Artikel publik di-render dengan Next.js Server Components untuk memastikan HTML lengkap dikirim ke web crawler, mempercepat indeksasi mesin pencari dan FCP peramban.\n3. **Dynamic Open Graph Generator**: Setiap postingan secara otomatis menghasilkan kartu ringkasan sosial dengan judul dan kategori artikel untuk kebutuhan share tautan.",
+      "problem": "Alur kerja publikasi artikel memerlukan lingkungan penulisan teks Markdown dengan umpan balik visual seketika (live preview) tanpa jeda. Di sisi distribusi, artikel yang diterbitkan wajib memiliki metadata Open Graph terstruktur dan performa muat awal instan agar mudah diindeks oleh search engine crawler.",
+      "solution": "Mengembangkan platform penerbitan Next.js App Router dengan editor split-pane ganda yang menyinkronkan pengetikan Markdown dan rendering HTML secara instan. Menggunakan Server-Side Rendering untuk menghasilkan halaman publik dengan metadata SEO terstruktur otomatis dan performa First Contentful Paint yang optimal."
+    },
+    {
+      "id": "proj-9",
+      "slug": "react-native-ecommerce",
+      "title": "React Native E-Commerce Mobile UI",
+      "shortDescription": "Aplikasi e-commerce mobile cross-platform yang saya bangun pakai React Native dan Expo. Fokusnya di navigasi layar yang mulus, katalog produk yang interaktif, dan penanganan state asinkron untuk loading/error saat fetch data.",
+      "translations": {
+        "en": {
+          "shortDescription": "A cross-platform mobile commerce application built with React Native and Expo, focused on smooth screen navigation, an interactive product catalog, and reliable loading and error states during data fetching.",
+          "period": "2025",
+          "role": "Full-Stack Web & Mobile Developer"
+        }
+      },
+      "category": "Mobile Frontend",
+      "tags": [
+        "React Native",
+        "Expo",
+        "TypeScript",
+        "Mobile UI",
+        "Async State",
+        "Cross-Platform"
+      ],
+      "image": "/projects/reactnative.svg",
+      "featured": false,
+      "publishedDate": "2025-06-06",
+      "period": "2025",
+      "role": "Fullstack Web & Mobile Developer",
+      "demoUrl": "",
+      "githubUrl": "https://github.com/IngsR/ReactExpo-Mobile-Ecomerce",
+      "metrics": [
+        {
+          "label": "Mobile UI",
+          "value": "Expo & React Native"
+        },
+        {
+          "label": "Platform",
+          "value": "iOS & Android Support"
+        },
+        {
+          "label": "UX Flow",
+          "value": "Smooth Screen Transitions"
+        }
+      ],
+      "markdownContent": "---\ntitle: \"React Native E-Commerce Mobile UI\"\ndescription: \"Antarmuka belanja daring cross-platform berbasis React Native dan Expo dengan fokus transisi layar mulus dan async state handal.\"\ndate: \"2025-06-06\"\ncategory: \"Mobile Frontend\"\ntags:\n  - React Native\n  - Expo\n  - TypeScript\n  - Mobile UI\ngithub: \"https://github.com/IngsR/ReactExpo-Mobile-Ecomerce\"\ndemo: \"\"\nfeatured: false\n---\n\n# React Native E-Commerce Mobile UI\n\n## 📌 Latar Belakang & Kebutuhan Sistem\nAplikasi mobile belanja daring membutuhkan interaksi sentuh yang responsif dan navigasi bebas *jank* (patah-patah), terutama saat katalog memuat banyak gambar produk dan user sering berpindah antara tab pencarian, detail barang, dan keranjang belanja.\n\n---\n\n## 🛠️ Keputusan Rekayasa & Solusi Teknis\n1. **Navigasi Layar 60 FPS**: Memanfaatkan React Navigation stack dan tab navigator yang dioptimasi agar pergantian konteks layar terasa mulus di perangkat iOS maupun Android.\n2. **State Management Keranjang**: Mengelola penambahan, pengurangan kuantitas, dan kalkulasi subtotal barang secara terpusat tanpa glitch re-render pada komponen kartu produk.\n3. **Penanganan Status Asinkron**: Mengimplementasikan skeleton loading saat pemuatan data katalog produk, error boundary penanganan kegagalan fetch, serta feedback visual instan saat pengguna menekan tombol aksi.",
+      "problem": "Antarmuka aplikasi belanja seluler dituntut menjaga kestabilan frame rate 60 FPS saat navigasi antar-katalog, konsistensi state keranjang belanja lintas layar, serta ketahanan penanganan status asinkron (loading, error, empty state) pada jaringan seluler yang berfluktuasi.",
+      "solution": "Membangun aplikasi mobile cross-platform menggunakan React Native dan Expo. Mengoptimalkan stack navigation untuk transisi layar yang halus, mengisolasi manajemen state keranjang belanja guna mencegah jank rendering, serta mengimplementasikan skeleton loading dan error boundary untuk penanganan async data fetching yang andal.",
+      "translations": {
+        "en": {
+          "title": "React Native E-Commerce Mobile UI",
+          "shortDescription": "A cross-platform mobile shopping app built with React Native and Expo, focused on smooth screen transitions, an interactive product catalog, and reliable async state handling for loading and error states while fetching data.",
+          "period": "2025",
+          "role": "Mobile Frontend Developer",
+          "problem": "A mobile shopping interface must hold a stable 60 FPS during catalog navigation, keep cart state consistent across screens, and handle asynchronous states (loading, error, empty) resiliently on fluctuating mobile networks.",
+          "solution": "Built a cross-platform mobile app with React Native and Expo. Optimized the navigation stack for smooth screen transitions, isolated cart state management to prevent render jank, and implemented skeleton loading plus error boundaries for dependable async data fetching."
+        }
+      }
+    }
+  ],
+  "skillCategories": [
+    {
+      "title": "Fullstack & Next.js",
+      "iconName": "Layout",
+      "description": "Fokus utama saya dalam membangun aplikasi web modern, responsif, dan terstruktur rapi.",
+      "translations": {
+        "en": {
+          "title": "Full-Stack & Next.js",
+          "description": "My primary focus is building modern, responsive, and well-structured web applications."
+        }
+      },
+      "coreStack": [
+        "Next.js (App Router)",
+        "React.js",
+        "TypeScript",
+        "Node.js"
+      ],
+      "alsoUsed": [
+        "Server Actions",
+        "Tailwind CSS",
+        "shadcn/ui",
+        "HTML5 / CSS3"
+      ]
+    },
+    {
+      "title": "REST API & Database",
+      "iconName": "Server",
+      "description": "Pembuatan endpoint RESTful yang efisien, validasi data, dan integrasi database relasional.",
+      "translations": {
+        "en": {
+          "title": "REST APIs & Databases",
+          "description": "Building efficient REST endpoints, validating data, and integrating relational databases."
+        }
+      },
+      "coreStack": [
+        "REST API",
+        "Route Handlers",
+        "Zod Validation",
+        "SQL / Relational DB"
+      ],
+      "alsoUsed": [
+        "Prisma / Drizzle ORM",
+        "Supabase",
+        "Postman",
+        "Data Modeling"
+      ]
+    },
+    {
+      "title": "Git, Testing & Deployment",
+      "iconName": "Shield",
+      "description": "Workflow pengembangan teratur dengan Git, pengujian fungsional, dan proses rilis CI/CD.",
+      "translations": {
+        "en": {
+          "title": "Git, Testing & Deployment",
+          "description": "Structured development workflows using Git, functional testing, and CI/CD releases."
+        }
+      },
+      "coreStack": [
+        "Git & GitHub Workflow",
+        "Unit & Integration Testing",
+        "CI/CD Pipeline",
+        "Vercel Deployment"
+      ],
+      "alsoUsed": [
+        "Code Review",
+        "Input Validation",
+        "GitHub Actions",
+        "Environment Variables"
+      ]
+    },
+    {
+      "title": "Bekal Akademik Data & AI",
+      "iconName": "Cpu",
+      "description": "Konsentrasi kuliah dan skripsi yang melengkapi pekerjaan software engineering dengan dasar pengolahan data dan evaluasi model.",
+      "translations": {
+        "en": {
+          "title": "Academic Background in Data & AI",
+          "description": "My academic concentration and thesis complement software engineering with foundations in data processing and model evaluation."
+        }
+      },
+      "coreStack": [
+        "Python",
+        "Data Preprocessing",
+        "Model Evaluation",
+        "LSTM Time Series"
+      ],
+      "alsoUsedLabel": "EXPLORED IN PROJECTS",
+      "alsoUsed": [
+        "Deep Learning",
+        "ONNX Runtime",
+        "Haversine / R² Metrics",
+        "Geospatial Visualization"
+      ]
+    }
+  ],
+  "experience": [
+    {
+      "id": "exp-1",
+      "role": "Fullstack Web Developer (Magang)",
+      "translations": {
+        "en": {
+          "role": "Full-Stack Web Developer (Intern)",
+          "period": "August - September 2025",
+          "type": "Internship",
+          "description": "Completed a two-month internship building SMP Negeri 24 Padang's information system and school website end to end: gathering requirements, designing the interface architecture, implementing news and announcement flows, resolving integration issues, and deploying to production.",
+          "achievements": [
+            "Built a school web application with Next.js App Router and TypeScript, working directly with school staff to define the public portal and content-management requirements.",
+            "Designed data flows and Zod form validation after identifying inconsistent inputs during testing, keeping stored data reliable.",
+            "Applied SSR and SSG with revalidation caching, then audited the results with Lighthouse to reach a performance score of 99/100 and improve search indexing.",
+            "Prepared the production deployment to smpn24padang.sch.id and resolved release issues until content updates were stable."
+          ]
+        }
+      },
+      "company": "SMP Negeri 24 Padang",
+      "location": "Padang, Indonesia",
+      "period": "Agustus - September 2025",
+      "type": "Magang",
+      "description": "Magang 2 bulan membangun sistem informasi dan website profil SMP Negeri 24 Padang secara end-to-end: memetakan kebutuhan sekolah, menyusun arsitektur antarmuka, mengembangkan fitur dan alur data pengumuman serta berita, memperbaiki masalah yang muncul saat integrasi, hingga merilis ke server produksi.",
+      "achievements": [
+        "Mengembangkan aplikasi web sekolah dengan Next.js App Router dan TypeScript, bekerja sama langsung dengan pihak sekolah untuk memetakan kebutuhan portal publik dan panel pengelolaan konten.",
+        "Menyusun alur data dan validasi skema form menggunakan Zod setelah menemukan input yang tidak konsisten saat pengujian, agar data tetap rapi sebelum disimpan.",
+        "Menerapkan strategi rendering SSR dan SSG dengan caching revalidasi, lalu membandingkan hasilnya melalui audit Lighthouse hingga mencapai performa 99/100 dan SEO yang lebih mudah terindeks.",
+        "Menyiapkan proses deployment ke domain produksi smpn24padang.sch.id, termasuk menelusuri dan memperbaiki kendala rilis hingga workflow pembaruan konten berjalan stabil."
+      ],
+      "techStack": [
+        "Next.js (App Router)",
+        "React",
+        "TypeScript",
+        "REST API",
+        "Zod",
+        "Tailwind CSS",
+        "shadcn/ui",
+        "SSR / SSG",
+        "Git & Deployment"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "id": "edu-1",
+      "degree": "Sarjana Komputer (S.Kom) - S1 Teknik Informatika (Konsentrasi Data Science)",
+      "translations": {
+        "en": {
+          "degree": "Bachelor of Computer Science - Informatics Engineering (Data Science)",
+          "details": "My Data Science concentration provided an academic foundation in data processing and analysis. My Informatics Engineering studies covered software engineering, data structures and algorithms, relational databases, web programming, and information systems security. My thesis applied an LSTM deep-learning model to tropical cyclone track prediction and delivered the results as a web application."
+        }
+      },
+      "institution": "Universitas Putra Indonesia \"YPTK\" Padang",
+      "period": "2022 - 2026",
+      "gpa": "3.26 / 4.00",
+      "details": "Konsentrasi Data Science memberi bekal akademik dalam pengolahan dan analisis data. Fondasi Teknik Informatika saya mencakup Rekayasa Perangkat Lunak, Struktur Data & Algoritma, Basis Data Relasional, Pemrograman Web, dan Keamanan Sistem Informasi. Skripsi saya menerapkan Deep Learning (LSTM) untuk memprediksi lintasan siklon tropis dan hasilnya diwujudkan dalam aplikasi web."
+    }
+  ],
+  "certifications": [
+    {
+      "id": "cert-1",
+      "title": "Artificial Intelligence Fundamentals",
+      "issuer": "Huawei ICT Academy",
+      "issueDate": "2026",
+      "period": "",
+      "badgeCode": "HUAWEI-AI-FUNDAMENTALS",
+      "category": "Artificial Intelligence",
+      "credentialUrl": "https://e.huawei.com/en/talent/#/",
+      "image": "/certificates/Artificial Intelligence Fundamentals.webp",
+      "skills": [
+        "Artificial Intelligence",
+        "Machine Learning Basics",
+        "Deep Learning Concepts",
+        "Neural Networks",
+        "Python for AI"
+      ],
+      "description": "Sertifikasi ini melengkapi latar akademik saya dengan dasar machine learning dan neural network, mulai dari supervised learning hingga konsep deep learning. Materinya membantu saya memahami dan mengevaluasi model LSTM yang digunakan dalam skripsi, lalu mengintegrasikan hasilnya ke aplikasi web.",
+      "translations": {
+        "en": {
+          "description": "This certification complemented my academic background with machine learning and neural network fundamentals, from supervised learning to deep learning concepts. The material helped me understand and evaluate the LSTM model used in my thesis and integrate it into a web application."
+        }
+      }
+    },
+    {
+      "id": "cert-2",
+      "title": "Artificial Intelligence: Principles and Applications",
+      "issuer": "Huawei ICT Academy",
+      "issueDate": "2026",
+      "period": "",
+      "badgeCode": "HUAWEI-AI-PRINCIPLES-APP",
+      "category": "Artificial Intelligence & Deep Learning",
+      "credentialUrl": "https://e.huawei.com/en/talent/#/",
+      "image": "/certificates/Artificial Intelligence_ Principles and Applications.webp",
+      "skills": [
+        "AI Principles",
+        "Deep Learning Architecture",
+        "Computer Vision",
+        "Natural Language Processing",
+        "AI Industry Applications"
+      ],
+      "description": "Materi lanjutan tentang computer vision, NLP, dan integrasi model AI melalui API. Pengetahuan ini menjadi bekal pendukung saat saya mengemas model LSTM hasil skripsi ke format ONNX Runtime dan mengintegrasikannya ke aplikasi web prediksi siklon tropis.",
+      "translations": {
+        "en": {
+          "description": "Advanced topics in computer vision, NLP, and integrating AI models through APIs. This knowledge supported packaging my thesis LSTM model with ONNX Runtime and integrating it into a tropical cyclone prediction web application."
+        }
+      }
+    },
+    {
+      "id": "cert-3",
+      "title": "HCIP-Datacom Core Technology V1.0 Course",
+      "issuer": "Huawei ICT Academy",
+      "issueDate": "2026",
+      "period": "",
+      "badgeCode": "HUAWEI-HCIP-DATACOM-V1.0",
+      "category": "Network & Infrastructure Engineering",
+      "credentialUrl": "https://e.huawei.com/en/talent/#/",
+      "image": "/certificates/HCIP-Datacom Core Technology V1.0 Course.webp",
+      "skills": [
+        "Datacom Routing & Switching",
+        "Advanced IP Networking",
+        "OSPF / BGP Protocols",
+        "VLAN & STP",
+        "Enterprise Network Security"
+      ],
+      "description": "Meskipun fokus utama saya web development, memahami dasar jaringan dan komunikasi data itu penting. Sertifikasi ini membantu saya mengerti alur request client-server, kenapa latency terjadi, bagaimana DNS dan routing bekerja, dan cara troubleshoot saat deployment aplikasi bermasalah di jaringan.",
+      "translations": {
+        "en": {
+          "description": "Although my primary focus is web development, understanding networking and data communications is important. This certification helped me understand client-server requests, latency, DNS and routing, and how to troubleshoot network issues during deployment."
+        }
+      }
+    },
+    {
+      "id": "cert-4",
+      "title": "Problem Solving (Basic)",
+      "issuer": "HackerRank",
+      "issueDate": "Mei 2025",
+      "period": "",
+      "badgeCode": "HACKERRANK-PS-BASIC",
+      "category": "Problem Solving & DSA",
+      "credentialUrl": "https://www.hackerrank.com/certificates/iframe/18c088033553",
+      "image": "/certificates/Problem Solving (Basic).webp",
+      "skills": [
+        "Problem Solving",
+        "Data Structures",
+        "Algorithms",
+        "Logic",
+        "Competitive Programming"
+      ],
+      "description": "Lulus tes problem solving HackerRank level Basic - artinya bisa menyelesaikan soal-soal algoritma dan struktur data fundamental dalam batas waktu tertentu. Ini melatih kebiasaan saya berpikir terstruktur sebelum ngoding: pecah masalah jadi langkah-langkah kecil, baru implementasi.",
+      "translations": {
+        "en": {
+          "issueDate": "May 2025",
+          "description": "Passed HackerRank's Basic problem-solving assessment, demonstrating the ability to solve fundamental algorithms and data-structure challenges within a time limit. It reinforced my habit of breaking problems into structured steps before coding."
+        }
+      }
+    },
+    {
+      "id": "cert-5",
+      "title": "Problem Solving (Intermediate)",
+      "issuer": "HackerRank",
+      "issueDate": "Jun 2025",
+      "period": "",
+      "badgeCode": "HACKERRANK-PS-INTERMEDIATE",
+      "category": "Problem Solving & DSA",
+      "credentialUrl": "https://www.hackerrank.com/certificates/iframe/f839f365795c",
+      "image": "/certificates/Problem Solving (Intermediate).webp",
+      "skills": [
+        "Advanced Problem Solving",
+        "Complex Data Structures",
+        "Algorithmic Optimization",
+        "Performance Tuning"
+      ],
+      "description": "Level Intermediate ini menguji kemampuan menangani soal algoritma yang lebih kompleks - optimasi waktu eksekusi, pemilihan struktur data yang tepat untuk kasus tertentu, dan penanganan edge case. Saya ambil ini karena ingin memastikan fondasi berpikir algoritmis saya cukup kuat, bukan cuma bisa bikin UI.",
+      "translations": {
+        "en": {
+          "issueDate": "June 2025",
+          "description": "This intermediate assessment tested more complex algorithmic problem-solving, including runtime optimization, choosing suitable data structures, and handling edge cases. I took it to strengthen my algorithmic foundations beyond building user interfaces."
+        }
+      }
+    }
+  ],
+  "engineeringMindsetSkills": [
+    {
+      "id": "fullstack-nextjs-arch",
+      "category": "01 - Arsitektur Fullstack & Next.js",
+      "title": "Next.js App Router, SSR/SSG & Server Actions",
+      "narrative": "Next.js adalah framework yang paling sering saya gunakan. Saya belajar menyusun struktur proyek yang jelas, membedakan Server Components dan Client Components, serta memanfaatkan Server Actions untuk mutasi data tanpa boilerplate berlebih. Pilihan rendering (SSR, SSG, atau revalidasi berkala) saya sesuaikan dengan kebutuhan data di lapangan agar halaman cepat dimuat dan beban server tetap hemat.",
+      "technologies": [
+        "Next.js (App Router)",
+        "React",
+        "TypeScript",
+        "Server Components",
+        "Server Actions",
+        "SSR / SSG Caching"
+      ],
+      "iconName": "Layout"
+    },
+    {
+      "id": "rest-api-backend",
+      "category": "02 - REST API & Database",
+      "title": "Route Handlers, Validasi Skema & Integrasi Database",
+      "narrative": "Saya merancang Route Handlers dengan struktur endpoint yang jelas, status HTTP yang tepat, dan validasi input ketat menggunakan Zod. Saya menghubungkan backend ke database relasional lewat Prisma atau Supabase, memastikan relasi data konsisten dan query efisien. Error handling dirancang agar responnya informatif - tidak hanya 500 generik.",
+      "technologies": [
+        "REST API",
+        "Next.js Route Handlers",
+        "Zod Schema Validation",
+        "Prisma ORM",
+        "Supabase",
+        "SQL & Relational DB"
+      ],
+      "iconName": "Server"
+    },
+    {
+      "id": "git-cicd-delivery",
+      "category": "03 - Git Workflow & Deployment",
+      "title": "Branch, Pull Request, CI/CD & Serverless Deploy",
+      "narrative": "Saya terbiasa bekerja dengan Git standar tim: membuat branch fitur yang terpisah, menulis pesan commit yang jelas, mengajukan Pull Request untuk review, dan menangani merge conflict dengan hati-hati. Saya juga paham langkah mitigasi seperti git reset dan revert jika terjadi masalah di rilis produksi, serta memanfaatkan pipeline CI/CD dan deployment ke Vercel.",
+      "technologies": [
+        "Git (Branch, PR, Merge)",
+        "Git Reset & Revert",
+        "CI/CD Pipeline",
+        "Vercel Deployment",
+        "Environment Variables",
+        "Production Release"
+      ],
+      "iconName": "Terminal"
+    }
+  ],
+  "contactFaq": [
+    {
+      "question": "Bagaimana cara menghubungi Ikhwan Ramadhan untuk peluang kerja Junior Web Developer?",
+      "answer": "Anda bisa menghubungi saya langsung melalui WhatsApp di +62 823-8647-3410, via email ke ikhwn.rdn@gmail.com, atau lewat form pesan di situs ini. Saya siap merespons dengan cepat untuk jadwal wawancara maupun diskusi teknis."
+    },
+    {
+      "question": "Apakah Anda siap bekerja On-Site (WFO) atau siap relokasi?",
+      "answer": "Ya, saya siap dan terbuka untuk penempatan On-Site (WFO) di seluruh wilayah Indonesia dan siap relokasi, begitu pula untuk sistem kerja Hybrid maupun Remote."
+    },
+    {
+      "question": "Apa keahlian teknis utama yang Anda bawa untuk tim?",
+      "answer": "Fokus saya adalah software engineering, terutama membangun aplikasi dari frontend hingga backend dengan Next.js dan TypeScript. Saya menangani penyusunan antarmuka, REST API, database, validasi Zod, pengujian, dasar keamanan OWASP Top 10, Git workflow, dan deployment serverless. Konsentrasi Data Science menjadi bekal akademik tambahan untuk mengolah data dan mengevaluasi fitur secara analitis."
+    }
+  ]
+}

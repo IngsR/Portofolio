@@ -1,0 +1,812 @@
+"use client";
+import {
+  Activity,
+  ArrowLeft,
+  ArrowRight,
+  ArrowUpRight,
+  Award,
+  Building2,
+  Calendar,
+  CheckCircle2,
+  Code2,
+  Cpu,
+  ExternalLink,
+  Github,
+  Layers,
+  Share2,
+  ShieldCheck,
+  Tag,
+  Target,
+  User,
+  Zap,
+} from "lucide-react";
+import React, { useState } from "react";
+import { Navbar } from "../../components/layout/navbar";
+import type { CertificationItem, Locale, ProjectItem } from "../../types";
+import { getLocalePath } from "../../utils/locale";
+import { getDictionary } from "../../data/locales";
+import { formatShortDate, getProjectLiveButtonLabel } from "../../utils/format";
+
+const getMetricTheme = (
+  label: string,
+  idx: number,
+  customIcon?: React.ReactNode,
+) => {
+  const l = label.toLowerCase();
+  if (l.includes("akurasi") || l.includes("model") || l.includes("accuracy")) {
+    return {
+      icon: customIcon || <Activity className="w-5 h-5" />,
+      badge:
+        "bg-indigo-50 text-indigo-600 border-indigo-200/70 dark:bg-indigo-500/15 dark:text-indigo-400 dark:border-indigo-500/30",
+    };
+  }
+  if (
+    l.includes("engine") ||
+    l.includes("frontend") ||
+    l.includes("architecture") ||
+    l.includes("arsitektur") ||
+    l.includes("core")
+  ) {
+    return {
+      icon: customIcon || <Layers className="w-5 h-5" />,
+      badge:
+        "bg-sky-50 text-sky-600 border-sky-200/70 dark:bg-sky-500/15 dark:text-sky-400 dark:border-sky-500/30",
+    };
+  }
+  if (
+    l.includes("inference") ||
+    l.includes("runtime") ||
+    l.includes("speed") ||
+    l.includes("vitals") ||
+    l.includes("performance") ||
+    l.includes("ux") ||
+    l.includes("interactive")
+  ) {
+    return {
+      icon: customIcon || <Zap className="w-5 h-5" />,
+      badge:
+        "bg-emerald-50 text-emerald-600 border-emerald-200/70 dark:bg-emerald-500/15 dark:text-emerald-400 dark:border-emerald-500/30",
+    };
+  }
+  if (l.includes("penerbit")) {
+    return {
+      icon: customIcon || <Building2 className="w-5 h-5" />,
+      badge:
+        "bg-indigo-50 text-indigo-600 border-indigo-200/70 dark:bg-indigo-500/15 dark:text-indigo-400 dark:border-indigo-500/30",
+    };
+  }
+  if (l.includes("kredensial") || l.includes("nomor")) {
+    return {
+      icon: customIcon || <ShieldCheck className="w-5 h-5" />,
+      badge:
+        "bg-sky-50 text-sky-600 border-sky-200/70 dark:bg-sky-500/15 dark:text-sky-400 dark:border-sky-500/30",
+    };
+  }
+  if (l.includes("berlaku") || l.includes("status")) {
+    return {
+      icon: customIcon || <CheckCircle2 className="w-5 h-5" />,
+      badge:
+        "bg-emerald-50 text-emerald-600 border-emerald-200/70 dark:bg-emerald-500/15 dark:text-emerald-400 dark:border-emerald-500/30",
+    };
+  }
+
+  const palettes = [
+    {
+      icon: customIcon || <Cpu className="w-5 h-5" />,
+      badge:
+        "bg-indigo-50 text-indigo-600 border-indigo-200/70 dark:bg-indigo-500/15 dark:text-indigo-400 dark:border-indigo-500/30",
+    },
+    {
+      icon: customIcon || <Code2 className="w-5 h-5" />,
+      badge:
+        "bg-sky-50 text-sky-600 border-sky-200/70 dark:bg-sky-500/15 dark:text-sky-400 dark:border-sky-500/30",
+    },
+    {
+      icon: customIcon || <Layers className="w-5 h-5" />,
+      badge:
+        "bg-emerald-50 text-emerald-600 border-emerald-200/70 dark:bg-emerald-500/15 dark:text-emerald-400 dark:border-emerald-500/30",
+    },
+  ];
+  return palettes[idx % palettes.length] || palettes[0]!;
+};
+
+export interface DetailViewProps {
+  project?: ProjectItem | null;
+  certificate?: CertificationItem | null;
+  relatedProjects?: ProjectItem[];
+  relatedCertificates?: CertificationItem[];
+  backHref?: string;
+  backLabel?: string;
+  onBack?: () => void;
+  locale?: Locale;
+  currentPath?: string;
+}
+
+/**
+ * UniversalDetailView - Komponen detail sinematik yang reusable
+ * untuk Proyek Portofolio maupun Kredensial Sertifikasi.
+ */
+export const DetailView: React.FC<DetailViewProps> = ({
+  project,
+  certificate,
+  relatedProjects = [],
+  relatedCertificates = [],
+  backHref,
+  backLabel,
+  onBack,
+  locale = "id",
+  currentPath,
+}) => {
+  const copy = getDictionary(locale).portfolio.detail;
+  const isProject = !!project;
+  const item = project || certificate;
+
+  const [copied, setCopied] = useState(false);
+
+  if (!item) {
+    return (
+      <div className="min-h-[50vh] flex items-center justify-center p-8 text-center">
+        <p className="text-slate-500 dark:text-slate-400">
+          {locale === "en"
+            ? "Detail not found."
+            : "Data detail tidak ditemukan."}
+        </p>
+      </div>
+    );
+  }
+
+  const handleShare = () => {
+    if (typeof window === "undefined") return;
+    navigator.clipboard.writeText(window.location.href);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2200);
+  };
+
+  // Field mapping
+  const title = isProject ? project!.title : certificate!.title;
+  const category = isProject
+    ? project!.category
+    : certificate!.category ||
+      (locale === "en" ? "Official Certification" : "Sertifikasi Resmi");
+  const period = isProject
+    ? formatShortDate(project!.period || project!.publishedDate, locale)
+    : certificate!.period || formatShortDate(certificate!.issueDate, locale);
+  const description = isProject
+    ? project!.shortDescription
+    : certificate!.description ||
+      `${copy.issuerDescription} ${certificate!.issuer}.`;
+  const image = isProject
+    ? project!.imageFull || project!.image
+    : certificate!.image;
+  const fallbackImage = isProject
+    ? project!.fallbackImage
+    : certificate!.fallbackImage;
+  const problemDescription =
+    project?.problem && project.problem !== project.shortDescription
+      ? project.problem
+      : copy.problemFallback;
+  const solutionDescription =
+    project?.solution && project.solution !== project.shortDescription
+      ? project.solution
+      : copy.solutionFallback;
+
+  // Resolved back navigation
+  const resolvedBackHref = backHref || (isProject ? "/" : "/portfolio");
+  const resolvedBackLabel =
+    backLabel || (isProject ? copy.backHome : copy.backPortfolio);
+
+  // Certificate metrics helper
+  const certificateMetrics =
+    !isProject && certificate
+      ? [
+          {
+            label:
+              locale === "en" ? "Credential Issuer" : "Penerbit Kredensial",
+            value: certificate.issuer,
+            icon: <Building2 className="w-5 h-5" />,
+          },
+          {
+            label:
+              locale === "en"
+                ? "Credential Number / ID"
+                : "Nomor / ID Kredensial",
+            value: certificate.badgeCode || copy.verified,
+            icon: <ShieldCheck className="w-5 h-5 text-indigo-500" />,
+          },
+          {
+            label: locale === "en" ? "Validity" : "Masa Berlaku",
+            value:
+              certificate.period ||
+              (locale === "en" ? "Active / Lifetime" : "Aktif / Seumur Hidup"),
+            icon: <CheckCircle2 className="w-5 h-5 text-emerald-500" />,
+          },
+        ]
+      : [];
+
+  return (
+    <div className="min-h-screen text-slate-900 dark:text-slate-100 transition-colors duration-200">
+      <Navbar
+        nativeNavigation
+        activePage="portfolio"
+        locale={locale}
+        {...(currentPath ? { currentPath } : {})}
+      />
+      <div className="relative z-10 max-w-6xl 2xl:max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 sm:pt-28 pb-24">
+        {/* Navigation & Breadcrumbs Bar */}
+        <div
+          className="flex items-center justify-between gap-3 pb-6 mb-8 border-b border-slate-200/80 dark:border-white/10 w-full overflow-x-auto hide-scrollbar"
+          style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+        >
+          {onBack ? (
+            <button
+              type="button"
+              onClick={onBack}
+              className="group inline-flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-transparent border border-[#36454f]/20 dark:border-white/10 text-[11px] sm:text-xs font-bold text-[#1c2932] dark:text-slate-100 hover:border-[#36454f]/40 dark:hover:border-white/30 backdrop-blur-md transition-all duration-200 shadow-xs hover:shadow-sm shrink-0"
+              title={resolvedBackLabel}
+            >
+              <ArrowLeft className="w-3.5 h-3.5 sm:w-4 sm:h-4 transition-transform group-hover:-translate-x-1 text-[#36454f] dark:text-slate-300" />
+              <span className="hidden sm:inline">{resolvedBackLabel}</span>
+              <span className="sm:hidden">{copy.back}</span>
+            </button>
+          ) : (
+            <a
+              href={getLocalePath(resolvedBackHref, locale)}
+              className="group inline-flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-transparent border border-[#36454f]/20 dark:border-white/10 text-[11px] sm:text-xs font-bold text-[#1c2932] dark:text-slate-100 hover:border-[#36454f]/40 dark:hover:border-white/30 backdrop-blur-md transition-all duration-200 shadow-xs hover:shadow-sm shrink-0"
+              title={resolvedBackLabel}
+            >
+              <ArrowLeft className="w-3.5 h-3.5 sm:w-4 sm:h-4 transition-transform group-hover:-translate-x-1 text-[#36454f] dark:text-slate-300" />
+              <span className="hidden sm:inline">{resolvedBackLabel}</span>
+              <span className="sm:hidden">{copy.back}</span>
+            </a>
+          )}
+
+          <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
+            <button
+              type="button"
+              onClick={handleShare}
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-full bg-transparent border border-[#36454f]/20 dark:border-white/10 text-[11px] sm:text-xs font-semibold text-[#2c3c46] dark:text-slate-200 hover:bg-[#36454f]/5 dark:hover:bg-white/10 transition-colors shadow-xs shrink-0"
+              title={copy.copyLink}
+            >
+              <Share2 className="w-3.5 h-3.5" />
+              <span className="hidden sm:inline">
+                {copied ? copy.copied : copy.share}
+              </span>
+            </button>
+
+            {isProject && project?.githubUrl && (
+              <a
+                href={project.githubUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                title="Source Code"
+                className="inline-flex items-center justify-center p-1.5 sm:px-3.5 sm:py-2 rounded-full bg-transparent border border-[#36454f]/20 dark:border-white/10 text-[11px] sm:text-xs font-semibold text-[#2c3c46] dark:text-slate-200 hover:bg-[#36454f]/5 dark:hover:bg-white/10 transition-colors shadow-xs shrink-0"
+              >
+                <Github className="w-4 h-4 sm:w-3.5 sm:h-3.5" />
+                <span className="hidden sm:inline ml-1.5">Source Code</span>
+              </a>
+            )}
+
+            {isProject && project?.demoUrl && (
+              <a
+                href={project.demoUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-[#273641] text-white dark:bg-slate-100 dark:text-slate-900 text-[11px] sm:text-xs font-bold hover:bg-[#1a252d] dark:hover:bg-white transition-all shadow-md active:scale-95 shrink-0"
+              >
+                <span>{getProjectLiveButtonLabel(project, locale)}</span>
+                <ArrowUpRight className="w-3.5 h-3.5" />
+              </a>
+            )}
+
+            {!isProject && certificate?.credentialUrl && (
+              <a
+                href={certificate.credentialUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-[#273641] text-white dark:bg-slate-100 dark:text-slate-900 text-[11px] sm:text-xs font-bold hover:bg-[#1a252d] dark:hover:bg-white transition-all shadow-md active:scale-95 shrink-0"
+              >
+                <span>{copy.verify}</span>
+                <ExternalLink className="w-3.5 h-3.5" />
+              </a>
+            )}
+          </div>
+        </div>
+
+        {/* Hero Header Section */}
+        <div className="space-y-6">
+          {/* Period & Category */}
+          <div className="flex flex-wrap items-center gap-2">
+            {period && (
+              <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-transparent border border-[#36454f]/15 dark:border-white/10 text-[#2c3c46] dark:text-slate-300 text-xs font-medium">
+                <Calendar className="w-3 h-3 text-slate-400" />
+                <span>{period}</span>
+              </span>
+            )}
+            <span className="text-xs text-slate-500 dark:text-slate-400 font-medium">
+              {isProject ? category : certificate?.category || copy.certificate}
+            </span>
+          </div>
+
+          {/* Title */}
+          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-slate-950 dark:text-white leading-[1.12]">
+            {title}
+          </h1>
+
+          {/* Lead Summary */}
+          <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 max-w-4xl leading-relaxed">
+            {description}
+          </p>
+
+          {/* Meta Information Grid (4 Cards) */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 pt-2">
+            <div className="p-4 rounded-2xl bg-transparent border border-[#36454f]/15 dark:border-white/10">
+              <div className="flex items-center gap-1.5 text-slate-500 dark:text-slate-400 text-[11px] font-semibold uppercase tracking-wider mb-1">
+                {isProject ? (
+                  <User className="w-3.5 h-3.5 text-indigo-500" />
+                ) : (
+                  <Building2 className="w-3.5 h-3.5 text-indigo-500" />
+                )}
+                <span>{isProject ? copy.role : copy.issuer}</span>
+              </div>
+              <p className="text-xs sm:text-sm font-bold text-slate-900 dark:text-white truncate">
+                {isProject
+                  ? project?.role || "Web Developer"
+                  : certificate?.issuer}
+              </p>
+            </div>
+
+            <div className="p-4 rounded-2xl bg-transparent border border-[#36454f]/15 dark:border-white/10">
+              <div className="flex items-center gap-1.5 text-slate-500 dark:text-slate-400 text-[11px] font-semibold uppercase tracking-wider mb-1">
+                <Calendar className="w-3.5 h-3.5 text-sky-500" />
+                <span>{isProject ? copy.releaseDate : copy.issueDate}</span>
+              </div>
+              <p className="text-xs sm:text-sm font-bold text-slate-900 dark:text-white truncate">
+                {period}
+              </p>
+            </div>
+
+            <div className="p-4 rounded-2xl bg-transparent border border-[#36454f]/15 dark:border-white/10">
+              <div className="flex items-center gap-1.5 text-slate-500 dark:text-slate-400 text-[11px] font-semibold uppercase tracking-wider mb-1">
+                {isProject ? (
+                  <Tag className="w-3.5 h-3.5 text-purple-500" />
+                ) : (
+                  <ShieldCheck className="w-3.5 h-3.5 text-purple-500" />
+                )}
+                <span>{isProject ? copy.category : copy.credentialId}</span>
+              </div>
+              <p className="text-xs sm:text-sm font-bold text-slate-900 dark:text-white truncate font-mono">
+                {isProject
+                  ? project?.category
+                  : certificate?.badgeCode || copy.verified.toUpperCase()}
+              </p>
+            </div>
+
+            <div className="p-4 rounded-2xl bg-transparent border border-[#36454f]/15 dark:border-white/10">
+              <div className="flex items-center gap-1.5 text-slate-500 dark:text-slate-400 text-[11px] font-semibold uppercase tracking-wider mb-1">
+                <Layers className="w-3.5 h-3.5 text-emerald-500" />
+                <span>{copy.status}</span>
+              </div>
+              <div className="flex items-center gap-1.5 text-xs sm:text-sm font-bold text-emerald-600 dark:text-emerald-400">
+                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                <span>
+                  {isProject ? copy.productionVerified : copy.officialActive}
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Media Showcase Frame */}
+        {image && (
+          <div className="mt-10 relative group rounded-3xl overflow-hidden border border-[#36454f]/15 dark:border-white/15 bg-transparent">
+            <div
+              className={`relative w-full overflow-hidden ${
+                isProject
+                  ? "aspect-[16/9] sm:aspect-[21/10]"
+                  : "aspect-[16/11] sm:aspect-[16/10] bg-transparent flex items-center justify-center p-3 sm:p-6"
+              }`}
+            >
+              <img
+                src={image}
+                alt={title}
+                onError={(e) => {
+                  const target = e.currentTarget;
+                  if (fallbackImage && target.src !== fallbackImage) {
+                    target.src = fallbackImage;
+                  }
+                }}
+                className={`w-full h-full ${
+                  isProject
+                    ? "object-cover object-top transition-transform duration-700 group-hover:scale-[1.02]"
+                    : "object-contain object-center rounded-xl select-none"
+                }`}
+              />
+
+              {isProject && (
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent pointer-events-none" />
+              )}
+
+              {/* Floating Quick Action */}
+              {isProject && project?.demoUrl && (
+                <div className="absolute bottom-4 right-4 sm:bottom-6 sm:right-6">
+                  <a
+                    href={project.demoUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-4 py-2 sm:px-5 sm:py-2.5 rounded-full bg-[#273641] text-white dark:bg-slate-100 dark:text-slate-900 font-bold text-xs sm:text-sm shadow-xl hover:bg-[#1a252d] dark:hover:bg-white transition-all hover:scale-105 active:scale-95"
+                  >
+                    <span>{getProjectLiveButtonLabel(project, locale)}</span>
+                    <ExternalLink className="w-4 h-4" />
+                  </a>
+                </div>
+              )}
+
+              {!isProject && certificate?.credentialUrl && (
+                <div className="absolute bottom-4 right-4 sm:bottom-6 sm:right-6">
+                  <a
+                    href={certificate.credentialUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-4 py-2 sm:px-5 sm:py-2.5 rounded-full bg-[#273641] text-white dark:bg-slate-100 dark:text-slate-900 font-bold text-xs sm:text-sm shadow-xl hover:bg-[#1a252d] dark:hover:bg-white transition-all hover:scale-105 active:scale-95"
+                  >
+                    <span>{copy.verifyCredential}</span>
+                    <ExternalLink className="w-4 h-4" />
+                  </a>
+                </div>
+              )}
+            </div>
+          </div>
+        )}
+
+        {/* Metrics Strip */}
+        {isProject && project?.metrics && project.metrics.length > 0 && (
+          <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-4">
+            {project.metrics.map((metric, idx) => {
+              const theme = getMetricTheme(metric.label, idx);
+              return (
+                <div
+                  key={idx}
+                  className="p-5 rounded-2xl bg-transparent border border-[#36454f]/15 dark:border-white/10 flex items-center gap-4 transition-all duration-200 hover:border-slate-300 dark:hover:border-white/20"
+                >
+                  <div
+                    className={`p-3 rounded-xl border shrink-0 ${theme.badge}`}
+                  >
+                    {theme.icon}
+                  </div>
+                  <div className="min-w-0">
+                    <span className="block text-[11px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 truncate">
+                      {metric.label}
+                    </span>
+                    <span
+                      className="block text-sm sm:text-base font-black text-slate-950 dark:text-white mt-0.5 tracking-tight truncate"
+                      title={metric.value}
+                    >
+                      {metric.value}
+                    </span>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        )}
+
+        {!isProject && certificateMetrics.length > 0 && (
+          <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-4">
+            {certificateMetrics.map((metric, idx) => {
+              const theme = getMetricTheme(metric.label, idx, metric.icon);
+              return (
+                <div
+                  key={idx}
+                  className="p-5 rounded-2xl bg-transparent border border-[#36454f]/15 dark:border-white/10 flex items-center gap-4 transition-all duration-200 hover:border-slate-300 dark:hover:border-white/20"
+                >
+                  <div
+                    className={`p-3 rounded-xl border shrink-0 ${theme.badge}`}
+                  >
+                    {theme.icon}
+                  </div>
+                  <div className="min-w-0">
+                    <span className="block text-[11px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 truncate">
+                      {metric.label}
+                    </span>
+                    <span
+                      className="block text-sm sm:text-base font-extrabold text-slate-950 dark:text-white mt-0.5 tracking-tight truncate"
+                      title={metric.value}
+                    >
+                      {metric.value}
+                    </span>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        )}
+
+        {/* Unified Cinematic Case Study & Verification */}
+        <div className="mt-10 space-y-10">
+          {isProject ? (
+            <>
+              {/* Problem & Solution for Projects */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="p-6 sm:p-8 rounded-3xl bg-transparent border border-[#36454f]/15 dark:border-white/10 space-y-3">
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 text-xs font-bold">
+                    <Target className="w-3.5 h-3.5" />
+                    <span>{copy.background}</span>
+                  </div>
+                  <h3 className="text-xl sm:text-2xl font-bold text-slate-950 dark:text-white">
+                    {copy.systemContext}
+                  </h3>
+                  <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed">
+                    {problemDescription}
+                  </p>
+                </div>
+
+                <div className="p-6 sm:p-8 rounded-3xl bg-transparent border border-[#36454f]/15 dark:border-white/10 space-y-3">
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 text-xs font-bold">
+                    <CheckCircle2 className="w-3.5 h-3.5" />
+                    <span>{copy.engineeringDecision}</span>
+                  </div>
+                  <h3 className="text-xl sm:text-2xl font-bold text-slate-950 dark:text-white">
+                    {copy.technicalApproach}
+                  </h3>
+                  <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed">
+                    {solutionDescription}
+                  </p>
+                </div>
+              </div>
+
+              {/* Tech Stack tags */}
+              {project?.tags && (
+                <div className="p-6 sm:p-8 rounded-3xl bg-transparent border border-[#36454f]/15 dark:border-white/10 space-y-4">
+                  <div className="flex items-center gap-2">
+                    <Code2 className="w-5 h-5 text-indigo-500" />
+                    <h3 className="text-lg sm:text-xl font-bold text-slate-950 dark:text-white">
+                      {copy.technologyStack}
+                    </h3>
+                  </div>
+                  <div className="flex flex-wrap gap-2 pt-1">
+                    {project.tags.map((tag, idx) => (
+                      <span
+                        key={idx}
+                        className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-slate-100 dark:bg-white/[0.06] border border-slate-200 dark:border-white/10 text-xs font-semibold text-slate-800 dark:text-slate-200 hover:border-indigo-400 dark:hover:border-indigo-500/50 transition-colors"
+                      >
+                        <span className="w-1.5 h-1.5 rounded-full bg-indigo-500" />
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </>
+          ) : (
+            <>
+              {/* Certificate Curriculum & Competency breakdown */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="p-6 sm:p-8 rounded-3xl bg-transparent border border-[#36454f]/15 dark:border-white/10 space-y-3">                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 text-xs font-bold">
+                    <Award className="w-3.5 h-3.5" />
+                    <span>{copy.curriculum}</span>
+                  </div>
+                  <h3 className="text-xl sm:text-2xl font-bold text-slate-950 dark:text-white">
+                    {copy.descriptionCoverage}
+                  </h3>
+                  <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed">
+                    {certificate?.description ||
+                      copy.certificateDescriptionFallback}
+                  </p>
+                </div>
+
+                <div className="p-6 sm:p-8 rounded-3xl bg-transparent border border-[#36454f]/15 dark:border-white/10 space-y-3">
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 text-xs font-bold">
+                    <CheckCircle2 className="w-3.5 h-3.5" />
+                    <span>{copy.issuerCredibility}</span>
+                  </div>
+                  <h3 className="text-xl sm:text-2xl font-bold text-slate-950 dark:text-white">
+                    {certificate?.issuer}
+                  </h3>
+                  <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed">
+                    {copy.issuerDescription}{" "}
+                    <span className="font-mono font-bold text-slate-900 dark:text-white">
+                      {certificate?.badgeCode || copy.verified}
+                    </span>
+                    {copy.certificateProof}
+                  </p>
+                </div>
+              </div>
+
+              {/* Skills tags for certificate */}
+              {certificate?.skills && certificate.skills.length > 0 && (
+                <div className="p-6 sm:p-8 rounded-3xl bg-transparent border border-[#36454f]/15 dark:border-white/10 space-y-4">
+                  <div className="flex items-center gap-2">
+                    <ShieldCheck className="w-5 h-5 text-indigo-500" />
+                    <h3 className="text-lg sm:text-xl font-bold text-slate-950 dark:text-white">
+                      {copy.skillsTopics}
+                    </h3>
+                  </div>
+                  <div className="flex flex-wrap gap-2 pt-1">
+                    {certificate.skills.map((skill, idx) => (
+                      <span
+                        key={idx}
+                        className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-slate-100 dark:bg-white/[0.06] border border-slate-200 dark:border-white/10 text-xs font-semibold text-slate-800 dark:text-slate-200 hover:border-emerald-400 dark:hover:border-emerald-500/50 transition-colors"
+                      >
+                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Verification & Official Document Preview directly visible */}
+              <div className="p-6 sm:p-10 rounded-3xl bg-transparent border border-[#36454f]/15 dark:border-white/10 space-y-6">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 dark:border-white/10 pb-5">
+                  <div>
+                    <h3 className="text-xl font-bold text-slate-950 dark:text-white">
+                      {copy.officialVerification}
+                    </h3>
+                    <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400">
+                      {copy.credentialVerification}
+                    </p>
+                  </div>
+
+                  {certificate?.credentialUrl && (
+                    <a
+                      href={certificate.credentialUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#273641] text-white dark:bg-slate-100 dark:text-slate-900 text-xs font-bold hover:bg-[#1a252d] dark:hover:bg-white transition-all shadow-md shrink-0"
+                    >
+                      <span>{copy.openVerification}</span>
+                      <ExternalLink className="w-3.5 h-3.5" />
+                    </a>
+                  )}
+                </div>
+
+                {certificate?.image && (
+                  <div className="rounded-2xl overflow-hidden border border-[#36454f]/15 dark:border-white/10 bg-transparent p-2 sm:p-4 flex items-center justify-center">
+                    <img
+                      src={certificate.image}
+                      alt={title}
+                      className="w-full max-h-[600px] object-contain rounded-lg"
+                    />
+                  </div>
+                )}
+              </div>
+            </>
+          )}
+        </div>
+
+        {/* Related Items Showcase Footer */}
+        {isProject && relatedProjects.length > 0 && (
+          <div className="mt-20 pt-12 border-t border-slate-200 dark:border-white/10 space-y-6">
+            <div className="flex items-center justify-between">
+              <div>
+                <h3 className="text-xl sm:text-2xl font-black tracking-tight text-slate-950 dark:text-white">
+                  {copy.moreProjects}
+                </h3>
+                <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400">
+                  {copy.moreProjectsDescription}
+                </p>
+              </div>
+              <a
+                href={getLocalePath("/portfolio", locale)}
+                className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-slate-900 dark:text-white hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
+              >
+                <span>{copy.viewAll}</span>
+                <ArrowRight className="w-4 h-4" />
+              </a>
+            </div>
+
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+              {relatedProjects.slice(0, 4).map((rel) => {
+                const year =
+                  rel.publishedDate?.match(/\b(20\d{2})\b/)?.[0] ||
+                  rel.period?.match(/\b(20\d{2})\b/)?.[0] ||
+                  "";
+
+                return (
+                  <a
+                    key={rel.id}
+                    href={getLocalePath(`/project/${rel.slug}`, locale)}
+                    className="group block p-4 rounded-3xl bg-transparent border border-[#36454f]/15 dark:border-white/10 hover:border-slate-400 dark:hover:border-white/30 transition-all duration-300 hover:-translate-y-1.5 shadow-xs"
+                  >
+                    <div className="relative aspect-[16/10] rounded-2xl overflow-hidden mb-4 bg-slate-900 border border-slate-200/50 dark:border-white/5">
+                      <img
+                        src={rel.image}
+                        alt={rel.title}
+                        loading="lazy"
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+                    </div>
+
+                    <div className="flex items-center justify-between mb-2.5">
+                      <div className="flex items-center gap-1.5 flex-wrap">
+                        {rel.tags?.slice(0, 2).map((tag, i) => (
+                          <span
+                            key={i}
+                            className="px-2 py-0.5 rounded-md bg-indigo-50 dark:bg-indigo-500/10 text-[9px] sm:text-[10px] font-bold text-indigo-600 dark:text-indigo-400 transition-colors group-hover:bg-indigo-100 dark:group-hover:bg-indigo-500/20"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                        {rel.tags && rel.tags.length > 2 && (
+                          <span className="px-2 py-0.5 rounded-md bg-slate-100 dark:bg-white/10 text-[9px] sm:text-[10px] font-bold text-slate-600 dark:text-slate-400">
+                            +{rel.tags.length - 2}
+                          </span>
+                        )}
+                      </div>
+                      {year && (
+                        <span className="text-[10px] sm:text-[11px] font-black text-slate-400 dark:text-slate-500 shrink-0">
+                          {year}
+                        </span>
+                      )}
+                    </div>
+
+                    <span className="text-[9px] sm:text-[10px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 block mb-1">
+                      {rel.category}
+                    </span>
+                    <h4 className="text-[13px] sm:text-sm font-extrabold text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors line-clamp-2 leading-snug">
+                      {rel.title}
+                    </h4>
+                    <p className="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400 line-clamp-2 mt-1.5 leading-relaxed transition-colors group-hover:text-slate-700 dark:group-hover:text-slate-300">
+                      {rel.shortDescription}
+                    </p>
+                  </a>
+                );
+              })}
+            </div>
+          </div>
+        )}
+
+        {!isProject && relatedCertificates.length > 0 && (
+          <div className="mt-20 pt-12 border-t border-slate-200 dark:border-white/10 space-y-6">
+            <div className="flex items-center justify-between">
+              <div>
+                <h3 className="text-xl sm:text-2xl font-black tracking-tight text-slate-950 dark:text-white">
+                  {copy.moreCertificates}
+                </h3>
+                <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400">
+                  {copy.moreCertificatesDescription}
+                </p>
+              </div>
+              <a
+                href={getLocalePath("/portfolio", locale)}
+                className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-slate-900 dark:text-white hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
+              >
+                <span>{copy.viewAll}</span>
+                <ArrowRight className="w-4 h-4" />
+              </a>
+            </div>
+
+            <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
+              {relatedCertificates.slice(0, 3).map((rel) => (
+                <a
+                  key={rel.id}
+                  href={getLocalePath(`/certificate/${rel.id}`, locale)}
+                  className="group block p-3 sm:p-4 rounded-2xl bg-transparent border border-[#36454f]/15 dark:border-white/10 hover:border-slate-400 dark:hover:border-white/30 transition-all hover:-translate-y-1 shadow-xs"
+                >
+                  <div className="aspect-[16/11] rounded-xl overflow-hidden mb-2.5 bg-transparent border border-[#36454f]/15 dark:border-white/10 p-1.5 sm:p-2 flex items-center justify-center">
+                    <img
+                      src={rel.image}
+                      alt={rel.title}
+                      loading="lazy"
+                      className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
+                    />
+                  </div>
+                  <span className="text-[9px] sm:text-[10px] font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">
+                    {rel.issuer}
+                  </span>
+                  <h4 className="text-[11px] sm:text-sm font-bold text-slate-900 dark:text-white group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors line-clamp-2 mt-0.5 leading-snug">
+                    {rel.title}
+                  </h4>
+                  <p className="text-[10px] sm:text-xs text-slate-500 dark:text-slate-400 line-clamp-2 mt-1 leading-snug">
+                    {rel.description || rel.category}
+                  </p>
+                </a>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};

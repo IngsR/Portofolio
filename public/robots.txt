@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://ikhwann.my.id/sitemap.xml
+# Sitemap otomatis dari @astrojs/sitemap (di-generate saat build)
+Sitemap: https://ikhwann.my.id/sitemap-index.xml

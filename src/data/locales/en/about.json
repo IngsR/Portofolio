@@ -1,0 +1,30 @@
+{
+  "profileLabel": "Academic & Professional Profile",
+  "cv": "Curriculum Vitae (PDF)",
+  "availability": "Professional Availability",
+  "availabilityTitle": "On-Site, Hybrid, & Relocation",
+  "availabilityDescription": "Available for full-time on-site appointments nationwide across Indonesia, as well as hybrid or distributed team arrangements.",
+  "education": "Academic Background",
+  "expertise": "Core Technical Disciplines",
+  "highlights": {
+    "educationTitle": "B.S. in Informatics Engineering",
+    "educationDescription": "Graduate of Universitas Putra Indonesia “YPTK” Padang with formal coursework in software engineering, data structures, algorithm analysis, relational database systems, and web architecture. Academic concentration in Data Science provided specialized training in statistical analysis and predictive modeling.",
+    "expertiseTitle": "Full-Stack Web Engineering",
+    "expertiseDescription": "Comprehensive full-stack development employing Next.js (App Router), TypeScript, RESTful API design, schema validation with Zod, database modeling, secure authentication practices, CI/CD pipelines, and cloud edge deployment."
+  },
+  "achievements": "Notable Milestones & Impact",
+  "skillsTitle": "Technical Competencies & Toolchain",
+  "skillsDescription": "Primary technologies, frameworks, and engineering utilities utilized in production and academic environments.",
+  "educationHistory": "Academic Qualifications",
+  "certificationsTitle": "Certifications & Formal Accreditations",
+  "coreStack": "PRIMARY PROFICIENCIES",
+  "alsoUsed": "COMPLEMENTARY TOOLS",
+  "tabs": {
+    "experience": "Professional Experience",
+    "experienceMobile": "Experience",
+    "skills": "Technical Competencies",
+    "skillsMobile": "Skills",
+    "education": "Education & Accreditations",
+    "educationMobile": "Education"
+  }
+}

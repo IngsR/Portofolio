@@ -1,0 +1,14 @@
+---
+import App from "../../app";
+import SiteLayout from "../../layouts/site.astro";
+
+export const prerender = true;
+---
+
+<SiteLayout
+  locale="en"
+  title="Technical Case Studies & Engineering Portfolio | Ikhwan Ramadhan"
+  description="Technical case studies, software implementations, and verified credentials by Ikhwan Ramadhan, built with Next.js, Angular, React, and TypeScript."
+>
+  <App client:idle initialPage="portfolio" locale="en" />
+</SiteLayout>

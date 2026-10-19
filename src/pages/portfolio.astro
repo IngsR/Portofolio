@@ -1,12 +1,14 @@
 ---
-import App from "../App";
-import SiteLayout from "../layouts/SiteLayout.astro";
+import App from "../app";
+import SiteLayout from "../layouts/site.astro";
 
-export const prerender = false;
+// Shell halaman statis (App berjalan via client:load), sehingga ikut masuk sitemap.
+export const prerender = true;
 ---
+
 <SiteLayout
-  title="Portfolio Projects | Ikhwan Ramadhan"
-  description="Kumpulan project full-stack, machine learning, mobile development, dan software engineering Ikhwan Ramadhan."
+  title="Portofolio Web Development | Ikhwan Ramadhan"
+  description="Studi kasus software engineering Ikhwan Ramadhan: aplikasi frontend dan backend dengan Next.js, Angular, REST API, database, testing, dan deployment serverless. Termasuk satu proyek skripsi yang menerapkan model LSTM dalam aplikasi web."
 >
-  <App client:load initialPage="portfolio" />
+  <App client:idle initialPage="portfolio" />
 </SiteLayout>

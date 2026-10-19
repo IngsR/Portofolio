@@ -1,0 +1,297 @@
+---
+import "../styles/global.css";
+import Analytics from "@vercel/analytics/astro";
+import SpeedInsights from "@vercel/speed-insights/astro";
+import { ClientRouter } from "astro:transitions";
+
+interface Props {
+  title?: string;
+  description?: string;
+  canonicalPath?: string;
+  locale?: "id" | "en";
+}
+
+const {
+  title = "Ikhwan Ramadhan | Junior Web Developer",
+  description = "Portofolio Ikhwan Ramadhan di bidang software engineering dengan pengalaman membangun aplikasi frontend dan backend. Konsentrasi Data Science menjadi bekal akademik tambahan.",
+  canonicalPath = Astro.url.pathname,
+  locale = "id",
+} = Astro.props;
+const siteUrl =
+  Astro.site?.toString().replace(/\/$/, "") ?? "https://ikhwann.my.id";
+const canonicalUrl = new URL(canonicalPath, Astro.site ?? Astro.url).toString();
+const ogImageUrl = `${siteUrl}/og.png`;
+const englishPath =
+  locale === "en"
+    ? canonicalPath
+    : canonicalPath === "/"
+      ? "/en"
+      : `/en${canonicalPath}`;
+const indonesianPath =
+  locale === "en"
+    ? canonicalPath.replace(/^\/en(?=\/|$)/, "") || "/"
+    : canonicalPath;
+const languagePaths = {
+  id: new URL(indonesianPath, siteUrl).toString(),
+  en: new URL(englishPath, siteUrl).toString(),
+};
+
+// ── JSON-LD: Person Schema ──
+const personSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Ikhwan Ramadhan",
+  jobTitle: "Junior Web Developer",
+  url: `${siteUrl}/`,
+  image: `${siteUrl}/profile.png`,
+  email: "mailto:ikhwn.rdn@gmail.com",
+  address: {
+    "@type": "PostalAddress",
+    addressCountry: "ID",
+  },
+  sameAs: ["https://github.com/IngsR", "https://www.linkedin.com/in/ikhwn-rdn"],
+  knowsAbout: [
+    "Web Development",
+    "Frontend Development",
+    "Backend Development",
+    "Next.js",
+    "React.js",
+    "Angular",
+    "TypeScript",
+    "JavaScript",
+    "Node.js",
+    "REST API",
+    "PostgreSQL",
+    "Prisma",
+    "Server-Side Rendering (SSR)",
+    "Static Site Generation (SSG)",
+    "Incremental Static Regeneration (ISR)",
+    "Testing",
+    "Zod Validation",
+    "CI/CD",
+    "Serverless Deployment",
+    "Git Workflow",
+    "Docker",
+    "Tailwind CSS",
+    "Data Science",
+    "Machine Learning",
+    "Deep Learning (LSTM)",
+    "ONNX Runtime",
+  ],
+};
+
+// ── JSON-LD: WebSite Schema ──
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "Profile Ikhwan Ramadhan",
+  url: `${siteUrl}/`,
+  description,
+  publisher: { "@type": "Person", name: "Ikhwan Ramadhan" },
+  inLanguage: locale === "en" ? "en" : "id-ID",
+};
+
+// ── JSON-LD: WebPage Schema (per-page) ──
+const webPageSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  name: title,
+  description,
+  url: canonicalUrl,
+  isPartOf: {
+    "@type": "WebSite",
+    name: "Profile Ikhwan Ramadhan",
+    url: `${siteUrl}/`,
+  },
+  inLanguage: locale === "en" ? "en" : "id-ID",
+  author: { "@type": "Person", name: "Ikhwan Ramadhan" },
+  dateModified: new Date().toISOString(),
+};
+
+// ── JSON-LD: BreadcrumbList Schema ──
+const pathSegments = canonicalPath
+  .replace(/^\/|\/$/g, "")
+  .split("/")
+  .filter(Boolean);
+const breadcrumbItems = [
+  {
+    "@type": "ListItem",
+    position: 1,
+    name: "Beranda",
+    item: `${siteUrl}/`,
+  },
+  ...pathSegments.map((segment, index) => ({
+    "@type": "ListItem",
+    position: index + 2,
+    name: segment.charAt(0).toUpperCase() + segment.slice(1),
+    // trailingSlash: "never" → URL breadcrumb tanpa trailing slash
+    item: `${siteUrl}/${pathSegments.slice(0, index + 1).join("/")}`,
+  })),
+];
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: breadcrumbItems,
+};
+---
+
+<!doctype html>
+<html lang={locale}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Primary Meta Tags -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="author" content="Ikhwan Ramadhan" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="theme-color" content="#ffffff" />
+    <link rel="canonical" href={canonicalUrl} />
+    <link rel="icon" href="/logo.ico" />
+    <ClientRouter />
+
+    <!-- Theme Initializer (Default: Light Mode) -->
+    <script is:inline>
+      const applyPortfolioTheme = () => {
+        try {
+          // Default terang untuk kunjungan pertama; hanya gelap bila
+          // pengunjung sebelumnya sudah memilih tema gelap.
+          document.documentElement.classList.toggle(
+            "dark",
+            localStorage.getItem("portfolio_theme") === "dark",
+          );
+        } catch {
+          document.documentElement.classList.remove("dark");
+        }
+      };
+      applyPortfolioTheme();
+      document.addEventListener("astro:after-swap", applyPortfolioTheme);
+    </script>
+    <!-- Language Preference Initializer (Default: English) -->
+    <script is:inline>
+      // Hanya route halaman utama yang dialihkan; halaman detail proyek dan
+      // sertifikat mempertahankan URL-nya agar pratinjau tautan tetap utuh.
+      (() => {
+        try {
+          const preferred =
+            localStorage.getItem("portfolio_locale") === "id" ? "id" : "en";
+          const path = window.location.pathname.replace(/\/+$/, "") || "/";
+          const isEnglish = path === "/en" || path.startsWith("/en/");
+          const current = isEnglish ? "en" : "id";
+          if (current === preferred) return;
+
+          const bare =
+            path === "/en" ? "/" : path.replace(/^\/en(?=\/)/, "");
+          const isMainRoute =
+            bare === "/" ||
+            ["/portfolio", "/about", "/contact"].includes(bare);
+          if (!isMainRoute) return;
+
+          const target =
+            preferred === "en"
+              ? bare === "/"
+                ? "/en"
+                : `/en${bare}`
+              : bare;
+          window.location.replace(target + window.location.search);
+        } catch {
+          // Bila localStorage diblokir, biarkan path apa adanya.
+        }
+      })();
+    </script>
+    <!-- Language Alternate -->
+    <link rel="alternate" hreflang="id" href={languagePaths.id} />
+    <link rel="alternate" hreflang="en" href={languagePaths.en} />
+    <link rel="alternate" hreflang="x-default" href={languagePaths.en} />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="Ikhwan Ramadhan - Junior Web Developer"
+    />
+    <meta property="og:locale" content={locale === "en" ? "en_US" : "id_ID"} />
+    <meta property="og:site_name" content="Ikhwan Ramadhan" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
+    <meta
+      name="twitter:image:alt"
+      content="Ikhwan Ramadhan - Junior Web Developer"
+    />
+
+    <!-- Structured Data (JSON-LD) -->
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(personSchema)}
+    ></script>
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(websiteSchema)}
+    ></script>
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(webPageSchema)}
+    ></script>
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(breadcrumbSchema)}
+    ></script>
+    <!-- Search Engine Verification -->
+    <meta
+      name="google-site-verification"
+      content="6TM9P7buGWO2wS0SqofqquuWDfvadyhMq56ivQnUQRE"
+    />
+    <meta name="msvalidate.01" content="92D58529971734088AE431B5DA99146C" />
+
+    <!-- Critical Assets Preload & Google Fonts -->
+    <link rel="preload" as="image" href="/Ikhwan.webp" type="image/webp" fetchpriority="high" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Instrument+Sans:wght@400;500;600;700&display=swap"
+    />
+  </head>
+  <body class="min-h-screen bg-[#E7EAEF] dark:bg-[#24282b] text-slate-950 dark:text-slate-100 relative overflow-x-hidden antialiased">
+    <div class="paper-texture-background" aria-hidden="true"></div>
+    <div class="relative z-10">
+      <slot />
+    </div>
+    <Analytics />
+    <SpeedInsights />
+
+    <!-- Desktop High-FPS Smooth Scroll: Suppress hover layout thrashing during active wheel scroll -->
+    <script is:inline>
+      (() => {
+        let timer = null;
+        const body = document.body;
+        const onScroll = () => {
+          if (!body.classList.contains("is-scrolling")) {
+            body.classList.add("is-scrolling");
+          }
+          if (timer !== null) clearTimeout(timer);
+          timer = setTimeout(() => {
+            body.classList.remove("is-scrolling");
+            timer = null;
+          }, 100);
+        };
+        window.addEventListener("scroll", onScroll, { passive: true });
+        document.addEventListener("astro:after-swap", () => {
+          body.classList.remove("is-scrolling");
+        });
+      })();
+    </script>
+  </body>
+</html>
