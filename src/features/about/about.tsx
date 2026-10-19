@@ -261,16 +261,19 @@ export const About: React.FC<AboutSectionProps> = ({ onOpenCV }) => {
             {
               id: "experience",
               label: copy.tabs.experience,
+              mobileLabel: copy.tabs.experienceMobile || copy.tabs.experience,
               icon: <Briefcase className="h-3.5 w-3.5 shrink-0" />,
             },
             {
               id: "skills",
               label: copy.tabs.skills,
+              mobileLabel: copy.tabs.skillsMobile || copy.tabs.skills,
               icon: <Cpu className="h-3.5 w-3.5 shrink-0" />,
             },
             {
               id: "education",
               label: copy.tabs.education,
+              mobileLabel: copy.tabs.educationMobile || copy.tabs.education,
               icon: <GraduationCap className="h-3.5 w-3.5 shrink-0" />,
             },
           ]}

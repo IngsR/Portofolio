@@ -21,7 +21,10 @@
   "alsoUsed": "ALSO USED",
   "tabs": {
     "experience": "Pengalaman Kerja",
+    "experienceMobile": "Pengalaman",
     "skills": "Keahlian Teknis",
-    "education": "Pendidikan & Sertifikasi"
+    "skillsMobile": "Keahlian",
+    "education": "Pendidikan & Sertifikasi",
+    "educationMobile": "Pendidikan"
   }
 }

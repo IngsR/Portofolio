@@ -21,7 +21,10 @@
   "alsoUsed": "COMPLEMENTARY TOOLS",
   "tabs": {
     "experience": "Professional Experience",
+    "experienceMobile": "Experience",
     "skills": "Technical Competencies",
-    "education": "Education & Accreditations"
+    "skillsMobile": "Skills",
+    "education": "Education & Accreditations",
+    "educationMobile": "Education"
   }
 }
