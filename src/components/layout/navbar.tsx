@@ -2,7 +2,6 @@
 import {
   BriefcaseBusiness,
   FileText,
-  Github,
   House,
   Languages,
   Mail,
@@ -11,6 +10,7 @@ import {
   UserRound,
 } from "lucide-react";
 import React from "react";
+import { GithubBrandIcon } from "../../design/components/brand-icons";
 import portfolioData from "../../data/portfolio.json";
 import { PageId } from "../../types";
 import { useTranslations } from "../../i18n";
@@ -116,11 +116,11 @@ export const Navbar: React.FC<NavbarProps> = ({
 
   return (
     <>
-      {/* TOP HEADER BAR (Clean, spacious, no squished buttons on mobile) */}
+      {/* TOP HEADER BAR (Clean, spacious, responsive without overflow across all devices) */}
       <header
         className={`
-          fixed z-50 w-full max-w-[100vw] px-3 transition-all duration-300 ease-in-out sm:px-6 lg:px-12
-          top-2.5 sm:top-4 lg:top-5
+          fixed z-50 w-full max-w-[100vw] px-2.5 sm:px-4 md:px-6 lg:px-8 transition-all duration-300 ease-in-out
+          top-2 sm:top-3.5 lg:top-4
           ${
             isVisible
               ? "translate-y-0 opacity-100 pointer-events-auto"
@@ -135,23 +135,23 @@ export const Navbar: React.FC<NavbarProps> = ({
               flex
               items-center
               justify-between
-              gap-2
+              gap-1.5
+              sm:gap-2
+              md:gap-3
               rounded-xl
               sm:rounded-full
               border border-[#36454f]/15
               bg-[#E7EAEF]/85
               backdrop-blur-md
-              px-3
-              py-2.5
+              px-2.5
+              py-1.5
+              sm:px-3.5
+              sm:py-2
+              md:px-4
               shadow-xs
               transition-all
               dark:border-white/10
               dark:bg-[#24282b]/90
-              sm:gap-2
-              md:gap-3
-              sm:px-4
-              md:px-5
-              sm:py-2.5
             "
           >
             {/* Brand Logo & Name */}
@@ -164,9 +164,9 @@ export const Navbar: React.FC<NavbarProps> = ({
                 }
               }}
               aria-label={dictionary.portfolio.navigation.home}
-              className="group flex shrink-0 items-center gap-2.5 text-left focus:outline-none"
+              className="group flex shrink-0 items-center gap-1.5 sm:gap-2.5 text-left focus:outline-none min-w-0"
             >
-              <div className="relative">
+              <div className="relative shrink-0">
                 <img
                   src="/logo.webp"
                   alt="Logo Ikhwan Ramadhan"
@@ -175,9 +175,9 @@ export const Navbar: React.FC<NavbarProps> = ({
                   loading="eager"
                   decoding="async"
                   className="
-                    h-8
-                    w-8
-                    rounded-xl
+                    h-7
+                    w-7
+                    rounded-lg
                     object-cover
                     border
                     border-slate-200/90
@@ -185,28 +185,26 @@ export const Navbar: React.FC<NavbarProps> = ({
                     transition-transform
                     group-hover:scale-105
                     dark:border-white/15
-                    sm:h-9
-                    sm:w-9
+                    sm:h-8
+                    sm:w-8
+                    sm:rounded-xl
+                    md:h-9
+                    md:w-9
                   "
                 />
                 <span
-                  className="absolute -bottom-0.5 -right-0.5 h-2.5 w-2.5 rounded-full bg-emerald-500 ring-2 ring-white dark:ring-black animate-pulse"
+                  className="absolute -bottom-0.5 -right-0.5 h-2 w-2 sm:h-2.5 sm:w-2.5 rounded-full bg-emerald-500 ring-1.5 sm:ring-2 ring-white dark:ring-black animate-pulse"
                   title={localizedProfile.statusText}
                 />
               </div>
 
-              <div>
-                <div className="flex items-center gap-1.5 text-xs font-bold tracking-tight text-slate-950 sm:text-sm dark:text-white">
-                  <span>Ikhwan Ramadhan</span>
+              <div className="min-w-0">
+                <div className="flex items-center gap-1 text-[11px] sm:text-xs md:text-sm font-bold tracking-tight text-slate-950 dark:text-white truncate">
+                  <span className="truncate">Ikhwan Ramadhan</span>
                 </div>
-                <p className="hidden sm:block text-[10.5px] font-mono text-slate-500 dark:text-slate-400">
+                <p className="hidden md:block text-[10px] xl:text-[10.5px] font-mono text-slate-500 dark:text-slate-400 truncate">
                   {userProfile.title}
                 </p>
-                <span className="sm:hidden text-[9px] font-mono font-medium text-emerald-600 dark:text-emerald-400 block leading-none">
-                  {locale === "en"
-                    ? "Available on-site / hybrid"
-                    : "Siap Kerja WFO/Hybrid"}
-                </span>
               </div>
             </a>
 
@@ -215,12 +213,14 @@ export const Navbar: React.FC<NavbarProps> = ({
               className="
                 hidden
                 items-center
-                gap-1
+                gap-0.5
+                xl:gap-1
                 rounded-full
                 border
                 border-slate-200/80
                 bg-slate-100/70
-                p-1
+                p-0.5
+                xl:p-1
                 dark:border-white/10
                 dark:bg-white/[0.04]
                 lg:flex
@@ -246,11 +246,15 @@ export const Navbar: React.FC<NavbarProps> = ({
                       relative
                       flex
                       items-center
-                      gap-1.5
+                      gap-1
+                      xl:gap-1.5
                       rounded-full
-                      px-4
-                      py-1.5
-                      text-xs
+                      px-2.5
+                      xl:px-3.5
+                      py-1
+                      xl:py-1.5
+                      text-[11px]
+                      xl:text-xs
                       font-semibold
                       transition-all
                       duration-200
@@ -261,8 +265,10 @@ export const Navbar: React.FC<NavbarProps> = ({
                       }
                     `}
                   >
-                    {item.icon}
-                    <span>
+                    <span className="[&>svg]:h-3.5 [&>svg]:w-3.5 xl:[&>svg]:h-4 xl:[&>svg]:w-4 shrink-0">
+                      {item.icon}
+                    </span>
+                    <span className="whitespace-nowrap">
                       {item.label === dictionary.portfolio.navigation.about
                         ? locale === "en"
                           ? "About Me"
@@ -274,8 +280,8 @@ export const Navbar: React.FC<NavbarProps> = ({
               })}
             </nav>
 
-            {/* Actions: Clean & Accessible */}
-            <div className="flex items-center justify-end gap-1.5 shrink-0">
+            {/* Actions: Clean, Scaled, & Accessible */}
+            <div className="flex items-center justify-end gap-1 sm:gap-1.5 shrink-0">
               <a
                 href={getLanguageSwitchPath(
                   currentPath ?? "/",
@@ -288,10 +294,31 @@ export const Navbar: React.FC<NavbarProps> = ({
                 }}
                 aria-label={dictionary.portfolio.language.switchTo}
                 title={dictionary.portfolio.language.switchTo}
-                className="flex h-9 shrink-0 items-center justify-center gap-1 rounded-full border border-slate-200 px-2 text-xs font-bold text-slate-700 transition-colors hover:bg-slate-100 dark:border-white/10 dark:text-slate-200 dark:hover:bg-white/10"
+                className="
+                  flex
+                  h-7
+                  sm:h-8
+                  shrink-0
+                  items-center
+                  justify-center
+                  gap-1
+                  rounded-full
+                  border
+                  border-slate-300/80
+                  px-2
+                  text-[10px]
+                  sm:text-xs
+                  font-bold
+                  text-slate-700
+                  transition-colors
+                  hover:bg-slate-100
+                  dark:border-white/10
+                  dark:text-slate-200
+                  dark:hover:bg-white/10
+                "
               >
-                <Languages className="h-4 w-4" />
-                <span>{locale === "id" ? "EN" : "ID"}</span>
+                <Languages className="h-3 w-3 sm:h-3.5 sm:w-3.5 shrink-0" />
+                <span className="leading-none">{locale === "id" ? "EN" : "ID"}</span>
               </a>
 
               {/* WhatsApp Direct Link */}
@@ -303,16 +330,19 @@ export const Navbar: React.FC<NavbarProps> = ({
                 title={dictionary.contact.whatsappAction}
                 className="
                   flex
+                  h-7
+                  sm:h-8
                   shrink-0
                   items-center
                   justify-center
-                  gap-1.5
+                  gap-1
+                  sm:gap-1.5
                   rounded-full
                   border
                   border-emerald-500/30
                   bg-emerald-500/10
-                  px-2.5
-                  py-1.5
+                  px-2
+                  sm:px-2.5
                   text-emerald-700
                   transition-all
                   hover:bg-emerald-500/20
@@ -320,14 +350,13 @@ export const Navbar: React.FC<NavbarProps> = ({
                   dark:border-emerald-400/25
                   dark:bg-emerald-500/10
                   dark:text-emerald-300
-                  sm:px-3
                 "
               >
-                <WhatsAppIcon className="h-3.5 w-3.5" />
-                <span className="text-[11px] font-bold">Chat</span>
+                <WhatsAppIcon className="h-3 w-3 sm:h-3.5 sm:w-3.5 shrink-0" />
+                <span className="text-[10px] sm:text-[11px] font-bold leading-none">Chat</span>
               </a>
 
-              {/* GitHub Account Link (Desktop only to prevent clutter on mobile) */}
+              {/* GitHub Account Link (Desktop xl only to prevent overflow on mobile and 1024px laptop) */}
               <a
                 href={
                   userProfile.socials.find((s) => s.name === "GitHub")?.url ||
@@ -345,7 +374,8 @@ export const Navbar: React.FC<NavbarProps> = ({
                 }
                 className="
                   hidden
-                  sm:flex
+                  xl:flex
+                  h-8
                   shrink-0
                   items-center
                   justify-center
@@ -353,8 +383,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                   rounded-full
                   border
                   border-slate-200/90
-                  px-3
-                  py-1.5
+                  px-2.5
                   text-xs
                   font-semibold
                   text-slate-700
@@ -367,7 +396,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                   dark:hover:text-white
                 "
               >
-                <Github className="h-3.5 w-3.5" />
+                <GithubBrandIcon className="h-3.5 w-3.5 text-slate-700 dark:text-slate-300" />
                 <span>GitHub</span>
               </a>
 
@@ -378,28 +407,33 @@ export const Navbar: React.FC<NavbarProps> = ({
                   aria-label={dictionary.hero.quickActions.cv.label}
                   title={dictionary.hero.quickActions.cv.label}
                   className="
-                  flex
-                  shrink-0
-                  items-center
-                  gap-1.5
-                  rounded-full
-                  bg-[#273641]
-                  text-white
-                  px-3
-                  py-1.5
-                  text-xs
-                  font-bold
-                  shadow-sm
-                  transition-all
-                  hover:bg-[#1a252d]
-                  active:scale-95
-                  dark:bg-slate-100
-                  dark:text-slate-900
-                  dark:hover:bg-white
+                    flex
+                    h-7
+                    sm:h-8
+                    shrink-0
+                    items-center
+                    justify-center
+                    gap-1
+                    sm:gap-1.5
+                    rounded-full
+                    bg-[#273641]
+                    text-white
+                    px-2
+                    sm:px-2.5
+                    text-[10px]
+                    sm:text-xs
+                    font-bold
+                    shadow-xs
+                    transition-all
+                    hover:bg-[#1a252d]
+                    active:scale-95
+                    dark:bg-slate-100
+                    dark:text-slate-900
+                    dark:hover:bg-white
                   "
                 >
-                  <FileText className="h-3.5 w-3.5" />
-                  <span>CV</span>
+                  <FileText className="h-3 w-3 sm:h-3.5 sm:w-3.5 shrink-0" />
+                  <span className="leading-none">CV</span>
                 </button>
               )}
 
@@ -416,8 +450,10 @@ export const Navbar: React.FC<NavbarProps> = ({
                 }
                 className="
                   flex
-                  h-9
-                  w-9
+                  h-7
+                  w-7
+                  sm:h-8
+                  sm:w-8
                   shrink-0
                   items-center
                   justify-center
@@ -442,9 +478,9 @@ export const Navbar: React.FC<NavbarProps> = ({
                 "
               >
                 {isDark ? (
-                  <Sun className="h-5 w-5 text-amber-500 dark:text-amber-300" />
+                  <Sun className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-amber-500 dark:text-amber-300" />
                 ) : (
-                  <Moon className="h-5 w-5 text-[#36566a] dark:text-slate-100" />
+                  <Moon className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-[#36566a] dark:text-slate-100" />
                 )}
               </button>
             </div>
@@ -456,11 +492,13 @@ export const Navbar: React.FC<NavbarProps> = ({
       <nav
         className="
           fixed
-          bottom-4
+          bottom-3
+          sm:bottom-4
           left-1/2
           -translate-x-1/2
           z-50
-          w-[calc(100%-2rem)]
+          w-[calc(100%-1.5rem)]
+          sm:w-[calc(100%-2rem)]
           max-w-sm
           lg:hidden
           transition-all
@@ -473,8 +511,10 @@ export const Navbar: React.FC<NavbarProps> = ({
             flex
             items-center
             justify-between
-            gap-1.5
-            p-2
+            gap-1
+            sm:gap-1.5
+            p-1.5
+            sm:p-2
             rounded-2xl
             bg-[#E7EAEF]/95
             dark:bg-[#24282b]/95
@@ -503,29 +543,31 @@ export const Navbar: React.FC<NavbarProps> = ({
                   flex
                   items-center
                   justify-center
-                  gap-1.5
-                  py-3
+                  gap-1
+                  sm:gap-1.5
+                  py-2.5
+                  sm:py-3
                   rounded-xl
-                  text-xs
+                  text-[11px]
+                  sm:text-xs
                   font-bold
                   transition-all
                   duration-200
                   active:scale-95
                   ${
                     isActive
-                      ? "nav-item-active flex-1 bg-[#273641] text-white shadow-md shadow-[#273641]/20 dark:bg-white/15 dark:text-white dark:border dark:border-white/25 dark:shadow-sm scale-105 ring-1 ring-[#273641]/20 dark:ring-white/15 px-4 z-10 font-bold [&>span>span>svg]:text-white dark:[&>span>span>svg]:text-white"
-                      : "px-4 text-[#4a5c68] hover:text-[#1c2932] dark:text-slate-200 dark:hover:text-white hover:bg-[#36454f]/5 dark:hover:bg-white/8"
+                      ? "nav-item-active flex-1 bg-[#273641] text-white shadow-md shadow-[#273641]/20 dark:bg-white/15 dark:text-white dark:border dark:border-white/25 dark:shadow-sm scale-105 ring-1 ring-[#273641]/20 dark:ring-white/15 px-3 sm:px-4 z-10 font-bold [&>span>span>svg]:text-white dark:[&>span>span>svg]:text-white"
+                      : "px-2.5 sm:px-4 text-[#4a5c68] hover:text-[#1c2932] dark:text-slate-200 dark:hover:text-white hover:bg-[#36454f]/5 dark:hover:bg-white/8"
                   }
                 `}
               >
-                {" "}
                 <span className="shrink-0">
-                  <span className="block [&>svg]:h-5 [&>svg]:w-5">
+                  <span className="block [&>svg]:h-4 [&>svg]:w-4 sm:[&>svg]:h-5 sm:[&>svg]:w-5">
                     {item.icon}
                   </span>
                 </span>
                 {isActive && (
-                  <span className="truncate text-[11px] tracking-tight animate-in fade-in zoom-in-95 duration-150">
+                  <span className="truncate text-[10px] sm:text-[11px] tracking-tight animate-in fade-in zoom-in-95 duration-150">
                     {item.label}
                   </span>
                 )}
