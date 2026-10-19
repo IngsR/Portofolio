@@ -113,7 +113,7 @@ export const Hero: React.FC<HeroSectionProps> = ({
   );
 
   return (
-    <div className="space-y-16 sm:space-y-24 py-6 sm:py-10">
+    <div className="space-y-16 sm:space-y-24 pt-1 pb-8 sm:py-10">
       {/* 1. Perkenalan singkat + kartu foto profil */}
       {isHeroSectionVisible("intro") && (
         <IntroSection onNavigate={handleNavigate} onOpenCV={onOpenCV} />

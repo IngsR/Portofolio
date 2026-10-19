@@ -28,7 +28,8 @@
       "projectsShort": "Proyek",
       "experience": "Pengalaman Kerja",
       "experienceShort": "Pengalaman",
-      "commits": "Commit per Tahun"
+      "commits": "Commit per Tahun",
+      "commitsShort": "Commit"
     },
     "portfolioButton": "Portofolio",
     "cvButton": "Curriculum Vitae"

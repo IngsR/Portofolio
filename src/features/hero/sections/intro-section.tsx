@@ -40,7 +40,8 @@ export const IntroSection = memo<HeroPageProps & { onOpenCV: () => void }>(
         {
           label: copy.stats.projects,
           shortLabel: copy.stats.projectsShort,
-          value: `${userProfile.stats.projectsCompleted}+`,
+          valNumber: `${userProfile.stats.projectsCompleted}+`,
+          valUnit: "",
           icon: (
             <CheckCircle2 className="w-3.5 h-3.5 text-indigo-600 dark:text-indigo-400 shrink-0" />
           ),
@@ -48,15 +49,17 @@ export const IntroSection = memo<HeroPageProps & { onOpenCV: () => void }>(
         {
           label: copy.stats.experience,
           shortLabel: copy.stats.experienceShort,
-          value: `${userProfile.stats.yearsExperience} ${locale === "en" ? "months" : "Bulan"}`,
+          valNumber: `${userProfile.stats.yearsExperience}`,
+          valUnit: locale === "en" ? "months" : "Bulan",
           icon: (
             <Briefcase className="w-3.5 h-3.5 text-sky-600 dark:text-sky-400 shrink-0" />
           ),
         },
         {
           label: copy.stats.commits,
-          shortLabel: "Commit",
-          value: userProfile.stats.codeCommits,
+          shortLabel: copy.stats.commitsShort || "Commit",
+          valNumber: userProfile.stats.codeCommits,
+          valUnit: "",
           icon: (
             <GitCommit className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400 shrink-0" />
           ),
@@ -66,7 +69,7 @@ export const IntroSection = memo<HeroPageProps & { onOpenCV: () => void }>(
     );
 
     return (
-      <section className="relative py-4 sm:py-6">
+      <section className="relative pt-0 sm:pt-2 pb-4 sm:pb-6">
         <div className="relative grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
           {/* Kolom kiri: ringkasan 60 detik pertama */}
           <div className="lg:col-span-7 space-y-4 sm:space-y-5">
@@ -132,23 +135,30 @@ export const IntroSection = memo<HeroPageProps & { onOpenCV: () => void }>(
             </div>
 
             {/* Stat Monolith Ribbon — Terukir Elegan dengan Tonal Lift */}
-            <div className="atelier-surface rounded-2xl p-4 sm:p-5 flex items-center justify-between sm:justify-start gap-4 sm:gap-10">
+            <div className="atelier-surface rounded-2xl p-2.5 sm:p-5 grid grid-cols-3 divide-x divide-[#36454f]/15 dark:divide-white/10 sm:flex sm:items-center sm:justify-start sm:divide-x-0 sm:gap-10">
               {stats.map((stat, i) => (
-                <div key={stat.label} className="flex items-center gap-4 sm:gap-10">
+                <div key={stat.label} className="flex items-center sm:gap-10 px-1.5 first:pl-0 sm:px-0 min-w-0">
                   {i > 0 && (
                     <div className="hidden sm:block h-10 w-px bg-[#36454f]/15 dark:bg-white/10" />
                   )}
-                  <div className="stat-monolith">
-                    <div className="flex items-center gap-1.5 mb-1">
+                  <div className="stat-monolith w-full">
+                    <div className="flex items-center gap-1 sm:gap-1.5 mb-1 justify-start">
                       {stat.icon}
-                      <span className="text-[10px] sm:text-[11px] font-bold text-[#485966] dark:text-slate-400 uppercase tracking-wider">
+                      <span className="text-[9px] sm:text-[11px] font-bold text-[#485966] dark:text-slate-400 uppercase tracking-wider truncate">
                         <span className="sm:hidden">{stat.shortLabel}</span>
                         <span className="hidden sm:inline">{stat.label}</span>
                       </span>
                     </div>
-                    <span className="stat-monolith-val">
-                      {stat.value}
-                    </span>
+                    <div className="flex items-baseline gap-0.5 sm:gap-1 truncate">
+                      <span className="stat-monolith-val">
+                        {stat.valNumber}
+                      </span>
+                      {stat.valUnit && (
+                        <span className="text-[10px] sm:text-xs font-semibold text-[#485966] dark:text-slate-400 leading-none truncate">
+                          {stat.valUnit}
+                        </span>
+                      )}
+                    </div>
                   </div>
                 </div>
               ))}

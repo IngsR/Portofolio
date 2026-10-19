@@ -22,13 +22,14 @@
     "workLabel": "Work Modality:",
     "workValue": "Available for On-Site, Hybrid, or Relocation",
     "educationLabel": "Academic Degree:",
-    "educationValue": "B.S. in Informatics Engineering — UPI “YPTK” Padang (GPA: 3.26/4.00)",
+    "educationValue": "B.S. in Informatics Engineering UPI “YPTK” Padang (GPA: 3.26/4.00)",
     "stats": {
       "projects": "Completed Projects",
       "projectsShort": "Projects",
       "experience": "Professional Experience",
       "experienceShort": "Experience",
-      "commits": "Repository Commits"
+      "commits": "Repository Commits",
+      "commitsShort": "Commits"
     },
     "portfolioButton": "Technical Portfolio",
     "cvButton": "Curriculum Vitae"
