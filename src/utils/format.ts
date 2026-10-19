@@ -56,6 +56,7 @@ export function formatShortDomain(url?: string): string {
 export function getProjectLiveButtonLabel(
   project?: { demoUrl?: string; slug?: string; title?: string },
   locale: Locale = "id",
+  isShort: boolean = false,
 ): string {
   const url = project?.demoUrl || "";
   const slug = project?.slug || "";
@@ -68,9 +69,11 @@ export function getProjectLiveButtonLabel(
     title.includes("smp negeri 24");
 
   if (isOfficialSchool) {
+    if (isShort) return "Website";
     return locale === "en" ? "Official Website" : "Website Resmi";
   }
 
+  if (isShort) return "Demo";
   return locale === "en" ? "Live Demo" : "Demo Langsung";
 }
 
