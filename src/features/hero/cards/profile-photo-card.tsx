@@ -11,13 +11,6 @@ import { UserProfile } from "../../../types";
 import { useTranslations } from "../../../i18n";
 import { HeroContactLink } from "../types";
 
-/**
- * ProfilePhotoCard - foto profil + tautan kontak di kartu perkenalan.
- *
- * Rasio foto 640/786, fallback /profile.png lalu kartu inisial bila keduanya
- * gagal dimuat. Fallback kini React state (bukan manipulasi DOM manual),
- * sehingga tidak ada `innerHTML` dan tetap satu alur render.
- */
 
 const buildContactLinks = (userProfile: UserProfile): HeroContactLink[] => [
   {
@@ -49,8 +42,8 @@ const buildContactLinks = (userProfile: UserProfile): HeroContactLink[] => [
     label: "GitHub",
     value: "github.com/IngsR",
     href: "https://github.com/IngsR",
-    icon: <GithubBrandIcon className="w-3.5 h-3.5" />,
-    iconClass: "bg-[#273641] text-white dark:bg-slate-100 dark:text-slate-900",
+    icon: <GithubBrandIcon className="w-3.5 h-3.5 text-white" />,
+    iconClass: "bg-[#273641] text-white dark:bg-white/15 dark:text-white",
     hoverClass:
       "hover:border-slate-500/50 hover:bg-slate-100 dark:hover:bg-white/10",
     valueClass:

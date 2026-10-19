@@ -27,7 +27,7 @@ const BrandSvg: React.FC<{
     viewBox="0 0 24 24"
     fill="currentColor"
     focusable="false"
-    className={["block shrink-0 h-4 w-4", className].filter(Boolean).join(" ")}
+    className={["block shrink-0", className || "h-4 w-4"].filter(Boolean).join(" ")}
     aria-hidden="true"
     role="img"
   >

@@ -11,10 +11,7 @@ import { useTranslations } from "../../../i18n";
 import { getDictionary } from "../../../data/locales";
 import { UserProfile } from "../../../types";
 
-/**
- * Tombol aksi cepat (CV, LinkedIn, WhatsApp, Email, GitHub) di section kontak
- * Beranda. Tampilan `p-4 rounded-2xl` dan efek ikon panah tetap sama.
- */
+
 interface QuickAction {
   id: string;
   label: string;
@@ -68,8 +65,8 @@ const buildQuickActions = (
       hint: "github.com/IngsR",
       href: "https://github.com/IngsR",
       cardClass:
-        "bg-[#273641] text-white hover:bg-[#1a252d] dark:bg-white/10 dark:hover:bg-white/15",
-      icon: <GithubBrandIcon className="w-5 h-5" />,
+        "bg-[#273641] text-white hover:bg-[#1a252d] dark:bg-white/10 dark:hover:bg-white/15 dark:text-white",
+      icon: <GithubBrandIcon className="w-5 h-5 text-white" />,
     },
   ];
 };

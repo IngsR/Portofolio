@@ -12,14 +12,6 @@ import {
 import { useTranslations } from "../../../i18n";
 import { getLocalePath } from "../../../utils/locale";
 
-/**
- * HeroCard - satu implementasi kartu untuk proyek & sertifikat di Beranda.
- *
- * `variant` mengatur tata letak isi kartu, sedangkan shell (border, radius,
- * hover, spotlight/tilt) dibagi bersama. Semua animasi layout lama
- * dipertahankan: spotlight + tilt saat perangkat mendukung hover, dan
- * card statis di perangkat sentuh (tanpa listener per kartu).
- */
 export type HeroCardVariant = "project" | "certificate";
 
 interface HeroCardProps {
