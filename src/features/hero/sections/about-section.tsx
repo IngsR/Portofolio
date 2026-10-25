@@ -1,7 +1,7 @@
 "use client";
 import { memo } from "react";
-import { useTranslations } from "../../../i18n";
 import { getDictionary } from "../../../data/locales";
+import { useTranslations } from "../../../i18n";
 import { getLocalePath } from "../../../utils/locale";
 
 /**
@@ -22,7 +22,7 @@ export const AboutSection = memo(function AboutSection() {
           <span className="folio-num">
             {locale === "en"
               ? "04 / Background & Engineering Approach"
-              : "04 / Latar Belakang & Pendekatan Teknis"}
+              : "04 / Latar Belakang & Minat Rekayasa"}
           </span>
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight text-[#141f26] dark:text-white font-serif">
             {labels.about}
@@ -38,7 +38,7 @@ export const AboutSection = memo(function AboutSection() {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         {/* Narrative editorial prose */}
         <div className="lg:col-span-7 space-y-5 text-[#24333d] dark:text-slate-200 text-base sm:text-lg leading-relaxed font-normal">
-          <p className="first-letter:text-4xl first-letter:font-serif first-letter:font-black first-letter:float-left first-letter:mr-3 first-letter:text-[#141f26] dark:first-letter:text-white">
+          <p className="leading-relaxed first-letter:float-left first-letter:font-serif first-letter:font-black first-letter:text-[3.35em] first-letter:leading-[0.82] first-letter:mt-[0.11em] first-letter:mr-3 first-letter:text-[#141f26] dark:first-letter:text-white">
             {copy.paragraphOne}
           </p>
           <p className="text-[15px] sm:text-base text-[#354551] dark:text-slate-300 leading-relaxed border-l-2 border-[#273641]/30 dark:border-white/20 pl-4 py-1">
