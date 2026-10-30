@@ -77,9 +77,9 @@ async function generateOpenGraph() {
       Ikhwan Ramadhan
     </text>
 
-    <!-- Subtitle / Role (Junior Web Developer) - 32px -->
+    <!-- Subtitle / Role (Frontend Developer) - 32px -->
     <text x="485" y="305" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="32" font-weight="700" fill="#334155" letter-spacing="-0.3">
-      Junior Web Developer
+      Frontend Developer
     </text>
 
     <!-- Divider Line -->
@@ -93,7 +93,7 @@ async function generateOpenGraph() {
       </text>
       <!-- Tech Stack -->
       <text x="240" y="0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="24" font-weight="800" fill="#0f172a">
-        • Next.js · REST API · CI/CD · Serverless
+        • React · Next.js · TypeScript · Zustand
       </text>
     </g>
   </svg>

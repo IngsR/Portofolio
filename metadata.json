@@ -1,9 +1,9 @@
 {
   "name": "Profile Ikhwan Ramadhan",
-  "description": "Full-Stack Developer yang berfokus pada pembuatan aplikasi web modern dan scalable. Lihat portofolio saya dan hubungi saya untuk kolaborasi.",
+  "description": "Frontend Developer yang berfokus pada pengembangan antarmuka web dengan ekosistem React dan Next.js, didukung kapabilitas adaptif full-stack.",
   "openGraph": {
-    "title": "Profile Ikhwan Ramadhan",
-    "description": "Jelajahi proyek unggulan saya dan temukan bagaimana saya dapat membantu membangun produk digital Anda.",
+    "title": "Ikhwan Ramadhan | Frontend Developer",
+    "description": "Portofolio rekayasa antarmuka web modern (React, Next.js, TypeScript, Zustand, TanStack Query, Zod, NextAuth RBAC) oleh Ikhwan Ramadhan.",
     "type": "website",
     "url": "https://ikhwann.my.id",
     "siteName": "Ikhwan Ramadhan"
