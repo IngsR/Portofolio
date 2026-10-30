@@ -43,20 +43,20 @@ type SortOption = "relevance" | "date" | "title";
 
 const FILTER_KEYWORDS = [
   "Next.js",
-  "REST API",
-  "TypeScript",
   "React",
+  "TypeScript",
+  "Zustand",
+  "TanStack Query",
   "Zod",
-  "SSR / SSG",
   "Tailwind CSS",
 ] as const;
 
 const FILTER_CATEGORIES: string[] = [
   "Semua",
-  "Fullstack Web App",
-  "Web Platform",
-  "Web Application",
+  "Next.js & Performance",
   "React & Next.js UI",
+  "Web Application",
+  "Angular & Reactive Architecture",
   "Mobile Frontend",
   "Lainnya",
 ] as const;

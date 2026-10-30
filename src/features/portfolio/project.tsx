@@ -65,7 +65,7 @@ export const Project = memo<ProjectCardProps>(function Project({
             <span className="truncate">{project.period || project.publishedDate}</span>
           </span>
           <span className="text-[10px] sm:text-[11px] font-semibold text-[#273641] dark:text-slate-300 truncate text-right min-w-0">
-            {project.role || "Junior Web Developer"}
+            {project.role || "Frontend Developer"}
           </span>
         </div>
 
