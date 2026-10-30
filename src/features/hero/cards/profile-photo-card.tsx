@@ -148,7 +148,7 @@ const ProfilePhoto = memo<{ userProfile: UserProfile }>(function ProfilePhoto({
             draggable={false}
           />
         ) : (
-          <AvatarFallback name={userProfile.name} role="Junior Web Developer" />
+          <AvatarFallback name={userProfile.name} role="Frontend Developer" />
         )}
 
         {/* Plakat Identitas Studio Terukir di Bawah Foto */}
@@ -163,7 +163,7 @@ const ProfilePhoto = memo<{ userProfile: UserProfile }>(function ProfilePhoto({
             </span>
           </div>
           <span className="text-[10px] font-mono font-medium text-slate-300 dark:text-slate-300 shrink-0 ml-2 uppercase tracking-wider">
-            Web Developer
+            Frontend Developer
           </span>
         </div>
       </div>

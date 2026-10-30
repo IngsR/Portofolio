@@ -1,79 +1,79 @@
 {
   "profile": {
-    "tagline": "Software engineer and Computer Science graduate specializing in full-stack web applications, interface architecture, and relational data systems, grounded in rigorous engineering principles.",
-    "shortBio": "Computer Science graduate with an emphasis on web systems engineering and data science. Experienced in designing resilient user interfaces, architecting RESTful services, and implementing end-to-end web applications. Committed to disciplined software development and collaborative problem solving.",
+    "tagline": "T-shaped Frontend Developer specializing in React and Next.js web interface engineering, supported by adaptive full-stack proficiency in API integration, RBAC authentication, and relational data systems.",
+    "shortBio": "Informatics Engineering graduate (B.S. in Computer Science) focused on frontend web development within the React and Next.js ecosystem. Experienced in building responsive user interfaces, managing client state (Zustand), integrating APIs and server state (TanStack Query, Axios), validating forms (Zod), and implementing user authentication (NextAuth, RBAC), backed by adaptive full-stack literacy.",
     "fullBio": [
-      "I am Ikhwan Ramadhan, a Computer Science graduate (B.S. in Informatics Engineering) from Universitas Putra Indonesia “YPTK” Padang. My primary discipline centers on software engineering and full-stack web architectures, complemented by academic specialization in data science, predictive modeling, and statistical analysis.",
-      "My engineering competencies have been developed through applied software projects and deliberate technical practice. Developing institutional platforms, transactional web systems, and dynamic user interfaces has afforded me hands-on experience in database schema design, input validation, authentication workflows, API integration, and production deployment.",
-      "For my undergraduate thesis, I conducted empirical research applying Long Short-Term Memory (LSTM) recurrent networks to tropical cyclone trajectory forecasting. The project entailed rigorous hyperparameter tuning, validation across geospatial datasets, and packaging the trained computational model into an interactive client side web application.",
-      "I continuously cultivate foundational software engineering discipline, prioritizing code clarity, system reliability, and maintainable architecture as I contribute to professional engineering teams."
+      "I am Ikhwan Ramadhan, a Computer Science graduate (B.S. in Informatics Engineering) from Universitas Putra Indonesia “YPTK” Padang (GPA: 3.26 / 4.00). My primary specialization centers on frontend web engineering within the React, Next.js, and TypeScript ecosystem. I cultivate a T-shaped engineering profile: deep proficiency in responsive component architecture, client-side state management (Zustand, Angular Signals), server-state synchronization and API integration (TanStack Query, Axios), declarative form validation (Zod), and role-based authentication (NextAuth, RBAC, JWT), complemented by adaptive full-stack competence in PostgreSQL, MySQL, and Prisma ORM.",
+      "These technical competencies were developed through institutional production delivery and independent software projects. During my internship at SMP Negeri 24 Padang, I developed the official school web portal using Next.js (App Router) and Tailwind CSS with an integrated CMS, built a school Waste Bank module capable of incremental student deposit tracking and automated monthly PDF reporting, and enforced role-based access control (RBAC) connected to internal APIs. In independent work, I built an automotive commerce platform featuring automated lead queue distribution to sales agents with direct WhatsApp integration.",
+      "Within my academic research, I bridged computational modeling and web interface engineering for my undergraduate thesis on tropical cyclone trajectory forecasting using Long Short-Term Memory (LSTM) networks. Following the empirical evaluation of 12 experimental scenarios (achieving a mean Haversine error of 14.2 km and an R² of 0.999), I converted the optimal model to ONNX format for direct in-browser execution via ONNX Runtime on an interactive map built with Astro Island Architecture.",
+      "Across every engineering assignment, I emphasize code readability, strict type contracts, and deliberate rendering optimization (SSR, SSG, ISR). Combining self-directed learning discipline with clear team communication, I am prepared to contribute effectively within a software engineering team."
     ],
-    "workPreference": "Available for on-site, hybrid, and relocation opportunities across Indonesia",
-    "statusText": "Available for Junior Web Developer positions — on-site and hybrid"
+    "workPreference": "Available for Frontend Developer roles — On-Site / WFO, Hybrid, and Relocation",
+    "statusText": "Available for Frontend Developer positions — On-Site and Hybrid"
   },
   "intro": {
-    "availability": "Available for Junior Web Developer Roles",
-    "bio": "Computer Science graduate specializing in web engineering and distributed systems. Committed to building robust, accessible interfaces and scalable REST APIs with modern software methodologies.",
+    "availability": "Available for Frontend Developer Roles",
+    "bio": "Informatics Engineering graduate focused on frontend web development within the React and Next.js ecosystem. Experienced in building responsive user interfaces, managing client state (Zustand), integrating APIs and server state (TanStack Query, Axios), validating forms (Zod), and implementing user authentication (NextAuth, RBAC).",
     "roles": [
-      "Full-Stack Web Engineering",
-      "Next.js & React Architecture",
-      "RESTful APIs & Data Systems"
+      "React & Next.js Ecosystem",
+      "State & API Integration",
+      "T-Shaped Adaptive Full-Stack"
     ],
-    "workLabel": "Work Modality:",
-    "workValue": "Available for On-Site, Hybrid, or Relocation",
-    "educationLabel": "Academic Degree:",
-    "educationValue": "B.S. in Informatics Engineering UPI “YPTK” Padang (GPA: 3.26/4.00)",
+    "workLabel": "Work Modality",
+    "workValue": "Available for On-Site / WFO, Hybrid, or Relocation",
+    "educationLabel": "Academic Degree",
+    "educationValue": "B.S. in Informatics Engineering — UPI “YPTK” Padang (GPA: 3.26 / 4.00)",
     "stats": {
       "projects": "Completed Projects",
       "projectsShort": "Projects",
-      "experience": "Professional Experience",
-      "experienceShort": "Experience",
+      "experience": "Internship Experience",
+      "experienceShort": "Internship",
       "commits": "Repository Commits",
       "commitsShort": "Commits"
     },
-    "portfolioButton": "Technical Portfolio",
+    "portfolioButton": "Project Portfolio",
     "cvButton": "Curriculum Vitae"
   },
   "sections": {
     "education": "Academic Background",
-    "portfolio": "Selected Projects",
+    "portfolio": "Project Portfolio",
     "featuredProjects": "Browse All Projects",
     "about": "Profile & Background",
-    "certifications": "Certifications & Accreditations",
+    "certifications": "Certifications",
     "allCertificates": "View All Credentials",
-    "skills": "Technical Competencies",
+    "skills": "Technical Skills",
     "nextStep": "CORRESPONDENCE",
-    "contactHeading": "Initiate Professional Inquiries",
-    "contactDescription": "I welcome inquiries regarding Junior Web Developer roles, full-stack engineering opportunities, and technical collaborations.",
+    "contactHeading": "Discuss a Frontend Developer Opportunity",
+    "contactDescription": "I welcome inquiries regarding Frontend Developer roles specializing in the React and Next.js ecosystem, supported by adaptive full-stack capabilities for collaborative product engineering.",
     "contactWhatsapp": "Direct Message (WhatsApp)",
-    "contactEmail": "Send Inquiries via Email"
+    "contactEmail": "Send Formal Email"
   },
   "aboutSummary": {
-    "paragraphOne": "I am Ikhwan Ramadhan, a Computer Science graduate from Universitas Putra Indonesia 'YPTK' Padang. My background is rooted in software engineering, with a focus on full-stack web architecture from building responsive user interfaces to designing RESTful APIs, relational databases, and automated CI/CD pipelines.",
-    "paragraphTwo": "In engineering practice, functional correctness is merely the baseline. I prioritize diagnosing system failures at their root cause, refining architectural trade-offs, and establishing deterministic, maintainable solutions across every codebase I develop.",
+    "paragraphOne": "I am Ikhwan Ramadhan, an Informatics Engineering graduate from Universitas Putra Indonesia “YPTK” Padang specializing in frontend web development with React and Next.js. My engineering work focuses on constructing responsive user interfaces, separating client-side UI state (Zustand, Signals) from asynchronous server state (TanStack Query, Axios), enforcing schema validation (Zod), and implementing role-based authentication (NextAuth, RBAC).",
+    "paragraphTwo": "Operating as a T-shaped Frontend Developer, I pair deep client-side specialization with adaptive working knowledge of relational databases and backend services (PostgreSQL, MySQL, Prisma ORM). This cross-layer literacy enables me to align frontend state structures directly with API contracts and collaborate effectively across the software stack.",
     "cards": [
       {
-        "title": "Next.js",
-        "subtitle": "App Router, SSR, SSG, Server Actions"
+        "title": "React & Next.js Ecosystem",
+        "subtitle": "App Router, SSR, SSG, ISR, Tailwind CSS, Astro, Foundational Angular"
       },
       {
-        "title": "React & TypeScript",
-        "subtitle": "Component architecture, custom hooks, type safety"
+        "title": "State & Data Fetching",
+        "subtitle": "Zustand, TanStack Query (React Query), Axios, REST API, Signals"
       },
       {
-        "title": "REST APIs & Databases",
-        "subtitle": "Route Handlers, schema validation, Prisma"
+        "title": "Form Validation & Auth",
+        "subtitle": "Zod Schema Validation, NextAuth, RBAC & JWT Authentication"
       },
       {
-        "title": "Git & Deployment",
-        "subtitle": "Branch workflows, code review, Vercel, CI/CD"
+        "title": "Adaptive Full-Stack Support",
+        "subtitle": "PostgreSQL, MySQL, Prisma ORM, SQL, ONNX Runtime, Git/GitHub"
       }
     ]
   },
   "quickActions": {
     "cv": {
       "label": "Curriculum Vitae",
-      "hint": "View or download the official PDF curriculum vitae"
+      "hint": "View or print the official PDF curriculum vitae"
     },
     "linkedin": {
       "label": "LinkedIn Profile"

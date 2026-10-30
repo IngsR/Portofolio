@@ -1,34 +1,34 @@
 {
   "profile": {
-    "tagline": "Junior Web Developer yang membangun aplikasi web dari antarmuka hingga REST API, database, dan deployment, sambil terus memperdalam praktik software engineering melalui project nyata.",
-    "shortBio": "Fresh graduate Teknik Informatika yang fokus di web development. Kemampuan saya tumbuh dari project mandiri, mencoba membangun antarmuka, menghubungkan API, dan memahami cara kerja sistem secara langsung. Sekarang siap masuk dunia kerja dan terus berkembang bersama tim.",
+    "tagline": "Frontend Developer berprofil T-shaped yang berfokus pada rekayasa antarmuka web dengan ekosistem React dan Next.js, didukung kapabilitas adaptif pada integrasi API, autentikasi RBAC, dan arsitektur full-stack.",
+    "shortBio": "Lulusan S1 Teknik Informatika yang berfokus pada pengembangan Frontend Web dengan ekosistem React dan Next.js. Terbiasa membangun antarmuka yang responsif, mengelola client state (Zustand), melakukan integrasi API & server state (TanStack Query, Axios), validasi form (Zod), serta menerapkan autentikasi pengguna (NextAuth, RBAC) dengan pemahaman full-stack yang adaptif.",
     "fullBio": [
-      "Saya Ikhwan Ramadhan, lulusan S1 Teknik Informatika Universitas Putra Indonesia “YPTK” Padang. Fokus profesional saya adalah software engineering, khususnya pengembangan aplikasi web dari frontend hingga backend. Konsentrasi Data Science menjadi bekal akademik tambahan yang melengkapi pemahaman saya tentang pengolahan dan analisis data.",
-      "Sebagian besar kemampuan web saya tumbuh dari project nyata dan belajar mandiri, bukan hanya dari kelas. Dari mengerjakan portal sekolah, aplikasi properti, sampai website showroom mobil, saya belajar memahami kebutuhan pengguna, membangun fitur, lalu berhadapan langsung dengan masalah seperti bug, integrasi API, struktur database, authentication, dan deployment.",
-      "Bekal akademik tersebut saya terapkan dalam skripsi tentang prediksi lintasan siklon tropis menggunakan model LSTM. Saya menguji beberapa konfigurasi, membandingkan hasil, dan mengevaluasi performanya sebelum memilih pendekatan terbaik. Fokus karier saya tetap pada software engineering.",
-      "Saya ingin terus memperdalam web development, membangun kebiasaan software engineering yang lebih baik, dan memperluas pemahaman teknis melalui project serta pengalaman kerja nyata."
+      "Saya Ikhwan Ramadhan, lulusan Sarjana Komputer (Teknik Informatika) dari Universitas Putra Indonesia “YPTK” Padang (IPK 3,26 / 4,00). Fokus utama saya adalah rekayasa antarmuka web (Frontend Web Development) dalam ekosistem React, Next.js, dan TypeScript. Saya membangun profil kompetensi T-shaped: memiliki kedalaman teknis pada arsitektur komponen responsif, pengelolaan client state (Zustand, Angular Signals), sinkronisasi server state dan integrasi API (TanStack Query, Axios), validasi skema form (Zod), serta autentikasi pengguna (NextAuth, RBAC, JWT), sekaligus adaptif terhadap lapisan pendukung full-stack seperti PostgreSQL, MySQL, dan Prisma ORM.",
+      "Kompetensi rekayasa tersebut dibentuk melalui implementasi sistem produksi dan proyek pengembangan mandiri. Selama masa magang di SMP Negeri 24 Padang, saya mengembangkan portal web sekolah berbasis Next.js (App Router) dengan sistem manajemen konten (CMS), merancang fitur Bank Sampah sekolah dengan rekapitulasi laporan PDF bulanan otomatis, serta menerapkan kontrol akses berbasis peran (RBAC) yang terhubung ke API internal. Pada proyek mandiri, saya membangun platform penjualan otomotif yang mengintegrasikan katalog pelanggan dengan dasbor admin serta distribusi antrean leads otomatis ke WhatsApp.",
+      "Di ranah akademik, saya mengintegrasikan riset komputasi ke dalam antarmuka web melalui penelitian skripsi mengenai prediksi lintasan siklon tropis berbasis Long Short-Term Memory (LSTM). Setelah mengevaluasi 12 skenario eksperimen (mencapai rata-rata galat Haversine 14,2 km dan koefisien determinasi R² 0,999), model terbaik dikonversi ke format ONNX agar proses inferensi dapat dijalankan langsung di peramban menggunakan ONNX Runtime di atas Astro Island Architecture.",
+      "Dalam setiap pengembangan sistem, saya memprioritaskan keterbacaan kode, ketepatan kontrak tipe data (type safety), dan optimasi siklus rendering (SSR, SSG, ISR). Dengan disiplin belajar mandiri yang tinggi, ketelitian, serta komunikasi tim yang efektif, saya siap berkontribusi secara produktif dalam tim pengembang."
     ],
-    "workPreference": "Terbuka untuk kesempatan kerja On-Site / WFO dan Hybrid",
-    "statusText": "Terbuka untuk posisi Junior Web Developer - On-Site / WFO dan Hybrid"
+    "workPreference": "Terbuka untuk posisi Frontend Developer — On-Site / WFO, Hybrid, dan Relokasi",
+    "statusText": "Terbuka untuk posisi Frontend Developer - On-Site / WFO dan Hybrid"
   },
   "intro": {
-    "availability": "Terbuka untuk kesempatan Junior Web Developer",
-    "bio": "Fresh graduate Teknik Informatika yang fokus di web development. Kemampuan saya tumbuh dari project mandiri, mencoba membangun antarmuka, menghubungkan API, dan memahami cara kerja sistem secara langsung. Sekarang siap masuk dunia kerja dan terus berkembang bersama tim.",
+    "availability": "Terbuka untuk posisi Frontend Developer",
+    "bio": "Lulusan S1 Teknik Informatika yang berfokus pada pengembangan Frontend Web dengan ekosistem React dan Next.js. Terbiasa membangun antarmuka yang responsif, mengelola client state (Zustand), melakukan integrasi API & server state (TanStack Query, Axios), validasi form (Zod), serta menerapkan autentikasi pengguna (NextAuth, RBAC) dengan pemahaman full-stack yang adaptif.",
     "roles": [
-      "Frontend & Backend",
-      "Next.js & React Developer",
-      "REST API & Database"
+      "React & Next.js Ecosystem",
+      "State & API Integration",
+      "T-Shaped Adaptive Full-Stack"
     ],
-    "workLabel": "Kesiapan Kerja:",
-    "workValue": "Terbuka untuk kerja On-Site / WFO dan Hybrid",
-    "educationLabel": "Pendidikan Akademis:",
-    "educationValue": "S1 Teknik Informatika - UPI “YPTK” (IPK 3.26)",
+    "workLabel": "Kesiapan Kerja",
+    "workValue": "Terbuka untuk kerja On-Site / WFO, Hybrid, dan Relokasi",
+    "educationLabel": "Pendidikan Akademis",
+    "educationValue": "S1 Teknik Informatika - UPI “YPTK” Padang (IPK 3.26 / 4.00)",
     "stats": {
       "projects": "Proyek Selesai",
       "projectsShort": "Proyek",
-      "experience": "Pengalaman Kerja",
-      "experienceShort": "Pengalaman",
-      "commits": "Commit per Tahun",
+      "experience": "Pengalaman Magang",
+      "experienceShort": "Magang",
+      "commits": "Commit Repositori",
       "commitsShort": "Commit"
     },
     "portfolioButton": "Portofolio",
@@ -36,41 +36,44 @@
   },
   "sections": {
     "education": "Pendidikan Perguruan Tinggi (S1)",
-    "portfolio": "Portofolio",
+    "portfolio": "Portofolio Proyek",
     "featuredProjects": "Lihat Semua Proyek",
     "about": "Tentang Saya",
     "certifications": "Sertifikasi",
     "allCertificates": "Lihat Semua Sertifikat",
-    "skills": "Keahlian",
-    "nextStep": "LANGKAH BERIKUTNYA",
-    "contactHeading": "Ada peluang yang ingin dibicarakan?",
-    "contactDescription": "Saya terbuka untuk peluang sebagai Junior Web Developer dengan fokus pada Next.js dan React.js, serta memahami pengembangan full-stack hingga deployment.",
+    "skills": "Keahlian Teknis",
+    "nextStep": "KORESPONDENSI",
+    "contactHeading": "Ada peluang posisi Frontend Developer yang ingin didiskusikan?",
+    "contactDescription": "Saya terbuka untuk peluang karier sebagai Frontend Developer dengan spesialisasi pada ekosistem React dan Next.js, didukung kapabilitas adaptif lintas full-stack untuk mendukung kolaborasi tim pengembang.",
     "contactWhatsapp": "Hubungi via WhatsApp",
-    "contactEmail": "Kirim email"
+    "contactEmail": "Kirim Surel Resmi"
   },
   "aboutSummary": {
-    "paragraphOne": "Saya Ikhwan Ramadhan, lulusan S1 Teknik Informatika Universitas Putra Indonesia “YPTK” Padang. Fokus profesional saya adalah software engineering, terutama membangun aplikasi dari frontend hingga backend, REST API, database, pengujian, dan deployment. Konsentrasi Data Science menjadi bekal akademik pelengkap untuk memahami pengolahan dan analisis data.",
-    "paragraphTwo": "Bagi saya, development bukan sekadar membuat sesuatu berjalan, tetapi juga memahami mengapa sesuatu tidak berjalan, mencari penyebabnya, dan menemukan cara yang lebih baik untuk menyelesaikannya. Karena itu, saya terus mengeksplorasi teknologi dan pendekatan baru melalui berbagai project yang saya kerjakan.",
+    "paragraphOne": "Saya Ikhwan Ramadhan, lulusan Sarjana Komputer (Teknik Informatika) Universitas Putra Indonesia “YPTK” Padang yang memfokuskan spesialisasi pada rekayasa Frontend Web dalam ekosistem React dan Next.js. Pendekatan kerja saya mencakup pembangunan antarmuka yang responsif, pemisahan pengelolaan client state (Zustand, Signals) dan server state (TanStack Query, Axios), validasi form terstruktur (Zod), serta penerapan autentikasi berbasis peran (NextAuth, RBAC).",
+    "paragraphTwo": "Sebagai pengembang berprofil T-shaped, kedalaman kompetensi pada lapisan antarmuka tersebut ditopang oleh pemahaman adaptif terhadap arsitektur backend dan basis data relasional (PostgreSQL, MySQL, Prisma ORM). Hal ini memudahkan saya menyelaraskan kontrak data API, menjaga konsistensi tipe data end-to-end, serta beradaptasi dengan kebutuhan teknis tim.",
     "cards": [
       {
-        "title": "Next.js",
-        "subtitle": "App Router, SSR, SSG, Server Actions"
+        "title": "React & Next.js Ecosystem",
+        "subtitle": "App Router, SSR, SSG, ISR, Tailwind CSS, Astro, Angular Dasar"
       },
       {
-        "title": "React & TypeScript",
-        "subtitle": "Komponen, hooks, type-safe"
+        "title": "State & Data Fetching",
+        "subtitle": "Zustand, TanStack Query (React Query), Axios, REST API, Signals"
       },
       {
-        "title": "REST API & Database",
-        "subtitle": "Route Handlers, Zod, Prisma"
+        "title": "Validasi Form & Autentikasi",
+        "subtitle": "Zod Schema Validation, NextAuth, Autentikasi RBAC & JWT"
       },
-      { "title": "Git & Deployment", "subtitle": "Branch, PR, Vercel, CI/CD" }
+      {
+        "title": "Pendukung Full-Stack (T-Shaped)",
+        "subtitle": "PostgreSQL, MySQL, Prisma ORM, SQL, ONNX Runtime, Git/GitHub"
+      }
     ]
   },
   "quickActions": {
     "cv": {
       "label": "Curriculum Vitae",
-      "hint": "Lihat CV PDF, lalu cetak langsung dari browser bila diperlukan"
+      "hint": "Tinjau CV PDF resmi atau cetak langsung dari peramban"
     },
     "linkedin": {
       "label": "Profil LinkedIn"
@@ -79,10 +82,10 @@
       "label": "WhatsApp & Respons Cepat"
     },
     "email": {
-      "label": "Kirim Email Resmi"
+      "label": "Kirim Surel Resmi"
     },
     "github": {
-      "label": "Repositori Portofolio GitHub"
+      "label": "Repositori GitHub"
     }
   }
 }
