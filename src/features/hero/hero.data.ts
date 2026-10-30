@@ -28,10 +28,10 @@ export const isHeroSectionVisible = (section: HeroSectionId) =>
  * Ini UI config (label + subtitle tetap), bukan data profil dari JSON.
  */
 export const HERO_SUMMARY_CARDS: HeroSummaryCard[] = [
-  { title: "Next.js", subtitle: "App Router, SSR, SSG, Server Actions" },
-  { title: "React & TypeScript", subtitle: "Komponen, hooks, type-safe" },
-  { title: "REST API & Database", subtitle: "Route Handlers, Zod, Prisma" },
-  { title: "Git & Deployment", subtitle: "Branch, PR, Vercel, CI/CD" },
+  { title: "React & Next.js Ecosystem", subtitle: "App Router, SSR, SSG, ISR, Tailwind CSS, Astro, Angular Dasar" },
+  { title: "State & Data Fetching", subtitle: "Zustand, TanStack Query (React Query), Axios, REST API, Signals" },
+  { title: "Validasi Form & Autentikasi", subtitle: "Zod Schema Validation, NextAuth, Autentikasi RBAC & JWT" },
+  { title: "Pendukung Full-Stack (T-Shaped)", subtitle: "PostgreSQL, MySQL, Prisma ORM, SQL, ONNX Runtime, Git/GitHub" },
 ];
 
 /**

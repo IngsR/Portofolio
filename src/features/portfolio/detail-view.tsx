@@ -350,7 +350,7 @@ export const DetailView: React.FC<DetailViewProps> = ({
               </div>
               <p className="text-xs sm:text-sm font-bold text-slate-900 dark:text-white truncate">
                 {isProject
-                  ? project?.role || "Web Developer"
+                  ? project?.role || "Frontend Developer"
                   : certificate?.issuer}
               </p>
             </div>

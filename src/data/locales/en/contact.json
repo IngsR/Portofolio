@@ -1,61 +1,61 @@
 {
   "eyebrow": "PROFESSIONAL CORRESPONDENCE",
   "title": "Inquiries & Professional Engagement",
-  "intro": "I welcome formal inquiries regarding Junior Web Developer appointments, full-stack engineering roles, institutional projects, and academic collaboration.",
-  "workMessage": "Engineering Role / Technical Project",
-  "whatsappTitle": "Direct Messaging Channel",
-  "whatsappSubtitle": "Prompt response for urgent inquiries",
-  "whatsappDescription": "To discuss recruitment opportunities, interviews, or project requirements directly, you may initiate correspondence via WhatsApp.",
+  "intro": "I welcome formal inquiries regarding Frontend Developer positions (On-Site, Hybrid, Remote, or Relocation) and collaborative web engineering projects.",
+  "workMessage": "Frontend Developer Role / Technical Project",
+  "whatsappTitle": "Direct Messaging (WhatsApp)",
+  "whatsappSubtitle": "Prompt response during business hours",
+  "whatsappDescription": "To discuss Frontend Developer recruitment opportunities, interview scheduling, or project specifications directly, you may initiate correspondence via WhatsApp.",
   "whatsappAction": "Message via WhatsApp",
   "whatsappDirect": "Initiate WhatsApp Dialogue",
   "emailLabel": "Institutional / Business Email Address *",
   "emailTitle": "Formal Email Correspondence",
-  "emailSubtitle": "Preferred for official invitations, job descriptions, and documentation",
+  "emailSubtitle": "Preferred for interview invitations, job descriptions, and official documents",
   "copyEmail": "Copy Email Address",
   "copied": "Copied to Clipboard",
   "copy": "Copy",
   "openEmail": "Open Mail Client",
-  "availabilityTitle": "Mobility & Engagement Parameters",
-  "locationLabel": "Geographic mobility:",
-  "locationValue": "Available for nationwide on-site deployment across Indonesia, as well as hybrid or remote engagements",
-  "responseLabel": "Expected correspondence latency:",
-  "responseValue": "Typically within 2 to 4 hours during business hours (08:00–21:00 WIB)",
-  "socialTitle": "Professional Affiliations & Profiles",
-  "formTitle": "Transmit Formal Inquiry",
-  "formDescription": "Please provide your correspondence details and inquiry parameters below.",
-  "successTitle": "Message Successfully Transmitted",
-  "successDescription": "Thank you for reaching out. Your communication has been received, and I will reply to your email promptly. Sincerely, Ikhwan Ramadhan.",
-  "sendAnother": "Transmit Another Inquiry",
+  "availabilityTitle": "Mobility & Work Arrangement",
+  "locationLabel": "Geographic Mobility:",
+  "locationValue": "Available for on-site deployment nationwide across Indonesia, as well as hybrid or remote arrangements",
+  "responseLabel": "Expected Response Time:",
+  "responseValue": "Typically within a few hours during business hours (08:00–21:00 WIB)",
+  "socialTitle": "Professional Profiles",
+  "formTitle": "Send Formal Inquiry",
+  "formDescription": "Please provide your contact details and role or project specifications below.",
+  "successTitle": "Message Sent",
+  "successDescription": "Thank you for reaching out. Your inquiry has been recorded, and I will respond via email promptly.",
+  "sendAnother": "Send Another Message",
   "nameLabel": "Full Name / Organization *",
-  "namePlaceholder": "e.g., Dr. Eleanor Vance / Acme Engineering Corp.",
+  "namePlaceholder": "e.g., Hiring Manager / Engineering Team",
   "emailPlaceholder": "colleague@organization.com",
   "subjectLabel": "Subject of Inquiry",
-  "subjectPlaceholder": "e.g., Software Engineering Position / Technical Collaboration",
-  "categoryLabel": "Classification of Inquiry",
+  "subjectPlaceholder": "e.g., Frontend Developer Interview Invitation",
+  "categoryLabel": "Category of Inquiry",
   "categories": {
-    "work": "Software Engineering & Junior Web Developer Employment (On-site / Hybrid)",
-    "development": "Full-Stack Web Development & Application Architecture",
-    "consultation": "Technical Inquiry & Systems Consultation",
-    "other": "General Academic or Professional Correspondence"
+    "work": "Frontend Developer Employment (On-Site / Hybrid / Remote)",
+    "development": "Frontend Web Engineering & API Integration (React / Next.js)",
+    "consultation": "Technical Discussion & Project Collaboration",
+    "other": "General Professional Correspondence"
   },
-  "messageLabel": "Detailed Inquiry *",
-  "messagePlaceholder": "Dear Ikhwan,\n\nI am contacting you regarding an opportunity at our engineering team...",
-  "sending": "Transmitting message...",
-  "faqEyebrow": "COMMUNICATION DIRECTORY",
-  "faqTitle": "Frequently Addressed Inquiries",
+  "messageLabel": "Detailed Message *",
+  "messagePlaceholder": "Please share the role details, technical requirements, or proposed interview schedule...",
+  "sending": "Sending message...",
+  "faqEyebrow": "FREQUENT INQUIRIES",
+  "faqTitle": "Frequently Asked Questions",
   "faq": [
     {
-      "question": "What is the recommended procedure for scheduling an interview or discussing an engineering opportunity?",
-      "answer": "You may initiate correspondence directly via email at ikhwn.rdn@gmail.com, via telephone/WhatsApp at +62 823-8647-3410, or through the transmission form above. I promptly review prospective employment briefs and technical assessment invitations."
+      "question": "What is the recommended way to contact Ikhwan Ramadhan for a Frontend Developer position?",
+      "answer": "You may contact me directly via email at ikhwn.rdn@gmail.com, via WhatsApp at +62 823-8647-3410, or through the correspondence form on this page. I respond promptly to interview invitations and technical assessments."
     },
     {
-      "question": "Are you eligible and willing to undertake on-site relocation across Indonesia?",
-      "answer": "Yes. Having graduated with an Informatics Engineering degree, I am fully prepared and available to relocate for on-site engineering appointments nationwide, as well as hybrid or distributed operational configurations."
+      "question": "Are you available for on-site (WFO) work and relocation?",
+      "answer": "Yes. Having completed my degree in Informatics Engineering, I am fully available for on-site appointments, relocation across Indonesia, as well as hybrid and remote team structures."
     },
     {
-      "question": "What foundational competencies and technical capabilities do you bring to an engineering organization?",
-      "answer": "My background integrates core computer science principles with modern full-stack web engineering. I offer demonstrated proficiency in TypeScript, React, Next.js (App Router), relational schema design, RESTful service implementation, robust input validation with Zod, and production-tested deployment pipelines. My data science foundation further supports analytical problem-solving and rigorous empirical evaluation."
+      "question": "What core frontend competencies and T-shaped capabilities do you bring to an engineering team?",
+      "answer": "My primary focus is frontend web engineering within the React and Next.js ecosystem (App Router, SSR, SSG, ISR), TypeScript, Tailwind CSS, client-side state management (Zustand, Angular Signals), server-state caching and API integration (TanStack Query, Axios), schema validation (Zod), and authentication (NextAuth, RBAC). Complementing this depth, my T-shaped foundation in PostgreSQL, MySQL, and Prisma ORM enables me to collaborate effectively across backend API boundaries."
     }
   ],
-  "submit": "Transmit Correspondence"
+  "submit": "Send Message"
 }

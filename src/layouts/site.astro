@@ -12,8 +12,8 @@ interface Props {
 }
 
 const {
-  title = "Ikhwan Ramadhan | Junior Web Developer",
-  description = "Portofolio Ikhwan Ramadhan di bidang software engineering dengan pengalaman membangun aplikasi frontend dan backend. Konsentrasi Data Science menjadi bekal akademik tambahan.",
+  title = "Ikhwan Ramadhan | Frontend Developer",
+  description = "Portofolio Ikhwan Ramadhan, lulusan Teknik Informatika yang berfokus pada pengembangan Frontend Web dengan ekosistem React dan Next.js, didukung kapabilitas adaptif full-stack.",
   canonicalPath = Astro.url.pathname,
   locale = "id",
 } = Astro.props;
@@ -41,7 +41,7 @@ const personSchema = {
   "@context": "https://schema.org",
   "@type": "Person",
   name: "Ikhwan Ramadhan",
-  jobTitle: "Junior Web Developer",
+  jobTitle: "Frontend Developer",
   url: `${siteUrl}/`,
   image: `${siteUrl}/profile.png`,
   email: "mailto:ikhwn.rdn@gmail.com",
@@ -51,31 +51,24 @@ const personSchema = {
   },
   sameAs: ["https://github.com/IngsR", "https://www.linkedin.com/in/ikhwn-rdn"],
   knowsAbout: [
-    "Web Development",
-    "Frontend Development",
-    "Backend Development",
-    "Next.js",
-    "React.js",
-    "Angular",
+    "Frontend Web Development",
+    "React",
+    "Next.js (App Router, SSR, SSG, ISR)",
     "TypeScript",
     "JavaScript",
-    "Node.js",
-    "REST API",
-    "PostgreSQL",
-    "Prisma",
-    "Server-Side Rendering (SSR)",
-    "Static Site Generation (SSG)",
-    "Incremental Static Regeneration (ISR)",
-    "Testing",
+    "Zustand",
+    "TanStack Query (React Query)",
     "Zod Validation",
-    "CI/CD",
-    "Serverless Deployment",
-    "Git Workflow",
-    "Docker",
+    "Data Fetching (Axios, REST API)",
+    "NextAuth",
+    "RBAC & JWT Authentication",
     "Tailwind CSS",
-    "Data Science",
-    "Machine Learning",
-    "Deep Learning (LSTM)",
+    "Astro (Island Architecture)",
+    "Angular (Signals & RxJS)",
+    "PostgreSQL & MySQL",
+    "Prisma ORM",
+    "SQL",
+    "Git & GitHub",
     "ONNX Runtime",
   ],
 };
@@ -216,7 +209,7 @@ const breadcrumbSchema = {
     <meta property="og:image:height" content="630" />
     <meta
       property="og:image:alt"
-      content="Ikhwan Ramadhan - Junior Web Developer"
+      content="Ikhwan Ramadhan - Frontend Developer"
     />
     <meta property="og:locale" content={locale === "en" ? "en_US" : "id_ID"} />
     <meta property="og:site_name" content="Ikhwan Ramadhan" />
@@ -228,7 +221,7 @@ const breadcrumbSchema = {
     <meta name="twitter:image" content={ogImageUrl} />
     <meta
       name="twitter:image:alt"
-      content="Ikhwan Ramadhan - Junior Web Developer"
+      content="Ikhwan Ramadhan - Frontend Developer"
     />
 
     <!-- Structured Data (JSON-LD) -->

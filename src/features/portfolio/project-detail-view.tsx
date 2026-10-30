@@ -201,7 +201,7 @@ export const ProjectDetailView: React.FC<ProjectDetailViewProps> = ({
                 <span>Peran</span>
               </div>
               <p className="text-xs sm:text-sm font-bold text-slate-900 dark:text-white truncate">
-                {project.role || "Web Developer"}
+                {project.role || "Frontend Developer"}
               </p>
             </div>
 
