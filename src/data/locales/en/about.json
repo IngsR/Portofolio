@@ -3,28 +3,28 @@
   "cv": "Curriculum Vitae (PDF)",
   "availability": "Professional Availability",
   "availabilityTitle": "On-Site, Hybrid, & Relocation",
-  "availabilityDescription": "Available for full-time on-site appointments nationwide across Indonesia, as well as hybrid or distributed team arrangements.",
+  "availabilityDescription": "Available for full-time Frontend Developer appointments on-site across Indonesia, as well as hybrid or remote engineering teams.",
   "education": "Academic Background",
-  "expertise": "Core Technical Disciplines",
+  "expertise": "Core Specialization",
   "highlights": {
     "educationTitle": "B.S. in Informatics Engineering",
-    "educationDescription": "Graduate of Universitas Putra Indonesia “YPTK” Padang with formal coursework in software engineering, data structures, algorithm analysis, relational database systems, and web architecture. Academic concentration in Data Science provided specialized training in statistical analysis and predictive modeling.",
-    "expertiseTitle": "Full-Stack Web Engineering",
-    "expertiseDescription": "Comprehensive full-stack development employing Next.js (App Router), TypeScript, RESTful API design, schema validation with Zod, database modeling, secure authentication practices, CI/CD pipelines, and cloud edge deployment."
+    "educationDescription": "Graduate of Universitas Putra Indonesia “YPTK” Padang (GPA: 3.26 / 4.00). Completed an undergraduate thesis on LSTM tropical cyclone trajectory forecasting executed directly in the browser via ONNX Runtime and Astro.",
+    "expertiseTitle": "Frontend Developer (T-Shaped)",
+    "expertiseDescription": "Focused on React and Next.js (App Router, SSR/SSG/ISR), TypeScript, Zustand, TanStack Query, Zod validation, and RBAC authentication (NextAuth), supported by adaptive proficiency in PostgreSQL, MySQL, and Prisma ORM."
   },
-  "achievements": "Notable Milestones & Impact",
-  "skillsTitle": "Technical Competencies & Toolchain",
-  "skillsDescription": "Primary technologies, frameworks, and engineering utilities utilized in production and academic environments.",
+  "achievements": "Key Contributions & Deliverables",
+  "skillsTitle": "Technical Competencies & Ecosystem",
+  "skillsDescription": "Primary frontend engineering specializations paired with supporting full-stack and computational tools.",
   "educationHistory": "Academic Qualifications",
-  "certificationsTitle": "Certifications & Formal Accreditations",
+  "certificationsTitle": "Certifications & Credentials",
   "coreStack": "PRIMARY PROFICIENCIES",
-  "alsoUsed": "COMPLEMENTARY TOOLS",
+  "alsoUsed": "SUPPORTING & APPLIED",
   "tabs": {
-    "experience": "Professional Experience",
-    "experienceMobile": "Experience",
-    "skills": "Technical Competencies",
+    "experience": "Internship Experience",
+    "experienceMobile": "Internship",
+    "skills": "Technical Skills",
     "skillsMobile": "Skills",
-    "education": "Education & Accreditations",
+    "education": "Education & Certifications",
     "educationMobile": "Education"
   }
 }
